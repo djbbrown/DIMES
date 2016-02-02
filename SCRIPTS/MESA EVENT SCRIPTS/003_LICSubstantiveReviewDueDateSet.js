@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 003
-// Script Name: 
+// Script Name: LICSubstantiveReviewDueDateSet
 // Script Developer: 
 // Script Agency: (Mesa/Accela/Woolpert)
 // Script Description: 
