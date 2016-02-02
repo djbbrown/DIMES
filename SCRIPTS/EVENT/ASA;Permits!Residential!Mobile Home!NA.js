@@ -1,0 +1,10 @@
+//Exercise #1
+//file name: ASA;Permits!Residential!Mobile Home!NA
+
+// AInfo is how you pull an ASI field
+
+if (AInfo["Type of Work"] == "New Mobile Home")
+{
+                showMessage = true;
+                commet("Please check for Historic District");
+}
