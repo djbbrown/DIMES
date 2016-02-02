@@ -9,7 +9,3 @@
 
 // Under this line create the function that will need to run at script runtime.
 // the function will be called in the event ("AppSubmitAfter") major event.
-
-int 003_LICSubstantiveReviewDueDateSet() {
-	// Do some things.
-};
