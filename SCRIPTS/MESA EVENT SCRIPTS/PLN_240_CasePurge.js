@@ -1,8 +1,8 @@
 /*===================================================================
-// Script Number: 
-// Script Name: 
-// Script Developer: 
-// Script Agency: (Mesa/Accela/Woolpert)
+// Script Number: 240
+// Script Name: Case Purge
+// Script Developer: Kevin Ford
+// Script Agency: Accela
 // Script Description: 
 // Script Run Event: 
 // Script Parents:
