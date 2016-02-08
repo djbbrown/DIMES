@@ -4,10 +4,9 @@
 // Script Developer: Kevin Ford
 // Script Agency: Accela
 // Script Description: 
-// Script Run Event: 
+// Script Run Event: Workflow Task Update After
 // Script Parents:
-//            ASA;Planning!Group Home-Daycare!Application!NA  (example)
-//            ASA;Licensing!General!ParkAndSwap!NA  (example)
+//            WTUA;Licenses!General!~!Application.js
 /*==================================================================*/
 
 // Under this line create the function that will need to run at script runtime.
