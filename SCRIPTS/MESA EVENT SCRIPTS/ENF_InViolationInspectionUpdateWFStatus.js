@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 047
-// Script Name:047_ENFInViolationInspectionUpdateWFStatus.js
+// Script Name:ENF_InViolationInspectionUpdateWFStatus.js
 // Script Developer: Raminder Gill
 // Script Agency: Accela
 // Script Description: Update workflow task  When Initial or Follow-Up Inspection is resulted with "In Violation"
