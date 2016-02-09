@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 019
-// Script Name:019_ENFScheduleFollowUpInspection
+// Script Name:ENF_ScheduleFollowUpInspection
 // Script Developer: Raminder Gill
 // Script Agency: Accela
 // Script Description: Update workflow task and schedule additional Inspection based on Insp result
