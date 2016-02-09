@@ -1,5 +1,6 @@
 /*===================================================================
 // Script Number: 001
-// Script Name: 001_LICAppealDeadlineDateSet
+// Script Name: WTUA;Licenses!General!~!Application.js
 /*==================================================================*/
-include("001_LICAppealDeadlineDateSet");
+include("LIC_AppealDeadlineDateSet");
+include("LIC_AdminstrativeReviewDueDateSet.js");
