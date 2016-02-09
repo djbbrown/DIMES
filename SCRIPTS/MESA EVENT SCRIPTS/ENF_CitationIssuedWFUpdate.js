@@ -7,7 +7,7 @@
 // Script Run Event: IRSA
 // Script Parents:
 //	IRSA;Enforcement!Case!Code Sign Issue!~ 
-//            
+//             
 /*==================================================================*/
 
 if ((inspType == "Initial Inspection" || inspType == "Follow-Up Inspection") && inspResult == "Citation Issued") {
