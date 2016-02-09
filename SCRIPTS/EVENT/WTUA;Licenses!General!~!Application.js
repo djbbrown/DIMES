@@ -3,4 +3,4 @@
 // Script Name: WTUA;Licenses!General!~!Application.js
 /*==================================================================*/
 include("LIC_AppealDeadlineDateSet");
-include("LIC_AdminstrativeReviewDueDateSet.js");
+include("LIC_AdminstrativeReviewDueDateSet");
