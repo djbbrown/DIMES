@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 022
-// Script Name:022_ENFCitationIssuedWFUpdate.js
+// Script Name:ENF_CitationIssuedWFUpdate.js
 // Script Developer: Raminder Gill
 // Script Agency: Accela
 // Script Description: Update workflow task and schedule additional Inspection based on Insp result
