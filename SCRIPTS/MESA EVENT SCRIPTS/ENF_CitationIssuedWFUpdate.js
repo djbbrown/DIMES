@@ -13,13 +13,13 @@
 if ((inspType == "Initial Inspection" || inspType == "Follow-Up Inspection") && inspResult == "Citation Issued") {
 	if( isTaskActive("Initial Inspection") ) {
 		closeTask("Initial Inspection","Citation Issued","Closed by Script","Closed by Script");
-		setTask("Citation Inspections","Y","N");
-		updateTask("Citation Inspections","Citation Issued","Updated by Script","Updated by Script");
+		updateAppStatus("Citation Issued", "Updated by Script");
+		//updateTask("Citation Inspections","Citation Issued","Updated by Script","Updated by Script");
 	}
 	if( isTaskActive("Follow-Up Inspection") ) {
 		closeTask("Follow-Up Inspection","Citation Issued","Closed by Script","Closed by Script");
-		setTask("Citation Inspections","Y","N");
-		updateTask("Citation Inspections","Citation Issued","Updated by Script","Updated by Script");
+		updateAppStatus("Citation Issued", "Updated by Script");
+		//updateTask("Citation Inspections","Citation Issued","Updated by Script","Updated by Script");
 	}
 	
 }
