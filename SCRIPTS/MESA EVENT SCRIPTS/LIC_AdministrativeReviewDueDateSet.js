@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 002
-// Script Name: 002_LICAdministrativeReviewDueDate_Set
+// Script Name: LIC_AdministrativeReviewDueDate_Set
 // Script Developer: RG
 // Script Agency: Accela
 // Script Description: Update ASI "Administrative Review Due"  based on WF task/status
