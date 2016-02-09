@@ -1,3 +1,3 @@
 // Script IRSA;Enforcement!Case!~!~.js
-include("ENF_ScheduleFollowUpInspection.js");
-include("ENF_InViolationInspectionUpdateWFStatus.js");
+include("ENF_ScheduleFollowUpInspection");
+include("ENF_InViolationInspectionUpdateWFStatus");
