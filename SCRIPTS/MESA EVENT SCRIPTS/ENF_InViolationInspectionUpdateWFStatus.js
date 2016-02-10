@@ -13,12 +13,11 @@
 
 if ((inspType == "Initial Inspection" || inspType == "Follow-Up Inspection") && inspResult == "In Violation") {
 	if( isTaskActive("Initial Inspection") ) {
-		closeTask("Initial Inspection","In Violation","Closed by Script","Closed by Script");
+		branchTask("Initial Inspection","In Violation","Closed by Script","Closed by Script");
 	}
 	if( isTaskActive("Follow-Up Inspection") ) {
 		updateTask("Follow-Up Inspection","In Violation","Updated by Script","Updated by Script");
 	}
-	//assuming the citation Inspections is to be updated.
 	if( isTaskActive("Citation Inspections") ) {
 		updateTask("Citation Inspections","In Violation","Updated by Script","Updated by Script");
 	}
