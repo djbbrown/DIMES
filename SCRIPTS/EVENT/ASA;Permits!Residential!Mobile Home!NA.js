@@ -3,19 +3,15 @@
 
 // AInfo is how you pull an ASI field
 
-if (AInfo["Type of Work"] == "New Mobile Home")
-{
-                showMessage = true;
-                commet("Please check for Historic District");
-}
+//if (AInfo["Type of Work"] == "New Mobile Home")
+//{
+//                showMessage = true;
+//                commet("Please check for Historic District");
+//}
 
 
 /*===================================================================
-// Script Number: 003
-// Script Name: LICSubstantiveReviewDueDateSet
-// Script Developer: 
-// Script Agency: (Mesa/Accela/Woolpert)
-// Script Description: 
-// Script Run Event: 
+// Script Number: 001
+// Script Name: 001_LICAppealDeadlineDateSet
 /*==================================================================*/
-// 003_LICSubstantiveReviewDueDateSet();
+// include("001_LICAppealDeadlineDateSet");
