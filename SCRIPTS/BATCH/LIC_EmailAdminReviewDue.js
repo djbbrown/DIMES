@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------------------------------/
-| Program: LICEmailAdminReciewDue  Trigger: Batch    
+| Program: LICEmailAdminReviewDue  Trigger: Batch    
 | Version 1.0 - Base Version. 
 | 
 | 
@@ -58,8 +58,8 @@ else {
 eval(getScriptText("INCLUDES_BATCH"));    
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 
-//overRide = "function logDebug(dstr) { emailText += dstr + '<br>'; }";
-overRide = "function logDebug(dstr) { aa.print(dstr); }";
+overRide = "function logDebug(dstr) { emailText += dstr + '<br>'; }";
+//overRide = "function logDebug(dstr) { aa.print(dstr); }";
 
 eval(overRide)
 
@@ -146,7 +146,7 @@ if (!timeExpired) mainProcess();
 
 logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
 
-
+aa.print(emailText);
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========End Main=Loop================>
