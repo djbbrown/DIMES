@@ -11,7 +11,6 @@ function closeWorkflow() { //optional capId
  	if (workflowResult.getSuccess())
   	 	var wfObj = workflowResult.getOutput();
   	else { 
-		logMessage("**ERROR: Failed to get workflow object: " + workflowResult.getErrorMessage()); 
 		return false; 
 		}
 	
@@ -25,8 +24,6 @@ function closeWorkflow() { //optional capId
 		stepnumber = fTask.getStepNumber();
 		completeFlag = fTask.getCompleteFlag();
 		aa.workflow.adjustTask(itemCap,stepnumber,"N", completeFlag, null, null);
-		logMessage("Closing Workflow Task " + wftask);
-		logDebug("Closing Workflow Task " + wftask);
 	}
 }
 
