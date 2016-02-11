@@ -11,7 +11,7 @@
 /*==================================================================*/
 
 if ((inspType == "Initial Inspection" || inspType == "Follow-Up Inspection") && inspResult == "Citation Issued") {
-  If (!isTaskActive(“Citation Inspection”)) {
+  If (!isTaskActive("Citation Inspection")) {
     	if( isTaskActive("Initial Inspection") ) {
 		loopTask("Initial Inspection","Citation Issued","Closed by Script","Closed by Script");
 	}
