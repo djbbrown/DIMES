@@ -14,7 +14,7 @@ if (parentCapId != null && vGoodToRenew) {
 	copyParcels(parentCapId,capId);
 	
 	//Copy addresses from license to renewal
-	//copyAddress(parentCapId,capId);
+	copyAddress(parentCapId,capId);
 	
 	//Copy ASI from license to renewal
 	//copyASIInfo(parentCapId,capId);
