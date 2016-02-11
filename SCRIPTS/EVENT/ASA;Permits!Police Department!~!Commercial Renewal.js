@@ -3,8 +3,6 @@ if (parentCapId == "undefined" || parentCapId == null) {
 	parentCapId = aa.env.getValue("ParentCapID");
 }
 
-/*
-
 var vGoodToRenew;
 var vOrgCapId;
 
@@ -19,20 +17,18 @@ if (parentCapId != null && vGoodToRenew) {
 	copyAddress(parentCapId,capId);
 	
 	//Copy ASI from license to renewal
-	copyASIInfo(parentCapId,capId);
+	//copyASIInfo(parentCapId,capId);
 
 	//Copy ASIT from license to renewal
-	copyASITables(parentCapId,capId);
+	//copyASITables(parentCapId,capId);
 	
 	//Copy Contacts from license to renewal
-	copyContacts3_0(parentCapId,capId);
+	//copyContacts3_0(parentCapId,capId);
 	
 	//Copy Work Description from license to renewal
-	aa.cap.copyCapWorkDesInfo(parentCapId,capId);
+	//aa.cap.copyCapWorkDesInfo(parentCapId,capId);
 
 	//Copy application name from license to renewal
-	editAppName(getAppName(parentCapId),capId);
+	//editAppName(getAppName(parentCapId),capId);
 }
 // End Core Renewal Scripts
-
-*/
