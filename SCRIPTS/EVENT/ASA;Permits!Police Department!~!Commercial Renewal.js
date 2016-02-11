@@ -8,13 +8,13 @@ var vOrgCapId;
 
 //Setup/Check renewal
 vGoodToRenew = prepareRenewal();
-if (parentCapId != null && vGoodToRenew) {
+//if (parentCapId != null && vGoodToRenew) {
 		
 	//Copy Parcels from license to renewal
-	copyParcels(parentCapId,capId);
+	//copyParcels(parentCapId,capId);
 	
 	//Copy addresses from license to renewal
-	copyAddress(parentCapId,capId);
+	//copyAddress(parentCapId,capId);
 	
 	//Copy ASI from license to renewal
 	//copyASIInfo(parentCapId,capId);
@@ -30,5 +30,5 @@ if (parentCapId != null && vGoodToRenew) {
 
 	//Copy application name from license to renewal
 	//editAppName(getAppName(parentCapId),capId);
-}
+//}
 // End Core Renewal Scripts
