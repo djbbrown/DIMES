@@ -146,8 +146,8 @@ if (!timeExpired) mainProcess();
 
 logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
 
-aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(),"", emailText, batchJobID);
-
+//aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(),"", emailText, batchJobID);
+aa.print(emailText);
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========End Main=Loop================>
