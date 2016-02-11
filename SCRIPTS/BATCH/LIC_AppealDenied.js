@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------------------------------------/
-| Program: LICEmailAdminReviewDue  Trigger: Batch    
+| Program: LIC_AppealDenied Trigger: Batch    
 | Version 1.0 - Base Version. 
 | 
 | 
@@ -109,12 +109,15 @@ var batchJobName = "" + aa.env.getValue("batchJobName");
 |
 /------------------------------------------------------------------------------------------------------*/
 /* 
-aa.env.setValue("lookAheadDays", 30);
+aa.env.setValue("lookAheadDays", 10);
 aa.env.setValue("daySpan", 1);
-aa.env.setValue("emailAddress", "dhoops@accela.com");
+aa.env.setValue("emailAddress", "");
 aa.env.setValue("asiGroup", "KEY DATES");
-aa.env.setValue("asiField", "Administrative Review Due");
-aa.env.setValue("emailTemplate", "ADMINISTRATIVE REVIEW DUE");
+aa.env.setValue("asiField", "Appeal Deadline");
+aa.env.setValue("emailTemplate", "");
+aa.env.setValue("taskName", "License Adminstrative Review");
+aa.env.setValue("taskStatus", "Denied");
+aa.env.setValue("deactivate", "Y");
 */
 
 var lookAheadDays = aa.env.getValue("lookAheadDays");   		// Number of days from today
@@ -123,6 +126,10 @@ var emailAddress = getParam("emailAddress");
 var emailTemplate = getParam("emailTemplate");
 var asiGroup = getParam("asiGroup");
 var asiField = getParam("asiField");
+var taskName = getParam("taskName");
+var taskStatus = getParam("taskStatus");
+var deactivate = getParam("deactivate");
+if (deactivate == "Y") deactivate = true;
 
 /*----------------------------------------------------------------------------------------------------/
 |
@@ -187,6 +194,13 @@ function mainProcess() {
 		altId = capId.getCustomID();
 		capFoundArray.push(altId);
 		capCount++;
+		logDebug("Processing " + altId);
+		
+		if (taskName != "" && taskStatus != "") {
+			updateTask(taskName, taskStatus, "updated by script", "updated by script");
+		}
+		if (deactivate)
+			closeWorkflow();
 	}		
 		
 	if (capFoundArray.length > 0 && emailTemplate != "" && emailAddress != "") {
@@ -208,4 +222,3 @@ function mainProcess() {
 /*------------------------------------------------------------------------------------------------------/
 | <===========Internal Functions and Classes (Used by this script)
 /------------------------------------------------------------------------------------------------------*/
-		
