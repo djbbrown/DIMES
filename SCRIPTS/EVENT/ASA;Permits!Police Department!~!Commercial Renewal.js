@@ -8,7 +8,6 @@ var vOrgCapId;
 
 //Setup/Check renewal
 vGoodToRenew = prepareRenewal();
-/*
 if (parentCapId != null && vGoodToRenew) {
 		
 	//Copy Parcels from license to renewal
@@ -33,4 +32,3 @@ if (parentCapId != null && vGoodToRenew) {
 	//editAppName(getAppName(parentCapId),capId);
 }
 // End Core Renewal Scripts
-*/
