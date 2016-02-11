@@ -11,7 +11,7 @@
 //            
 /*==================================================================*/
 
-if ((inspType == "Initial Inspection" || inspType == "Follow-Up Inspection") && inspResult == "In Violation") {
+if ((inspType == "Initial Inspection" || inspType == "Follow-Up Inspection" || inspType == "Follow-up Inspection") && inspResult == "In Violation") {
 	if( isTaskActive("Initial Inspection") ) {
 		branchTask("Initial Inspection","In Violation","Closed by Script","Closed by Script");
 	}
