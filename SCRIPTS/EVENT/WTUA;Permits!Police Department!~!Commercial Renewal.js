@@ -6,6 +6,7 @@ if (wfTask == "Application Submittal" && wfStatus == "Approved") {
 		parentCapId = aa.cap.getCapID(tmpCapA[0],tmpCapA[1],tmpCapA[2]).getOutput();	
 	}
 
+	stdChoiceEntry = "WTUA:Permits/Police Department/*/Commercial Renewal";
 	
 	//Copy Parcels from renewal to license
 	copyParcels(capId, parentCapId);
