@@ -9,7 +9,7 @@
 //            WTUA;Licensing!General!~!NA
 /*==================================================================*/
 
-if (matches(""+appTypeArray[2], "Secondhand", "ScrapMetal", "PawnBroker", "Auction House") && wfTask == "Issue License" && wfStatus == "Ready to Issue") {
+if (matches(""+appTypeArray[2], "SecondHand", "ScrapMetal", "PawnBroker", "Auction House") && wfTask == "Issue License" && wfStatus == "Ready to Issue") {
 	if (!feeExists("L030")) addFee("L030","LIC_PASS","FINAL",1,"Y");
 }
 
