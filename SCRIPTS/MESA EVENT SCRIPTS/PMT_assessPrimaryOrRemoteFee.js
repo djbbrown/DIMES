@@ -10,12 +10,12 @@
 /*==================================================================*/
 
 if (AInfo["AFP Type"] == "Primary"){
-	if (!feeExists("AFP010")) addFee("AFP010","PMT_AFP","FINAL",1,"Y");
+	if (!feeExists("AFP010")) addFee("AFP010","PMT_AFP","FINAL",1,"N");
 	if (feeExists("AFP020")) voidRemoveFee("AFP020");
 }
 
 if (AInfo["AFP Type"] == "Remote"){
-	if (!feeExists("AFP020")) addFee("AFP020","PMT_AFP","FINAL",1,"Y");
+	if (!feeExists("AFP020")) addFee("AFP020","PMT_AFP","FINAL",1,"N");
 	if (feeExists("AFP010")) voidRemoveFee("AFP010");
 }
 
