@@ -9,19 +9,17 @@
 //            ASIUA;Permits!Commercial!Annual Facilities!NA
 /*==================================================================*/
 
-var afpType = getAppSpecific("AFP Type");
-
-if (afpType == "Primary"){
+if (AInfo["AFP Type"] == "Primary"){
 	if (!feeExists("AFP010")) addFee("AFP010","PMT_AFP","FINAL",1,"Y");
 	if (feeExists("AFP020")) voidRemoveFee("AFP020");
 }
 
-if (afpType == "Remote"){
+if (AInfo["AFP Type"] == "Remote"){
 	if (!feeExists("AFP020")) addFee("AFP020","PMT_AFP","FINAL",1,"Y");
 	if (feeExists("AFP010")) voidRemoveFee("AFP010");
 }
 
-if (afpType == "" || afpType == null){
+if (AInfo["AFP Type"] == "" || AInfo["AFP Type"] == null){
 	if (feeExists("AFP010")) voidRemoveFee("AFP010");
 	if (feeExists("AFP020")) voidRemoveFee("AFP020");
 }
