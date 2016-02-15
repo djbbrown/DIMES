@@ -7,6 +7,7 @@
 // Script Run Event: ASIUA
 // Script Parents:
 //            ASIUA;Permits!Commercial!Annual Facilities!NA
+//            ASA;Permits!Commercial!Annual Facilities!NA
 /*==================================================================*/
 
 if (AInfo["AFP Type"] == "Primary"){
