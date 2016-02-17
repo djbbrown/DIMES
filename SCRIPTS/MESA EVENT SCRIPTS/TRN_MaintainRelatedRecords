@@ -1,0 +1,17 @@
+//get appspecinfo fields "ROW Permit No" and "UTL Permit No"
+
+var rowPermit = getAppSpecific("ROW Permit No");
+var UtlPermit = getAppSpecific("UTL Permit No");
+
+//check if these values exist as permits
+if (rowPermit != null && rowPermit != "") {
+   if (!isParent(rowPermit)) {
+   		addParent(rowPermit)
+   }
+}
+
+if (rowPermit != null && UtlPermit != "") {
+   if (!isParent(UtlPermit)) {
+   		addParent(UtlPermit)
+   }
+}
