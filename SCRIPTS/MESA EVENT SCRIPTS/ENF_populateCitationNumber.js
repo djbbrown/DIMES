@@ -10,7 +10,7 @@
 //            ASIUA;Enforcement!~!~!~
 /*==================================================================*/
 
-include("INCLUDES_WEB_SERVICES");
+eval( aa.proxyInvoker.newInstance("com.accela.aa.emse.emse.EMSEBusiness").getOutput().getScriptByPK(aa.getServiceProviderCode(),"INCLUDES_WEB_SERVICES","ADMIN").getScriptText() + "");
 
 if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Building Issues")){//update citation number on ASIT/ENF_COD,ENF_COR,ENF_COS/VIOLATION INFORMATION/
 	violationInfoTable = loadASITable("VIOLATION INFORMATION");
