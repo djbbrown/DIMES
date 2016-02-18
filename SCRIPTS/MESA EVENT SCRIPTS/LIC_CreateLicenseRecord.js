@@ -18,12 +18,28 @@
 if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 {
 	// Quick test for script functioning
-	showMesasge = true;
-	message = "";
-	comment("This is a test message");
-	cancel = true;
+//	showMesasge = true;
+//	message = "";
+//	comment("This is a test message");
+//	cancel = true;
 	// Convert the Contact of type "Applicant" (This should be "License Applicant")
 	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
+	capContactResult = aa.people.getCapContactByCapID(capId);
+	if (capContactResult.getSuccess()) {
+		Contacts = capContactResult.getOutput();
+		
+		for (aContact in Contacts) {
+			var updateContact = Contacts[aContact].getCapContactModel();
+			var newPeople = updateContact.getPeople();
+			var cType = newPeople.getContactType();
+			if( cType = "License Applicant" || cType = "Applicant") {
+				newPeople.setContactType("Licensee");
+			}
+			else (
+				newPeople.setContactType(Type);
+			)
+		}
+	}
 	
 	// Set the expiration status to "Active"
 
