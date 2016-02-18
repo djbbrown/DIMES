@@ -35,9 +35,9 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 			if( cType = "License Applicant" || cType = "Applicant") {
 				newPeople.setContactType("Licensee");
 			}
-			else (
+			else {
 				newPeople.setContactType(Type);
-			)
+			}
 		}
 	}
 	
