@@ -14,5 +14,15 @@
 //            WTUA;Licenses!General!~!Application.js
 /*==================================================================*/
 
-// Under this line create the function that will need to run at script runtime.
-// the function will be called in the event ("AppSubmitAfter") major event.
+// When WFTask "Issue License" is set to "Issued"
+if (wfTank.equals("Issue License") && wfStatus.equals("Issued"))
+{
+	// Convert the Contact of type "Applicant" (This should be "License Applicant")
+	// to "Licensee"
+
+	// Set the expiration status to "Active"
+
+	// Set the expiration date according to the expiration code.
+
+	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
+}
