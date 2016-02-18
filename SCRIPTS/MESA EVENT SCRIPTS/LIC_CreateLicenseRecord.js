@@ -46,7 +46,6 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 		}
 	} 
 	
-	
 	// Set the expiration status to "Active"
 
 	// Set the expiration date according to the expiration code.
