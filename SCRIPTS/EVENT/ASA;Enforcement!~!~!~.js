@@ -1,2 +1,2 @@
 // Script ASA;Enforcement!~!~!~.js
-// include("ENF_populateCitationNumber"); /*pending update*/
+include("ENF_populateCitationNumber");
