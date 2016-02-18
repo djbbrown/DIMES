@@ -51,4 +51,4 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	// Set the expiration date according to the expiration code.
 
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
-}
+}0
