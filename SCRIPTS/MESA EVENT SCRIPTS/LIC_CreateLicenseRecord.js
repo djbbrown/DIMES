@@ -15,11 +15,16 @@
 /*==================================================================*/
 
 // When WFTask "Issue License" is set to "Issued"
-if (wfTank.equals("Issue License") && wfStatus.equals("Issued"))
+if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 {
+	// Quick test for script functioning
+	showMesasge = true;
+	message = "";
+	comment("This is a test message");
+	cancel = true;
 	// Convert the Contact of type "Applicant" (This should be "License Applicant")
-	// to "Licensee"
-
+	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
+	
 	// Set the expiration status to "Active"
 
 	// Set the expiration date according to the expiration code.
