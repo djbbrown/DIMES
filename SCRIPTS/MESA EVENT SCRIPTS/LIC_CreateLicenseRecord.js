@@ -17,6 +17,7 @@
 // When WFTask "Issue License" is set to "Issued"
 if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 {
+	aa.print("Inside If");
 	// Quick test for script functioning
 //	showMesasge = true;
 //	message = "";
@@ -32,14 +33,19 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 			var updateContact = Contacts[aContact].getCapContactModel();
 			var newPeople = updateContact.getPeople();
 			var cType = newPeople.getContactType();
-			if( cType = "License Applicant" || cType = "Applicant") {
+			if( (cType == "License Applicant") || (cType == "Applicant")) {
+				var ContactName = newPeople.getContactName();
+				var businessName = newPeople.getBusinessName();
+				//ContactName += " "+newPeople.businessName();
+				aa.print("Updating Contact "+ContactName+" "+businessName);
 				newPeople.setContactType("Licensee");
 			}
 			else {
-				newPeople.setContactType(Type);
+				newPeople.setContactType(cType);
 			}
 		}
-	}
+	} 
+	
 	
 	// Set the expiration status to "Active"
 
