@@ -26,7 +26,7 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
 	var capContactResult = aa.people.getCapContactByCapID(capId);
 	if (capContactResult.getSuccess()) {
-		Contacts = capContactResult.getOutput();
+		var Contacts = capContactResult.getOutput();
 		
 		for (aContact in Contacts) {
 			var updateContact = Contacts[aContact].getCapContactModel();
