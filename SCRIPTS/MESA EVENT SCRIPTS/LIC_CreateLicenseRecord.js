@@ -24,7 +24,7 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 //	cancel = true;
 	// Convert the Contact of type "Applicant" (This should be "License Applicant")
 	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
-	capContactResult = aa.people.getCapContactByCapID(capId);
+	var capContactResult = aa.people.getCapContactByCapID(capId);
 	if (capContactResult.getSuccess()) {
 		Contacts = capContactResult.getOutput();
 		
