@@ -10,7 +10,7 @@
 //            ASIUA;Enforcement!~!~!~
 /*==================================================================*/
 
-includes("INCLUDES_WEB_SERVICES");
+include("INCLUDES_WEB_SERVICES");
 
 if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Building Issues")){//update citation number on ASIT/ENF_COD,ENF_COR,ENF_COS/VIOLATION INFORMATION/
 	violationInfoTable = loadASITable("VIOLATION INFORMATION");
