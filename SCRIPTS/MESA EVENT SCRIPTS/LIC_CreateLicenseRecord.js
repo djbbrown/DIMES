@@ -14,5 +14,41 @@
 //            WTUA;Licenses!General!~!Application.js
 /*==================================================================*/
 
-// Under this line create the function that will need to run at script runtime.
-// the function will be called in the event ("AppSubmitAfter") major event.
+// When WFTask "Issue License" is set to "Issued"
+if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
+{
+	aa.print("Inside If");
+	// Quick test for script functioning
+//	showMesasge = true;
+//	message = "";
+//	comment("This is a test message");
+//	cancel = true;
+	// Convert the Contact of type "Applicant" (This should be "License Applicant")
+	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
+	var capContactResult = aa.people.getCapContactByCapID(capId);
+	if (capContactResult.getSuccess()) {
+		var Contacts = capContactResult.getOutput();
+		
+		for (aContact in Contacts) {
+			var updateContact = Contacts[aContact].getCapContactModel();
+			var newPeople = updateContact.getPeople();
+			var cType = newPeople.getContactType();
+			if( (cType == "License Applicant") || (cType == "Applicant")) {
+				var ContactName = newPeople.getContactName();
+				var businessName = newPeople.getBusinessName();
+				//ContactName += " "+newPeople.businessName();
+				aa.print("Updating Contact "+ContactName+" "+businessName);
+				newPeople.setContactType("Licensee");
+			}
+			else {
+				newPeople.setContactType(cType);
+			}
+		}
+	} 
+	
+	// Set the expiration status to "Active"
+
+	// Set the expiration date according to the expiration code.
+
+	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
+}
