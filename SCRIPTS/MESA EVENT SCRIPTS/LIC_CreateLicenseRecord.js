@@ -17,12 +17,9 @@
 // When WFTask "Issue License" is set to "Issued"
 if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 {
-	aa.print("Inside If");
-	// Quick test for script functioning
-//	showMesasge = true;
-//	message = "";
-//	comment("This is a test message");
-//	cancel = true;
+	aa.print("Creating License Record");
+	// Create child application.
+	license = creatChild("Licenses","","","License","Test");
 	// Convert the Contact of type "Applicant" (This should be "License Applicant")
 	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
 	var capContactResult = aa.people.getCapContactByCapID(capId);
