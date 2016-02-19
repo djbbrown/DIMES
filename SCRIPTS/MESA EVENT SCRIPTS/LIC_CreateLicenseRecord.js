@@ -18,7 +18,7 @@
 if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 {
 	aa.print("Creating License Record");
-	// Create child application.
+	// •	Create a child record of type License/*/*/License (where the record type and subtype are the same as the parent application record)
 	license = creatChild("Licenses","","","License","Test");
 	// Convert the Contact of type "Applicant" (This should be "License Applicant")
 	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
@@ -43,7 +43,7 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 		}
 	} 
 	
-	// Set the expiration status to "Active"
+	// Set the expiration status to Active and the expiration date according to the expiration code.
 	lic = new licenseObject(capId);
 	lic.setStatus("Active");
 
@@ -52,4 +52,6 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	lic.setExpiration(dateAdd(null,365)); // This will add 365 days to the expiration.
 
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
+	// o	EMSE:ASI Copy Exceptions – contains the record type (in the “Standard Choices Value” field)
+	//		along with a “|” delimited list ASI fields to exclude when copying the ASI (in the “Value Desc” field).
 }
