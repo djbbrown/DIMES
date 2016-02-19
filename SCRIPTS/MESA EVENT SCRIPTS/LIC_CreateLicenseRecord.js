@@ -60,9 +60,9 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	var stdChoice = lookup("EMSE:ASI Copy Exceptions",appTypeArray[0]+'/'+appTypeArray[1]+'/'+appTypeArray[2]+'/'+appTypeArray[3]);
 	
 	// use the following to split based on "|" character
-	// var asiExclude = stdChoice.split("|"); // Not needed as the exclusion table would work just fine
+	var asiExclude = stdChoice.split("|"); // Not needed as the exclusion table would work just fine
 	
 	// Now copy the ASI from the parent to the child using the exclusion table.
-	copyAppSpecific(myCapId,stdChoice);
+	copyAppSpecific(license,asiExclude);
 	
 }
