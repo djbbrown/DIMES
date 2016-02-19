@@ -55,4 +55,14 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
 	// o	EMSE:ASI Copy Exceptions – contains the record type (in the “Standard Choices Value” field)
 	//		along with a “|” delimited list ASI fields to exclude when copying the ASI (in the “Value Desc” field).
+	
+	// Get the standard choice
+	var stdChoice = lookup("EMSE:ASI Copy Exceptions",appTypeArray[0]+'/'+appTypeArray[1]+'/'+appTypeArray[2]+'/'+appTypeArray[3]);
+	
+	// use the following to split based on "|" character
+	// var asiExclude = stdChoice.split("|"); // Not needed as the exclusion table would work just fine
+	
+	// Now copy the ASI from the parent to the child using the exclusion table.
+	copyAppSpecific(myCapId,stdChoice);
+	
 }
