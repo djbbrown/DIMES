@@ -47,8 +47,12 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	} 
 	
 	// Set the expiration status to "Active"
+	lic = new licenseObject(capId);
+	lic.setStatus("Active");
 
 	// Set the expiration date according to the expiration code.
+	// Need to do some research on how the expiration code is being done.
+	lic.setExpiration(dateAdd(null,365)); // This will add 365 days to the expiration.
 
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
 }
