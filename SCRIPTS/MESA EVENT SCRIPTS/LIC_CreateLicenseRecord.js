@@ -45,7 +45,7 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	} 
 	
 	// Set the expiration status to Active and the expiration date according to the expiration code.
-	lic = new licenseObject(capId);
+	lic = new licenseObject(license);
 	lic.setStatus("Active");
 
 	// Set the expiration date according to the expiration code.
