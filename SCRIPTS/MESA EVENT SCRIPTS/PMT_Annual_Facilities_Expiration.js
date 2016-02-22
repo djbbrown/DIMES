@@ -18,5 +18,5 @@ if (wfTask.equals("Application Subbmital/Review") && wfStatus.equals("Ready to I
     var curr_month = 12;
     var curr_year = d.getFullYear();
     
-    editAppSpecific("Permit Expiration Date", date(curr_month,"/", curr_date,"/",curr_year);
+    editAppSpecific("Permit Expiration Date", date(curr_year, curr_month, curr_date;
 }
