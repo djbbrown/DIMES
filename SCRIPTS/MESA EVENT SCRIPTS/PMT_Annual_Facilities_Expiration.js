@@ -16,8 +16,6 @@ if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue" )
     var d = new Date();
     var curr_date = 31;
     var curr_month = 12;
-    //var curr_year = d.getFullYear();
-	var curr_year = 16;
-    
+    var curr_year = d.getFullYear();
     editAppSpecific("Permit Expiration Date", new Date(curr_year, curr_month, curr_date));
 }
