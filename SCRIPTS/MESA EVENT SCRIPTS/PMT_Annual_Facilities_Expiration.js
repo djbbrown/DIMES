@@ -11,8 +11,7 @@
 //            
 /*==================================================================*/
 
-if (wfTask == "Application Subbmital/Review" && wfStatus == "Ready to Issue"
-{
+if (wfTask == ("Application Subbmital/Review") && wfStatus == ("Ready to Issue" )) {
     // set ASI field
     var d = new Date();
     var curr_date = 31;
