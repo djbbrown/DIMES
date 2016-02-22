@@ -196,8 +196,19 @@ function mainProcess() {
 		capCount++;
 		logDebug("Processing " + altId);
 		
-		if (taskName != "" && taskStatus != "") {
-			updateTask(taskName, taskStatus, "updated by script", "updated by script");
+		cap = aa.cap.getCap(capId).getOutput();		
+		appTypeResult = cap.getCapType();
+		capStatus = cap.getCapStatus();		
+		appTypeString = appTypeResult.toString();	
+		appTypeArray = appTypeString.split("/");
+		
+		if (appTypeString == "Licenses/General/BingoHall/License") {
+			updateTask("City Council", "Denied", "updated by script", "updated by script");
+		}
+		else { 
+			if (taskName != "" && taskStatus != "") {
+				updateTask(taskName, taskStatus, "updated by script", "updated by script");
+			}
 		}
 		if (deactivate)
 			closeWorkflow();
