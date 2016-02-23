@@ -17,8 +17,9 @@ if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue" )
     var curr_date = 31;
     var curr_month = 12;
     var curr_year = d.getFullYear();
-    var exp_date = "";
-    exp_date = new Date(curr_year + "/" + curr_month + "/" + curr_date); 
+    var exp_date = Date(curr_year + "/" + curr_month + "/" + curr_date); 
+    editAppSpecific("Permit Expiration Date", exp_date);
+    //exp_date = new Date(curr_year + "/" + curr_month + "/" + curr_date); 
     //editAppSpecific("Permit Expiration Date", jsDateToASIDate(exp_date));
     //editAppSpecific("Permit Expiration Date", jsDateToASIDate(exp_date));
     //editAppSpecific("Permit Expiration Date", new Date(curr_year, curr_month, curr_date));
