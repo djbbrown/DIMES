@@ -17,5 +17,15 @@ if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue" )
     var curr_date = 31;
     var curr_month = 12;
     var curr_year = d.getFullYear();
-    editAppSpecific("Permit Expiration Date", new Date(curr_year, curr_month, curr_date));
+    var exp_date = ();
+    exp_date = new Date(curr_year, curr_month, curr_date);
+    //editAppSpecific("Permit Expiration Date", new Date(curr_year, curr_month, curr_date));
+
+    function jsDateToASIDate(exp_date);
+
+        if return = ("INVALID JAVASCRIPT DATE") or ("NULL PARAMETER VALUE")  
+            exp_date = "";
+        else
+        
+           exp_date =  pJavaScriptDate;
 }
