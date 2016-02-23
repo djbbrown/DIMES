@@ -10,8 +10,8 @@
 //             
 /*==================================================================*/
 
-var rowPermit = getAppSpecific("ROW Permit No");
-var UtlPermit = getAppSpecific("UTL Permit No");
+var rowPermit = getAppSpecific("ROW Permit No.");
+var UtlPermit = getAppSpecific("UTL Permit No.");
 
 //check if these values exist as permits
 if (rowPermit != null && rowPermit != "") {
