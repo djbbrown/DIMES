@@ -129,6 +129,9 @@ var appCategory = getParam("appCategory");
 var asiField = getParam("asiField");							// {Meeting Date}
 var asiValue = getParam("asiValue");
 var taskStatus = getParam("appStatusStatus");
+
+// Required to run the delete, this must be entered in a parameter
+// and can be any user name.
 var delUser = getParam("User");
 var delPass = getParam("Password");
 
@@ -170,12 +173,15 @@ aa.print(emailText);
 /-----------------------------------------------------------------------------------------------------*/
 function mainProcess() {
 	
+	// Counters for return message.
 	var capCount = 0;
 	var capFilterType = 0;
 	var capFilterStatus = 0;
 	
+	// Return a list of caps by the ASI field Value in existence
+	//===========================================================
 	var capResult = aa.cap.getCapIDsByAppSpecificInfoField(asiField, asiValue);
-
+	
 	if (capResult.getSuccess()) {
 		myCaps = capResult.getOutput();
 	}
@@ -183,6 +189,9 @@ function mainProcess() {
 		logDebug("ERROR: Getting records, reason is: " + capResult.getErrorMessage()) ;
 		return false
 	} 
+	
+	// Now filter that array down to items that are just in the record types
+	// that we want.
 
 	for (myCapsXX in myCaps) {
 		if (elapsed() > maxSeconds) { // only continue if time hasn't expired
