@@ -1,6 +1,20 @@
+/*===================================================================
+// Script Number: 240
+// Script Name: PLN - Case Purge
+// Script Developer: Kevin Ford
+// Script Agency: Accela
+// Script Description:
+//		Every month, run a batch script that will check records with
+//		the ASI "Meeting Date" having a value of more than 2 years in
+//		the past. For those records, update the record status to
+//		"File Purged" and delete all attached documents.
+// Script Run Event: BATCH
+// Script Parents: N/A
+/*==================================================================*/
 /*------------------------------------------------------------------------------------------------------/
-| Program: LICEmailAdminReviewDue  Trigger: Batch    
+| Program: PLN_SubstantiveReviewDaysLeft Trigger: Batch    
 | Version 1.0 - Base Version. 
+| 
 | 
 /------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------/
@@ -107,32 +121,37 @@ var batchJobName = "" + aa.env.getValue("batchJobName");
 | Start: BATCH PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
-/* 
-aa.env.setValue("lookAheadDays", 30);
-aa.env.setValue("daySpan", 1);
-aa.env.setValue("emailAddress", "dhoops@accela.com");
-aa.env.setValue("asiGroup", "KEY DATES");
-aa.env.setValue("asiField", "Administrative Review Due");
-aa.env.setValue("emailTemplate", "ADMINISTRATIVE REVIEW DUE");
-*/
 
-var lookAheadDays = aa.env.getValue("lookAheadDays");   		// Number of days from today
-var daySpan = aa.env.getValue("daySpan");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var emailAddress = getParam("emailAddress");
-var emailTemplate = getParam("emailTemplate");
-var asiGroup = getParam("asiGroup");
-var asiField = getParam("asiField");
+var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
+var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
+var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
+var appCategory = getParam("appCategory");	
+var asiField = getParam("asiField");							// {Meeting Date}
+var asiValue = getParam("asiValue");
+var taskStatus = getParam("appStatusStatus");
+
+// Required to run the delete, this must be entered in a parameter
+// and can be any user name.
+var delUser = getParam("User");
+var delPass = getParam("Password");
+
 
 /*----------------------------------------------------------------------------------------------------/
 |
 | End: BATCH PARAMETERS
 |-----------------------------------------------------------------------------------------------------*/
-var fromDate = dateAdd(null,parseInt(lookAheadDays));
-var toDate = dateAdd(null,parseInt(lookAheadDays)+parseInt(daySpan));
-var dFromDate = aa.date.parseDate(fromDate);
-var dToDate = aa.date.parseDate(toDate);
-	
-logDebug("Date Range -- fromDate: " + fromDate + ", toDate: " + toDate);
+
+/*
+if (appGroup=="")
+	appGroup="*";
+if (appTypeType=="")
+	appTypeType="*";
+//*/
+if (appSubtype=="")
+	appSubtype="*";
+if (appCategory=="")
+	appCategory="*";
+var appType = appGroup+"/"+appTypeType+"/"+appSubtype+"/"+appCategory
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Main=Loop================>
@@ -154,11 +173,15 @@ aa.print(emailText);
 /-----------------------------------------------------------------------------------------------------*/
 function mainProcess() {
 	
+	// Counters for return message.
 	var capCount = 0;
-	var capFoundArray = new Array();
+	var capFilterType = 0;
+	var capFilterStatus = 0;
 	
-	var capResult = aa.cap.getCapIDsByAppSpecificInfoDateRange(asiGroup, asiField, dFromDate, dToDate);
-
+	// Return a list of caps by the ASI field Value in existence
+	//===========================================================
+	var capResult = aa.cap.getCapIDsByAppSpecificInfoField(asiField, asiValue);
+	
 	if (capResult.getSuccess()) {
 		myCaps = capResult.getOutput();
 	}
@@ -166,6 +189,9 @@ function mainProcess() {
 		logDebug("ERROR: Getting records, reason is: " + capResult.getErrorMessage()) ;
 		return false
 	} 
+	
+	// Now filter that array down to items that are just in the record types
+	// that we want.
 
 	for (myCapsXX in myCaps) {
 		if (elapsed() > maxSeconds) { // only continue if time hasn't expired
@@ -184,17 +210,42 @@ function mainProcess() {
 		}
 
 		altId = capId.getCustomID();
-		capFoundArray.push(altId);
+		cap = aa.cap.getCap(capId).getOutput();		
+		appTypeResult = cap.getCapType();
+		capStatus = cap.getCapStatus();		
+		appTypeString = appTypeResult.toString();	
+		appTypeArray = appTypeString.split("/");
+		
+		// Filter by CAP Type
+		if (appType.length && !appMatch(appType))	{
+			capFilterType++;
+			logDebug(altId + ": Application Type does not match")
+			continue;
+		}
+			
+		// Filter by workflow and status
+		if (taskName != "" && taskStatus != "") {
+			if (!isTaskStatus(taskName, taskStatus)) {
+				capFilterStatus++;
+				logDebug(altId + ": workflow status does not match");
+				continue;
+			}
+		}
 		capCount++;
+		logDebug("Processing " + altId);
+		
+		srdl = "" + getAppSpecific("Substantive Review Days Left", capId);
+		if (srdl != "undefined" && srdl != "null" && srdl != "" && parseInt(srdl) > 0) {
+			newVal = parseInt(srdl) + 1;
+			editAppSpecific("Substantive Review Days Left", ""+newVal, capId);
+		}
 	}		
 		
-	if (capFoundArray.length > 0 && emailTemplate != "" && emailAddress != "") {
-			var vEParams = aa.util.newHashtable(); 
-			addParameter(vEParams,"$$altIdList$$",capFoundArray.join(","));
-			sendNotification("", emailAddress, "", emailTemplate, vEParams, null, capId)
-	}	
+
 	
 	logDebug("Processed " + capCount + " Records ");	
+	logDebug("Skipped " + capFilterType + " due to record type mismatch ");	
+	logDebug("Skipped " + capFilterStatus + " due to workflow status mismatch ");	
 	logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
 }	
 
@@ -207,4 +258,3 @@ function mainProcess() {
 /*------------------------------------------------------------------------------------------------------/
 | <===========Internal Functions and Classes (Used by this script)
 /------------------------------------------------------------------------------------------------------*/
-		
