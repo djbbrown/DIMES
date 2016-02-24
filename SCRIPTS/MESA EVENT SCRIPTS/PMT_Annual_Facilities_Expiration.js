@@ -11,42 +11,16 @@
 //            
 /*==================================================================*/
 
-if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue" )) {
+if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue")) {
     // set ASI field
     var d = new Date();
     var curr_date = 31;
-    var curr_month = 12;
+    // curr_month =  11 is for December because the month starts with zero.
+    var curr_month = 11;
     var curr_year = d.getFullYear();
-    var exp_date = new Date(curr_year + curr_month +  curr_date);
-    var exp_date_out = "";
-    //exp_date = new Date(curr_year + "/" + curr_month + "/" + curr_date); 
-    //editAppSpecific("Permit Expiration Date", jsDateToASIDate(exp_date));
-    //editAppSpecific("Permit Expiration Date", jsDateToASIDate(exp_date));
-    //editAppSpecific("Permit Expiration Date", new Date(curr_year, curr_month, curr_date));
-
-    
-    try
-    {
-        function jsDateToASIDate(exp_date);
-            exp_date_out =  pJavaScriptDate;
-            //result = "Success";
-    }    
-  
-     catch (Exception e)
-    {   
-            exp_date_out = "";
-        //result.AnyResults = "9997";
-    }
-    
-
-    return exp_date_out;
-}        
+    var exp_date = new Date(curr_year + curr_month + curr_date);
 
 
+    editAppSpecific("Permit Expiration Date", jsDateToMMDDYYYY(exp_date));
 
-//    if return = ("INVALID JAVASCRIPT DATE") or ("NULL PARAMETER VALUE")  
-//            exp_date = "";
-//        else
-        
-          
-//}
+}
