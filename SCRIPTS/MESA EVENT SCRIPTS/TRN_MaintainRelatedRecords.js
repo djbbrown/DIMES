@@ -6,8 +6,7 @@
 // Script Description: Maintain related records - ROW and UTL Permit numbers
 // Script Run Event: ASA, ASIUA
 // Script Parents:
-//	IRSA;Transportation!Temporary Traffic Control!~!~ 
-//             
+//	IRSA;Transportation!Temporary Traffic Control!~!~           
 /*==================================================================*/
 
 var rowPermit = getAppSpecific("ROW Permit No.");
