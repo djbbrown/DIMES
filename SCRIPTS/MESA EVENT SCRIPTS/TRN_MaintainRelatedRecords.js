@@ -19,7 +19,7 @@ if (rowPermit != null && rowPermit != "") {
    		addParent(rowPermit)
    }
 }
-
+ 
 if (UtlPermit != null && UtlPermit != "") {
    if (!isParent(UtlPermit)) {
    		addParent(UtlPermit)
