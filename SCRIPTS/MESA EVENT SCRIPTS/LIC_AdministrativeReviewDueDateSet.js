@@ -13,5 +13,3 @@ if (wfTask.equals("License Application") && wfStatus.equals("Received")) {
 	// set ASI field
 	editAppSpecific("Administrative Review Due", dateAdd(null, 10))
 }
-
-// Small update by KF for testing.
