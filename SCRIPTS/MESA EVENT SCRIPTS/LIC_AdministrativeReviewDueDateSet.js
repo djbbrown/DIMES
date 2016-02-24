@@ -15,3 +15,4 @@ if (wfTask.equals("License Application") && wfStatus.equals("Received")) {
 	editAppSpecific("Administrative Review Due", dateAdd(null, 10))
 }
 
+// Small update by KF for testing.
