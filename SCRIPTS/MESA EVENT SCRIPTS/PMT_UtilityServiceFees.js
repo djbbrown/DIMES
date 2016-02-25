@@ -14,11 +14,11 @@
 
 var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  // array of rows
 	if (tmpTable) {
-		for (rowIndex in tmpTable) {
+		for (rowIndex in tmpTable; rowIndex++) {
 			thisRow = tmpTable[rowIndex]; // array of columns
 			serviceType = thisRow["Service Type"].fieldValue;
 			if serviceType = "Gas Service and Meter" {
-					addFee("Feename", "USF010", "FINAL",1,"N")
+					if (!feeExists("USF010", "INVOICED")) addFee("Feename", "USF010", "FINAL",1,"N");
 			}
 		}
 	}
