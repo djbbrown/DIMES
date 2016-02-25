@@ -12,14 +12,14 @@
 //	  ASIUA;Permits!Commercial!~!~          
 /*==================================================================*/
 
-var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  // array of rows
-if (tmpTable) {
-	countGasServiceMeter = countASITRows(tmpTable, "Service Type", "Gas Service and Meter" );
-	if (countGasServiceMeter > 0)
-			updateFee("Gas Service & Meter", "USF010", "FINAL", 1, "N");
+var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
+var countGasServiceMeter = countASITRows(tmpTable, "Service Type", "Gas Service and Meter" );
+if (tmpTable) {	
+	if (countGasServiceMeter > 0) updateFee("Gas Service & Meter", "USF010", "FINAL", 1, "N");
 	}
-	if (countGasServiceMeter = 0 && feeExists(USF010))
-		removeFee("USF010");
+	//if (countGasServiceMeter = 0 && feeExists(USF010))
+		//removeFee("USF010");
+	//}
 	
 	//3
 	//sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Gas Meter");
@@ -28,7 +28,8 @@ if (tmpTable) {
 		
 	//}
 		
-}
+
+
 
 	
 
