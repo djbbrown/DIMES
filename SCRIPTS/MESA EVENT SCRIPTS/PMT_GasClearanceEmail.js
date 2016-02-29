@@ -13,11 +13,10 @@
 //	IRSA:Permits/Commercial/NA/NA
 /*==================================================================*/
 
-
+if ((inspType == "Gas Pipe Final") && && inspResult == "Approved - Utility Clearance Required") {
 
 var vEParams = aa.util.newHashtable(); 
 addParameter(vEParams,"%%RECORD ID%%",capIDString);
-
 tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
 countCityOfMesa = countASITRows(tmpTAble, "Clearance To", "City of Mesa");
 countSouthwestGas = countASITRows(tmpTAble, "Clearance To", "Southwest Gas");
@@ -34,5 +33,4 @@ if (countCityOfMesa > 0 ) {
 		//emailAddress = "gasinspectiontag@swgas.com";
 		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 		}
-	
-	
+}	
