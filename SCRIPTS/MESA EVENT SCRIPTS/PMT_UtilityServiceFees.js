@@ -17,22 +17,20 @@ var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
 var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
 if (tmpTable) {      
 var countGasServiceMeter = countASITRows(tmpTable, "Service Type", "Gas Service and Meter" );
+var countGasMeter = countASITRows(tmpTable, "Service Type", "Gas Meter" );
+// Gas Service and Meter - USF010
+if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
+if (countGasServiceMeter > 0) updateFee("USF010","PMT_UTL_SERV", "FINAL",  1, "N");
+//Gas Service and Meter - USF020
+if (countGasMeter == 0 && feeExists("USF020")) removeFee("USF020", "FINAL");
+if (countGasMeter > 0) {
+	var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Gas Meter");
+	updateFee("USF020","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+	}
 
-       if (countGasServiceMeter > 0)   updateFee("USF010","PMT_UTL_SERV", "FINAL", 1, "N");
-       if (countGasServiceMeter = 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
-       }
-
-
-	//if (countGasServiceMeter = 0 && feeExists(USF010))
-		//removeFee("USF010");
-	//}
-	
-	//3
-	//sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Gas Meter");
-	//if (sumQtyMeters > 0) {
-		//updateFee("USF020", "", "FINAL", sumQtyMeters, "N");
-		
-	//}
+ }
+//
+       
 		
 
 
