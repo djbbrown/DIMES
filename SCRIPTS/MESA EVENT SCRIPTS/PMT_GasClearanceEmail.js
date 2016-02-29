@@ -18,20 +18,19 @@
 var vEParams = aa.util.newHashtable(); 
 addParameter(vEParams,"%%RECORD ID%%",capIDString);
 
-tmpTable = loasASITable("UTILITY SERVICE INFORMATION");
+tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
 countCityOfMesa = countASITRows(tmpTAble, "Clearance To", "City of Mesa");
 countSouthwestGas = countASITRows(tmpTAble, "Clearance To", "Southwest Gas");
 
-if (countCityOfMEsa > 0 ) {
-
+if (countCityOfMesa > 0 ) {
 	addParameter(vEParams,"%%CLEARANCE TO%%",);
 	emailAddress = "rgill@accela.com";
 	//emailAddress = "customerinfobillingops@mesaaz.gov";
-	sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId)
+	sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 }
 	if (countSouthwest > 0) {
 		addParameter(vEParams,"%%CLEARANCE TO%%",);
 		emailAddress = "rgill@accela.com";
 		//emailAddress = "gasinspectiontag@swgas.com";
-		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId)
+		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 		}
