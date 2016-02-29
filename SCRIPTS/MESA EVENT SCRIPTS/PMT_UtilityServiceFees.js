@@ -36,21 +36,12 @@ if (countGasMeter > 0) {
 	}
 //Water Meter: Adapter - USF040
 if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
-if (countGasMeterAdapter > 0) {
-	For (var rowIndex in tmpTable; rowIndex < tmpTable.length; rowIndex++) {
-        thisRow = tmpTable[rowIndex];
-            if thisRow["Service Type"].fieldValue == "Water Meter: Adapter" && thisRow["Service Size"].fieldValue == "Water Meter Adapter A24" 
-        {     
-            		logDebug(thisRow);
-        		updateFee("USF040","PMT_UTL_SERV", "FINAL",  1, "N");	
+if (countGasMeterAdapter > 0) {	
+            		updateFee("USF040","PMT_UTL_SERV", "FINAL",  1, "N");	
         }
-	}
-
-
-	}
-
-
+	
  }
+
 
        
 		
