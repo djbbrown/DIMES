@@ -22,7 +22,7 @@ var countGasMeter = countASITRows(tmpTable, "Service Type", "Gas Meter" );
 var countGasServMeterCommercial = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Commercial" );
 var countGasServMeterResLarge = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Large Residential");
 var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  Relocation/Retrofit");
-
+var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter: Adapter" );
 
 logDebug(countGasServiceMeter);
 // Gas Service and Meter - USF010
@@ -34,12 +34,21 @@ if (countGasMeter > 0) {
 	var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Gas Meter");
 	updateFee("USF020","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 	}
-//Gas Service/Meter – Commercial, Gas Service/Meter – Large Residential,Gas  Relocation/Retrofit  - USF030
-if (countGasMeter == 0 && feeExists("USF020")) removeFee("USF020", "FINAL");
-if (countGasServMeterCommercial > 0 || countGasServMeterResLarge || countGasRelocationRetrofit ) {
-	//var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Gas Meter");
-	updateFee("USF030","PMT_UTL_SERV", "FINAL",  1, "N");
+//Water Meter: Adapter - USF040
+if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
+if (countGasMeterAdapter > 0) {
+	For (var rowIndex in tmpTable) {
+        thisRow = tmpTable[rowIndex];
+            if thisRow["Service Type"].fieldValue == "Water Meter: Adapter" && thisRow["Service Size"].fieldValue == "Water Meter Adapter A24"   // “A” or “B”
+        {     
+            		logDebug(thisRow);
+        		updateFee("USF040","PMT_UTL_SERV", "FINAL",  1, "N");	
+        }
 	}
+
+
+	}
+
 
  }
 //
