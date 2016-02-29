@@ -6,7 +6,7 @@ function countASITRows(tObj, cNameFilter, cValueFilter) {
 		cValueFilter = arguments[2];
 		for (var ea in tObj) {
 			var row = tObj[ea];
-			if (row[cNameFilter].fieldValue = cValueFilter)
+			if (row[cNameFilter].fieldValue == cValueFilter)
 				retValue++;
 			}
 		}
