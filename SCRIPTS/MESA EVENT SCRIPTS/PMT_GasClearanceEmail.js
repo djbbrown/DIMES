@@ -13,7 +13,7 @@
 //	IRSA:Permits/Commercial/NA/NA
 /*==================================================================*/
 
-if ((inspType == "Gas Pipe Final") && && inspResult == "Approved - Utility Clearance Required") {
+if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utility Clearance Required") {
 
 var vEParams = aa.util.newHashtable(); 
 addParameter(vEParams,"%%RECORD ID%%",capIDString);
