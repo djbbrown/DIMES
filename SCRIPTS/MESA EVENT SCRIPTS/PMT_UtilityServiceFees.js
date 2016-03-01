@@ -41,15 +41,20 @@ if (countGasMeter > 0) {
  //       }
 //
 
-if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
+//if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
 if (countGasMeterAdapter > 0) {
-	For (var rowIndex in tmpTable) {
+	tempSum=0;
+	for (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
-            if thisRow["Service Type"].fieldValue == "Water Meter: Adapter" && thisRow["Service Size"].fieldValue == "Water Meter Adapter A24" 
-        {     
-            		logDebug(thisRow);
-        		updateFee("USF040","PMT_UTL_SERV", "FINAL",  1, "N");	
+        if (thisRow["Service Type"].fieldValue == "Water Meter: Adapter" && thisRow["Service Size"].fieldValue == "Water Meter Adapter A24")  {    
+        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+        		tempSum = tmpSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
+	}
+	if (tempSum > 0)
+		updateFee("USF040","PMT_UTL_SERV", "FINAL",  tempSum, "N");
+	else {
+		if (feeExists("USF040")) removeFee("USF040", "FINAL");
 	}
 }
 	
