@@ -12,7 +12,7 @@
 //	  ASIUA;Permits!Commercial!~!~          
 /*==================================================================*/
 
-var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
+
 
 var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
 if (tmpTable) { 
@@ -23,7 +23,7 @@ var countGasServMeterCommercial = countASITRows(tmpTable, "Service Type", "Gas S
 var countGasServMeterResLarge = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Large Residential");
 var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  Relocation/Retrofit");
 var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter: Adapter" );
-
+var len = tmpTable.length;
 logDebug(countGasServiceMeter);
 // Gas Service and Meter - USF010
 if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
@@ -43,7 +43,7 @@ if (countGasMeter > 0) {
 
 if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
 if (countGasMeterAdapter > 0) {
-	For (var rowIndex in tmpTable; rowIndex < tmpTable.length; rowIndex++) {
+	For (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
             if thisRow["Service Type"].fieldValue == "Water Meter: Adapter" && thisRow["Service Size"].fieldValue == "Water Meter Adapter A24" 
         {     
