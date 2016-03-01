@@ -16,8 +16,8 @@
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req") {
 var vEParams = aa.util.newHashtable(); 
 var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
-countCityOfMesa = countASITRows(tmpTAble, "Clearance To", "City of Mesa");
-countSouthwestGas = countASITRows(tmpTAble, "Clearance To", "Southwest Gas");
+countCityOfMesa = countASITRows(tmpTable, "Clearance To", "City of Mesa");
+countSouthwestGas = countASITRows(tmpTable, "Clearance To", "Southwest Gas");
 
 if (countCityOfMesa > 0 ) {
 	addParameter(vEParams,"%%RECORD ID%%",capIDString);
