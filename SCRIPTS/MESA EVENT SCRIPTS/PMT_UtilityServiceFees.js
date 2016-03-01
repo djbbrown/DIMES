@@ -43,12 +43,12 @@ if (countGasMeter > 0) {
 
 //if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
 if (countGasMeterAdapter > 0) {
-	tempSum=0;
+	var tempSum=0;
 	for (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
         if (thisRow["Service Type"].fieldValue == "Water Meter: Adapter" && thisRow["Service Size"].fieldValue == "Water Meter Adapter A24")  {    
         	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
-        		tempSum = tmpSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+        		tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
 	}
 	if (tempSum > 0)
