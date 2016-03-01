@@ -23,6 +23,8 @@ var countGasServMeterCommercial = countASITRows(tmpTable, "Service Type", "Gas S
 var countGasServMeterResLarge = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Large Residential");
 var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  Relocation/Retrofit");
 var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter: Adapter" );
+var countWaterMeterDom = countASITRows(tmpTable, "Service Type", "Water Meter: Domestic" );
+var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: Landscaping" );
 var len = tmpTable.length;
 logDebug(countGasServiceMeter);
 // Gas Service and Meter - USF010
@@ -55,7 +57,7 @@ if (countGasMeterAdapter > 0) {
 //USF050 Service Type - Water Meter: Domestic or Water Meter: Landscaping   
 // Service Size - Water - 3/4" or Water 1.0"
 
-if (countGasMeterAdapter > 0) {
+if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
 	var tempSum=0;
 	for (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
@@ -67,7 +69,7 @@ if (countGasMeterAdapter > 0) {
 	if (tempSum > 0)
 		updateFee("USF050","PMT_UTL_SERV", "FINAL",  tempSum, "N");
 	else {
-		if (feeExists("USF050")) removeFee("USF040", "FINAL");
+		if (feeExists("USF050")) removeFee("USF050", "FINAL");
 	}
 }
 	
