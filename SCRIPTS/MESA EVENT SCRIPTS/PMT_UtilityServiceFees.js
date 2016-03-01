@@ -26,7 +26,8 @@ var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter:
 var countWaterMeterDom = countASITRows(tmpTable, "Service Type", "Water Meter: Domestic" );
 var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: Landscaping" );
 var len = tmpTable.length;
-logDebug(countGasServiceMeter);
+logDebug(countWaterMeterDom);
+logDebug(countWaterMeterLand);
 // Gas Service and Meter - USF010
 if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
 if (countGasServiceMeter > 0) updateFee("USF010","PMT_UTL_SERV", "FINAL",  1, "N");
@@ -58,16 +59,16 @@ if (countGasMeterAdapter > 0) {
 // Service Size - Water - 3/4" or Water 1.0"
 
 if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
-	var tempSum=0;
+	var tempSum1=0;
 	for (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
         if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 3/4"' || thisRow["Service Size"].fieldValue == 'Water 1.0"'))  {    
         	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
-        		tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+        		tempSum1 = tempSum1 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
 	}
-	if (tempSum > 0)
-		updateFee("USF050","PMT_UTL_SERV", "FINAL",  tempSum, "N");
+	if (tempSum1 > 0)
+		updateFee("USF050","PMT_UTL_SERV", "FINAL",  tempSum1, "N");
 	else {
 		if (feeExists("USF050")) removeFee("USF050", "FINAL");
 	}
