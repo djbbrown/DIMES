@@ -59,7 +59,7 @@ if (countGasMeterAdapter > 0) {
 	var tempSum=0;
 	for (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
-        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 3/4"' || thisRow["Service Size"].fieldValue == 'Water 1.0"'))  {    
+        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 3/4"' || thisRow["Service Size"].fieldValue == 'Water 1.0"'))  {    
         	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
         		tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
