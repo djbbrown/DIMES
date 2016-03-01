@@ -89,6 +89,24 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 		if (countWaterMeterDom == 0 && countWaterMeterLand == 0 && feeExists("USF060")) removeFee("USF060", "FINAL");
 		
 	//
+		//USF070 Service Type - Water Meter: Domestic or Water Meter: Landscaping   
+		// Service Size - Water - 2.0
+
+			if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
+				var tempSum=0;
+				for (var rowIndex in tmpTable) {
+			        thisRow = tmpTable[rowIndex];
+			        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water 2.0' )  {    
+			        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+			        		tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+			        }
+				}
+				logDebug(tempSum);
+				if (tempSum > 0)
+					updateFee("USF070","PMT_UTL_SERV", "FINAL",  tempSum, "N");
+				}
+			if (countWaterMeterDom == 0 && countWaterMeterLand == 0 && feeExists("USF070")) removeFee("USF070", "FINAL");
+	//
  }
 
 
