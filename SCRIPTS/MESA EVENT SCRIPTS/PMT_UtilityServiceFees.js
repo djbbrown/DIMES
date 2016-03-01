@@ -58,22 +58,22 @@ if (countGasMeterAdapter > 0) {
 //USF050 Service Type - Water Meter: Domestic or Water Meter: Landscaping   
 // Service Size - Water - 3/4" or Water 1.0"
 
-if (countWaterMeterDom > 0 ) {
-	var tempSum1=0;
-	for (var rowIndex in tmpTable) {
-        thisRow = tmpTable[rowIndex];
-        if (thisRow["Service Type"].fieldValue == "Water Meter: Domestic" && (thisRow["Service Size"].fieldValue == 'Water 3/4' || thisRow["Service Size"].fieldValue == 'Water 1.0'))  {    
-        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
-        		tempSum1 = tempSum1 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
-        }
+	if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
+		var tempSum1=0;
+		for (var rowIndex in tmpTable) {
+	        thisRow = tmpTable[rowIndex];
+	        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 3/4' || thisRow["Service Size"].fieldValue == 'Water 1.0'))  {    
+	        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+	        		tempSum1 = tempSum1 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+	        }
+		}
+		logDebug(tempSum1);
+		if (tempSum1 > 0)
+			updateFee("USF050","PMT_UTL_SERV", "FINAL",  tempSum1, "N");
+		else {
+			if (feeExists("USF050")) removeFee("USF050", "FINAL");
+		}
 	}
-	logDebug(tempSum1);
-	if (tempSum1 > 0)
-		updateFee("USF050","PMT_UTL_SERV", "FINAL",  tempSum1, "N");
-	else {
-		if (feeExists("USF050")) removeFee("USF050", "FINAL");
-	}
-}
 	
 //
  }
