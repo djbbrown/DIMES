@@ -20,15 +20,15 @@ countCityOfMesa = countASITRows(tmpTable, "Clearance To", "City of Mesa");
 countSouthwestGas = countASITRows(tmpTable, "Clearance To", "Southwest Gas");
 
 if (countCityOfMesa > 0 ) {
-	addParameter(vEParams,"%%RECORD ID%%",capIDString);
-	addParameter(vEParams,"%%CLEARANCE TO%%","City of Mesa");
+	addParameter(vEParams,"$$RECORD ID$$",capIDString);
+	addParameter(vEParams,"$$CLEARANCE TO$$","City of Mesa");
 	emailAddress = "rgill@accela.com";
 	//emailAddress = "customerinfobillingops@mesaaz.gov";
 	sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 }
 	if (countSouthwestGas > 0) {
-		addParameter(vEParams,"%%RECORD ID%%",capIDString);
-		addParameter(vEParams,"%%CLEARANCE TO%%","Southwest Gas");
+		addParameter(vEParams,"$$RECORD ID$$",capIDString);
+		addParameter(vEParams,"$$CLEARANCE TO$$","Southwest Gas");
 		emailAddress = "rgill@accela.com";
 		//emailAddress = "gasinspectiontag@swgas.com";
 		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
