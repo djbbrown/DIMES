@@ -18,8 +18,10 @@ if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue"))
     // curr_month =  11 is for December because the month starts with zero.
     var curr_month = 12;
     var curr_year = d.getFullYear();
-    var exp_date = curr_month+"/"+curr_day+"/"+curr_year;
+    var exp_date = String(curr_year) + String(curr_month) + String(curr_day);
+        //curr_month + "/" + curr_day + "/" + curr_year;
    
-    editAppSpecific("Permit Expiration Date", jsDateToMMDDYYYY(exp_date));
+    //    editAppSpecific("Permit Expiration Date", jsDateToMMDDYYYY(exp_date));
+    editAppSpecific("Permit Expiration Date",exp_date;
 
 }
