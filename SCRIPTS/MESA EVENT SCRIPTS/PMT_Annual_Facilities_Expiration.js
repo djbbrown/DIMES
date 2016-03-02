@@ -14,12 +14,11 @@
 if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue")) {
     // set ASI field
     var d = new Date();
-    var curr_date = 31;
+    var curr_day = 31;
     // curr_month =  11 is for December because the month starts with zero.
-    var curr_month = 11;
+    var curr_month = 12;
     var curr_year = d.getFullYear();
-    var exp_date = new Date(curr_year + curr_month + curr_date);
-
+    var exp_date = curr_month+'/'+curr_day+'/'+curr_year;
 
     editAppSpecific("Permit Expiration Date", jsDateToMMDDYYYY(exp_date));
 
