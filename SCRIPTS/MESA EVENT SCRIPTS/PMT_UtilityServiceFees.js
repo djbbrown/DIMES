@@ -118,7 +118,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
-					
+					}
 					logDebug(tempSum);
 					if (tempSum > 0)
 						updateFee("USF080","PMT_UTL_SERV", "FINAL",  tempSum, "N");
@@ -135,14 +135,15 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
-					
+					}
 					logDebug(tempSum);
 					if (tempSum > 0)
 						updateFee("USF090","PMT_UTL_SERV", "FINAL",  tempSum, "N");
 					}
+					
 				if (countWaterMeterDom == 0 && countWaterMeterLand == 0 && feeExists("USF090")) removeFee("USF090", "FINAL");
 		//
-				//USF090 Service Type - Water Meter: Domestic or Water Meter: Landscaping 
+				//USF100 Service Type - Water Meter: Domestic or Water Meter: Landscaping 
 				// Service Size - Water - 8
 
 				if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
@@ -153,7 +154,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
-					
+					}
 					logDebug(tempSum);
 					if (tempSum > 0)
 						updateFee("USF100","PMT_UTL_SERV", "FINAL",  tempSum, "N");
