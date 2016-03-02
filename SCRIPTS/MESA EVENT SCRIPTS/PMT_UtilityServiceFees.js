@@ -25,7 +25,7 @@ var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  R
 var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter: Adapter" );
 var countWaterMeterDom = countASITRows(tmpTable, "Service Type", "Water Meter: Domestic" );
 var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: Landscaping" );
-var len = tmpTable.length;
+
 logDebug(countWaterMeterDom);
 logDebug(countWaterMeterLand);
 // Gas Service and Meter - USF010
@@ -132,7 +132,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					var tempSum6=0;
 					for (var rowIndex in tmpTable) {
 				        thisRow = tmpTable[rowIndex];
-				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water – 6”' )  {    
+				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water – 6' )  {    
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum6 = tempSum6 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
