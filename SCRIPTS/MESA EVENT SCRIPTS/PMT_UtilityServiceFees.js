@@ -28,7 +28,7 @@ var countWaterMeterDom = countASITRows(tmpTable, "Service Type", "Water Meter: D
 var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: Landscaping" );
 var countWaterRelocation = countASITRows(tmpTable, "Service Type", "Water Relocation" );
 
-// Gas Service and Meter - USF010
+// Gas Service and Meter - USF010 
 if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
 if (countGasServiceMeter > 0) updateFee("USF010","PMT_UTL_SERV", "FINAL",  1, "N");
 //Gas Service and Meter - USF020
