@@ -21,7 +21,7 @@ if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue"))
     var exp_month = 12;
     var exp_year = d.getFullYear();
 	if curr_month = 12 then
-	   exp_year = dateAdd(exp_year,1);
+	   exp_year = Add(exp_year,1);
     var exp_date = String(exp_month) + "/" + String(exp_day) + "/" + String(exp_year);
    
     editAppSpecific("Permit Expiration Date", exp_date);
