@@ -15,14 +15,16 @@ if (wfTask.equals("Application Submittal") && wfStatus.equals("Ready to Issue"))
     
     // set ASI field
     var d = new Date();
-    var curr_day = 31;
+	var curr_month = d.getMonth;
+    var Exp_day = 31;
     // curr_month =  11 is for December because the month starts with zero.
-    var curr_month = 12;
-    var curr_year = d.getFullYear();
-    var exp_date = String(curr_month) + "/" + String(curr_day) + "/" + String(curr_year);
-        //curr_month + "/" + curr_day + "/" + curr_year;
+    var exp_month = 12;
+    var exp_year = d.getFullYear();
+	if curr_month = 12 then
+	   exp_year = dateAdd(exp_year,1);
+    var exp_date = String(exp_month) + "/" + String(exp_day) + "/" + String(exp_year);
    
-        editAppSpecific("Permit Expiration Date", exp_date);
-    //editAppSpecific("Permit Expiration Date",exp_date;
+    editAppSpecific("Permit Expiration Date", exp_date);
+
 
 }
