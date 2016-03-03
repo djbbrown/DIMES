@@ -14,6 +14,7 @@
 
 
 
+
 var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
 if (tmpTable) { 
 //define variables to use
