@@ -13,7 +13,7 @@
 var tmpTable = loadASITable("SIGN INFO");  
 if (tmpTable) {
 	var countSignIlluminated = countASITRows(tmpTable, "Type of Sign", "Illuminated" );
-	
+	logDebug(countSignIlluminated);
 	if (countSignIlluminated == 0 && feeExists("SGN030", "NEW")) removeFee("SGN030", "FINAL");
 	if (countSignIlluminated == 0 && feeExists("SGN030", "INVOICED")) voidRemoveFee("SGN030");
 	if (countSignIlluminated > 0) {
