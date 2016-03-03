@@ -21,6 +21,11 @@ if (rowPermit != null && rowPermit != "") {
    		addParent(rowPermitCapId)
    }
 }
+else {
+	parentCapId = getParent();
+	if (parentCapId != null)
+		removeParent(parentCapId.getCustomID())
+}
  
 if (UtlPermit != null && UtlPermit != "") {
    if (!isParent(UtlPermit)) {
