@@ -1,4 +1,4 @@
-function addParent(parentAppNum) 
+function removeParent(parentAppNum) 
 //
 // adds the current application to the parent
 //
