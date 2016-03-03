@@ -11,26 +11,38 @@
 
 var rowPermit = getAppSpecific("ROW Permit No.");
 var UtlPermit = getAppSpecific("UTL Permit No.");
+var associatedPermitType = getAppSpecific("Associated Work Permit Type");
 
-var rowPermitCapId = aa.cap.getCapID(rowPermit).getOutput();
-var UtlPermitCapId = aa.cap.getCapID(UtlPermit).getOutput();
+if (associatedPermitType == "None") {
+	pArr = getParents("Engineering/*/*/*");
+	if (pArr && pArr.length > 0) {
+		for (pIndex in pArr) 
+			removeParent(pArr[pIndex].getCustomID());
+	}
+}
 
-//check if these values exist as permits
-if (rowPermit != null && rowPermit != "") {
-   if (!isParent(rowPermit)) {
+if (associatedPermitType == "ROW - Right-of-Way") {
+	var rowPermitCapId = aa.cap.getCapID(rowPermit).getOutput();
+	if (!isParent(rowPermit)) {
    		addParent(rowPermitCapId)
-   }
+    }
+	pArr = getParents("Enginnering/Utilities/*/*");
+	if (pArr && pArr.length > 0) {
+		for (pIndex in pArr) 
+			removeParent(pArr[pIndex].getCustomID());
+	}
 }
-else {
-	parentCapId = getParent();
-	if (parentCapId != null)
-		removeParent(parentCapId.getCustomID())
-}
- 
-if (UtlPermit != null && UtlPermit != "") {
-   if (!isParent(UtlPermit)) {
+
+if (associatedPermitType == "UTL - Utility") {
+	var UtlPermitCapId = aa.cap.getCapID(UtlPermit).getOutput();
+    if (!isParent(UtlPermit)) {
    		addParent(UtlPermitCapId)
-   }
+    }
+    pArr = getParents("Enginnering/Right of Way/*/*");
+	if (pArr && pArr.length > 0) {
+		for (pIndex in pArr) 
+			removeParent(pArr[pIndex].getCustomID());
+	}
 }
 
 
