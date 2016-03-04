@@ -14,7 +14,6 @@
 
 
 
-
 var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
 if (tmpTable) { 
 //define variables to use
@@ -27,8 +26,16 @@ var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter:
 var countWaterMeterDom = countASITRows(tmpTable, "Service Type", "Water Meter: Domestic" );
 var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: Landscaping" );
 var countWaterRelocation = countASITRows(tmpTable, "Service Type", "Water Relocation" );
+var countElecServTurn = countASITRows(tmpTable, "Service Type", "Electric Service Turn on Same Day" );
+var countTempElec = countASITRows(tmpTable, "Service Type", "Temporary Electric" );
+var countPavReplLocal = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Local Roadway");
+var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Collector Roadway");
+var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Arterial Roadway");
+var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
 
-// Gas Service and Meter - USF010 
+
+
+// Gas Service and Meter - USF010
 if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
 if (countGasServiceMeter > 0) updateFee("USF010","PMT_UTL_SERV", "FINAL",  1, "N");
 //Gas Service and Meter - USF020
@@ -71,7 +78,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 	if (tempSum1 == 0 && feeExists("USF050")) removeFee("USF050", "FINAL");
 //
 	//USF060 Service Type - Water Meter: Domestic or Water Meter: Landscaping   
-	// Service Size - Water - 3/4" or Water 1.0"
+	// Service Size - Water - 1 1/2"
 
 		if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
 			var tempSum2=0;
@@ -102,7 +109,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 			        		tempSum3 = tempSum3 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 			        }
 				}
-				
+				logDebug(tempSum3);
 				if (tempSum3 > 0)
 					updateFee("USF070","PMT_UTL_SERV", "FINAL",  tempSum3, "N");
 				}
@@ -151,7 +158,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					var tempSum8=0;
 					for (var rowIndex in tmpTable) {
 				        thisRow = tmpTable[rowIndex];
-				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water – 6”' )  {    
+				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water – 8”' )  {    
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum8 = tempSum8 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
@@ -170,6 +177,90 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					updateFee("USF120","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 					}
 		
+   //Electric Service Turn on Same Day - USF130
+				if (countElecServTurn == 0 && feeExists("USF130")) removeFee("USF130", "FINAL");
+				if (countElecServTurn > 0) {
+					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Electric Service Turn on Same Day");
+					updateFee("USF130","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+					}	
+				
+ //Temporary Electric - USF150
+				if (countTempElec == 0 && feeExists("USF150")) removeFee("USF150", "FINAL");
+				if (countTempElec > 0) {
+					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Temporary Electric");
+					updateFee("USF150","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+					}	
+				
+//Pavement Replacement – Local Roadway- USF160
+				if (countPavReplLocal == 0 && feeExists("USF160")) removeFee("USF160", "FINAL");
+				if (countPavReplLocal > 0) {
+					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Local Roadway");
+					updateFee("USF160","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+					}	
+//Pavement Replacement – Collector Roadway - USF170
+				if (countPavReplColl == 0 && feeExists("USF170")) removeFee("USF170", "FINAL");
+				if (countPavReplColl > 0) {
+					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Collector Roadway");
+					updateFee("USF170","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+					}					
+				
+//Pavement Replacement – Arterial Roadway - USF180
+				if (countPavReplArt == 0 && feeExists("USF180")) removeFee("USF180", "FINAL");
+				if (countPavReplArt > 0) {
+					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Arterial Roadway");
+					updateFee("USF180","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+					}					
+				
+				
+//USF190 Service Type - Water Service 
+// Service Size - Water - 3/4 or 1.0
+
+				if (countWaterService > 0) {
+				var waterSum1 = 0;
+				for (var rowIndex in tmpTable) {
+				thisRow = tmpTable[rowIndex];
+				if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 3/4' || thisRow["Service Size"].fieldValue == 'Water 1.0'))  {    
+				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+					waterSum1 = waterSum1 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+				 }
+				}							
+				if (waterSum1 > 0)
+				updateFee("USF190","PMT_UTL_SERV", "FINAL",  waterSum1, "N");
+			}
+			if (waterSum1 == 0 && feeExists("USF190")) removeFee("USF190", "FINAL");
+				
+//USF200 Service Type - Water Service 
+// Service Size - Water - 1 1/2
+
+		if (countWaterService > 0) {
+			var waterSum2 = 0;
+			for (var rowIndex in tmpTable) {
+				thisRow = tmpTable[rowIndex];
+				if ((thisRow["Service Type"].fieldValue == "Water Service") && thisRow["Service Size"].fieldValue == 'Water 1 1/2' )  {    
+				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+					waterSum2 = waterSum2 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+				 }
+				}							
+				if (waterSum2 > 0)
+					updateFee("USF200","PMT_UTL_SERV", "FINAL",  waterSum2, "N");
+				}
+			if (waterSum2 == 0 && feeExists("USF200")) removeFee("USF200", "FINAL");		
+//USF210 Service Type - Water Service 
+// Service Size - Water - 2.0
+
+					if (countWaterService > 0) {
+						var waterSum3 = 0;
+						for (var rowIndex in tmpTable) {
+							thisRow = tmpTable[rowIndex];
+							if ((thisRow["Service Type"].fieldValue == "Water Service") && thisRow["Service Size"].fieldValue == 'Water 2.0' )  {    
+							if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+								waterSum3 = waterSum3 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+							 }
+							}							
+							if (waterSum3 > 0)
+								updateFee("USF210","PMT_UTL_SERV", "FINAL",  waterSum3, "N");
+							}
+						if (waterSum3 == 0 && feeExists("USF210")) removeFee("USF210", "FINAL");			
 				
  }
 
