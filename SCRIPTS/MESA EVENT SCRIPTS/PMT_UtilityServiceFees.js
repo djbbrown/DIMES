@@ -33,6 +33,9 @@ var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replace
 var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Arterial Roadway");
 var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
 
+logDebug(countElecServTurn);
+logDebug(countPavReplLocal);
+logDebug(countPavReplColl);
 
 
 // Gas Service and Meter - USF010
@@ -192,7 +195,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					}	
 				
 //Pavement Replacement – Local Roadway- USF160
-		   logDebug(countPavReplLocal);
+		//   logDebug(countPavReplLocal);
 				if (countPavReplLocal == 0 && feeExists("USF160")) removeFee("USF160", "FINAL");
 				if (countPavReplLocal > 0) {
 					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Local Roadway");
