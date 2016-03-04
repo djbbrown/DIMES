@@ -19,6 +19,7 @@ if (tmpTable) {
 //define variables to use
 var countGasServiceMeter = countASITRows(tmpTable, "Service Type", "Gas Service and Meter" );
 var countGasMeter = countASITRows(tmpTable, "Service Type", "Gas Meter" );
+var countPavReplLocal = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Local Roadway");
 var countGasServMeterCommercial = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Commercial" );
 var countGasServMeterResLarge = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Large Residential");
 var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  Relocation/Retrofit");
@@ -28,7 +29,7 @@ var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: 
 var countWaterRelocation = countASITRows(tmpTable, "Service Type", "Water Relocation" );
 var countElecServTurn = countASITRows(tmpTable, "Service Type", "Electric Service Turn on Same Day" );
 var countTempElec = countASITRows(tmpTable, "Service Type", "Temporary Electric" );
-var countPavReplLocal = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Local Roadway");
+
 var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Collector Roadway");
 var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Arterial Roadway");
 var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
