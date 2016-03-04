@@ -3,3 +3,4 @@
 // Script Name: ASA;Permits!Demolition!NA!NA.js
 /*==================================================================*/
 include("PMT_assessDemoTechFees");
+include("PMT_SignalButteTag");
