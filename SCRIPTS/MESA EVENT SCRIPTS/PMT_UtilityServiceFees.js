@@ -109,7 +109,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 			        		tempSum3 = tempSum3 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 			        }
 				}
-				logDebug(tempSum3);
+				//logDebug(tempSum3);
 				if (tempSum3 > 0)
 					updateFee("USF070","PMT_UTL_SERV", "FINAL",  tempSum3, "N");
 				}
@@ -127,7 +127,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 				        		tempSum4 = tempSum4 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
 					}
-					logDebug(tempSum4);
+					//logDebug(tempSum4);
 					if (tempSum4 > 0)
 						updateFee("USF080","PMT_UTL_SERV", "FINAL",  tempSum4, "N");
 					}
@@ -144,7 +144,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 				        		tempSum6 = tempSum6 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
 					}
-					logDebug(tempSum6);
+					//logDebug(tempSum6);
 					if (tempSum6 > 0)
 						updateFee("USF090","PMT_UTL_SERV", "FINAL",  tempSum6, "N");
 					}
@@ -163,7 +163,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 				        		tempSum8 = tempSum8 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
 					}
-					logDebug(tempSum8);
+					//logDebug(tempSum8);
 					if (tempSum8 > 0)
 						updateFee("USF100","PMT_UTL_SERV", "FINAL",  tempSum8, "N");
 					}
@@ -192,12 +192,14 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					}	
 				
 //Pavement Replacement – Local Roadway- USF160
+		   logDebug(countPavReplLocal);
 				if (countPavReplLocal == 0 && feeExists("USF160")) removeFee("USF160", "FINAL");
 				if (countPavReplLocal > 0) {
 					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Local Roadway");
 					updateFee("USF160","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 					}	
 //Pavement Replacement – Collector Roadway - USF170
+
 				if (countPavReplColl == 0 && feeExists("USF170")) removeFee("USF170", "FINAL");
 				if (countPavReplColl > 0) {
 					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Collector Roadway");
