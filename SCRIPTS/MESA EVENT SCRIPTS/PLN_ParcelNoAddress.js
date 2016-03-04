@@ -20,8 +20,10 @@ var hasPrimaryAddressInCap = hasPrimaryAddressInCap(capID);
 if ((!hasPrimaryAddressInCap) && parcelExistsOnCap) {
 	var adHocTask = "GIS Addressing";
 	var adHocNote = "No Address associated with the parcel";
-	var adHocProcess = "WFADOC_PROCESS";
+	var adHocProcess = "WFADHOC_PROCESS";
 	 addAdHocTask(adHocProcess, adHocTask, adHocNote);
 }
+
+
 
 
