@@ -18,7 +18,7 @@
 //var hasPrimaryAddressInCap = hasPrimaryAddressInCap(capId);
 //var parcelExistsOnCap = parcelExistsOnCap(capIDString);
 
-if ((!hasPrimaryAddressInCap(capId) && parcelExistsOnCap()) {
+if (!hasPrimaryAddressInCap(capId) && parcelExistsOnCap()) {
 	//var adHocTask = "GIS Addressing";
 	//var adHocNote = "No Address associated with the parcel";
 	//var adHocProcess = "WFADHOC_PROCESS";
