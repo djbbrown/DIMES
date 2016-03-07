@@ -19,19 +19,18 @@ if (tmpTable) {
 //define variables to use
 var countGasServiceMeter = countASITRows(tmpTable, "Service Type", "Gas Service and Meter" );
 var countGasMeter = countASITRows(tmpTable, "Service Type", "Gas Meter" );
-var countPavReplLocal = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Local Roadway");
-var countGasServMeterCommercial = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Commercial" );
-var countGasServMeterResLarge = countASITRows(tmpTable, "Service Type", "Gas Service/Meter – Large Residential");
+var countGasServMeterCommercial = countASITRows(tmpTable, "Service Type", "Gas Service/Meter - Commercial" );
+var countGasServMeterResLarge = countASITRows(tmpTable, "Service Type", "Gas Service/Meter - Large Residential");
 var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  Relocation/Retrofit");
 var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter: Adapter" );
 var countWaterMeterDom = countASITRows(tmpTable, "Service Type", "Water Meter: Domestic" );
 var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: Landscaping" );
 var countWaterRelocation = countASITRows(tmpTable, "Service Type", "Water Relocation" );
 var countElecServTurn = countASITRows(tmpTable, "Service Type", "Electric Service Turn on Same Day" );
+var countPavReplLocal = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Local Roadway");
 var countTempElec = countASITRows(tmpTable, "Service Type", "Temporary Electric" );
-
-var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Collector Roadway");
-var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement – Arterial Roadway");
+var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Collector Roadway");
+var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Arterial Roadway");
 var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
 
 logDebug(countElecServTurn);
@@ -126,7 +125,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					var tempSum4=0;
 					for (var rowIndex in tmpTable) {
 				        thisRow = tmpTable[rowIndex];
-				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water – 4”' )  {    
+				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water - 4"' )  {    
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum4 = tempSum4 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
@@ -143,7 +142,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					var tempSum6=0;
 					for (var rowIndex in tmpTable) {
 				        thisRow = tmpTable[rowIndex];
-				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water – 6”' )  {    
+				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water - 6"' )  {    
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum6 = tempSum6 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
@@ -162,7 +161,7 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 					var tempSum8=0;
 					for (var rowIndex in tmpTable) {
 				        thisRow = tmpTable[rowIndex];
-				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water – 8”' )  {    
+				        if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water - 8"' )  {    
 				        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				        		tempSum8 = tempSum8 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				        }
