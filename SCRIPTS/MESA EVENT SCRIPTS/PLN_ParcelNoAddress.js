@@ -15,15 +15,16 @@
 /*==================================================================*/
 
 //var hasPrimaryAddressInCap = hasPrimaryAddressInCap(capIDString)  ;
-var hasPrimaryAddressInCap = hasPrimaryAddressInCap(capID);
+//var hasPrimaryAddressInCap = hasPrimaryAddressInCap(capId);
 //var parcelExistsOnCap = parcelExistsOnCap(capIDString);
-if ((!hasPrimaryAddressInCap) && parcelExistsOnCap) {
-	var adHocTask = "GIS Addressing";
-	var adHocNote = "No Address associated with the parcel";
-	var adHocProcess = "WFADHOC_PROCESS";
-	 addAdHocTask(adHocProcess, adHocTask, adHocNote);
-}
 
+if ((!hasPrimaryAddressInCap(capId) && parcelExistsOnCap()) {
+	//var adHocTask = "GIS Addressing";
+	//var adHocNote = "No Address associated with the parcel";
+	//var adHocProcess = "WFADHOC_PROCESS";
+	 addAdHocTask("WFADHOC_PROCESS", "GIS Addressing", "No Address associated with the parcel");
+
+}
 
 
 
