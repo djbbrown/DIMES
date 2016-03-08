@@ -59,7 +59,7 @@ if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countG
         		tempSum9 = tempSum9 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
 	}
-
+logDebug(tempSum9);
 	if (tempSum9 > 0)	updateFee("USF030","PMT_UTL_SERV", "FINAL",  tempSum9, "N");		
 }
 
