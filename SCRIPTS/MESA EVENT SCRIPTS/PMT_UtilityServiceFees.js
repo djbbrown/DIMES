@@ -33,9 +33,9 @@ var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replace
 var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Arterial Roadway");
 var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
 
-logDebug(countElecServTurn);
-logDebug(countPavReplLocal);
-logDebug(countPavReplColl);
+logDebug(countGasServMeterCommercial);
+logDebug(countGasServMeterResLarge);
+logDebug(countGasRelocationRetrofit);
 
 
 // Gas Service and Meter - USF010
