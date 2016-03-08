@@ -33,10 +33,6 @@ var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replace
 var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Arterial Roadway");
 var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
 
-logDebug(countGasServMeterCommercial);
-logDebug(countGasServMeterResLarge);
-logDebug(countGasRelocationRetrofit);
-
 
 // Gas Service and Meter - USF010
 if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
@@ -62,7 +58,7 @@ if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countG
         	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
         		tempSum9 = tempSum9 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
-        if (thisRow["Service Type"].fieldValue == "Service Type", "Gas  Relocation/Retrofit" )  {    
+        if (thisRow["Service Type"].fieldValue == "Gas Relocation/Retrofit" )  {    
         	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
         		tempSum9 = tempSum9 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
