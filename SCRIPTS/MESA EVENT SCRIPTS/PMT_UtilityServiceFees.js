@@ -54,7 +54,15 @@ if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countG
 	var tempSum9 = 0;
 	for (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
-        if (thisRow["Service Type"].fieldValue == "Gas Service/Meter - Commercial" || thisRow["Service Type"].fieldValue == "Gas Service/Meter - Large Residential" || thisRow["Service Type"].fieldValue == "Service Type", "Gas  Relocation/Retrofit" )  {    
+        if (thisRow["Service Type"].fieldValue == "Gas Service/Meter - Commercial" )  {    
+        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+        		tempSum9 = tempSum9 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+        }
+        if (thisRow["Service Type"].fieldValue == "Gas Service/Meter - Large Residential" )  {    
+        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+        		tempSum9 = tempSum9 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+        }
+        if (thisRow["Service Type"].fieldValue == "Service Type", "Gas  Relocation/Retrofit" )  {    
         	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
         		tempSum9 = tempSum9 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
