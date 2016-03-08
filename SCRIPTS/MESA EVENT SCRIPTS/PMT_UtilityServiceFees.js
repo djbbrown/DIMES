@@ -51,19 +51,19 @@ if (countGasMeter > 0) {
 //Gas Service and Meter - USF030
 
 if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countGasRelocationRetrofit == 0 ) {
-	var tempSum0=0;
+	var tempSum9 = 0;
 	for (var rowIndex in tmpTable) {
         thisRow = tmpTable[rowIndex];
         if (thisRow["Service Type"].fieldValue == "Gas Service/Meter - Commercial" || thisRow["Service Type"].fieldValue == "Gas Service/Meter - Large Residential" || thisRow["Service Type"].fieldValue == "Service Type", "Gas  Relocation/Retrofit" )  {    
         	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
-        		tempSum0 = tempSum0 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+        		tempSum9 = tempSum9 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
         }
 	}
 
-	if (tempSum0 > 0)	updateFee("USF030","PMT_UTL_SERV", "FINAL",  tempSum0, "N");		
+	if (tempSum9 > 0)	updateFee("USF030","PMT_UTL_SERV", "FINAL",  tempSum9, "N");		
 }
 
-if (tempSum0 == 0 && feeExists("USF030")) removeFee("USF030", "FINAL");
+if (tempSum9 == 0 && feeExists("USF030")) removeFee("USF030", "FINAL");
 
 
 
