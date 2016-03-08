@@ -47,6 +47,26 @@ if (countGasMeter > 0) {
 	var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Gas Meter");
 	updateFee("USF020","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 	}
+
+//Gas Service and Meter - USF030
+
+if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countGasRelocationRetrofit == 0 ) {
+	var tempSum0=0;
+	for (var rowIndex in tmpTable) {
+        thisRow = tmpTable[rowIndex];
+        if (thisRow["Service Type"].fieldValue == "Gas Service/Meter - Commercial" || thisRow["Service Type"].fieldValue == "Gas Service/Meter - Large Residential" || thisRow["Service Type"].fieldValue == "Service Type", "Gas  Relocation/Retrofit" )  {    
+        	if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+        		tempSum0 = tempSum0 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
+        }
+	}
+
+	if (tempSum0 > 0)	updateFee("USF030","PMT_UTL_SERV", "FINAL",  tempSum0, "N");		
+}
+
+if (tempSum0 == 0 && feeExists("USF030")) removeFee("USF030", "FINAL");
+
+
+
 //Water Meter: Adapter - USF040  - Service Size - Water Meter Adapter A24
 
 if (countGasMeterAdapter > 0) {
@@ -198,14 +218,14 @@ if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL
 		//   logDebug(countPavReplLocal);
 				if (countPavReplLocal == 0 && feeExists("USF160")) removeFee("USF160", "FINAL");
 				if (countPavReplLocal > 0) {
-					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Local Roadway");
+					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Local Roadway");
 					updateFee("USF160","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 					}	
 //Pavement Replacement – Collector Roadway - USF170
 
 				if (countPavReplColl == 0 && feeExists("USF170")) removeFee("USF170", "FINAL");
 				if (countPavReplColl > 0) {
-					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Collector Roadway");
+					var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Collector Roadway");
 					updateFee("USF170","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 					}					
 				
