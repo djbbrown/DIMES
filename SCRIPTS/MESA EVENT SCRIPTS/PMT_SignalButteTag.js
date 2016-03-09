@@ -16,17 +16,15 @@
 
  
 var vEParams = aa.util.newHashtable(); 
-var adHocTask = "Engineering Review";
-var adHocNote = "Parcel exists in Signal Butte GIS layer";
-var adHocProcess = "WFADHOC_PROCESS";
 
-//check the 
-{
+// Signal Butte tag
+tagField = getGISInfo("MESA", "Accela_TAGS", "TAG");
+if (tagField == "SIGB") {
 	addParameter(vEParams,"$$RECORD ID$$",capIDString);
 //change the email to the commented out one
 	emailAddress = "rgill@accela.com";
 	//emailAddress = "Joel.Watson@mesaaz.gov";
 	sendNotification("", emailAddress, "", "Signal Butte", vEParams, null, capId);
-	addAdHocTask(adHocProcess, adHocTask, adHocNote);
+	addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Not Parcel exists in Signal Butte GIS layer");
 }
 	
