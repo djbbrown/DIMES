@@ -19,8 +19,9 @@ var vEParams = aa.util.newHashtable();
 
 // Signal Butte tag
 tagField = getGISInfo("MESA", "Accela_TAGS", "TAG");
+logDebug(tagField);
 if (tagField == "SIGB") {
-	addParameter(vEParams,"$$RECORD ID$$",capIDString);
+		addParameter(vEParams,"$$RECORD ID$$",capIDString);
 //change the email to the commented out one
 	emailAddress = "rgill@accela.com";
 	//emailAddress = "Joel.Watson@mesaaz.gov";
