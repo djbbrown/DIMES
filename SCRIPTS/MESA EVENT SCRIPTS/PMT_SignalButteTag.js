@@ -18,7 +18,7 @@
 var vEParams = aa.util.newHashtable(); 
 
 // Signal Butte tag
-tagField = getGISInfo("MESA", "Accela_TAGS", "TAG");
+tagField = "" + getGISInfo("MESA", "AccelaTAGS", "TAG");
 logDebug(tagField);
 if (tagField == "SIGB") {
 		addParameter(vEParams,"$$RECORD ID$$",capIDString);
@@ -26,6 +26,6 @@ if (tagField == "SIGB") {
 	emailAddress = "rgill@accela.com";
 	//emailAddress = "Joel.Watson@mesaaz.gov";
 	sendNotification("", emailAddress, "", "Signal Butte", vEParams, null, capId);
-	addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Not Parcel exists in Signal Butte GIS layer");
+	addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer");
 }
 	
