@@ -1,4 +1,4 @@
-y/*===================================================================
+/*===================================================================
 // Script Number: 046
 // Script Name:ENF_ScheduleAdditionalCitationInspection
 // Script Developer: Raminder Gill
@@ -24,4 +24,3 @@ if (inspType == "Citation Inspection" && inspResult == "In Violation - Expedite"
 	// scheduleInspection("Citation Inspection", 3, "ADMIN", null, "ADMIN");
 	scheduleInspection("Citation Inspection", 3);
 }
-
