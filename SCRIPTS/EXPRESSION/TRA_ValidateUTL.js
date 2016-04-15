@@ -1,3 +1,9 @@
+// This is used in conjuction with the following:
+// 	TRA_ValidateRow.js (Expression)
+// 	TRA_ValidateUTL.js (Expression)
+// 	TRN_MaintainRelatedRecords.js (Script)
+// 	TTC_ASSOCIATED WORK.js (Eipression)
+
 var toPrecision=function(value){
   var multiplier=10000;
   return Math.round(value*multiplier)/multiplier;
@@ -30,7 +36,7 @@ var variable1=expression.getValue("ASI::FORM");
 
 valueOk = true;
 if(variable0.value!=null && variable0.value != ""){
-        valueOk = false;
+    valueOk = false;
 	rowNum = variable0.value;
 	var licCapResult = aa.cap.getCapID(rowNum);
 	if (licCapResult.getSuccess()) {

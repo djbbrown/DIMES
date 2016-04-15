@@ -6,7 +6,13 @@
 // Script Description: Maintain related records - ROW and UTL Permit numbers
 // Script Run Event: ASA, ASIUA
 // Script Parents:
-//	IRSA;Transportation!Temporary Traffic Control!~!~           
+//	IRSA;Transportation!Temporary Traffic Control!~!~
+//
+// This is used in conjuction with the following:
+// 	TRA_ValidateRow.js (Expression)
+// 	TRA_ValidateUTL.js (Expression)
+// 	TRN_MaintainRelatedRecords.js (Script)
+// 	TTC_ASSOCIATED WORK.js (Eipression)
 /*==================================================================*/
 
 var rowPermit = getAppSpecific("ROW Permit No.");
