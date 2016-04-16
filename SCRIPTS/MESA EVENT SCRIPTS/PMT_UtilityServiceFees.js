@@ -17,21 +17,25 @@
 var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
 if (tmpTable) { 
 	//define variables to use
+	// Gas ASIT
 	var countGasServiceMeter = countASITRows(tmpTable, "Service Type", "Gas Service and Meter" );
 	var countGasMeter = countASITRows(tmpTable, "Service Type", "Gas Meter" );
 	var countGasServMeterCommercial = countASITRows(tmpTable, "Service Type", "Gas Service/Meter - Commercial" );
 	var countGasServMeterResLarge = countASITRows(tmpTable, "Service Type", "Gas Service/Meter - Large Residential");
-	var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  Relocation/Retrofit");
-	var countGasMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter: Adapter" );
+	var countGasRelocationRetrofit = countASITRows(tmpTable, "Service Type", "Gas  Relocation/Retrofit");	
+	// Water ASIT
+	var countWaterMeterAdapter = countASITRows(tmpTable, "Service Type", "Water Meter: Adapter" );
 	var countWaterMeterDom = countASITRows(tmpTable, "Service Type", "Water Meter: Domestic" );
 	var countWaterMeterLand = countASITRows(tmpTable, "Service Type", "Water Meter: Landscaping" );
 	var countWaterRelocation = countASITRows(tmpTable, "Service Type", "Water Relocation" );
-	var countElecServTurn = countASITRows(tmpTable, "Service Type", "Electric Service Turn on Same Day" );
-	var countPavReplLocal = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Local Roadway");
+	var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
+	// Electric ASIT
 	var countTempElec = countASITRows(tmpTable, "Service Type", "Temporary Electric" );
+	var countElecServTurn = countASITRows(tmpTable, "Service Type", "Electric Service Turn on Same Day" );
+	// Pavement ASIT
+	var countPavReplLocal = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Local Roadway");
 	var countPavReplColl = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Collector Roadway");
 	var countPavReplArt = countASITRows(tmpTable, "Service Type", "Pavement Replacement - Arterial Roadway");
-	var countWaterService = countASITRows(tmpTable, "Service Type", "Water Service");
 
 
 	// Gas Service and Meter - USF010
@@ -66,7 +70,7 @@ if (tmpTable) {
 		if (tempSum9 == 0 && feeExists("USF030")) removeFee("USF030", "FINAL");
 
 	//Water Meter: Adapter - USF040  - Service Size - Water Meter Adapter A24
-		if (countGasMeterAdapter > 0) {
+		if (countWaterMeterAdapter > 0) {
 			var tempSum=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
@@ -77,7 +81,7 @@ if (tmpTable) {
 			}
 			if (tempSum > 0) updateFee("USF040","PMT_UTL_SERV", "FINAL",  tempSum, "N");	
 		}
-		if (countGasMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
+		if (countWaterMeterAdapter == 0 && feeExists("USF040")) removeFee("USF040", "FINAL");
 		
 	//USF050 Service Type - Water Meter: Domestic or Water Meter: Landscaping   
 	// Service Size - Water - 3/4" or Water 1.0"
