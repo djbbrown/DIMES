@@ -13,7 +13,7 @@
 /*==================================================================*/
 
 
-    	   var subRevDate = getAppSpecific ("Substantive Review Due",capId);
+    	var subRevDate = getAppSpecific ("Substantive Review Due",capId);
         possibleTasks = ["Administrative Review", "Building Safety Review", "Building Services Review", "Business Services Review",
                       "Collections Review", "Department of Sustainability Review", "Downtown Light Rail Review", "Fire Prevention Review",
                       "Fire Review", "Initial Supervisor Review", "License Administrator Review", "License Adminstrator Review", "License Review", 
@@ -30,19 +30,19 @@
                      }
               }
 
-              logDebug("Array = " + tasksToCheck);
+              //logDebug("Array = " + tasksToCheck);
               // make sure none of the tasks are set to Additional Info Requested or Additional Info Needed
               otherTasksOk = true;
               for (var tIndex in tasksToCheck) {
                      if ((isTaskStatus(tasksToCheck[tIndex], "Additional Info Requested") || isTaskStatus(tasksToCheck[tIndex], "Additional Information Needed")|| 
                                   isTaskStatus(tasksToCheck[tIndex], "Additional Info Needed"))) {
                            otherTasksOk = false;             // don't adjust date yet
-                           aa.print(tasksToCheck[tIndex] + " fails");
+                           logDebug(tasksToCheck[tIndex] + " fails");
                      }
               }
               if (otherTasksOk) {
                      // find earliest date any of the tasks to check was last set to status of "Additional Info Requested"
-            	  logDebug("Adjusting the date");
+            	     //logDebug("Adjusting the date");
                      
                      // get the dates each task was last set to status of 
                      requestedDates = new Array();
@@ -69,6 +69,4 @@
               
        if(subRevDate == null) editAppSpecific("Substantive Review Due", dateAdd(null, daysDiff))
 	   else editAppSpecific("Substantive Review Due", dateAdd(subRevDate, daysDiff))
-logDebug(subRevDate);
-var subRevDate2 = getAppSpecific ("Substantive Review Due",capId);
-logDebug(subRevDate2);
+
