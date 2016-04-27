@@ -11,9 +11,9 @@
 // Script Parents:
 //            ASB;Permitting!Demolition!NA!NA
 /*==================================================================*/
-
-if (getAppSpecific("Is the structure attached in any way to another structure?", capId) === "Yes") {
-	showMessage = true; 
-	comment("The applicant must apply for a Remodel permit when demolishing a structure that is attached to another structure."); 
-	cancel = true;
-}
+logDebug(getAppSpecific("Is the structure attached in any way to another structure?"));
+//if (getAppSpecific("Is the structure attached in any way to another structure?", capId) === "Yes") {
+//	showMessage = true; 
+//	comment("The applicant must apply for a Remodel permit when demolishing a structure that is attached to another structure."); 
+//	cancel = true;
+//}
