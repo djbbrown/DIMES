@@ -3,8 +3,8 @@
 // Script Name: PMT_IsTheStructureAttachedInAnyWayToAnotherStructure.js
 // Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
-// Script Description: If ASI field “Is the structure attached in any 
-// 		way to another structure?” is “Yes” then applicant should not 
+// Script Description: If ASI field "Is the structure attached in any 
+// 		way to another structure?" is "Yes" then applicant should not 
 //		be allowed to submit application. Instead they would need to 
 //		apply for a Remodel permit.
 // Script Run Event: ASB
