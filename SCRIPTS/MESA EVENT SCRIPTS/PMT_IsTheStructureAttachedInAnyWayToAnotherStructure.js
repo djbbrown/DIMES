@@ -11,7 +11,7 @@
 // Script Parents:
 //            ASB;Permitting!Demolition!NA!NA
 /*==================================================================*/
-var structureAttached = getAppSpecific("Is the structure attached in any way to another structure?");
+var structureAttached = AInfo["Is the structure attached in any way to another structure?"];
 if (structureAttached === "Yes") {
 	showMessage = true; 
 	comment("The applicant must apply for a Remodel permit when demolishing a structure that is attached to another structure."); 
