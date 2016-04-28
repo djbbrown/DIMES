@@ -15,6 +15,9 @@ var structureAttached = AInfo["Is the structure attached in any way to another s
 logDebug(AInfo["Is the structure attached in any way to another structure?"]);
 logDebug(AInfo["Is the structure attached in any way to another structure?"] === "Yes");
 logDebug(AInfo["Is the structure attached in any way to another structure?"] === 'Yes');
+logDebug(AInfo["Is the structure attached in any way to another structure?"] == "Yes");
+logDebug(AInfo["Is the structure attached in any way to another structure?"] == "No");
+
 //if (structureAttached === "Yes") {
 	//showMessage = true; 
 	showDebug = true;
