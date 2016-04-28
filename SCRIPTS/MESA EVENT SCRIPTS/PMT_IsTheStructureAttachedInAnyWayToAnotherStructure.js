@@ -12,8 +12,11 @@
 //            ASB;Permitting!Demolition!NA!NA
 /*==================================================================*/
 var structureAttached = AInfo["Is the structure attached in any way to another structure?"];
-if (structureAttached === "Yes") {
+logDebug(AInfo["Is the structure attached in any way to another structure?"]);
+logDebug(AInfo["Is the structure attached in any way to another structure?"] === "Yes");
+logDebug(AInfo["Is the structure attached in any way to another structure?"] === 'Yes');
+//if (structureAttached === "Yes") {
 	showMessage = true; 
 	comment("The applicant must apply for a Remodel permit when demolishing a structure that is attached to another structure."); 
 	cancel = true;
-}
+//}
