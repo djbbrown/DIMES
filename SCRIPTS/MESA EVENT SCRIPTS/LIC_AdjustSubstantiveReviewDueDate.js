@@ -23,6 +23,7 @@
 
 
        tasksToCheck = new Array();
+       var daysDiff  = 0;
        if (IsStrInArry(wfTask, possibleTasks) && wfStatus == "Additional Info Received") {
               for (var tIndex in possibleTasks) {
                      if (doesTaskExist(""+possibleTasks[tIndex])) {
