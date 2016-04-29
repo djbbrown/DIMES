@@ -12,7 +12,7 @@
 // Under this line create the function that will need to run at script runtime.
 // the function will be called in the event ("WorkflowTaskUpdateBefore") major event.
 
-if(wfTask == "Permit Issuance" && wfStatus == "Issued" && (balanceDue > 0 || feeTotalByStatus("NEW") > 0)){
+if(wfTask == "Issue License" && wfStatus == "Issued" && (balanceDue > 0 || feeTotalByStatus("NEW") > 0)){
 	showMessage = true;
 	message = "";
 	comment("All invoiced fees must be paid before selecting this status.");
