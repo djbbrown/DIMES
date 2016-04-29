@@ -14,4 +14,4 @@
 //            ASA;Planning!Planning and Zoning!NA!NA 
 /*==================================================================*/
 showDebug = true;
-logDebug("GIS Info for Zoning Description: " + getGISBufferInfo("Planning/Zoning", "Zoning Districts", 0, "Description"));
+logDebug("GIS Info for Zoning Description: " + getGISBufferInfo("Planning/Zoning", "Zoning Districts", "0", "Description"));
