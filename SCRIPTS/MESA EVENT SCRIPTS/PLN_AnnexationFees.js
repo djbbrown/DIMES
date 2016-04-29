@@ -13,6 +13,11 @@
 //            ASA;Planning!Annexation!NA!NA  
 //            ASA;Planning!Planning and Zoning!NA!NA 
 /*==================================================================*/
-showDebug = true;
-logDebug("GIS Info for Zoning Description: " + getGISInfo("Planning/Zoning", "Zoning Districts", "DSCR"));
-logDebug("GIS Buffer Info for Zoning Description: " + getGISBufferInfo("Planning/Zoning", "Zoning Districts", "0", "DSCR"));
+
+if (getGISInfo("Planning/Zoning", "Zoning Districts", "DSCR") == "DC - Downtown Core"){
+	// inside downtown
+	if (!feeExists("PZ040", "NEW", "INVOICED")) addFee("PZ040","PLN_PZ","FINAL",1,"N");
+} else {
+	// outside downtown
+	if (!feeExists("PZ030", "NEW", "INVOICED")) addFee("PZ030","PLN_PZ","FINAL",1,"N");	
+}
