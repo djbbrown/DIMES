@@ -47,7 +47,7 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	//
 	newLicIdString = license.getCustomID(); 
 	aa.print("newLicIdString" + newLicIdString);
-	lic = new licenseObject(newLicIdString,license) ; 	
+	lic = new licenseObject(null,license) ; 	
 	
 	// Set the expiration status to Active and the expiration date according to the expiration code. 
 	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
@@ -63,7 +63,8 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	var ignoreArr = new Array(); 
 	if(ignore != null) ignoreArr = ignore.split("|"); 
 	copyAppSpecific(license,ignoreArr);
-	copyASITables(capId,license);
+	// no need for ASIT table as it is only for Denial
+	//copyASITables(capId,license);
 	
 		
 }
