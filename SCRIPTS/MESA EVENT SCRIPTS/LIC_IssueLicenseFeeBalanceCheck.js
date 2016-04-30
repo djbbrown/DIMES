@@ -16,6 +16,8 @@ if(
 		(
 					(wfTask == "Issue License" && wfStatus == "Issued")
 					|| (wfTask == "License Issuance" && wfStatus == "Issued")
+					|| (wfTask == "City Clerk" && wfStatus == "Applicant Notified")
+					|| (wfTask == "License Application" && wfStatus == "Received")
 		)
 		&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
 ){
