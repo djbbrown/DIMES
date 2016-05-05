@@ -14,4 +14,4 @@
 //			ASIUA;Permitting!Commercial!NA!NA
 /*==================================================================*/
 showDebug = true;
-logDebug(sumASITColumns("OCCUPANCY INFORMATION", "Sq Ft"));
+logDebug(sumASITColumn(loadASITable("OCCUPANCY INFORMATION"), "Sq Ft"));
