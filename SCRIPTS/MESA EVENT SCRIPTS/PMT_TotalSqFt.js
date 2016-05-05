@@ -23,7 +23,9 @@ if (typeof(OCCUPANCYINFORMATION) == "object"){
 //			logDebug(key + ": " + OCCUPANCYINFORMATION[i][key]);
 //		}
 //	}
-	AInfo["Total Sq Ft"] = sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft");
+	//AInfo["Total Sq Ft"] = sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft");
+	logDebug(sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft"));
+	editAppSpecific("Total Sq Ft", sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft"));
 } 
 else {
 	logDebug("Could not get table");
