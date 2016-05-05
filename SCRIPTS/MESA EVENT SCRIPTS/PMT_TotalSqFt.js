@@ -17,15 +17,14 @@ showDebug = true;
 //var tObj = loadASITable("OCCUPANCYINFORMATION");
 loadASITables();
 if (typeof(OCCUPANCYINFORMATION) == "object"){
-	for (var i=0; i<OCCUPANCYINFORMATION.length; i++){
-	logDebug("Row: " + i);
-		for (key in OCCUPANCYINFORMATION[i]){
-			logDebug(key + ": " + OCCUPANCYINFORMATION[i][key]);
-		}
-	}
+//	for (var i=0; i<OCCUPANCYINFORMATION.length; i++){
+//	logDebug("Row: " + i);
+//		for (key in OCCUPANCYINFORMATION[i]){
+//			logDebug(key + ": " + OCCUPANCYINFORMATION[i][key]);
+//		}
+//	}
+	AInfo["Total Sq Ft"] = sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft");
 } 
 else {
 	logDebug("Could not get table");
 }
-
-//logDebug(sumASITColumn(tObj, "Sq Ft"));
