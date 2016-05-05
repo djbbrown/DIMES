@@ -14,8 +14,9 @@
 //			ASIUA;Permitting!Commercial!NA!NA
 /*==================================================================*/
 showDebug = true;
-var tObj = loadASITable("OCCUPANCYINFORMATION");
-if (tObj){
+//var tObj = loadASITable("OCCUPANCYINFORMATION");
+loadASITables();
+if (OCCUPANCYINFORMATION){
 	logDebug(tObj);
 } else {
 	logDebug("Could not get table");
