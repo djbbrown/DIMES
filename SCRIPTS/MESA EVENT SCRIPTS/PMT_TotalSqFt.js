@@ -15,10 +15,15 @@
 /*==================================================================*/
 showDebug = true;
 var tObj = loadASITable("OCCUPANCY INFORMATION");
-for (var i=0; i<tObj.length; i++){
-	logDebug("Row: " + i);
-	for (key in tObj[i]){
-		logDebug(key + ": " + tObj[i][key]);
-	}
+if (tObj){
+	logDebug(tObj);
+} else {
+	logDebug("Could not get table");
 }
-logDebug(sumASITColumn(tObj, "Sq Ft"));
+//for (var i=0; i<tObj.length; i++){
+//	logDebug("Row: " + i);
+//	for (key in tObj[i]){
+//		logDebug(key + ": " + tObj[i][key]);
+//	}
+//}
+//logDebug(sumASITColumn(tObj, "Sq Ft"));
