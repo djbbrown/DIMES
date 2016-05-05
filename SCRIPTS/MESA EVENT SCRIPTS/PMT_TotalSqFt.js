@@ -17,7 +17,7 @@ showDebug = true;
 //var tObj = loadASITable("OCCUPANCYINFORMATION");
 loadASITables();
 if (OCCUPANCYINFORMATION){
-	logDebug(tObj);
+	logDebug(OCCUPANCYINFORMATION);
 } else {
 	logDebug("Could not get table");
 }
