@@ -17,10 +17,10 @@ showDebug = true;
 //var tObj = loadASITable("OCCUPANCYINFORMATION");
 loadASITables();
 if (typeof(OCCUPANCYINFORMATION) == "object"){
-	for (var i=0; i<tObj.length; i++){
+	for (var i=0; i<OCCUPANCYINFORMATION.length; i++){
 	logDebug("Row: " + i);
-		for (key in tObj[i]){
-			logDebug(key + ": " + tObj[i][key]);
+		for (key in OCCUPANCYINFORMATION[i]){
+			logDebug(key + ": " + OCCUPANCYINFORMATION[i][key]);
 		}
 	}
 } 
