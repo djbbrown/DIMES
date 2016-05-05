@@ -14,4 +14,11 @@
 //			ASIUA;Permitting!Commercial!NA!NA
 /*==================================================================*/
 showDebug = true;
-logDebug(sumASITColumn(loadASITable("OCCUPANCY INFORMATION"), "Sq Ft"));
+var tObj = loadASITable("OCCUPANCY INFORMATION");
+for (var i=0; i<tObj.length; i++){
+	logDebug("Row: " + i);
+	for (key in tObj[i]){
+		logDebug(key + ": " + tObj[i][key]);
+	}
+}
+logDebug(sumASITColumn(tObj, "Sq Ft"));
