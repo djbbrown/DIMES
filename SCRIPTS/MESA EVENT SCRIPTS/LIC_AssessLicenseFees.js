@@ -6,7 +6,7 @@
 // Script Description: Assess license fees when ready to issue
 // Script Run Event: WTUA
 // Script Parents:
-//            WTUA;Licensing!General!~!NA
+//            WTUA;Licensing!General!~!Application
 /*==================================================================*/
 
 if (matches(""+appTypeArray[2], "SecondHand", "ScrapMetal", "PawnBroker", "Auction House") && wfTask == "Issue License" && wfStatus == "Ready to Issue") {

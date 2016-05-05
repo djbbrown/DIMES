@@ -1,6 +1,5 @@
 /*===================================================================
 // Script Number: 001
-// Script Name: ASA;Permits!Demolition!NA!NA.js
+// Script Name: WTUB;Permits!~!~!~.js
 /*==================================================================*/
-include("PMT_assessDemoTechFees");
-include("PMT_SignalButteTag");
+include("LIC_IssueLicenseFeeBalanceCheck");

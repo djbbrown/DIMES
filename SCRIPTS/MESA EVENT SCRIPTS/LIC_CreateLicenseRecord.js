@@ -44,25 +44,27 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 		}
 	}
 	
-	// Set the expiration status to Active and the expiration date according to the expiration code.
-	lic = new licenseObject(license);
-	lic.setStatus("Active");
+	//
+	newLicIdString = license.getCustomID(); 
+	aa.print("newLicIdString" + newLicIdString);
+	lic = new licenseObject(null,license) ; 	
+	
+	// Set the expiration status to Active and the expiration date according to the expiration code. 
+	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
+	lic.setStatus("Active");		
+	lic.setExpiration(dateAdd(null,365));
 
-	// Set the expiration date according to the expiration code.
-	// Need to do some research on how the expiration code is being done.
-	lic.setExpiration(dateAdd(null,365)); // This will add 365 days to the expiration.
-
+	
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
-	// -	EMSE:ASI Copy Exceptions – contains the record type (in the “Standard Choices Value” field)
-	//		along with a “|” delimited list ASI fields to exclude when copying the ASI (in the “Value Desc” field).
+	// 	EMSE:ASI Copy Exceptions – contains the record type (in the “Standard Choices Value” field)
+	//	along with a “|” delimited list ASI fields to exclude when copying the ASI (in the “Value Desc” field).
 	
-	// Get the standard choice
-	var stdChoice = lookup("EMSE:ASI Copy Exceptions",appTypeString);
+	var ignore = lookup("EMSE:ASI Copy Exceptions",appTypeString); 
+	var ignoreArr = new Array(); 
+	if(ignore != null) ignoreArr = ignore.split("|"); 
+	copyAppSpecific(license,ignoreArr);
+	// no need for ASIT table as it is only for Denial
+	//copyASITables(capId,license);
 	
-	// use the following to split based on "|" character
-	var asiExclude = stdChoice.split("|"); // Not needed as the exclusion table would work just fine
-	
-	// Now copy the ASI from the parent to the child using the exclusion table.
-	copyAppSpecific(license,asiExclude);
-	
+		
 }

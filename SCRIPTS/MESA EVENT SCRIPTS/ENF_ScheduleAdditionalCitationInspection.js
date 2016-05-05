@@ -14,10 +14,13 @@
 /*==================================================================*/
 
 if (inspType == "Citation Inspection" && inspResult == "In Violation") {
-		scheduleInspection("Citation Inspection", 7, "ADMIN", null, "ADMIN");
+	// The following will assign to a specific person, this was not a requirement in the spec.
+	// scheduleInspection("Citation Inspection", 7, "ADMIN", null, "ADMIN");
+	scheduleInspection("Citation Inspection", 7);
 }
 
 if (inspType == "Citation Inspection" && inspResult == "In Violation - Expedite") {
-	scheduleInspection("Citation Inspection", 3, "ADMIN", null, "ADMIN");
+	// The following will assign to a specific person, this was not a requirement in the spec.
+	// scheduleInspection("Citation Inspection", 3, "ADMIN", null, "ADMIN");
+	scheduleInspection("Citation Inspection", 3);
 }
-

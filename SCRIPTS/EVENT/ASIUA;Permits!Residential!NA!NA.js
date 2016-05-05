@@ -1,6 +1,5 @@
 /*===================================================================
 // Script Number: 001
-// Script Name: ASA;Permits!Demolition!NA!NA.js
+// Script Name: ASIUA;Permits!Residential!NA!NA.js
 /*==================================================================*/
-include("PMT_assessDemoTechFees");
-include("PMT_SignalButteTag");
+include("PMT_TotalSqFt");
