@@ -14,7 +14,7 @@
 //			ASIUA;Permitting!Commercial!NA!NA
 /*==================================================================*/
 showDebug = true;
-var tObj = loadASITable("OCCUPANCY INFORMATION");
+var tObj = loadASITable("OCCUPANCYINFORMATION");
 if (tObj){
 	logDebug(tObj);
 } else {
