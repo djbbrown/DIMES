@@ -24,7 +24,7 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 				if (feeRequest.getSuccess()){
 					var fee = feeRequest.getOutput();
 					logDebug("Setting fee amount $" + totalFee);
-					fee.setFee(totalFee);
+					//fee.setFee(totalFee);
 					aa.finance.editFeeItem(
 							capId,
 							feeSeq,
