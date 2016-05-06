@@ -25,7 +25,32 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 					var fee = feeRequest.getOutput();
 					logDebug("Setting fee amount $" + totalFee);
 					fee.setFee(totalFee);
-					aa.finance.editFeeItem(fee);
+					aa.finance.editFeeItem(
+							capId,
+							feeSeq,
+							fee.getPaymentPeriod(),
+							fee.getFeeCod(),
+							fee.getDisplay(),
+							fee.getFeeDescription(),
+							fee.getAccCodeL1(),
+							fee.getAccCodeL2(),
+							fee.getAccCodeL3(),
+							fee.getFormula(),
+							fee.getFeeUnit(),
+							fee.getUdes(),
+							totalFee,
+							fee.getApplyDate(),
+							fee.getEffectDate(),
+							fee.getExpireDate(),
+							fee.getUdf1(),
+							fee.getUdf2(),
+							fee.getUdf3(),
+							fee.getUdf4(),
+							fee.getSubGroup(),
+							fee.getCalcFlag(),
+							fee.getFeeItemStatus(),
+							fee.getFeeCalcProc()
+							);
 				} else {
 					logDebug("Fee not found.");
 				}
