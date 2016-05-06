@@ -12,7 +12,21 @@
 if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 	var totalSignValuation = AInfo["Total Sign Valuation"];
 	var totalSignSqFt = AInfo["Total Sign Square Footage"];
-	var totalFee = Math.ceil(102.4 + 0.03 * totalSignValuation + 0.3 * totalSignSqFt);
-	updateFee("SGN020", "PMT_SIGNS", "FINAL", totalFee, "N");
+	var totalFee = 102.4 + 0.03 * totalSignValuation + 0.3 * totalSignSqFt;
+	
+	var fees = loadFees();
+	var feeSeq;
+	if (!!fees) {
+		for (var i=0; i<fees.length; i++){
+			if (fees[i].code.equals("SGN020")){
+				feeSeq = fees[i].sequence;
+				var fee = aa.fee.getFeeItemByPK(capId, feeSeq);
+				if (!!fee){
+					fee.setFee(totalFee);
+				}
+			}
+		}
+	}
+	
 }
  
