@@ -48,7 +48,7 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 							fee.getUdf4(),
 							fee.getSubGroup(),
 							fee.getCalcFlag(),
-							fee.getFeeItemStatus(),
+							fee.getFeeitemStatus(),
 							fee.getFeeCalcProc()
 							);
 				} else {
