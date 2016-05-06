@@ -20,10 +20,13 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 		for (var i=0; i<fees.length; i++){
 			if (fees[i].code.equals("SGN020")){
 				feeSeq = fees[i].sequence;
-				var fee = aa.fee.getFeeItemByPK(capId, feeSeq);
-				if (!!fee){
+				var feeRequest = aa.fee.getFeeItemByPK(capId, feeSeq);
+				if (feeRequest.getSuccess()){
+					var fee = feeRequest.getOutput();
 					logDebug("Setting fee amount $" + totalFee);
 					fee.setFee(totalFee);
+				} else {
+					logDebug("Fee not found.");
 				}
 			}
 		}
