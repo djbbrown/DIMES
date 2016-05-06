@@ -8,12 +8,12 @@
 // Script Parents:
 //            WTUA;Permits!Sign!NA!NA
 /*==================================================================*/
-
+showDebug = true;
 if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 	var totalSignValuation = AInfo["Total Sign Valuation"];
 	var totalSignSqFt = AInfo["Total Sign Square Footage"];
 	var totalFee = 102.4 + 0.03 * totalSignValuation + 0.3 * totalSignSqFt;
-	
+	logDebug("Total Fee: " + totalFee);
 	var fees = loadFees();
 	var feeSeq;
 	if (!!fees) {
@@ -22,6 +22,7 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 				feeSeq = fees[i].sequence;
 				var fee = aa.fee.getFeeItemByPK(capId, feeSeq);
 				if (!!fee){
+					logDebug("Setting fee amount $" + totalFee);
 					fee.setFee(totalFee);
 				}
 			}
