@@ -35,11 +35,11 @@ var FEE_PERIOD = "FINAL";
 var QUANTITY_COLUMN_NAME = "Quantity";
 var SIGN_TYPE_COLUMN_NAME = "Type of Work";
 var SIGN_TYPES = {
-		GRAND_OPENING_BANNER = "Grand Opening Banners",
-		SUBDIVISION = "Subdivision Sign",
-		SUBDIVISION_WEEKEND = "Subdivision Weekend Sign",
-		SUBDIVISION_DIRECTIONAL = "Subdivision Directional Sign",
-		DOWNTOWN_DIRECTIONAL_AFRAME = "Downtown Directional A-Frames"
+		GRAND_OPENING_BANNER: "Grand Opening Banners",
+		SUBDIVISION: "Subdivision Sign",
+		SUBDIVISION_WEEKEND: "Subdivision Weekend Sign",
+		SUBDIVISION_DIRECTIONAL: "Subdivision Directional Sign",
+		DOWNTOWN_DIRECTIONAL_AFRAME: "Downtown Directional A-Frames"
 };
 
 // load ASIT
