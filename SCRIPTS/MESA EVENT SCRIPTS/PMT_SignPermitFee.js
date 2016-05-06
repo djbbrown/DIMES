@@ -25,7 +25,7 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 					var fee = feeRequest.getOutput();
 					logDebug("Setting fee amount $" + totalFee);
 					//fee.setFee(totalFee);
-					aa.finance.editFeeItem(
+					var feeEditRequest = aa.finance.editFeeItem(
 							capId,
 							feeSeq,
 							fee.getPaymentPeriod(),
@@ -51,6 +51,9 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 							fee.getFeeitemStatus(),
 							fee.getFeeCalcProc()
 							);
+					if (!feeEditRequest.getSuccess()){
+						logDebug("Error: " + feeEditRequest.getErrorType() + "  " + feeEditRequest.getErrorMessage());
+					}
 				} else {
 					logDebug("Fee not found.");
 				}
