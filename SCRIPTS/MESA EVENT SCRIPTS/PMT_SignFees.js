@@ -12,7 +12,7 @@
 showDebug = true;
 var t = loadASITable("SIGN INFO");
 if (!!t){
-	logDebug(t);
+	logDebug(t[0]["Quantity"] + " " + t[0]["Type of Work"]);
 } else {
 	logDebug("Did not find table 'SIGN INFO'");
 }
