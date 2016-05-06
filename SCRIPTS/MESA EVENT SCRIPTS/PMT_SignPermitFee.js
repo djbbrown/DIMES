@@ -25,6 +25,7 @@ if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 					var fee = feeRequest.getOutput();
 					logDebug("Setting fee amount $" + totalFee);
 					fee.setFee(totalFee);
+					aa.finance.editFeeItem(fee);
 				} else {
 					logDebug("Fee not found.");
 				}
