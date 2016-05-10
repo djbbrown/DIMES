@@ -11,5 +11,5 @@
 /*==================================================================*/
 
 if (inspResult == "Roll Over") {
-	scheduleInspectionDate(inspType, nextWorkDay(), "ADMIN", null, "ADMIN");
+	scheduleInspectDate(inspType, nextWorkDay(), "ADMIN", null, "ADMIN");
 }
