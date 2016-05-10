@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 143
-// Script Name: a.	PMT_assessFeeRDIF140OrRDIF150.js
+// Script Name: PMT_assessFeeRDIF140OrRDIF150.js
 // Script Developer: Chris Godwin
 // Script Agency: Woolpert
 // Script Description: Assess "Parks - Single Family Detached/Mobile Home (on plotted land) Impact Fee" when ASI "Park" equals "Yes" and ASI "Proposed Use" equals “Mobile Home – Platted Land” or “Park Model – Platted Land” and ASI "Type of Work" equals "New Mobile Home".
