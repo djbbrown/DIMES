@@ -13,10 +13,9 @@ showDebug = true;
 // constants
 var WFTASK = "Plan Review";
 var WFSTATUS = ["Approved", "Approved w/Comments", "Revisions Required"];
-var HRS_SPENT_FIELD = "Hours Spent";
-var EXPEDITED_FIELD = "Expedited";
-var EXPEDITED = "Expedited";
-var SUPER_EXPEDITED = "Super Expedited";
+var EXPEDITED_FIELD = "Expedite";
+var EXPEDITED = "Expedite";
+var SUPER_EXPEDITED = "Super Expedite";
 var FEE_CODE = {
 	EXPEDITED: "MST040",
 	SUPER_EXPEDITED: "MST050"
@@ -24,14 +23,13 @@ var FEE_CODE = {
 var FEE_SCHEDULE = "PMT_MST";
 var FEE_PERIOD = "FINAL";
 var FEE_INVOICE = "N";
-var hrsSpent = AInfo[HRS_SPENT_FIELD];
 
-if (wfTask == WFTASK && WFSTATUS.indexOf(wfStatus) > -1 && !!hrsSpent){
+if (wfTask == WFTASK && WFSTATUS.indexOf(wfStatus) > -1 && !!wfHours && wfHours > 0){
 	if (AInfo[EXPEDITED_FIELD] == EXPEDITED){
 		if (feeExists(FEE_CODE.EXPEDITED, "INVOICED")) voidRemoveFee(FEE_CODE.EXPEDITED);
-		updateFee(FEE_CODE.EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, hrsSpent, FEE_INVOICE);
+		updateFee(FEE_CODE.EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, wfHours, FEE_INVOICE);
 	} else if (AInfo[EXPEDITED_FIELD] == SUPER_EXPEDITED){
 		if (feeExists(FEE_CODE.SUPER_EXPEDITED, "INVOICED")) voidRemoveFee(FEE_CODE.SUPER_EXPEDITED);
-		updateFee(FEE_CODE.SUPER_EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, hrsSpent, FEE_INVOICE);
+		updateFee(FEE_CODE.SUPER_EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, wfHours, FEE_INVOICE);
 	}	
 }
