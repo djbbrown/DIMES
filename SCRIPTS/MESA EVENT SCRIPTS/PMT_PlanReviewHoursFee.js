@@ -12,7 +12,9 @@ showDebug = true;
 
 // constants
 var WFTASK = "Planning Review";
-var WFSTATUS = ["Approved", "Approved w/Comments", "Revisions Required"];
+var APPROVED = "Approved";
+var APPROVED_WITH_COMMENTS = "Approved w/Comments";
+var REVISIONS_REQUIRED = "Revisions Required";
 var EXPEDITED_FIELD = "Expedite";
 var EXPEDITED = "Expedite";
 var SUPER_EXPEDITED = "Super Expedite";
@@ -24,9 +26,14 @@ var FEE_SCHEDULE = "PMT_MST";
 var FEE_PERIOD = "FINAL";
 var FEE_INVOICE = "N";
 
+var taskValid = wfTask == WFTASK;
+if (!taskValid) logDebug("Task invalid");
+var statusValid = (wfStatus == APPROVED) || (wfStatus == APPROVED_WITH_COMMENTS) || (wfStatus == REVISIONS_REQUIRED);
+if (!statusValid) logDebug("Status invalid");
+var hoursValid = !!wfHours && wfHours > 0;
+if (!hoursValid) logDebug("Hours invalid");
 
-
-if (wfTask == WFTASK && WFSTATUS.indexOf(wfStatus) > -1 && !!wfHours && wfHours > 0){
+if (taskValid && statusValid && hoursValid){
 	if (AInfo[EXPEDITED_FIELD] == EXPEDITED){
 		if (feeExists(FEE_CODE.EXPEDITED, "INVOICED")) voidRemoveFee(FEE_CODE.EXPEDITED);
 		updateFee(FEE_CODE.EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, wfHours, FEE_INVOICE);
@@ -34,4 +41,4 @@ if (wfTask == WFTASK && WFSTATUS.indexOf(wfStatus) > -1 && !!wfHours && wfHours 
 		if (feeExists(FEE_CODE.SUPER_EXPEDITED, "INVOICED")) voidRemoveFee(FEE_CODE.SUPER_EXPEDITED);
 		updateFee(FEE_CODE.SUPER_EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, wfHours, FEE_INVOICE);
 	}	
-}
+} 
