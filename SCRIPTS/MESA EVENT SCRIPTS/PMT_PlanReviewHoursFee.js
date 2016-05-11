@@ -11,7 +11,7 @@
 showDebug = true;
 
 // constants
-var WFTASK = "Plan Review";
+var WFTASK = "Planning Review";
 var WFSTATUS = ["Approved", "Approved w/Comments", "Revisions Required"];
 var EXPEDITED_FIELD = "Expedite";
 var EXPEDITED = "Expedite";
@@ -23,6 +23,8 @@ var FEE_CODE = {
 var FEE_SCHEDULE = "PMT_MST";
 var FEE_PERIOD = "FINAL";
 var FEE_INVOICE = "N";
+
+
 
 if (wfTask == WFTASK && WFSTATUS.indexOf(wfStatus) > -1 && !!wfHours && wfHours > 0){
 	if (AInfo[EXPEDITED_FIELD] == EXPEDITED){
