@@ -8,6 +8,7 @@
 // Script Parents:
 //            WTUA;Permits!Master Plan!NA!NA
 /*==================================================================*/
+showDebug = true;
 
 // constants
 var WFTASK = "Plan Review";
