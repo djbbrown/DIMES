@@ -7,7 +7,6 @@
 // Script Run Event: IRSA
 // Script Parents:
 //          IRSA;Engineering!~!~!~
-//			IRSA;Permits!~!~!~
 /*==================================================================*/
 
 if (inspResult == "Roll Over") {
