@@ -10,6 +10,8 @@
 //		"File Purged" and delete all attached documents.
 // Script Run Event: BATCH
 // Script Parents: N/A
+// Effected record types:
+//		Planning/Pre Submittal/NA/NA
 /*==================================================================*/
 /*------------------------------------------------------------------------------------------------------/
 | Program: PLN_SubstantiveReviewDaysLeft Trigger: Batch    
