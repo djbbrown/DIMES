@@ -1,6 +1,5 @@
 /*===================================================================
 // Script Number: 001
-// Script Name: ASIUA;Permits!Residential!Mobile Home!NA.js
+// Script Name: WTUA;Permits!Master Plan!NA!NA.js
 /*==================================================================*/
-include("PMT_TotalSqFt");
-include("PMT_assessFeeRDIF140OrRDIF150");
+include("PMT_PlanReviewHoursFee");
