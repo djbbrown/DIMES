@@ -12,6 +12,7 @@
 // Script Parents: N/A
 // Effected record types:
 //		Planning/Pre Submittal/NA/NA
+// Comment
 /*==================================================================*/
 /*------------------------------------------------------------------------------------------------------/
 | Program: PLN_SubstantiveReviewDaysLeft Trigger: Batch    
