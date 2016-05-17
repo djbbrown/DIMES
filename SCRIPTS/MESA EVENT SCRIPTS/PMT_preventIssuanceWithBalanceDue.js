@@ -6,7 +6,7 @@
 // Script Description: Prevent the status of "Issued" being set on the workflow task "Permit Issuance" if there is a balance due or assessed fees on the record that have not been invoiced. 
 // Script Run Event: WorkflowTaskUpdateBefore
 // Script Parents:
-//            WTUB;Permits!~!~!~
+//            WTUB;Licenses!~!~!~
 /*==================================================================*/
 
 // Under this line create the function that will need to run at script runtime.
