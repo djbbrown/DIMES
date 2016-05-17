@@ -129,8 +129,7 @@ var appTypeType = getParam("appTypeType");						//   app type to process {Rental
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
 var appCategory = getParam("appCategory");	
 var asiField = getParam("asiField");							// {Meeting Date}
-var asiValue = getParam("asiValue");
-var taskStatus = getParam("appStatusStatus");
+var appStatus = getParam("appStatusStatus");
 
 // Required to run the delete, this must be entered in a parameter
 // and can be any user name that has access to the system.
@@ -207,7 +206,7 @@ function mainProcess() {
 		};
 		//*/
 		// we would only want to continue if there was a meeting date
-		if (meetingDate != null && records[x].getCapModel().getCapStatus() != "File Purged") {
+		if (meetingDate != null && records[x].getCapModel().getCapStatus() != appStatus) {
 			// ---------------------------
 			// convert the date string to an actual date.
 			var mDateArray = meetingDate.split("/");
@@ -218,7 +217,7 @@ function mainProcess() {
 			// Only remove documents from records that are greater than 2 years old
 			if (age >= olderAge) {
 				// Set the record status
-				updateAppStatus("File Purged"); // Set Cap Status
+				updateAppStatus(appStatus); // Set Cap Status
 				aa.print("Getting ready to remove the documents.");
 				var show = getDocumentList();
 				if (show.length > 0) {
