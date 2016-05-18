@@ -1,16 +1,16 @@
 /*===================================================================
 // Script Number: 59
-// Script Name: ENG_ExpeditedPlanReview
+// Script Name: TRN_ExpeditedPlanReview
 // Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
 // Script Description: On ASA and ASIUA, if the ASI checkbox "Expedited" is checked assess the Expedited Plan Review fee. If it is not checked and the fee is on the record, remove it.
 // Script Run Event: ASA, ASIUA
 // Script Parents:
-//            ASA;Engineering!Utilities!Non City!~
-//            ASIUA;Engineering!Utilities!Non City!~
+//            ASA;Transportation!Temporary Traffic Control!~!~
+//            ASIUA;Transportation!Temporary Traffic Control!~!~
 /*==================================================================*/
 if (AInfo["Expedited"] == "CHECKED"){
-	updateFee("UTL0130", "ENG_NON-CITY UTILITIES", "FINAL", 1, "N", "N");
-} else if (feeExists("UTL0130", "NEW", "INVOICED")) {
-	voidRemoveFee("UTL0130");
+	updateFee("TTC050", "TTC_GEN", "FINAL", 1, "N", "N");
+} else if (feeExists("TTC050", "NEW", "INVOICED")) {
+	voidRemoveFee("TTC050");
 }
