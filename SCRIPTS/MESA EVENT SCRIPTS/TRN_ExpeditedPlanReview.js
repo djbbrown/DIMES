@@ -9,6 +9,7 @@
 //            ASA;Transportation!Temporary Traffic Control!~!~
 //            ASIUA;Transportation!Temporary Traffic Control!~!~
 /*==================================================================*/
+showDebug = true;
 if (AInfo["Expedited"] == "CHECKED"){
 	updateFee("TTC050", "TTC_GEN", "FINAL", 1, "N", "N");
 } else if (feeExists("TTC050", "NEW", "INVOICED")) {
