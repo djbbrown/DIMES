@@ -10,7 +10,7 @@
 //            ASIUA;Engineering!Utilities!Non City!~
 /*==================================================================*/
 showDebug = true;
-if (AInfo["Expedite"]){
+if (AInfo["Expedited"]){
 	updateFee("UTL0130", "ENG_NON-CITY UTILITIES", "FINAL", 1, "N");
 } else if (feeExists("UTL0130", "NEW", "INVOICED")) {
 	voidRemoveFee("UTL0130");
