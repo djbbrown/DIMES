@@ -41,6 +41,7 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 			else {
 				newPeople.setContactType(cType);
 			}
+			aa.people.editCapContactWithAttribute(updateContact); // Commit the changes with contact ASI Attributes, this is safer to use.
 		}
 	}
 	
