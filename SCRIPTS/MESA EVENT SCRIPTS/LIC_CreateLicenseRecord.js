@@ -45,7 +45,6 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 		}
 	}
 	
-	//
 	newLicIdString = license.getCustomID(); 
 	aa.print("newLicIdString" + newLicIdString);
 	lic = new licenseObject(null,license) ; 	
@@ -54,18 +53,26 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 	lic.setStatus("Active");		
 	lic.setExpiration(dateAdd(null,365));
-
 	
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
-	// 	EMSE:ASI Copy Exceptions – contains the record type (in the “Standard Choices Value” field)
-	//	along with a “|” delimited list ASI fields to exclude when copying the ASI (in the “Value Desc” field).
+	// EMSE:ASI Copy Exceptions - contains the record type (in the "Standard Choices Value" field)
+	// along with a "|" delimited list ASI fields to exclude when copying the ASI (in the "Value Desc" field).
 	
 	var ignore = lookup("EMSE:ASI Copy Exceptions",appTypeString); 
 	var ignoreArr = new Array(); 
-	if(ignore != null) ignoreArr = ignore.split("|"); 
-	copyAppSpecific(license,ignoreArr);
+	if(ignore != null) ignoreArr = ignore.split("|");
+	copyASIFields(capId,license,ignoreArr); // Copy the actual ASI Fields
+	copyAppSpecific(license,ignoreArr); // Copy the values
 	// no need for ASIT table as it is only for Denial
 	//copyASITables(capId,license);
 	
-		
+	// Update the License DBA with the "Business Name" ASI from the Application Record
+	// Note that this is not in the spec.
+	var dba = getAppSpecific("Business Name",capId);
+	var desc = aa.cap.getCap(license).getOutput().getCapModel();
+	desc.setSpecialText(dba); // This is the capName record Name
+	aa.print(desc.getSpecialText());
+	setNameResult = aa.cap.editCapByPK(desc);
+	if (!setNameResult.getSuccess())
+		{ logDebug("**WARNING: error setting cap name : " + setNameResult.getErrorMessage()) ;}
 }
