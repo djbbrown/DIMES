@@ -1,5 +1,5 @@
 /*===================================================================
-// Script Number: 3
+// Script Number: 003
 // Script Name: LIC Substantive Review Due Date - Set
 // Script Developer: Kevin Ford
 // Script Agency: Accela
@@ -32,5 +32,5 @@ if(
 	var subReviewDue = dateAdd(null,60);
 	//editAppSpecific("Substantive Review Due", dateAdd(null,60));
 	//aa.print(dateAdd(null,60));
-	editAppSpecific("Substantive Review Due", subReviewDue,capId);
+	editAppSpecific("Substantive Review Due", subReviewDue);
 }
