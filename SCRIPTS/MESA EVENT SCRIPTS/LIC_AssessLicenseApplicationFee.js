@@ -14,7 +14,7 @@
 
 // Script Run Event: 
 // Script Parents:
-//            ASA;Licenses|General|BingoHall|Application
+//            ASA;Licenses!General!BingoHall!Application
 /*==================================================================*/
 
 // Get the ASI Field Value
