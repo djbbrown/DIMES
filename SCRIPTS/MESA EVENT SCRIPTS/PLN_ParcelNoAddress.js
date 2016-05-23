@@ -22,7 +22,7 @@ for(z in addressA) {
 
 if (
 		(!hasPrimaryAddressInCap(capId) && parcelExistsOnCap())
-		|| (!houseNbrStart == null && parcelExistsOnCap())
+		|| (houseNbrStart == null && parcelExistsOnCap())
 ) {
 	 addAdHocTask("WFADHOC_PROCESS", "GIS Addressing", "No Address associated with the parcel");
 }
