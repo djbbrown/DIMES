@@ -13,11 +13,11 @@
 //	ASA: Planning/Application/Design Review/NA
 //
 /*==================================================================*/
-var capId = aa.cap.getCapID(myCapId).getOutput();
+//var capId = aa.cap.getCapID(myCapId).getOutput();
 var addressA = aa.address.getAddressByCapId(capId).getOutput();
 
 for(z in addressA) {
-	houseNbrStart = addressA[z].getHouseNumberStart();
+	var houseNbrStart = addressA[z].getHouseNumberStart();
 }
 
 if (
