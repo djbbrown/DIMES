@@ -29,8 +29,8 @@ if(
 {
 	// Update "Substantive Review Due" to current date + 60
 	// get 
-	var subReviewDue = dateAdd(null,60);
-	//editAppSpecific("Substantive Review Due", dateAdd(null,60));
+	//var subReviewDue = dateAdd(null,60);
+	editAppSpecific("Substantive Review Due", dateAdd(null,60));
 	//aa.print(dateAdd(null,60));
-	editAppSpecific("Substantive Review Due", subReviewDue);
+	//editAppSpecific("Substantive Review Due", subReviewDue);
 }
