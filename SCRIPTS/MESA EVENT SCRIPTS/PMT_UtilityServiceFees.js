@@ -14,7 +14,8 @@
 
 
 
-var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
+var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
+// Below is an if statement the "else" should be to remove all fees...
 if (tmpTable) { 
 	//define variables to use
 	// Gas ASIT
@@ -40,7 +41,7 @@ if (tmpTable) {
 
 	// Gas Service and Meter - USF010
 		if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
-		if (countGasServiceMeter > 0) updateFee("USF010","PMT_UTL_SERV", "FINAL",  1, "N");
+		if (countGasServiceMeter > 0) updateFee("USF010","PMT_UTL_SERV", "FINAL",  countGasServiceMeter, "N");
 	//Gas Service and Meter - USF020
 		if (countGasMeter == 0 && feeExists("USF020")) removeFee("USF020", "FINAL");
 		if (countGasMeter > 0) {
@@ -277,16 +278,47 @@ if (tmpTable) {
 		}
 		if (waterSum3 == 0 && feeExists("USF210")) removeFee("USF210", "FINAL");
 }
-
-
-    
-		
-
-
-
-
-	
-
-
-
-
+// This should really only execute if the table fails to load
+// which would be exactly what we woulhd want.
+else {
+	// 010
+	if (feeExists("USF010")) removeFee("USF010", "FINAL");
+	// 020
+	if (feeExists("USF020")) removeFee("USF020", "FINAL");
+	// 030
+	if (feeExists("USF030")) removeFee("USF030", "FINAL");
+	// 040
+	if (feeExists("USF040")) removeFee("USF040", "FINAL");
+	// 050
+	if (feeExists("USF050")) removeFee("USF050", "FINAL");
+	// 060
+	if (feeExists("USF060")) removeFee("USF060", "FINAL");
+	// 070
+	if (feeExists("USF070")) removeFee("USF070", "FINAL");
+	// 080
+	if (feeExists("USF080")) removeFee("USF080", "FINAL");
+	// 090
+	if (feeExists("USF090")) removeFee("USF090", "FINAL");
+	// 100
+	if (feeExists("USF100")) removeFee("USF100", "FINAL");
+	// 110 Doesn't Exist
+	// 120
+	if (feeExists("USF120")) removeFee("USF120", "FINAL");
+	// 130
+	if (feeExists("USF130")) removeFee("USF130", "FINAL");
+	// 140
+	// 150
+	if (feeExists("USF150")) removeFee("USF150", "FINAL");
+	// 160
+	if (feeExists("USF160")) removeFee("USF160", "FINAL");
+	// 170
+	if (feeExists("USF170")) removeFee("USF170", "FINAL");
+	// 180
+	if (feeExists("USF180")) removeFee("USF180", "FINAL");
+	// 190
+	if (feeExists("USF190")) removeFee("USF190", "FINAL");
+	// 200
+	if (feeExists("USF200")) removeFee("USF200", "FINAL");
+	// 210
+	if (feeExists("USF210")) removeFee("USF210", "FINAL");
+}
