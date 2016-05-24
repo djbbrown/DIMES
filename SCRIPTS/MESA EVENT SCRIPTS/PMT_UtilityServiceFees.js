@@ -226,7 +226,7 @@ if (tmpTable) {
 	//Pavement Replacement – Arterial Roadway - USF180
 		if (countPavReplArt == 0 && feeExists("USF180")) removeFee("USF180", "FINAL");
 		if (countPavReplArt > 0) {
-			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Arterial Roadway");
+			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Arterial Roadway");
 			updateFee("USF180","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 			}					
 					
