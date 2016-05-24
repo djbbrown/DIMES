@@ -105,7 +105,7 @@ if (tmpTable) {
 			var tempSum2=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water 1 1/2' )  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 1 1/2' || thisRow["Service Size"].fieldValue == 'Water 1 1/2\\"') )  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum2 = tempSum2 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				}
@@ -122,7 +122,7 @@ if (tmpTable) {
 			var tempSum3=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water 2.0' )  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 2.0' || thisRow["Service Size"].fieldValue == 'Water 2.0\\"'))  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum3 = tempSum3 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				}
@@ -140,7 +140,7 @@ if (tmpTable) {
 			var tempSum4=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && thisRow["Service Size"].fieldValue == 'Water - 4"' )  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 4"' || thisRow["Service Size"].fieldValue == 'Water - 4\\"'))  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum4 = tempSum4 + parseFloat(thisRow["Qty of Meters"].fieldValue);		
 				}
