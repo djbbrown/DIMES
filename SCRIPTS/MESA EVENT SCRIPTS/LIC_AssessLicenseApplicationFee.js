@@ -14,22 +14,28 @@
 
 // Script Run Event: 
 // Script Parents:
-//            ASA;Licenses!General!BingoHall!Application
+//		ASA;Licenses!General!BingoHall!Application
+//		** My Question is what happens if they forgot or need to choose another Class?
+//		** I think that this may be a good thing to look into.
+//		ASIUA:Licenses!General!BingoHall!Application
 /*==================================================================*/
 
 // Get the ASI Field Value
 var subType = getAppSpecific ("Sub-Type",capId);
 
 if (subType == "Class A" && !feeExists("LIC_010", "NEW", "INVOICED")){
-	// Add the Fee addFee("LIC_010","LIC_BINGO_APP","FINAL",1,"N");
+	if(feeExists("LIC_020","NEW","Invoiced")) {voidRemoveFee("LIC_020")} // Remove LIC_020
+	if(feeExists("LIC_030","NEW","Invoiced")) {voidRemoveFee("LIC_030")} // Remove LIC_030
 	addFee("LIC_010","LIC_BINGO_APP","FINAL",1,"N");
 }
 if (subType == "Class B" && !feeExists("LIC_020", "NEW", "INVOICED")){
-	// Add the Fee addFee("LIC_020","LIC_BINGO_APP","FINAL",1,"N");
+	if(feeExists("LIC_010","NEW","Invoiced")) {voidRemoveFee("LIC_010")} // Remove LIC_010
+	if(feeExists("LIC_030","NEW","Invoiced")) {voidRemoveFee("LIC_030")} // Remove LIC_030
 	addFee("LIC_020","LIC_BINGO_APP","FINAL",1,"N");
 }
 if (subType == "Class C" && !feeExists("LIC_030", "NEW", "INVOICED")){
-	// Add the Fee addFee("LIC_030","LIC_BINGO_APP","FINAL",1,"N");
+	if(feeExists("LIC_010","NEW","Invoiced")) {voidRemoveFee("LIC_010")} // Remove LIC_010
+	if(feeExists("LIC_020","NEW","Invoiced")) {voidRemoveFee("LIC_020")} // Remove LIC_020
 	addFee("LIC_030","LIC_BINGO_APP","FINAL",1,"N");
 }
 
