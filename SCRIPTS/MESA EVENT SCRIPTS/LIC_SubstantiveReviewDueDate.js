@@ -17,20 +17,38 @@
 // Need to make sure which record types have "Substantive Review Due Date".
 if(
 		// Most Licenses
+		appTypeArray[0]=="Licenses"
+		&& (
 		(wfTask == "License Application" && wfStatus == "Complete")
 		// Peddler/OffTrackBetting ("Substantive Review Due" field exists)
 		|| (wfTask == "License Application" && wfStatus == "Completed")
-		
+		)
 		// The following must be checked.
 		// Bingo Hall - No Status (No "Substantive Review Due" field)
 		// Livestock - No Status (No "Substantive Review Due" field)
 		// Special Event - No Status (No "Substantive Review Due" field)
 )
 {
-	// Update "Substantive Review Due" to current date + 60
-	// get 
-	//var subReviewDue = dateAdd(null,60);
-	editAppSpecific("Substantive Review Due", dateAdd(null,60));
-	//aa.print(dateAdd(null,60));
-	//editAppSpecific("Substantive Review Due", subReviewDue);
+	// Get Record type before setting the "Substantive Review Due"
+	if(appTypeArray[2]=="SpecialEvent") {
+		// Special Event + 30 needs to be set
+		editAppSpecific("Substantive Review Due", dateAdd(null,30));
+	}
+	/* The following code exists because it was on the tracker,
+	 * It was not however in the script specification.
+	 */
+	/*
+	if(appTypeArray[2]=="MassageEstablishment") {
+		// Special Event + 30 needs to be set
+		editAppSpecific("Substantive Review Due", dateAdd(null,90));
+	}
+	if(appTypeArray[2]=="LiquorSpecialEvent") {
+		// Special Event + 30 needs to be set
+		editAppSpecific("Substantive Review Due", dateAdd(null,45));
+	}
+	//*/
+	else {
+		// Update the Substantive Review Due + 60 for all other record types.
+		editAppSpecific("Substantive Review Due", dateAdd(null,60));
+	}
 }
