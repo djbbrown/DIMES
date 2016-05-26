@@ -42,7 +42,9 @@ if(
 		// Special Event + 30 needs to be set
 		editAppSpecific("Substantive Review Due", dateAdd(null,90));
 	}
-	if(appTypeArray[2]=="LiquorSpecialEvent") {
+	if(appTypeArray[2]=="LiquorSpecialEvent"
+		|| appTypeArray[2]=="ParkandSwap"
+	) {
 		// Special Event + 30 needs to be set
 		editAppSpecific("Substantive Review Due", dateAdd(null,45));
 	}
