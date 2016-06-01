@@ -68,7 +68,13 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	
 	// Update the License DBA with the "Business Name" ASI from the Application Record
 	// Note that this is not in the spec.
+	// The following has been edited by request of Janet Evelan to use "Application Name" for dba
+	// the request was specifically for Massage License and may not apply to other types so we're being careful
+	// If "Business Name" is blank, then we're going to get the capName(Appliaciton Name)
 	var dba = getAppSpecific("Business Name",capId);
+	if (dba == null) {
+		dba = capName;
+	}
 	var desc = aa.cap.getCap(license).getOutput().getCapModel();
 	desc.setSpecialText(dba); // This is the capName record Name
 	aa.print(desc.getSpecialText());
