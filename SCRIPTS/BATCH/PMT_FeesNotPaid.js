@@ -180,8 +180,9 @@ function mainProcess() {
 	var capFilterType = 0;
 	var capFilterStatus = 0;
 	var applicantEmailNotFound = 0;
+	var permitType = appTypeType;
 	
-	var capResult = aa.cap.getCaps(appType, taskName, taskStatus, "");
+	var capResult = aa.cap.getCaps(permitType, taskName, taskStatus, "");
 	
 	if (capResult.getSuccess()) {
 		myCaps = capResult.getOutput();
@@ -233,8 +234,8 @@ function mainProcess() {
 		
 		var taskStatusDate = taskStatusDate(taskName, null, capId);
         var feesSevenDaysLate = jsDateToMMDDYYYY(new Date()).localeCompare(dateAdd(taskStatusDate, 7)) == 0;
-        aa.print("Fees 7 days late?");
-        aa.print(feesSevenDaysLate ? "Yes" : "No"); 
+        logDebug("Fees 7 days late?");
+        logDebug(feesSevenDaysLate ? "Yes" : "No"); 
         if (feesSevenDaysLate) {
             var vEParams = aa.util.newHashtable(); 
 		    addParameter(vEParams,"%%RECORD ID%%", altId);
@@ -248,7 +249,7 @@ function mainProcess() {
 		    }
 		    
 		    if (emailAddress != null){
-		    	aa.print("Sending notification to " + emailAddress);
+		    	logDebug("Sending notification to " + emailAddress);
 		    	sendNotification("", emailAddress, "", emailTemplate, vEParams, null, capId);
 		    } else {
 		    	applicantEmailNotFound++;
