@@ -10,35 +10,24 @@
 /*==================================================================*/
 showDebug = true;
 
-// constants
-var WFTASK = "Planning Review";
-var APPROVED = "Approved";
-var APPROVED_WITH_COMMENTS = "Approved w/Comments";
-var REVISIONS_REQUIRED = "Revisions Required";
-var EXPEDITED_FIELD = "Expedite";
-var EXPEDITED = "Expedite";
-var SUPER_EXPEDITED = "Super Expedite";
-var FEE_CODE = {
-	EXPEDITED: "MST040",
-	SUPER_EXPEDITED: "MST050"
-}
-var FEE_SCHEDULE = "PMT_MST";
-var FEE_PERIOD = "FINAL";
-var FEE_INVOICE = "N";
-
-var taskValid = wfTask == WFTASK;
-if (!taskValid) logDebug("Task invalid");
-var statusValid = (wfStatus == APPROVED) || (wfStatus == APPROVED_WITH_COMMENTS) || (wfStatus == REVISIONS_REQUIRED);
-if (!statusValid) logDebug("Status invalid");
-var hoursValid = !!wfHours && wfHours > 0;
-if (!hoursValid) logDebug("Hours invalid");
-
-if (taskValid && statusValid && hoursValid){
-	if (AInfo[EXPEDITED_FIELD] == EXPEDITED){
-		if (feeExists(FEE_CODE.EXPEDITED, "INVOICED")) voidRemoveFee(FEE_CODE.EXPEDITED);
-		updateFee(FEE_CODE.EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, wfHours, FEE_INVOICE);
-	} else if (AInfo[EXPEDITED_FIELD] == SUPER_EXPEDITED){
-		if (feeExists(FEE_CODE.SUPER_EXPEDITED, "INVOICED")) voidRemoveFee(FEE_CODE.SUPER_EXPEDITED);
-		updateFee(FEE_CODE.SUPER_EXPEDITED, FEE_SCHEDULE, FEE_PERIOD, wfHours, FEE_INVOICE);
+if (wfTask == "Planning Review" || 
+		wfTask == "Building Review" || 
+		wfTask == "Fire Review" || 
+		wfTask == "Civil Engineering Review"){
+	if (wfStatus == "Approved" || 
+			wfStatus == "Approved w/Comments" || 
+			wfStatus == "Revisions Required"){
+		if (!!wfHours && wfHours > 0){
+			if (AInfo["Expedite"] == "Expedite"){
+				if (feeExists("MST040", "INVOICED")) voidRemoveFee("MST040");
+				updateFee("MST040", "PMT_MST", "FINAL", wfHours, "N");				
+			} else if (AInfo["Expedite"] == "Super Expedite"){
+				if (feeExists("MST050", "INVOICED")) voidRemoveFee("MST050");
+				updateFee("MST050", "PMT_MST", "FINAL", wfHours, "N");				
+			} else {
+				if (feeExists("MST040", "NEW", "INVOICED")) voidRemoveFee("MST040");
+				if (feeExists("MST050", "NEW", "INVOICED")) voidRemoveFee("MST050");
+			}
+		}
 	}	
 } 
