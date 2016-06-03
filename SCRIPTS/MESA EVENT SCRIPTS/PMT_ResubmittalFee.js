@@ -1,0 +1,16 @@
+/*===================================================================
+// Script Number: 216
+// Script Name: PMT_ResubmittalFee.js
+// Script Developer: Bryan de Jesus
+// Script Agency: Woolpert
+// Script Description: Assess when a status of "Resubmitted" is set on the "Plan Distribution" task on the 4th resubmittal and every resubmittal after. ASI field "Submittal Cycle" holds the number of resubmittals.
+// Script Run Event: WTUA
+// Script Parents:
+//            WTUA;Permits!Residential!NA!NA
+//            WTUA;Permits!Commercial!NA!NA
+/*==================================================================*/
+showDebug = true;
+if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && getAppSpecific("Submittal Cycle") >= 4){
+	logDebug("Assessing fee");
+}
+	
