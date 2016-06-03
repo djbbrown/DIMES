@@ -11,6 +11,8 @@
 /*==================================================================*/
 showDebug = true;
 var submittalCycle = getAppSpecific("Submittal Cycle");
+logDebug(submittalCycle);
+logDebug(AInfo["Submittal Cycle"]);
 if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
 	logDebug("Assessing fee");
 	logDebug("Fee quantity: " + submittalCycle-3);
