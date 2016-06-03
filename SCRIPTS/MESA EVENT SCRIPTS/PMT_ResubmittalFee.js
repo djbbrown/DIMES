@@ -10,7 +10,7 @@
 //            WTUA;Permits!Commercial!NA!NA
 /*==================================================================*/
 showDebug = true;
-var submittalCycle = AInfo["Submittal Cycle"];
+var submittalCycle = parseInt(AInfo["Submittal Cycle"]);
 logDebug(typeof(submittalCycle));
 logDebug(AInfo["Submittal Cycle"]);
 if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
