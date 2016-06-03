@@ -19,4 +19,4 @@
 //            ASA;Planning!Design Review!NA!NA  
 /*==================================================================*/
 var charArea = getGISInfo("Accela_Base", "GeneralPlan2040", "CharacterArea");
-editAppScpecific("Existing Character Area", charArea);
+editAppSpecific("Existing Character Area", charArea);
