@@ -13,6 +13,7 @@ showDebug = true;
 var submittalCycle = getAppSpecific("Submittal Cycle");
 if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
 	logDebug("Assessing fee");
+	logDebug("Fee quantity: " + submittalCycle-3);
 	if (appMatch("Permits/Commercial/NA/NA")){
 		if (feeExists("COM130", "INVOICED")) voidRemoveFee("COM130");
 		updateFee("COM130", "PMT_COM", "FINAL", submittalCycle-3, "N");
