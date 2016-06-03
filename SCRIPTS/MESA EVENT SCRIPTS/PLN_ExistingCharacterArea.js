@@ -18,5 +18,7 @@
 // Script Parents:
 //            ASA;Planning!Design Review!NA!NA  
 /*==================================================================*/
-var charArea = getGISInfo("Accela_Base", "GeneralPlan2040", "CharacterArea");
+showDebug = true;
+var charArea = getGISInfo("Planning/GeneralPlan", "GeneralPlan2040", "CharacterArea");
+logDebug("Existing character area: " + charArea);
 editAppSpecific("Existing Character Area", charArea);
