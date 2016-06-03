@@ -12,7 +12,7 @@
 showDebug = true;
 var submittalCycle = parseInt(AInfo["Submittal Cycle"]);
 logDebug(typeof(submittalCycle));
-logDebug(AInfo["Submittal Cycle"]);
+logDebug(submittalCycle);
 if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
 	logDebug("Assessing fee");
 	logDebug("Fee quantity: " + submittalCycle-3);
