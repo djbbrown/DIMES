@@ -18,13 +18,17 @@ logDebug(feeQty);
 if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
 	logDebug("Assessing fee");
 	logDebug("Fee quantity: " + feeQty);
-	if (appMatch("Permits/Commercial/NA/NA")){
-		if (feeExists("COM130", "INVOICED")) voidRemoveFee("COM130");
-		updateFee("COM130", "PMT_COM", "FINAL", feeQty, "N");
-	}
-	if (appMatch("Permits/Residential/NA/NA")){
-		if (feeExists("RES170", "INVOICED")) voidRemoveFee("RES170");
-		updateFee("RES170", "PMT_RES", "FINAL", feeQty, "N");		
+	try {
+		if (appMatch("Permits/Commercial/NA/NA")){
+			if (feeExists("COM130", "INVOICED")) voidRemoveFee("COM130");
+			updateFee("COM130", "PMT_COM", "FINAL", feeQty, "N");
+		}
+		if (appMatch("Permits/Residential/NA/NA")){
+			if (feeExists("RES170", "INVOICED")) voidRemoveFee("RES170");
+			updateFee("RES170", "PMT_RES", "FINAL", feeQty, "N");		
+		}		
+	} catch (err){
+		logDebug(err);
 	}
 }
 	
