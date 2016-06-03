@@ -10,7 +10,16 @@
 //            WTUA;Permits!Commercial!NA!NA
 /*==================================================================*/
 showDebug = true;
-if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && getAppSpecific("Submittal Cycle") >= 4){
+var submittalCycle = getAppSpecific("Submittal Cycle");
+if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
 	logDebug("Assessing fee");
+	if (appMatch("Permits/Commercial/NA/NA")){
+		if (feeExists("COM130", "INVOICED")) voidRemoveFee("COM130");
+		updateFee("COM130", "PMT_COM", "FINAL", submittalCycle-3, "N");
+	}
+	if (appMatch("Permits/Residential/NA/NA")){
+		if (feeExists("RES170", "INVOICED")) voidRemoveFee("RES170");
+		updateFee("RES170", "PMT_RES", "FINAL", submittalCycle-3, "N");		
+	}
 }
 	
