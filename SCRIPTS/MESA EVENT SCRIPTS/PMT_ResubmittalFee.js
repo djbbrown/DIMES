@@ -9,12 +9,9 @@
 //            WTUA;Permits!Residential!NA!NA
 //            WTUA;Permits!Commercial!NA!NA
 /*==================================================================*/
-showDebug = true;
+showDebug = false;
 var submittalCycle = parseInt(AInfo["Submittal Cycle"]);
 var feeQty = submittalCycle - 3;
-logDebug(typeof(submittalCycle));
-logDebug(submittalCycle);
-logDebug(feeQty);
 if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
 	logDebug("Assessing fee");
 	logDebug("Fee quantity: " + feeQty);
@@ -25,6 +22,6 @@ if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submit
 	if (appMatch("Permits/Residential/NA/NA")){
 		if (feeExists("RES170", "INVOICED")) voidRemoveFee("RES170");
 		updateFee("RES170", "PMT_RES", "FINAL", feeQty, "N");		
-	}
+	}		
 }
 	
