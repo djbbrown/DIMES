@@ -21,12 +21,13 @@ if (tmpTable) {
 	countException += countASITRows(tmpTable, "Type of Work", "Sign" );
 	countException += countASITRows(tmpTable, "Type of Work", "Freeway Landmark Monument" );
 	// If there are no Illuminated signs lets remove all fees
+	// Also remove fees if the type of Work isn't "Sign" or "Freeway Landmark Monument"
 	// if (countSignIlluminated == 0 && feeExists("SGN030", "NEW")) removeFee("SGN030", "FINAL");
 	// if (countSignIlluminated == 0 && feeExists("SGN030", "INVOICED")) voidRemoveFee("SGN030");
-	if ((countSignIlluminated == 0 || countException > 0) && feeExists("SGN030", "NEW")) removeFee("SGN030", "FINAL");
-	if ((countSignIlluminated == 0 || countException > 0) && feeExists("SGN030", "INVOICED")) voidRemoveFee("SGN030");
+	if ((countSignIlluminated == 0 || countException == 0) && feeExists("SGN030", "NEW")) removeFee("SGN030", "FINAL");
+	if ((countSignIlluminated == 0 || countException == 0) && feeExists("SGN030", "INVOICED")) voidRemoveFee("SGN030");
 	// Else were going to add the fees.
-	if (countSignIlluminated > 0 &&  countException == 0 ) {
+	if (countSignIlluminated > 0 &&  countException > 0 ) {
 		// If there are "Illuminated" signs we are going to sum the Quantity of "Illuminated"
 		var sumQuantity = sumASITColumn(tmpTable, "Quantity", "INCLUDE", "Type of Sign", "Illuminated");
 		// Does update also add the feeitem?
