@@ -2,9 +2,9 @@
 1.	On application submittal or when ASI/ASIT is updated and the record type is Enforcement/Case/NA/NA or Enforcement/Environmental/NA/NA or AnimalControl/Complaint/NA/NA
 
 Execute Script Actions
-1.	Load the ASIT “VIOLATION INFORMATION”
-2.	For every row in the VIOLATION INFORMATION ASIT, retrieve the value in the column “Citation Number”. 
-3.	Check if a row exists in the ASIT CITATION CHECKLIST with a column “Citation Number” having the same value. If it does not, then create a new row, populating the “Citation Number” column with the value from the VIOLATION INFORMATION ASIT.
+1.	Load the ASIT "VIOLATION INFORMATION"
+2.	For every row in the VIOLATION INFORMATION ASIT, retrieve the value in the column "Citation Number". 
+3.	Check if a row exists in the ASIT CITATION CHECKLIST with a column "Citation Number" having the same value. If it does not, then create a new row, populating the "Citation Number" column with the value from the VIOLATION INFORMATION ASIT.
 */
 function updateViolationInfoCustomList(){
 try{
