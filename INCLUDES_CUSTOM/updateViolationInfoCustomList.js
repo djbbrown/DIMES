@@ -12,7 +12,7 @@ try{
 		for(row in VIOLATIONINFORMATION){
 			var rowFound = false;
 			for(wor in  CITATIONCHECKLIST){
-				if(""+VIOLATIONINFORMATION[row]["Citation Number"]==""+CITATIONCHECKLIST[row]["Citation Number"]){
+				if(""+VIOLATIONINFORMATION[row]["Citation Number"]==""+CITATIONCHECKLIST[wor]["Citation Number"]){
 					rowFound=true;
 				}
 			}
