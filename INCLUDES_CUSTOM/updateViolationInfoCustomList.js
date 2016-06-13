@@ -6,6 +6,7 @@ Execute Script Actions
 2.	For every row in the VIOLATION INFORMATION ASIT, retrieve the value in the column “Citation Number”. 
 3.	Check if a row exists in the ASIT CITATION CHECKLIST with a column “Citation Number” having the same value. If it does not, then create a new row, populating the “Citation Number” column with the value from the VIOLATION INFORMATION ASIT.
 */
+function updateViolationInfoCustomList(){
 try{
 	if(VIOLATIONINFORMATION.length>0){
 		var rowFound = false;
@@ -43,4 +44,4 @@ try{
 	}
 }catch (err){
 	logDebug("A JavaScript Error occurred: updateViolationInfoCustomList: " + err.message);
-}
+}}
