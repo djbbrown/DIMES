@@ -8,6 +8,7 @@ Execute Script Actions
 */
 function updateViolationInfoCustomList(){
 try{
+	logDebug("Executing updateViolationInfoCustomList().");
 	if(VIOLATIONINFORMATION.length>0){
 		for(row in VIOLATIONINFORMATION){
 			var rowFound = false;
