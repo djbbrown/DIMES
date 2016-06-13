@@ -9,10 +9,10 @@ Execute Script Actions
 function updateViolationInfoCustomList(){
 try{
 	if(VIOLATIONINFORMATION.length>0){
-		var rowFound = false;
 		for(row in VIOLATIONINFORMATION){
+			var rowFound = false;
 			for(wor in  CITATIONCHECKLIST){
-				if(VIOLATIONINFORMATION[row]["Citation Number"]==CITATIONCHECKLIST[row]["Citation Number"]){
+				if(""+VIOLATIONINFORMATION[row]["Citation Number"]==""+CITATIONCHECKLIST[row]["Citation Number"]){
 					rowFound=true;
 				}
 			}
