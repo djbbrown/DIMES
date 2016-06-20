@@ -12,6 +12,5 @@
 
 if ((wfTask.equals("License Application") || wfTask.equals("Application Intake")) && wfStatus.equals("Received")) {
 	// set ASI field
-	editAppSpecific("Administrative Review Due", null)
-	editAppSpecific("Administrative Review Due", dateAdd(null, 14))
+	editAppSpecific("Administrative Review Due", dateAdd(null, 14));
 }
