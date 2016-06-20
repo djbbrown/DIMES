@@ -17,7 +17,7 @@
 
 var valSeries = getAppSpecific("Series Type");
 
-if (wfTask == "Issue License" && wfStatus == "Ready to Issue"){
+if (wfTask == "Issue License" && wfStatus == "Ready To Issue"){
 if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "13") && !feeExists("L030")) 
 {
 	addFee("L030","LIC_LIQUOR", "FINAL",  1, "N");
