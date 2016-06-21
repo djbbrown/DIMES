@@ -1,7 +1,7 @@
 /*===================================================================
 // Script Number: 178
-// Script Name: Bryan de Jesus
-// Script Developer: 
+// Script Name: PMT_WaterMeterAdapterFee.js
+// Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
 // Script Description: When Water Service Size does not equal Meter Size (for Water only). This fee is for all PMTs EXCEPT Master Plan. Automatically add the Water Meter Adapter fee
 // Script Run Event: ASA, ASIUA
@@ -13,41 +13,47 @@
 //			ASA;Permits!Residential!Mobile Home!NA
 //			ASIUA;Permits!Residential!Mobile Home!NA
 /*==================================================================*/
-loadASITables();
-var t = UTILITYSERVICEINFORMATION;
-var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0;
-if (t == null || t.length == 0) logDebug("No utility service entries");
-for (entry in t){
-	if (t[entry]["Service Type"] == "Water Service"){
-		serviceSize = t[entry]["Service Size"];
-		meterSize = t[entry]["Meter Size"];
-		qtyOfMeters = t[entry]["Quantity of Meters"];
-		logDebug(serviceSize + " " + meterSize + " " + qtyOfMeters);
-		if (serviceSize == 'Water 3/4"' && meterSize != 'Water 00.75 (3/4")' ||
-			serviceSize == 'Water 1.0"' && meterSize != 'Water 01.0"' ||
-			serviceSize == 'Water 1 1/2"' && meterSize != 'Water 01.5 (1 1/2")' ||
-			serviceSize == 'Water 2.0"' && meterSize != 'Water 02.0"' ||
-			serviceSize == 'Water - 4"' && meterSize != 'Water 04.0"' ||
-			serviceSize == 'Water - 6"' && meterSize != 'Water 06.0"' ||
-			serviceSize == 'Water - 8"' && meterSize != 'Water 08.0"' ||
-			serviceSize == 'Water - 10" or 12"')
-		{
-			logDebug("Mismatch row " + entry);
-			var newRow = new Array();
-			newRow["Service Type"] = "Water Meter: Adapter";
-			newRow["Service Size"] = "Water Meter Adapter A24";
-			newRow["Meter Size"] = "N/A";
-			newRow["Quantity of Meters"] = qtyOfMeters;
-			addToASITable("UTILITY SERVICE INFORMATION", newRow);
-			numAdapters++;
-		}		
+try {
+	loadASITables();
+	var t = UTILITYSERVICEINFORMATION;
+	var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0;
+	if (t == null || t.length == 0) logDebug("No utility service entries");
+	for (entry in t){
+		if (t[entry]["Service Type"] == "Water Service"){
+			serviceSize = t[entry]["Service Size"];
+			meterSize = t[entry]["Meter Size"];
+			qtyOfMeters = t[entry]["Qty of Meters"];
+			logDebug(serviceSize + " " + meterSize + " " + qtyOfMeters);
+			if (serviceSize == 'Water 3/4"' && meterSize != 'Water 00.75 (3/4")' || serviceSize == 'Water 3/4' && meterSize != 'Water 00.75 (3/4' ||
+				serviceSize == 'Water 1.0"' && meterSize != 'Water 01.0"' || serviceSize == 'Water 1.0' && meterSize != 'Water 01.0' ||
+				serviceSize == 'Water 1 1/2"' && meterSize != 'Water 01.5 (1 1/2")' || serviceSize == 'Water 1 1/2' && meterSize != 'Water 01.5 (1 1/2' ||
+				serviceSize == 'Water 2.0"' && meterSize != 'Water 02.0"' || serviceSize == 'Water 2.0' && meterSize != 'Water 02.0' ||
+				serviceSize == 'Water - 4"' && meterSize != 'Water 04.0"' || serviceSize == 'Water - 4' && meterSize != 'Water 04.0' ||
+				serviceSize == 'Water - 6"' && meterSize != 'Water 06.0"' || serviceSize == 'Water - 6' && meterSize != 'Water 06.0' ||
+				serviceSize == 'Water - 8"' && meterSize != 'Water 08.0"' || serviceSize == 'Water - 8' && meterSize != 'Water 08.0' ||
+				serviceSize == 'Water - 10" or 12"' || serviceSize == 'Water - 10')
+			{
+				logDebug("Mismatch row " + entry);
+				var newRow = new Array();
+				newRow["Service Type"] = "Water Meter: Adapter";
+				newRow["Service Size"] = "Water Meter Adapter A24";
+				newRow["Meter Size"] = "N/A";
+				newRow["Qty of Meters"] = qtyOfMeters;
+				addToASITable("UTILITY SERVICE INFORMATION", newRow);
+				numAdapters++;
+			}		
+		}
 	}
-}
-logDebug("Number of adapters: " + numAdapters);
-if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
-else {
-	if (feeExists("USF040", "NEW", "INVOICED") && feeQty("USF040") != numAdapters) {
-		voidRemoveFee("USF040");
-		addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
-	}
+	logDebug("Number of adapters: " + numAdapters);
+	if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
+	else {
+		if (!feeExists("USF040", "NEW", "INVOICED"))
+			addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
+		else if (feeExists("USF040", "NEW", "INVOICED") && feeQty("USF040") != numAdapters) {
+			voidRemoveFee("USF040");
+			addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
+		}
+	}	
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
 }
