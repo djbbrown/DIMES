@@ -11,7 +11,6 @@
 //            
 /*==================================================================*/
 
-   
     editAppSpecific("Permit Expiration Date", dateAdd(null, 180) );
 
 
