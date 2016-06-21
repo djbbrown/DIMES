@@ -10,7 +10,7 @@
 //            ASIUA;Engineering!Utilities!Non City!~
 /*==================================================================*/
 if (AInfo["Expedited"] == "CHECKED" && !feeExists("UTL0130", "NEW", "INVOICED")){
-	addFee("UTL0130", "ENG_NON-CITY UTILITIES", "FINAL", 1, "N", "N");
+	addFee("UTL0130", "ENG_NON-CITY UTILITIES", "FINAL", 1, "N");
 } else if (feeExists("UTL0130", "NEW", "INVOICED")) {
 	voidRemoveFee("UTL0130");
 }

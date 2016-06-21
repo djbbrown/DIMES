@@ -10,7 +10,7 @@
 //            ASIUA;Transportation!Temporary Traffic Control!~!~
 /*==================================================================*/
 if (AInfo["Expedited"] == "CHECKED" && !feeExists("TTC050", "NEW", "INVOICED")){
-	addFee("TTC050", "TTC_GEN", "FINAL", 1, "N", "N");
+	addFee("TTC050", "TTC_GEN", "FINAL", 1, "N");
 } else if (feeExists("TTC050", "NEW", "INVOICED")) {
 	voidRemoveFee("TTC050");
 }
