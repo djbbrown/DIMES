@@ -64,6 +64,15 @@ function sendNotification(emailFrom, emailTo, emailCC, templateName, params, rep
 
 try {
 	showDebug = true;
+	useTaskSpecificGroupName = true;
+	var taskSpecificInfo = new Array();
+	loadTaskSpecific(taskSpecificInfo, capId);
+	for (k in taskSpecificInfo){
+		if (typeof(k) == "function")
+			logDebug(k);
+		else
+			logDebug(k + " = " + taskSpecificInfo[k]);
+	}
 	var emailAddress = "bryan.dejesus@woolpert.com";
 	var firstName = "Bryan";
 	var lastName = "de Jesus";
