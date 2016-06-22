@@ -64,37 +64,31 @@ function sendNotification(emailFrom, emailTo, emailCC, templateName, params, rep
 
 try {
 	showDebug = true;
-//	useTaskSpecificGroupName = true;
-//	var taskSpecificInfo = new Array();
-//	loadTaskSpecific(taskSpecificInfo, capId);
-//	for (k in taskSpecificInfo){
-//		if (typeof(k) == "function")
-//			logDebug(k);
-//		else
-//			logDebug(k + " = " + taskSpecificInfo[k]);
-//	}
-	var tasks = loadTasks(capId.getCustomID());
-	for (k in tasks ){
-		if (typeof(k) == "function")
-			logDebug(k);
-		else
-			logDebug(k + " = " + taskSpecificInfo[k]);
+	var planningReviewTaskResult = aa.workflow.getTask(capId, "Planning Review");
+	var devPlanningReviewTaskResult = aa.workflow.getTask(capId, "Development Planning Review");
+	if (planningReviewTaskResult.getSuccess() && devPlanningReviewTaskResult.getSuccess()){
+		var planningReviewTask = planningReviewTaskResult.getOutput();
+		var devPlanningReviewTask = devPlanningReviewTaskResult.getOutput();
+		var planningReviewTaskAssignStaffId = planningReviewTask.getAssignedStaff();
+		var devPlanningReviewTaskAssignStaffId = devPlanningReviewTask.getAssignedStaff();
+		logDebug(devPlanningReviewTaskAssignStaffId.getClass());
+		var emailAddress = "bryan.dejesus@woolpert.com";
+		var firstName = "Bryan";
+		var lastName = "de Jesus";
+		if (isTaskStatus("Planning Review", "Comments") && isTaskStatus("Development Planning Review", "Comments")){
+			var parameters = aa.util.newHashtable();
+			addParameter(parameters,"RecordNumber", capId.getCustomID());
+			var reportFileName = generateReport(capId,"Staff Shell Report","AMS",parameters);
+			logDebug(reportFileName);
+			var emailParams = aa.util.newHashtable();
+			addParameter(emailParams,"$$email$$", emailAddress);
+			addParameter(emailParams,"$$CAPID$$", capId.getCustomID());
+			addParameter(emailParams,"$$firstName$$", firstName);
+			addParameter(emailParams,"$$lastname$$", lastName);
+			sendNotification("", emailAddress, "", "MESSAGE_REPORT", emailParams, [reportFileName]);
+		}
 	}
-	var emailAddress = "bryan.dejesus@woolpert.com";
-	var firstName = "Bryan";
-	var lastName = "de Jesus";
-	if (isTaskStatus("Planning Review", "Comments") && isTaskStatus("Development Planning Review", "Comments")){
-		var parameters = aa.util.newHashtable();
-		addParameter(parameters,"RecordNumber", capId.getCustomID());
-		var reportFileName = generateReport(capId,"Staff Shell Report","AMS",parameters);
-		logDebug(reportFileName);
-		var emailParams = aa.util.newHashtable();
-		addParameter(emailParams,"$$email$$", emailAddress);
-		addParameter(emailParams,"$$CAPID$$", capId.getCustomID());
-		addParameter(emailParams,"$$firstName$$", firstName);
-		addParameter(emailParams,"$$lastname$$", lastName);
-		sendNotification("", emailAddress, "", "MESSAGE_REPORT", emailParams, [reportFileName]);
-	}
+
 	}
 catch (err) {
 	logDebug("A JavaScript Error occured: " + err.message);
