@@ -64,10 +64,17 @@ function sendNotification(emailFrom, emailTo, emailCC, templateName, params, rep
 
 try {
 	showDebug = true;
-	useTaskSpecificGroupName = true;
-	var taskSpecificInfo = new Array();
-	loadTaskSpecific(taskSpecificInfo, capId);
-	for (k in taskSpecificInfo){
+//	useTaskSpecificGroupName = true;
+//	var taskSpecificInfo = new Array();
+//	loadTaskSpecific(taskSpecificInfo, capId);
+//	for (k in taskSpecificInfo){
+//		if (typeof(k) == "function")
+//			logDebug(k);
+//		else
+//			logDebug(k + " = " + taskSpecificInfo[k]);
+//	}
+	var tasks = loadTasks(capId.getCustomID());
+	for (k in tasks ){
 		if (typeof(k) == "function")
 			logDebug(k);
 		else
