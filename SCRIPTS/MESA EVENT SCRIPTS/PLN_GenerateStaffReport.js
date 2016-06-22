@@ -87,7 +87,10 @@ try {
 			addParameter(emailParams,"$$CAPID$$", capId.getCustomID());
 			addParameter(emailParams,"$$firstName$$", firstName);
 			addParameter(emailParams,"$$lastname$$", lastName);
-			sendNotification("", emailAddress, ccEmailAddress, "MESSAGE_REPORT", emailParams, [reportFileName]);
+			if (emailAddress != ccEmailAddress)
+				sendNotification("", emailAddress, ccEmailAddress, "MESSAGE_REPORT", emailParams, [reportFileName]);
+			else
+				sendNotification("", emailAddress, "", "MESSAGE_REPORT", emailParams, [reportFileName]);
 		}
 	}
 
