@@ -71,15 +71,12 @@ try {
 		var devPlanningReviewTask = devPlanningReviewTaskResult.getOutput();
 		var planningReviewTaskAssignStaff = planningReviewTask.getAssignedStaff();
 		var devPlanningReviewTaskAssignStaff = devPlanningReviewTask.getAssignedStaff();
-		for (t in devPlanningReviewTaskAssignStaff){
-			if (typeof(t) == "function")
-				logDebug(t);
-			else
-				logDebug(t + ": " + devPlanningReviewTaskAssignStaff[t]);
-		}
-		var emailAddress = "bryan.dejesus@woolpert.com";
-		var firstName = "Bryan";
-		var lastName = "de Jesus";
+		planningRecipient = aa.person.getUser(planningReviewTaskAssignStaff.getFirstName(), planningReviewTaskAssignStaff.getMiddleName(), planningReviewTaskAssignStaff.getLastName()).getOutput();
+		devPlanningRecipient = aa.person.getUser(devPlanningReviewTaskAssignStaff.getFirstName(), devPlanningReviewTaskAssignStaff.getMiddleName(), devPlanningReviewTaskAssignStaff.getLastName()).getOutput();
+		var emailAddress = planningRecipient.getEmail();
+		var firstName = planningReviewTaskAssignStaff.getFirstName();
+		var lastName = planningReviewTaskAssignStaff.getLastName();
+		var ccEmailAddress = devPlanningRecipient.getEmail();
 		if (isTaskStatus("Planning Review", "Comments") && isTaskStatus("Development Planning Review", "Comments")){
 			var parameters = aa.util.newHashtable();
 			addParameter(parameters,"RecordNumber", capId.getCustomID());
@@ -90,7 +87,7 @@ try {
 			addParameter(emailParams,"$$CAPID$$", capId.getCustomID());
 			addParameter(emailParams,"$$firstName$$", firstName);
 			addParameter(emailParams,"$$lastname$$", lastName);
-			sendNotification("", emailAddress, "", "MESSAGE_REPORT", emailParams, [reportFileName]);
+			sendNotification("", emailAddress, ccEmailAddress, "MESSAGE_REPORT", emailParams, [reportFileName]);
 		}
 	}
 
