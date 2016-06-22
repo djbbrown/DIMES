@@ -69,9 +69,14 @@ try {
 	if (planningReviewTaskResult.getSuccess() && devPlanningReviewTaskResult.getSuccess()){
 		var planningReviewTask = planningReviewTaskResult.getOutput();
 		var devPlanningReviewTask = devPlanningReviewTaskResult.getOutput();
-		var planningReviewTaskAssignStaffId = planningReviewTask.getAssignedStaff();
-		var devPlanningReviewTaskAssignStaffId = devPlanningReviewTask.getAssignedStaff();
-		logDebug(devPlanningReviewTaskAssignStaffId.getClass());
+		var planningReviewTaskAssignStaff = planningReviewTask.getAssignedStaff();
+		var devPlanningReviewTaskAssignStaff = devPlanningReviewTask.getAssignedStaff();
+		for (t in devPlanningReviewTaskAssignStaff){
+			if (typeof(t) == "function")
+				logDebug(t);
+			else
+				logDebug(t + ": " + devPlanningReviewTaskAssignStaff[t]);
+		}
 		var emailAddress = "bryan.dejesus@woolpert.com";
 		var firstName = "Bryan";
 		var lastName = "de Jesus";
