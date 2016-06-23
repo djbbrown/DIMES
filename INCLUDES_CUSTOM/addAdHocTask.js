@@ -4,7 +4,7 @@
 //Optional 4 parameters = Assigned to User ID must match an AA user
 //Optional 5 parameters = CapID
 
-function addAdHocTask(adHocProcess, adHocTask, adHocNote){
+function addAdHocTask(adHocProcess, adHocTask, adHocNote){//if no note is needed use empty string when calling function and comment out line below
 	var thisCap = capId;
 	var thisUser = currentUserID;
 	if (arguments.length > 3) thisUser = arguments[3];
@@ -17,7 +17,7 @@ function addAdHocTask(adHocProcess, adHocTask, adHocNote){
 	var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem()
 	taskObj.setProcessCode(adHocProcess);
 	taskObj.setTaskDescription(adHocTask);
-	taskObj.setDispositionNote(adHocNote);
+//	taskObj.setDispositionNote(adHocNote); //comment out if note is not needed
 	taskObj.setProcessID(0);
 	taskObj.setAssignmentDate(aa.util.now());
 	taskObj.setDueDate(aa.util.now());
