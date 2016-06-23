@@ -10,7 +10,7 @@
 //	ISB;Engineering!Right of Way!~!~.js
 /*===================================================================*/
 
-if(inspType == "Final Inspection" && isTaskActive("Inspections") && balanceDue > 0){
+if(inspType == "Final Inspection" && isTaskActive("Inspections") && (balanceDue > 0 || feeTotalByStatus("NEW") > 0)){
 	showMessage = true;
 	message = "";
 	comment("The Final Inspection cannot be scheduled while there is a balance due");
