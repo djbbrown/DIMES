@@ -72,10 +72,11 @@ if (tmpTable) {
 		if (countWaterMeterAdapter > 0) {
 			var tempSum=0;
 			for (var rowIndex in tmpTable) {
-				thisRow = tmpTable[rowIndex];
+				thisRow = tmpTable[rowIndex];   	
 				if (thisRow["Service Type"].fieldValue == "Water Meter: Adapter" && thisRow["Service Size"].fieldValue == "Water Meter Adapter A24")  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum = tempSum + parseFloat(thisRow["Qty of Meters"].fieldValue);
+					
 				}
 			}
 			if (tempSum > 0) updateFee("USF040","PMT_UTL_SERV", "FINAL",  tempSum, "N");
@@ -88,7 +89,7 @@ if (tmpTable) {
 			var tempSum1=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 3/4' || thisRow["Service Size"].fieldValue == 'Water 3/4\\"' || thisRow["Service Size"].fieldValue == 'Water 1.0' || thisRow["Service Size"].fieldValue == 'Water 1.0\\"'))  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 3/4' || thisRow["Service Size"].fieldValue == 'Water 3/4"' || thisRow["Service Size"].fieldValue == 'Water 1.0' || thisRow["Service Size"].fieldValue == 'Water 1.0"'))  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum1 = tempSum1 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				}
@@ -103,7 +104,7 @@ if (tmpTable) {
 			var tempSum2=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 1 1/2' || thisRow["Service Size"].fieldValue == 'Water 1 1/2\\"') )  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water 1 1/2' || thisRow["Service Size"].fieldValue == 'Water 1 1/2"') )  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum2 = tempSum2 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				}
@@ -138,7 +139,7 @@ if (tmpTable) {
 			var tempSum4=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 4' || thisRow["Service Size"].fieldValue == 'Water - 4\\"'))  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 4' || thisRow["Service Size"].fieldValue == 'Water - 4"'))  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum4 = tempSum4 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				}
@@ -155,7 +156,7 @@ if (tmpTable) {
 			var tempSum6=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 6' || thisRow["Service Size"].fieldValue == 'Water - 6\\"'))  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 6' || thisRow["Service Size"].fieldValue == 'Water - 6"'))  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum6 = tempSum6 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				}
@@ -173,7 +174,7 @@ if (tmpTable) {
 			var tempSum8=0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 8' || thisRow["Service Size"].fieldValue == 'Water - 8\\"'))  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 8' || thisRow["Service Size"].fieldValue == 'Water - 8"'))  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 						tempSum8 = tempSum8 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				}
@@ -237,7 +238,7 @@ if (tmpTable) {
 			var waterSum1 = 0;
 			for (var rowIndex in tmpTable) {
 			thisRow = tmpTable[rowIndex];
-			if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 3/4' || thisRow["Service Size"].fieldValue == 'Water 3/4\\"' || thisRow["Service Size"].fieldValue == 'Water 1.0' || thisRow["Service Size"].fieldValue == 'Water 1.0\\"'))  {    
+			if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 3/4' || thisRow["Service Size"].fieldValue == 'Water 3/4"' || thisRow["Service Size"].fieldValue == 'Water 1.0' || thisRow["Service Size"].fieldValue == 'Water 1.0"'))  {    
 			if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 				waterSum1 = waterSum1 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 			 }
@@ -253,7 +254,7 @@ if (tmpTable) {
 			var waterSum2 = 0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 1 1/2' || thisRow["Service Size"].fieldValue == 'Water 1 1/2\\"'))  {    
+				if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 1 1/2' || thisRow["Service Size"].fieldValue == 'Water 1 1/2"'))  {    
 				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 					waterSum2 = waterSum2 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				 }
@@ -268,7 +269,7 @@ if (tmpTable) {
 			var waterSum3 = 0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 2.0' || thisRow["Service Size"].fieldValue == 'Water 2.0\\"'))  {
+				if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 2.0' || thisRow["Service Size"].fieldValue == 'Water 2.0"'))  {
 				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 					waterSum3 = waterSum3 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				 }

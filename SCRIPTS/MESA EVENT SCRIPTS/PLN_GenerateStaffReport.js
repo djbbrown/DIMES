@@ -64,21 +64,36 @@ function sendNotification(emailFrom, emailTo, emailCC, templateName, params, rep
 
 try {
 	showDebug = true;
-	var emailAddress = "bryan.dejesus@woolpert.com";
-	var firstName = "Bryan";
-	var lastName = "de Jesus";
-	if (isTaskStatus("Planning Review", "Comments") && isTaskStatus("Development Planning Review", "Comments")){
-		var parameters = aa.util.newHashtable();
-		addParameter(parameters,"RecordNumber", capId.getCustomID());
-		var reportFileName = generateReport(capId,"Staff Shell Report","AMS",parameters);
-		logDebug(reportFileName);
-		var emailParams = aa.util.newHashtable();
-		addParameter(emailParams,"$$email$$", emailAddress);
-		addParameter(emailParams,"$$CAPID$$", capId.getCustomID());
-		addParameter(emailParams,"$$firstName$$", firstName);
-		addParameter(emailParams,"$$lastname$$", lastName);
-		sendNotification("", emailAddress, "", "MESSAGE_REPORT", emailParams, [reportFileName]);
+	var planningReviewTaskResult = aa.workflow.getTask(capId, "Planning Review");
+	var devPlanningReviewTaskResult = aa.workflow.getTask(capId, "Development Planning Review");
+	if (planningReviewTaskResult.getSuccess() && devPlanningReviewTaskResult.getSuccess()){
+		var planningReviewTask = planningReviewTaskResult.getOutput();
+		var devPlanningReviewTask = devPlanningReviewTaskResult.getOutput();
+		var planningReviewTaskAssignStaff = planningReviewTask.getAssignedStaff();
+		var devPlanningReviewTaskAssignStaff = devPlanningReviewTask.getAssignedStaff();
+		planningRecipient = aa.person.getUser(planningReviewTaskAssignStaff.getFirstName(), planningReviewTaskAssignStaff.getMiddleName(), planningReviewTaskAssignStaff.getLastName()).getOutput();
+		devPlanningRecipient = aa.person.getUser(devPlanningReviewTaskAssignStaff.getFirstName(), devPlanningReviewTaskAssignStaff.getMiddleName(), devPlanningReviewTaskAssignStaff.getLastName()).getOutput();
+		var emailAddress = planningRecipient.getEmail();
+		var firstName = planningReviewTaskAssignStaff.getFirstName();
+		var lastName = planningReviewTaskAssignStaff.getLastName();
+		var ccEmailAddress = devPlanningRecipient.getEmail();
+		if (isTaskStatus("Planning Review", "Comments") && isTaskStatus("Development Planning Review", "Comments")){
+			var parameters = aa.util.newHashtable();
+			addParameter(parameters,"RecordNumber", capId.getCustomID());
+			var reportFileName = generateReport(capId,"Staff Shell Report","AMS",parameters);
+			logDebug(reportFileName);
+			var emailParams = aa.util.newHashtable();
+			addParameter(emailParams,"$$email$$", emailAddress);
+			addParameter(emailParams,"$$CAPID$$", capId.getCustomID());
+			addParameter(emailParams,"$$firstName$$", firstName);
+			addParameter(emailParams,"$$lastname$$", lastName);
+			if (emailAddress != ccEmailAddress)
+				sendNotification("", emailAddress, ccEmailAddress, "MESSAGE_REPORT", emailParams, [reportFileName]);
+			else
+				sendNotification("", emailAddress, "", "MESSAGE_REPORT", emailParams, [reportFileName]);
+		}
 	}
+
 	}
 catch (err) {
 	logDebug("A JavaScript Error occured: " + err.message);

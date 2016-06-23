@@ -6,3 +6,4 @@
 include("PMT_SignalButteTag");
 include("PMT_assessFeeRDIF140OrRDIF150");
 include("PMT_FloodControlPermit");
+include("PMT_WaterMeterAdapterFee");

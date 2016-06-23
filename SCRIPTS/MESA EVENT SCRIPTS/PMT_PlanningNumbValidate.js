@@ -18,7 +18,7 @@ try{
 	if (appMatch("Permits/Master Plan/NA/NA"))
 		planningNumber = AInfo["PLN Number"];
 	else
-		planningNumber = Ainfo["Planning Number"];
+		planningNumber = AInfo["Planning Number"];
 	
 	if (!!planningNumber){
 		var capIdResult = aa.cap.getCapID(planningNumber);
