@@ -1,7 +1,6 @@
 /*===================================================================
-// Script Number: 54
-// Script Name: ASIUA;Permits!Temporary Traffic Control!~!~.js
+// Script Number: 54, 59
+// Script Name: ASIUA;Transportation!Temporary Traffic Control!~!~.js
 /*==================================================================*/
 include("TRN_MaintainRelatedRecords");
-
-
+include("TRN_ExpeditedPlanReview");

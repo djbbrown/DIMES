@@ -13,11 +13,16 @@
 //	ASA: Planning/Application/Design Review/NA
 //
 /*==================================================================*/
+//var capId = aa.cap.getCapID(myCapId).getOutput();
+var addressA = aa.address.getAddressByCapId(capId).getOutput();
 
-
-if (!hasPrimaryAddressInCap(capId) && parcelExistsOnCap()) {
-	 addAdHocTask("WFADHOC_PROCESS", "GIS Addressing", "No Address associated with the parcel");
+for(z in addressA) {
+	var houseNbrStart = addressA[z].getHouseNumberStart();
 }
 
-
-
+if (
+		(!hasPrimaryAddressInCap(capId) && parcelExistsOnCap())
+		|| (houseNbrStart == null && parcelExistsOnCap())
+) {
+	 addAdHocTask("WFADHOC_PROCESS", "GIS Addressing", "No Address associated with the parcel");
+}

@@ -66,8 +66,8 @@
                      
               }
               else { logDebug("Other tasks need additional info");}
-       }      
               
-       if(subRevDate == null) editAppSpecific("Substantive Review Due", dateAdd(null, daysDiff))
-	   else editAppSpecific("Substantive Review Due", dateAdd(subRevDate, daysDiff))
-
+              // This code should be inside of the check for wf task.
+              if(subRevDate == null) editAppSpecific("Substantive Review Due", dateAdd(null, daysDiff))
+       	   		else editAppSpecific("Substantive Review Due", dateAdd(subRevDate, daysDiff))
+       }

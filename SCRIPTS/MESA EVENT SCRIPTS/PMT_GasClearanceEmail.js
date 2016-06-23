@@ -25,7 +25,8 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 		addParameter(vEParams,"$$RECORD ID$$",capIDString);
 		addParameter(vEParams,"$$CLEARANCE TO$$","City of Mesa");
 		//emailAddress = "rgill@accela.com";
-		emailAddress = "kford@accela.com";
+		//emailAddress = "kford@accela.com";
+		emailAddress = "Lauren.Lupica@MesaAZ.gov";
 		//emailAddress = "customerinfobillingops@mesaaz.gov";
 		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 	}
@@ -33,7 +34,8 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 		addParameter(vEParams,"$$RECORD ID$$",capIDString);
 		addParameter(vEParams,"$$CLEARANCE TO$$","Southwest Gas");
 		//emailAddress = "rgill@accela.com";
-		emailAddress = "kford@accela.com";
+		//emailAddress = "kford@accela.com";
+		emailAddress = "Lauren.Lupica@MesaAZ.gov";
 		//emailAddress = "gasinspectiontag@swgas.com";
 		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 		}

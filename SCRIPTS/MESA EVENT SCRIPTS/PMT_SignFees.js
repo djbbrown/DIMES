@@ -21,54 +21,59 @@
 //            ASA;Permits!Sign!NA!NA
 //			  ASIUA;Permits!Sign!NA!NA
 /*==================================================================*/
-showDebug = true;
-// constants
-var FEE_CODES = {
-		GRAND_OPENING_BANNER: "SGN050",
-		SUBDIVISION: "SGN060",
-		SUBDIVISION_WEEKEND: "SGN070",
-		SUBDIVISION_DIRECTIONAL: "SGN080",
-		DOWNTOWN_DIRECTIONAL_AFRAME: "SGN090"
-};
-var FEE_SCHEDULE = "PMT_SIGNS";
-var FEE_PERIOD = "FINAL";
-var QUANTITY_COLUMN_NAME = "Quantity";
-var SIGN_TYPE_COLUMN_NAME = "Type of Work";
-var SIGN_TYPES = {
-		GRAND_OPENING_BANNER: "Grand Opening Banners",
-		SUBDIVISION: "Subdivision Sign",
-		SUBDIVISION_WEEKEND: "Subdivision Weekend Sign",
-		SUBDIVISION_DIRECTIONAL: "Subdivision Directional Sign",
-		DOWNTOWN_DIRECTIONAL_AFRAME: "Downtown Directional A-Frames"
-};
-
 // load ASIT
 var t = loadASITable("SIGN INFO");
+var numberOfGrandOpeningBannerSigns = 0,
+	numberOfSubdivisionSigns = 0,
+	numberOfSubdivisionWeekendSigns = 0,
+	numberOfSubdivisionDirectionalSigns = 0,
+	numberOfDowntownDirectionalSigns = 0;
+
 if (!!t){
-	// loop through rows
+	// loop through rows to get sign quantities - assuming duplicate types allowed in table
 	for (index in t){
 		var row = t[index];
-		logDebug("Assessing fees for " + row[QUANTITY_COLUMN_NAME] + " " + row[SIGN_TYPE_COLUMN_NAME]);
+		var	signType = row["Type of Work"];
+		var	signQty = row["Quantity"];
 		
-		// apply fee
-		if (row[SIGN_TYPE_COLUMN_NAME] == SIGN_TYPES.GRAND_OPENING_BANNER){
-			if (feeExists(FEE_CODES.GRAND_OPENING_BANNER, "INVOICED")) voidRemoveFee(FEE_CODES.GRAND_OPENING_BANNER);
-			updateFee(FEE_CODES.GRAND_OPENING_BANNER, FEE_SCHEDULE, FEE_PERIOD, row[QUANTITY_COLUMN_NAME], "N");
-		} else if (row[SIGN_TYPE_COLUMN_NAME] == SIGN_TYPES.SUBDIVISION){
-			if (feeExists(FEE_CODES.SUBDIVISION, "INVOICED")) voidRemoveFee(FEE_CODES.SUBDIVISION);
-			updateFee(FEE_CODES.SUBDIVISION, FEE_SCHEDULE, FEE_PERIOD, row[QUANTITY_COLUMN_NAME], "N");
-		} else if (row[SIGN_TYPE_COLUMN_NAME] == SIGN_TYPES.SUBDIVISION_WEEKEND){
-			if (feeExists(FEE_CODES.SUBDIVISION_WEEKEND, "INVOICED")) voidRemoveFee(FEE_CODES.SUBDIVISION_WEEKEND);
-			updateFee(FEE_CODES.SUBDIVISION_WEEKEND, FEE_SCHEDULE, FEE_PERIOD, row[QUANTITY_COLUMN_NAME], "N");
-		} else if (row[SIGN_TYPE_COLUMN_NAME] == SIGN_TYPES.SUBDIVISION_DIRECTIONAL){
-			if (feeExists(FEE_CODES.SUBDIVISION_DIRECTIONAL, "INVOICED")) voidRemoveFee(FEE_CODES.SUBDIVISION_DIRECTIONAL);
-			updateFee(FEE_CODES.SUBDIVISION_DIRECTIONAL, FEE_SCHEDULE, FEE_PERIOD, row[QUANTITY_COLUMN_NAME], "N");
-		} else if (row[SIGN_TYPE_COLUMN_NAME] == SIGN_TYPES.DOWNTOWN_DIRECTIONAL_AFRAME){
-			if (feeExists(FEE_CODES.DOWNTOWN_DIRECTIONAL_AFRAME, "INVOICED")) voidRemoveFee(FEE_CODES.DOWNTOWN_DIRECTIONAL_AFRAME);
-			updateFee(FEE_CODES.DOWNTOWN_DIRECTIONAL_AFRAME, FEE_SCHEDULE, FEE_PERIOD, row[QUANTITY_COLUMN_NAME], "N");
-		}
+		if (signType == "Grand Opening Banners") numberOfGrandOpeningBannerSigns += signQty;
+		if (signType == "Subdivision Sign") numberOfSubdivisionSigns += signQty;
+		if (signType == "Subdivision Weekend Sign") numberOfSubdivisionWeekendSigns += signQty;
+		if (signType == "Subdivision Directional Sign") numberOfSubdivisionDirectionalSigns += signQty;
+		if (signType == "Downtown Directional A-Frames") numberOfDowntownDirectionalSigns += signQty;
 	}
 	
+	// apply fees
+	if (feeExists("SGN050", "INVOICED") && feeQty("SGN050") != numberOfGrandOpeningBannerSigns)
+		voidRemoveFee("SGN050");
+	if (feeExists("SGN050", "NEW") && numberOfGrandOpeningBannerSigns == 0)
+		removeFee("SGN050");
+	if (numberOfGrandOpeningBannerSigns > 0)
+		updateFee("SGN050", "PMT_SIGNS", "FINAL", numberOfGrandOpeningBannerSigns, "N");
+	if (feeExists("SGN060", "INVOICED") && feeQty("SGN060") != numberOfSubdivisionSigns)
+		voidRemoveFee("SGN060");
+	if (feeExists("SGN060", "NEW") && numberOfSubdivisionSigns == 0)
+		removeFee("SGN060");
+	if (numberOfSubdivisionSigns > 0)
+		updateFee("SGN060", "PMT_SIGNS", "FINAL", numberOfSubdivisionSigns, "N");
+	if (feeExists("SGN070", "INVOICED") && feeQty("SGN070") != numberOfSubdivisionWeekendSigns)
+		voidRemoveFee("SGN070");
+	if (feeExists("SGN070", "NEW") && numberOfSubdivisionWeekendSigns == 0)
+		removeFee("SGN070");
+	if (numberOfSubdivisionWeekendSigns > 0)
+		updateFee("SGN070", "PMT_SIGNS", "FINAL", numberOfSubdivisionWeekendSigns, "N");
+	if (feeExists("SGN080", "INVOICED") && feeQty("SGN080") != numberOfSubdivisionDirectionalSigns)
+		voidRemoveFee("SGN080");
+	if (feeExists("SGN080", "NEW") && numberOfSubdivisionDirectionalSigns == 0)
+		removeFee("SGN080");
+	if (numberOfSubdivisionDirectionalSigns > 0)
+		updateFee("SGN080", "PMT_SIGNS", "FINAL", numberOfSubdivisionDirectionalSigns, "N");
+	if (feeExists("SGN090", "INVOICED") && feeQty("SGN090") != numberOfDowntownDirectionalSigns)
+		voidRemoveFee("SGN090");
+	if (feeExists("SGN090", "NEW") && numberOfDowntownDirectionalSigns == 0)
+		removeFee("SGN090");
+	if (numberOfDowntownDirectionalSigns > 0)
+		updateFee("SGN090", "PMT_SIGNS", "FINAL", numberOfDowntownDirectionalSigns, "N");
 } else {
 	logDebug("Did not find table 'SIGN INFO'");
 }

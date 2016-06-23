@@ -14,5 +14,5 @@
 //            IRSA;Permits!Commercial!NA!NA
 /*==================================================================*/
 if (inspResult == "Roll Over") {
-	scheduleInspectDate(inspType, nextWorkDay(), "ADMIN", null, "ADMIN");
+	scheduleInspectDate(inspType, nextWorkDay());
 }
