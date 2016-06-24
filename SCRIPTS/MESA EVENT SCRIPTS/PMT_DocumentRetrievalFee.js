@@ -15,7 +15,6 @@
 // 
 //==================================================================*/
 
-
 var purpose = AInfo["Documents Requested For"];
 var exists = feeExists("DOC050");
 
