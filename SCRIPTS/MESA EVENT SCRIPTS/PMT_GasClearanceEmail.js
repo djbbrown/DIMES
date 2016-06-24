@@ -15,6 +15,7 @@
 // This script calls the notification template "GAS CLEARANCE"
 /*==================================================================*/
 
+var fromEmail = "noreply@MesaAz.gov";
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req") {
 	var vEParams = aa.util.newHashtable(); 
 	var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
@@ -28,7 +29,7 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 		//emailAddress = "kford@accela.com";
 		emailAddress = "Lauren.Lupica@MesaAZ.gov";
 		//emailAddress = "customerinfobillingops@mesaaz.gov";
-		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
+		sendNotification(fromEmail, emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 	}
 	if (countSouthwestGas > 0) {
 		addParameter(vEParams,"$$RECORD ID$$",capIDString);
@@ -37,6 +38,6 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 		//emailAddress = "kford@accela.com";
 		emailAddress = "Lauren.Lupica@MesaAZ.gov";
 		//emailAddress = "gasinspectiontag@swgas.com";
-		sendNotification("", emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
+		sendNotification(fromEmail, emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 		}
 }	
