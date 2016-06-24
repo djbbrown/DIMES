@@ -15,8 +15,7 @@
 
 var fromEmail = "noreply@MesaAz.gov";
 var emailAddress = "Brian.ODell@mesaaz.gov";
-var vEParams = aa.util.newHashtable(); 
-//var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  To", "Southwest Gas");
+var vEParams = aa.util.newHashtable();
 
 addParameter(vEParams,"$$RECORD ID$$",capIDString);
 //addParameter(vEParams,"$$CLEARANCE TO$$","Southwest Gas");
