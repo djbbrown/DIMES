@@ -9,3 +9,4 @@ include("PMT_FloodControlPermit");
 include("PMT_WaterMeterAdapterFee");
 // add by Brian O'Dell (Mesa)
 include("PMT_MobileHomeUtilityServiceFeeGasMeter");
+include("PMT_MobileHomeUtilityServiceFeeGasServiceOther");
