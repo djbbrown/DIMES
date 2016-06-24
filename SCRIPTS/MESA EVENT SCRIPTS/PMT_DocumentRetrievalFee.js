@@ -26,7 +26,7 @@ if (purpose == "Commercial Purposes Only")
 }
 else
 {
-  if (feeExists)
+  if (exists)
   {
     // syntax: removeFee(fcode,fperiod)
     removeFee("DOC050","FINAL");
