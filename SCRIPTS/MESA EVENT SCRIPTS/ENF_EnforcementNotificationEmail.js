@@ -1,4 +1,4 @@
-﻿/*===================================================================
+﻿//*===================================================================
 // Script Number: 36
 // Script Name: ENF_EnforcementNotificationEmail.js 
 // Script Developer: Brian O'Dell
@@ -11,12 +11,12 @@
 //      ASA:Enforcement/Case/NA/NA
 //
 // This script calls the notification template "ENF RECORD OPENED"
-/*==================================================================*/
+//*==================================================================*/
 
 
 var fromEmail = "noreply@MesaAz.gov";
 var vEParams = aa.util.newHashtable(); 
-var theAddress = var addressA = aa.address.getAddressByCapId(capId).getOutput();	
+var theAddress = aa.address.getAddressByCapId(capId).getOutput();	
 
 addParameter(vEParams,"$$RECORD ID$$",capIDString);
 addParameter(vEParams,"$$THE ADDRESS$$",theAddress);
