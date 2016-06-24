@@ -4,5 +4,5 @@
 ==================================================================*/
 
 // added by Brian O'Dell (Mesa)
-include("PMT_DocumentRetrievalFee.js");
+include("PMT_DocumentRetrievalFee");
 
