@@ -5,6 +5,5 @@
 include("PMT_TotalSqFt");
 include("PMT_assessFeeRDIF140OrRDIF150");
 include("PMT_WaterMeterAdapterFee");
-
 // add by Brian O'Dell (Mesa)
 include("PMT_MobileHomeUtilityServiceFeeGasMeter");
