@@ -17,7 +17,7 @@
 
 
 var purpose = AInfo["Documents Requested For"];
-var feeExists = feeExists("DOC050");
+var exists = feeExists("DOC050");
 
 if (purpose == "Commercial Purposes Only")
 {
