@@ -15,11 +15,12 @@
 
 var fromEmail = "noreply@MesaAz.gov";
 var vEParams = aa.util.newHashtable(); 
-var theAddress = aa.address.getAddressByCapId(capId).getOutput();	
+var theAddress = aa.address.getAddressByCapId(capId).getOutput();
+var emailAddress = "Brian.ODell@mesaaz.gov";
 
 addParameter(vEParams,"$$RECORD ID$$",capIDString);
 addParameter(vEParams,"$$THE ADDRESS$$",theAddress);
-emailAddress = "Brian.ODell@mesaaz.gov";
+//emailAddress = "Brian.ODell@mesaaz.gov";
 //emailAddress = "Lauren.Lupica@MesaAZ.gov";
 //emailAddress = "customerinfobillingops@mesaaz.gov";
 sendNotification(fromEmail, emailAddress, "", "ENF RECORD OPENED", vEParams, null, capId);
