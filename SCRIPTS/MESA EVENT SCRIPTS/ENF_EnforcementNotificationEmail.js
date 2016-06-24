@@ -13,6 +13,7 @@
 // This script calls the notification template "ENF RECORD OPENED"
 /*==================================================================*/
 
+
 var fromEmail = "noreply@MesaAz.gov";
 var vEParams = aa.util.newHashtable(); 
 var theAddress = var addressA = aa.address.getAddressByCapId(capId).getOutput();	
