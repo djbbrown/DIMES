@@ -10,7 +10,7 @@
 // Script Parents:
 //      ASA:Enforcement/Case/NA/NA
 //
-// This script calls the notification template "ENF RECORD OPENED"
+// This script calls the notification template ENF RECORD OPENED
 //==================================================================*/
 
 var fromEmail = "noreply@MesaAz.gov";
