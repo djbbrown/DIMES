@@ -39,6 +39,9 @@ try
       animalPoints += parseInt(tInfo[x]["Animal Points"]);
     }
   }
+
+  AInfo["Total Animal Points"] = animalPoints;
+
 }
 catch (err)
 {
