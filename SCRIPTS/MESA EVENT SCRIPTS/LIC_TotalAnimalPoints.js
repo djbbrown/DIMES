@@ -40,7 +40,7 @@ try
     }
   }
 
-  AInfo["Total Animal Points"] = animalPoints;
+  editAppSpecific("Total Animal Points", animalPoints);
 
 }
 catch (err)
