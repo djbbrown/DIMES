@@ -1,4 +1,4 @@
-﻿/*===================================================================
+﻿//*===================================================================
 // Script Number: 34
 // Script Name: LIC_TotalAnimalPoints.js 
 // Script Developer: Brian ODell
@@ -15,7 +15,7 @@
 //             ASA:Licenses/General/Livestock/Renewal
 //             ASIUA:Licenses/General/Livestock/Renewal
 // 
-/*==================================================================*/
+//==================================================================*/
 
 loadASITables();
 var tInfo = CURRENTANIMALINFO;
