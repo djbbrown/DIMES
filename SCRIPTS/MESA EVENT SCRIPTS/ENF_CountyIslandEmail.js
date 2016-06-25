@@ -4,7 +4,7 @@
 // Script Developer: Brian O'Dell
 // Script Agency: Mesa
 // Script Description: 
-//                  Send an email to the contact of type "Complainant" using the email template "ENF_COUNTY_ISLAND".
+//                  Send an email to the contact of type "Complainant" using the email template ENF_COUNTY_ISLAND
 //
 // Script Run Event: IRSA
 // Script Parents:
