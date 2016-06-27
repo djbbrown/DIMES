@@ -17,6 +17,7 @@
 //		ASIUA:Permits!Residential!NA!NA
 /*==================================================================*/
 
+
 try
 {
   loadASITables();
