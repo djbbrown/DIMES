@@ -21,8 +21,8 @@
 try
 {
   loadASITables();
-  var tInfo = CURRENTANIMALINFO;
-  var rowCount = CURRENTANIMALINFO.length;
+  var tInfo = OCCUPANCYINFO;
+  var rowCount = OCCUPANCYINFO.length;
   var totalSqFt = 0;
 
   if (tInfo == null)
