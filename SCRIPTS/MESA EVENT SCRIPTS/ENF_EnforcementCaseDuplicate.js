@@ -37,7 +37,7 @@ try {
 						// send notification to Complaintant
 						var contacts = getContactArray(), emailAddress = "";
 						for (contact in contacts){					
-							if (contacts[contact]["contactType"] == "Complainant"){
+							if (contacts[contact]["contactType"] == "Reporting Party"){
 								emailAddress = contacts[contact]["email"];
 								break;
 							}
