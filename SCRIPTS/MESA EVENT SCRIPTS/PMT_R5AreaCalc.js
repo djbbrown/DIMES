@@ -32,7 +32,18 @@ try
   }
   else
   {
-    totalSqFt = sumASITColumn(OCCUPANCYINFO, "Sq Ft");
+    // loop and sum
+    for (x=0;x<=(rowCount-1);x++)
+    {
+      if ((tInfo[x]["Occupancy Classification"] == "R-3 Single Family/Duplex Residence/Child Care 5 or Less/Congregate Living 15 or Less") ||
+         (tInfo[x]["Occupancy Classification"] == "R-5 Livable"))
+      {
+        totalSqFt += parseInt(tInfo[x]["Sq Ft"]);
+      }
+    }
+
+    // in case they change the logic
+    //totalSqFt = sumASITColumn(OCCUPANCYINFO, "Sq Ft");
   }
 
   editAppSpecific("R-5 Area", totalSqFt);
