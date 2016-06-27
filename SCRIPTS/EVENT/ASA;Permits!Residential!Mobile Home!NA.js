@@ -13,3 +13,4 @@ include("PMT_MobileHomeUtilityServiceFeeGasServiceOther");
 include("PMT_MobileHomeFireImpactFee");
 include("PMT_MobileHomeStormwaterImpactFee");
 include("PMT_R5AreaCalc");
+include("PMT_R5NAreaCalc");

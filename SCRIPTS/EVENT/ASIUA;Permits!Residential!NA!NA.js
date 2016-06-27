@@ -7,3 +7,4 @@ include("PMT_PlanningNumbValidate");
 include("PMT_WaterMeterAdapterFee");
 // added by Brian O'Dell (Mesa)
 include("PMT_R5AreaCalc");
+include("PMT_R5NAreaCalc");
