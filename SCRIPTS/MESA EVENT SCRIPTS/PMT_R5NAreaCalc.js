@@ -1,14 +1,13 @@
 /*===================================================================
-// Script Number: 133
-// Script Name: PMT_R5AreaCalc.js
+// Script Number: 134
+// Script Name: PMT_R5NAreaCalc.js
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-//		When value of 
-//		“R-5 Single Family/Duplex Residence/Child Care 5 or Less/Congregate Living 15 or Less”
-//		or 
-//		“R-5 Livable” is chosen for ASIT field “Classification” in ASIT subgroup “Occupancy"
-//		Then auto-fill the ASI field “R-5 Area” with the sum of the ASIT “Sq Ft” fields.
+//		When value of “R-5N Non-Livable” is chosen for ASIT field 
+//		“Classification” in ASIT subgroup “Occupancy”
+//		then auto-fill the ASI field “R-5N Area” with the sum of 
+//		the ASIT “Sq Ft” fields.
 // Script Run Event: ASA / ASIUA
 // Script Parents:
 //		ASA:Permits!Residential!Mobile Home!NA
@@ -35,18 +34,17 @@ try
     // loop and sum
     for (x=0;x<=(rowCount-1);x++)
     {
-      if ((tInfo[x]["Occupancy Classification"] == "R-3 Single Family/Duplex Residence/Child Care 5 or Less/Congregate Living 15 or Less") ||
-         (tInfo[x]["Occupancy Classification"] == "R-5 Livable"))
+      if (tInfo[x]["Occupancy Classification"] == "R-5N Non-Livable")
       {
         totalSqFt += parseInt(tInfo[x]["Sq Ft"]);
       }
     }
 
-    // in case they change the logic
+    // in case they change the logic, this is more efficent
     //totalSqFt = sumASITColumn(OCCUPANCYINFO, "Sq Ft");
   }
 
-  editAppSpecific("R-5 Area", totalSqFt);
+  editAppSpecific("R-5N Area", totalSqFt);
 }
 catch (err)
 {
