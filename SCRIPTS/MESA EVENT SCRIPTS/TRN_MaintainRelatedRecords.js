@@ -13,7 +13,7 @@
 // 	TRA_ValidateUTL.js (Expression)
 // 	TRN_MaintainRelatedRecords.js (Script)
 // 	TTC_ASSOCIATED WORK.js (Eipression)
-/*==================================================================*/
+==================================================================*/
 
 var rowPermit = getAppSpecific("ROW Permit No.");
 var UtlPermit = getAppSpecific("UTL Permit No.");
