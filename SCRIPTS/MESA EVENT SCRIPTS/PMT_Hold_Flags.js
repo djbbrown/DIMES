@@ -1,9 +1,5 @@
     tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
-<<<<<<< HEAD
 	if (tagFieldArray && tagFieldArray.length > 0) {
-=======
-	if (tagField && tagField.length > 0) {
->>>>>>> branch 'master' of https://github.com/MesaDimes/Dimes
 	   for (tIndex in tagFieldArray) {
 			thisTag = tagFieldArray[tIndex];
 			switch (thisTag) {
