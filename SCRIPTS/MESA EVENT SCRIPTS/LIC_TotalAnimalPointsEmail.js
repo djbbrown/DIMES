@@ -1,14 +1,14 @@
 //*===================================================================
-// Script Number: 40
-// Script Name: ENF_CountyIslandEmail.js
+// Script Number: ???
+// Script Name: ENF_TotalAnimalPointsEmail.js
 // Script Developer: Brian O'Dell
 // Script Agency: Mesa
 // Script Description: 
-//                  Send an email to the contact of type "Complainant" using the email template ENF_COUNTY_ISLAND
+//                  This script is for testing/training purposes only
 //
 // Script Run Event: ASA
 // Script Parents:
-//  		ASA:Enforcement/Case/NA/NA  -- this is just for testing
+//  		ASIUA:Licenses/General/Livestock/Application
 //
 //==================================================================*
 
