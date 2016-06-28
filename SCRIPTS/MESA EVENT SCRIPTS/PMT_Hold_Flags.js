@@ -1,5 +1,5 @@
     tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
-	if (tagField && tagField.length > 0) {
+	if (tagFieldArray && tagFieldArray.length > 0) {
 	   for (tIndex in tagFieldArray) {
 			thisTag = tagFieldArray[tIndex];
 			switch (thisTag) {
