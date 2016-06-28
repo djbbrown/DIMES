@@ -1,8 +1,10 @@
     tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+    
 	if (tagFieldArray && tagFieldArray.length > 0) {
 	   for (tIndex in tagFieldArray) {
 			thisTag = tagFieldArray[tIndex];
-			switch (thisTag) {
+			logDebug(thisTag);
+			switch ("" + thisTag) {
 				case "LGAC": addStdCondition("Building Permit", "Large Acreage - NOI"); addStdCondition("Building Permit", "Large Acreage - Dust Control"); 
 					break;
 				case "SMAC":  addStdCondition("Building Permit", "Small Acreage - Dust Control");
