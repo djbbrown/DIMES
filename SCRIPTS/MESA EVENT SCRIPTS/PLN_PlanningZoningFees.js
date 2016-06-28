@@ -12,6 +12,7 @@
 // Script Parents:
 //            ASA;Planning!Planning and Zoning!NA!NA 
 /*==================================================================*/
+showDebug = true;
 try{
 	// get parcel acreage
 	var acres = 0;
