@@ -12,7 +12,7 @@
 // Script Parents:
 //            ASA;Planning!Planning and Zoning!NA!NA 
 /*==================================================================*/
-showDebug = true;
+showDebug = false;
 try{
 	// get parcel acreage
 	var acres = 0;
@@ -30,7 +30,7 @@ try{
 	var areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
 	for (i in areas) {
 		//logDebug("Area " + areas[i]["APN"] + ": " + (areas[i]["SHAPE_Area"] / 43560));
-		acres += (areas[i] / 43560);
+		acres += (areas[i]["SHAPE_Area"] / 43560);
 	}
 	acres = Math.ceil(acres);
 	logDebug("Total acres: " + acres);
