@@ -6,9 +6,9 @@
 // Script Description: Update 'Follow-Up Inspection' workflow task when three 'Follow-Up Inspection' inspections have been resulted with "In Violation"
 // Script Run Event: IRSA
 // Script Parents:
-//  IRSA;Enforcement!Case!CodeCompliance!NA
-//  IRSA;Enforcement!Case!CodeRentalIssue!NA
-//  IRSA;Enforcement!Case!CodeSignIssue!NA
+//  IRSA;Enforcement!Case!Code Compliance!NA
+//  IRSA;Enforcement!Case!Code Rental Issue!NA
+//  IRSA;Enforcement!Case!Code Sign Issue!NA
 //  IRSA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
 
@@ -17,15 +17,15 @@ var showMessage = true;
 
 if (inspType === "Follow-Up Inspection") {
 
-    //IRSA;Enforcement!Case!CodeCompliance!NA
-    //IRSA;Enforcement!Case!CodeRentalIssue!NA
-    //IRSA;Enforcement!Case!CodeSignIssue!NA
+    //IRSA;Enforcement!Case!Code Compliance!NA
+    //IRSA;Enforcement!Case!Code Rental Issue!NA
+    //IRSA;Enforcement!Case!Code Sign Issue!NA
     if (
         matches("" + appTypeArray[0], "Enforcement")
             &&
         matches("" + appTypeArray[1], "Case")
             &&
-        matches("" + appTypeArray[2], "CodeCompliance", "Code Rental Issue", "Code Sign Issue")
+        matches("" + appTypeArray[2], "Code Compliance", "Code Rental Issue", "Code Sign Issue")
             &&
         matches("" + appTypeArray[3], "NA")
     ) {
