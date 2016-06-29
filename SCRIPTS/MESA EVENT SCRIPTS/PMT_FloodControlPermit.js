@@ -13,7 +13,7 @@
 //		ASA;Permits!Residential!Mobile Home!NA
 //		ASA;Permits!Sign!NA!NA
 /*==================================================================*/
-showDebug = true;
+showDebug = false;
 // check for presence in flood plain
 var floodPlainId = getGISInfo("Accela/Accela_Base", "Flood Plain Area", "Accela_TAGS.OBJECTID");
 if (!!floodPlainId) {
