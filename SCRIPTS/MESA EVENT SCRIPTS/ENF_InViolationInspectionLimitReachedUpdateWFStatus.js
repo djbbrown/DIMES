@@ -14,8 +14,8 @@
 
 var showDebug = true;
 var showMessage = true;
-
 logDebug("inspType:" + inspType);
+
 if (inspType === "Follow-Up Inspection") {
 
     //IRSA;Enforcement!Case!Code Compliance!NA
@@ -76,7 +76,7 @@ function DoInViolationInspectionUpdateWFStatusUpdate() {
 
         for (inspectionScriptModelIndex in inspectionScriptModels) {
             inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-            if ((inspectionScriptModel.getInspectionType().toUpperCase() === "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() === "IN VIOLATION")) {
+            if ((inspectionScriptModel.getInspectionType().toUpperCase() == "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() == "IN VIOLATION")) {
                 inViolationInspectionScriptModels.push(inspectionScriptModel);
             }
         }
