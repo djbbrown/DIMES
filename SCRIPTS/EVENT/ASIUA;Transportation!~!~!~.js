@@ -1,6 +1,5 @@
 /*===================================================================
 // Script Number: 
-// Script Name: ASA;Transportation!~!~!~.js
+// Script Name: ASIUA;Transportation!~!~!~.js
 ==================================================================*/
-include("TRA_SetApplicationDate");
 include("TRA_SetPermitExpirationDate");

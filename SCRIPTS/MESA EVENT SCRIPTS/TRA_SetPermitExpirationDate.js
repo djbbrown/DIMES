@@ -12,6 +12,7 @@
 // Script Run Event: ASA / ASIUA
 // Script Parents:
 //             ASA:Transportation/*/*/*
+//		ASIUA;Transportation/*/*/*
 // 
 //==================================================================*/
 
