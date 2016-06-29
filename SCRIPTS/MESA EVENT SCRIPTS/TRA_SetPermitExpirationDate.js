@@ -24,17 +24,20 @@ try
   var testDate = new Date()
   var x = 0;
 
-  for (x=0;x<rowCount;x++)
+  if (x > 0)
   {
-    testDate = new Date(tInfo[x]["Restriction End Date"]);
-
-    if (theDate < testDate)
+    for (x=0;x<rowCount;x++)
     {
-      theDate = new Date(tInfo[x]["Restriction End Date"]);
+      testDate = new Date(tInfo[x]["Restriction End Date"]);
+  
+      if (theDate < testDate)
+      {
+        theDate = new Date(tInfo[x]["Restriction End Date"]);
+      }
     }
-  }
 
-  editAppSpecific("Permit Expiration Date",jsDateToASIDate(theDate),capId);
+    editAppSpecific("Permit Expiration Date",jsDateToASIDate(theDate),capId);
+  }
 }
 catch (err)
 {
