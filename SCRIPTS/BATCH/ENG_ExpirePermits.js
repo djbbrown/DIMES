@@ -47,6 +47,9 @@ var debug = "";							// Debug String
 var br = "<BR>";						// Break Tag
 var timeExpired = false;
 var emailText = "";
+var startDate = new Date();
+var startTime = startDate.getTime();			// Start timer
+var sysDate = aa.date.getCurrentDate();
 
 var SCRIPT_VERSION = 3.0
 var emailText = "";
@@ -124,20 +127,17 @@ var batchJobName = "" + aa.env.getValue("batchJobName");
 |
 /------------------------------------------------------------------------------------------------------*/
 
-var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
-var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
-var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
-var appCategory = getParam("appCategory");	
-var asiField = getParam("asiField");							// {Meeting Date}
-var appStatus = getParam("appStatusStatus");
 
-// Required to run the delete, this must be entered in a parameter
-// and can be any user name that has access to the system.
-var delUser = getParam("User");
-var delPass = getParam("Password");
+var daySpan = getParam("daySpan");
+var lookAheadDays = getParam("lookAheadDays");
 
-// Age
-var olderAge = getParam("Age");
+var fromDate = dateAdd(null,parseInt(lookAheadDays));
+var toDate = dateAdd(null,parseInt(lookAheadDays)+parseInt(daySpan));
+var dFromDate = aa.date.parseDate(fromDate);
+var dToDate = aa.date.parseDate(toDate);
+	
+logDebug("Date Range -- fromDate: " + fromDate + ", toDate: " + toDate);
+
 
 /*----------------------------------------------------------------------------------------------------/
 |
@@ -145,21 +145,7 @@ var olderAge = getParam("Age");
 |-----------------------------------------------------------------------------------------------------*/
 
 /*
-//======================================================
-// The following are commented due to the fact that I'm not going to be wildcarding
-// the Group or Type, subtype is the first wildcards that I'd be using.
-//====================================================== 
-if (appGroup=="")
-	appGroup="*";
-if (appTypeType=="")
-	appTypeType="*";
-//*/
-// Resume wildcard replacements.
-if (appSubtype=="")
-	appSubtype="*";
-if (appCategory=="")
-	appCategory="*";
-var appType = appGroup+"/"+appTypeType+"/"+appSubtype+"/"+appCategory
+
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Main=Loop================>
@@ -187,10 +173,7 @@ function mainProcess() {
 	// Variables for counting
 	var capCount = 0;
 	var capProc = 0; // Actual records that were processed
-	var capSkipPSD = 0; // records skipped due to not having "Pre-Submittal Date"
-	var capSkipAge = 0; // records skipped due to not being older than 2 years.
-	var capSkipNoDoc = 0; // records skipped due to not having a document attached.
-	var docRemoved = 0; // total documents removed.
+
 	
 	//======================================================
 	// A batch job to retrieve all record with an ASI field "Permit Expiration Date"
@@ -200,70 +183,57 @@ function mainProcess() {
 	//		Engineering/ * / * / *
 	//		Permits/ * / * / * .. excluding Permits/Commercial/Annual Facilities/NA
 	//======================================================
-	var fromDate = '01/01/2010'; 
-	var toDate =  '01/01/2018';
-	var fDate = aa.date.parseDate(fromDate);
-	var tDate = aa.date.parseDate(toDate);
-	var caps = aa.cap.getCapIDsByAppSpecificInfoDateRange("PERMIT DATES","Permit Expiration Date",fDate,tDate).getOutput();
+	var capResult = aa.cap.getCapIDsByAppSpecificInfoDateRange("PERMIT DATES","Permit Expiration Date",dFromDate,dToDate);
 
-	// Now process the list returned above
-	for (z in caps) {
-		capId = caps[z].getCapID(); // Get the CAP ID
-		// Turn the capId into a Cap Type
-		cap = aa.cap.getCap(capId).getOutput();
-		/*
-		for(k in cap){
-			aa.print(cap[k]);
+	if (capResult.getSuccess()) {
+		myCaps = capResult.getOutput();
+	}
+	else { 
+		logDebug("ERROR: Getting records, reason is: " + capResult.getErrorMessage()) ;
+		return false
+	} 
+
+	for (myCapsXX in myCaps) {
+		if (elapsed() > maxSeconds) { // only continue if time hasn't expired
+			logDebug("WARNING","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.") ;
+			timeExpired = true ;
+			break; 
 		}
-		//*/
+
+     	var thisCapId = myCaps[myCapsXX].getCapID();
+   		capId = getCapIdBATCH(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3()); 
+
+		if (!capId) {
+			logDebug("Could not get Cap ID");
+			continue;
+		}
+		altId = capId.getCustomID();
+     	capCount++;
+		cap = aa.cap.getCap(capId).getOutput();		
 		appTypeResult = cap.getCapType();	
-		appTypeString = appTypeResult.toString();
-		// Exclude the extra record type that we don't want.
-		var modelInfo = aa.cap.getCapTypeModelByCapID(capId).getOutput();
-		var appTypeA = appTypeString.split("/");
-		if (appTypeString != "Permits/Commercial/Annual Facilities/NA"
-			&& (appTypeA[0] == "Permits" || appTypeA[0] == "Engineering")
-		) {
-			// Now continue to processing.
-			//aa.print(modelInfo);
-			aa.print(capId+"::"+(caps[z].getCustomID()));
-			// Now need to see which workflow items are active and deactivate them.
-			//  aa.print("===================================");
+		appTypeString = appTypeResult.toString();	
+		appTypeArray = appTypeString.split("/");
+
+		if (appTypeString != "Permits/Commercial/Annual Facilities/NA" && (appTypeArray[0] == "Permits" || appTypeArray[0] == "Engineering")) {
 			var tasks = aa.workflow.getTasks(capId).getOutput();
 			for (t in tasks) {
 				//aa.print(tasks[t]);
 				tName = tasks[t].getTaskDescription();
-				tStatus = tasks[t].getDisposition();
 				tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
-				tComment = tasks[t].getDispositionComment();
-				if (
-					tActive == 'Y'
-					//&& capId == 'REC15-00000-0001P'
-					&& caps[z].getCustomID() == 'PMT16-00035'
-				) {
-					aa.print(tName+" is active and needs to be deactivated");
-					// The following seems to be updating the workflow, however it's not closing it...
-					// seems to be working correctly.
-					closeTask(tName,"Expired","Expired set by script","");
-					//cap[k].setCapStatus("Expired");
-					
-					//setCapStatus("Expired");
-					// Close the record
-					updateAppStatus("Expired","Closed by Script");
-					
-					tasks[t].setActiveFlag('N');
-					closeCap("admin",capId);
+				if (tActive == 'Y') {
+					updateTask(tName, "Expired", "set by batch", "");
+					setTask(tName, 'N', 'Y');
 				}
+				closeWorkflow();
+				updateAppStatus("Expired", "set by batch");
+				capProc++;
 			}		
 		}
+		else { continue;}
 	}
 	
 	logDebug("Total "+capCount+" records considered");
 	logDebug("Processed " +capProc +" Records");
-	logDebug("Skipped " + capSkipAge + " Records not yet old enough");
-	logDebug("Skipped " + capSkipPSD + " Records not yet having Pre-Submittal Meeting date set");
-	logDebug("Sikpped " + capSkipNoDoc + " Records that had no documents attached");
-	logDebug("Total "+docRemoved+" documents removed");
 	logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
 }	
 
@@ -276,3 +246,17 @@ function mainProcess() {
 /*------------------------------------------------------------------------------------------------------/
 | <===========Internal Functions and Classes (Used by this script)
 /------------------------------------------------------------------------------------------------------*/
+function getCapIdBATCH(s_id1, s_id2, s_id3)  {
+
+    var s_capResult = aa.cap.getCapID(s_id1, s_id2, s_id3);
+    if(s_capResult.getSuccess())
+      return s_capResult.getOutput();
+    else
+    {
+      logMessage("**ERROR: Failed to get capId: " + s_capResult.getErrorMessage());
+      return null;
+    }
+  }
+
+
+

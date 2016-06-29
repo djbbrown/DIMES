@@ -1,4 +1,4 @@
-/*===================================================================
+﻿/*===================================================================
 // Script Number: 102
 // Script Name: PMT_GasClearanceEmail.js 
 // Script Developer: Raminder Gill
@@ -14,6 +14,7 @@
 //
 // This script calls the notification template "GAS CLEARANCE"
 /*==================================================================*/
+
 
 var fromEmail = "noreply@MesaAz.gov";
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req") {

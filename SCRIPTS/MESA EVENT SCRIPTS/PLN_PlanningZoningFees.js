@@ -12,27 +12,39 @@
 // Script Parents:
 //            ASA;Planning!Planning and Zoning!NA!NA 
 /*==================================================================*/
-
-// get parcel acreage
-var acres = 0;
-var capParcelResult = aa.parcel.getParcelandAttribute(capId,null);
-if (capParcelResult.getSuccess())
-{
-	var Parcels = capParcelResult.getOutput().toArray();
-	for (zz in Parcels)
-	{
-		acres += Parcels[zz].getParcelArea();
+showDebug = false;
+try{
+	// get parcel acreage
+	var acres = 0;
+	//var capParcelResult = aa.parcel.getParcelandAttribute(capId,null);
+	//if (capParcelResult.getSuccess())
+	//{
+	//	var Parcels = capParcelResult.getOutput().toArray();
+	//	for (zz in Parcels)
+	//	{
+	//		acres += Parcels[zz].getParcelArea();
+	//	}
+	//}	
+	//else
+	//	logDebug("Error: Unable to access parcels");
+	var areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
+	for (i in areas) {
+		//logDebug("Area " + areas[i]["APN"] + ": " + (areas[i]["SHAPE_Area"] / 43560));
+		acres += (areas[i]["SHAPE_Area"] / 43560);
 	}
-}	
-else
-	logDebug("Error: Unable to access parcels");
-
-acres = Math.ceil(acres);
-
-if (getGISInfo("Planning/Zoning", "Zoning Districts", "DSCR") == "DC - Downtown Core"){
-	// inside downtown
-	addFee("PZ040","PLN_PZ","FINAL",acres,"N");
-} else {
-	// outside downtown
-	addFee("PZ030","PLN_PZ","FINAL",acres,"N");	
+	acres = Math.ceil(acres);
+	logDebug("Total acres: " + acres);
+	var zoning = getGISInfo("Planning/Zoning", "Zoning Districts", "DSCR");
+	if (!zoning) logDebug("Zoning data not found for parcel.");
+	else {
+		if (zoning == "DC - Downtown Core"){
+			// inside downtown
+			addFee("PZ040","PLN_PZ","FINAL",acres,"N");
+		} else {
+			// outside downtown
+			addFee("PZ030","PLN_PZ","FINAL",acres,"N");	
+		} 
+	}
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
 }
