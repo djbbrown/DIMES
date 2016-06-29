@@ -1,18 +1,4 @@
-﻿/*===================================================================*/
-// Script Number: 021
-// Script Name:ENF_InViolationInspectionUpdateWFStatus.js
-// Script Developer: N. Victor Staggs
-// Script Agency: Woolpert, Inc.
-// Script Description: Update 'Follow-Up Inspection' workflow task when three 'Follow-Up Inspection' inspections have been resulted with "In Violation"
-// Script Run Event: IRSA
-// Script Parents:
-//  IRSA;Enforcement!Case!CodeCompliance!NA
-//  IRSA;Enforcement!Case!CodeRentalIssue!NA
-//  IRSA;Enforcement!Case!CodeSignIssue!NA
-//  IRSA;Enforcement!Environmental!Complaint!~
-/*==================================================================*/
-
-//if (inspType === "Follow-Up Inspection") {
+﻿//if (inspType === "Follow-Up Inspection") {
 
 //    //IRSA;Enforcement!Case!CodeCompliance!NA
 //    //IRSA;Enforcement!Case!CodeRentalIssue!NA
