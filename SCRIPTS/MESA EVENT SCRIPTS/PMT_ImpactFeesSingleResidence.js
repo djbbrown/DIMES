@@ -17,7 +17,7 @@
 //            ASA;Residential!NA!NA
 //            ASIUA;Residential!NA!NA
 /*==================================================================*/
-showDebug = true;
+//showDebug = true;
 try {
 	var classification = AInfo["Classification"];
 	if (!classification) {
