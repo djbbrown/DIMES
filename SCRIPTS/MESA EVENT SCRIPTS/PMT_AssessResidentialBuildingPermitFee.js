@@ -25,7 +25,7 @@ if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus ==
 	if(feeAmount > 0){
 		//addFee(fcode, fsched, fperiod, fqty, finvoice)
 		aa.print("Adding fee: "+feeAmount);
-		addFee("RDIF170","PMT_RDIF", "FINAL",  feeAmount, "Y");
+		addFee("RDIF170","PMT_ONL", "FINAL",  feeAmount, "N");
 	}
 }
 else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
@@ -87,11 +87,11 @@ else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && w
 		// Calculate the difference
 		feeAmount = feeAmount - prePay;
 		aa.print("Adding fee: "+feeAmount);
-		addFee("PMT_BLD_RES","RES060", "FINAL",feeAmount, "N");
+		addFee("RES060","PMT_RES", "FINAL",feeAmount, "N");
 	}
 	else if (feeAmount > 0 && appTypeArray[2]=='Mobile Home'){
 		aa.print("Adding fee: "+feeAmount);
-		addFee("PMT_MOBILE_HOME","MH180", "FINAL",feeAmount, "N");
+		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAmount, "N");
 	}
 	//*/
 }
