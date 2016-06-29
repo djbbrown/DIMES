@@ -1,93 +1,107 @@
-//if (inspType === "Follow-Up Inspection") {
+/*===================================================================*/
+// Script Number: 021
+// Script Name:ENF_InViolationInspectionUpdateWFStatus.js
+// Script Developer: N. Victor Staggs
+// Script Agency: Woolpert, Inc.
+// Script Description: Update 'Follow-Up Inspection' workflow task when three 'Follow-Up Inspection' inspections have been resulted with "In Violation"
+// Script Run Event: IRSA
+// Script Parents:
+//  IRSA;Enforcement!Case!CodeCompliance!NA
+//  IRSA;Enforcement!Case!CodeRentalIssue!NA
+//  IRSA;Enforcement!Case!CodeSignIssue!NA
+//  IRSA;Enforcement!Environmental!Complaint!~
+/*==================================================================*/
 
-//    //IRSA;Enforcement!Case!CodeCompliance!NA
-//    //IRSA;Enforcement!Case!CodeRentalIssue!NA
-//    //IRSA;Enforcement!Case!CodeSignIssue!NA
-//    if (
-//        matches("" + appTypeArray[0], "Enforcement")
-//            &&
-//        matches("" + appTypeArray[1], "Case")
-//            &&
-//        matches("" + appTypeArray[2], "CodeCompliance", "Code Rental Issue", "Code Sign Issue")
-//            &&
-//        matches("" + appTypeArray[3], "NA")
-//    ) {
-//        DoInViolationInspectionUpdateWFStatusUpdate();
-//    }
+if (inspType === "Follow-Up Inspection") {
 
-//    //IRSA;Enforcement!Environmental!Complaint!~
-//    if (
-//        matches("" + appTypeArray[0], "Enforcement")
-//            &&
-//        matches("" + appTypeArray[1], "Environmental")
-//            &&
-//        matches("" + appTypeArray[2], "Complaint")
-//    ) {
-//        DoInViolationInspectionUpdateWFStatusUpdate();
-//    }
-//}
+    //IRSA;Enforcement!Case!CodeCompliance!NA
+    //IRSA;Enforcement!Case!CodeRentalIssue!NA
+    //IRSA;Enforcement!Case!CodeSignIssue!NA
+    if (
+        matches("" + appTypeArray[0], "Enforcement")
+            &&
+        matches("" + appTypeArray[1], "Case")
+            &&
+        matches("" + appTypeArray[2], "CodeCompliance", "Code Rental Issue", "Code Sign Issue")
+            &&
+        matches("" + appTypeArray[3], "NA")
+    ) {
+        DoInViolationInspectionUpdateWFStatusUpdate();
+    }
 
-//function DoInViolationInspectionUpdateWFStatusUpdate() {
-//    logDebug("Enter DoInViolationInspectionUpdateWFStatusUpdate()");
+    //IRSA;Enforcement!Environmental!Complaint!~
+    if (
+        matches("" + appTypeArray[0], "Enforcement")
+            &&
+        matches("" + appTypeArray[1], "Environmental")
+            &&
+        matches("" + appTypeArray[2], "Complaint")
+    ) {
+        DoInViolationInspectionUpdateWFStatusUpdate();
+    }
+}
 
-//    logDebug("capId: " + capId);
+function DoInViolationInspectionUpdateWFStatusUpdate() {
+    logDebug("Enter DoInViolationInspectionUpdateWFStatusUpdate()");
 
-//    var closeTaskName = "Follow-Up Inspection";
-//    logDebug("closeTaskName: '" + closeTaskName + "'");
+    logDebug("capId: " + capId);
 
-//    var closeTaskActive = isTaskActive(closeTaskName);
-//    logDebug("closeTaskActive: " + closeTaskActive);
+    var closeTaskName = "Follow-Up Inspection";
+    logDebug("closeTaskName: '" + closeTaskName + "'");
 
-//    var closeTaskStatus = "Citation Issued";
-//    logDebug("closeTaskStatus: " + closeTaskStatus);
+    var closeTaskActive = isTaskActive(closeTaskName);
+    logDebug("closeTaskActive: " + closeTaskActive);
 
-//    var activateTaskName = "Citation Inspections";
-//    logDebug("activateTaskName: '" + activateTaskName + "'");
+    var closeTaskStatus = "Citation Issued";
+    logDebug("closeTaskStatus: " + closeTaskStatus);
 
-//    var activateTaskActive = isTaskActive(activateTaskName);
-//    logDebug("activateTaskActive: " + activateTaskActive);
+    var activateTaskName = "Citation Inspections";
+    logDebug("activateTaskName: '" + activateTaskName + "'");
 
-//    var inViolationInspectionScriptModels = [];
+    var activateTaskActive = isTaskActive(activateTaskName);
+    logDebug("activateTaskActive: " + activateTaskActive);
 
-//    var getInspectionsResult = aa.inspection.getInspections(capId);
+    var inViolationInspectionScriptModels = [];
 
-//    if (getInspectionsResult.getSuccess()) {
+    var getInspectionsResult = aa.inspection.getInspections(capId);
 
-//        var inspectionScriptModels = getInspectionsResult.getOutput();
-//        var inspectionScriptModel = null;
+    if (getInspectionsResult.getSuccess()) {
 
-//        for (inspectionScriptModelIndex in inspectionScriptModels) {
-//            inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-//            if ((inspectionScriptModel.getInspectionType().toUpperCase() === "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() === "IN VIOLATION")) {
-//                inViolationInspectionScriptModels.push(inspectionScriptModel);
-//            }
-//        }
+        var inspectionScriptModels = getInspectionsResult.getOutput();
+        var inspectionScriptModel = null;
 
-//        logDebug("inViolationInspectionScriptModels.length:" + inViolationInspectionScriptModels.length);
+        for (inspectionScriptModelIndex in inspectionScriptModels) {
+            inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
+            if ((inspectionScriptModel.getInspectionType().toUpperCase() === "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() === "IN VIOLATION")) {
+                inViolationInspectionScriptModels.push(inspectionScriptModel);
+            }
+        }
 
-//        if (inViolationInspectionScriptModels.length >= 3) {
+        logDebug("inViolationInspectionScriptModels.length:" + inViolationInspectionScriptModels.length);
 
-//            logDebug("'In Violation' Inspection threshold reached");
+        if (inViolationInspectionScriptModels.length >= 3) {
 
-//            if (!isTaskActive(closeTaskName)) {
-//                logDebug("'" + closeTaskName + "' workflow task is not active.");
-//            } else {
-//                logDebug("'" + closeTaskName + "' workflow task is active.");
+            logDebug("'In Violation' Inspection threshold reached");
 
-//                logDebug("Begin calling closeTask()");
-//                closeTask(closeTaskName, closeTaskStatus, "Closed by Script", "Closed by Script");
-//                logDebug("End calling closeTask()");
+            if (!isTaskActive(closeTaskName)) {
+                logDebug("'" + closeTaskName + "' workflow task is not active.");
+            } else {
+                logDebug("'" + closeTaskName + "' workflow task is active.");
 
-//                logDebug("Begin calling activateTask()");
-//                activateTask(activateTaskName);
-//                logDebug("End calling activateTask()");
+                logDebug("Begin calling closeTask()");
+                closeTask(closeTaskName, closeTaskStatus, "Closed by Script", "Closed by Script");
+                logDebug("End calling closeTask()");
 
-//                if (isTaskActive(activateTaskName)) {
-//                    logDebug("'" + activateTaskName + "' workflow task is active.");
-//                }
-//            }
-//        }
-//    }
+                logDebug("Begin calling activateTask()");
+                activateTask(activateTaskName);
+                logDebug("End calling activateTask()");
 
-//    logDebug("Exit DoInViolationInspectionUpdateWFStatusUpdate()");
-//}
+                if (isTaskActive(activateTaskName)) {
+                    logDebug("'" + activateTaskName + "' workflow task is active.");
+                }
+            }
+        }
+    }
+
+    logDebug("Exit DoInViolationInspectionUpdateWFStatusUpdate()");
+}
