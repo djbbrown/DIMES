@@ -104,4 +104,3 @@ function DoInViolationInspectionUpdateWFStatusUpdate() {
 
     logDebug("Exit DoInViolationInspectionUpdateWFStatusUpdate()");
 }
-
