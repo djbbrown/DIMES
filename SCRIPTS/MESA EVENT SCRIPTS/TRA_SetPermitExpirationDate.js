@@ -22,10 +22,10 @@ try
   var tInfo = DURATIONINFORMATION;
   var rowCount = DURATIONINFORMATION.length;
   var theDate = new Date("01/01/1990");
-  var testDate = new Date()
+  var testDate = new Date();
   var x = 0;
 
-  if (x > 0)
+  if (rowCount > 0)
   {
     for (x=0;x<rowCount;x++)
     {
