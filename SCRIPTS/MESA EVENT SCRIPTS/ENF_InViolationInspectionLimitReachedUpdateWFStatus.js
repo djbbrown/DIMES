@@ -68,9 +68,10 @@ function DoInViolationInspectionUpdateWFStatusUpdate() {
     if (getInspectionsResult.getSuccess()) {
 
         var inspectionScriptModels = getInspectionsResult.getOutput();
+        var inspectionScriptModel = null;
 
         for (inspectionScriptModelIndex in inspectionScriptModels) {
-            var inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
+            inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
             if ((inspectionScriptModel.getInspectionType().toUpperCase() === "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() === "IN VIOLATION")) {
                 inViolationInspectionScriptModels.push(inspectionScriptModel);
             }
@@ -88,7 +89,7 @@ function DoInViolationInspectionUpdateWFStatusUpdate() {
                 logDebug("'" + closeTaskName + "' workflow task is active.");
 
                 logDebug("Begin calling closeTask()");
-                closeTask(closeTaskName, closeTaskStatus, "Closed by Script", "Closed by Script")
+                closeTask(closeTaskName, closeTaskStatus, "Closed by Script", "Closed by Script");
                 logDebug("End calling closeTask()");
 
                 logDebug("Begin calling activateTask()");
