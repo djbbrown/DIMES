@@ -12,34 +12,34 @@
 //  IRSA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
 
-if (inspType === "Follow-Up Inspection") {
+//if (inspType === "Follow-Up Inspection") {
 
-    //IRSA;Enforcement!Case!CodeCompliance!NA
-    //IRSA;Enforcement!Case!CodeRentalIssue!NA
-    //IRSA;Enforcement!Case!CodeSignIssue!NA
-    if (
-        matches("" + appTypeArray[0], "Enforcement")
-            &&
-        matches("" + appTypeArray[1], "Case")
-            &&
-        matches("" + appTypeArray[2], "CodeCompliance", "Code Rental Issue", "Code Sign Issue")
-            &&
-        matches("" + appTypeArray[3], "NA")
-    ) {
-        DoInViolationInspectionUpdateWFStatusUpdate();
-    }
+//    //IRSA;Enforcement!Case!CodeCompliance!NA
+//    //IRSA;Enforcement!Case!CodeRentalIssue!NA
+//    //IRSA;Enforcement!Case!CodeSignIssue!NA
+//    if (
+//        matches("" + appTypeArray[0], "Enforcement")
+//            &&
+//        matches("" + appTypeArray[1], "Case")
+//            &&
+//        matches("" + appTypeArray[2], "CodeCompliance", "Code Rental Issue", "Code Sign Issue")
+//            &&
+//        matches("" + appTypeArray[3], "NA")
+//    ) {
+//        DoInViolationInspectionUpdateWFStatusUpdate();
+//    }
 
-    //IRSA;Enforcement!Environmental!Complaint!~
-    if (
-        matches("" + appTypeArray[0], "Enforcement")
-            &&
-        matches("" + appTypeArray[1], "Environmental")
-            &&
-        matches("" + appTypeArray[2], "Complaint")
-    ) {
-        DoInViolationInspectionUpdateWFStatusUpdate();
-    }
-}
+//    //IRSA;Enforcement!Environmental!Complaint!~
+//    if (
+//        matches("" + appTypeArray[0], "Enforcement")
+//            &&
+//        matches("" + appTypeArray[1], "Environmental")
+//            &&
+//        matches("" + appTypeArray[2], "Complaint")
+//    ) {
+//        DoInViolationInspectionUpdateWFStatusUpdate();
+//    }
+//}
 
 //function DoInViolationInspectionUpdateWFStatusUpdate() {
 //    logDebug("Enter DoInViolationInspectionUpdateWFStatusUpdate()");
