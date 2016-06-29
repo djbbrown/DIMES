@@ -26,7 +26,7 @@ if (inspType === "Follow-Up Inspection") {
             &&
         matches("" + appTypeArray[3], "NA")
     ) {
-        DoInViolationInspectionUpdateWFStatusUpdate();
+        DoWFStatusUpdate();
     }
 
     //IRSA;Enforcement!Environmental!Complaint!~
@@ -37,12 +37,12 @@ if (inspType === "Follow-Up Inspection") {
             &&
         matches("" + appTypeArray[2], "Complaint")
     ) {
-        DoInViolationInspectionUpdateWFStatusUpdate();
+        DoWFStatusUpdate();
     }
 }
 
-function DoInViolationInspectionUpdateWFStatusUpdate() {
-    logDebug("Enter DoInViolationInspectionUpdateWFStatusUpdate()");
+function DoWFStatusUpdate() {
+    logDebug("Enter DoWFStatusUpdate()");
 
     logDebug("capId: " + capId);
 
@@ -102,5 +102,5 @@ function DoInViolationInspectionUpdateWFStatusUpdate() {
         }
     }
 
-    logDebug("Exit DoInViolationInspectionUpdateWFStatusUpdate()");
+    logDebug("Exit DoWFStatusUpdate()");
 }
