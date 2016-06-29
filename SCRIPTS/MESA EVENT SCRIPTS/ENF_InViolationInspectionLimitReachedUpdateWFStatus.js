@@ -12,37 +12,41 @@
 //  IRSA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
 
-var showDebug = true;
-var showMessage = true;
-logDebug("inspType:" + inspType);
+try {
+    var showDebug = true;
+    var showMessage = true;
+    logDebug("inspType:" + inspType);
 
-if (inspType === "Follow-Up Inspection") {
+    if (inspType === "Follow-Up Inspection") {
 
-    //IRSA;Enforcement!Case!Code Compliance!NA
-    //IRSA;Enforcement!Case!Code Rental Issue!NA
-    //IRSA;Enforcement!Case!Code Sign Issue!NA
-    if (
-        matches("" + appTypeArray[0], "Enforcement")
-            &&
-        matches("" + appTypeArray[1], "Case")
-            &&
-        matches("" + appTypeArray[2], "Code Compliance", "Code Rental Issue", "Code Sign Issue")
-            &&
-        matches("" + appTypeArray[3], "NA")
-    ) {
-        DoInViolationInspectionUpdateWFStatusUpdate();
+        //IRSA;Enforcement!Case!Code Compliance!NA
+        //IRSA;Enforcement!Case!Code Rental Issue!NA
+        //IRSA;Enforcement!Case!Code Sign Issue!NA
+        if (
+            matches("" + appTypeArray[0], "Enforcement")
+                &&
+            matches("" + appTypeArray[1], "Case")
+                &&
+            matches("" + appTypeArray[2], "Code Compliance", "Code Rental Issue", "Code Sign Issue")
+                &&
+            matches("" + appTypeArray[3], "NA")
+        ) {
+            DoInViolationInspectionUpdateWFStatusUpdate();
+        }
+
+        //IRSA;Enforcement!Environmental!Complaint!~
+        if (
+            matches("" + appTypeArray[0], "Enforcement")
+                &&
+            matches("" + appTypeArray[1], "Environmental")
+                &&
+            matches("" + appTypeArray[2], "Complaint")
+        ) {
+            DoInViolationInspectionUpdateWFStatusUpdate();
+        }
     }
-
-    //IRSA;Enforcement!Environmental!Complaint!~
-    if (
-        matches("" + appTypeArray[0], "Enforcement")
-            &&
-        matches("" + appTypeArray[1], "Environmental")
-            &&
-        matches("" + appTypeArray[2], "Complaint")
-    ) {
-        DoInViolationInspectionUpdateWFStatusUpdate();
-    }
+} catch (exception) {
+    logDebug("JavaScript exception caught: " + exception.message);
 }
 
 function DoInViolationInspectionUpdateWFStatusUpdate() {
