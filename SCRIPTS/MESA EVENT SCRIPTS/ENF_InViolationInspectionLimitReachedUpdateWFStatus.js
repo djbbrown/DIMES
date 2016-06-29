@@ -14,7 +14,7 @@
 
 try {
     var showDebug = true;
-    var showMessage = true;
+    var showMessage = false;
     logDebug("inspType:" + inspType);
 
     if (inspType === "Follow-Up Inspection") {
