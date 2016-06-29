@@ -6,7 +6,7 @@
 // Script Description: Update 'Follow-Up Inspection' workflow task when three 'Follow-Up Inspection' inspections have been resulted with "In Violation"
 // Script Run Event: IRSA
 // Script Parents:
-//  IRSA;Enforcement!Case!Code Compliance!NA
+//  IRSA;Enforcement!Case!Code Compliance!NA (Enforcement/Case/Code Compliance/NA)
 //  IRSA;Enforcement!Case!Code Rental Issue!NA
 //  IRSA;Enforcement!Case!Code Sign Issue!NA
 //  IRSA;Enforcement!Environmental!Complaint!~
@@ -15,6 +15,7 @@
 var showDebug = true;
 var showMessage = true;
 
+logDebug("inspType:" + inspType);
 if (inspType === "Follow-Up Inspection") {
 
     //IRSA;Enforcement!Case!Code Compliance!NA
