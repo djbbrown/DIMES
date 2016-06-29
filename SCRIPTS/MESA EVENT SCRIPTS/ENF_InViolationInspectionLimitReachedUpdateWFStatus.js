@@ -14,15 +14,15 @@
 
 if (inspType == "Follow-Up Inspection") {
 
-    //	IRSA;Enforcement!Case!CodeCompliance!NA 
-    //	IRSA;Enforcement!Case!CodeRentalIssue!NA
-    //	IRSA;Enforcement!Case!CodeSignIssue!NA
+    //	IRSA;Enforcement!Case!Code Compliance!NA 
+    //	IRSA;Enforcement!Case!Code Rental Issue!NA
+    //	IRSA;Enforcement!Case!Code Sign Issue!NA
     if (
         matches("" + appTypeArray[0], "Enforcement")
             &&
         matches("" + appTypeArray[1], "Case")
             &&
-        matches("" + appTypeArray[2], "CodeCompliance", "CodeRentalIssue", "CodeSignIssue")
+        matches("" + appTypeArray[2], "CodeCompliance", "Code Rental Issue", "Code Sign Issue")
             &&
         matches("" + appTypeArray[3], "NA")
     ) {
