@@ -207,7 +207,9 @@ function mainProcess() {
 			logDebug("Could not get Cap ID");
 			continue;
 		}
+		
 		altId = capId.getCustomID();
+		logDebug("Processing: " + altId);
      	capCount++;
 		cap = aa.cap.getCap(capId).getOutput();		
 		appTypeResult = cap.getCapType();	

@@ -1,6 +1,6 @@
 /*===================================================================
-// Script Number: 117
-// Script Name: PMT_preventIssuanceWithBalanceDue.js
+// Script Number: 006
+// Script Name: LIC_IssueLicenseFeeBalanceCheck.js
 // Script Developer: Christopher Godwin
 // Script Agency: Woolpert
 // Script Description: Prevent the status of "Issued" being set on the workflow task "Permit Issuance" if there is a balance due or assessed fees on the record that have not been invoiced. 
@@ -19,6 +19,7 @@ if(
 					|| (wfTask == "City Clerk" && wfStatus == "Applicant Notified")
 					|| (wfTask == "License Application" && wfStatus == "Received")
 		)
+		&& appTypeArray[3] == 'Application'
 		&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
 ){
 	showMessage = true;
