@@ -12,6 +12,9 @@
 //  IRSA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
 
+var showDebug = true;
+var showMessage = true;
+
 if (inspType === "Follow-Up Inspection") {
 
     //IRSA;Enforcement!Case!CodeCompliance!NA
