@@ -1,4 +1,4 @@
-﻿/*===================================================================
+﻿/*===================================================================*/
 // Script Number: 021
 // Script Name:ENF_InViolationInspectionUpdateWFStatus.js
 // Script Developer: N. Victor Staggs
@@ -6,17 +6,17 @@
 // Script Description: Update 'Follow-Up Inspection' workflow task when three 'Follow-Up Inspection' inspections have been resulted with "In Violation"
 // Script Run Event: IRSA
 // Script Parents:
-//	IRSA;Enforcement!Case!CodeCompliance!NA 
-//	IRSA;Enforcement!Case!CodeRentalIssue!NA
-//	IRSA;Enforcement!Case!CodeSignIssue!NA
-//	IRSA;Enforcement!Environmental!Complaint!~ 
+//  IRSA;Enforcement!Case!CodeCompliance!NA
+//  IRSA;Enforcement!Case!CodeRentalIssue!NA
+//  IRSA;Enforcement!Case!CodeSignIssue!NA
+//  IRSA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
 
-if (inspType == "Follow-Up Inspection") {
+if (inspType === "Follow-Up Inspection") {
 
-    //	IRSA;Enforcement!Case!Code Compliance!NA 
-    //	IRSA;Enforcement!Case!Code Rental Issue!NA
-    //	IRSA;Enforcement!Case!Code Sign Issue!NA
+    //IRSA;Enforcement!Case!CodeCompliance!NA
+    //IRSA;Enforcement!Case!CodeRentalIssue!NA
+    //IRSA;Enforcement!Case!CodeSignIssue!NA
     if (
         matches("" + appTypeArray[0], "Enforcement")
             &&
@@ -29,7 +29,7 @@ if (inspType == "Follow-Up Inspection") {
         DoInViolationInspectionUpdateWFStatusUpdate();
     }
 
-    //	IRSA;Enforcement!Environmental!Complaint!~ 
+    //IRSA;Enforcement!Environmental!Complaint!~
     if (
         matches("" + appTypeArray[0], "Enforcement")
             &&
@@ -46,16 +46,16 @@ function DoInViolationInspectionUpdateWFStatusUpdate() {
 
     logDebug("capId: " + capId);
 
-    var closeTaskName = 'Follow-Up Inspection';
+    var closeTaskName = "Follow-Up Inspection";
     logDebug("closeTaskName: '" + closeTaskName + "'");
 
     var closeTaskActive = isTaskActive(closeTaskName);
     logDebug("closeTaskActive: " + closeTaskActive);
 
-    var closeTaskStatus = 'Citation Issued';
+    var closeTaskStatus = "Citation Issued";
     logDebug("closeTaskStatus: " + closeTaskStatus);
 
-    var activateTaskName = 'Citation Inspections';
+    var activateTaskName = "Citation Inspections";
     logDebug("activateTaskName: '" + activateTaskName + "'");
 
     var activateTaskActive = isTaskActive(activateTaskName);
@@ -71,7 +71,7 @@ function DoInViolationInspectionUpdateWFStatusUpdate() {
 
         for (inspectionScriptModelIndex in inspectionScriptModels) {
             var inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-            if ((inspectionScriptModel.getInspectionType().toUpperCase() == "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() == "IN VIOLATION")) {
+            if ((inspectionScriptModel.getInspectionType().toUpperCase() === "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() === "IN VIOLATION")) {
                 inViolationInspectionScriptModels.push(inspectionScriptModel);
             }
         }
