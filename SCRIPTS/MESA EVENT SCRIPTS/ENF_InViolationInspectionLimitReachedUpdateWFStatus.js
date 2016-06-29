@@ -41,67 +41,67 @@ if (inspType === "Follow-Up Inspection") {
     }
 }
 
-function DoInViolationInspectionUpdateWFStatusUpdate() {
-    logDebug("Enter DoInViolationInspectionUpdateWFStatusUpdate()");
+//function DoInViolationInspectionUpdateWFStatusUpdate() {
+//    logDebug("Enter DoInViolationInspectionUpdateWFStatusUpdate()");
 
-    logDebug("capId: " + capId);
+//    logDebug("capId: " + capId);
 
-    var closeTaskName = "Follow-Up Inspection";
-    logDebug("closeTaskName: '" + closeTaskName + "'");
+//    var closeTaskName = "Follow-Up Inspection";
+//    logDebug("closeTaskName: '" + closeTaskName + "'");
 
-    var closeTaskActive = isTaskActive(closeTaskName);
-    logDebug("closeTaskActive: " + closeTaskActive);
+//    var closeTaskActive = isTaskActive(closeTaskName);
+//    logDebug("closeTaskActive: " + closeTaskActive);
 
-    var closeTaskStatus = "Citation Issued";
-    logDebug("closeTaskStatus: " + closeTaskStatus);
+//    var closeTaskStatus = "Citation Issued";
+//    logDebug("closeTaskStatus: " + closeTaskStatus);
 
-    var activateTaskName = "Citation Inspections";
-    logDebug("activateTaskName: '" + activateTaskName + "'");
+//    var activateTaskName = "Citation Inspections";
+//    logDebug("activateTaskName: '" + activateTaskName + "'");
 
-    var activateTaskActive = isTaskActive(activateTaskName);
-    logDebug("activateTaskActive: " + activateTaskActive);
+//    var activateTaskActive = isTaskActive(activateTaskName);
+//    logDebug("activateTaskActive: " + activateTaskActive);
 
-    var inViolationInspectionScriptModels = [];
+//    var inViolationInspectionScriptModels = [];
 
-    var getInspectionsResult = aa.inspection.getInspections(capId);
+//    var getInspectionsResult = aa.inspection.getInspections(capId);
 
-    if (getInspectionsResult.getSuccess()) {
+//    if (getInspectionsResult.getSuccess()) {
 
-        var inspectionScriptModels = getInspectionsResult.getOutput();
-        var inspectionScriptModel = null;
+//        var inspectionScriptModels = getInspectionsResult.getOutput();
+//        var inspectionScriptModel = null;
 
-        for (inspectionScriptModelIndex in inspectionScriptModels) {
-            inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-            if ((inspectionScriptModel.getInspectionType().toUpperCase() === "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() === "IN VIOLATION")) {
-                inViolationInspectionScriptModels.push(inspectionScriptModel);
-            }
-        }
+//        for (inspectionScriptModelIndex in inspectionScriptModels) {
+//            inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
+//            if ((inspectionScriptModel.getInspectionType().toUpperCase() === "FOLLOW-UP INSPECTION") && (inspectionScriptModel.getInspectionStatus().toUpperCase() === "IN VIOLATION")) {
+//                inViolationInspectionScriptModels.push(inspectionScriptModel);
+//            }
+//        }
 
-        logDebug("inViolationInspectionScriptModels.length:" + inViolationInspectionScriptModels.length);
+//        logDebug("inViolationInspectionScriptModels.length:" + inViolationInspectionScriptModels.length);
 
-        if (inViolationInspectionScriptModels.length >= 3) {
+//        if (inViolationInspectionScriptModels.length >= 3) {
 
-            logDebug("'In Violation' Inspection threshold reached");
+//            logDebug("'In Violation' Inspection threshold reached");
 
-            if (!isTaskActive(closeTaskName)) {
-                logDebug("'" + closeTaskName + "' workflow task is not active.");
-            } else {
-                logDebug("'" + closeTaskName + "' workflow task is active.");
+//            if (!isTaskActive(closeTaskName)) {
+//                logDebug("'" + closeTaskName + "' workflow task is not active.");
+//            } else {
+//                logDebug("'" + closeTaskName + "' workflow task is active.");
 
-                logDebug("Begin calling closeTask()");
-                closeTask(closeTaskName, closeTaskStatus, "Closed by Script", "Closed by Script");
-                logDebug("End calling closeTask()");
+//                logDebug("Begin calling closeTask()");
+//                closeTask(closeTaskName, closeTaskStatus, "Closed by Script", "Closed by Script");
+//                logDebug("End calling closeTask()");
 
-                logDebug("Begin calling activateTask()");
-                activateTask(activateTaskName);
-                logDebug("End calling activateTask()");
+//                logDebug("Begin calling activateTask()");
+//                activateTask(activateTaskName);
+//                logDebug("End calling activateTask()");
 
-                if (isTaskActive(activateTaskName)) {
-                    logDebug("'" + activateTaskName + "' workflow task is active.");
-                }
-            }
-        }
-    }
+//                if (isTaskActive(activateTaskName)) {
+//                    logDebug("'" + activateTaskName + "' workflow task is active.");
+//                }
+//            }
+//        }
+//    }
 
-    logDebug("Exit DoInViolationInspectionUpdateWFStatusUpdate()");
-}
+//    logDebug("Exit DoInViolationInspectionUpdateWFStatusUpdate()");
+//}
