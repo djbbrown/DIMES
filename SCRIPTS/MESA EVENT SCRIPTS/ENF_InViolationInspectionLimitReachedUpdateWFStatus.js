@@ -1,4 +1,4 @@
-﻿//if (inspType === "Follow-Up Inspection") {
+//if (inspType === "Follow-Up Inspection") {
 
 //    //IRSA;Enforcement!Case!CodeCompliance!NA
 //    //IRSA;Enforcement!Case!CodeRentalIssue!NA
