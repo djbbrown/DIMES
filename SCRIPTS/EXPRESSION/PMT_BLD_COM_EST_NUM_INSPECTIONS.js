@@ -1,4 +1,4 @@
-﻿/*===================================================================*/
+/*===================================================================*/
 // Script Number: 213
 // Script Name:ENF_InViolationInspectionLimitReachedUpdateWFStatus.js
 // Script Developer: N. Victor Staggs
