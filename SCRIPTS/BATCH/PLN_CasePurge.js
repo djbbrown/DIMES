@@ -127,7 +127,6 @@ aa.env.setValue("asiGroup", "KEY DATES");
 aa.env.setValue("lookAheadDays", "-1");
 aa.env.setValue("daySpan", "0");
 aa.env.setValue("appStatus", "File Purged");
-
  */
 var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
