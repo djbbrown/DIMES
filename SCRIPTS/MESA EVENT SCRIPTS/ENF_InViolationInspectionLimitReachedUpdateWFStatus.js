@@ -13,7 +13,7 @@
 /*==================================================================*/
 
 try {
-    var showDebug = 3;
+    var debug = 3;
     var showMessage = false;
     logDebug("inspType:" + inspType);
 
