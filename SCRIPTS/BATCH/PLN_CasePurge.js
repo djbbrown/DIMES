@@ -249,7 +249,6 @@ function mainProcess() {
 	logDebug("Processed " +capProc +" Records");
 	logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
 }	
-
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
 | 
