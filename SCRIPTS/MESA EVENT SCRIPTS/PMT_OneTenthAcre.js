@@ -12,6 +12,7 @@
 ===================================================================*/
 showDebug = true;
 try{
+	logDebug("testing...");
 	var s_id1 = aa.env.getValue("PermitId1");
 	var s_id2 = aa.env.getValue("PermitId2");
 	var s_id3 = aa.env.getValue("PermitId3");
