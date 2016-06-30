@@ -1,6 +1,6 @@
 /*===================================================================*/
 // Script Number: 021
-// Script Name:ENF_InViolationInspectionUpdateWFStatus.js
+// Script Name:ENF_InViolationInspectionLimitReachedUpdateWFStatus.js
 // Script Developer: N. Victor Staggs
 // Script Agency: Woolpert, Inc.
 // Script Description: Update 'Follow-Up Inspection' workflow task when three 'Follow-Up Inspection' inspections have been resulted with "In Violation"
@@ -14,7 +14,6 @@
 
 if(matches(currentUserID,"ADMIN","CGODWIN","BDEJESUS","VSTAGGS")){//user names need to be added in ALL CAPS!
 	showDebug = 3;
-	showMessage=true;
 }
 
 try {
