@@ -33,6 +33,7 @@ try {
                 &&
             matches("" + appTypeArray[3], "NA")
         ) {
+        	logDebug("Enforcement Case");
             DoInViolationInspectionUpdateWFStatusUpdate();
         }
 
@@ -44,6 +45,7 @@ try {
                 &&
             matches("" + appTypeArray[2], "Complaint")
         ) {
+        	logDebug("Environmental Case");
             DoInViolationInspectionUpdateWFStatusUpdate();
         }
     }
