@@ -26,7 +26,7 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 			if (currentValue != "null" && currentValue != "")
 				newTable.push(thisRow);
 			else {
-				if (matches(serviceType, "Water Service", "Water Meter: Adapter", "Water Meter:Domestic", "Water Meter:Landscaping", "Water Relocation")) {
+				if (matches(serviceType, "Water Service", "Water Meter: Adapter", "Water Meter: Domestic", "Water Meter: Landscaping", "Water Relocation")) {
 					if (IsStrInArry("AWCP", tagFieldArray) && IsStrInArry("COMW", tagFieldArray)) { 
 						// do nothing 
 					}
