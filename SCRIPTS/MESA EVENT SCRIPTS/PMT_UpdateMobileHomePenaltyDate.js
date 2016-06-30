@@ -15,15 +15,24 @@
 // 
 //==================================================================*/
 
+
 try
 {
+  var scheduleDays = 10;
   var wfTaskMatch = isTaskStatus("Application Submittal", "Accepted - Plan Review Req");
   var theDate = new Date();
+  var planReviewPenaltyDate = getAppSpecific["Plan Review Penalty Date"];
+  var theStatusDate = "" + getStatusDateinTaskHistory("Application Submittal", "Accepted - Plan Review Req");
+  var tempDate = "";
 
-  if (wfTaskMatch)
+  if ((planReviewPenaltyDate == null) && (wfTaskMatch))
   {
-    theDate = new Date(getStatusDateinTaskHistory("Application Submittal", "Accepted - Plan Review Req"));
-    theDate = new Date(dateAdd(theDate,10,'Y')); 
+    tempDate = theStatusDate.substring(0,10);
+    var datePieces = tempDate.split('-');
+
+    theDate = new Date(datePieces[1] + "/" + datePieces[2] + "/" + datePieces[0]);
+    //theDate = dateAdd(theDate,scheduleDays,'Y');
+
 
     editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate),capId);
   }

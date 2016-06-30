@@ -22,8 +22,9 @@ tagField = "" + getGISInfo("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG"
 logDebug("tag attribute = " + tagField);
 if (tagField == "SIGB") {
 	addParameter(vEParams,"$$RECORD ID$$",capIDString);
-	emailAddress = "Joel.Watson@mesaaz.gov";
-	sendNotification("", emailAddress, "", "SIGNAL BUTTE", vEParams, null);
+	// emailAddress = "Joel.Watson@mesaaz.gov";
+	emailAddress = "kford@accela.com";
+	fromAddress = "Lauren.Lupica@mesaaz.gov";
+	sendNotification(fromAddress, emailAddress, "", "SIGNAL BUTTE", vEParams, null);
 	addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer");
 }
-	

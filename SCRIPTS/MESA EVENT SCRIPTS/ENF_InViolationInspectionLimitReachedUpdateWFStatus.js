@@ -1,6 +1,6 @@
 /*===================================================================*/
 // Script Number: 021
-// Script Name:ENF_InViolationInspectionUpdateWFStatus.js
+// Script Name:ENF_InViolationInspectionLimitReachedUpdateWFStatus.js
 // Script Developer: N. Victor Staggs
 // Script Agency: Woolpert, Inc.
 // Script Description: Update 'Follow-Up Inspection' workflow task when three 'Follow-Up Inspection' inspections have been resulted with "In Violation"
@@ -12,12 +12,16 @@
 //  IRSA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
 
+if(matches(currentUserID,"ADMIN","CGODWIN","BDEJESUS","VSTAGGS")){//user names need to be added in ALL CAPS!
+	showDebug = 3;
+}
+
 try {
-    var showDebug = 3;
-    var showMessage = false;
     logDebug("inspType:" + inspType);
 
-    if (inspType === "Follow-Up Inspection") {
+    if (inspType == "Follow-Up Inspection") {
+    	logDebug("inspResult:" + inspResult);
+    	logDebug("Record Type:" + appTypeArray[0] + appTypeArray[1] + appTypeArray[2] + appTypeArray[3]);
 
         //IRSA;Enforcement!Case!Code Compliance!NA
         //IRSA;Enforcement!Case!Code Rental Issue!NA
@@ -31,6 +35,7 @@ try {
                 &&
             matches("" + appTypeArray[3], "NA")
         ) {
+        	logDebug("Checking inspections on Enforcement Case");
             DoInViolationInspectionUpdateWFStatusUpdate();
         }
 
@@ -42,6 +47,7 @@ try {
                 &&
             matches("" + appTypeArray[2], "Complaint")
         ) {
+        	logDebug("Checking inspections on Environmental Case");
             DoInViolationInspectionUpdateWFStatusUpdate();
         }
     }
