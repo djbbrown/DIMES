@@ -1,4 +1,12 @@
-
+ /*===================================================================
+// Script Number: 215
+// Script Name: PMT_ClearanceTo.js 
+// Script Developer: Deanna Hoops
+// Script Agency: Accela
+// Script Description: set the ASIT column Clearance To based on GIS attribute
+// Script Run Event: ASA, ASIUA
+// Script Parents: ASA:Permits/*/*/*, ASIUA:Permits/*/*/*
+/*==================================================================*/
 tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
 if (tagFieldArray && tagFieldArray.length > 0) {
 	logDebug(tagFieldArray);

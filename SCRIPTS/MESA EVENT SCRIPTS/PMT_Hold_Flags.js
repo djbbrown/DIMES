@@ -1,4 +1,14 @@
-    tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+ /*===================================================================
+// Script Number: 99
+// Script Name: PMT_Hold_Flags.js 
+// Script Developer: Deanna Hoops
+// Script Agency: Accela
+// Script Description: add conditions to record based on GIS attribute
+// Script Run Event: WTUA
+// Script Parents: WTUA:Permits/*/*/*
+/*==================================================================*/
+
+tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
     
 	if (tagFieldArray && tagFieldArray.length > 0) {
 	   for (tIndex in tagFieldArray) {
