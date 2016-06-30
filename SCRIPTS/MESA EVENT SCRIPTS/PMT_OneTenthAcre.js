@@ -14,9 +14,25 @@ showDebug = true;
 try{
 	logDebug("testing...");
 	var e = aa.env;
-	for (var i in e){
-		if (typeof(e[i]) == 'function') logDebug(i + "()");
-		else logDebug(i + ": " + e[i]);
+	var acres = aa.env.getValue("ParcelArea");
+	var docList = aa.env.getValue("DocumentModelList");
+	if (!acres) logDebug("No value for parcel area");
+	else logDebug("Parcel area: " + acres);
+	if (!docList || docList.length == 0) logDebug("No docs found.");
+	else {
+		logDebug("Found documents:");
+		for (var i in docList){
+			logDebug(docList[i].getDocCategory());
+		}
+	}
+	if (!ParcelArea) logDebug("Global 'ParcelArea' does not exist");
+	else logDebug("'ParcelArea': " + ParcelArea);
+	if (!DocumentModelList) logDebug("Global 'DocumentModelList' does not exist.");
+	else {
+		logDebug("Found documents in 'DocumentModelList':");
+		for (var j in DocumentModelList){
+			logDebug(DocumentModelList[j].getDocCategory());
+		}
 	}
 //	var s_id1 = aa.env.getValue("PermitId1");
 //	var s_id2 = aa.env.getValue("PermitId2");
