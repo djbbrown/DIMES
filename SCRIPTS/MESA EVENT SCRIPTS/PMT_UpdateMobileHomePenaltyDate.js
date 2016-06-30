@@ -31,10 +31,12 @@ try
     var datePieces = tempDate.split('-');
 
     theDate = new Date(datePieces[1] + "/" + datePieces[2] + "/" + datePieces[0]);
+    logDebug("theDate (before dateAdd): " + theDate);
     theDate = dateAdd(theDate,scheduleDays,'Y');
     logDebug("theDate: " + theDate);
+    logDebug("jsDateToASIDate(theDate): " + jsDateToASIDate(theDate));
 
-    editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate),capId);
+    editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate));
   }
 }
 catch (err)
