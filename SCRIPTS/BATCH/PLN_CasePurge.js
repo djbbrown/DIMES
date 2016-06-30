@@ -67,8 +67,8 @@ else {
 eval(getScriptText("INCLUDES_BATCH"));    
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 
-//overRide = "function logDebug(dstr) { emailText += dstr + '<br>'; }";
-overRide = "function logDebug(dstr) { aa.print(dstr); }";
+overRide = "function logDebug(dstr) { emailText += dstr + '<br>'; }";
+//overRide = "function logDebug(dstr) { aa.print(dstr); }";
 
 eval(overRide)
 
