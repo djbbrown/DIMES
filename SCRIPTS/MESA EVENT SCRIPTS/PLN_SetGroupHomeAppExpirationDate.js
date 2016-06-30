@@ -16,9 +16,9 @@
 
 try
 {
-  var expireDate = dateAdd(null, 90);
+  var theDate = new Date(dateAdd(null,30));
 
-  editAppSpecific("Expiration Date", expireDate);
+  editAppSpecific("Expiration Date", jsDateToASIDate(theDate),capId);
 }
 catch (err)
 {
