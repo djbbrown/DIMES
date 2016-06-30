@@ -1,6 +1,6 @@
 /*===================================================================*/
 // Script Number: 213
-// Script Name:ENF_InViolationInspectionLimitReachedUpdateWFStatus.js
+// Script Name: PMT_BLD_RES_EST_NUM_INSPECTIONS.js
 // Script Developer: N. Victor Staggs
 // Script Agency: Woolpert, Inc.
 // Script TYpe: Expression Builder Script
