@@ -78,36 +78,59 @@ try{
 		if (acres > 0.1) {
 			reqDocTypes.push("Maricopa County Dust Control Permit");
 			reqDocTypes.push("Maricopa County Dust Control Plan");
-		}
+		} 
+		else logDebug("Parcel is under 0.1 acres. No additional documents are required.");
 		if (acres > 1.0) reqDocTypes.push("ADEQ");
 		
 		// get attached docs
-		var docListResult = aa.document.getCapDocumentList(capId, currentUserID);
-		if (docListResult.getSuccess()){
-			var docList = docListResult.getOutput();
-			for (var i in reqDocTypes){
-				var found = false;
-				var reqDocType = reqDocTypes[i];
-				for (var k in docList){
-					var doc = docList[k];
-					if (doc.getDocCategory() == reqDocType){
-						found = true;
-						break;
-					}
-				}
-				if (!found){
+		if (reqDocTypes.length > 0){
+			var docListResult = aa.document.getCapDocumentList(capId, currentUserID);
+			if (docListResult.getSuccess()){
+				var docList = docListResult.getOutput();
+				if (!docList || docList.length == 0) {
 					showMessage = true;
 					// build message
-					var msg = "The following document types are required for submittal of this application: ";
-					for (var m in reqDocTypes){
-						msg += reqDocTypes[m] + ", ";
+					var msg1 = "The following document types are required for submittal of this application: ";
+					for (var l in reqDocTypes){
+						if (l == reqDocTypes.length-1) msg1 += reqDocTypes[l];
+						else msg1 += reqDocTypes[l] + ", ";
 					}
-					comment(msg);
+					comment(msg1);
 					cancel = true;
+				} else {
+					for (var i in reqDocTypes){
+						var found = false;
+						var reqDocType = reqDocTypes[i];
+						for (var k in docList){
+							var doc = docList[k];
+							var docGroup = doc.getDocGroup();
+							if (doc.getDocCategory() == reqDocType && 
+								(docGroup == "PMT_COMM" || docGroup == "PMT_RES" || docGroup == "PMT_DEMOLITION")
+							){
+								found = true;
+								break;
+							}
+						}
+						if (!found){
+							showMessage = true;
+							// build message
+							var msg = "The following document types are required for submittal of this application: ";
+							for (var m in reqDocTypes){
+								if (m == reqDocTypes.length-1) msg += reqDocTypes[m];
+								else msg += reqDocTypes[m] + ", ";
+							}
+							comment(msg);
+							cancel = true;
+							break;
+						}
+					}
 				}
-			}
+			} 
+			else logDebug("ERROR: Unable to get document list. " + docListResult.getErrorType() + " " + docListResult.getErrorMessage());
 		}
-	}
+	} 
+	else if (!classificationCode) logDebug("WARNING: No code classification entered. Cannot determine if additional documents are required.");
+	else logDebug("No additional documents required for this code classification.");
 } catch (err){
 	logDebug("A JavaScript Error occured: " + err.message);
 }
