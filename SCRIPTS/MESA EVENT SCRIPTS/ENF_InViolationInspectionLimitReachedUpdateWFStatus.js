@@ -19,7 +19,7 @@ if(matches(currentUserID,"ADMIN","CGODWIN","BDEJESUS","VSTAGGS")){//user names n
 try {
     logDebug("inspType:" + inspType);
 
-    if (inspType === "Follow-Up Inspection") {
+    if (inspType == "Follow-Up Inspection") {
     	logDebug("inspResult:" + inspResult);
     	logDebug("Record Type:" + appTypeArray[0] + appTypeArray[1] + appTypeArray[2] + appTypeArray[3]);
 
