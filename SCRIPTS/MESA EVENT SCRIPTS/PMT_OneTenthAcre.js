@@ -104,7 +104,9 @@ try{
 						for (var k; k<docList.size(); k++){
 							var doc = docList.get(k);
 							var docGroup = doc.getDocGroup();
-							if (doc.getDocCategory() == reqDocType && 
+							var docCategory = doc.getDocCategory();
+							logDebug("Document: " + docGroup + " " + docCategory);
+							if (docCategory == reqDocType && 
 								(docGroup == "PMT_COMM" || docGroup == "PMT_RES" || docGroup == "PMT_DEMOLITION")
 							){
 								found = true;
