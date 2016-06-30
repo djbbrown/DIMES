@@ -101,7 +101,7 @@ try{
 					for (var i in reqDocTypes){
 						var found = false;
 						var reqDocType = reqDocTypes[i];
-						for (var k; k<docList.size(); k++){
+						for (var k=0; k<docList.size(); k++){
 							var doc = docList.get(k);
 							var docGroup = doc.getDocGroup();
 							var docCategory = doc.getDocCategory();
