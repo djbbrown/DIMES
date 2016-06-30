@@ -1,3 +1,4 @@
+
 tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
 if (tagFieldArray && tagFieldArray.length > 0) {
 	logDebug(tagFieldArray);
