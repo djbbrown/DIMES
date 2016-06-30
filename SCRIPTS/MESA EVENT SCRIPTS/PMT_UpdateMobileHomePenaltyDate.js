@@ -31,7 +31,7 @@ try
     var datePieces = tempDate.split('-');
 
     theDate = new Date(datePieces[1] + "/" + datePieces[2] + "/" + datePieces[0]);
-    theDate = dateAdd(theDate,scheduleDays,'Y');
+    //theDate = dateAdd(theDate,scheduleDays,'Y');
 
     editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate),capId);
   }
