@@ -16,7 +16,7 @@
 /*==================================================================*/
 
 
-var fromEmail = "noreply@MesaAz.gov";
+var fromEmail = 'noreply@MesaAz.gov';
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req") {
 	var vEParams = aa.util.newHashtable(); 
 	var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");  
