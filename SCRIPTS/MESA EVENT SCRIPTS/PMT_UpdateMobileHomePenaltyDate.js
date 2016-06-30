@@ -34,9 +34,9 @@ try
     logDebug("theDate (before dateAdd): " + theDate);
     theDate = new Date(dateAdd(theDate,scheduleDays,'Y'));
     logDebug("theDate: " + theDate);
-    logDebug("jsDateToASIDate(theDate): " + jsDateToASIDate(theDate));
+    logDebug("jsDateToASIDate(theDate + ' 00:00:00'): " + jsDateToASIDate(theDate + ' 00:00:00'));
 
-    editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate));
+    editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate + ' 00:00:00'));
   }
 }
 catch (err)
