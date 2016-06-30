@@ -71,62 +71,78 @@ try{
 		classificationCode == 999
 	){
 		// get parcel acreage
-		var acres = AInfo["ParcelAttribute.SIZE(ACRES)"];
-		
-		// determine required doc types
-		var reqDocTypes = [];
-		if (acres > 0.1) {
-			reqDocTypes.push("Maricopa County Dust Control Permit");
-			reqDocTypes.push("Maricopa County Dust Control Plan");
-		} 
-		else logDebug("Parcel is under 0.1 acres. No additional documents are required.");
-		if (acres > 1.0) reqDocTypes.push("ADEQ");
-		
-		// get attached docs
-		if (reqDocTypes.length > 0){
-			var docListResult = aa.document.getCapDocumentList(capId, currentUserID);
-			if (docListResult.getSuccess()){
-				var docList = docListResult.getOutput();
-				if (!docList || docList.length == 0) {
-					showMessage = true;
-					// build message
-					var msg1 = "The following document types are required for submittal of this application: ";
-					for (var l in reqDocTypes){
-						if (l == reqDocTypes.length-1) msg1 += reqDocTypes[l];
-						else msg1 += reqDocTypes[l] + ", ";
-					}
-					comment(msg1);
-					cancel = true;
-				} else {
-					for (var i in reqDocTypes){
-						var found = false;
-						var reqDocType = reqDocTypes[i];
-						for (var k in docList){
-							var doc = docList[k];
-							var docGroup = doc.getDocGroup();
-							if (doc.getDocCategory() == reqDocType && 
-								(docGroup == "PMT_COMM" || docGroup == "PMT_RES" || docGroup == "PMT_DEMOLITION")
-							){
-								found = true;
+		//var acres = AInfo["ParcelAttribute.SIZE(ACRES)"];
+		var acres = 0;
+		var parcelResult = aa.parcel.getParcelByCapId(capId, null);
+		if (parcelResult.getSuccess()){
+			var parcels = parcelResult.getOutput();
+//			for (var i in parcels){
+//				if (typeof(parcels[i]) == 'function') logDebug(i);
+//				else logDebug(i + ": " + parcels[i]);
+//			}
+			for (var i=0; i<parcels.size(); i++){
+				var parcel = parcels.get(i);
+				acres += parcel.getParcelArea();
+			}
+		}
+		if (!acres) logDebug("ERROR: Unable to get acreage.");
+		else{
+			logDebug("Parcel acreage: " + acres);
+			// determine required doc types
+			var reqDocTypes = [];
+			if (acres > 0.1) {
+				reqDocTypes.push("Maricopa County Dust Control Permit");
+				reqDocTypes.push("Maricopa County Dust Control Plan");
+			} 
+			else logDebug("Parcel is under 0.1 acres. No additional documents are required.");
+			if (acres > 1.0) reqDocTypes.push("ADEQ");
+			
+			// get attached docs
+			if (reqDocTypes.length > 0){
+				var docListResult = aa.document.getCapDocumentList(capId, currentUserID);
+				if (docListResult.getSuccess()){
+					var docList = docListResult.getOutput();
+					if (!docList || docList.length == 0) {
+						showMessage = true;
+						// build message
+						var msg1 = "The following document types are required for submittal of this application: ";
+						for (var l in reqDocTypes){
+							if (l == reqDocTypes.length-1) msg1 += reqDocTypes[l];
+							else msg1 += reqDocTypes[l] + ", ";
+						}
+						comment(msg1);
+						cancel = true;
+					} else {
+						for (var i in reqDocTypes){
+							var found = false;
+							var reqDocType = reqDocTypes[i];
+							for (var k in docList){
+								var doc = docList[k];
+								var docGroup = doc.getDocGroup();
+								if (doc.getDocCategory() == reqDocType && 
+									(docGroup == "PMT_COMM" || docGroup == "PMT_RES" || docGroup == "PMT_DEMOLITION")
+								){
+									found = true;
+									break;
+								}
+							}
+							if (!found){
+								showMessage = true;
+								// build message
+								var msg = "The following document types are required for submittal of this application: ";
+								for (var m in reqDocTypes){
+									if (m == reqDocTypes.length-1) msg += reqDocTypes[m];
+									else msg += reqDocTypes[m] + ", ";
+								}
+								comment(msg);
+								cancel = true;
 								break;
 							}
 						}
-						if (!found){
-							showMessage = true;
-							// build message
-							var msg = "The following document types are required for submittal of this application: ";
-							for (var m in reqDocTypes){
-								if (m == reqDocTypes.length-1) msg += reqDocTypes[m];
-								else msg += reqDocTypes[m] + ", ";
-							}
-							comment(msg);
-							cancel = true;
-							break;
-						}
 					}
-				}
-			} 
-			else logDebug("ERROR: Unable to get document list. " + docListResult.getErrorType() + " " + docListResult.getErrorMessage());
+				} 
+				else logDebug("ERROR: Unable to get document list. " + docListResult.getErrorType() + " " + docListResult.getErrorMessage());
+			}
 		}
 	} 
 	else if (!classificationCode) logDebug("WARNING: No code classification entered. Cannot determine if additional documents are required.");
