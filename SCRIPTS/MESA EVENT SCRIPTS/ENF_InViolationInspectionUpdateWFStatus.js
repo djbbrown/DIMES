@@ -44,13 +44,15 @@ if (
 	&& inspResult == "In Violation"
 	&& inViolationInspectionScriptModels.length < 3
 ) {
-	if( isTaskActive("Initial Inspection") ) {
-		branchTask("Initial Inspection","In Violation","Closed by Script","Closed by Script");
+	// Based on workflow and the fact that we're updating and branching I am changing the order to
+	// be the reverse of the potential for an active task.
+	if( isTaskActive("Citation Inspections") ) {
+		updateTask("Citation Inspections","In Violation","Updated by Script","Updated by Script");
 	}
 	if( isTaskActive("Follow-Up Inspection") ) {
 		updateTask("Follow-Up Inspection","In Violation","Updated by Script","Updated by Script");
 	}
-	if( isTaskActive("Citation Inspections") ) {
-		updateTask("Citation Inspections","In Violation","Updated by Script","Updated by Script");
+	if( isTaskActive("Initial Inspection") ) {
+		branchTask("Initial Inspection","In Violation","Closed by Script","Closed by Script");
 	}
 }
