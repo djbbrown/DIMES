@@ -20,6 +20,8 @@ try {
     logDebug("inspType:" + inspType);
 
     if (inspType === "Follow-Up Inspection") {
+    	logDebug("inspResult:" + inspResult);
+    	logDebug("Record Type:" + appTypeArray[0] + appTypeArray[1] + appTypeArray[2] + appTypeArray[3]);
 
         //IRSA;Enforcement!Case!Code Compliance!NA
         //IRSA;Enforcement!Case!Code Rental Issue!NA
@@ -33,7 +35,7 @@ try {
                 &&
             matches("" + appTypeArray[3], "NA")
         ) {
-        	logDebug("Enforcement Case");
+        	logDebug("Checking inspections on Enforcement Case");
             DoInViolationInspectionUpdateWFStatusUpdate();
         }
 
@@ -45,7 +47,7 @@ try {
                 &&
             matches("" + appTypeArray[2], "Complaint")
         ) {
-        	logDebug("Environmental Case");
+        	logDebug("Checking inspections on Environmental Case");
             DoInViolationInspectionUpdateWFStatusUpdate();
         }
     }
