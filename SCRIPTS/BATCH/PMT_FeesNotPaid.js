@@ -232,8 +232,8 @@ function mainProcess() {
 		capCount++;
 		logDebug("Processing " + altId);
 		
-		var taskStatusDate = taskStatusDate(taskName, null, capId);
-        var feesSevenDaysLate = jsDateToMMDDYYYY(new Date()).localeCompare(dateAdd(taskStatusDate, 7)) == 0;
+		var tsd = taskStatusDate(taskName, null, capId);
+        var feesSevenDaysLate = jsDateToMMDDYYYY(new Date()).localeCompare(dateAdd(tsd, 7)) == 0;
         logDebug("Fees 7 days late?");
         logDebug(feesSevenDaysLate ? "Yes" : "No"); 
         if (feesSevenDaysLate) {
