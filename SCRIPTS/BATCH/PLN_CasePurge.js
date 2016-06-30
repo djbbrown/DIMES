@@ -14,12 +14,6 @@
 //		Planning/Pre Submittal/NA/NA
 /*==================================================================*/
 /*------------------------------------------------------------------------------------------------------/
-| Program: PLN_SubstantiveReviewDaysLeft Trigger: Batch    
-| Version 1.0 - Base Version. 
-| 
-| 
-/------------------------------------------------------------------------------------------------------*/
-/*------------------------------------------------------------------------------------------------------/
 |
 | START: USER CONFIGURABLE PARAMETERS
 |
@@ -73,8 +67,8 @@ else {
 eval(getScriptText("INCLUDES_BATCH"));    
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 
-overRide = "function logDebug(dstr) { emailText += dstr + '<br>'; }";
-//overRide = "function logDebug(dstr) { aa.print(dstr); }";
+//overRide = "function logDebug(dstr) { emailText += dstr + '<br>'; }";
+overRide = "function logDebug(dstr) { aa.print(dstr); }";
 
 eval(overRide)
 
@@ -123,43 +117,53 @@ var batchJobName = "" + aa.env.getValue("batchJobName");
 | Start: BATCH PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
+/*
+aa.env.setValue("appGroup", "Planning");
+aa.env.setValue("appTypeType",  "Pre-Submittal");
+aa.env.setValue("appSubtype", "*");
+aa.env.setValue("appCategory", "*");
+aa.env.setValue("asiField", "Pre-Submittal Meeting")
+aa.env.setValue("asiGroup", "KEY DATES");
+aa.env.setValue("lookAheadDays", "-1");
+aa.env.setValue("daySpan", "0");
+aa.env.setValue("appStatus", "File Purged");
 
+ */
 var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
 var appCategory = getParam("appCategory");	
 var asiField = getParam("asiField");							// {Meeting Date}
-var appStatus = getParam("appStatusStatus");
-
-// Required to run the delete, this must be entered in a parameter
-// and can be any user name that has access to the system.
-var delUser = getParam("User");
-var delPass = getParam("Password");
-
-// Age
-var olderAge = getParam("Age");
+var asiGroup = getParam("asiGroup");
+var lookAheadDays = getParam("lookAheadDays");
+var daySpan = getParam("daySpan");
+var appStatus = getParam("appStatus");
 
 /*----------------------------------------------------------------------------------------------------/
 |
 | End: BATCH PARAMETERS
 |-----------------------------------------------------------------------------------------------------*/
 
-/*
-//======================================================
-// The following are commented due to the fact that I'm not going to be wildcarding
-// the Group or Type, subtype is the first wildcards that I'd be using.
-//====================================================== 
-if (appGroup=="")
-	appGroup="*";
-if (appTypeType=="")
-	appTypeType="*";
-//*/
-// Resume wildcard replacements.
-if (appSubtype=="")
-	appSubtype="*";
-if (appCategory=="")
-	appCategory="*";
-var appType = appGroup+"/"+appTypeType+"/"+appSubtype+"/"+appCategory
+
+if (appGroup == "")
+	appGroup = "*";
+if (appTypeType == "")
+	appTypeType = "*";
+if (appSubtype == "")
+	appSubtype = "*";
+if (appCategory == "")
+	appCategory = "*";
+var appType = appGroup + "/" + appTypeType + "/" + appSubtype + "/" + appCategory;
+
+var daySpan = getParam("daySpan");
+var lookAheadDays = getParam("lookAheadDays");
+
+var fromDate = dateAdd(null,parseInt(lookAheadDays));
+var toDate = dateAdd(null,parseInt(lookAheadDays)+parseInt(daySpan));
+var dFromDate = aa.date.parseDate(fromDate);
+var dToDate = aa.date.parseDate(toDate);
+	
+logDebug("Date Range -- fromDate: " + fromDate + ", toDate: " + toDate);
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Main=Loop================>
@@ -184,87 +188,66 @@ function mainProcess() {
 	// Variables for counting
 	var capCount = 0;
 	var capProc = 0; // Actual records that were processed
-	var capSkipPSD = 0; // records skipped due to not having "Pre-Submittal Date"
-	var capSkipAge = 0; // records skipped due to not being older than 2 years.
-	var capSkipNoDoc = 0; // records skipped due to not having a document attached.
-	var docRemoved = 0; // total documents removed.
-	// Get a full list of the records that fall under the record type
-	var records = aa.cap.getByAppType(appGroup,appTypeType,appSubtype,appCategory);
-	if (records.getSuccess()) records = records.getOutput();
-	else logDebug(records.getErrorMessage());
-	// If there are records then we will continue.
-	for (x in records) {
-		capCount++;
-		// get capId for processing records.
-		capId = records[x].getCapModel().getCapID();
-		// get the "Pre-Submittal Meeting" date
-		var meetingDate = getAppSpecific(asiField);
-		//aa.print(records[x].getCapModel().getCapStatus());
-		/*
-		for (y in records[x]) {
-			aa.print(records[x][y])
-		};
-		//*/
-		// we would only want to continue if there was a meeting date
-		if (meetingDate != null && records[x].getCapModel().getCapStatus() != appStatus) {
-			// ---------------------------
-			// convert the date string to an actual date.
-			var mDateArray = meetingDate.split("/");
-			var mDate = new Date(mDateArray[2],mDateArray[0]-1,mDateArray[1])
-			var age = Date.now() - mDate;
-			var age = age / 31536000000; // Divide by 1000*60*60*24*365
-			// ----------------------------
-			// Only remove documents from records that are greater than 2 years old
-			if (age >= olderAge) {
-				// Set the record status
-				updateAppStatus(appStatus); // Set Cap Status
-				aa.print("Getting ready to remove the documents.");
-				var show = getDocumentList();
-				if (show.length > 0) {
-					capProc ++;
-					for(z in show){
-						documents = show[z];
-						//aa.print(documents.getFileKey());
-						//aa.print(documents);
-						removeDoc = documents.getDocumentNo();
-						// Now I have to get the current user ID Password.
-						var deleted= aa.document.removeDocumentByPK(removeDoc,delUser,delPass,appTypeArray[0]);
-						//aa.print(deleted);
-						if (deleted.getSuccess()) {		
-							docListArray = docListResult.getOutput();
-							aa.print("Document: "+removeDoc+" "+documents.getDocName()+" has been removed from "+capId.getCustomID());
-							logDebug("Document: "+removeDoc+" "+documents.getDocName()+" has been removed from "+capId.getCustomID());
-							docRemoved ++;
-						}
-						else {
-							logDebug(deleted.getErrorMessage);
-						}
-					}
-				}
-				else{
-					// Increment counter for items that are skipped due to no attached documents
-					capSkipNoDoc ++;
-				}
-				// List of documents
 
-			}
-			// Else nothing is going to be done.
-			else {
-				aa.print("Documents for "+capId.getCustomID()+" will not be removed");
-				capSkipAge ++;
-			}
+	var capResult = aa.cap.getCapIDsByAppSpecificInfoDateRange(asiGroup, asiField,dFromDate,dToDate);
+	if (capResult.getSuccess()) {
+		myCaps = capResult.getOutput();
+	}
+	else { 
+		logDebug("ERROR: Getting records, reason is: " + capResult.getErrorMessage()) ;
+		return false
+	} 
+
+	for (myCapsXX in myCaps) {
+		if (elapsed() > maxSeconds) { // only continue if time hasn't expired
+			logDebug("WARNING","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.") ;
+			timeExpired = true ;
+			break; 
 		}
-		else {
-			aa.print("Pre-Submittal Date not yet set.")
-			capSkipPSD ++;
+     	var thisCapId = myCaps[myCapsXX].getCapID();
+   		capId = getCapIdBATCH(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3()); 
+		if (!capId) {
+			logDebug("Could not get Cap ID");
+			continue;
 		}
+	
+		altId = capId.getCustomID();
+     	capCount++;
+		cap = aa.cap.getCap(capId).getOutput();		
+		appTypeResult = cap.getCapType();	
+		appTypeString = appTypeResult.toString();	
+		appTypeArray = appTypeString.split("/");		
+		
+		// Filter by CAP Type
+		if (appType.length && !appMatch(appType)) {
+			capFilterType++;
+			logDebug(altId + ": Application Type does not match")
+			continue;
+		}
+		var capStatus = cap.getCapStatus();
+		if (capStatus == appStatus) {
+			capFilterStatus++;
+			continue;
+		}
+
+		logDebug("Processing: " + altId);
+		capProc++;
+		updateAppStatus(appStatus); // Set Cap Status
+		aa.print("Getting ready to remove the documents.");
+		var capDocResult = aa.document.getDocumentListByEntity(capId,"CAP"); 
+		if(capDocResult.getSuccess()) { 
+			if(capDocResult.getOutput().size() > 0)  { 
+				for(index = 0; index < capDocResult.getOutput().size(); index++)  { 
+					var tmpDoc = capDocResult.getOutput().get(index); 
+					//remove the document first 
+					aa.document.removeDocumentByPK(""+tmpDoc.getDocumentNo(),null,null,appGroup); 
+					logDebug("Documents removed"); 
+				} 
+			} 
+		} 
 	}
 	logDebug("Total "+capCount+" records considered");
 	logDebug("Processed " +capProc +" Records");
-	logDebug("Skipped " + capSkipAge + " Records not yet old enough");
-	logDebug("Skipped " + capSkipPSD + " Records not yet having Pre-Submittal Meeting date set");
-	logDebug("Sikpped " + capSkipNoDoc + " Records that had no documents attached");
-	logDebug("Total "+docRemoved+" documents removed");
 	logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
 }	
 
@@ -277,3 +260,14 @@ function mainProcess() {
 /*------------------------------------------------------------------------------------------------------/
 | <===========Internal Functions and Classes (Used by this script)
 /------------------------------------------------------------------------------------------------------*/
+function getCapIdBATCH(s_id1, s_id2, s_id3)  {
+
+    var s_capResult = aa.cap.getCapID(s_id1, s_id2, s_id3);
+    if(s_capResult.getSuccess())
+      return s_capResult.getOutput();
+    else
+    {
+      logMessage("**ERROR: Failed to get capId: " + s_capResult.getErrorMessage());
+      return null;
+    }
+  }
