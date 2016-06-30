@@ -18,7 +18,7 @@
 
 try
 {
-  var scheduleDays = getAppSpecific["Turn Around Time"];
+  var scheduleDays = getAppSpecific("Turn Around Time");
   var wfTaskMatch = isTaskStatus("Application Submittal", "Accepted - Plan Review Req");
   var theDate = new Date();
   var planReviewPenaltyDate = getAppSpecific["Plan Review Penalty Date"];
