@@ -24,8 +24,7 @@ if (tagField == "SIGB") {
 	addParameter(vEParams,"$$RECORD ID$$",capIDString);
 	// emailAddress = "Joel.Watson@mesaaz.gov";
 	emailAddress = "kford@accela.com";
-	fromAddress = "noreply@mesaaz.gov";
+	fromAddress = "Lauren.Lupica@mesaaz.gov";
 	sendNotification(fromAddress, emailAddress, "", "SIGNAL BUTTE", vEParams, null);
 	addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer");
 }
-	
