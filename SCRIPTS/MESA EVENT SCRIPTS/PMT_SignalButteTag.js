@@ -14,22 +14,22 @@
 // ASA: Permits/Commercial/NA/NA
 /*==================================================================*/
 
-tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+var vEParams = aa.util.newHashtable(); 
 
+tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
 if (tagFieldArray && tagFieldArray.length > 0) {
    for (tIndex in tagFieldArray) {
 		thisTag = tagFieldArray[tIndex];
 		logDebug(thisTag);
-		switch ("" + thisTag) {
-			case "SIGB":
+		if(thisTag == "SIGB")
+		{
+				logDebug("Parcel found to be within "+thisTag+" sending email");
 				addParameter(vEParams,"$$RECORD ID$$",capIDString);
 				// emailAddress = "Joel.Watson@mesaaz.gov";
 				emailAddress = "kford@accela.com";
 				fromAddress = "Lauren.Lupica@mesaaz.gov";
 				sendNotification(fromAddress, emailAddress, "", "SIGNAL BUTTE", vEParams, null);
 				addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer");
-				break;
-			default: break;
 		}
 	}
-}	
+}
