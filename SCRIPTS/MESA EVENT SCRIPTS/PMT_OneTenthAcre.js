@@ -10,7 +10,7 @@
 //			ASB;Permits!Commercial!NA!NA
 //			ASB;Permits!Residential!NA!NA
 ===================================================================*/
-//showDebug = true;
+showDebug = true;
 try{
 	var acres = aa.env.getValue("ParcelArea");
 	var docList = aa.env.getValue("DocumentModelList");
