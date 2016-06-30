@@ -12,7 +12,11 @@
 //	  ASIUA;Permits!Commercial!~!~          
 /*==================================================================*/
 
-var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
+var tmpTable;
+tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
+if(!tmpTable){
+	tmpTable = loadASITable("UTILITY SERVICE INFO");
+}
 // Below is an if statement the "else" should be to remove all fees...
 if (tmpTable) {
 	//define variables to use
