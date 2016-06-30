@@ -32,7 +32,7 @@ try
 
     theDate = new Date(datePieces[1] + "/" + datePieces[2] + "/" + datePieces[0]);
     logDebug("theDate (before dateAdd): " + theDate);
-    theDate = dateAdd(theDate,scheduleDays,'Y');
+    theDate = new Date(dateAdd(theDate,scheduleDays,'Y'));
     logDebug("theDate: " + theDate);
     logDebug("jsDateToASIDate(theDate): " + jsDateToASIDate(theDate));
 
