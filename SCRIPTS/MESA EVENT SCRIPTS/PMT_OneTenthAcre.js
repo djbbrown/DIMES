@@ -21,8 +21,9 @@ try{
 	if (!docList || docList.length == 0) logDebug("No docs found.");
 	else {
 		logDebug("Found documents:");
-		for (var i in docList){
-			logDebug(docList[i].getDocCategory());
+		for (var i=0; i<docList.size(); i++){
+			var doc = docList.get(i);
+			logDebug(doc.getDocCategory());
 		}
 	}
 	if (!ParcelArea) logDebug("Global 'ParcelArea' does not exist");
@@ -30,8 +31,9 @@ try{
 	if (!DocumentModelList) logDebug("Global 'DocumentModelList' does not exist.");
 	else {
 		logDebug("Found documents in 'DocumentModelList':");
-		for (var j in DocumentModelList){
-			logDebug(DocumentModelList[j].getDocCategory());
+		for (var j=0; j<DocumentModelList.size(); j++){
+			var docItem = DocumentModelList.get(j);
+			logDebug(docItem.getDocCategory());
 		}
 	}
 //	var s_id1 = aa.env.getValue("PermitId1");
