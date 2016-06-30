@@ -14,12 +14,12 @@
 //			ASIUA;Permits!Residential!Mobile Home!NA
 /*==================================================================*/
 try {
-	var t = loadASITable("UTLITY SERVICE INFORMATION");
+	var t = loadASITable("UTILITY SERVICE INFORMATION");
 	if (!t) t = loadASITable("UTILITY SERVICE INFO");
 	
 	var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0;
 	if (!t){
-		logDebug("Utilitiy Service Information table not found.");
+		logDebug("Utility Service Information table not found.");
 	} else {
 		if (t.length == 0) logDebug("No utility service entries.");
 		else {
