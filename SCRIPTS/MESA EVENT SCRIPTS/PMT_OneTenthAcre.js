@@ -101,8 +101,8 @@ try{
 					for (var i in reqDocTypes){
 						var found = false;
 						var reqDocType = reqDocTypes[i];
-						for (var k in docList){
-							var doc = docList[k];
+						for (var k; k<docList.size(); k++){
+							var doc = docList.get(k);
 							var docGroup = doc.getDocGroup();
 							if (doc.getDocCategory() == reqDocType && 
 								(docGroup == "PMT_COMM" || docGroup == "PMT_RES" || docGroup == "PMT_DEMOLITION")
