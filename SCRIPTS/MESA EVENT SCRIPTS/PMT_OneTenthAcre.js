@@ -80,11 +80,13 @@ try{
 //				if (typeof(parcels[i]) == 'function') logDebug(i);
 //				else logDebug(i + ": " + parcels[i]);
 //			}
+			logDebug("Number of parcels: " + parcels.size());
 			for (var i=0; i<parcels.size(); i++){
 				var parcel = parcels.get(i);
 				acres += parcel.getParcelArea();
+				logDebug("Parcel " + i + " Area: " + parcel.getParcelArea());
 			}
-		}
+		} else logDebug("ERROR: Unable to get parcel list. " + parcelResult.getErrorType() + " " + parcelResult.getErrorMessage());
 		if (!acres) logDebug("ERROR: Unable to get acreage.");
 		else{
 			logDebug("Parcel acreage: " + acres);
