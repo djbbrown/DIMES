@@ -52,7 +52,7 @@ try {
 			logDebug("Number of adapters: " + numAdapters);
 			if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
 			else {
-				if (!feeExists("USF040", "NEW", "INVOICED"))
+				if (!feeExists("USF040", "NEW", "INVOICED") && numAdapters > 0)
 					addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
 				else if (feeExists("USF040", "NEW", "INVOICED") && feeQty("USF040") != numAdapters) {
 					voidRemoveFee("USF040");
