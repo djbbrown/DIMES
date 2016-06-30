@@ -27,7 +27,7 @@ try
 
   if ((planReviewPenaltyDate == null) && (wfTaskMatch))
   {
-    logDebug("scheduleDays: " + scheduleDays);
+    //logDebug("scheduleDays: " + scheduleDays);
 
     tempDate = theStatusDate.substring(0,10);
     var datePieces = tempDate.split('-');
@@ -35,7 +35,7 @@ try
     theDate = new Date(datePieces[1] + "/" + datePieces[2] + "/" + datePieces[0]);
     theDate = new Date(dateAdd(theDate,scheduleDays,'Y'));
 
-    logDebug("theDate: " + theDate);
+    //logDebug("theDate: " + theDate);
 
     editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate));
   }
