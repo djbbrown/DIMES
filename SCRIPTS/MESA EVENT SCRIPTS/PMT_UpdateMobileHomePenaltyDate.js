@@ -37,6 +37,8 @@ try
     logDebug("jsDateToASIDate(theDate): " + jsDateToASIDate(theDate));
 
     editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate));
+
+    logDebug("v2.2");
   }
 }
 catch (err)
