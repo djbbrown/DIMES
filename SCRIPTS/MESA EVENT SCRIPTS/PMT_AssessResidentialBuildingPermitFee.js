@@ -16,7 +16,16 @@
 var tNumInsp = 0;
 var valuationASI = 0;
 var feeAmount = 0;
-if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus == "Ready to Issue")
+var typeOfWork = AInfo["Type of Work"];
+// Residential Type of Work Check
+var residential = ["Single Family (Detached)", "Single Family (Attached)", "Two-Family Duplex", "Guesthouse",
+                   "Remodeling With Addition", "Renovations/Remodels", "Additions", "Garage/Carport", "Non-Structural",
+                   "Fire Sprinklers", "Fire Alarms", "Mechanical", "Plumbing", "Electrical", "Storage Shed/Barn"];
+// Mobile Home Type of Work Check
+var mobileHome = ["Mobile Home Other Addition", "Park Model Other Addition", "Park Model Rebuild"];
+// Online Type of Work Check.
+var Online = ["Residential Electrical 200a or smaller", "Residential Electrical Repair (like for Like)", "Residential Gas Pressure","Residential Gas line repair/replace"];
+if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus == "Ready to Issue" && exsits(typeOfWork,mobleHome))
 {
 	// Get the value for the total number of inspections
 	tNumInsp = AInfo["Required Number of Inspections"];
@@ -25,7 +34,7 @@ if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus ==
 	if(feeAmount > 0){
 		//addFee(fcode, fsched, fperiod, fqty, finvoice)
 		aa.print("Adding fee: "+feeAmount);
-		addFee("RDIF170","PMT_ONL", "FINAL",  feeAmount, "N");
+		addFee("RDIF170","PMT_ONL", "FINAL",  feeAmount, "Y");
 	}
 }
 else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
@@ -64,7 +73,7 @@ else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && w
 	// Residential/NA/NA First
 	// Before the amount for Residential/NA/NA can be fully calculated we must
 	// get the amount that had been put on deposit and paid.
-	if(feeAmount > 0 && appTypeArray[2]=='NA'){
+	if(feeAmount > 0 && appTypeArray[2]=='NA' && exists(typeOfWork,residential)){
 		//addFee(fcode, fsched, fperiod, fqty, finvoice)
 		var prePay = 0;
 		// Get all feeitems on the record
@@ -87,11 +96,11 @@ else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && w
 		// Calculate the difference
 		feeAmount = feeAmount - prePay;
 		aa.print("Adding fee: "+feeAmount);
-		addFee("RES060","PMT_RES", "FINAL",feeAmount, "N");
+		addFee("RES060","PMT_RES", "FINAL",feeAmount, "Y");
 	}
-	else if (feeAmount > 0 && appTypeArray[2]=='Mobile Home'){
+	else if (feeAmount > 0 && appTypeArray[2]=='Mobile Home' && exists(typeOfWork,mobileHome)){
 		aa.print("Adding fee: "+feeAmount);
-		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAmount, "N");
+		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAmount, "Y");
 	}
 	//*/
 }
