@@ -44,7 +44,8 @@ function getMasterScriptText(vScriptName){
 | END: USER CONFIGURABLE PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
-showDebug = aa.env.getValue("showDebug").substring(0,1).toUpperCase().equals("Y");
+// showDebug = aa.env.getValue("showDebug").substring(0,1).toUpperCase().equals("Y");
+showDebug = true;
 
 sysDate = aa.date.getCurrentDate();
 batchJobResult = aa.batchJob.getJobID()
