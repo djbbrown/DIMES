@@ -27,6 +27,7 @@ try {
 	} else {
 		if (t.length == 0) logDebug("No utility service entries.");
 		else {
+			logDebug(t.length);
 			// get new number of adapters and store non-adapter rows
 			for (var entry in t){
 				if (t[entry]["Service Type"] == "Water Service"){
