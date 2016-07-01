@@ -13,6 +13,7 @@
 //			ASA;Permits!Residential!Mobile Home!NA
 //			ASIUA;Permits!Residential!Mobile Home!NA
 /*==================================================================*/
+showDebug = true;
 try {
 	var t = loadASITable("UTILITY SERVICE INFORMATION"), isMobileHome = false;
 	if (!t) {
@@ -61,9 +62,9 @@ try {
 				// reload table without adapter entries
 				if (isMobileHome) removeASITable("UTILITY SERVICE INFO");
 				else removeASITable("UTILITY SERVICE INFORMATION");
-				for (var exRow in entries){
-					if (isMobileHome) addToASITable("UTILITY SERVICE INFO", entries[exRow]);
-					else addToASITable("UTILITY SERVICE INFORMATION", entries[exRow]);
+				for (var exRow in rows){
+					if (isMobileHome) addToASITable("UTILITY SERVICE INFO", rows[exRow]);
+					else addToASITable("UTILITY SERVICE INFORMATION", rows[exRow]);
 				}
 				// add adapters
 				for (var a=0; a<numAdapters; a++){
