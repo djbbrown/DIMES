@@ -67,8 +67,8 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 						}
 					}
 				}
+				newTable.push(thisRow);
 			}
-			newTable.push(thisRow);
 		}
 	}
 	if (changesMade) {
