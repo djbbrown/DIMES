@@ -14,15 +14,19 @@
 //			ASIUA;Permits!Residential!Mobile Home!NA
 /*==================================================================*/
 try {
-	var t = loadASITable("UTILITY SERVICE INFORMATION");
-	if (!t) t = loadASITable("UTILITY SERVICE INFO");
+	var t = loadASITable("UTILITY SERVICE INFORMATION"), isMobileHome = false;
+	if (!t) {
+		t = loadASITable("UTILITY SERVICE INFO");
+		isMobileHome = true;
+	}
 	
-	var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0;
+	var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0, numExistingAdapters = 0, rows = [];
 	if (!t){
 		logDebug("Utility Service Information table not found.");
 	} else {
 		if (t.length == 0) logDebug("No utility service entries.");
 		else {
+			// get new number of adapters and store non-adapter rows
 			for (entry in t){
 				if (t[entry]["Service Type"] == "Water Service"){
 					serviceSize = t[entry]["Service Size"];
@@ -39,26 +43,50 @@ try {
 						serviceSize == 'Water - 10" or 12"' || serviceSize == 'Water - 10')
 					{
 						logDebug("Mismatch row " + entry);
-						var newRow = new Array();
-						newRow["Service Type"] = "Water Meter: Adapter";
-						newRow["Service Size"] = "Water Meter Adapter A24";
-						newRow["Meter Size"] = "N/A";
-						newRow["Qty of Meters"] = qtyOfMeters;
-						addToASITable("UTILITY SERVICE INFORMATION", newRow);
+//						var newRow = new Array();
+//						newRow["Service Type"] = "Water Meter: Adapter";
+//						newRow["Service Size"] = "Water Meter Adapter A24";
+//						newRow["Meter Size"] = "N/A";
+//						newRow["Qty of Meters"] = qtyOfMeters;
+//						if (isMobileHome) addToASITable("UTILITY SERVICE INFO", newRow);
+//						else addToASITable("UTILITY SERVICE INFORMATION", newRow);
 						numAdapters++;
+						rows.push(t[entry]);
 					}		
-				}
+				} else if (t[entry]["Service Type"] == "Water Meter: Adapter") numExistingAdapters++;
+				else rows.push(t[entry]); 
 			}
-			logDebug("Number of adapters: " + numAdapters);
-			if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
-			else {
-				if (!feeExists("USF040", "NEW", "INVOICED") && numAdapters > 0)
-					addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
-				else if (feeExists("USF040", "NEW", "INVOICED") && feeQty("USF040") != numAdapters) {
-					voidRemoveFee("USF040");
-					addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
+			
+			if (numExistingAdapters != numAdapters) {
+				// reload table without adapter entries
+				if (isMobileHome) removeASITable("UTILITY SERVICE INFO");
+				else removeASITable("UTILITY SERVICE INFORMATION");
+				for (var exRow in entries){
+					if (isMobileHome) addToASITable("UTILITY SERVICE INFO", entries[exRow]);
+					else addToASITable("UTILITY SERVICE INFORMATION", entries[exRow]);
 				}
-			}
+				// add adapters
+				for (var a=0; a<numAdapters; a++){
+					var newRow = new Array();
+					newRow["Service Type"] = "Water Meter: Adapter";
+					newRow["Service Size"] = "Water Meter Adapter A24";
+					newRow["Meter Size"] = "N/A";
+					newRow["Qty of Meters"] = qtyOfMeters;
+					if (isMobileHome) addToASITable("UTILITY SERVICE INFO", newRow);
+					else addToASITable("UTILITY SERVICE INFORMATION", newRow);				
+				}
+				
+				logDebug("Number of adapters: " + numAdapters);
+				if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
+				else {
+					if (!feeExists("USF040", "NEW", "INVOICED") && numAdapters > 0)
+						addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
+					else if (feeExists("USF040", "NEW", "INVOICED") && feeQty("USF040") != numAdapters) {
+						voidRemoveFee("USF040");
+						addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
+					}
+				}
+			} else logDebug("Number of adapters required has not changed.");
 		}
 	}	
 } catch (err){
