@@ -28,7 +28,7 @@ try {
 		if (t.length == 0) logDebug("No utility service entries.");
 		else {
 			// get new number of adapters and store non-adapter rows
-			for (entry in t){
+			for (var entry in t){
 				if (t[entry]["Service Type"] == "Water Service"){
 					serviceSize = t[entry]["Service Size"];
 					meterSize = t[entry]["Meter Size"];
