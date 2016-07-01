@@ -10,7 +10,7 @@
 //			ASB;Permits!Commercial!NA!NA
 //			ASB;Permits!Residential!NA!NA
 ===================================================================*/
-showDebug = true;
+//showDebug = true;
 try{
 	var acres = aa.env.getValue("ParcelArea");
 	var docList = aa.env.getValue("DocumentModelList");
@@ -101,10 +101,12 @@ try{
 					for (var i in reqDocTypes){
 						var found = false;
 						var reqDocType = reqDocTypes[i];
-						for (var k; k<docList.size(); k++){
+						for (var k=0; k<docList.size(); k++){
 							var doc = docList.get(k);
 							var docGroup = doc.getDocGroup();
-							if (doc.getDocCategory() == reqDocType && 
+							var docCategory = doc.getDocCategory();
+							logDebug("Document: " + docGroup + " " + docCategory);
+							if (docCategory == reqDocType && 
 								(docGroup == "PMT_COMM" || docGroup == "PMT_RES" || docGroup == "PMT_DEMOLITION")
 							){
 								found = true;
