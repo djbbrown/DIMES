@@ -52,8 +52,8 @@ try {
 //						if (isMobileHome) addToASITable("UTILITY SERVICE INFO", newRow);
 //						else addToASITable("UTILITY SERVICE INFORMATION", newRow);
 						numAdapters++;
-						rows.push(t[entry]);
-					}		
+					}	
+					rows.push(t[entry]);
 				} else if (t[entry]["Service Type"] == "Water Meter: Adapter") numExistingAdapters++;
 				else rows.push(t[entry]); 
 			}
