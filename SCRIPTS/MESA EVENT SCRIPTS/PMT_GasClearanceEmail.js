@@ -13,7 +13,7 @@
 //	IRSA:Permits/Commercial/NA/NA
 //
 // This script calls the notification template "GAS CLEARANCE"
-/*==================================================================*/
+==================================================================*/
 
 var fromEmail = 'noreply@MesaAz.gov';
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req") {
