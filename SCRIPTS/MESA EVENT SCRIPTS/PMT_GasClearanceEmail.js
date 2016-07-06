@@ -36,4 +36,4 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 		//emailAddress = 'gasinspectiontag@swgas.com';
 		sendNotification(fromEmail, emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 		}
-}	
+}
