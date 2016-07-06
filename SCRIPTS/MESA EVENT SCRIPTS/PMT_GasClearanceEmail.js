@@ -3,7 +3,7 @@
 // Script Name: PMT_GasClearanceEmail.js 
 // Script Developer: Raminder Gill
 // Script Agency: Accela
-// Script Description: When Gas Pipe Final inspection is resulted with “Approved - Utility Clearance Required”
+// Script Description: When Gas Pipe Final inspection is resulted with "Approved - Utility Clearance Required"
 // send email to Company named in Utility Service Info ASIT, Clearance To. 
 // Script Run Event: IRSA
 // Script Parents:
