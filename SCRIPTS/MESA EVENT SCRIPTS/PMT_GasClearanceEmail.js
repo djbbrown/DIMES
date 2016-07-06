@@ -14,7 +14,6 @@
 //
 // This script calls the notification template "GAS CLEARANCE"
 ==================================================================*/
-
 var fromEmail = 'noreply@MesaAz.gov';
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"){
 	var vEParams = aa.util.newHashtable();
