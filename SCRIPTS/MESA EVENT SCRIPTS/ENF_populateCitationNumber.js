@@ -8,11 +8,13 @@
 // Script Parents:
 //            ASA;Enforcement!~!~!~
 //            ASIUA;Enforcement!~!~!~
+//            ASA;AnimalControl!~!~!~
+//            ASIUA;AnimalControl!Complaint!NA!NA
 /*==================================================================*/
 
 eval( aa.proxyInvoker.newInstance("com.accela.aa.emse.emse.EMSEBusiness").getOutput().getScriptByPK(aa.getServiceProviderCode(),"INCLUDES_WEB_SERVICES","ADMIN").getScriptText() + "");
 
-if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Building Issues")){//update citation number on ASIT/ENF_COD,ENF_COR,ENF_COS/VIOLATION INFORMATION/
+if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Code Compliance", "Code Rental Issue", "Code Sign Issue")){//update citation number on ASIT/ENF_COD,ENF_COR,ENF_COS/VIOLATION INFORMATION/
 	violationInfoTable = loadASITable("VIOLATION INFORMATION");
 	newTable = new Array();
 	for(var eachRow in violationInfoTable){
@@ -26,7 +28,8 @@ if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Building
 		newRow["Status"] = new asiTableValObj("Status", thisRow["Status"].fieldValue, "N");
 		newRow["Date Opened"] = new asiTableValObj("Date Opened", thisRow["Date Opened"].fieldValue, "N");
 		newRow["Date Closed"] = new asiTableValObj("Date Closed", thisRow["Date Closed"].fieldValue, "N");
-		if(thisRow["Citation Number"] == null || thisRow["Citation Number"] == ""){
+		newRow["Issue Citation?"] = new asiTableValObj("Issue Citation?", thisRow["Issue Citation?"].fieldValue, "N");
+		if((thisRow["Citation Number"] == null || thisRow["Citation Number"] == "") && (thisRow["Issue Citation?"] == "Yes" || thisRow["Issue Citation?"] == "Y")){
 			sessID = getSessionID();
 			nextNumber = getNextMaskedSeq(sessID, "Citation Number Mask", "Citation Number Sequence", "Agency");
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", "" + nextNumber, "N");
@@ -45,7 +48,7 @@ if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Building
 	addASITable("VIOLATION INFORMATION", newTable);
 }
 
-if(matches(""+appTypeArray[1], "Environmental")){//update citation number on ASIT/ENF_ENV/VIOLATION INFORMATION
+if(matches(""+appTypeArray[1], "Environmental") && matches(""+appTypeArray[2], "Complaint")){//update citation number on ASIT/ENF_ENV/VIOLATION INFORMATION
 	violationInfoTable = loadASITable("VIOLATION INFORMATION");
 	newTable = new Array();
 	for(var eachRow in violationInfoTable){
@@ -58,8 +61,8 @@ if(matches(""+appTypeArray[1], "Environmental")){//update citation number on ASI
 		newRow["Status"] = new asiTableValObj("Status", thisRow["Status"].fieldValue, "N");
 		newRow["Date Opened"] = new asiTableValObj("Date Opened", thisRow["Date Opened"].fieldValue, "N");
 		newRow["Date Closed"] = new asiTableValObj("Date Closed", thisRow["Date Closed"].fieldValue, "N");
-		newRow["Issue Citation"] = new asiTableValObj("Issue Citation", thisRow["Issue Citation"].fieldValue, "N");
-		if(thisRow["Citation Number"] == null || thisRow["Citation Number"] == ""){
+		newRow["Issue Citation?"] = new asiTableValObj("Issue Citation", thisRow["Issue Citation?"].fieldValue, "N");
+		if((thisRow["Citation Number"] == null || thisRow["Citation Number"] == "") && (thisRow["Issue Citation?"] == "Yes" || thisRow["Issue Citation?"] == "Y")){
 			sessID = getSessionID();
 			nextNumber = getNextMaskedSeq(sessID, "Citation Number Mask", "Citation Number Sequence", "Agency");
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", "" + nextNumber, "N");
@@ -71,6 +74,43 @@ if(matches(""+appTypeArray[1], "Environmental")){//update citation number on ASI
 		newRow["Required Corrective Actions"] = new asiTableValObj("Required Corrective Actions", thisRow["Required Corrective Actions"].fieldValue, "N");
 		newRow["Corrective Actions Taken"] = new asiTableValObj("Corrective Actions Taken", thisRow["Corrective Actions Taken"].fieldValue, "N");
 		newRow["Date of Corrective Actions"] = new asiTableValObj("Date of Corrective Actions", thisRow["Date of Corrective Actions"].fieldValue, "N");
+		newRow["Enforcement Action"] = new asiTableValObj("Enforcement Action", thisRow["Enforcement Action"].fieldValue, "N");
+		newRow["Date of Enforcement Action"] = new asiTableValObj("Date of Enforcement Action", thisRow[""].fieldValue, "N");
+		newRow["Enforcement Action Result"] = new asiTableValObj("Enforcement Action Result", thisRow["Enforcement Action Result"].fieldValue, "N");
+		newTable.push(newRow);
+	}
+	removeASITable("VIOLATION INFORMATION");
+	addASITable("VIOLATION INFORMATION", newTable);
+}
+
+if(matches(""+appTypeArray[0], "AnimalControl") && matches(""+appTypeArray[1], "Complaint")){//update citation number on ASIT/ENF_ANIMAL/VIOLATION INFORMATION
+	violationInfoTable = loadASITable("VIOLATION INFORMATION");
+	newTable = new Array();
+	for(var eachRow in violationInfoTable){
+		thisRow = violationInfoTable[eachRow];
+		newRow = new Array();
+		newRow["Violation Type"] = new asiTableValObj("Violation Type", thisRow["Violation Type"].fieldValue, "Y");
+		newRow["Violation Description"] = new asiTableValObj("Violation Description", thisRow["Violation Description"].fieldValue, "Y");
+		newRow["Violation Code"] = new asiTableValObj("Violation Code", thisRow["Violation Code"].fieldValue, "Y");
+		newRow["Violation Detail"] = new asiTableValObj("Violation Detail", thisRow["Violation Detail"].fieldValue, "N");
+		newRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", thisRow["Violation Ordinance"].fieldValue, "N");
+		newRow["Status"] = new asiTableValObj("Status", thisRow["Status"].fieldValue, "N");
+		newRow["Date Opened"] = new asiTableValObj("Date Opened", thisRow["Date Opened"].fieldValue, "N");
+		newRow["Date Closed"] = new asiTableValObj("Date Closed", thisRow["Date Closed"].fieldValue, "N");
+		newRow["Issue Citation?"] = new asiTableValObj("Issue Citation", thisRow["Issue Citation?"].fieldValue, "N");
+		newRow["Citation Category"] = new asiTableValObj("Citation Category", thisRow["Citation Category"].fieldValue, "N");
+		if((thisRow["Citation Number"] == null || thisRow["Citation Number"] == "") && (thisRow["Issue Citation?"] == "Yes" || thisRow["Issue Citation?"] == "Y") && thisRow["Citation Category"] == "Title 8"){
+			sessID = getSessionID();
+			nextNumber = getNextMaskedSeq(sessID, "Citation Number Mask", "Citation Number Sequence", "Agency");
+			newRow["Citation Number"] = new asiTableValObj("Citation Number", "" + nextNumber, "N");
+		}
+		else{
+			newRow["Citation Number"] = new asiTableValObj("Citation Number", thisRow["Citation Number"].fieldValue, "N");
+		}
+		newRow["Dispostion"] = new asiTableValObj("Dispostion", thisRow["Dispostion"].fieldValue, "N");
+		newRow["Inspection Notes"] = new asiTableValObj("Required Corrective Actions", thisRow["Required Corrective Actions"].fieldValue, "N");
+		newRow["Date of Violation"] = new asiTableValObj("Date of Corrective Actions", thisRow["Date of Corrective Actions"].fieldValue, "N");
+		newRow["Citation Issued To"] = new asiTableValObj("Citation Issued To", thisRow["Citation Issued To"].fieldValue, "N");
 		newTable.push(newRow);
 	}
 	removeASITable("VIOLATION INFORMATION");
