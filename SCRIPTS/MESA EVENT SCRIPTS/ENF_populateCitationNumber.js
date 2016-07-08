@@ -75,7 +75,7 @@ if(matches(""+appTypeArray[1], "Environmental") && matches(""+appTypeArray[2], "
 		newRow["Corrective Actions Taken"] = new asiTableValObj("Corrective Actions Taken", thisRow["Corrective Actions Taken"].fieldValue, "N");
 		newRow["Date of Corrective Actions"] = new asiTableValObj("Date of Corrective Actions", thisRow["Date of Corrective Actions"].fieldValue, "N");
 		newRow["Enforcement Action"] = new asiTableValObj("Enforcement Action", thisRow["Enforcement Action"].fieldValue, "N");
-		newRow["Date of Enforcement Action"] = new asiTableValObj("Date of Enforcement Action", thisRow[""].fieldValue, "N");
+		newRow["Date of Enforcement Action"] = new asiTableValObj("Date of Enforcement Action", thisRow["Date of Enforcement Action"].fieldValue, "N");
 		newRow["Enforcement Action Result"] = new asiTableValObj("Enforcement Action Result", thisRow["Enforcement Action Result"].fieldValue, "N");
 		newTable.push(newRow);
 	}
