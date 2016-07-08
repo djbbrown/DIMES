@@ -66,9 +66,7 @@ function AddStapleyParcelAdHocWorkflow() {
 
     logDebug("capId: " + capId);
 
-    //EXAMPLE TAGS: COMW,COMG,CDBG,SRPE,GHHF
-    //TODO: Update this with the tag for the Stapley Corridor
-    var targetTag = "SRPE";
+    var targetTag = "CP02";
     var sender = "lauren.lupica@mesaaz.gov";
     var recipient = "steve.ketchum@mesaaz.gov";
     var template = "STAPLEY CORRIDOR";
