@@ -23,7 +23,7 @@ try
   loadASITable("CURRENT ANIMAL INFO");
   var tInfo = CURRENTANIMALINFO;
   var rowCount = 0;
-  var animalPoints = 0;
+  var animalPoints = 0.0;
   var x = 0;
 
   if (tInfo == null)
