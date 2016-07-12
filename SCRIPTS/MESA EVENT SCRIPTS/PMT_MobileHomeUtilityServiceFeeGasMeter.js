@@ -23,17 +23,19 @@ try
 {
   loadASITables();
   var tInfo = UTILITYSERVICEINFO;
-  var rowCount = UTILITYSERVICEINFO.length;
+  var rowCount = 0;
   var serviceType = "";
   var x = 0;
   var exists = feeExists("USF020");
 
-  if ((tInfo == null) || (exists))
+  if ((tInfo == null) || (!(exists)))
   {
     // do nothing at this time
   }
   else
   {
+    rowCount = UTILITYSERVICEINFO.length;
+
     for (x=0;x<=(rowCount-1);x++)
     {
       serviceType = UTILITYSERVICEINFO[x]["Service Type"];
