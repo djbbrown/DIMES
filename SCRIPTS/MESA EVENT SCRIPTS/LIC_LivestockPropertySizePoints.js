@@ -26,7 +26,7 @@
 
 try
 {
-  var propertySqFt = getAppSpecific["Property Size"];
+  var propertySqFt = AInfo["Property Size"];
   var propertySizePoints = 0;
   var inLehi = AInfo["In Lehi Sub Area"];
 
