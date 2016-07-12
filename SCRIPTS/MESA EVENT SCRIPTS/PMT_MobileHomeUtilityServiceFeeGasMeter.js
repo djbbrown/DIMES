@@ -21,7 +21,7 @@
 
 try
 {
-  loadASITable("UTILITY SERVICE INFO;");
+  loadASITable("UTILITY SERVICE INFO");
   var tInfo = UTILITYSERVICEINFO;
   var rowCount = 0;
   var serviceType = "";
@@ -31,6 +31,7 @@ try
   if ((tInfo == null) || (exists))
   {
     // do nothing at this time
+    // fee currently only to be assessed once
   }
   else
   {
