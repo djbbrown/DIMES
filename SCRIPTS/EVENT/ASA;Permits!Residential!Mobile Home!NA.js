@@ -13,3 +13,4 @@ include("PMT_MobileHomeUtilityServiceFeeGasMeter");
 //include("PMT_R5NAreaCalc");
 
 include("PMT_NoAddressAddAdHoc");
+include("PMT_StapleyTag");
