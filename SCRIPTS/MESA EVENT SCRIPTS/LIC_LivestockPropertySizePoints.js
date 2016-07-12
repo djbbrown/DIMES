@@ -42,6 +42,11 @@ try
         propertySizePoints++;
         propertySqFt = propertySqFt - 10890;
       }
+
+      if (propertySqFt > 0)
+      {
+        propertySizePoints++;
+      }
     }
     else
     {
@@ -49,6 +54,11 @@ try
       {
         propertySizePoints++;
         propertySqFt = propertySqFt - 5445;
+      }
+
+      if (propertySqFt > 0)
+      {
+        propertySizePoints++;
       }
     }
   }
