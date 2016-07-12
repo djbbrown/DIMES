@@ -4,3 +4,4 @@
 ==================================================================*/
 include("TRN_MaintainRelatedRecords");
 include("TRN_ExpeditedPlanReview");
+include("TTC_DaysRestricted");

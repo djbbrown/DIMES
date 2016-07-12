@@ -24,10 +24,10 @@ try
 	  // Loop through each of the rows getting the "" and creating a sum.
     for (x=0;x<rowCount;x++)
     {
-      durationDays = durationDays + tInfo[x]["Days Restricted"];
+      durationDays = durationDays + parseInt(tInfo[x]["Days Restricted"]);
     }
 
-    editAppSpecific("Total Days Restricted",durationDays,capId);
+    editAppSpecific("Total Days Restricted",parseInt(durationDays),capId);
   }
 }
 catch (err)
