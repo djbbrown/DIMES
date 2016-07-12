@@ -23,6 +23,7 @@
 // 
 //==================================================================*/
 
+
 try
 {
   var propertySqFt = getAppSpecific["Property Size"];
