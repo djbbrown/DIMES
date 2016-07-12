@@ -8,10 +8,13 @@
 // Script CAP Type: Permits/Residential/NA/NA
 /*==================================================================*/
 
+//https://accela.force.com/success/_ui/chatter/service/ChatterAnswersUi#!/feedtype=SINGLE_QUESTION_DETAIL&dc=All&criteria=ALLQUESTIONS&id=90660000000Ci1W
+
 var toPrecision = function (value) {
     var multiplier = 10000;
     return Math.round(value * multiplier) / multiplier;
-}
+};
+
 function addDate(iDate, nDays) {
     if (isNaN(nDays)) {
         throw ("Day is a invalid number!");
@@ -56,9 +59,10 @@ function getAdditionalInfo(capId) {
 var servProvCode = expression.getValue("$$servProvCode$$").value;
 var totalRowCount = expression.getTotalRowCount();
 
-var aa = expression.getScriptRoot()
+var aa = expression.getScriptRoot();
 
 var capType = expression.getValue("CAP::capType").value;
+var jobValue = expression.getValue("CAP::jobValue").value;
 
 if (capType == "Permits/Residential/NA/NA") {
 
@@ -69,7 +73,9 @@ if (capType == "Permits/Residential/NA/NA") {
     var totalValuationControl = expression.getValue("ASI::GENERAL INFORMATION::Total Valuation");
     var mcFloodZonePermitNumberControl = expression.getValue("ASI::GENERAL INFORMATION::MC Flood Zone Permit Number");
 
-    //mcFloodZonePermitNumberControl.value += capType.toString();
+    //mcFloodZonePermitNumberControl.value += "capType: " + capType.toString() + "\n";
+    //mcFloodZonePermitNumberControl.value += "jobValue: " + jobValue.toString() + "\n";
+
     estimatedNumberOfInspectionsControl = expression.getValue("ASI::GENERAL INFORMATION::Estimated Number of Inspections");
     totalValuationControl = expression.getValue("ASI::GENERAL INFORMATION::Total Valuation");
 
@@ -77,20 +83,22 @@ if (capType == "Permits/Residential/NA/NA") {
 
     if (capIdObj.getSuccess()) {
         var capId = capIdObj.getOutput();
-        //mcFloodZonePermitNumberControl.value += capId.toString();
+        //mcFloodZonePermitNumberControl.value += "capId: " + capId.toString() + "\n";
         var additionalInfo = getAdditionalInfo(capId);
         applicantJobValue = Number(additionalInfo.getEstimatedValue());
-        //mcFloodZonePermitNumberControl.value += applicantJobValue.toString();
-
+    } else {
+        //mcFloodZonePermitNumberControl.value += "capId: Not Found\n";
     }
 
     //Get the value from the "Data Fields -> General Information -> Total Valuation" control
     if (totalValuationControl.value != null && totalValuationControl.value != "") {
         totalValuation = Number(totalValuationControl.value);
-        //mcFloodZonePermitNumberControl.value += totalValuation.toString();
     }
 
-    if ((totalValuation + applicantJobValue < 25000)) {
+    //mcFloodZonePermitNumberControl.value += "totalValuation:" + totalValuation.toString() + "\n";
+    //mcFloodZonePermitNumberControl.value += "applicantJobValue:" + applicantJobValue.toString() + "\n";
+
+    if ((totalValuation + applicantJobValue > 25000)) {
         estimatedNumberOfInspectionsControl.hidden = true;
         estimatedNumberOfInspectionsControl.required = false;
     } else {
