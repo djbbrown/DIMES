@@ -28,7 +28,7 @@ try
   var x = 0;
   var exists = feeExists("USF020");
 
-  if ((tInfo == null) || (exists))
+  if ((tInfo == null) || (!(exists)))
   {
     // do nothing at this time
   }
