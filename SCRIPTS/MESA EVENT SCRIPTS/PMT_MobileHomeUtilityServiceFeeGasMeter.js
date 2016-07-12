@@ -21,7 +21,6 @@
 
 try
 {
-  //loadASITables();
   loadASITable("UTILITY SERVICE INFO;");
   var tInfo = UTILITYSERVICEINFO;
   var rowCount = 0;
