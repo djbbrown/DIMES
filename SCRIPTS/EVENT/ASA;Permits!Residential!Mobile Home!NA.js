@@ -13,3 +13,4 @@ include("PMT_R5AreaCalc_MobileHome");
 include("PMT_R5NAreaCalc_MobileHome");
 
 include("PMT_NoAddressAddAdHoc");
+include("PMT_StapleyTag");
