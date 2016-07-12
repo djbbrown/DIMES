@@ -32,7 +32,7 @@ try
   }
   else
   {
-    rowCount = OCCUPANCYINFO.length;
+    rowCount = OCCUPANCYINFORMATION.length;
 
     // loop and sum
     for (x=0;x<=(rowCount-1);x++)
@@ -44,7 +44,7 @@ try
     }
 
     // in case they change the logic, this is more efficent
-    //totalSqFt = sumASITColumn(OCCUPANCYINFO, "Sq Ft");
+    //totalSqFt = sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft");
   }
 
   editAppSpecific("R-5N Area", totalSqFt);
