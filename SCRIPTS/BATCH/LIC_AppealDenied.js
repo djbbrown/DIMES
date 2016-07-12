@@ -1,7 +1,12 @@
 /*------------------------------------------------------------------------------------------------------/
 | Program: LIC_AppealDenied Trigger: Batch    
 | Version 1.0 - Base Version. 
-| 
+| Script Number: 011
+| Script Name: LIC Supervisor Review Close Record, LIC_AppealDenied
+| Script Developer: Deanna Hoops
+| Script Agency: Accela
+| Script Description: 
+| Script Run Event: BATCH
 | 
 /------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------/
@@ -217,7 +222,7 @@ function mainProcess() {
 	if (capFoundArray.length > 0 && emailTemplate != "" && emailAddress != "") {
 			var vEParams = aa.util.newHashtable(); 
 			addParameter(vEParams,"$$altIdList$$",capFoundArray.join(","));
-			sendNotification("", emailAddress, "", emailTemplate, vEParams, null, capId)
+			sendNotification("noreply@mesaaz.gov", emailAddress, "", emailTemplate, vEParams, null, capId)
 	}	
 	
 	logDebug("Processed " + capCount + " Records ");	
