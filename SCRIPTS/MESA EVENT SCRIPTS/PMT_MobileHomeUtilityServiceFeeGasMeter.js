@@ -21,14 +21,15 @@
 
 try
 {
-  loadASITables();
+  //loadASITables();
+  loadASITable("UTILITY SERVICE INFO;");
   var tInfo = UTILITYSERVICEINFO;
   var rowCount = 0;
   var serviceType = "";
   var x = 0;
   var exists = feeExists("USF020");
 
-  if ((tInfo == null) || (!(exists)))
+  if ((tInfo == null) || (exists))
   {
     // do nothing at this time
   }
