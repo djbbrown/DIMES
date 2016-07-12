@@ -38,7 +38,7 @@ try
     // loop and sum
     for (x=0;x<=(rowCount-1);x++)
     {
-      animalPoints += parseInt(tInfo[x]["Animal Points"]);
+      animalPoints += parseFloat(tInfo[x]["Animal Points"]);
     }
   }
 
