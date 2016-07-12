@@ -7,7 +7,13 @@
 // Script Description: If, on app submittal the record has no address, Add Adhoc task "GIS Addressing".
 // Script Run Event: ASA
 // Script Parents:
-//            ASA;Permits!~!~!~
+//
+//    ASA;Permits!Commercial!NA!NA
+//    ASA;Permits!Demolition!NA!NA
+//    ASA;Permits!Residential!Mobile Home!NA
+//    ASA;Permits!Residential!NA!NA
+//    ASA;Permits!Sign!NA!NA   
+//
 /*==================================================================*/
 
 //Permits/Commercial/NA/NA
