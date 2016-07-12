@@ -38,7 +38,7 @@ if (
     matches("" + appTypeArray[3], "NA")
 ) {
     try{
-        this.AddStapleyParcelAdHocWorkflow();
+        AddStapleyParcelAdHocWorkflow();
     }catch(exception){
         logDebug("JavaScript exception caught in PMT_StapleyTag: " + exception.message);
     }
@@ -55,7 +55,7 @@ if (
     matches("" + appTypeArray[3], "NA")
 ) {
     try{
-    this.AddStapleyParcelAdHocWorkflow();
+        AddStapleyParcelAdHocWorkflow();
     }catch(exception){
         logDebug("JavaScript exception caught in PMT_StapleyTag: " + exception.message);
     }
