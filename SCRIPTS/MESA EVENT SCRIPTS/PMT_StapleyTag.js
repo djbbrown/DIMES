@@ -23,7 +23,7 @@
 //    ASA: Permits/Sign/NA/NA - has master script
 
 /*==================================================================*/
-
+showDebug = true;
 //  ASA: Permits/Commercial/NA/NA
 //  ASA: Permits/Demolition/NA/NA
 //  ASA: Permits/Residential/NA/NA
@@ -38,7 +38,7 @@ if (
     matches("" + appTypeArray[3], "NA")
 ) {
     try{
-        this.AddStapleyParcelAdHocWorkflow();
+        AddStapleyParcelAdHocWorkflow();
     }catch(exception){
         logDebug("JavaScript exception caught in PMT_StapleyTag: " + exception.message);
     }
@@ -55,7 +55,7 @@ if (
     matches("" + appTypeArray[3], "NA")
 ) {
     try{
-    this.AddStapleyParcelAdHocWorkflow();
+        AddStapleyParcelAdHocWorkflow();
     }catch(exception){
         logDebug("JavaScript exception caught in PMT_StapleyTag: " + exception.message);
     }
