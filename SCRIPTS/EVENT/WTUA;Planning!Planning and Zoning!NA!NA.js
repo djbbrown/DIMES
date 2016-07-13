@@ -6,9 +6,12 @@ if (wfTask == 'Substantive Review Distribution' && wfStatus == 'Distributed') {
 	var vSubmittalBuffer = lookup('SetDueDates:Planning/Planning and Zoning/NA/NA', 'Submittal Buffer (Days)');
 	var vTotalTimeTillHearing = vSubmittalBuffer + lookup('SetDueDates:Planning/Planning and Zoning/NA/NA', 'Time Till Hearing (Days)'); ;
 
-	vDateFrom = new Date(dateAdd(vToday, vSubmittalBuffer));
-	vDateTo = new Date(dateAdd(vToday, vTotalTimeTillHearing));
+	vDateFrom = new Date(dateAdd(vToday, vTotalTimeTillHearing));
+	vDateTo = new Date(dateAdd(vToday, vTotalTimeTillHearing + 31));
 
+	logDebug("FromDate: " + vDateFrom);
+	logDebug("ToDate: " + vDateTo);
+	
 	vDateFrom = aa.date.getScriptDateTime(vDateFrom);
 	vDateTo = aa.date.getScriptDateTime(vDateTo);
 
