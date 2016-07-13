@@ -13,13 +13,16 @@
 //==================================================================*
 
 
-var fromEmail = "Brian.ODell@mesaaz.gov";
+var fromEmail = "noreply.accela@mesaaz.gov";
 var emailAddress = "brian.odell@gmail.com";
 var vEParams = aa.util.newHashtable();
 
 addParameter(vEParams,"$$RECORD ID$$",capIDString);
 
-// to me
+// to gmail
+sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
+
+emailAddress = "Brian.ODell@MesaAZ.gov";
 sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
 
 emailAddress = "Lauren.Lupica@MesaAZ.gov";
