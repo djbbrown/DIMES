@@ -25,5 +25,5 @@ sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, c
 emailAddress = "Lauren.Lupica@MesaAZ.gov";
 sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
 
-emailAddress = "Steve.Allred@MesaAZ.gov";
+emailAddress = "Steve.Veloudos@MesaAZ.gov";
 sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
