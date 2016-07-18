@@ -14,9 +14,11 @@ try {
 	var resDevTax = AInfo["Res. Dev. Tax"] || "";
 	var typeOfWork = AInfo["Type of Work"] || "";
 	var numOfUnits = AInfo["Number of Units"] || 0;
-	if (resDevTax == "CHECKED"){		
+	if (resDevTax == "CHECKED"){
+		if (numOfUnits == 0)
+			logDebug("WARNING: 'Number of Units' is empty or 0.");
 		if (typeOfWork == "New Mobile Home"){
-			logDebug("Assessing Solid Waste – Single Family Detached/Mobile Home (on plotted land) Impact Fee...");			
+			logDebug("Assessing Solid Waste Single Family Detached/Mobile Home (on plotted land) Impact Fee...");			
 			// remove any other similar fee
 			if (feeExists("RDIF350", "NEW", "INVOICED")) voidRemoveFee("RDIF350");
 			
@@ -30,7 +32,7 @@ try {
 				addFee("RDIF340", "PMT_RDIF", "FINAL", numOfUnits, "N");
 			}			
 		} else if (typeOfWork == "New Park Model"){
-			logDebug("Assessing Solid Waste – Manufactured home or Recreational Vehicle Impact Fee...");
+			logDebug("Assessing Solid Waste Manufactured home or Recreational Vehicle Impact Fee...");
 			
 			// remove any other similar fee
 			if (feeExists("RDIF340", "NEW", "INVOICED")) voidRemoveFee("RDIF340");
