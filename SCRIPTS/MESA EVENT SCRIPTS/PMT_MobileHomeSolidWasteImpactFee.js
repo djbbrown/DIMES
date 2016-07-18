@@ -14,7 +14,7 @@ try {
 	var resDevTax = AInfo["Res. Dev. Tax"] || "";
 	var typeOfWork = AInfo["Type of Work"] || "";
 	var numOfUnits = AInfo["Number of Units"] || 0;
-	if (resDevTax == "Y"){		
+	if (resDevTax == "CHECKED"){		
 		if (typeOfWork == "New Mobile Home"){
 			logDebug("Assessing Solid Waste – Single Family Detached/Mobile Home (on plotted land) Impact Fee...");			
 			// remove any other similar fee
