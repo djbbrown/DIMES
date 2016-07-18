@@ -46,7 +46,15 @@ try {
 			if (!feeExists("RDIF350", "NEW", "INVOICED") && numOfUnits > 0) {
 				addFee("RDIF350", "PMT_RDIF", "FINAL", numOfUnits, "N");
 			}
+		} else {
+			// remove any fee in this script
+			if (feeExists("RDIF350", "NEW", "INVOICED")) voidRemoveFee("RDIF350");
+			if (feeExists("RDIF340", "NEW", "INVOICED")) voidRemoveFee("RDIF340");
 		}
+	} else {
+		// remove any fee in this script
+		if (feeExists("RDIF350", "NEW", "INVOICED")) voidRemoveFee("RDIF350");
+		if (feeExists("RDIF340", "NEW", "INVOICED")) voidRemoveFee("RDIF340");
 	}
 } catch (error){
 	logDebug("A JavaScript Error occured: " + err.message);
