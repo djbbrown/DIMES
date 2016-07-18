@@ -9,7 +9,7 @@
 //            ASA;Permits!Residential!Mobile Home!NA 
 //            ASIUA;Permits!Residential!Mobile Home!NA
 ===================================================================*/
-showDebug = true;
+// showDebug = true;
 try {
 	var resDevTax = AInfo["Res. Dev. Tax"] || "";
 	var typeOfWork = AInfo["Type of Work"] || "";
