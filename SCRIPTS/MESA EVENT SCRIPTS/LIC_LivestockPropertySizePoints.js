@@ -13,7 +13,7 @@
 //			35,000-43,560 sq ft => 1 pt
 //			each additional 10,890 sq ft => 1pt
 //		  Lehi
-//			35,000-43,560 sq ft => 1 pt
+//			35,000-43,560 sq ft => 4 pt
 //			each additional 5,445 sq ft => 1pt
 //
 // Script Run Event: ASA / ASIUA
@@ -32,11 +32,11 @@ try
 
   if (propertySqFt >= 35000)
   {
-    propertySizePoints = 1;
     propertySqFt = propertySqFt - 43500;
 
     if (inLehi == "No")
     {
+      propertySizePoints = 1;
       while (propertySqFt >= 10890)
       {
         propertySizePoints++;
@@ -50,6 +50,7 @@ try
     }
     else
     {
+      propertySizePoints = 4;
       while (propertySqFt >= 5445)
       {
         propertySizePoints++;
@@ -60,6 +61,17 @@ try
       {
         propertySizePoints++;
       }
+    }
+  }
+  else
+  {
+    if (inLehi == "No")
+    {
+      propertySizePoints = 1;
+    }
+    else
+    {
+      propertySizePoints = 4;
     }
   }
   
