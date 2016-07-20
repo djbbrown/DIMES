@@ -40,7 +40,7 @@ if(
 		logDebug("Creating License Record");
 		// Create a child record of type License/*/*/License (where the record type and subtype are the same as the parent application record)
 		// Need to get the type and sub-type broken out, the following format can be used appTypeArray[1]
-		/*
+		
 		license = createChild(appTypeArray[0],appTypeArray[1],appTypeArray[2],"License","License");
 		// Convert the Contact of type "Applicant" (This should be "License Applicant")
 		// to "Licensee" ("Licensee" is in configuration and should be no issue.)
@@ -65,7 +65,7 @@ if(
 				aa.people.editCapContactWithAttribute(updateContact); // Commit the changes with contact ASI Attributes, this is safer to use.
 			}
 		}
-		
+		/*
 		newLicIdString = license.getCustomID(); 
 		logDebug("newLicIdString" + newLicIdString);
 		lic = new licenseObject(null,license) ; 	
