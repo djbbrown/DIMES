@@ -40,6 +40,7 @@ if(
 		logDebug("Creating License Record");
 		// Create a child record of type License/*/*/License (where the record type and subtype are the same as the parent application record)
 		// Need to get the type and sub-type broken out, the following format can be used appTypeArray[1]
+		/*
 		license = createChild(appTypeArray[0],appTypeArray[1],appTypeArray[2],"License","License");
 		// Convert the Contact of type "Applicant" (This should be "License Applicant")
 		// to "Licensee" ("Licensee" is in configuration and should be no issue.)
@@ -102,6 +103,7 @@ if(
 		if (!setNameResult.getSuccess())
 			{ logDebug("**WARNING: error setting cap name : " + setNameResult.getErrorMessage()) ;}
 		// Set the workflow task "Issue License" to a status of "Issued"
+		//*/
 		closeTask("Issue License", "Issued", "Fee's paid online and permit issued", null);
 		// Generate license report PDF and attach it to the license record
 		var aaReportName = 'License';
