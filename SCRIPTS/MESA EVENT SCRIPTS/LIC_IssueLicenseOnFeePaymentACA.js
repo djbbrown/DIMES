@@ -67,8 +67,9 @@ if(
 		}
 		newLicIdString = license.getCustomID(); 
 		logDebug("newLicIdString" + newLicIdString);
-		//lic = new licenseObject(null,license) ; 	
-		lic = new licenseObject(newLicIdString,license) ;
+		/*
+		lic = new licenseObject(null,license) ; 	
+		//lic = new licenseObject(newLicIdString,license) ;
 		// Set the expiration status to Active and the expiration date according to the expiration code. 
 		// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 		lic.setStatus("Active");		
