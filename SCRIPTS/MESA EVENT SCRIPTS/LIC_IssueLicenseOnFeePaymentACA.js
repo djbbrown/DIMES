@@ -77,7 +77,7 @@ if(
 		// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
 		// EMSE:ASI Copy Exceptions - contains the record type (in the "Standard Choices Value" field)
 		// along with a "|" delimited list ASI fields to exclude when copying the ASI (in the "Value Desc" field).
-		
+		/*
 		var ignore = lookup("EMSE:ASI Copy Exceptions",appTypeString); 
 		var ignoreArr = new Array(); 
 		if(ignore != null) ignoreArr = ignore.split("|");
@@ -85,7 +85,7 @@ if(
 		copyAppSpecific(license,ignoreArr); // Copy the values
 		// no need for ASIT table as it is only for Denial
 		//copyASITables(capId,license);
-		/*
+		
 		// Update the License DBA with the "Business Name" ASI from the Application Record
 		// Note that this is not in the spec.
 		// The following has been edited by request of Janet Evelan to use "Application Name" for dba
