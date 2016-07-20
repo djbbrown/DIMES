@@ -37,7 +37,7 @@ if(
 		//wfTask = "Issue License";
 		//wfStatus = "Issued";
 		//include("LIC_CreateLicenseRecord"); // Added by Kevin Ford
-		aa.print("Creating License Record");
+		logDebug("Creating License Record");
 		// Create a child record of type License/*/*/License (where the record type and subtype are the same as the parent application record)
 		// Need to get the type and sub-type broken out, the following format can be used appTypeArray[1]
 		license = createChild(appTypeArray[0],appTypeArray[1],appTypeArray[2],"License","License");
@@ -66,7 +66,7 @@ if(
 		}
 		
 		newLicIdString = license.getCustomID(); 
-		aa.print("newLicIdString" + newLicIdString);
+		logDebug("newLicIdString" + newLicIdString);
 		lic = new licenseObject(null,license) ; 	
 		
 		// Set the expiration status to Active and the expiration date according to the expiration code. 
