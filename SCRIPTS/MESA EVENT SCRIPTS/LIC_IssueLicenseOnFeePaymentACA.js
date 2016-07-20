@@ -85,7 +85,7 @@ if(
 		copyAppSpecific(license,ignoreArr); // Copy the values
 		// no need for ASIT table as it is only for Denial
 		//copyASITables(capId,license);
-		
+		/*
 		// Update the License DBA with the "Business Name" ASI from the Application Record
 		// Note that this is not in the spec.
 		// The following has been edited by request of Janet Evelan to use "Application Name" for dba
