@@ -30,10 +30,12 @@ if(
 	&& publicUser
 ){
 	// get the workflow and set the status
-	wfTaskModel = aa.workflow.getTask(capId, 'Issue License').getOutput();
+	wfTaskModel = aa.workflow.getTask(capId, 'Issue License').getOutput();	
 	tStatus = wfTaskModel.getDisposition();
 	if(tStatus == 'Ready to Issue' && balanceDue == 0){
 		// Create the license record
+		wfTask = "Issue License";
+		wfStatus = "Issued";
 		include("LIC_CreateLicenseRecord"); // Added by Kevin Ford
 		// Set the workflow task "Issue License" to a status of "Issued"
 		closeTask("Issue License", "Issued", "Fee's paid online and permit issued", null);
