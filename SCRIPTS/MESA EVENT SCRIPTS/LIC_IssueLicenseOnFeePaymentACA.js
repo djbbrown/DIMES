@@ -95,7 +95,6 @@ if(
 		if (dba == null) {
 			dba = capName;
 		}
-		/*
 		var desc = aa.cap.getCap(license).getOutput().getCapModel();
 		desc.setSpecialText(dba); // This is the capName record Name
 		aa.print(desc.getSpecialText());
