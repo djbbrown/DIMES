@@ -74,7 +74,7 @@ if(
 		// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 		lic.setStatus("Active");		
 		lic.setExpiration(dateAdd(null,365));
-		
+		//*/
 		// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
 		// EMSE:ASI Copy Exceptions - contains the record type (in the "Standard Choices Value" field)
 		// along with a "|" delimited list ASI fields to exclude when copying the ASI (in the "Value Desc" field).
