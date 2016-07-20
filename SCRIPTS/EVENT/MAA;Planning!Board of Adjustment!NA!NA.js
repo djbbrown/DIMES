@@ -1,6 +1,6 @@
 var vMeeting = aa.calendar.getEventByEventID(CalendarID, TargetMeetingID).getOutput();
 var x = 0;
-vScheduledDate = vMeeting.getStartDate();
+vScheduledDate = convertDate(vMeeting.getStartDate());
 
 logDebug("Scheduled Date: " + vScheduledDate);
 	
