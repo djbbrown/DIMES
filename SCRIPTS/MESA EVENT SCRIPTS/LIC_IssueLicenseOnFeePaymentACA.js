@@ -67,7 +67,6 @@ if(
 		}
 		newLicIdString = license.getCustomID(); 
 		logDebug("newLicIdString" + newLicIdString);
-		/*
 		lic = new licenseObject(null,license) ; 	
 		//lic = new licenseObject(newLicIdString,license) ;
 		// Set the expiration status to Active and the expiration date according to the expiration code. 
