@@ -10,9 +10,7 @@
 //			ASIUA;Permitting!Residential!Mobile Home!NA
 //			ASIUA;Permitting!Commercial!NA!NA
 /*==================================================================*/
-//loadASITables();
-var OCCUPANCYINFORMATION = loadASITable("OCCUPANCYINFORMATION");
-//if (!OCCUPANCYINFORMATION) OCCUPANCYINFORMATION = loadASITable("OCCUPANCY INFO");
+loadASITables();
 if (typeof(OCCUPANCYINFORMATION) == "object"){
 	editAppSpecific("Total Sq Ft", sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft"));
 } 
