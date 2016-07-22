@@ -17,7 +17,8 @@ tagField = "" + getGISInfo("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG"
 logDebug("tag attribute = " + tagField);
 
 //get ASI for "Type of Application"
-var typeApp = getAppSpecific("Type of Application",capId);
+//var typeApp = getAppSpecific("Type of Application",capId);
+var typeApp = AInfo("Type of Application");
 logDebug(tagField);
 logDebug(typeApp);
 if(tagField == "GHDC" && typeApp == "DayCare") {
