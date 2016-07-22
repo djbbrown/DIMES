@@ -18,7 +18,7 @@ logDebug("tag attribute = " + tagField);
 
 //get ASI for "Type of Application"
 //var typeApp = getAppSpecific("Type of Application",capId);
-var typeApp = AInfo("Type of Application");
+var typeApp = AInfo["Type of Application"];
 logDebug(tagField);
 logDebug(typeApp);
 if(tagField == "GHDC" && typeApp == "DayCare") {
