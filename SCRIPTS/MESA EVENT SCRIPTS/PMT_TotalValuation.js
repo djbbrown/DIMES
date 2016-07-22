@@ -13,8 +13,9 @@
 showDebug=true;
 
 try {
-	var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
-	logDebug(occupancyTable.length);
+	logDebug(OCCUPANCYINFORMATION[0]['Occupancy Classification']);
+//	var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
+//	logDebug(occupancyTable.length);
 //	if (!occupancyTable) occupancyTable = loadASITable("OCCUPANCY INFO");
 //	if (!occupancyTable || occupancyTable.length == 0) logDebug("Unable to load occupancy information table or table is empty.");
 //	else {
