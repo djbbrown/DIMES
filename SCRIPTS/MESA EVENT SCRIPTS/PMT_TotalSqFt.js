@@ -13,7 +13,9 @@
 //loadASITables();
 if (typeof(OCCUPANCYINFORMATION) == "object"){
 	editAppSpecific("Total Sq Ft", sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft"));
-} 
+} else if (typeof(OCCUPANCYINFO) == "object"){ // mobile home permit
+	editAppSpecific("Total Sq Ft", sumASITColumn(OCCUPANCYINFO, "Sq Ft"));
+}
 else {
-	logDebug("Could not get OCCUPANCYINFORMATION table");
+	logDebug("Could not get OCCUPANCY INFORMATION table");
 }
