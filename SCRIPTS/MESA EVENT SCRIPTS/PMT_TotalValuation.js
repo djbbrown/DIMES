@@ -13,8 +13,8 @@
 showDebug=true;
 
 try {
-	var occupancyTable = loadASITable('OCCUPANCY INFORMATION');
-	if (!occupancyTable) occupancyTable = loadASITable('OCCUPANCY INFO');
+	var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
+	if (!occupancyTable) occupancyTable = loadASITable("OCCUPANCY INFO");
 	if (!occupancyTable || occupancyTable.length == 0) logDebug("Unable to load occupancy information table or table is empty.");
 	else {
 		var totalValuation = 0.0;
