@@ -13,51 +13,53 @@
 showDebug=true;
 
 try {
-	logDebug(OCCUPANCYINFORMATION[0]['Occupancy Classification']);
-//	var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
-//	logDebug(occupancyTable.length);
-//	if (!occupancyTable) occupancyTable = loadASITable("OCCUPANCY INFO");
-//	if (!occupancyTable || occupancyTable.length == 0) logDebug("Unable to load occupancy information table or table is empty.");
-//	else {
-//		var totalValuation = 0.0;
-//		for (var rowIndex in occupancyTable){
-//			var row = occupancyTable[rowIndex];
-//			var occupancyClassification = row['Occupancy Classification'];
-//			if (!occupancyClassification) logDebug("Warning: 'Occupancy Classification' is not entered. Valuation for row cannot be calculated.");
-//			var typeOfConstruction = row['Type of Construction'];
-//			if (!typeOfConstruction) logDebug("Warning: 'Type of Construction' is not entered. Valuation for row cannot be calculated.");
-//			var sqFt = row['Sq Ft'];
-//			if (!sqFt) logDebug("Warning: 'Sq Ft' is not entered. Valuation for row cannot be calculated.");
-//			if (!occupancyClassification || !typeOfConstruction || !sqFt){
-//				logDebug("Skipping row valuation...");
-//			} else {
-//				logDebug("Calculating row valuation...");
-//				
-//				// get unit value based on use and construction types
-//				var unitValue = 0.0, rowValuation = 0.0;
-//				var initialContext = aa.proxyInvoker.newInstance("javax.naming.InitialContext", null).getOutput();
-//				var ds = initialContext.lookup("java:/AA");
-//				var conn = ds.getConnection();
-//				var selectString = "select G3_UNIT_VALUE from GVALUATN where SERV_PROV_CODE = ? and G3_USE_TYP = ? and G3_CON_TYP = ?"; 
-//				var sStmt = conn.prepareStatement(selectString);
-//				sStmt.setString(1, servProvCode);
-//				sStmt.setString(2, occupancyClassification);
-//				sStmt.setString(3, typeOfConstruction)
-//				var rSet = sStmt.executeQuery();
-//				if (rSet.next()) unitValue = rSet.getDouble('G3_UNIT_VALUE');
-//				sStmt.close();
-//				conn.close();
-//				
-//				if (unitValue <= 0) logDebug("Warning 'Unit Valve' not greater than zero. Valuation for row cannot be calculated.");
-//				else {
-//					rowValuation = unitValue * sqFt;
-//					logDebug("Row valuation: " + rowValuation);
-//					totalValuation += rowValuation;
-//				}
-//			}
-//		}
-//		if (totalValuation > 0) editAppSpecific('Total Valuation', totalValuation);
-//	}	
+	if (!OCCUPANCYINFORMATION || !OCCUPANCYINFO){
+		var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
+		if (!occupancyTable) occupancyTable = loadASITable("OCCUPANCY INFO");	
+	} else {
+		occupacyTable = OCCUPANCYINFORMAITON || OCCUPANCYINFO;
+	}
+	if (!occupancyTable || occupancyTable.length == 0) logDebug("Unable to load occupancy information table or table is empty.");
+	else {
+		var totalValuation = 0.0;
+		for (var rowIndex in occupancyTable){
+			var row = occupancyTable[rowIndex];
+			var occupancyClassification = row['Occupancy Classification'];
+			if (!occupancyClassification) logDebug("Warning: 'Occupancy Classification' is not entered. Valuation for row cannot be calculated.");
+			var typeOfConstruction = row['Type of Construction'];
+			if (!typeOfConstruction) logDebug("Warning: 'Type of Construction' is not entered. Valuation for row cannot be calculated.");
+			var sqFt = row['Sq Ft'];
+			if (!sqFt) logDebug("Warning: 'Sq Ft' is not entered. Valuation for row cannot be calculated.");
+			if (!occupancyClassification || !typeOfConstruction || !sqFt){
+				logDebug("Skipping row valuation...");
+			} else {
+				logDebug("Calculating row valuation...");
+				
+				// get unit value based on use and construction types
+				var unitValue = 0.0, rowValuation = 0.0;
+				var initialContext = aa.proxyInvoker.newInstance("javax.naming.InitialContext", null).getOutput();
+				var ds = initialContext.lookup("java:/AA");
+				var conn = ds.getConnection();
+				var selectString = "select G3_UNIT_VALUE from GVALUATN where SERV_PROV_CODE = ? and G3_USE_TYP = ? and G3_CON_TYP = ?"; 
+				var sStmt = conn.prepareStatement(selectString);
+				sStmt.setString(1, servProvCode);
+				sStmt.setString(2, occupancyClassification);
+				sStmt.setString(3, typeOfConstruction)
+				var rSet = sStmt.executeQuery();
+				if (rSet.next()) unitValue = rSet.getDouble('G3_UNIT_VALUE');
+				sStmt.close();
+				conn.close();
+				
+				if (unitValue <= 0) logDebug("Warning 'Unit Valve' not greater than zero. Valuation for row cannot be calculated.");
+				else {
+					rowValuation = unitValue * sqFt;
+					logDebug("Row valuation: " + rowValuation);
+					totalValuation += rowValuation;
+				}
+			}
+		}
+		if (totalValuation > 0) editAppSpecific('Total Valuation', totalValuation);
+	}	
 } catch (error){
 	logDebug("Javascript Error: " + error.message);
 }
