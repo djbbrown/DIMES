@@ -64,42 +64,50 @@ if (
 function AddStapleyParcelAdHocWorkflow() {
     logDebug("Enter AddStapleyParcelAdHocWorkflow()");
 
-    logDebug("capId: " + capId);
+    var objectMapper = new org.codehaus.jackson.map.ObjectMapper();
+    logDebug("capId: " + objectMapper.writeValueAsString(capId))
 
+    //EXAMPLE TAGS: COMW,COMG,CDBG,SRPE,GHHF
+    //TODO: Update this with the tag for the Stapley Corridor
     var targetTag = "CP02";
-    var sender = "lauren.lupica@mesaaz.gov";
-    var recipient = "steve.ketchum@mesaaz.gov";
+
+    var sender = lookup("StapleyCorridorEmailSettings", "Sender");
+    logDebug("sender: " + sender);
+
+    var recipient = lookup("StapleyCorridorEmailSettings", "Recipient");
+    logDebug("recipient: " + recipient);
+
     var template = "STAPLEY CORRIDOR";
 
-    var vEParams = aa.util.newHashtable(); 
+    var vEParams = aa.util.newHashtable();
 
     tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
     logDebug("tagFieldArray: " + tagFieldArray);
 
     if (tagFieldArray && tagFieldArray.length > 0) {
 
-       for (tIndex in tagFieldArray) {
+        for (tIndex in tagFieldArray) {
 
-		    thisTag = tagFieldArray[tIndex];
+            thisTag = tagFieldArray[tIndex];
 
             logDebug("thisTag: " + thisTag);
-            logDebug("targetTag: " + targetTag);		    
+            logDebug("targetTag: " + targetTag);
 
-		    if(thisTag == targetTag)
-		    {
-				    logDebug("Parcel found to be within " + thisTag + ".  Sending email");
-				    addParameter(vEParams, "$$RECORD ID$$", capId);				    
+            if (thisTag == targetTag) {
 
-                    logDebug("Begin calling sendNotification()");
-				    sendNotification(sender, recipient, "", template, vEParams, null);
-                    logDebug("End calling sendNotification()");
+                logDebug("Parcel found to be within " + thisTag + ".  Sending email");
+                addParameter(vEParams, "$$RECORD ID$$", capId.customID);
 
-                    logDebug("Begin calling addHocTask()");
-				    addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Stapley Corridor GIS layer");
-                    logDebug("End calling addHocTask()");
-		    }
-	    }
-    }    
+                logDebug("Begin calling sendNotification()");
+                sendNotification(sender, recipient, "", template, vEParams, null);
+                logDebug("End calling sendNotification()");
+
+                logDebug("Begin calling addHocTask()");
+                addAdHocTask("WFADHOC_PROCESS", "Engineering Group TBD", "Note: Parcel exists in Stapley Corridor GIS layer");
+                logDebug("End calling addHocTask()");
+            }
+        }
+    }
 
     logDebug("Exit AddStapleyParcelAdHocWorkflow()");
 }
