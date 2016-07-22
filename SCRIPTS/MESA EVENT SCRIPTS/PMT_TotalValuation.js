@@ -10,7 +10,7 @@
 //            ASIUA;Permits!Residential!NA!NA
 //            ASIUA;Permits!Commercial!NA!NA
 ===================================================================*/
-showDebug=true;
+//showDebug=true;
 
 try {
 	var occupancyTable=null;
