@@ -11,7 +11,7 @@
 //			ASIUA;Permitting!Commercial!NA!NA
 /*==================================================================*/
 //loadASITables();
-var OCCUPANCYINFORMATION = loadASITable("OCCUPANCY INFORMATION");
+var OCCUPANCYINFORMATION = loadASITable("OCCUPANCYINFORMATION");
 //if (!OCCUPANCYINFORMATION) OCCUPANCYINFORMATION = loadASITable("OCCUPANCY INFO");
 if (typeof(OCCUPANCYINFORMATION) == "object"){
 	editAppSpecific("Total Sq Ft", sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft"));
