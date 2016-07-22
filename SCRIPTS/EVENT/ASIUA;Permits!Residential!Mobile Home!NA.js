@@ -8,6 +8,7 @@ include("PMT_WaterMeterAdapterFee");
 
 //added by Bryan de Jesus (Woolpert)
 include("PMT_MobileHomeSolidWasteImpactFee");
+include("PMT_TotalValuation");
 
 // add by Brian O'Dell (Mesa)
 include("PMT_MobileHomeUtilityServiceFeeGasMeter");
