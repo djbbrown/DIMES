@@ -20,6 +20,7 @@ try {
 //	} else {
 //		occupacyTable = OCCUPANCYINFORMAITON || OCCUPANCYINFO;
 //	}
+	logDebug(typeof(occupancyTable));
 	if (!occupancyTable || occupancyTable.length == 0) logDebug("Unable to load occupancy information table or table is empty.");
 	else {
 		var totalValuation = 0.0;
