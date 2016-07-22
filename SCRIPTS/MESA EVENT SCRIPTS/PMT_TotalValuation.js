@@ -56,7 +56,7 @@ try {
 //			}
 //		}
 //		if (totalValuation > 0) editAppSpecific('Total Valuation', totalValuation);
-	}	
+//	}	
 } catch (error){
 	logDebug("Javascript Error: " + error.message);
 }
