@@ -13,12 +13,13 @@
 showDebug=true;
 
 try {
-	if (!OCCUPANCYINFORMATION || !OCCUPANCYINFO){
-		var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
-		if (!occupancyTable) occupancyTable = loadASITable("OCCUPANCY INFO");	
-	} else {
-		occupacyTable = OCCUPANCYINFORMAITON || OCCUPANCYINFO;
-	}
+	var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
+//	if (!OCCUPANCYINFORMATION || !OCCUPANCYINFO){
+//		var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
+//		if (!occupancyTable) occupancyTable = loadASITable("OCCUPANCY INFO");	
+//	} else {
+//		occupacyTable = OCCUPANCYINFORMAITON || OCCUPANCYINFO;
+//	}
 	if (!occupancyTable || occupancyTable.length == 0) logDebug("Unable to load occupancy information table or table is empty.");
 	else {
 		var totalValuation = 0.0;
