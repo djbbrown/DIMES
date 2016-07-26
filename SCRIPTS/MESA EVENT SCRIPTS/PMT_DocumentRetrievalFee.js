@@ -11,15 +11,18 @@
 //              exists on the record, remove it.
 // Script Run Event: ASA
 // Script Parents:
-//              Permits/Document Retrieval/NA/NA
-// 
+//              ASA;Permits/Document Retrieval/NA/NA
+//
+// Version   |Date      |Engineer         |Details
+//  1.0      |06/24/16  |Brian O'Dell     |Initial Release
+//  1.1      |07/26/16  |Steve Veloudos   |Adj Commercial Purposes
 //==================================================================*/
 
 
 var purpose = AInfo["Documents Requested For"];
 var exists = feeExists("DOC050");
 
-if (purpose == "Commercial Purposes Only")
+if (purpose == "Commercial Purposes")
 {
   // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
   addFee("DOC050","PMT_DOC", "FINAL",  1, "Y");
