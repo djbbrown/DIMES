@@ -10,8 +10,7 @@
 //              If the ASI field does not have the value of "Commercial Purposes" and the fee 
 //              exists on the record, remove it.
 // Script Run Event: ASA
-// Script Parents:
-//              ASA;Permits/Document Retrieval/NA/NA
+// Script Parents: ASA;Permits/Document Retrieval/NA/NA
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |06/24/16  |Brian O'Dell     |Initial Release
