@@ -21,7 +21,7 @@
 var purpose = AInfo["Documents Requested For"];
 var exists = feeExists("DOC050");
 
-if (purpose == "Commercial Purposes")
+if (purpose == "Commercial Purpose")
 {
   // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
   addFee("DOC050","PMT_DOC", "FINAL",  1, "Y");
