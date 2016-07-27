@@ -1,5 +1,4 @@
 //*===================================================================
-//
 // Script Number: 067
 // Script Name: PMT_DocumentRetrievalFee.js 
 // Script Developer: Brian O'Dell
@@ -16,7 +15,6 @@
 //  1.0      |06/24/16  |Brian O'Dell     |Initial Release
 //  1.1      |07/26/16  |Steve Veloudos   |Adj Commercial Purposes
 //==================================================================*/
-
 
 var purpose = AInfo["Documents Requested For"];
 var exists = feeExists("DOC050");
