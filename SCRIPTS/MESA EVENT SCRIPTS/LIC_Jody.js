@@ -15,16 +15,12 @@
 
 try
 {
-  //loadASITable("CURRENT ANIMAL INFO");
-  //var tInfo = CURRENTANIMALINFO;
-  //var propSize = getAppSpecific["Property Size"]; //AInfo["Property Size"];
-/*
+  var propSize = AInfo["Property Size"];
+
   if(propSize != null) {
 	propSize = String(propSize);
     editAppSpecific("Previous Offenses", propSize);
   }
- */
-   editAppSpecific("Previous Offenses", "test");
 }
 catch (err)
 {
