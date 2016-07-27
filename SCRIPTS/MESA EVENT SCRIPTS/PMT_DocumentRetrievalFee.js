@@ -1,5 +1,4 @@
 //*===================================================================
-//
 // Script Number: 067
 // Script Name: PMT_DocumentRetrievalFee.js 
 // Script Developer: Brian O'Dell
