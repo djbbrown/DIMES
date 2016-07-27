@@ -17,7 +17,6 @@
 //  1.1      |07/26/16  |Steve Veloudos   |Adj Commercial Purposes
 //==================================================================*/
 
-
 var purpose = AInfo["Documents Requested For"];
 var exists = feeExists("DOC050");
 
