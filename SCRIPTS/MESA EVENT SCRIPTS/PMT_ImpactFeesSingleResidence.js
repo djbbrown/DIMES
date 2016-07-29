@@ -38,7 +38,7 @@ try {
 	}
 	else{
 		var fireQty = AInfo["Fire"];
-		var resDevQty = AInfo["Res. Dev. Tax"];
+		var resDevQty = AInfo["Solid Waste"];
 		var waterQty = AInfo["Water Meter Qty"];
 		var publicSafetyQty = AInfo["Public Safety"];
 		var stormWaterQty = AInfo["Stormwater"];
