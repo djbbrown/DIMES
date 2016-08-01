@@ -10,8 +10,8 @@ if (wfTask == "Application Submittal" && wfStatus == "Approved") {
 */
 try{
 	if(capStatus=="Issued") {
-		var toDay = new Date();
-		editAppSpecific("Date of Issuance",toDay);
+		logDebug("Executing ID-320");
+		editAppSpecific("Date of Issuance",sysDateMMDDYYYY);
 	}
 }catch (err) {
     logDebug("A JavaScript Error occurred: WTUA:Permits/Police Department/Alarms/Commercial: #320: " + err.message);
