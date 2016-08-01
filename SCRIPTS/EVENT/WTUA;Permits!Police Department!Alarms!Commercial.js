@@ -5,3 +5,15 @@ if (wfTask == "Application Submittal" && wfStatus == "Approved") {
 	thisLic.setExpiration(tmpNewDate);
 	thisLic.setStatus("Active");	
 }
+/*  ID-320 lwacht: When the active Alarm Permit record moves to an application status of "Issued"
+	the script will populate the current date into the Custom Field named "Date of Issuance". 
+*/
+try{
+	if(capStatus=="Issued") {
+		var toDay = new Date();
+		editAppSpecific("Date of Issuance",toDay);
+	}
+}catch (err) {
+    logDebug("A JavaScript Error occurred: WTUA:Permits/Police Department/Alarms/Commercial: #320: " + err.message);
+	logDebug(err.stack);
+}
