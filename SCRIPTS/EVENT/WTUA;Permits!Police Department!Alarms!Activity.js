@@ -8,7 +8,7 @@ if (wfTask == "Review" && wfStatus == "Fees Due" && AInfo["False Alarm Fees Char
 		//should only be one parent
 		var parCapId = arrCapId[0];
 		var cntAlarm = parseInt(getAppSpecific("False Alarm Count", parCapId)) + 1;
-		if(matches(cntAlarm, "",null)){
+		if(matches(cntAlarm, "",null) || isNaN(cntAlarm)){
 			editAppSpecific("False Alarm Count", 1, parCapId);
 			logDebug("Initial set of False Alarm Count");
 		}else{
