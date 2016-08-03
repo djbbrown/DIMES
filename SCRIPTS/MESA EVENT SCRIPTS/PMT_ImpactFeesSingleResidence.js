@@ -57,6 +57,9 @@ try {
 		var stormWaterQty = AInfo["Stormwater"];
 		var wasteWaterQty = AInfo["Waste Water Qty"]; 
 		if (classification == "Single Family-Detached (per dwelling unit)"){
+			// remove fees if GIS Tags change
+			if (feeExists("RDIF260", "NEW", "INVOICED") && swGisTag == false) voidRemoveFee("RDIF260");
+			if (feeExists("RDIF010", "NEW", "INVOICED") && wmqGisTag == false) voidRemoveFee("RDIF010");
 			// remove any fees from previous classification
 			if (feeExists("RDIF170", "NEW", "INVOICED")) voidRemoveFee("RDIF170");
 			if (feeExists("RDIF220", "NEW", "INVOICED")) voidRemoveFee("RDIF220");
