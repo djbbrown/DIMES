@@ -1,5 +1,4 @@
 //*===================================================================
-//
 // Script Number: 067
 // Script Name: PMT_DocumentRetrievalFee.js 
 // Script Developer: Brian O'Dell
@@ -10,16 +9,17 @@
 //              If the ASI field does not have the value of "Commercial Purposes" and the fee 
 //              exists on the record, remove it.
 // Script Run Event: ASA
-// Script Parents:
-//              Permits/Document Retrieval/NA/NA
-// 
+// Script Parents: ASA;Permits/Document Retrieval/NA/NA
+//
+// Version   |Date      |Engineer         |Details
+//  1.0      |06/24/16  |Brian O'Dell     |Initial Release
+//  1.1      |07/26/16  |Steve Veloudos   |Adj Commercial Purposes
 //==================================================================*/
-
 
 var purpose = AInfo["Documents Requested For"];
 var exists = feeExists("DOC050");
 
-if (purpose == "Commercial Purposes Only")
+if (purpose == "Commercial Purpose")
 {
   // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
   addFee("DOC050","PMT_DOC", "FINAL",  1, "Y");
@@ -31,5 +31,6 @@ else
     // syntax: removeFee(fcode,fperiod)
     removeFee("DOC050","FINAL");
   }
+  
 }
 

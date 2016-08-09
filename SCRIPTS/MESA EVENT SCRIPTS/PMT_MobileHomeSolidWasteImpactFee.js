@@ -3,7 +3,7 @@
 // Script Name: PMT_MobileHomeSolidWasteImpactFee.js
 // Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
-// Script Description: On application submittal or ASI update if “Y” is chosen for ASI field “Res. Dev. Tax” and ASI dropdown value is “New Mobile Home” or “New Park Model” for field “Type of Work,” then assess appropriate fee. 
+// Script Description: On application submittal or ASI update if “Y” is chosen for ASI field “Solid Waste” and ASI dropdown value is “New Mobile Home” or “New Park Model” for field “Type of Work,” then assess appropriate fee. 
 // Script Run Event: ASA, ASIUA
 // Script Parents:
 //            ASA;Permits!Residential!Mobile Home!NA 
@@ -11,7 +11,7 @@
 ===================================================================*/
 // showDebug = true;
 try {
-	var resDevTax = AInfo["Res. Dev. Tax"] || "";
+	var resDevTax = AInfo["Solid Waste"] || "";
 	var typeOfWork = AInfo["Type of Work"] || "";
 	var numOfUnits = AInfo["Number of Units"] || 0;
 	if (resDevTax == "CHECKED"){

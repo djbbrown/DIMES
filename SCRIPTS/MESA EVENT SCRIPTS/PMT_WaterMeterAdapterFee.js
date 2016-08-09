@@ -15,11 +15,17 @@
 /*==================================================================*/
 // showDebug = true;
 try {
-	var t = loadASITable("UTILITY SERVICE INFORMATION"), isMobileHome = false;
-	if (!t) {
-		t = loadASITable("UTILITY SERVICE INFO");
+	var t = null, isMobileHome = false;
+	if (typeof(UTILITYSERVICEINFORMATION) == "object") t=UTILITYSERVICEINFORMATION;
+	else if (typeof(UTILITYSERVICEINFO) == "object") { 
+		t=UTILITYSERVICEINFO; 
 		isMobileHome = true;
 	}
+//	var t = loadASITable("UTILITY SERVICE INFORMATION"), isMobileHome = false;
+//	if (!t) {
+//		t = loadASITable("UTILITY SERVICE INFO");
+//		isMobileHome = true;
+//	}
 	
 	var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0, numExistingAdapters = 0, rows = [];
 	if (!t){

@@ -154,11 +154,13 @@ for (y in vPeople) {
 	vPerson = vPeople[y];
 	vPersonSeqNbr = vPerson.getContactSeqNumber();
 	vPersonSeqNbr = parseInt(vPersonSeqNbr);
-
+	
 	if (vPersonSeqNbr != null && vPersonSeqNbr != "") {
+		//Get trust account model
 		var vTrustAccount = aa.trustAccount.createTrustAccountScriptModel();
 		var vTAM = vTrustAccount.getTrustAccountModel();
-
+		
+		//Populate trust account model
 		vTAM.setAcctID(vPersonSeqNbr);
 		vTAM.setServProvCode('MESA');
 		vTAM.setRecDate(new Date());
@@ -170,12 +172,15 @@ for (y in vPeople) {
 		vTAM.setOverdraft('N');
 		vTAM.setOverdraftLimit(0.0);
 
+		//Create actual trust account
 		var vTAMResult = aa.trustAccount.createTrustAccount(vTAM).getSuccess();
 		
 		if (vTAMResult == true) { 
+			//Get trust account people model
 			var vPeopleAccount = aa.trustAccount.createTrustAccountPeopleScriptModel();
 			var vTAPM = vPeopleAccount.getTrustAccountPeopleModel();
-
+			
+			//Populate trust accouunt people model
 			vTAPM.setAcctNBR(vTAM.getAcctSeq());
 			vTAPM.setAcctID(vPersonSeqNbr);
 			vTAPM.setPeopleNBR(vPersonSeqNbr);
@@ -184,12 +189,34 @@ for (y in vPeople) {
 			vTAPM.setRecStatus('A');
 			vTAPM.setRecDate(new Date());
 			vTAPM.setRecFulName('ADMIN')
-
+			
+			//Save people model with new information
 			vPeopleAccount.setTrustAccountPeopleModel(vTAPM);
-
+			
+			//Create actual link between trust account and reference person
 			var vTAPMResult = aa.trustAccount.createTrustAccountPeople(vTAPM).getSuccess();
 			
 			if (vTAPMResult == true) {
+				//Get a PuserAcctPermissionModel
+				var puserAcctPermissionModel = aa.proxyInvoker.newInstance("com.accela.aa.finance.trustAccount.PuserAcctPermissionModel").getOutput();
+				
+				//Populate the PuserAcctPermissionModel
+				puserAcctPermissionModel.setServProvCode('MESA');
+				puserAcctPermissionModel.setAcctSeqNumber(vTAM.getAcctSeq());
+				puserAcctPermissionModel.setUserSeqNumber(vPUModel.getUserSeqNum());
+				puserAcctPermissionModel.setPermission('A');
+				puserAcctPermissionModel.setRecDate(new Date());
+				puserAcctPermissionModel.setRecStatus('A');
+				puserAcctPermissionModel.setRecFulName('ADMIN');
+
+				var permissionList = aa.util.newArrayList();
+				permissionList.add(puserAcctPermissionModel);
+
+				//retrieve an instance of EJBProxy
+				var  puserAcctPermissionBusiness = aa.proxyInvoker.newInstance("com.accela.aa.finance.trustAccount.PuserAcctPermissionBusiness").getOutput();
+				//Save actual publicUser to account link
+				puserAcctPermissionBusiness.createOrUpdatePuserAcctPermissions(permissionList);
+				
 				logDebug("Created Trust Account ID: " + vPersonSeqNbr);
 			}
 		}
