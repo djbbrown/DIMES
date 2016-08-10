@@ -11,7 +11,7 @@
 
 try {
       var somevalue;
-      var FromEmail = "no.reply@mesaaz.gov";
+      var FromEmail = "noreply@mesaaz.gov";
       var vEParams = aa.util.newHashtable();
       var theAddress = aa.address.getAddressByCapId(capId).getOutput();
       var ComDesc = AInfo["Complaint Description"];
