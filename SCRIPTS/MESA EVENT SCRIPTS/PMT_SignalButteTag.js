@@ -26,8 +26,8 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 				logDebug("Parcel found to be within "+thisTag+" sending email");
 				addParameter(vEParams,"$$RECORD ID$$",capIDString);
 				// emailAddress = "Joel.Watson@mesaaz.gov";
-				emailAddress = "kford@accela.com";
-				fromAddress = "Lauren.Lupica@mesaaz.gov";
+				emailAddress = "Lauren.Lupica@mesaaz.gov";
+				fromAddress = "noreply@mesaaz.com";
 				sendNotification(fromAddress, emailAddress, "", "SIGNAL BUTTE", vEParams, null);
 				addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer");
 		}

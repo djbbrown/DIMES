@@ -9,8 +9,6 @@
 //    IRSA;Permits!~!~!~
 //           
 //            
-/*==================================================================*/
+//==================================================================*/
 
-    editAppSpecific("Permit Expiration Date", dateAdd(null, 180) );
-
-
+editAppSpecific("Permit Expiration Date", dateAdd(null, 180) );
