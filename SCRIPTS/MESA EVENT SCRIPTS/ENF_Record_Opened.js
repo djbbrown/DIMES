@@ -7,11 +7,12 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/09/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/10/16  |Steve Veloudos   |Adj FromEmail
 /*==================================================================*/
 
 try {
       var somevalue;
-      var FromEmail = "no.reply@mesaaz.gov";
+      var FromEmail = "noreply@mesaaz.gov";
       var vEParams = aa.util.newHashtable();
       var theAddress = aa.address.getAddressByCapId(capId).getOutput();
       var ComDesc = AInfo["Complaint Description"];
