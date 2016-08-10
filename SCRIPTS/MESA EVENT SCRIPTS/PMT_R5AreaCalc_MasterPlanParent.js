@@ -50,7 +50,7 @@ try {
 		removeASITable("OCCUPANCY  INFORMATION");
 		addASITable("OCCUPANCY  INFORMATION",newASIT);
 	}
-catch (err)
-{
+}
+catch (err){
   logDebug("A JavaScript Error occured: " + err.message);
 }
