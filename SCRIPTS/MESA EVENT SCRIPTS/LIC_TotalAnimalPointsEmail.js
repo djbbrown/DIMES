@@ -22,6 +22,9 @@ addParameter(vEParams,"$$RECORD ID$$",capIDString);
 
 // to gmail
 sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
+//Steve V Gmail
+emailAddress = "24stevev@gmail.com";
+sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
 
 emailAddress = "Brian.ODell@MesaAZ.gov";
 sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
