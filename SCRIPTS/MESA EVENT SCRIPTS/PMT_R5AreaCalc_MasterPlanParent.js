@@ -43,8 +43,8 @@ try {
 			newASIT.push(newRow)
 		}
 		
-		editAppSpecific("R-5 Livable",r5_sum)
-		editAppSpecific("R-5N Non-Livable",r5n_sum)
+		editAppSpecific("R-5 Area",r5_sum)
+		editAppSpecific("R-5N Area",r5n_sum)
 		editAppSpecific("Total Sq Ft",r5_sum+r5n_sum)
 		
 		removeASITable("OCCUPANCY  INFORMATION");
