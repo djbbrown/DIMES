@@ -14,5 +14,6 @@ if (AInfo["Liquor"] == "Yes"){
 	var childId = childGetByCapType("Licenses/Liquor/LiquorSpecialEvent/Application");
 	if (!childId){
 		childId = createChild("Licenses", "Liquor", "LiquorSpecialEvent", "Application", "Special Event Liquor License for " + capId.getCustomID());
+		addFee("L010", "LIC_LIQSE", "FINAL", 1, "N", childId);
 	}
 } 

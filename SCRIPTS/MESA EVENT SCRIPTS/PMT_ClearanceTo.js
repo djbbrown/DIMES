@@ -1,13 +1,15 @@
- /*===================================================================
+/*===================================================================
 // Script Number: 215
-// Script Name: PMT_ClearanceTo.js 
+// Script Name: Permits Clearance To (PMT_ClearanceTo)
 // Script Developer: Deanna Hoops
 // Script Agency: Accela
-// Script Description: set the ASIT column Clearance To based on GIS attribute
-// Script Run Event: ASA, ASIUA
-// Script Parents: ASA:Permits/*/*/*, ASIUA:Permits/*/*/*
+// Script Description:
+// Script Run Event: ASIUA, ASA
+// Script Parents:
+//            ASIUA;Permits!~!~!~.js
+//            ASA;Permits!~!~!~.js
+//			  
 /*==================================================================*/
-
 tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
 if (tagFieldArray && tagFieldArray.length > 0) {
 	logDebug(tagFieldArray);
@@ -24,7 +26,7 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 			if (currentValue != "null" && currentValue != "")
 				newTable.push(thisRow);
 			else {
-				if (matches(serviceType, "Water Service", "Water Meter: Adapter", "Water Meter:Domestic, Water Meter:Landscaping", "Water Relocation")) {
+				if (matches(serviceType, "Water Service", "Water Meter: Adapter", "Water Meter: Domestic", "Water Meter: Landscaping", "Water Relocation")) {
 					if (IsStrInArry("AWCP", tagFieldArray) && IsStrInArry("COMW", tagFieldArray)) { 
 						// do nothing 
 					}
@@ -65,8 +67,8 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 						}
 					}
 				}
+				newTable.push(thisRow);
 			}
-			newTable.push(thisRow);
 		}
 	}
 	if (changesMade) {

@@ -5,4 +5,3 @@
 include("TRA_SetApplicationDate");
 include("TRA_SetPermitExpirationDate");
 include("TRA_SetPlanReviewExpirationDate");
-

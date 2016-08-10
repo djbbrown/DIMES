@@ -13,14 +13,20 @@
 //==================================================================*
 
 
-var fromEmail = "Brian.ODell@mesaaz.gov";  //"noreply@MesaAz.gov";
-var emailAddress = "brian.odell@gmail.com" //"Brian.ODell@mesaaz.gov";
+var fromEmail = "noreply.accela@mesaaz.gov";
+var emailAddress = "brian.odell@gmail.com";
 var vEParams = aa.util.newHashtable();
 
-//emailAddress = "Lauren.Lupica@MesaAZ.gov";
-
 addParameter(vEParams,"$$RECORD ID$$",capIDString);
-//addParameter(vEParams,"$$The_Address$$","<address goes here>");
-sendNotification(fromEmail, emailAddress, "", "ENF_COUNTY_ISLAND", vEParams, null, capId);
 
+// to gmail
+sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
 
+emailAddress = "Brian.ODell@MesaAZ.gov";
+sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
+
+emailAddress = "Lauren.Lupica@MesaAZ.gov";
+sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);
+
+emailAddress = "Steve.Veloudos@MesaAZ.gov";
+sendNotification(fromEmail, emailAddress, "", "LIC_TESTEMAIL", vEParams, null, capId);

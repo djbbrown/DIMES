@@ -18,12 +18,14 @@
 // 
 //==================================================================*/
 
+// comment
+
 try
 {
-  loadASITables();
+  loadASITable("CURRENT ANIMAL INFO");
   var tInfo = CURRENTANIMALINFO;
-  var rowCount = CURRENTANIMALINFO.length;
-  var animalPoints = 0;
+  var rowCount = 0;
+  var animalPoints = 0.0;
   var x = 0;
 
   if (tInfo == null)
@@ -33,10 +35,12 @@ try
   } 
   else
   {
+    rowCount = CURRENTANIMALINFO.length;
+
     // loop and sum
     for (x=0;x<=(rowCount-1);x++)
     {
-      animalPoints += parseInt(tInfo[x]["Animal Points"]);
+      animalPoints += parseFloat(tInfo[x]["Animal Points"]);
     }
   }
 

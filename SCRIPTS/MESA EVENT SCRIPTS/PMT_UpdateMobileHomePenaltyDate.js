@@ -18,7 +18,7 @@
 
 try
 {
-  var scheduleDays = 10;
+  var scheduleDays = getAppSpecific("Turn Around Time");
   var wfTaskMatch = isTaskStatus("Application Submittal", "Accepted - Plan Review Req");
   var theDate = new Date();
   var planReviewPenaltyDate = getAppSpecific["Plan Review Penalty Date"];
@@ -27,14 +27,17 @@ try
 
   if ((planReviewPenaltyDate == null) && (wfTaskMatch))
   {
+    //logDebug("scheduleDays: " + scheduleDays);
+
     tempDate = theStatusDate.substring(0,10);
     var datePieces = tempDate.split('-');
 
     theDate = new Date(datePieces[1] + "/" + datePieces[2] + "/" + datePieces[0]);
-    //theDate = dateAdd(theDate,scheduleDays,'Y');
+    theDate = new Date(dateAdd(theDate,scheduleDays,'Y'));
 
+    //logDebug("theDate: " + theDate);
 
-    editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate),capId);
+    editAppSpecific("Plan Review Penalty Date",jsDateToASIDate(theDate));
   }
 }
 catch (err)

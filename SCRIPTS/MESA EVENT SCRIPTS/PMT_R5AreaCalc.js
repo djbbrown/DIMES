@@ -11,18 +11,19 @@
 //		Then auto-fill the ASI field “R-5 Area” with the sum of the ASIT “Sq Ft” fields.
 // Script Run Event: ASA / ASIUA
 // Script Parents:
-//		ASA:Permits!Residential!Mobile Home!NA
-//		ASIUA:Permits!Residential!Mobile Home!NA
 //		ASA:Permits!Residential!NA!NA
 //		ASIUA:Permits!Residential!NA!NA
+//		(cannot be used on Mobile Home due to configuration changes)
+//		ASA:Permits!Residential!Mobile Home!NA
+//		ASIUA:Permits!Residential!Mobile Home!NA
 /*==================================================================*/
 
 
 try
 {
-  loadASITables();
-  var tInfo = OCCUPANCYINFO;
-  var rowCount = OCCUPANCYINFO.length;
+  loadASITable("OCCUPANCYINFORMATION");
+  var tInfo = OCCUPANCYINFORMATION;
+  var rowCount = 0;
   var totalSqFt = 0;
 
   if (tInfo == null)
@@ -32,6 +33,8 @@ try
   }
   else
   {
+    rowCount = OCCUPANCYINFORMATION.length;
+
     // loop and sum
     for (x=0;x<=(rowCount-1);x++)
     {
@@ -43,7 +46,7 @@ try
     }
 
     // in case they change the logic
-    //totalSqFt = sumASITColumn(OCCUPANCYINFO, "Sq Ft");
+    //totalSqFt = sumASITColumn(OCCUPANCYINFORMATION, "Sq Ft");
   }
 
   editAppSpecific("R-5 Area", totalSqFt);

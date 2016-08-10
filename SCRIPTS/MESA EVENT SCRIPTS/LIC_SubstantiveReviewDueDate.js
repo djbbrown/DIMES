@@ -30,22 +30,26 @@ if(
 )
 {
 	// Get Record type before setting the "Substantive Review Due"
-	if(appTypeArray[2]=="SpecialEvent") {
+	if(appTypeArray[2]=="SpecialEvent"
+		|| appTypeArray[2]=="ExtensionOfPremise-Temporary"
+		|| appTypeArray[2]=="ExtensionOfPremise-Permanent"
+		|| appTypeArray[2]=="Firework"
+		) {
 		// Special Event + 30 needs to be set
 		editAppSpecific("Substantive Review Due", dateAdd(null,30));
 	}
 	/* The following code exists because it was on the tracker,
 	 * It was not however in the script specification.
 	 */
-	/*
 	if(appTypeArray[2]=="MassageEstablishment") {
-		// Special Event + 30 needs to be set
 		editAppSpecific("Substantive Review Due", dateAdd(null,90));
 	}
 	if(appTypeArray[2]=="LiquorSpecialEvent"
+		|| appTypeArray[2]=="BingoHall"
+		|| appTypeArray[2]=="TeenDance"
+		|| appTypeArray[2]=="Liquor"
 		|| appTypeArray[2]=="ParkandSwap"
 	) {
-		// Special Event + 30 needs to be set
 		editAppSpecific("Substantive Review Due", dateAdd(null,45));
 	}
 	//*/
