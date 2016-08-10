@@ -39,7 +39,7 @@ try {
           }
       }
       //If email has a value
-      if (ToEmail.length > 0)
+      if (ToEmail != "")
       {
       sendNotification(FromEmail, ToEmail, "", "ENF_RECORD_OPENED", vEParams, null, capId);
       }
