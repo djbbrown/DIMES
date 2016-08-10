@@ -13,7 +13,8 @@
 //==================================================================*
 
 
-var fromEmail = "noreply.accela@mesaaz.gov";
+//var fromEmail = "noreply.accela@mesaaz.gov";
+var fromEmail = "noreply@mesaaz.gov";
 var emailAddress = "brian.odell@gmail.com";
 var vEParams = aa.util.newHashtable();
 
