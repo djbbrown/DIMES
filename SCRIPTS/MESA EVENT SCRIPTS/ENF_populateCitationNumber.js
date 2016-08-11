@@ -13,7 +13,7 @@
 /*==================================================================*/
 
 
-if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Code Compliance", "Code Rental Issue", "Code Sign Issue")){//update citation number on ASIT/ENF_COD,ENF_COR,ENF_COS/VIOLATION INFORMATION/
+if(matches(""+appTypeArray[1], "Case") && matches(""+appTypeArray[2], "Code Compliance", "Code Rental Issue", "Code Sign Issue")){//update citation number on ASIT/ENF_COD,ENF_COR,ENF_COS/VIOLATION INFORMATION/
 	violationInfoTable = loadASITable("VIOLATION INFORMATION");
 	newTable = new Array();
 	for(var eachRow in violationInfoTable){
