@@ -10,8 +10,9 @@
 /*==================================================================*/
 // check for same record type and address to this one
 try {
-	showDebug = true;
-	var capIds = capIdsGetByAddr(), matches=0;
+
+	var capIds = capIdsGetByAddr();
+	var matches=0;
 	if (capIds && capIds.length > 1){
 		logDebug(capIds.length);
 		for (i in capIds){
@@ -60,14 +61,16 @@ try {
 						var currentDate = new Date();
 						var currentTime = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
 						
-						newLogEntry["Communication Date"] = jsDateToMMDDYYYY(currentDate);
-						newLogEntry["Communication Time"] = currentTime;
-						newLogEntry["Communication Type"] = "Additional Comment";
+						newLogEntry["Communication Date"] = new asiTableValObj("Communication Date", jsDateToMMDDYYYY(currentDate), "N");
+						newLogEntry["Communication Time"] = new asiTableValObj("Communication Time", currentTime, "N");
+						newLogEntry["Communication Type"] = new asiTableValObj("Communication Type", "Email", "N");
+						newLogEntry["Code Staff Initials"] = new asiTableValObj("Code Staff Initials", "EMSE", "N");
+						newLogEntry["Contact Name"] = new asiTableValObj("Contact Name", emailAddress, "N");
 						
 						var workDescResult = aa.cap.getCapWorkDesByPK(capId);
 						if (workDescResult.getSuccess()){
 							var workDesc = workDescResult.getOutput();
-							newLogEntry["Summary of Communication"] = workDesc.getDescription();
+							newLogEntry["Summary of Communication"] = new asiTableValObj("Summary of Communication", workDesc.getDescription(), "N");
 						}
 						addToASITable("COMMUNICATION LOG", newLogEntry); 
 						
@@ -78,7 +81,7 @@ try {
 		}
 		logDebug(appTypeString + " Matches: " + matches);
 	}
-	}
+}
 catch (err) {
-	logDebug("A JavaScript Error occured: " + err.message);
-	}
+		logDebug("A JavaScript Error occured: " + err.message);
+}
