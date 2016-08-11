@@ -1,8 +1,8 @@
-/* ID-305: When the Alarm Activity record work flow is manually set to "Fees Due" and the 
+/* ID-305: When the Alarm Activity record has a fee invoiced on it and the 
 "False Alarm Fees Charged" checkbox is checked, the script will increment the 
 "False Alarm Count" field up on the Alarm Permit Record by one (1).
 */
-if (wfTask == "Review" && wfStatus == "Fees Due" && AInfo["False Alarm Fees Charged"]=="CHECKED"){
+if (AInfo["False Alarm Fees Charged"]=="CHECKED"){
 	var arrCapId = getParents("Permits/Police Department/Alarms/Commercial");
 	if(arrCapId) {
 		//should only be one parent
