@@ -12,7 +12,6 @@
 //            ASIUA;AnimalControl!Complaint!NA!NA
 /*==================================================================*/
 
-eval( aa.proxyInvoker.newInstance("com.accela.aa.emse.emse.EMSEBusiness").getOutput().getScriptByPK(aa.getServiceProviderCode(),"INCLUDES_WEB_SERVICES","ADMIN").getScriptText() + "");
 
 if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Code Compliance", "Code Rental Issue", "Code Sign Issue")){//update citation number on ASIT/ENF_COD,ENF_COR,ENF_COS/VIOLATION INFORMATION/
 	violationInfoTable = loadASITable("VIOLATION INFORMATION");
@@ -30,8 +29,7 @@ if(matches(""+appTypeArray[1], "Case") && !matches(""+appTypeArray[2], "Code Com
 		newRow["Date Closed"] = new asiTableValObj("Date Closed", thisRow["Date Closed"].fieldValue, "N");
 		newRow["Issue Citation?"] = new asiTableValObj("Issue Citation?", thisRow["Issue Citation?"].fieldValue, "N");
 		if((thisRow["Citation Number"] == null || thisRow["Citation Number"] == "") && (thisRow["Issue Citation?"] == "Yes" || thisRow["Issue Citation?"] == "Y")){
-			sessID = getSessionID();
-			nextNumber = getNextMaskedSeq(sessID, "Citation Number Mask", "Citation Number Sequence", "Agency");
+			nextNumber = getNextSequence("Agency", "Citation Number Sequence", "Citation Number Mask");
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", "" + nextNumber, "N");
 		}
 		else{
@@ -63,8 +61,7 @@ if(matches(""+appTypeArray[1], "Environmental") && matches(""+appTypeArray[2], "
 		newRow["Date Closed"] = new asiTableValObj("Date Closed", thisRow["Date Closed"].fieldValue, "N");
 		newRow["Issue Citation?"] = new asiTableValObj("Issue Citation", thisRow["Issue Citation?"].fieldValue, "N");
 		if((thisRow["Citation Number"] == null || thisRow["Citation Number"] == "") && (thisRow["Issue Citation?"] == "Yes" || thisRow["Issue Citation?"] == "Y")){
-			sessID = getSessionID();
-			nextNumber = getNextMaskedSeq(sessID, "Citation Number Mask", "Citation Number Sequence", "Agency");
+			nextNumber = getNextSequence("Agency", "Citation Number Sequence", "Citation Number Mask");
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", "" + nextNumber, "N");
 		}
 		else{
@@ -100,8 +97,7 @@ if(matches(""+appTypeArray[0], "AnimalControl") && matches(""+appTypeArray[1], "
 		newRow["Issue Citation?"] = new asiTableValObj("Issue Citation", thisRow["Issue Citation?"].fieldValue, "N");
 		newRow["Citation Category"] = new asiTableValObj("Citation Category", thisRow["Citation Category"].fieldValue, "N");
 		if((thisRow["Citation Number"] == null || thisRow["Citation Number"] == "") && (thisRow["Issue Citation?"] == "Yes" || thisRow["Issue Citation?"] == "Y") && thisRow["Citation Category"] == "Title 8"){
-			sessID = getSessionID();
-			nextNumber = getNextMaskedSeq(sessID, "Citation Number Mask", "Citation Number Sequence", "Agency");
+			nextNumber = getNextSequence("Agency", "Citation Number Sequence", "Citation Number Mask");
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", "" + nextNumber, "N");
 		}
 		else{
