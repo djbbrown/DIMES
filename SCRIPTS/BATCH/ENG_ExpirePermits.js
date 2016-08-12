@@ -227,9 +227,9 @@ function mainProcess() {
 					setTask(tName, 'N', 'Y');
 				}
 				closeWorkflow();
-				updateAppStatus("Expired", "set by batch");
 				capProc++;
-			}		
+			}	
+			updateAppStatus("Expired", "set by batch");	
 		}
 		else { continue;}
 	}
