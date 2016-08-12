@@ -9,7 +9,8 @@
 // Script Parents:
 //	ISB;Engineering!Right of Way!~!~.js
 /*===================================================================*/
-
+logDebug(inspType);
+logDebug(isTaskActive("Inspections"));
 if(inspType == "Final Inspection" && isTaskActive("Inspections") && (balanceDue > 0 || feeTotalByStatus("NEW") > 0)){
 	showMessage = true;
 	message = "";
