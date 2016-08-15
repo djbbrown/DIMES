@@ -9,9 +9,8 @@
 // Script Parents:
 //	ISB;Engineering!Right of Way!~!~.js
 /*===================================================================*/
-logDebug(inspType);
-logDebug(isTaskActive("Inspections"));
 if(inspType == "Final Inspection" && isTaskActive("Inspections") && (balanceDue > 0 || feeTotalByStatus("NEW") > 0)){
+	showDebug = false;
 	showMessage = true;
 	message = "";
 	comment("The Final Inspection cannot be scheduled while there is a balance due");
