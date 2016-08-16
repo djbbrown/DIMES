@@ -13,11 +13,13 @@
 //		ASA;Permits!Residential!Mobile Home!NA
 //		ASA;Permits!Sign!NA!NA
 /*==================================================================*/
-showDebug = false;
+
 // check for presence in flood plain
-var floodPlainId = getGISInfo("Accela/Accela_Base", "Flood Plain Area", "Accela_TAGS.OBJECTID");
-if (!!floodPlainId) {
-	addStdCondition("Building Permit", "Flood Plain Authorization");
-	addStdCondition("Building Permit", "Footing/Foundation Elevation");
-	addStdCondition("Building Permit", "Elevation Certificate");
+tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+if (tagFieldArray && tagFieldArray.length > 0) {
+	if (IsStrInArry("FLDP", tagFieldArray)) {
+		addStdCondition("Building Permit", "Flood Plain Authorization");
+		addStdCondition("Building Permit", "Footing/Foundation Elevation");
+		addStdCondition("Building Permit", "Elevation Certificate");
+	}
 }
