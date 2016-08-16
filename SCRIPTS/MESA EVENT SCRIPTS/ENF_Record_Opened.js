@@ -48,7 +48,6 @@ try {
       var rowCount = tInfo.length;
       var x = 0;
 
-      {
       //Get Email of Complainant
       for (x=0;x<=(rowCount-1);x++)
           {
@@ -58,7 +57,7 @@ try {
              var ToEmail = tInfo[x]["email"];
              }
           }
-      }
+
       //If email has a value send email
       if (ToEmail != "")
       {
