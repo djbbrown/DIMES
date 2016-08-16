@@ -4,7 +4,6 @@
 // Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
 // Script Description:
-//			15 calendar day after approval or Denial of Hearing decision the appeal period ends and the appeal period task s needs to default the result to Not Appealed.
 // Script Run Event: BATCH
 // Script Parents: N/A
 // Effected record types:
@@ -122,20 +121,17 @@ var batchJobName = "" + aa.env.getValue("batchJobName");
 /------------------------------------------------------------------------------------------------------*/
 /* 
 aa.env.setValue("appGroup", "Planning");
-aa.env.setValue("appTypeType","*");
+aa.env.setValue("appTypeType","Design Review");
 aa.env.setValue("appSubtype","*");
 aa.env.setValue("appCategory","*")
-aa.env.setValue("asiField", "Start/Stop Indicator");
-aa.env.setValue("asiValue", "Started");
-aa.env.setValue("taskName", "Completeness Review");
-aa.env.setValue("taskStatus", "Complete");
+aa.env.setValue("appStatus", "Denied");
 */
 
 var appGroup = getParam("appGroup");							//   app Group to process 
 var appTypeType = getParam("appTypeType");						//   app type to process 
 var appSubtype = getParam("appSubtype");						//   app subtype to process 
 var appCategory = getParam("appCategory");	
-var appStatus = getParam("appStatusStatus");
+var appStatus = getParam("appStatus");
 
 /*----------------------------------------------------------------------------------------------------/
 |
@@ -176,28 +172,40 @@ function mainProcess() {
 	var capCount = 0;
 	var capFilterType = 0;
 	var capFilterStatus = 0;
+	var capIdArray =null;
 	
-	var capResult = aa.cap.getByAppType(appGroup, appTypeType, appSubtype, appCategory);
-	
-	if (capResult.getSuccess()) {
-		myCaps = capResult.getOutput();
-	}
-	else { 
-		logDebug("ERROR: Getting records, reason is: " + capResult.getErrorMessage()) ;
-		return false
-	} 
+	var capModelResult = aa.cap.getCapModel();
+	if (capModelResult.getSuccess()) {
+		var capModel = capModelResult.getOutput();
+		capModel.setCapStatus(appStatus);
+		var capTypeModel = capModel.getCapType();
+		if (appGroup != "*") capTypeModel.setGroup("" + appGroup);
+		if (appTypeType != "*") capTypeModel.setType("" + appTypeType);
+		if (appSubtype != "*") capTypeModel.setSubType("" + appSubtype);
+		if (appCategory != "*") capTypeModel.setCategory("" + appCategory);
+		capModel.setCapType(capTypeModel);
+		capIdResult = aa.cap.getCapIDListByCapModel(capModel);
 
-	for (myCapsXX in myCaps) {
-		if (elapsed() > maxSeconds) { // only continue if time hasn't expired
-			logDebug("WARNING","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.") ;
-			timeExpired = true ;
-			break; 
+		if (capIdResult.getSuccess()) {
+			capIdArray = capIdResult.getOutput();
+		}
+		else { 
+			logDebug("Error Getting records, reason is: " + capIdResult.getErrorMessage()) ;
+		} 
+	}
+	
+	for (cIndex in capIdArray)  {
+		if (elapsed() > maxSeconds) // only continue if time hasn't expired
+		{
+		logDebug("A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.") ;
+		timeExpired = true ;
+		break;
 		}
 
-		var thisCapId = myCaps[myCapsXX].getCapID();
-		capIdResult = aa.cap.getCapID(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3());
-		if (capIdResult.getSuccess()) capId = capIdResult.getOutput();
-		else logDebug(capIdResult.getErrorMessage());
+		var thisCapId = capIdArray[cIndex].getCapID();
+		capId = getCapIdLOCAL(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3()); 
+		altId = capId.getCustomID();
+		logDebug(altId);
 
 		if (!capId) {
 			continue;
@@ -210,19 +218,6 @@ function mainProcess() {
 		appTypeString = appTypeResult.toString();	
 		appTypeArray = appTypeString.split("/");
 		
-		// Filter by CAP Type
-		if (appType.length && !appMatch(appType))	{
-			capFilterType++;
-			logDebug(altId + ": Application Type does not match")
-			continue;
-		}
-		
-		// Filter by cap status
-		if (appStatus != "" && appStatus != capStatus) {
-			capFilterStatus++;
-			logDebug(altId + ": app status does not match");
-			continue;
-		}
 		
 		if (!isTaskActive("Appeal Period")){
 			capFilterStatus++;
@@ -237,9 +232,17 @@ function mainProcess() {
 		}
 		
 		capCount++;
-		logDebug("Processing " + altId);		
-		var taskStatusDate = taskStatusDate(taskName, null, capId);
-		var hasAppealsPeriodEnded = jsDateToMMDDYYYY(new Date()).localeCompare(dateAdd(taskStatusDate, 15)) == 0;
+		logDebug("Processing " + altId);	
+		taskName = "Hearing(s)";
+		hasAppealsPeriodEnded = false;
+		var taskSD = taskStatusDate(taskName, null, capId);
+		if (taskSD != null && taskSD != "") {
+			jsTaskSD = new Date(taskSD);
+		}
+		daysAgo15 = dateAdd(null, -15);
+		daysAgo15JS = new Date(daysAgo15);
+		// if the hearing task was set to a status of Denied more than 15 days ago
+		if (jsTaskSD.getTime() < daysAgo15JS.getTime()) hasAppealsPeriodEnded = true;
 		if (hasAppealsPeriodEnded) {
 			logDebug(altId + ": closing 'Appeal Period' task");
 			closeTask("Appeal Period", "Not Appealed", "Closed by batch script PLN_NotAppealed after 15 days", null);
@@ -247,9 +250,8 @@ function mainProcess() {
 	}		
 		
 	
-	logDebug("Processed " + capCount + " Records ");	
-	logDebug("Skipped " + capFilterType + " due to record type mismatch ");	
-	logDebug("Skipped " + capFilterStatus + " due to record status mismatch ");	
+	logDebug("Processed " + capCount + " Records ");		
+	logDebug("Skipped " + capFilterStatus + " due to task status");
 	logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
 }	
 
@@ -257,6 +259,12 @@ function mainProcess() {
 | <===========Custom Functions================>
 | 
 /-----------------------------------------------------------------------------------------------------*/
+function getCapIdLOCAL(s_id1, s_id2, s_id3)  {
+		    var s_capResult = aa.cap.getCapID(s_id1, s_id2, s_id3);
+		 if(s_capResult.getSuccess())
+		   return s_capResult.getOutput();
+		 return null;
+		}
 
 
 /*------------------------------------------------------------------------------------------------------/
