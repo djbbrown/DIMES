@@ -24,6 +24,7 @@ if (getInspectionsResult.getSuccess()) {
 		if (
 			(inspectionScriptModel.getInspectionType().toUpperCase() == "FOLLOW-UP INSPECTION"
 				||inspectionScriptModel.getInspectionType().toUpperCase() == "INITIAL INSPECTION"
+				||inspectionScriptModel.getInspectionType().toUpperCase() == "CITATION INSPECTION"
 			)
 			&& (inspectionScriptModel.getInspectionStatus().toUpperCase() == "IN VIOLATION")
 		) {
@@ -40,6 +41,7 @@ if (
 		inspType == "Initial Inspection"
 		|| inspType == "Follow-Up Inspection"
 		|| inspType == "Follow-up Inspection"
+		|| inspType == "Citation Inspection"
 	)
 	&& inspResult == "In Violation"
 	&& inViolationInspectionScriptModels.length < 3
