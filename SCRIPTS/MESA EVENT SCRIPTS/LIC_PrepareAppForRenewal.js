@@ -7,7 +7,7 @@
 //    from the license record to the renewal record.
 // Script Run Event: ASA
 // Script Parents:
-//            WTUA;Licenses!~!~!Renewal.js
+//            ASA;Licenses!~!~!Renewal.js
 /*==================================================================*/
 function prepareAppForRenewal() {
 	var partialCapId = getIncompleteCapId();
