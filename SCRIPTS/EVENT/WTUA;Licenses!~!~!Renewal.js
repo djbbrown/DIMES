@@ -1,2 +1,2 @@
-if (wfTask == "Renewal Submittal") 
+if (wfTask == "Renewal Submittal" || wfTask == "Renew License") 
   include("LIC_CompleteRenewalOnWorkflow");
