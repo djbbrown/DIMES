@@ -63,7 +63,20 @@ if (parentLicenseCAPID != null) {
 				}
 				else { logDebug("Error updating project status to review: " + updateResult.getErrorMessage()); }
 			}
-			else { logDebug("Error getting Project By Child CapID"); }
+			else { 
+				logDebug("Did not find incomplete renewal");
+				var reviewResult = aa.cap.getProjectByChildCapID(capID, "Renewal", "");
+				if(reviewResult.getSuccess()) {
+					projectScriptModels = reviewResult.getOutput();
+					projectScriptModel = projectScriptModels[0];
+					projectScriptModel.setStatus("Review");
+					var updateResult = aa.cap.updateProject(projectScriptModel);
+					if (updateResult.getSuccess()) {
+						logDebug("Updated project status to review");
+					}
+					else { logDebug("Error updating project status to review: " + updateResult.getErrorMessage()); }
+				}
+			}
 		}
 	}
 	else { logDebug("Either not readyRenew or not a renewal CAP"); }
@@ -183,7 +196,7 @@ function updateRelationship2RealCAP(parentLicenseCAPID, capID) {
 			logDebug("ERROR: Failed update relationship status CAPID(" + capID + "): " + result1.getErrorMessage());
 		}
 	}
-	else { logDebug("ERROR: Failed to create renewal relationship parentCAPID(" + parentLicenseCAPID + "),CAPID(" + capID + "): " + result.getErrorMessage()); }
+	else { logDebug("Failed to update renewal relationship parentCAPID(" + parentLicenseCAPID + "),CAPID(" + capID + "): " + result.getErrorMessage()); }
 }
 
 function getParentLicenseByCompleteRenewal(capid) {
