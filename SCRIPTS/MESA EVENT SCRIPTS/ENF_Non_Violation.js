@@ -2,8 +2,8 @@
 // Script Number: 39
 // Script Name: ENF_Non_Violation.js
 // Script Description: Send an email to the complainant when Inpection - Status Drop Down is No Violation
-// Script Run Event: WTUA
-// Script Parents:WTUA;Enforcement!Case!~!~
+// Script Run Event: ISRA
+// Script Parents:ISRA;Enforcement!Case!~!~
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/17/16  |Steve Veloudos   |Initial Release
 /*==================================================================*/
