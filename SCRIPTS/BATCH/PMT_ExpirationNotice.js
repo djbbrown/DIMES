@@ -147,15 +147,13 @@ function mainProcess()
                 {
                     capFilterExpirationNull++;
                     logDebug(altId + ": Expiration Date is null." );
-                    logDebug("--------------moving to next record--------------");
                     continue; // move to the next record
                 }
             }
             catch (err)
             {
                 capFilterExpirationGet++;
-                logDebug("JavaScript Error getting expiration date: " + err.message);
-                logDebug("--------------moving to next record--------------");
+                //logDebug("JavaScript Error getting expiration date: " + err.message); // too many to log!!
                 continue; // move to the next record
             }
 
@@ -166,7 +164,6 @@ function mainProcess()
             {
                 capFilterExpiration++;
                 logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
-                logDebug("--------------moving to next record--------------");
                 continue; // move to the next record
             }
 
@@ -398,8 +395,8 @@ try
     var appTypeType = getParam("appTypeType"); // app type to process
     var appSubType = getParam("appSubType"); // app subtype to process
     var appCategory = getParam("appCategory"); // app category to process
-    var numDaysOut = getParam("numDaysOut"); // the number of days to check for before expiration
-    var emailTemplate = getParam("emailTemplate"); // the email template to use
+    var numDaysOut = getParam("numDaysOut"); // the number of days out to check for expiration
+    var emailTemplate = getParam("emailTemplate"); // the email template to use for notifications
 
     /*----------------------------------------------------------------------------------------------------/
     |
