@@ -36,11 +36,7 @@ try {
 		 {
                    //Get the Inpection Date
                     var thedate = inspectionScriptModel.getInspectionStatusDate();
-                    var d =   Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
-                    var dformat = d.getMonth() + 1 +"/" + d.getDate()+"/" + d.getFullYear() + " ";
-                    var hour = d.getHours() - (d.getHours() >= 12 ? 12 : 0);
-                    var period = d.getHours() >= 12 ? ' PM' : ' AM';
-                    InspectionDate = dformat + hour + ":" + d.getMinutes() + period;
+                    InspectionDate =   Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
 
                    //Get the Inpection Notes
                    InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
