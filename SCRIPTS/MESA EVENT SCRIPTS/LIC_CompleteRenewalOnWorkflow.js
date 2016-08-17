@@ -49,8 +49,6 @@ function updateExpirationStatus(licCapId) {
 }
  
 function getParentCapIDForReview(capid) {
-	// for Longmont licensing, renewals may/may not have payments. Need to look for
-	// project status of Review and Incomplete
 	if (capid == null || aa.util.instanceOfString(capid)) {
 		return null;
 	}
@@ -59,6 +57,7 @@ function getParentCapIDForReview(capid) {
     	if(result.getSuccess()) {
 		projectScriptModels = result.getOutput();
 		if (!(projectScriptModels == null || projectScriptModels.length == 0)) {
+			logDebug("Found project by renewal status review");
 			projectScriptModel = projectScriptModels[0];
 			return projectScriptModel.getProjectID();
 		}
@@ -67,6 +66,7 @@ function getParentCapIDForReview(capid) {
     	if(result.getSuccess()) {
 		projectScriptModels = result.getOutput();
 		if (!(projectScriptModels == null || projectScriptModels.length == 0)) {
+			logDebug("Found project by renewal status incomplete");
 			projectScriptModel = projectScriptModels[0];
 			return projectScriptModel.getProjectID();
 		}
@@ -75,6 +75,7 @@ function getParentCapIDForReview(capid) {
     	if(result.getSuccess()) {
 		projectScriptModels = result.getOutput();
 		if (!(projectScriptModels == null || projectScriptModels.length == 0)) {
+			logDebug("Found project by renewal status nothing");
 			projectScriptModel = projectScriptModels[0];
 			return projectScriptModel.getProjectID();
 		}
@@ -139,3 +140,4 @@ function isWorkflowDenyForReview(capID, wfTask, stepNum, processID, taskStatus) 
     	else { logDebug("ERROR: Failed to get workflow task(" + capID + ") for review: " + result.getErrorMessage()); }
 	return false;
 }
+
