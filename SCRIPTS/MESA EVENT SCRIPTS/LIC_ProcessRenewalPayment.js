@@ -10,7 +10,12 @@ var capID = getCapId();
 logDebug("capID = " + capID);
 var partialCapID = getPartialCapID(capID);
 logDebug("PartialCapID = " + partialCapID);
-var parentLicenseCAPID = getParentLicenseCapID(capID)
+var parentLicenseCAPID = getParentLicenseCapID(capID);
+if (typeof(parentLicenseCAPID) == "String") {
+	logDebug("Got a string for a cap Id");
+	tLicArray = String(parentLicenseCAPID).split("-");
+	parentLicenseCAPID = aa.cap.getCapID(tLicArray[0], tLicArray[1], tLicArray[2]).getOutput();
+}
 if (parentLicenseCAPID != null) {
 	logDebug("Parent CAP ID :" + parentLicenseCAPID);
 	// 2. Check to see if license is ready for renew, and check for full paying 
@@ -122,6 +127,7 @@ function getParentLicenseCapID(capid) {
 			retVal = getParentLicenseByCompleteRenewal(capid);
 			if (retVal == null) {
 				retVal = getParentLicenseByAnyRenewal(capId);
+				if (retVal != null) return retVal;
 			}
 			else return retVal;
 		}
@@ -198,17 +204,20 @@ function getParentLicenseByAnyRenewal(capid) {
 	logDebug("Looking for renewal without a status")
 	var result = aa.cap.getProjectByChildCapID(capid, "Renewal", "");
 	if(result.getSuccess() ) {
+		logDebug("Found renewal with empty status");
 		projectScriptModels = result.getOutput();
 		projectScriptModel = projectScriptModels[0];
 		logDebug("project ID = " + projectScriptModel.getProjectID());
 		if (projectScriptModel.getProjectID() == null) {
 			var result = aa.cap.getProjectByChildCapID(capid, "Renewal", null);
 			if(result.getSuccess() ) {
+				logDebug("Found renewal with null status");
 				projectScriptModels = result.getOutput();
 				projectScriptModel = projectScriptModels[0];
 				logDebug("project ID = " + projectScriptModel.getProjectID());
 			}
 		}
+		logDebug("Returnning " + projectScriptModel.getProjectID());
 		return projectScriptModel.getProjectID();
 	}
 	return null;
