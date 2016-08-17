@@ -130,7 +130,7 @@ function getParentCapVIAPartialCap(capid) {
 		}
 		licenseProject = licenseProjects[0];
 		// update renewal relationship from partial cap to real cap
-		updateRelationship2RealCAP(licenseProject.getProjectID(), capid);
+		//updateRelationship2RealCAP(licenseProject.getProjectID(), capid);
 		//Return parent license CAP ID.
 		return licenseProject.getProjectID();
 	}
