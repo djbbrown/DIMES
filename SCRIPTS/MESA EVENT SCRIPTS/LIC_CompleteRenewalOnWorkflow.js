@@ -102,6 +102,9 @@ function isWorkflowApproveForReview(capID, wfTask, stepNum, processID, taskStatu
 		if (taskItemScriptModel.getTaskDescription().equals(wfTask) && "Renewal Submittal".equals(wfTask) && ( "Renewed".equals(taskStatus)) ) {
 			return true;
 		}	
+		if (taskItemScriptModel.getTaskDescription().equals(wfTask) && "Renew License".equals(wfTask) && ( "Issued".equals(taskStatus) || "Issued with Suspension".equals(taskStatus)) ) {
+			return true;
+		}	
 		if (taskItemScriptModel.getTaskDescription().equals(wfTask) && "Renewal Status".equals(wfTask) && ( "Approved".equals(taskStatus) || "Approved Inactive".equals(taskStatus) || "Approved Active".equals(taskStatus)) ) {
 			return true;
 		}	
