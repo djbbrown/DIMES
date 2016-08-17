@@ -69,6 +69,7 @@ if (parentLicenseCAPID != null) {
 				if(reviewResult.getSuccess()) {
 					projectScriptModels = reviewResult.getOutput();
 					projectScriptModel = projectScriptModels[0];
+					projectScriptModel = projectScriptModel.getProjectID();
 					projectScriptModel.setStatus("Review");
 					var updateResult = aa.cap.updateProject(projectScriptModel);
 					if (updateResult.getSuccess()) {
