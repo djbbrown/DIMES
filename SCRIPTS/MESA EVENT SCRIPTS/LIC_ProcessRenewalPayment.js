@@ -197,7 +197,7 @@ function getParentLicenseByAnyRenewal(capid) {
 	logDebug("Looking for renewal without a status")
 	var result = aa.cap.getProjectByChildCapID(capid, "Renewal", "");
 	if(result.getSuccess() ) {
-		projectScriptModels = result.getOutput()e;
+		projectScriptModels = result.getOutput();
 		projectScriptModel = projectScriptModels[0];
 		logDebug("project ID = " + projectScriptModel.getProjectID());
 		if (projectScriptModel.getProjectID() == null) {
@@ -206,7 +206,7 @@ function getParentLicenseByAnyRenewal(capid) {
 				projectScriptModels = result.getOutput();
 				projectScriptModel = projectScriptModels[0];
 				logDebug("project ID = " + projectScriptModel.getProjectID());
-				}
+			}
 		}
 		return projectScriptModel.getProjectID();
 	}
