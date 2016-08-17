@@ -42,7 +42,7 @@ function updateExpirationStatus(licCapId) {
 	licObject = new licenseObject(null, licCapId);
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
-		newExpDate = dateAddMonthds(currExpDate, 12);
+		newExpDate = dateAddMonths(currExpDate, 12);
 		libObject.setExpiration(newExpDate);
 		// status should already be "Active"
 	}
