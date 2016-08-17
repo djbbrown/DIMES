@@ -75,15 +75,7 @@ try {
                       var zip = addrArray[0].getZip();
  
                       var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
-                      //
-                      addParameter(vEParams,"$$RECORDID$$",capIDString);
-                      addParameter(vEParams,"$$Address$$",theAddress);
-                      addParameter(vEParams,"$$URL$$",Url);
-                      addParameter(vEParams,"$$CodeOfficerName$$",CoName);
-                      addParameter(vEParams,"$$CodeOfficerPhone$$",CoPhone);
-                      addParameter(vEParams,"$$CodeOfficerEmail$$",CoEmail);
-                      addParameter(vEParams,"$$InspectionDate$$",InspectionDate);
-                      addParameter(vEParams,"$$InspectionNotes$$",InspectionNotes);
+
 
                       //Get the contact info
                       var tInfo = getContactArray();
@@ -99,6 +91,16 @@ try {
                                   var ToEmail = tInfo[x]["email"];
                                   }
                               }
+                      //Add Params
+                      addParameter(vEParams,"$$RECORDID$$",capIDString);
+                      addParameter(vEParams,"$$Address$$",theAddress);
+                      addParameter(vEParams,"$$URL$$",Url);
+                      addParameter(vEParams,"$$CodeOfficerName$$",CoName);
+                      addParameter(vEParams,"$$CodeOfficerPhone$$",CoPhone);
+                      addParameter(vEParams,"$$CodeOfficerEmail$$",CoEmail);
+                      addParameter(vEParams,"$$InspectionDate$$",InspectionDate);
+                      addParameter(vEParams,"$$InspectionNotes$$",InspectionNotes);
+
                      //If email has a value send email
                      if (ToEmail != "")
                      {
