@@ -11,6 +11,7 @@ logDebug("capID = " + capID);
 var partialCapID = getPartialCapID(capID);
 logDebug("PartialCapID = " + partialCapID);
 var parentLicenseCAPID = getParentLicenseCapID(capID);
+logDebug(typeof(parentLicenseCAPID));
 if (typeof(parentLicenseCAPID) == "String") {
 	logDebug("Got a string for a cap Id");
 	tLicArray = String(parentLicenseCAPID).split("-");
@@ -20,6 +21,7 @@ if (parentLicenseCAPID != null) {
 	logDebug("Parent CAP ID :" + parentLicenseCAPID);
 	// 2. Check to see if license is ready for renew, and check for full paying 
 	if (isReadyRenew(parentLicenseCAPID) && isRenewalCap(capID) && (checkFullPaying(capID)=="true")) {
+		logDebug("IsReadyRenew, isRenewalCap and fullPaying");
 		if (isRenewalCompleteOnPayment(capID)) {
 			//3. Associate current CAP with parent license CAP.
 			var result = aa.cap.updateRenewalCapStatus(parentLicenseCAPID, capID);
@@ -49,6 +51,7 @@ if (parentLicenseCAPID != null) {
 			else { logDebug("ERROR: Failed to create renewal CAP : MasterCAP(. " + parentLicenseCAPID + ")  renewal CAP(" + capID + ")" + result.getErrorMessage()); }
 		}
 		else {
+			logDebug("Renewal is not complete on payment");
 			var reviewResult = aa.cap.getProjectByChildCapID(capID, "Renewal", "Incomplete");
 			if(reviewResult.getSuccess()) {
 				projectScriptModels = reviewResult.getOutput();
@@ -124,14 +127,13 @@ function getParentLicenseCapID(capid) {
 	else {
 		retVal =  getParentCapVIAPartialCap(capid);
 		if (retVal == null) {
-			retVal = getParentLicenseByCompleteRenewal(capid);
-			if (retVal == null) {
-				retVal = getParentLicenseByAnyRenewal(capId);
-				if (retVal != null) return retVal;
+			retVal = getParentLicenseByAnyRenewal(capId);
+			if (retVal != null)  {
+				logDebug(typeof(retVal));
+				updateRelationship2RealCAP(retVal, capId);
+				return retVal;
 			}
-			else return retVal;
 		}
-		else return retVal;
 	}
 	return null;
 }
@@ -148,24 +150,24 @@ function getParentCapVIAPartialCap(capid) {
 		}
 		licenseProject = licenseProjects[0];
 		// update renewal relationship from partial cap to real cap
-		//updateRelationship2RealCAP(licenseProject.getProjectID(), capid);
+		updateRelationship2RealCAP(licenseProject.getProjectID(), capid);
 		//Return parent license CAP ID.
 		logDebug("Returning project ID of " + licenseProject.getProjectID());
 		return licenseProject.getProjectID();
 	}
 	else { 
 		logDebug("Error in getParentCapVIAPartialCap " + result2.getErrorMessage());
-		tempCapID = getParentLicenseByCompleteRenewal(capid);
-		if (tempCapID != null) {
-			tLicArray = String(tempCapID).split("-");
-			var tempCapID2 = aa.cap.getCapID(tLicArray[0], tLicArray[1], tLicArray[2]).getOutput();
-			logDebug("tempCapID2 = " + tempCapID2.getCustomID());
-			return tempCapID2; 
-		}
-		else {
-			logDebug("Did not find complete renewal "); 
+		//tempCapID = getParentLicenseByCompleteRenewal(capid);
+		//if (tempCapID != null) {
+		//	tLicArray = String(tempCapID).split("-");
+		//	var tempCapID2 = aa.cap.getCapID(tLicArray[0], tLicArray[1], tLicArray[2]).getOutput();
+		//	logDebug("tempCapID2 = " + tempCapID2.getCustomID());
+		//	return tempCapID2; 
+		//}
+		//else {
+		//	logDebug("Did not find complete renewal "); 
 			return null;
-		}
+		//}
 	}
 }
 
