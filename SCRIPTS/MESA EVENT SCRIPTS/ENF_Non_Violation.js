@@ -46,7 +46,7 @@ try {
                    InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
                    
                    //Get the Code Officer Info
-                   var CoObject = aa.person.getUser(inspectionScriptModels[inspectionScriptModelIndex].getInspector().getFirstName(),inspectionScriptModels[i].getInspector().getMiddleName(),inspectionScriptModels[i].getInspector().getLastName()).getOutput();
+                   var CoObject = aa.person.getUser(inspectionScriptModels[inspectionScriptModelIndex].getInspector().getFirstName(),inspectionScriptModels[inspectionScriptModelIndex].getInspector().getMiddleName(),inspectionScriptModels[inspectionScriptModelIndex].getInspector().getLastName()).getOutput();
                    var FirstName = CoObject.getFirstName();
                    var MidName = CoObject.getMiddleName();
                    var LastName = CoObject.getLastName();
