@@ -7,7 +7,9 @@
 // Script Run Event: PRA
 /*==================================================================*/
 var capID = getCapId();
+logDebug("capID = " + capID);
 var partialCapID = getPartialCapID(capID);
+logDebug("PartialCapID = " + partialCapID);
 var parentLicenseCAPID = getParentLicenseCapID(capID)
 if (parentLicenseCAPID != null) {
 	logDebug("Parent CAP ID :" + parentLicenseCAPID);
@@ -106,6 +108,7 @@ function checkFullPaying(capid){
 	return "true";
 }
 function getParentLicenseCapID(capid) {
+	logDebug("getParentLicenseCapID");
 	if (capid == null || aa.util.instanceOfString(capid)) { return null; }
 	var result = aa.cap.getProjectByChildCapID(capid, "Renewal", "Incomplete");
 	if(result.getSuccess() ) {
