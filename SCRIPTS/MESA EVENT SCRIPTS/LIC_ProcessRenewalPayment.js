@@ -119,9 +119,9 @@ function getParentLicenseCapID(capid) {
 	else {
 		retVal =  getParentCapVIAPartialCap(capid);
 		if (retVal == null) {
-			retVal = getParentByCompleteRenewal(capid);
+			retVal = getParentLicenseByCompleteRenewal(capid);
 			if (retVal == null) {
-				retVal = getParentByAnyRenewal(capId);
+				retVal = getParentLicenseByAnyRenewal(capId);
 			}
 			else return retVal;
 		}
@@ -157,7 +157,8 @@ function getParentCapVIAPartialCap(capid) {
 			return tempCapID2; 
 		}
 		else {
-			logDebug("Did not find complete renewal "); return null;
+			logDebug("Did not find complete renewal "); 
+			return null;
 		}
 	}
 }
