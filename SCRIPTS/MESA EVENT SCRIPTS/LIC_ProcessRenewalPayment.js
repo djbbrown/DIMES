@@ -117,11 +117,23 @@ function getParentLicenseCapID(capid) {
 		return projectScriptModel.getProjectID();
 	}
 	else {
-		return getParentCapVIAPartialCap(capid);
+		retVal =  getParentCapVIAPartialCap(capid);
+		if (retVal == null) {
+			retVal = getParentByCompleteRenewal(capid);
+			if (retVal == null) {
+				retVal = getParentByAnyRenewal(capId);
+			}
+			else return retVal;
+		}
+		else return retVal;
 	}
+	return null;
 }
 function getParentCapVIAPartialCap(capid) {
-	var result2 = aa.cap.getProjectByChildCapID(capid, "Renewal", "Incomplete");
+	logDebug("getParentCapVIAPartialCap");
+	var partialCapID = getPartialCapID(capid);
+	logDebug("partialCapID " + partialCapID);
+	var result2 = aa.cap.getProjectByChildCapID(partialCapID, "Renewal", "Incomplete");
 	if(result2.getSuccess()) {
 		licenseProjects = result2.getOutput();
 		if (licenseProjects == null || licenseProjects.length == 0) {
@@ -132,9 +144,71 @@ function getParentCapVIAPartialCap(capid) {
 		// update renewal relationship from partial cap to real cap
 		//updateRelationship2RealCAP(licenseProject.getProjectID(), capid);
 		//Return parent license CAP ID.
+		logDebug("Returning project ID of " + licenseProject.getProjectID());
 		return licenseProject.getProjectID();
 	}
-	else { return null; }
+	else { 
+		logDebug("Error in getParentCapVIAPartialCap " + result2.getErrorMessage());
+		tempCapID = getParentLicenseByCompleteRenewal(capid);
+		if (tempCapID != null) {
+			tLicArray = String(tempCapID).split("-");
+			var tempCapID2 = aa.cap.getCapID(tLicArray[0], tLicArray[1], tLicArray[2]).getOutput();
+			logDebug("tempCapID2 = " + tempCapID2.getCustomID());
+			return tempCapID2; 
+		}
+		else {
+			logDebug("Did not find complete renewal "); return null;
+		}
+	}
 }
 
 
+function updateRelationship2RealCAP(parentLicenseCAPID, capID) {
+	logDebug("updateRelationship2RealCAP")
+	var result = aa.cap.createRenewalCap(parentLicenseCAPID, capID, false);
+	if (result.getSuccess()) {
+		var projectScriptModel = result.getOutput();
+		projectScriptModel.setStatus("Incomplete");
+		var result1 = aa.cap.updateProject(projectScriptModel);
+		if (!result1.getSuccess()) {
+			logDebug("ERROR: Failed update relationship status CAPID(" + capID + "): " + result1.getErrorMessage());
+		}
+	}
+	else { logDebug("ERROR: Failed to create renewal relationship parentCAPID(" + parentLicenseCAPID + "),CAPID(" + capid + "): " + result.getErrorMessage()); }
+}
+
+function getParentLicenseByCompleteRenewal(capid) {
+	logDebug("getParentLicenseByCompleteRenewal");
+	if (capid == null || aa.util.instanceOfString(capid)) { return null; }
+	var result = aa.cap.getProjectByChildCapID(capid, "Renewal", "Complete");
+	if(result.getSuccess() ) {
+		logDebug("Found Complete renewal")
+		projectScriptModels = result.getOutput();
+		projectScriptModel = projectScriptModels[0];
+		logDebug("project ID = " + projectScriptModel.getProjectID());
+		return projectScriptModel.getProjectID();
+	}
+	return null;
+}
+
+function getParentLicenseByAnyRenewal(capid) {
+	logDebug("getParentLicenseByAnyRenewal");
+	if (capid == null || aa.util.instanceOfString(capid)) { return null; }
+	logDebug("Looking for renewal without a status")
+	var result = aa.cap.getProjectByChildCapID(capid, "Renewal", "");
+	if(result.getSuccess() ) {
+		projectScriptModels = result.getOutput()e;
+		projectScriptModel = projectScriptModels[0];
+		logDebug("project ID = " + projectScriptModel.getProjectID());
+		if (projectScriptModel.getProjectID() == null) {
+			var result = aa.cap.getProjectByChildCapID(capid, "Renewal", null);
+			if(result.getSuccess() ) {
+				projectScriptModels = result.getOutput();
+				projectScriptModel = projectScriptModels[0];
+				logDebug("project ID = " + projectScriptModel.getProjectID());
+				}
+		}
+		return projectScriptModel.getProjectID();
+	}
+	return null;
+}
