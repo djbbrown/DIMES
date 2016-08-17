@@ -18,7 +18,6 @@ try {
       var CoEmail;
       var CoPhone;
       var InspectionNotes;
-      var i = 0;
 
       //Get the Inspection results
       var getInspectionsResult = aa.inspection.getInspections(capId);
@@ -30,20 +29,24 @@ try {
 	var inspectionScriptModel = null;
         
         //Iterate through the inspections & look for No Violation
-	for (i in inspectionScriptModels)
+	for (inspectionScriptModelIndex in inspectionScriptModels)
            {
-		inspectionScriptModel = inspectionScriptModels[i];
+		inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
 		if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "NO VIOLATION")
 		 {
                    //Get the Inpection Date
                     var thedate = inspectionScriptModel.getInspectionStatusDate();
-                    InspectionDate =   Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
+                    var d =   Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
+                    var dformat = d.getMonth() + 1 +"/" + d.getDate()+"/" + d.getFullYear() + " ";
+                    var hour = d.getHours() - (d.getHours() >= 12 ? 12 : 0);
+                    var period = d.getHours() >= 12 ? ' PM' : ' AM';
+                    InspectionDate = dformat + hour + ":" + d.getMinutes() + period;
 
                    //Get the Inpection Notes
                    InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
                    
                    //Get the Code Officer Info
-                   var CoObject = aa.person.getUser(inspectionScriptModels[i].getInspector().getFirstName(),inspectionScriptModels[i].getInspector().getMiddleName(),inspectionScriptModels[i].getInspector().getLastName()).getOutput();
+                   var CoObject = aa.person.getUser(inspectionScriptModels[inspectionScriptModelIndex].getInspector().getFirstName(),inspectionScriptModels[i].getInspector().getMiddleName(),inspectionScriptModels[i].getInspector().getLastName()).getOutput();
                    var FirstName = CoObject.getFirstName();
                    var MidName = CoObject.getMiddleName();
                    var LastName = CoObject.getLastName();
@@ -110,8 +113,7 @@ try {
                      } //End if Cap Sucess
 
               } //End of No Violation
-        
-        i = i +1
+
        }//End of For Loop for inspections
 
       } //End of inspection results sucessful
