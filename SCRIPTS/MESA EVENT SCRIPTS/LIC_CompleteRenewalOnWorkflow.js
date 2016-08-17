@@ -18,6 +18,7 @@ if (parentLicenseCAPID != null) {
 				if (activeLicense(parentLicenseCAPID)) {
 					renewalCapProject.setStatus("Complete");
 					logDebug("license(" + parentLicenseCAPID + ") is activated.");
+					updateExpirationStatus(parcelLicenseCAPID);
 					aa.cap.updateProject(renewalCapProject);
 					copyKeyInfo(capID, parentLicenseCAPID);
 					aa.cap.transferRenewCapDocument(partialCapID, parentLicenseCAPID, false);
@@ -37,7 +38,16 @@ if (parentLicenseCAPID != null) {
 	}
 }
 
-
+function updateExpirationStatus(licCapId) {
+	licObject = new licenseObject(null, licCapId);
+	if (licObject != null) {
+		currExpDate=licObject.b1ExpDate;
+		newExpDate = dateAddMonthds(currExpDate, 12);
+		libObject.setExpiration(newExpDate);
+		// status should already be "Active"
+	}
+}
+ 
 function getParentCapIDForReview(capid) {
 	// for Longmont licensing, renewals may/may not have payments. Need to look for
 	// project status of Review and Incomplete
