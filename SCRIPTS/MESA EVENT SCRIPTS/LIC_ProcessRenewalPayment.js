@@ -129,7 +129,7 @@ function getParentLicenseCapID(capid) {
 		if (retVal == null) {
 			retVal = getParentLicenseByAnyRenewal(capId);
 			if (retVal != null)  {
-				logDebug(typeof(retVal));
+				logDebug(retVal.getClass());;
 				updateRelationship2RealCAP(retVal, capId);
 				return retVal;
 			}
@@ -183,7 +183,7 @@ function updateRelationship2RealCAP(parentLicenseCAPID, capID) {
 			logDebug("ERROR: Failed update relationship status CAPID(" + capID + "): " + result1.getErrorMessage());
 		}
 	}
-	else { logDebug("ERROR: Failed to create renewal relationship parentCAPID(" + parentLicenseCAPID + "),CAPID(" + capid + "): " + result.getErrorMessage()); }
+	else { logDebug("ERROR: Failed to create renewal relationship parentCAPID(" + parentLicenseCAPID + "),CAPID(" + capID + "): " + result.getErrorMessage()); }
 }
 
 function getParentLicenseByCompleteRenewal(capid) {
