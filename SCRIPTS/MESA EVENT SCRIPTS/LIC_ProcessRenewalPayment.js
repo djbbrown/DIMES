@@ -68,8 +68,8 @@ if (parentLicenseCAPID != null) {
 				var reviewResult = aa.cap.getProjectByChildCapID(capID, "Renewal", "");
 				if(reviewResult.getSuccess()) {
 					projectScriptModels = reviewResult.getOutput();
+					logDebug(projectScriptModels.length);
 					projectScriptModel = projectScriptModels[0];
-					projectScriptModel = projectScriptModel.getProjectID();
 					projectScriptModel.setStatus("Review");
 					var updateResult = aa.cap.updateProject(projectScriptModel);
 					if (updateResult.getSuccess()) {
