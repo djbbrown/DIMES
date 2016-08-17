@@ -9,7 +9,7 @@
 // Script Parents:
 //            CTRCA;Licenses!~!~!Renewal.js
 /*==================================================================*/
-function convertRenewalToReal() {
+
 	var capID = getCapId();
 	var partialCapID = getPartialCapID(capID);
 	var result = aa.cap.isRenewalInProgess(capID);
@@ -32,4 +32,4 @@ function convertRenewalToReal() {
 		aa.env.setValue("isAutoIssuanceSuccess", "Yes");
 	}
 	else { logDebug("isRenewalInProgress returned error " + result.getErrorMessage()); }
-}
+
