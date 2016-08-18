@@ -227,7 +227,7 @@ function mainProcess()
     logDebug(""); // empty line
     logDebug("-------------------------");
     logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
-    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminTo, "Batch Script: PMT_ExpirationNotice Completion Summary", emailText);
+    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: PMT_ExpirationNotice Completion Summary", emailText);
 
     /***** END ADMIN NOTIFICATION *****/
 }
