@@ -14,7 +14,7 @@
 /*==================================================================*/
 
 var tmpTable = loadASITable("SIGN INFO");
-if (tmpTable) {
+if (tmpTable && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 	var countException = 0;
 	// Count the number of "Illuminated" for types of Sign
 	var countSignIlluminated = countASITRows(tmpTable, "Type of Sign", "Illuminated" );
