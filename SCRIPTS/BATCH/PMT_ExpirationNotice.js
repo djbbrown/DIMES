@@ -403,9 +403,11 @@ try
         try 
         { 
             bjTimeOut = parseInt(getBatchScriptTimeOut(batchJobName));
+            logDebug("bjTimeOut: " + bjTimeOut);
         }
         catch (err)
         {
+            logDebug("bjTimeOut error: " + err.message);
             bjTimeOut = 0;
         }
         if ( bjTimeOut != 0 && typeof bjTimeOut == "number" && bjTimeOut > 60 )
@@ -415,6 +417,7 @@ try
             if ( newMaxSeconds >= 240 ) // lets not shrink maxseconds to less than the default value
             {
                 maxSeconds = newMaxSeconds;
+                logDebug("maxSeconds: " + maxSeconds);
             }
         }
     }
