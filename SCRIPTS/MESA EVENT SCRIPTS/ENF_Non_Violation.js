@@ -34,11 +34,12 @@ try {
 		inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
 		if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "NO VIOLATION")
 		 {
-                   //Get the Inpection Date
+                   //Get the Inspection Date
                     var thedate = inspectionScriptModel.getInspectionStatusDate();
-                    InspectionDate =   Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
+                    var InDate =   new Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
+                    InspectionDate = jsDateToASIDate(InDate);
 
-                   //Get the Inpection Notes
+                   //Get the Inspection Notes
                    InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
                    
                    //Get the Code Officer Info
