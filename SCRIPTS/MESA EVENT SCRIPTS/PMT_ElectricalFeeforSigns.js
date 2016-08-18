@@ -11,6 +11,8 @@
 // 2016.06.03 request to update.
 // 1.2.	If the Type of Work field = “Sign” or “Freeway Landmark” – fee should not be added 
 // for any other Type of Work options, even if the Type of Sign = “Illuminated”.
+// 2016.08.18 request to further update.
+// Fee calculates correctly but should trigger when Plans Coordination is set to Ready to Issue, not at ASA.
 /*==================================================================*/
 
 var tmpTable = loadASITable("SIGN INFO");
