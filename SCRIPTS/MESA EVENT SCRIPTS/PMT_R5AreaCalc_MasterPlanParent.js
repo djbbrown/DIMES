@@ -9,7 +9,7 @@
 //		3.	Sum the “Sq Ft” column of the rows written to the new record with an Occupancy Classification of “R-5 Livable” and store this value in the ASI field “R-5 Area”. 
 //		4.	Sum the “Sq Ft” column of the rows written to the new record with an Occupancy Classification of “R-5N Non-Livable” and store this value in the ASI field “R-5N Area”.
 //		5.	Store the sum of both Occupancy Classifications in the “Total Sq Ft” ASI field. 
-// Script Run Event: ASA 
+// Script Run Event: ASA   
 /*==================================================================*/
 
 
