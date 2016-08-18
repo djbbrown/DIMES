@@ -40,8 +40,8 @@ if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus ==
 else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
-	tNumInsp += AInfo["Estimated Number of Inspections"];
-	tNumInsp += AInfo["Required No. of Inspections"];
+	tNumInsp += (AInfo["Estimated Number of Inspections"]||0);
+	tNumInsp += (AInfo["Required No. of Inspections"]||0);
 	valuationASI += AInfo["Total Valuation"]; // This is on "Mobile Home" and "Residential/NA/NA"
 	// Get the Valuation as well (ASI)
 	if(valuationASI <25000){

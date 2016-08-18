@@ -20,7 +20,7 @@ try {
 	if (pList.length > 0) {
 		parentId = pList[0]
 		parentASIT = loadASITable("OCCUPANCY  INFORMATION",parentId)
-		childASIT = loadASITable("OCCUPANCY  INFORMATION",parentId)
+		childASIT = loadASITable("OCCUPANCY  INFORMATION")
 		newASIT = []
 		for( r in childASIT ){
 			if (updateClassifications.indexOf(""+childASIT[r]["Occupancy Classification"].fieldValue) >= 0) continue
