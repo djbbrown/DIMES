@@ -76,10 +76,15 @@ try {
 				// add adapters
 				for (var a=0; a<numAdapters; a++){
 					var newRow = new Array();
-					newRow["Service Type"] = "Water Meter: Adapter";
-					newRow["Service Size"] = "Water Meter Adapter A24";
-					newRow["Meter Size"] = "N/A";
-					newRow["Qty of Meters"] = qtyOfMeters;
+					newRow["Service Type"] = new asiTableValObj("Service Type", "Water Meter: Adapter", "");
+					newRow["Service Size"] = new asiTableValObj("Service Size", "Water Meter Adapter A24", "N");
+					newRow["Meter Size"] = new asiTableValObj("Meter Size", "N/A", "N");
+					newRow["Qty of Meters"] = new asiTableValObj("Qty of Meters", "" + qtyOfMeters, "N");
+					newRow["BTU Load"] =  new asiTableValObj("BTU Load", "", "N");
+					newRow["Clearance To"] = new asiTableValObj("Clearance To", "", "N");
+					newRow["Clearance Date"] = new asiTableValObj("Clearance Date", "", "N");
+					newRow["Warranty Status"] = new asiTableValObj("Warranty Status", "", "N");
+					newRow["Comments"] = new asiTableValObj("Comments", "", "N");
 					if (isMobileHome) addToASITable("UTILITY SERVICE INFO", newRow);
 					else addToASITable("UTILITY SERVICE INFORMATION", newRow);				
 				}
