@@ -19,8 +19,8 @@ try {
 	
 	if (pList.length > 0) {
 		parentId = pList[0]
-		parentASIT = loadASITable("OCCUPANCY  INFORMATION",parentId)
-		childASIT = loadASITable("OCCUPANCY  INFORMATION",parentId)
+		parentASIT = loadASITable("OCCUPANCY INFORMATION",parentId)
+		childASIT = loadASITable("OCCUPANCY INFORMATION",parentId)
 		newASIT = []
 		for( r in childASIT ){
 			if (updateClassifications.indexOf(""+childASIT[r]["Occupancy Classification"].fieldValue) >= 0) continue
@@ -47,8 +47,8 @@ try {
 		editAppSpecific("R-5N Area",r5n_sum)
 		editAppSpecific("Total Sq Ft",r5_sum+r5n_sum)
 		
-		removeASITable("OCCUPANCY  INFORMATION");
-		addASITable("OCCUPANCY  INFORMATION",newASIT);
+		removeASITable("OCCUPANCY INFORMATION");
+		addASITable("OCCUPANCY INFORMATION",newASIT);
 	}
 }
 catch (err){
