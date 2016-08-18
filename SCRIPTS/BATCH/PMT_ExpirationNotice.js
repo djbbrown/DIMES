@@ -318,7 +318,7 @@ try
     // if a timeout value is defined in the batch job then maxSeconds will be dynamically adjusted to that time - 1 minute
     // it is changed to 1 minute less because if this script is able to time itself out internally (gracefully)
     // then it can still send out the summary email to admins
-    var maxSeconds = 4 * 60;
+    var maxSeconds = 59 * 60;
 				
     var useAppSpecificGroupName = false;	// Use Group name when populating App Specific Info Values
     var useTaskSpecificGroupName = false;	// Use Group name when populating Task Specific Info Values
@@ -396,7 +396,7 @@ try
     var batchJobID = aa.batchJob.getJobID().getOutput();
     var batchJobName = "" + aa.env.getValue("batchJobName");
     batchJobName = "PMT_EXPIRATION_NOTICE"; // testing
-    /*--- attempt to dynamically set the maxSeconds variable from what is configured as the timeout of the batch job ---*/    
+    /*--- attempt to dynamically set the maxSeconds variable from what is configured as the timeout of the batch job ---    
     if ( batchJobName != "" ) // batchJobName will be empty string when using the script tester
     {
         var bjTimeOut = 0;
@@ -421,6 +421,7 @@ try
             }
         }
     }
+    */
 
     /*----------------------------------------------------------------------------------------------------/
     |
@@ -429,7 +430,7 @@ try
     /------------------------------------------------------------------------------------------------------*/    
     
     // TODO: have all of these passed in as variables to this batch script
-    /**/
+    /*
     aa.env.setValue("appGroup", "Permits"); 
     aa.env.setValue("appTypeType","*"); 
     aa.env.setValue("appSubType","*"); 
@@ -438,7 +439,7 @@ try
     aa.env.setValue("emailTemplate", "PMT_EXPIRATION_NOTICE");
     aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
     aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
-    
+    */
     
     // this is the start of the body of the summary email
     logDebug("Parameters");
