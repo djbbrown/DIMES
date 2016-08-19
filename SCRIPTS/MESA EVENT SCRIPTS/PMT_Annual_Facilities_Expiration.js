@@ -12,7 +12,7 @@
 //
 /*==================================================================*/
 
-if (wfTask.equals("Permit Issuance") && wfStatus.equals("Permit Issued")) {
+if (wfTask.equals("Permit Issuance") && wfStatus.equals("Issued")) {
 	
 	// get current year from today's date
     var d = new Date();
