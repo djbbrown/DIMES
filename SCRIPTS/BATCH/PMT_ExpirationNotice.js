@@ -395,15 +395,15 @@ try
     var sysDate = aa.date.getCurrentDate();
     var batchJobID = aa.batchJob.getJobID().getOutput();
     var batchJobName = "" + aa.env.getValue("batchJobName");
-    batchJobName = "PMT_EXPIRATION_NOTICE"; // testing
-    /*--- attempt to dynamically set the maxSeconds variable from what is configured as the timeout of the batch job ---    
+    //batchJobName = "PMT_ExpirationNotice"; // testing
+    /*--- attempt to dynamically set the maxSeconds variable from what is configured as the timeout of the batch job --- */
     if ( batchJobName != "" ) // batchJobName will be empty string when using the script tester
     {
         var bjTimeOut = 0;
         try 
         { 
             bjTimeOut = parseInt(getBatchScriptTimeOut(batchJobName));
-            logDebug("bjTimeOut: " + bjTimeOut);
+            logDebug("Batch Job Time Out: " + bjTimeOut + " seconds");
         }
         catch (err)
         {
@@ -417,11 +417,12 @@ try
             if ( newMaxSeconds >= 240 ) // lets not shrink maxseconds to less than the default value
             {
                 maxSeconds = newMaxSeconds;
-                logDebug("maxSeconds: " + maxSeconds);
             }
         }
+        logDebug("Batch Script Internal Time Out: " + maxSeconds + " seconds");
+        logDebug("");// empty line
     }
-    */
+    
 
     /*----------------------------------------------------------------------------------------------------/
     |
@@ -429,8 +430,7 @@ try
     |
     /------------------------------------------------------------------------------------------------------*/    
     
-    // TODO: have all of these passed in as variables to this batch script
-    /*
+    /* TODO: have all of these passed in as variables to this batch script 
     aa.env.setValue("appGroup", "Permits"); 
     aa.env.setValue("appTypeType","*"); 
     aa.env.setValue("appSubType","*"); 
