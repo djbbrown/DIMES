@@ -309,6 +309,14 @@ function mainProcess()
     /***** END ADMIN NOTIFICATION *****/
 }
 
+function getBatchScriptTimeOut(jobName) 
+{
+    //var jobName = "Licenses About to Expire";
+    var bjb = aa.proxyInvoker.newInstance("com.accela.v360.batchjob.BatchEngineBusiness").getOutput();
+    var bj = bjb.getBatchJobByName(aa.getServiceProviderCode(), jobName);
+    return bj.getTimeOut();
+}
+
 function getTodayAsString(){
     var today = new Date();
     var dd = today.getDate();
