@@ -103,25 +103,6 @@ function mainProcess()
         
         /***** BEGIN FILTERS *****/
 
-        /*
-        pseudocode
-
-        filters:
-        done - filter by "Annual Facilities" 
-
-        done - filter out permits that have not been submitted 
-        -- we want status of "Submitted"
-
-        - filter by file date: 
-        -- daydiff(parseDate(filedate), parseDate(today)) if retval >= 15 && retval < 30 (>30 will be handled by #123)
-
-        done - filter out permits that have paid all their fees (we want permits that still owe fees)
-        -- use getRecordBalanceDue(capId)
-
-        done - filter out permits that have completed all needed documents (we want permits that are still incomplete)
-        -- only required document is "Engineer Letter"
-        */
-
         // filter by CAP Type (key4)
         // move to the next record unless we have a match on the key4 we want
         // the key4 we want is passed in to this batch script
@@ -206,19 +187,7 @@ function mainProcess()
             continue; // move to the next record
         }
 
-        /* WE HAVE ALREADY FILTERED BY CAP TYPE (KEY4) */
-        // filter by CAP Type (key4)
-        // move to the next record unless we have a match on the key4 we want
-        // the key4 we want is passed in to this batch script
-        //if (appType.length && !appMatch(appType))
-        //{
-            //capFilterType++;
-            //logDebug(altId + ": Application Type does not match.");
-            //logDebug("--------------moving to next record--------------");
-            //continue; // move to the next record
-        //}
-
-        /* WE HAVE ALREADY FILTERED BY APP TYPE */
+        /* WE ARE NOT FILTERING BY A LIST OF APP TYPES */
         // filter by app types
         //if ( !(new RegExp( '\\b' + includeAppTypesArray.join('\\b|\\b') + '\\b') ).test(appTypeArray[1]) )
         //{
@@ -474,7 +443,7 @@ try
     // it is changed to 1 minute less because if this script is able to time itself out internally (gracefully)
     // then it can still send out the summary email to admins
     var maxSeconds = 59 * 60;
-    
+
     var useAppSpecificGroupName = false;	// Use Group name when populating App Specific Info Values
     var useTaskSpecificGroupName = false;	// Use Group name when populating Task Specific Info Values
     var currentUserID = "ADMIN";
@@ -599,7 +568,7 @@ try
         aa.env.setValue("appTypeType","Commercial"); 
         aa.env.setValue("appSubType","Annual Facilities"); 
         aa.env.setValue("appCategory","*"); 
-        aa.env.setValue("taskName", "Application Submittal");
+        //aa.env.setValue("taskName", "Application Submittal");
         aa.env.setValue("numDaysOut", "15");
         aa.env.setValue("emailTemplate", "PMT_AnnualFacilitiesIdleApplication15Day");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
@@ -616,7 +585,7 @@ try
     var appTypeType = getParam("appTypeType"); // app type to process
     var appSubType = getParam("appSubType"); // app subtype to process
     var appCategory = getParam("appCategory"); // app category to process
-    var taskName = getParam("taskName"); // the taskname to filter by from the workflow
+    //var taskName = getParam("taskName"); // the taskname to filter by from the workflow
     var numDaysOut = getParam("numDaysOut"); // the number of days out to check since file date
     var emailTemplate = getParam("emailTemplate"); // the email template to use for notifications
     var emailAdminTo = getParam("emailAdminTo"); // who to send the admin summary email to
