@@ -26,6 +26,9 @@ function mainProcess()
 {
     /***** BEGIN INITIALIZE COUNTERS *****/
 
+    /* UNCOMMENT NEEDED COUNTER VARIABLES
+     * THESE ARE INCREMENTED BY THE FILTERS 
+     * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
     var capCount = 0;
     //var capFilterType = 0;
     //var capFilterAppType = 0; 
@@ -102,7 +105,8 @@ function mainProcess()
             
             /***** BEGIN FILTERS *****/
 
-            // filter by expiration date
+            /* EXAMPLE OF FILTERING BY EXPIRATION DATE
+             * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
             // move to the next record if the expiration date is null
             var expirationDate = null;
             try 
@@ -123,6 +127,7 @@ function mainProcess()
                 continue; // move to the next record
             }
 
+            /* EXAMPLE OF FILTERING BY EXPIRATION DATE */
             // move to the next record if the expiration date is not "numDaysOut" days out
             //var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
             var dateOut = dateAdd(null, numDaysOut);
@@ -133,39 +138,105 @@ function mainProcess()
                 continue; // move to the next record
             }
 
-            /* WE HAVE ALREADY FILTERED BY CAP TYPE (KEY4) */
+            /* EXAMPLE OF FILTERING BY CAP TYPE (KEY4)
             // filter by CAP Type (key4)
             // move to the next record unless we have a match on the key4 we want
             // the key4 we want is passed in to this batch script
-            //if (appType.length && !appMatch(appType))
-            //{
-                //capFilterType++;
+            if (appType.length && !appMatch(appType))
+            {
+                capFilterType++;
                 //logDebug(altId + ": Application Type does not match.");
                 //logDebug("--------------moving to next record--------------");
-                //continue; // move to the next record
-            //}
+                continue; // move to the next record
+            }
+            */
 
-            /* WE HAVE ALREADY FILTERED BY APP TYPE */
-            // filter by app types
-            //if ( !(new RegExp( '\\b' + includeAppTypesArray.join('\\b|\\b') + '\\b') ).test(appTypeArray[1]) )
-            //{
-                //capFilterAppType++;
-                //logDebug(altId + ": Application Type does not match the list of include app types.");
-                //logDebug("--------------moving to next record--------------");
-                //continue; // move to the next record
-            //}
-            
-            /* WE ARE NOT FILTERING BY STATUS */
-            // filter by cap status
-            // move to the next record unless we have a match on the appStatus we want
-            // appStatus is passed in to this batch script
-            //if (appStatus != "" && appStatus != capStatus) 
-            //{
-                //capFilterStatus++;
-                //logDebug(altId + ": Application Status does not match.");
-                //logDebug("--------------moving to next record--------------");
-                //continue; // move to the next record
-            //}
+            /* EXAMPLE OF FILTERING BY FILE DATE
+            // filter by file date
+            // move to the next record if the file date is not "numDaysOut" days out
+            var fileDateObj = cap.getFileDate();
+            var fileDate =  fileDateObj.getMonth() + "/" + fileDateObj.getDayOfMonth() + "/" + fileDateObj.getYear();
+            var daysSinceSubmittal = daydiff(parseDate(filedate), parseDate(getTodayAsString())); 
+            if (daysSinceSubmittal != numDaysOut) 
+            {
+                capFilterFileDate++;
+                logDebug(altId + ": File Date is not " + numDaysOut + " days out. Days Since Submittal: " + daysSinceSubmittal );
+                continue; // move to the next record
+            }
+            */
+
+            /* EXAMPLE OF FILTERING BY FEES PAID AND REQUIRED DOCUMENTS
+            // move to the next record if this cap has paid all of its fees
+            var missingDocs = new Array();
+            var feesOrDocsNeeded = false;
+            var balanceDue = getRecordBalanceDue(capId);
+            if (balanceDue > 0) 
+            {
+                feesOrDocsNeeded = true;
+            }
+            else
+            {
+                // see if there are any missing documents
+                var reqDocsArray = new Array();
+                reqDocsArray.push("Engineer Letter"); // setup for future in case there is more than one 
+                var docList = new Array();
+                docList = getDocumentList(capId,currentUserID);
+                var findDoc;
+                for (rD in reqDocsArray)
+                {
+                    findDoc = reqDocsArray[rD];
+                    isMatch = false;
+
+                    for (dl in docList)
+                    {    
+                        var thisDoc = docList[dl];
+                        var docCategory = thisDoc.getDocCategory();
+
+                        if (findDoc.equals(docCategory))
+                        {
+                            isMatch = true;
+                        }
+                    }
+
+                    if (!(isMatch))
+                    {
+                        missingDocs.push(findDoc);
+                    }
+                }
+                if ( missingDocs.length > 0 )
+                {
+                    feesOrDocsNeeded = true;
+                }
+            }
+            if (!feesOrDocsNeeded ) 
+            {
+                capFilterFeesOrDocs++;
+                logDebug(altId + ": no fees or docs needed.");
+                logDebug("--------------moving to next record--------------");
+                continue; // move to the next record
+            }
+            //
+
+            /* EXAMPLE OF FILTERING BY CAP STATUS
+            // move to the next record unless we have a match on the capStatus we want
+            if (capStatus != "Submitted" ) 
+            {
+                capFilterStatus++;
+                logDebug(altId + ": Application Status does not match.");
+                logDebug("--------------moving to next record--------------");
+                continue; // move to the next record
+            }
+            */
+
+            /* EXAMPLE OF FILTERING BY A LIST OF APP TYPES
+            if ( !(new RegExp( '\\b' + includeAppTypesArray.join('\\b|\\b') + '\\b') ).test(appTypeArray[1]) )
+            {
+                capFilterAppType++;
+                logDebug(altId + ": Application Type does not match the list of include app types.");
+                logDebug("--------------moving to next record--------------");
+                continue; // move to the next record
+            }
+            */
 
             /***** END FILTERS *****/
 
@@ -175,7 +246,7 @@ function mainProcess()
             capCount++; 
             logDebug("Processing " + altId);
             
-            // get applicant email
+             /* EMAIL EXAMPLE */
             var contactArray = getContactArray(capId), emailAddress = null;
             for (contact in contactArray)
             {
@@ -202,6 +273,21 @@ function mainProcess()
                 applicantEmailNotFound++;
                 logDebug(altId + ": Applicant email address not found");
             }
+
+            /* TASKS, WORKFLOW, AND UPDATE STATUS EXAMPLE
+            // expire the active tasks, close the workflow, and then set the record status to void
+            var tasks = aa.workflow.getTasks(capId).getOutput();
+            for (t in tasks) {
+                tName = tasks[t].getTaskDescription();
+                tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
+                if (tActive == 'Y') {
+                    updateTask(tName, "Expired", "set by batch", "");
+                    setTask(tName, 'N', 'Y');
+                }
+                closeWorkflow(); // this is in INCLUDES_CUSTOM
+            }	
+            updateAppStatus("Void", "set by batch");
+            */
 
             /***** END CUSTOM PROCESSING *****/
         }
