@@ -218,12 +218,12 @@ function mainProcess()
     logDebug("");// empty line
     logDebug("Query count: " + queryResultsCount);
     logDebug("Processed count:" + capCount);	
-    //logDebug("Skipped " + capFilterType + " due to record type mismatch - filter on key4 ");
-    //logDebug("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type ");
-    //logDebug("Skipped " + capFilterStatus + " due to record status mismatch ");	
-    logDebug("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration ");
-    logDebug("Skipped " + capFilterExpirationNull + " due to expiration date being null ");
-    logDebug("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null) ");
+    //logDebug("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
+    //logDebug("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type");
+    //logDebug("Skipped " + capFilterStatus + " due to record status mismatch");	
+    logDebug("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
+    logDebug("Skipped " + capFilterExpirationNull + " due to expiration date being null");
+    logDebug("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
     logDebug("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
     logDebug(""); // empty line
     logDebug("-------------------------");
@@ -314,7 +314,7 @@ try
     var disableTokens = false;	
     var showDebug = true;					// Set to true to see debug messages in email confirmation
     
-    // this is the default value, and the best value to use when testing in script tester
+    // this is the default value
     // if a timeout value is defined in the batch job then maxSeconds will be dynamically adjusted to that time - 1 minute
     // it is changed to 1 minute less because if this script is able to time itself out internally (gracefully)
     // then it can still send out the summary email to admins
@@ -395,9 +395,16 @@ try
     var sysDate = aa.date.getCurrentDate();
     var batchJobID = aa.batchJob.getJobID().getOutput();
     var batchJobName = "" + aa.env.getValue("batchJobName");
-    //batchJobName = "PMT_ExpirationNotice"; // testing
+    
     /*--- attempt to dynamically set the maxSeconds variable from what is configured as the timeout of the batch job --- */
-    if ( batchJobName != "" ) // batchJobName will be empty string when using the script tester
+    if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
+    {
+        maxSeconds = 4 * 60;
+        logDebug("!!! TESTING IN SCRIPT TESTER !!! " + maxSeconds + " seconds");
+        logDebug("-------------------------");
+        logDebug("");// empty line
+    }
+    else
     {
         var bjTimeOut = 0;
         try 
@@ -430,16 +437,19 @@ try
     |
     /------------------------------------------------------------------------------------------------------*/    
     
-    /* TODO: have all of these passed in as variables to this batch script 
-    aa.env.setValue("appGroup", "Permits"); 
-    aa.env.setValue("appTypeType","*"); 
-    aa.env.setValue("appSubType","*"); 
-    aa.env.setValue("appCategory","*"); 
-    aa.env.setValue("numDaysOut", "30");
-    aa.env.setValue("emailTemplate", "PMT_EXPIRATION_NOTICE");
-    aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
-    aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
-    */
+    // TODO: have all of these passed in as variables to this batch script
+    if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
+    {
+        // set testing values 
+        aa.env.setValue("appGroup", "Permits"); 
+        aa.env.setValue("appTypeType","*"); 
+        aa.env.setValue("appSubType","*"); 
+        aa.env.setValue("appCategory","*"); 
+        aa.env.setValue("numDaysOut", "30");
+        aa.env.setValue("emailTemplate", "PMT_EXPIRATION_NOTICE");
+        aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
+        aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
+    }
     
     // this is the start of the body of the summary email
     logDebug("Parameters");
@@ -516,5 +526,5 @@ try
 }
 catch (err) 
 {
-    logDebug("A JavaScript Error occured: " + err.message);
+    logDebug("A JavaScript Error occurred: " + err.message);
 }
