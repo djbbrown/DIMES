@@ -102,6 +102,37 @@ function mainProcess()
             
             /***** BEGIN FILTERS *****/
 
+            // filter by expiration date
+            // move to the next record if the expiration date is null
+            var expirationDate = null;
+            try 
+            {
+                var thisLic = new licenseObject(capId);            
+                expirationDate = thisLic.b1ExpDate;
+                if (expirationDate == null)
+                {
+                    capFilterExpirationNull++;
+                    logDebug(altId + ": Expiration Date is null." );
+                    continue; // move to the next record
+                }
+            }
+            catch (err)
+            {
+                capFilterExpirationGet++;
+                //logDebug("JavaScript Error getting expiration date: " + err.message); // too many to log!!
+                continue; // move to the next record
+            }
+
+            // move to the next record if the expiration date is not "numDaysOut" days out
+            //var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
+            var dateOut = dateAdd(null, numDaysOut);
+            if (dateOut != expirationDate) 
+            {
+                capFilterExpiration++;
+                logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
+                continue; // move to the next record
+            }
+
             /* WE HAVE ALREADY FILTERED BY CAP TYPE (KEY4) */
             // filter by CAP Type (key4)
             // move to the next record unless we have a match on the key4 we want
@@ -135,37 +166,6 @@ function mainProcess()
                 //logDebug("--------------moving to next record--------------");
                 //continue; // move to the next record
             //}
-
-            // filter by expiration date
-            // move to the next record if the expiration date is null
-            var expirationDate = null;
-            try 
-            {
-                var thisLic = new licenseObject(capId);            
-                expirationDate = thisLic.b1ExpDate;
-                if (expirationDate == null)
-                {
-                    capFilterExpirationNull++;
-                    logDebug(altId + ": Expiration Date is null." );
-                    continue; // move to the next record
-                }
-            }
-            catch (err)
-            {
-                capFilterExpirationGet++;
-                //logDebug("JavaScript Error getting expiration date: " + err.message); // too many to log!!
-                continue; // move to the next record
-            }
-
-            // move to the next record if the expiration date is not "numDaysOut" days out
-            //var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
-            var dateOut = dateAdd(null, numDaysOut);
-            if (dateOut != expirationDate) 
-            {
-                capFilterExpiration++;
-                logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
-                continue; // move to the next record
-            }
 
             /***** END FILTERS *****/
 

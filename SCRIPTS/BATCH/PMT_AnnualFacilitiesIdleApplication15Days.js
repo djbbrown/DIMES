@@ -109,18 +109,8 @@ function mainProcess()
         if (appType.length && !appMatch(appType))
         {
             capFilterType++;
-            logDebug(altId + ": Application Type does not match.");
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }        
-        
-        // filter by cap status
-        // move to the next record unless we have a match on the capStatus we want
-        if (capStatus != "Submitted" ) 
-        {
-            capFilterStatus++;
-            logDebug(altId + ": Application Status does not match.");
-            logDebug("--------------moving to next record--------------");
+            //logDebug(altId + ": Application Type does not match.");
+            //logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
 
@@ -186,6 +176,17 @@ function mainProcess()
             logDebug(altId + ": File Date is not " + numDaysOut + " days out. Days Since Submittal: " + daysSinceSubmittal );
             continue; // move to the next record
         }
+
+        /* WE ARE NOT FILTERING BY CAP STATUS */
+        // filter by cap status
+        // move to the next record unless we have a match on the capStatus we want
+        //if (capStatus != "Submitted" ) 
+        //{
+            //capFilterStatus++;
+            //logDebug(altId + ": Application Status does not match.");
+            //logDebug("--------------moving to next record--------------");
+            //continue; // move to the next record
+        //}
 
         /* WE ARE NOT FILTERING BY A LIST OF APP TYPES */
         // filter by app types
