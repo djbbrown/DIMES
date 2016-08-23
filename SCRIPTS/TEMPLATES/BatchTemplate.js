@@ -116,7 +116,7 @@ function mainProcess()
         // move to the next record if the file date is not "numDaysOut" days out
         var fileDateObj = cap.getFileDate();
         var fileDate =  fileDateObj.getMonth() + "/" + fileDateObj.getDayOfMonth() + "/" + fileDateObj.getYear();
-        var daysSinceSubmittal = daydiff(parseDate(filedate), parseDate(getTodayAsString())); 
+        var daysSinceSubmittal = daydiff(parseDate(fileDate), parseDate(getTodayAsString())); 
         if (daysSinceSubmittal != numDaysOut) 
         {
             capFilterFileDate++;
