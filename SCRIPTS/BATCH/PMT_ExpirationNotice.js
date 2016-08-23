@@ -286,7 +286,7 @@ function mainProcess()
                 }
                 closeWorkflow(); // this is in INCLUDES_CUSTOM
             }	
-            updateAppStatus("Void", "set by batch");
+            updateAppStatus("Void", "set by batch"); // this is in INCLUDES_ACCELA_FUNCTIONS
             */
 
             /***** END CUSTOM PROCESSING *****/
