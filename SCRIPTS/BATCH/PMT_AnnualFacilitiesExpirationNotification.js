@@ -469,10 +469,10 @@ try
     {
         // set testing values
         aa.env.setValue("appGroup", "Permits"); 
-        aa.env.setValue("appTypeType","Commercial"); 
-        aa.env.setValue("appSubType","Annual Facilities"); 
-        aa.env.setValue("appCategory","*");
-        aa.env.setValue("appStatus","Issued");
+        aa.env.setValue("appTypeType", "Commercial"); 
+        aa.env.setValue("appSubType", "Annual Facilities"); 
+        aa.env.setValue("appCategory", "*");
+        aa.env.setValue("appStatus", "Issued");
         aa.env.setValue("emailTemplate", "PMT_ANNUALFACILITIESEXPIRATIONNOTIFICATION");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
