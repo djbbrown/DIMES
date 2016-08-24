@@ -54,11 +54,11 @@ function mainProcess()
         {
             myCaps = capResult.getOutput();
             queryResultsCount += myCaps.length;
-            logDebug(includeAppTypesArray[i] + " permits count: " + myCaps.length);
+            logDebugAndEmail(includeAppTypesArray[i] + " permits count: " + myCaps.length);
         }   
         else 
         { 
-            logDebug("ERROR: Getting records, reason is: " + capResult.getErrorMessage());
+            logDebugAndEmail("ERROR: Getting records, reason is: " + capResult.getErrorMessage());
             continue;
         }
 
@@ -69,7 +69,7 @@ function mainProcess()
             // only continue if time hasn't expired
             if (elapsed() > maxSeconds) 
             { 
-                logDebug("WARNING - SCRIPT TIMEOUT REACHED (TESTING ONLY)","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.");
+                logDebugAndEmail("WARNING - SCRIPT TIMEOUT REACHED","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.");
                 timeExpired = true;
                 break; // stop everything
             }
@@ -84,8 +84,8 @@ function mainProcess()
             }
             if (!capId) 
             {
-                logDebug("Failed getting altID: " + capIdResult.getErrorMessage());
-                logDebug("--------------moving to next record--------------");
+                logDebugAndEmail("Failed getting altID: " + capIdResult.getErrorMessage());
+                logDebugAndEmail("--------------moving to next record--------------");
                 continue; // move to the next record
             }
             altId = capId.getCustomID();
@@ -156,7 +156,7 @@ function mainProcess()
             // move to the next record if the file date is not "numDaysOut" days out
             var fileDateObj = cap.getFileDate();
             var fileDate =  fileDateObj.getMonth() + "/" + fileDateObj.getDayOfMonth() + "/" + fileDateObj.getYear();
-            var daysSinceSubmittal = daydiff(parseDate(filedate), parseDate(getTodayAsString())); 
+            var daysSinceSubmittal = daydiff(parseDate(fileDate), parseDate(getTodayAsString())); 
             if (daysSinceSubmittal != numDaysOut) 
             {
                 capFilterFileDate++;
@@ -298,22 +298,25 @@ function mainProcess()
 
     /***** BEGIN ADMIN NOTIFICATION *****/
 
-    logDebug("");// empty line
-    logDebug("Results of this Session");
-    logDebug("-------------------------");
-    logDebug("");// empty line
-    logDebug("Query count: " + queryResultsCount);
-    logDebug("Processed count:" + capCount);	
-    //logDebug("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
-    //logDebug("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type");
-    //logDebug("Skipped " + capFilterStatus + " due to record status mismatch");	
-    logDebug("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
-    logDebug("Skipped " + capFilterExpirationNull + " due to expiration date being null");
-    logDebug("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
-    logDebug("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
-    logDebug(""); // empty line
-    logDebug("-------------------------");
-    logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds");
+    logDebugAndEmail("");// empty line
+    logDebugAndEmail("Results of this Session");
+    logDebugAndEmail("-------------------------");
+    logDebugAndEmail("");// empty line
+    logDebugAndEmail("Query count: " + queryResultsCount);
+    logDebugAndEmail("Processed count:" + capCount);
+
+    /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */
+    //logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
+    //logDebugAndEmail("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type");
+    //logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");	
+    logDebugAndEmail("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
+    logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null");
+    logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
+
+    logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
+    logDebugAndEmail(""); // empty line
+    logDebugAndEmail("-------------------------");
+    logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
     aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: PMT_ExpirationNotice Completion Summary", emailText);
 
     /***** END ADMIN NOTIFICATION *****/
@@ -472,6 +475,26 @@ try
     //var overrideElapsed = "function elapsed() { return 0; }"; 
     //eval(overrideElapsed);
 
+    function logDebug(dstr) 
+    {
+        if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
+        {
+            aa.print(dstr)
+            aa.debug(aa.getServiceProviderCode() + " : " + aa.env.getValue("CurrentUserID"), dstr);
+            aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID);
+        }        
+    }
+    function logEmail(dstr)
+    {
+        emailText += dstr + "<br>";
+    }
+
+    function logDebugAndEmail(dstr)
+    {
+        logDebug(dstr);
+        logEmail(dstr);
+    }
+
     /*------------------------------------------------------------------------------------------------------/
     |
     | END: USER CONFIGURABLE PARAMETERS
@@ -496,11 +519,11 @@ try
         try 
         { 
             bjTimeOut = parseInt(getBatchScriptTimeOut(batchJobName));
-            logDebug("Batch Job Time Out: " + bjTimeOut + " seconds");
+            logDebugAndEmail("Batch Job Time Out: " + bjTimeOut + " seconds");
         }
         catch (err)
         {
-            logDebug("bjTimeOut error: " + err.message);
+            logDebugAndEmail("bjTimeOut error: " + err.message);
             bjTimeOut = 0;
         }
         if ( bjTimeOut != 0 && typeof bjTimeOut == "number" && bjTimeOut > 60 )
@@ -512,8 +535,8 @@ try
                 maxSeconds = newMaxSeconds;
             }
         }
-        logDebug("Batch Script Internal Time Out: " + maxSeconds + " seconds");
-        logDebug("");// empty line
+        logDebugAndEmail("Batch Script Internal Time Out: " + maxSeconds + " seconds");
+        logDebugAndEmail("");// empty line
     }
     
 
@@ -538,9 +561,9 @@ try
     }
     
     // this is the start of the body of the summary email
-    logDebug("Parameters");
-    logDebug("-------------------------");
-    logDebug("");// empty line
+    logDebugAndEmail("Parameters");
+    logDebugAndEmail("-------------------------");
+    logDebugAndEmail("");// empty line
 
     // NOTE: calling getParam() will add the param name and value to the summary email
     var appGroup = getParam("appGroup"); // app Group to process
@@ -581,24 +604,19 @@ try
     | 
     /-----------------------------------------------------------------------------------------------------*/
 
-    logDebug("");// empty line
-    logDebug("Logs Generated By This Session");
-    logDebug("-------------------------");
-    logDebug("");// empty line
+    logDebugAndEmail("");// empty line
+    logDebugAndEmail("Logs Generated By This Session");
+    logDebugAndEmail("-------------------------");
+    logDebugAndEmail("");// empty line
 
-    logDebug("Start of Job: " + startTime);
+    logDebugAndEmail("Start of Job: " + startTime);
 
     if (!timeExpired) 
     {
         mainProcess();
     }
 
-    // moved to end of mainProcess() so that it will get included in the summary email
-    //logDebug("End of Job: Elapsed Time : " + elapsed() + " Seconds"); 
-
     aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(),"", emailText, batchJobID);
-    logDebug(emailText);
-    //aa.print(emailText);
 
     /*------------------------------------------------------------------------------------------------------/
     | <===========End Main=Loop================>
@@ -612,5 +630,5 @@ try
 }
 catch (err) 
 {
-    logDebug("A JavaScript Error occurred: " + err.message);
+    logDebugAndEmail("A JavaScript Error occurred: " + err.message);
 }
