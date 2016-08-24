@@ -15,6 +15,7 @@
 
 try {
       var FromEmail = "noreply@mesaaz.gov";
+      var ToEmail;
       var vEParams = aa.util.newHashtable();
       var ElectricFlag = 0;
       var GasFlag = 0;
