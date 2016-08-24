@@ -62,7 +62,7 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 								changesMade = true;
 						}
 						if (IsStrInArry("SWGA", tagFieldArray)) {
-								thisRow["Clearance To"].fieldValue = "Salt River Project";
+								thisRow["Clearance To"].fieldValue = "Southwest Gas";
 								changesMade = true;
 						}
 					}
