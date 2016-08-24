@@ -2,9 +2,9 @@
 // Script Number: 265
 // Script Name: PLN_RenewalNotification
 
-// Script Description: Batch script to check expiration date, and set 
-// Registration record status to "Withdrawn Expired" if today's date 
-// is more than 90 days past ASI "expiration date".
+// Script Description: Batch script to automatically send renewal 
+// letter, 30 days before "expiration date" using email template 
+// "PLN_RenewalNotification".
 
 // Planning/Group Home/Registration/NA
 
