@@ -148,7 +148,7 @@ function mainProcess()
         // move to the next record if days since expiration >= 365 (">= 365" this is handled by another script)
         // or if days since expiration <= 0
         var daysSinceExpiration = daydiff(parseDate(expirationDate), parseDate(getTodayAsString())); 
-        if (daysSinceExpiration >= 365 || daysSinceExpiration <= 0) 
+        if (daysSinceExpiration >= 365) 
         {
             capFilterDaysPastExp++;
             logDebug(altId + ": Record expired >= 365 days ago. Days Since Expiration: " + daysSinceExpiration );
