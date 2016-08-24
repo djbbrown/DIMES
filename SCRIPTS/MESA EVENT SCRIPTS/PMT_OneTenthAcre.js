@@ -1,19 +1,19 @@
 /*===================================================================
 // Script Number: 114
 // Script Name: PMT_OneTenthAcre.js
-// Script Developer: Bryan de Jesus
-// Script Agency: Woolpert
+// Script Developer: 
+// Script Agency: 
 // Script Description:  If parcel size is greater than 1/10 of an acre make ADEQ  and Dust Control document required. 
-// Script Run Event: ASB
+// Script Run Event: WTUB
 // Script Parents:
-//			ASB;Permits!Demolition!NA!NA
-//			ASB;Permits!Commercial!NA!NA
-//			ASB;Permits!Residential!NA!NA
+//			WTUB;Permits!Demolition!NA!NA
+//			WTUB;Permits!Commercial!NA!NA
+//			WTUB;Permits!Residential!NA!NA
 ===================================================================*/
 //showDebug = true;
 try{
-	var acres = aa.env.getValue("ParcelArea");
-	var docList = aa.env.getValue("DocumentModelList");
+	var acres = parcelArea;
+	var docArr = getDocumentList();
 	var classificationCode = AInfo["Classification Code"];
 	if (
 		classificationCode == 101 ||
@@ -86,7 +86,7 @@ try{
 			
 			// get attached docs
 			if (reqDocTypes.length > 0){
-				if (!docList || docList.length == 0) {
+				if (!docArr || docArr.length == 0) {
 					logDebug("No documents found.");
 					showMessage = true;
 					// build message
@@ -101,8 +101,9 @@ try{
 					for (var i in reqDocTypes){
 						var found = false;
 						var reqDocType = reqDocTypes[i];
-						for (var k=0; k<docList.size(); k++){
-							var doc = docList.get(k);
+
+						for (var k=0; k<docArr.length; k++){
+							var doc = docArr[k];
 							var docGroup = doc.getDocGroup();
 							var docCategory = doc.getDocCategory();
 							logDebug("Document: " + docGroup + " " + docCategory);
