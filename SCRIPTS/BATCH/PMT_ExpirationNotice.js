@@ -495,6 +495,13 @@ try
         logEmail(dstr);
     }
 
+    function getParam(pParamName) // overridden from INCLUDES_BATCH
+    {
+        var ret = "" + aa.env.getValue(pParamName);
+        logDebugAndEmail("Parameter : " + pParamName + " = " + ret);
+        return ret;
+    }
+
     /*------------------------------------------------------------------------------------------------------/
     |
     | END: USER CONFIGURABLE PARAMETERS
