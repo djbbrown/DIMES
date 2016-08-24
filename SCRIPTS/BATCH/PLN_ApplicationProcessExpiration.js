@@ -1,16 +1,20 @@
 /*===================================================================
-// Script Number: 
-// Script Name: 
+// Script Number: 264
+// Script Name: PLN_ApplicationProcessExpiration
 
-// Script Description: 
+// Script Description: Batch script to check expiration date, and set 
+// Registration record status to "Withdrawn Expired" if today's date 
+// is more than 90 days past ASI "expiration date".
 
-// Email Template: 
+// Planning/Group Home/Application/NA
+
+// Email Template: none
 
 // Script Run Event: BATCH
 // Script Parents: n/a
 //
 // Version   |Date      |Engineer         |Details
-//  1.0      |08/23/16  |Vance Smith      |Initial
+//  1.0      |08/24/16  |Vance Smith      |Initial
 /*==================================================================*/
 
 
@@ -27,16 +31,12 @@ function mainProcess()
      * THESE ARE INCREMENTED BY THE FILTERS 
      * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
     var capCount = 0;
-    var capFilterType = 0;
-    //var capFilterAppType = 0; 
-    //var capFilterStatus = 0;
-    //var capFilterFeesOrDocs = 0;
-    //var capFilterFileDate = 0;
-    //var capFilterExpiration = 0; 
-    //var capFilterExpirationNull = 0; 
-    //var capFilterExpirationGet = 0; 
-    //var capFilterDaysPastExp = 0;
-    //var applicantEmailNotFound = 0;
+    var capFilterType = 0; 
+    var capFilterStatus = 0;
+    var capFilterExpirationNull = 0; 
+    var capFilterExpirationGet = 0; 
+    var capFilterNotExpiredYet = 0;
+    var capFilterDaysPastExp = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
     /***** END INITIALIZE COUNTERS *****/
@@ -44,8 +44,6 @@ function mainProcess()
 
     /***** BEGIN LOOP DATA *****/
 
-    
-    //var capResult = aa.cap.getCaps(appTypeType, taskName, "Note", "");
     var capResult = aa.cap.getByAppType(appGroup, appTypeType, appSubType, null);    
 
     if (capResult.getSuccess())
@@ -101,107 +99,29 @@ function mainProcess()
         
         /***** BEGIN FILTERS *****/
 
-        /* EXAMPLE OF FILTERING BY CAP TYPE (KEY4)
+        /* FILTERING BY CAP TYPE (KEY4) */
         // move to the next record unless we have a match on the key4 we want
         // the key4 we want is passed in to this batch script
         if (appType.length && !appMatch(appType))
         {
             capFilterType++;
-            //logDebug(altId + ": Application Type does not match.");
-            //logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY FILE DATE
-        // move to the next record if the file date is not "numDaysOut" days out
-        var fileDateObj = cap.getFileDate();
-        var fileDate =  fileDateObj.getMonth() + "/" + fileDateObj.getDayOfMonth() + "/" + fileDateObj.getYear();
-        var daysSinceSubmittal = daydiff(parseDate(fileDate), parseDate(getTodayAsString())); 
-        if (daysSinceSubmittal != numDaysOut) 
-        {
-            capFilterFileDate++;
-            logDebug(altId + ": File Date is not " + numDaysOut + " days out. Days Since Submittal: " + daysSinceSubmittal );
+            logDebug(altId + ": Application Type does not match.");
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
-        */
 
-        /* EXAMPLE OF FILTERING BY FEES PAID AND REQUIRED DOCUMENTS
-        // move to the next record if this cap has paid all of its fees
-        var missingDocs = new Array();
-        var feesOrDocsNeeded = false;
-        var balanceDue = getRecordBalanceDue(capId);
-        if (balanceDue > 0) 
-        {
-            feesOrDocsNeeded = true;
-        }
-        else
-        {
-            // see if there are any missing documents
-            var reqDocsArray = new Array();
-            reqDocsArray.push("Engineer Letter"); // setup for future in case there is more than one 
-            var docList = new Array();
-            docList = getDocumentList(capId,currentUserID);
-            var findDoc;
-            for (rD in reqDocsArray)
-            {
-                findDoc = reqDocsArray[rD];
-                isMatch = false;
-
-                for (dl in docList)
-                {    
-                    var thisDoc = docList[dl];
-                    var docCategory = thisDoc.getDocCategory();
-
-                    if (findDoc.equals(docCategory))
-                    {
-                        isMatch = true;
-                    }
-                }
-
-                if (!(isMatch))
-                {
-                    missingDocs.push(findDoc);
-                }
-            }
-            if ( missingDocs.length > 0 )
-            {
-                feesOrDocsNeeded = true;
-            }
-        }
-        if (!feesOrDocsNeeded ) 
-        {
-            capFilterFeesOrDocs++;
-            logDebug(altId + ": no fees or docs needed.");
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        //
-
-        /* EXAMPLE OF FILTERING BY CAP STATUS
+        /* FILTERING BY CAP STATUS */
         // move to the next record unless we have a match on the capStatus we want
-        if (capStatus != "Submitted" ) 
+        if (capStatus == "Withdrawn Expired" ) 
         {
             capFilterStatus++;
-            logDebug(altId + ": Application Status does not match.");
+            logDebug(altId + ": Application is already marked as 'Withdrawn Expired'.");
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
-        */
 
-        /* EXAMPLE OF FILTERING BY A LIST OF APP TYPES
-        if ( !(new RegExp( '\\b' + includeAppTypesArray.join('\\b|\\b') + '\\b') ).test(appTypeArray[1]) )
-        {
-            capFilterAppType++;
-            logDebug(altId + ": Application Type does not match the list of include app types.");
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE - NULL EXPIRATION
-         * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION
+        /* FILTERING BY EXPIRATION DATE - NULL EXPIRATION
+         * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
         // move to the next record if the expiration date is null
         var expirationDate = null;
         try 
@@ -223,55 +143,18 @@ function mainProcess()
             //logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
-        */
 
-        /* FILTERING BY DAYS PAST EXPIRATION  - USE WITH THE NULL EXP CHECK
-        // move to the next record if days since expiration >= 365 (">= 365" this is handled by another script)
+        /* FILTERING BY DAYS PAST EXPIRATION - USE WITH THE NULL EXP CHECK */
+        // move to the next record if days since expiration < {numDaysOut} ("< {numDaysOut}" this is handled by another script)
+        // or if days since expiration <= 0
         var daysSinceExpiration = daydiff(parseDate(expirationDate), parseDate(getTodayAsString())); 
-        if (daysSinceExpiration >= 365) 
+        if (daysSinceExpiration < numDaysOut ) 
         {
             capFilterDaysPastExp++;
-            logDebug(altId + ": Record expired >= 365 days ago. Days Since Expiration: " + daysSinceExpiration );
+            logDebug(altId + ": Record expired < " + numDaysOut + " days ago. Days Since Expiration: " + daysSinceExpiration );
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
-        */
-
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE - USE WITH THE NULL EXP CHECK
-        // move to the next record if the expiration date is not "numDaysOut" days out
-        var dateOut = dateAdd(null, numDaysOut);
-        if (dateOut != expirationDate) 
-        {
-            capFilterExpiration++;
-            logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
-
-        /* FILTERING BY EXPIRATION DATE - NOT EXPIRED - USE WITH THE DAYS PAST EXP CHECK
-        // move to the next record if the expiration date has not passed yet
-        if (daysSinceExpiration <= 0)
-        {
-            capFilterNotExpiredYet++;
-            logDebug(altId + ": record has not expired yet." );
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        } 
-        */
-
-        /* FILTERING BY EXPIRATION DATE - NOT EXPIRED - USE WITH THE NULL EXP CHECK
-        // move to the next record if the expiration date has not passed yet
-        var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
-        var today = getTodayAsString();
-        if (parseDate(today) < parseDate(expirationDate)) 
-        {
-            capFilterNotExpiredYet++;
-            logDebug(altId + ": record has not expired yet." );
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
 
         /***** END FILTERS *****/
 
@@ -281,62 +164,19 @@ function mainProcess()
         capCount++; 
         logDebug("Processing " + altId);
 
-        /* TASKS, WORKFLOW, AND UPDATE STATUS EXAMPLE
-        // expire the active tasks, close the workflow, and then set the record status to void
+        /* TASKS, WORKFLOW, AND UPDATE STATUS */
+        // expire the active tasks, close the workflow, and then set the record status to expired
         var tasks = aa.workflow.getTasks(capId).getOutput();
         for (t in tasks) {
             tName = tasks[t].getTaskDescription();
             tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
-            if (tActive == 'Y') {
+            /*if (tActive == 'Y') {
                 updateTask(tName, "Expired", "set by batch", "");
                 setTask(tName, 'N', 'Y');
-            }
+            }*/
             closeWorkflow(); // this is in INCLUDES_CUSTOM
         }	
-        updateAppStatus("Void", "set by batch");
-        */	
-        
-        /* EMAIL EXAMPLE
-        // get applicant email
-        var contactArray = getContactArray(capId), emailAddress = null;
-        for (contact in contactArray)
-        {
-            if (contactArray[contact]["contactType"] == "Applicant")
-            {
-                emailAddress = contactArray[contact]["email"];
-            }
-        }
-        
-        // if emailAddress is not null then send the notification
-        if (emailAddress != null)
-        {
-            var vEParams = aa.util.newHashtable();
-
-            addParameter(vEParams, "$$RECORD ID$$", altId);
-            addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
-            
-            var mDocsString = "";
-            if ( missingDocs.length > 0)
-            {
-                mDocsString = "Missing Documents:<br/><ul>";
-                for (mD in missingDoc)
-                {
-                    mDocsString = mDocsString + "<li>" + missingDoc[mD] + "</li>";
-                }
-                mDocsString = mDocsString + "</ul>";
-            }
-            addParameter(vEParams, "$$MISSING DOCUMENTS$$", mDocString);
-
-            logDebug("Sending notification to " + emailAddress);
-            sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, altId);
-            // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
-        } 
-        else 
-        {
-            applicantEmailNotFound++;
-            logDebug(altId + ": Applicant email address not found");
-        }
-        */
+        updateAppStatus("Withdrawn Expired", "set by batch");
 
         /***** END CUSTOM PROCESSING *****/
     }
@@ -353,23 +193,17 @@ function mainProcess()
     logDebugAndEmail("Query count: " + queryResultsCount);
     logDebugAndEmail("Processed count:" + capCount);
 
-    /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */
     logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
-    //logDebugAndEmail("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type ");
-    //logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");
-    //logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed");
-    //logDebugAndEmail("Skipped " + capFilterFileDate + " due to file date not being " + numDaysOut + " days out");
-    //logDebugAndEmail("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
-    //logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null ");
-    //logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
-    //logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet");
-    //logDebugAndEmail("Skipped " + capFilterDaysPastExp + " due to record expiring >= 365 days ago");
-    //logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
+    logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");
+    logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null");
+    logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
+    logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet");
+    logDebugAndEmail("Skipped " + capFilterDaysPastExp + " due to record expiring < " + numDaysOut + " days ago");
 
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
-    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: SCRIPTNAMEHERE Completion Summary", emailText);
+    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: PLN_ApplicationProcessExpiration Completion Summary", emailText);
 
     /***** END ADMIN NOTIFICATION *****/
 }
@@ -426,7 +260,6 @@ function getRecordBalanceDue(capId)
       return 0;
    }
 }
-
 
 function parseDate(str) {
     var mdy = str.split('/');
@@ -663,13 +496,11 @@ try
     if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
     {
         // set testing values
-        aa.env.setValue("appGroup", "Permits"); 
-        aa.env.setValue("appTypeType","Commercial"); 
-        aa.env.setValue("appSubType","Annual Facilities"); 
-        aa.env.setValue("appCategory","*"); 
-        //aa.env.setValue("taskName", "Application Submittal");
-        //aa.env.setValue("numDaysOut", "30");
-        //aa.env.setValue("emailTemplate", "PMT_AnnualFacilitiesIdleApplication15Day");
+        aa.env.setValue("appGroup", "Planning"); 
+        aa.env.setValue("appTypeType","Group Home"); 
+        aa.env.setValue("appSubType","Application"); 
+        aa.env.setValue("appCategory","*");
+        aa.env.setValue("numDaysOut", "90");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
     }    
@@ -684,9 +515,7 @@ try
     var appTypeType = getParam("appTypeType"); // app type to process
     var appSubType = getParam("appSubType"); // app subtype to process
     var appCategory = getParam("appCategory"); // app category to process
-    //var taskName = getParam("taskName"); // the taskname to filter by from the workflow
-    //var numDaysOut = getParam("numDaysOut"); // the number of days out to check since file date
-    //var emailTemplate = getParam("emailTemplate"); // the email template to use for notifications
+    var numDaysOut = getParam("numDaysOut"); // the number of days out past expiration date
     var emailAdminTo = getParam("emailAdminTo"); // who to send the admin summary email to
     var emailAdminCc = getParam("emailAdminCc"); // who to cc on the admin summary email
 
