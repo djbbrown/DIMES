@@ -3,4 +3,4 @@
 // Script Name: ASB;Permits!Demolition!NA!NA.js
 ==================================================================*/
 include("PMT_IsTheStructureAttachedInAnyWayToAnotherStructure");
-include("PMT_OneTenthAcre");
+//include("PMT_OneTenthAcre");
