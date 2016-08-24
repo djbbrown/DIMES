@@ -1,19 +1,18 @@
 /*===================================================================
-// Script Number: 174
-// Script Name: PMT_ExpirationNotice.js
+// Script Number: 121
+// Script Name: PMT_AnnualFacilitiesExpirationNotification
 
-// Script Description: 
-// Email notification to be sent 30 days prior to expiration date
+// Script Description: On Dec 1 @ 11:59pm generate email notification 
+// to Applicant that permit will expire on Dec. 31 and that a new 
+// application is required on, or after Jan 1st to continue the AFP.
 
-// Template : Permit 30 Day Expiration Notification (PMT_EXPIRATION_NOTICE)
-  
-// All permits in the following: Commercial, Demolition, Master Plan, Online, Residential, Sign
+// Email Template: PMT_AnnualFacilitiesExpirationNotification
 
 // Script Run Event: BATCH
 // Script Parents: n/a
 //
 // Version   |Date      |Engineer         |Details
-//  1.0      |08/18/16  |Vance Smith      |Initial
+//  1.0      |08/23/16  |Vance Smith      |Initial
 /*==================================================================*/
 
 
@@ -30,148 +29,130 @@ function mainProcess()
      * THESE ARE INCREMENTED BY THE FILTERS 
      * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
     var capCount = 0;
-    var capFilterExpiration = 0; 
-    var capFilterExpirationNull = 0; 
-    var capFilterExpirationGet = 0; 
+    var capFilterType = 0;
+    var capFilterStatus = 0;
     var applicantEmailNotFound = 0;
-    var queryResultsCount = 0;
+    var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
     /***** END INITIALIZE COUNTERS *****/
 
 
     /***** BEGIN LOOP DATA *****/
 
-    var includeAppTypes = "Demolition,Master Plan,Online,Sign,Commercial,Residential"; 
-    var includeAppTypesArray = includeAppTypes.split(","); // include records in this app type 
+    var capResult = aa.cap.getByAppType(appGroup, appTypeType, appSubType, null);    
 
-    for (i = 0; i < includeAppTypesArray.length; i++)
+    if (capResult.getSuccess())
     {
-        var capResult = aa.cap.getByAppType(appGroup, includeAppTypesArray[i]); // (appGroup, appTypeType)
-        if (capResult.getSuccess())
-        {
-            myCaps = capResult.getOutput();
-            queryResultsCount += myCaps.length;
-            logDebugAndEmail(includeAppTypesArray[i] + " permits count: " + myCaps.length);
-        }   
-        else 
+        myCaps = capResult.getOutput();
+        queryResultsCount += myCaps.length;
+        logDebugAndEmail("Permits count: " + myCaps.length);
+    }   
+    else 
+    { 
+        logDebugAndEmail("ERROR: Getting records, reason is: " + capResult.getErrorMessage());
+    }
+
+    for (var myCap in myCaps) 
+    {
+        /***** BEGIN GET NEEDED CAP DATA *****/
+
+        // only continue if time hasn't expired
+        if (elapsed() > maxSeconds) 
         { 
-            logDebugAndEmail("ERROR: Getting records, reason is: " + capResult.getErrorMessage());
-            continue;
+            logDebugAndEmail("WARNING - SCRIPT TIMEOUT REACHED","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.");
+            timeExpired = true;
+            break; // stop everything
         }
 
-        for (var myCap in myCaps) 
+        // this next section will get the altId (which is the same as "cap id" and "record id")
+        // if this fails we will move to the next record
+        var thisCapId = myCaps[myCap].getCapID();
+        capIdResult = aa.cap.getCapID(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3());
+        if (capIdResult.getSuccess()) 
         {
-            /***** BEGIN GET NEEDED CAP DATA *****/
-
-            // only continue if time hasn't expired
-            if (elapsed() > maxSeconds) 
-            { 
-                logDebugAndEmail("WARNING - SCRIPT TIMEOUT REACHED","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.");
-                timeExpired = true;
-                break; // stop everything
-            }
-
-            // this next section will get the altId (which is the same as "cap id" and "record id")
-            // if this fails we will move to the next record
-            var thisCapId = myCaps[myCap].getCapID();
-            capIdResult = aa.cap.getCapID(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3());
-            if (capIdResult.getSuccess()) 
-            {
-                capId = capIdResult.getOutput();
-            }
-            if (!capId) 
-            {
-                logDebugAndEmail("Failed getting altID: " + capIdResult.getErrorMessage());
-                logDebugAndEmail("--------------moving to next record--------------");
-                continue; // move to the next record
-            }
-            altId = capId.getCustomID();
-
-            // get the CAP record, and set some variables
-            // notice that these variables are not declared in this method, they
-            // are likely declared in referenced master scripts its best to leave
-            // them even if you dont think they are needed
-            cap = aa.cap.getCap(capId).getOutput();		
-            appTypeResult = cap.getCapType();
-            capStatus = cap.getCapStatus();
-            appTypeString = appTypeResult.toString();
-            appTypeArray = appTypeString.split("/");
-
-            /***** END GET NEEDED CAP DATA *****/
-
-            
-            /***** BEGIN FILTERS *****/
-
-            /* EXAMPLE OF FILTERING BY EXPIRATION DATE
-             * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
-            // move to the next record if the expiration date is null
-            var expirationDate = null;
-            try 
-            {
-                var thisLic = new licenseObject(capId);            
-                expirationDate = thisLic.b1ExpDate;
-                if (expirationDate == null)
-                {
-                    capFilterExpirationNull++;
-                    logDebug(altId + ": Expiration Date is null." );
-                    continue; // move to the next record
-                }
-            }
-            catch (err)
-            {
-                capFilterExpirationGet++;
-                //logDebug("JavaScript Error getting expiration date: " + err.message); // too many to log!!
-                continue; // move to the next record
-            }
-
-            /* EXAMPLE OF FILTERING BY EXPIRATION DATE */
-            // move to the next record if the expiration date is not "numDaysOut" days out
-            var dateOut = dateAdd(null, numDaysOut);
-            if (dateOut != expirationDate) 
-            {
-                capFilterExpiration++;
-                logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
-                continue; // move to the next record
-            }
-
-            /***** END FILTERS *****/
-
-
-            /***** BEGIN CUSTOM PROCESSING *****/
-
-            capCount++; 
-            logDebug("Processing " + altId);
-            
-             /* EMAIL EXAMPLE */
-            var contactArray = getContactArray(capId), emailAddress = null;
-            for (contact in contactArray)
-            {
-                if (contactArray[contact]["contactType"] == "Applicant")
-                {
-                    emailAddress = contactArray[contact]["email"];
-                }
-            }
-            
-            // if emailAddress is not null then send the notification
-            if (emailAddress != null)
-            {
-                var vEParams = aa.util.newHashtable();
-
-                addParameter(vEParams, "$$RECORD ID$$", altId);
-                addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
-
-                logDebug("Sending notification to " + emailAddress);
-                sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, altId);
-                // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
-            } 
-            else 
-            {
-                applicantEmailNotFound++;
-                logDebug(altId + ": Applicant email address not found");
-            }
-
-            /***** END CUSTOM PROCESSING *****/
+            capId = capIdResult.getOutput();
         }
+        if (!capId) 
+        {
+            logDebugAndEmail("Failed getting altID: " + capIdResult.getErrorMessage());
+            logDebugAndEmail("--------------moving to next record--------------");
+            continue; // move to the next record
+        }
+        altId = capId.getCustomID();
+
+        // get the CAP record, and set some variables
+        // notice that these variables are not declared in this method, they
+        // are likely declared in referenced master scripts its best to leave
+        // them even if you dont think they are needed
+        cap = aa.cap.getCap(capId).getOutput();		
+        appTypeResult = cap.getCapType();
+        capStatus = cap.getCapStatus();
+        appTypeString = appTypeResult.toString();
+        appTypeArray = appTypeString.split("/");
+
+        /***** END GET NEEDED CAP DATA *****/
+        
+        /***** BEGIN FILTERS *****/
+
+        /* FILTERING BY CAP TYPE (KEY4) */
+        // move to the next record unless we have a match on the key4 we want
+        // the key4 we want is passed in to this batch script
+        if (appType.length && !appMatch(appType))
+        {
+            capFilterType++;
+            logDebug(altId + ": Application Type does not match.");
+            logDebug("--------------moving to next record--------------");
+            continue; // move to the next record
+        }
+
+        /* FILTERING BY CAP STATUS */
+        // move to the next record unless we have a match on the capStatus we want
+        if (capStatus != appStatus ) 
+        {
+            capFilterStatus++;
+            logDebug(altId + ": Application Status does not match.");
+            logDebug("--------------moving to next record--------------");
+            continue; // move to the next record
+        }
+
+        /***** END FILTERS *****/
+
+
+        /***** BEGIN CUSTOM PROCESSING *****/
+
+        capCount++; 
+        logDebug("Processing " + altId);	
+        
+        /* EMAIL */
+        // get applicant email
+        var contactArray = getContactArray(capId), emailAddress = null;
+        for (contact in contactArray)
+        {
+            if (contactArray[contact]["contactType"] == "Applicant")
+            {
+                emailAddress = contactArray[contact]["email"];
+            }
+        }
+        
+        // if emailAddress is not null then send the notification
+        if (emailAddress != null)
+        {
+            var vEParams = aa.util.newHashtable();
+
+            addParameter(vEParams, "$$RECORD ID$$", altId);
+            addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
+
+            logDebug("Sending notification to " + emailAddress);
+            sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, altId);
+            // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
+        } 
+        else 
+        {
+            applicantEmailNotFound++;
+            logDebug(altId + ": Applicant email address not found");
+        }
+
+        /***** END CUSTOM PROCESSING *****/
     }
 
     /***** END LOOP DATA *****/
@@ -185,26 +166,80 @@ function mainProcess()
     logDebugAndEmail("");// empty line
     logDebugAndEmail("Query count: " + queryResultsCount);
     logDebugAndEmail("Processed count:" + capCount);
-	
-    logDebugAndEmail("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
-    logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null");
-    logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
 
+    logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
+    logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");
     logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
+
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
-    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: PMT_ExpirationNotice Completion Summary", emailText);
+    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: PMT_AnnualFacilitiesExpirationNotification Completion Summary", emailText);
 
     /***** END ADMIN NOTIFICATION *****/
 }
 
 function getBatchScriptTimeOut(jobName) 
 {
-    //var jobName = "Licenses About to Expire";
     var bjb = aa.proxyInvoker.newInstance("com.accela.v360.batchjob.BatchEngineBusiness").getOutput();
     var bj = bjb.getBatchJobByName(aa.getServiceProviderCode(), jobName);
     return bj.getTimeOut();
+}
+
+function getTodayAsString(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    return mm + '/' + dd + '/' + yyyy;
+}
+
+function getDocumentList(capId, currentUserID) {
+    // Returns an array of documentmodels if any
+    // returns an empty array if no documents
+
+    var docListArray = new Array();
+
+    docListResult = aa.document.getCapDocumentList(capId,currentUserID);
+
+    if (docListResult.getSuccess()) {        
+        docListArray = docListResult.getOutput();
+    }
+    return docListArray;
+}
+
+function getRecordBalanceDue(capId)
+{
+   var capDetailObjResult = aa.cap.getCapDetail(capId);
+   if (capDetailObjResult.getSuccess())
+   {
+      capDetail = capDetailObjResult.getOutput();
+      var balanceDue = capDetail.getBalance();
+      return balanceDue;
+   }
+   else
+   {
+      return 0;
+   }
+}
+
+
+function parseDate(str) {
+    var mdy = str.split('/');
+    return new Date(mdy[2], mdy[0]-1, mdy[1]);
+}
+
+function daydiff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
 }
 
 function getMasterScriptText(vScriptName)
@@ -285,7 +320,7 @@ try
     // it is changed to 1 minute less because if this script is able to time itself out internally (gracefully)
     // then it can still send out the summary email to admins
     var maxSeconds = 59 * 60;
-				
+
     var useAppSpecificGroupName = false;	// Use Group name when populating App Specific Info Values
     var useTaskSpecificGroupName = false;	// Use Group name when populating Task Specific Info Values
     var currentUserID = "ADMIN";
@@ -388,7 +423,7 @@ try
     var sysDate = aa.date.getCurrentDate();
     var batchJobID = aa.batchJob.getJobID().getOutput();
     var batchJobName = "" + aa.env.getValue("batchJobName");
-    
+
     /*--- attempt to dynamically set the maxSeconds variable from what is configured as the timeout of the batch job --- */
     if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
     {
@@ -422,7 +457,6 @@ try
         logDebugAndEmail("Batch Script Internal Time Out: " + maxSeconds + " seconds");
         logDebugAndEmail("");// empty line
     }
-    
 
     /*----------------------------------------------------------------------------------------------------/
     |
@@ -433,16 +467,16 @@ try
     // TODO: have all of these passed in as variables to this batch script
     if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
     {
-        // set testing values 
+        // set testing values
         aa.env.setValue("appGroup", "Permits"); 
-        aa.env.setValue("appTypeType","*"); 
-        aa.env.setValue("appSubType","*"); 
-        aa.env.setValue("appCategory","*"); 
-        aa.env.setValue("numDaysOut", "30");
-        aa.env.setValue("emailTemplate", "PMT_EXPIRATION_NOTICE");
+        aa.env.setValue("appTypeType", "Commercial"); 
+        aa.env.setValue("appSubType", "Annual Facilities"); 
+        aa.env.setValue("appCategory", "*");
+        aa.env.setValue("appStatus", "Issued");
+        aa.env.setValue("emailTemplate", "PMT_ANNUALFACILITIESEXPIRATIONNOTIFICATION");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
-    }
+    }    
     
     // this is the start of the body of the summary email
     logDebugAndEmail("Parameters");
@@ -454,7 +488,7 @@ try
     var appTypeType = getParam("appTypeType"); // app type to process
     var appSubType = getParam("appSubType"); // app subtype to process
     var appCategory = getParam("appCategory"); // app category to process
-    var numDaysOut = getParam("numDaysOut"); // the number of days out to check for expiration
+    var appStatus = getParam("appStatus"); // app status to process
     var emailTemplate = getParam("emailTemplate"); // the email template to use for notifications
     var emailAdminTo = getParam("emailAdminTo"); // who to send the admin summary email to
     var emailAdminCc = getParam("emailAdminCc"); // who to cc on the admin summary email
