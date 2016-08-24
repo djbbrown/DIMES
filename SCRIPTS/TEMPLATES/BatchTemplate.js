@@ -26,8 +26,8 @@ function mainProcess()
     /* UNCOMMENT NEEDED COUNTER VARIABLES
      * THESE ARE INCREMENTED BY THE FILTERS 
      * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
-    //var capCount = 0;
-    //var capFilterType = 0;
+    var capCount = 0;
+    var capFilterType = 0;
     //var capFilterAppType = 0; 
     //var capFilterStatus = 0;
     //var capFilterFeesOrDocs = 0;
@@ -36,7 +36,7 @@ function mainProcess()
     //var capFilterExpirationNull = 0; 
     //var capFilterExpirationGet = 0; 
     //var applicantEmailNotFound = 0;
-    //var queryResultsCount = 0; // note: sometimes we need to do more than one query...
+    var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
     /***** END INITIALIZE COUNTERS *****/
 
@@ -44,14 +44,14 @@ function mainProcess()
     /***** BEGIN LOOP DATA *****/
 
     
-    //var capResult = aa.cap.getCaps(appTypeType, taskName, "Note", ""); // Permits - filter down to "Annual Facilities" below
+    //var capResult = aa.cap.getCaps(appTypeType, taskName, "Note", "");
     var capResult = aa.cap.getByAppType(appGroup, appTypeType, appSubType, null);    
 
     if (capResult.getSuccess())
     {
         myCaps = capResult.getOutput();
         queryResultsCount += myCaps.length;
-        logDebugAndEmail("Permits count: " + myCaps.length);
+        logDebugAndEmail("Records count: " + myCaps.length);
     }   
     else 
     { 
@@ -121,6 +121,7 @@ function mainProcess()
         {
             capFilterFileDate++;
             logDebug(altId + ": File Date is not " + numDaysOut + " days out. Days Since Submittal: " + daysSinceSubmittal );
+            logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
         */
@@ -210,6 +211,7 @@ function mainProcess()
             {
                 capFilterExpirationNull++;
                 logDebug(altId + ": Expiration Date is null." );
+                logDebug("--------------moving to next record--------------");
                 continue; // move to the next record
             }
         }
@@ -217,6 +219,7 @@ function mainProcess()
         {
             capFilterExpirationGet++;
             //logDebug("JavaScript Error getting expiration date: " + err.message); // too many to log!!
+            //logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
         */
@@ -229,6 +232,20 @@ function mainProcess()
         {
             capFilterExpiration++;
             logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
+            logDebug("--------------moving to next record--------------");
+            continue; // move to the next record
+        }
+        */
+
+        /* EXAMPLE OF FILTERING BY EXPIRATION DATE - NOT EXPIRED
+        // move to the next record if the expiration date has not passed yet
+        var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
+        var today = getTodayAsString();
+        if (parseDate(today) < parseDate(expirationDate)) 
+        {
+            capFilterNotExpiredYet++;
+            logDebug(altId + ": record has not expired yet." );
+            logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
         */
@@ -314,7 +331,7 @@ function mainProcess()
     logDebugAndEmail("Processed count:" + capCount);
 
     /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */
-    //logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
+    logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
     //logDebugAndEmail("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type ");
     //logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");	
     //logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed")
@@ -322,12 +339,13 @@ function mainProcess()
     //logDebugAndEmail("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
     //logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null ");
     //logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
+    //logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet")
     //logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
 
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
-    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: PMT_AnnualFacilitiesIdleApplication15Days Completion Summary", emailText);
+    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: SCRIPTNAMEHERE Completion Summary", emailText);
 
     /***** END ADMIN NOTIFICATION *****/
 }
