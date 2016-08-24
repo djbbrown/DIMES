@@ -12,9 +12,9 @@
 /*==================================================================*/
 
 try {
-      var FromEmail = "noreply@mesaaz.gov";
-      var vEParams = aa.util.newHashtable();
-      var GasFlag = 0;
+    var FromEmail = "noreply@mesaaz.gov";
+    var vEParams = aa.util.newHashtable();
+    var GasFlag = 0;
      
     var ToEmail = "Engineering-Gas@mesaaz.gov";
     
