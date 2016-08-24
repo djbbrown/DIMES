@@ -21,5 +21,6 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 		addStdCondition("Building Permit", "Flood Plain Authorization");
 		addStdCondition("Building Permit", "Footing/Foundation Elevation");
 		addStdCondition("Building Permit", "Elevation Certificate");
+		editAppSpecific("Flood Zone", "Yes");
 	}
 }
