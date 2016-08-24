@@ -535,7 +535,7 @@ try
     var appSubType = getParam("appSubType"); // app subtype to process
     var appCategory = getParam("appCategory"); // app category to process
     var numDaysOut = getParam("numDaysOut"); // the number of days out before expiration date
-    var emailAdminTo = getParam("emailTemplate"); // the email template to use
+    var emailTemplate = getParam("emailTemplate"); // the email template to use
     var emailAdminTo = getParam("emailAdminTo"); // who to send the admin summary email to
     var emailAdminCc = getParam("emailAdminCc"); // who to cc on the admin summary email
 
