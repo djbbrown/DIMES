@@ -15,24 +15,74 @@
 // This script calls the notification template "GAS CLEARANCE"
 // ==================================================================
 var fromEmail = "noreply@MesaAz.gov";
+
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"){
 	var vEParams = aa.util.newHashtable();
 	var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
-	countCityOfMesa = countASITRows(tmpTable, "Clearance To", "City of Mesa");
-	countSouthwestGas = countASITRows(tmpTable, "Clearance To", "Southwest Gas");
+	if (tmpTable && tmpTable!=null && tmpTable.length > 0) {
+		for (rowIndex in tmpTable) {
+			thisRow = tmpTable[rowIndex];
+			cl = "" + thisRow["Clearance To"].fieldValue;
+			clDate = "" + thisRow["Clearance Date"].fieldValue;
+			if (cl == "City of Mesa" && clDate != "" && clDate != "null" && clDate != "undefined") {
+				cDateJS = new Date(clDate);
+				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
+					addParameter(vEParams,"$$RECORD ID$$",capIDString);
+					addParameter(vEParams,"$$CLEARANCE TO$$","City of Mesa");
+					addParameter(vEParams,"$$CLEARANCE DATE$$", clDate);
+					addParameter(vEParams,"$$SERVICE TYPE$$", "" + thisRow["Service Type"].fieldValue);
+					addParameter(vEParams,"$$SERVICE SIZE$$", "" + thisRow["Service Size"].fieldValue);
+					addParameter(vEParams,"$$METER SIZE$$", "" + thisRow["Meter Size"].fieldValue);
+					addParameter(vEParams,"$$BTU LOAD$$", "" + thisRow["BTU Load"].fieldValue);
+					addParameter(vEParams,"$$QTY OF METERS$$", "" + thisRow["Qty of Meters"].fieldValue);
+					addParameter(vEParams,"$$WARRANTY STATUS$$", "" + thisRow["Warranty Status"].fieldValue);
+					addParameter(vEParams,"$$COMMENTS$$", "" + thisRow["Comments"].fieldValue);
+					emailAddress = "Lauren.Lupica@MesaAZ.gov";
+					//emailAddress = 'customerinfobillingops@mesaaz.gov';
+					
+					conArr = getContactObjs(capId);
+					if (conArr && conArr.length > 0) {
+						for (cIndex in conArr) {
+							thisContact = conArr[cIndex];
+							if (thisContact.type == "Applicant") {
+								cEmail = thisContact.people.getEmail();
+								if (cEmail && cEmail != "") ccAddress = cEmail;
+							}
+						}
+					}
+					sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE", vEParams, null, capId);
+				}
 
-	if(countCityOfMesa>0){
-		addParameter(vEParams,"$$RECORD ID$$",capIDString);
-		addParameter(vEParams,"$$CLEARANCE TO$$","City of Mesa");
-		emailAddress = "Lauren.Lupica@MesaAZ.gov";
-		//emailAddress = 'customerinfobillingops@mesaaz.gov';
-		sendNotification(fromEmail, emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
-	}
-	if(countSouthwestGas>0){
-		addParameter(vEParams,"$$RECORD ID$$",capIDString);
-		addParameter(vEParams,"$$CLEARANCE TO$$","Southwest Gas");
-		emailAddress = "Lauren.Lupica@MesaAZ.gov";
-		//emailAddress = 'gasinspectiontag@swgas.com';
-		sendNotification(fromEmail, emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
+			} 
+			if (cl == "Southwest Gas" && clDate != "" && clDate != "null" && clDate != "undefined") {
+				cDateJS = new Date(clDate);
+				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
+					addParameter(vEParams,"$$RECORD ID$$",capIDString);
+					addParameter(vEParams,"$$CLEARANCE TO$$","Southwest Gas");
+					addParameter(vEParams,"$$CLEARANCE DATE$$", clDate);
+					addParameter(vEParams,"$$SERVICE TYPE$$", "" + thisRow["Service Type"].fieldValue);
+					addParameter(vEParams,"$$SERVICE SIZE$$", "" + thisRow["Service Size"].fieldValue);
+					addParameter(vEParams,"$$METER SIZE$$", "" + thisRow["Meter Size"].fieldValue);
+					addParameter(vEParams,"$$BTU LOAD$$", "" + thisRow["BTU Load"].fieldValue);
+					addParameter(vEParams,"$$QTY OF METERS$$", "" + thisRow["Qty of Meters"].fieldValue);
+					addParameter(vEParams,"$$WARRANTY STATUS$$", "" + thisRow["Warranty Status"].fieldValue);
+					addParameter(vEParams,"$$COMMENTS$$", "" + thisRow["Comments"].fieldValue);
+					emailAddress = "Lauren.Lupica@MesaAZ.gov";
+					//emailAddress = 'gasinspectiontag@swgas.com';
+					
+					conArr = getContactObjs(capId);
+					if (conArr && conArr.length > 0) {
+						for (cIndex in conArr) {
+							thisContact = conArr[cIndex];
+							if (thisContact.type == "Applicant") {
+								cEmail = thisContact.people.getEmail();
+								if (cEmail && cEmail != "") ccAddress = cEmail;
+							}
+						}
+					}
+					sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE", vEParams, null, capId);
+				}
+			} 
 		}
+	}
 }
