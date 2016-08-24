@@ -36,6 +36,7 @@ function mainProcess()
     var capFilterExpirationNull = 0; 
     var capFilterExpirationGet = 0; 
     var capFilterNotExpiredYet = 0;
+    var capFilterDaysPastExp = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
     /***** END INITIALIZE COUNTERS *****/
@@ -111,10 +112,10 @@ function mainProcess()
 
         /* FILTERING BY CAP STATUS */
         // move to the next record unless we have a match on the capStatus we want
-        if (capStatus == "Expired" ) 
+        if (capStatus == "Inactive" ) 
         {
             capFilterStatus++;
-            logDebug(altId + ": Application is already expired.");
+            logDebug(altId + ": Application is already marked as inactive.");
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
@@ -142,12 +143,23 @@ function mainProcess()
             //logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
+
+        /* FILTERING BY DAYS PAST EXPIRATION - USE WITH THE NULL EXP CHECK */
+        // move to the next record if days since expiration >= 365 (">= 365" this is handled by another script)
+        // or if days since expiration <= 0
+        var daysSinceExpiration = daydiff(parseDate(expirationDate), parseDate(getTodayAsString())); 
+        if (daysSinceExpiration >= 365 || daysSinceExpiration <= 0) 
+        {
+            capFilterDaysPastExp++;
+            logDebug(altId + ": Record expired >= 365 days ago. Days Since Expiration: " + daysSinceExpiration );
+            logDebug("--------------moving to next record--------------");
+            continue; // move to the next record
+        }
         
 
-        /* FILTERING BY EXPIRATION DATE - NOT EXPIRED - USE WITH THE NULL EXP CHECK */
+        /* FILTERING BY EXPIRATION DATE - NOT EXPIRED - USE WITH THE DAYS PAST EXP CHECK */
         // move to the next record if the expiration date has not passed yet
-        var today = getTodayAsString();
-        if (parseDate(today) < parseDate(expirationDate)) 
+        if (daysSinceExpiration <= 0)
         {
             capFilterNotExpiredYet++;
             logDebug(altId + ": record has not expired yet." );
@@ -175,7 +187,7 @@ function mainProcess()
             }*/
             closeWorkflow(); // this is in INCLUDES_CUSTOM
         }	
-        updateAppStatus("Expired", "set by batch");
+        updateAppStatus("Inactive", "set by batch");
 
         /***** END CUSTOM PROCESSING *****/
     }
@@ -196,7 +208,8 @@ function mainProcess()
     logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");
     logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null");
     logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
-    logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet")
+    logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet");
+    logDebugAndEmail("Skipped " + capFilterDaysPastExp + " due to record expiring >= 365 days ago");
 
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");

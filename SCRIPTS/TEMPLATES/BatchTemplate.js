@@ -35,6 +35,7 @@ function mainProcess()
     //var capFilterExpiration = 0; 
     //var capFilterExpirationNull = 0; 
     //var capFilterExpirationGet = 0; 
+    //var capFilterDaysPastExp = 0;
     //var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
@@ -199,15 +200,15 @@ function mainProcess()
         }
         */
 
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE
+        /* EXAMPLE OF FILTERING BY EXPIRATION DATE - NULL EXPIRATION
          * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION
         // move to the next record if the expiration date is null
-        var expScriptDateTime = null;
+        var expirationDate = null;
         try 
         {
             var thisLic = new licenseObject(capId);            
-            expScriptDateTime = thisLic.b1ExpDate;
-            if (expScriptDateTime == null)
+            expirationDate = thisLic.b1ExpDate;
+            if (expirationDate == null)
             {
                 capFilterExpirationNull++;
                 logDebug(altId + ": Expiration Date is null." );
@@ -224,9 +225,20 @@ function mainProcess()
         }
         */
 
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE       
+        /* FILTERING BY DAYS PAST EXPIRATION  - USE WITH THE NULL EXP CHECK
+        // move to the next record if days since expiration >= 365 (">= 365" this is handled by another script)
+        var daysSinceExpiration = daydiff(parseDate(expirationDate), parseDate(getTodayAsString())); 
+        if (daysSinceExpiration >= 365) 
+        {
+            capFilterDaysPastExp++;
+            logDebug(altId + ": Record expired >= 365 days ago. Days Since Expiration: " + daysSinceExpiration );
+            logDebug("--------------moving to next record--------------");
+            continue; // move to the next record
+        }
+        */
+
+        /* EXAMPLE OF FILTERING BY EXPIRATION DATE - USE WITH THE NULL EXP CHECK
         // move to the next record if the expiration date is not "numDaysOut" days out
-        var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
         var dateOut = dateAdd(null, numDaysOut);
         if (dateOut != expirationDate) 
         {
@@ -237,7 +249,18 @@ function mainProcess()
         }
         */
 
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE - NOT EXPIRED
+        /* FILTERING BY EXPIRATION DATE - NOT EXPIRED - USE WITH THE DAYS PAST EXP CHECK
+        // move to the next record if the expiration date has not passed yet
+        if (daysSinceExpiration <= 0)
+        {
+            capFilterNotExpiredYet++;
+            logDebug(altId + ": record has not expired yet." );
+            logDebug("--------------moving to next record--------------");
+            continue; // move to the next record
+        } 
+        */
+
+        /* FILTERING BY EXPIRATION DATE - NOT EXPIRED - USE WITH THE NULL EXP CHECK
         // move to the next record if the expiration date has not passed yet
         var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
         var today = getTodayAsString();
@@ -333,13 +356,14 @@ function mainProcess()
     /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */
     logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
     //logDebugAndEmail("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type ");
-    //logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");	
-    //logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed")
+    //logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");
+    //logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed");
     //logDebugAndEmail("Skipped " + capFilterFileDate + " due to file date not being " + numDaysOut + " days out");
     //logDebugAndEmail("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
     //logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null ");
     //logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
-    //logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet")
+    //logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet");
+    //logDebugAndEmail("Skipped " + capFilterDaysPastExp + " due to record expiring >= 365 days ago");
     //logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
 
     logDebugAndEmail(""); // empty line
