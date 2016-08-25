@@ -1,4 +1,3 @@
-
 function getHoursSpent(wfstr) { // optional process name
 
 	var useProcess = false;
