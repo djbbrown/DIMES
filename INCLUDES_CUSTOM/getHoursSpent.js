@@ -1,5 +1,4 @@
 function getHoursSpent(wfstr) { // optional process name
-
 	var useProcess = false;
 	var processName = "";
 	if (arguments.length == 2) {
