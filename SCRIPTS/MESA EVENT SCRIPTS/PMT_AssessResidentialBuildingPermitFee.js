@@ -16,7 +16,7 @@
 var tNumInsp = 0;
 var valuationASI = 0;
 var feeAmount = 0;
-var typeOfWork = AInfo["Type of Work"];
+var typeOfWork = AInfo["Type of work"];
 // Residential Type of Work Check
 var residential = ["Single Family (Detached)", "Single Family (Attached)", "Two-Family Duplex", "Guesthouse",
                    "Remodeling With Addition", "Renovations/Remodels", "Additions", "Garage/Carport", "Non-Structural",
@@ -40,9 +40,9 @@ if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus ==
 else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
-	tNumInsp += (AInfo["Estimated Number of Inspections"]||0);
-	tNumInsp += (AInfo["Required No. of Inspections"]||0);
-	valuationASI += AInfo["Total Valuation"]; // This is on "Mobile Home" and "Residential/NA/NA"
+	tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
+	tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
+	valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
 	// Get the Valuation as well (ASI)
 	if(valuationASI <25000){
 		feeAmount = 90; // Base Fee
