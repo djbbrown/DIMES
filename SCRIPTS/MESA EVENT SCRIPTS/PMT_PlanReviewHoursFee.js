@@ -13,7 +13,7 @@
 if (matches(wfTask, "Planning Review","Building Review","Fire Review","Civil Engineering Review")) {
 	if (matches(wfStatus, "Approved","Approved w/Comments","Revisions Required")) {
 			// sum hours across tasks
-		totHours  = getHoursSpent("Planning Review") + getHoursSpent("Building Review") + getHoursSpent("Fire Review") + getHoursSpent("Civil Engineering Review");
+		totHours  = parseFloat(getHoursSpent("Planning Review")) + parseFloat(getHoursSpent("Building Review")) + parseFloat(getHoursSpent("Fire Review")) + parseFloat(getHoursSpent("Civil Engineering Review"));
 		if (totHours > 0) {
 			if (AInfo["Expedite"] == "Expedite")			
 					updateFee("MST040", "PMT_MST", "FINAL", totHours, "N");				
