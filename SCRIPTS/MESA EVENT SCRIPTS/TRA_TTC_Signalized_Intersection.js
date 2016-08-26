@@ -62,15 +62,23 @@ try {
                         TrafficRestriction = (tInfo[x]["Street Name"] + " " + tInfo[x]["Direction of Travel"]);
                         }                      
                 }
-        
+                
+                //Convert to strings
+                var Plocation = String(ProjectLocation);
+                var RStart = String(RestrictionStart);
+                var REnd = String(RestrictionEnd);
+                var DStartTime = String(DailyStartTime);
+                var DEndTime = String(DailyEndTime);
+                var TRestriction = String(TrafficRestriction);
+               
                //Add Params
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
-                addParameter(vEParams,"$$PROJECTLOCATION$$",ProjectLocation );
-                addParameter(vEParams,"$$RESTRICTIONSTART$$",RestrictionStart);
-                addParameter(vEParams,"$$RESTRICTIONEND$$",RestrictionEnd);
-                addParameter(vEParams,"$$DAILYSTARTTIME$$",DailyStartTime);
-                addParameter(vEParams,"$$DAILYENDTIME$$",DailyEndTime);
-                addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TrafficRestriction);          
+                addParameter(vEParams,"$$PROJECTLOCATION$$",Plocation);
+                addParameter(vEParams,"$$RESTRICTIONSTART$$",RStart);
+                addParameter(vEParams,"$$RESTRICTIONEND$$",REnd);
+                addParameter(vEParams,"$$DAILYSTARTTIME$$",DStartTime);
+                addParameter(vEParams,"$$DAILYENDTIME$$",DEndTime);
+                addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);          
                 
                 //Send email
                 sendNotification(FromEmail, ToEmail, "", "TRA_TTC_SIGNALIZED_INTERSECTION", vEParams, null, capId);
