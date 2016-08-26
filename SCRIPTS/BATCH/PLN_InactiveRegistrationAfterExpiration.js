@@ -15,6 +15,9 @@
 //  1.0      |08/24/16  |Vance Smith      |Initial
 /*==================================================================*/
 
+/* intellisense references */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_BATCH.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -102,7 +105,7 @@ function mainProcess()
         if (appType.length && !appMatch(appType))
         {
             capFilterType++;
-            logDebug(altId + ": Application Type does not match.");
+            logDebug(altId + ": Application Type does not match. Application Type: " + appType);
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
@@ -112,7 +115,7 @@ function mainProcess()
         if (capStatus != "Inactive" ) 
         {
             capFilterStatus++;
-            logDebug(altId + ": Application Status does not match.");
+            logDebug(altId + ": Application Status does not match. Application Status: " + capStatus);
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
@@ -144,7 +147,7 @@ function mainProcess()
         /* FILTERING BY DAYS PAST EXPIRATION  - USE WITH THE NULL EXP CHECK */
         // move to the next record if days since expiration <= numDaysOut
         var daysSinceExpiration = daydiff(parseDate(expirationDate), parseDate(getTodayAsString())); 
-        if (daysSinceExpiration <= numDaysOut) 
+        if (daysSinceExpiration != numDaysOut) 
         {
             capFilterDaysPastExp++;
             logDebug(altId + ": Record didnt expire " + numDaysOut + " day(s) ago. Days Since Expiration: " + daysSinceExpiration );
@@ -160,8 +163,7 @@ function mainProcess()
         capCount++; 
         logDebug("Processing " + altId);
 
-// TODO: ADD TASK FOR "RESEARCH NON-RENEWAL"
-// function addTask(sourceTaskName, "Review Non-Renewal", "N") {
+        addTask(taskName, taskName + " - " + altId, "N");
 
         /***** END CUSTOM PROCESSING *****/
     }
@@ -500,7 +502,8 @@ try
         aa.env.setValue("appTypeType", "Group Home"); 
         aa.env.setValue("appSubType", "Registration"); 
         aa.env.setValue("appCategory", "*");
-        aa.env.setValue("numDaysOut", "1");
+        aa.env.setValue("numDaysOut", "365");
+        aa.env.setValue("taskName", "Review Non-Renewal");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
     }    
@@ -515,7 +518,8 @@ try
     var appTypeType = getParam("appTypeType"); // app type to process
     var appSubType = getParam("appSubType"); // app subtype to process
     var appCategory = getParam("appCategory"); // app category to process
-    var numDaysOut = getParam("numDaysOut"); // the number of days after expiration date
+    var numDaysOut = getParam("numDaysOut"); // the number of days after expiration date to check for
+    var taskName = getParam("taskName"); // the name of the task to add
     var emailAdminTo = getParam("emailAdminTo"); // who to send the admin summary email to
     var emailAdminCc = getParam("emailAdminCc"); // who to cc on the admin summary email
 

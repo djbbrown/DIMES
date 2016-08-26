@@ -113,7 +113,7 @@ function mainProcess()
         if (appType.length && !appMatch(appType))
         {
             capFilterType++;
-            //logDebug(altId + ": Application Type does not match.");
+            //logDebug(altId + ": Application Type does not match. Application Type: " + appType);
             //logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
@@ -190,7 +190,7 @@ function mainProcess()
         if (capStatus != "Submitted" ) 
         {
             capFilterStatus++;
-            logDebug(altId + ": Application Status does not match.");
+            logDebug(altId + ": Application Status does not match. Application Status: " + capStatus);
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
