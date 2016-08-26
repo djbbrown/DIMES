@@ -1,8 +1,8 @@
 /*===================================================================
 // Script Number: 173
 // Script Name: PMT_SignAudit
-// Script Developer: Bryan de Jesus
-// Script Agency: Woolpert
+// Script Developer: Deanna Hoops
+// Script Agency: 
 // Script Description:
 //			If sign permit is expired then create a sign audit inspection so that the inspector can check to see if they completed the work.
 // Script Run Event: BATCH
@@ -121,21 +121,19 @@ var batchJobName = "" + aa.env.getValue("batchJobName");
 |
 /------------------------------------------------------------------------------------------------------*/
 /* 
-aa.env.setValue("appGroup", "Planning");
-aa.env.setValue("appTypeType","*");
-aa.env.setValue("appSubtype","*");
-aa.env.setValue("appCategory","*")
-aa.env.setValue("asiField", "Start/Stop Indicator");
-aa.env.setValue("asiValue", "Started");
-aa.env.setValue("taskName", "Completeness Review");
-aa.env.setValue("taskStatus", "Complete");
+aa.env.setValue("appGroup", "Permits");
+aa.env.setValue("appTypeType","Sign");
+aa.env.setValue("appSubtype","NA");
+aa.env.setValue("appCategory","NA")
+aa.env.setValue("appStatus", "Expired");
+aa.env.setValue("newInsp", "Sign Audit");
 */
 
 var appGroup = getParam("appGroup");							//   app Group to process 
 var appTypeType = getParam("appTypeType");						//   app type to process 
 var appSubtype = getParam("appSubtype");						//   app subtype to process 
 var appCategory = getParam("appCategory");	
-var appStatus = getParam("appStatusStatus");
+var appStatus = getParam("appStatus");
 var newInsp = getParam("newInsp");
 
 /*----------------------------------------------------------------------------------------------------/
@@ -178,27 +176,39 @@ function mainProcess() {
 	var capFilterType = 0;
 	var capFilterStatus = 0;
 	
-	var capResult = aa.cap.getByAppType(appGroup, appTypeType, appSubtype, appCategory);
 	
-	if (capResult.getSuccess()) {
-		myCaps = capResult.getOutput();
-	}
-	else { 
-		logDebug("ERROR: Getting records, reason is: " + capResult.getErrorMessage()) ;
-		return false
-	} 
+	var capModelResult = aa.cap.getCapModel();
+	if (capModelResult.getSuccess()) {
+		var capModel = capModelResult.getOutput();
+		capModel.setCapStatus(appStatus);
+		var capTypeModel = capModel.getCapType();
+		if (appGroup != "*") capTypeModel.setGroup("" + appGroup);
+		if (appTypeType != "*") capTypeModel.setType("" + appTypeType);
+		if (appSubtype != "*") capTypeModel.setSubType("" + appSubtype);
+		if (appCategory != "*") capTypeModel.setCategory("" + appCategory);
+		capModel.setCapType(capTypeModel);
+		capIdResult = aa.cap.getCapIDListByCapModel(capModel);
 
-	for (myCapsXX in myCaps) {
-		if (elapsed() > maxSeconds) { // only continue if time hasn't expired
-			logDebug("WARNING","A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.") ;
-			timeExpired = true ;
-			break; 
+		if (capIdResult.getSuccess()) {
+			capIdArray = capIdResult.getOutput();
 		}
-
-		var thisCapId = myCaps[myCapsXX].getCapID();
-		capIdResult = aa.cap.getCapID(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3());
-		if (capIdResult.getSuccess()) capId = capIdResult.getOutput();
-		else logDebug(capIdResult.getErrorMessage());
+		else { 
+			logDebug("Error Getting records, reason is: " + capIdResult.getErrorMessage()) ;
+		} 
+	}
+	
+	for (cIndex in capIdArray)  {
+		if (elapsed() > maxSeconds) // only continue if time hasn't expired
+		{
+		logDebug("A script timeout has caused partial completion of this process.  Please re-run.  " + elapsed() + " seconds elapsed, " + maxSeconds + " allowed.") ;
+		timeExpired = true ;
+		break;
+		}
+		
+		var thisCapId = capIdArray[cIndex].getCapID();
+		capId = getCapIdLOCAL(thisCapId.getID1(), thisCapId.getID2(), thisCapId.getID3()); 
+		altId = capId.getCustomID();
+		logDebug(altId);
 
 		if (!capId) {
 			continue;
@@ -211,28 +221,15 @@ function mainProcess() {
 		appTypeString = appTypeResult.toString();	
 		appTypeArray = appTypeString.split("/");
 		
-		// Filter by CAP Type
-		if (appType.length && !appMatch(appType))	{
-			capFilterType++;
-			logDebug(altId + ": Application Type does not match")
-			continue;
-		}
-		
-		// Filter by cap status
-		if (appStatus != "" && appStatus != capStatus) {
-			capFilterStatus++;
-			logDebug(altId + ": app status does not match");
-			continue;
-		}
-		
 		capCount++;
 		logDebug("Processing " + altId);		
 
-		if (!isScheduled(newInsp)){
+		if (!doesScheduledInspExist(newInsp) && !doesScheduledInspExist("Sign Final") && !doesScheduledInspExist("Zoning Final")){
 			logDebug(altId + ": Scheduling inspection " + newInsp);
 			scheduleInspection(newInsp, 0);
+			// auto assign inspection based on inspection area - will be done via config
 		} else {
-			logDebug(altId + ": Inspection scheduled or completed " + newInsp);
+			logDebug(altId + ": Inspection already scheduled.");
 		}
 	}		
 		
@@ -248,6 +245,12 @@ function mainProcess() {
 | 
 /-----------------------------------------------------------------------------------------------------*/
 
+function getCapIdLOCAL(s_id1, s_id2, s_id3)  {
+    var s_capResult = aa.cap.getCapID(s_id1, s_id2, s_id3);
+ if(s_capResult.getSuccess())
+   return s_capResult.getOutput();
+ return null;
+}
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Internal Functions and Classes (Used by this script)

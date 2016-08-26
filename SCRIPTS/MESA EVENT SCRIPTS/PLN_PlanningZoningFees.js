@@ -34,7 +34,7 @@ try{
 	}
 	acres = Math.ceil(acres);
 	logDebug("Total acres: " + acres);
-	var zoning = getGISInfo("Planning/Zoning", "Zoning Districts", "DSCR");
+	var zoning = getGISInfo("Accela/Accela_Base", "Zoning Districts", "DSCR");
 	if (!zoning) logDebug("Zoning data not found for parcel.");
 	else {
 		if (zoning == "DC - Downtown Core"){
