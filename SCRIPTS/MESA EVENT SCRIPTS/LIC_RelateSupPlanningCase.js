@@ -19,7 +19,7 @@
 try
 {
   // check if parent exists
-  var supCaseNumber = getAppSpecific["SUP Case Number"];
+  var supCaseNumber = AInfo["SUP Case Number"];
   var getCapResult = aa.cap.getCapID(supCaseNumber);
   
   // if parent exists, addParent(parent capId)
