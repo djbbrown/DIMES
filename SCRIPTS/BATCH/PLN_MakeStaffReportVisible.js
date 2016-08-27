@@ -608,9 +608,9 @@ try
     if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
     {
         // set testing values
-        aa.env.setValue("appGroup", "Permits"); 
-        aa.env.setValue("appTypeType","Commercial"); 
-        aa.env.setValue("appSubType","Annual Facilities"); 
+        aa.env.setValue("appGroup", "Planning"); 
+        aa.env.setValue("appTypeType","General Plan Amendment - Major"); 
+        aa.env.setValue("appSubType","*"); 
         aa.env.setValue("appCategory","*"); 
         aa.env.setValue("docTypeCategoryHeld", "PLN_GP_SR_HELD");
         aa.env.setValue("docTypeCategory", "PLN_GP_SR");
