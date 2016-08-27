@@ -35,18 +35,6 @@ try
     logDebug("**ERROR: could not find SUP Case Number (" + supCaseNumber + "): " + getCapResult.getErrorMessage());
   }
 
-aa.print(mkyOutput); 
-
-//=======================================================
-// END HERE
-//aa.print(aa.document);
-//end user code
-//=======================================================
-//aa.env.setValue("ScriptReturnCode", "1");
-//aa.env.setValue("ScriptReturnMessage", debug);
-
-
-
 }
 catch (err)
 {
