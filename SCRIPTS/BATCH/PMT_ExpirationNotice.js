@@ -35,7 +35,8 @@ function mainProcess()
     var capFilterExpirationGet = 0; 
     var applicantEmailNotFound = 0;
     var queryResultsCount = 0;
-
+    var myCaps = null;
+    
     /***** END INITIALIZE COUNTERS *****/
 
 

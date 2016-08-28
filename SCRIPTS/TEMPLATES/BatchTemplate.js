@@ -17,8 +17,6 @@
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /// <reference path="../../INCLUDES_BATCH.js" />
 
-update
-
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
 | 
@@ -45,6 +43,7 @@ function mainProcess()
     //var capFilterTaskNotFound = 0;
     //var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
+    var myCaps = null;
 
     /***** END INITIALIZE COUNTERS *****/
 
@@ -449,7 +448,67 @@ function mainProcess()
     /***** END ADMIN NOTIFICATION *****/
 }
 
-function getDaysInMonthByName(dayName) {
+function updateRefParcelToCapReturnStatus() //Takes Optional CapId
+{
+    var vCapId = null;
+    if (arguments.length > 0)
+    {
+        vCapId = arguments[0];
+    }
+    else
+    {
+        vCapId = capId;
+    }
+
+    var capPrclArr = aa.parcel.getParcelDailyByCapID(vCapId, null).getOutput();
+    if (capPrclArr != null) 
+    {
+        for (x in capPrclArr) 
+        {
+            var prclObj = aa.parcel.getParceListForAdmin(capPrclArr[x].getParcelNumber(), null, null, null, null, null, null, null, null, null);
+            if (prclObj.getSuccess()) 
+            {
+                var prclArr = prclObj.getOutput();
+                if (prclArr.length) 
+                {
+                    var prcl = prclArr[0].getParcelModel();
+                    var refParcelNumber = prcl.getParcelNumber();
+                    var capPrclObj = aa.parcel.warpCapIdParcelModel2CapParcelModel(vCapId, prcl);
+
+                    if (capPrclObj.getSuccess()) 
+                    {
+                        var capPrcl = capPrclObj.getOutput();
+                        capPrcl.setL1ParcelNo(refParcelNumber);
+                        aa.parcel.updateDailyParcelWithAPOAttribute(capPrcl);
+                        logDebug("Updated Parcel " + capPrclArr[x].getParcelNumber() + " with Reference Data");
+                        return "SUCCESS";
+                    }
+                    else 
+                    {
+                        logDebug("Failed to Wrap Parcel Model for " + capPrclArr[x].getParcelNumber());
+                        return "FAILED_TO_WRAP_PARCEL_MODEL";
+                    }
+                }
+                else 
+                {
+                    logDebug("No matching reference Parcels found for " + capPrclArr[x].getParcelNumber());
+                    return "FAILED_NO_MATCHING_REF_PARCELS";
+                }
+            }
+            else {
+                logDebug("Failed to get reference Parcel for " + capPrclArr[x].getParcelNumber());
+                return "FAILED_GET_REF_PARCEL";
+            }
+        }
+    }
+    else
+    {
+        return "FAILED_GET_PARCEL_DAILY";
+    }
+}
+
+function getDaysInMonthByName(dayName) 
+{
     var d = new Date(),
         month = d.getMonth(),
         dayNames = [];
@@ -497,7 +556,8 @@ function getDaysInMonthByName(dayName) {
     return dayNames;
 }
 
-function getPrimaryOwnerName(capId) {
+function getPrimaryOwnerName(capId) 
+{
 	var capOwnerResult = aa.owner.getOwnerByCapId(capId);
     var ownerName = "";
 	if (capOwnerResult.getSuccess()) {
@@ -520,7 +580,8 @@ function getBatchScriptTimeOut(jobName)
     return bj.getTimeOut();
 }
 
-function getTodayAsString(){
+function getTodayAsString()
+{
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
@@ -537,7 +598,8 @@ function getTodayAsString(){
     return mm + '/' + dd + '/' + yyyy;
 }
 
-function getDocumentList(capId, currentUserID) {
+function getDocumentList(capId, currentUserID) 
+{
     // Returns an array of documentmodels if any
     // returns an empty array if no documents
 
@@ -566,13 +628,14 @@ function getRecordBalanceDue(capId)
    }
 }
 
-
-function parseDate(str) {
+function parseDate(str) 
+{
     var mdy = str.split('/');
     return new Date(mdy[2], mdy[0]-1, mdy[1]);
 }
 
-function daydiff(first, second) {
+function daydiff(first, second) 
+{
     return Math.round((second-first)/(1000*60*60*24));
 }
 
@@ -614,7 +677,8 @@ function getScriptText(vScriptName)
     }
 }
 
-function exploreObject(objExplore) {
+function exploreObject(objExplore) 
+{
     aa.print("Class Name: " + objExplore.getClass());
     aa.print("Methods:");
     for (var x in objExplore) {
@@ -730,6 +794,7 @@ try
             aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID);
         }        
     }
+
     function logEmail(dstr)
     {
         emailText += dstr + "<br>";
