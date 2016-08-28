@@ -11,6 +11,7 @@
 // PMT16-00392 For testing
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/26/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/28/16  |Steve Veloudos   |Added parms for ASIT values
 /*==================================================================*/
 
 try {
@@ -18,7 +19,15 @@ try {
       var ToEmail = "noreply@mesaaz.gov";
       var vEParams = aa.util.newHashtable();
       var ComDesc = workDescGet(capId);
-      var DataTable;
+      var ServiceType;
+      var ServiceSize
+      var MeterSize;
+      var BTULoadNumber;
+      var ClearanceTo;
+      var ClearanceDate2;
+      var QtyofMeters;
+      var WarrantyStatus;
+      var Comments;
 
       //Get the Inspection results
       var getInspectionsResult = aa.inspection.getInspections(capId);
@@ -51,15 +60,16 @@ try {
                                 var d = new Date();
                                 var d2 = jsDateToASIDate(d);
                                 var currentDate = String(d2);
-                                DataTable = "Service Type: " + (tInfo[x]["Service Type"]) + " " ;
-                                DataTable = DataTable + "Service Size: "  + (tInfo[x]["Service Size"]) + " " ; 
-                                DataTable = DataTable  + "Meter Size: "  + (tInfo[x]["Meter Size"]) + " ";
-                                DataTable = DataTable  + "BTU Load Number: "  + (tInfo[x]["BTU Load(Number)"]) + " " ; 
-                                DataTable = DataTable  + "Clearance To: "  + (tInfo[x]["Clearance To"]) + " " ;
-                                DataTable = DataTable  + "Clearance Date: " + ClearanceDate + " " ;
-                                DataTable = DataTable  + "Qty of Meters: "  + (tInfo[x]["Qty of Meters(Number)"]) + " " ;
-                                DataTable = DataTable  + "Warranty Status: "  + (tInfo[x]["Warranty Status"]) + " " ;
-                                DataTable = DataTable  + "Comments: "  + (tInfo[x]["Comments(Text Area)"]) ;
+                                ServiceType = "Service Type: " + (tInfo[x]["Service Type"]);
+                                ServiceSize = "Service Size: "  + (tInfo[x]["Service Size"]); 
+                                MeterSize = "Meter Size: "  + (tInfo[x]["Meter Size"]);
+                                BTULoadNumber = "BTU Load Number: "  + (tInfo[x]["BTU Load(Number)"]); 
+                                ClearanceTo =  "Clearance To: "  + (tInfo[x]["Clearance To"]);
+                                ClearanceDate2 = "Clearance Date: " + ClearanceDate;
+                                QtyofMeters = "Qty of Meters: "  + (tInfo[x]["Qty of Meters(Number)"]);
+                                WarrantyStatus = "Warranty Status: "  + (tInfo[x]["Warranty Status"]);
+                                Comments =  "Comments: "  + (tInfo[x]["Comments(Text Area)"]);
+                                
                                 var Clearance = (tInfo[x]["Clearance To"]);
                                     //Set to Email
                                     if (Clearance == "City of Mesa")
@@ -70,7 +80,6 @@ try {
                                     {
                                         ToEmail ="ccdesk@srpnet.com";
                                     }
-
                                 }                     
                             }
                                 //Compare dates 
@@ -104,7 +113,15 @@ try {
 
                                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                                 addParameter(vEParams,"$$Address$$",theAddress);
-                                addParameter(vEParams,"$$DATATABLE$$",DataTable);
+                                addParameter(vEParams,"$$ServiceType$$",ServiceType);
+                                addParameter(vEParams,"$$ServiceSize$$",ServiceSize);
+                                addParameter(vEParams,"$$MeterSize$$",MeterSize);
+                                addParameter(vEParams,"$$BTULoadNumber$$",BTULoadNumber);
+                                addParameter(vEParams,"$$ClearanceTo$$",ClearanceTo);
+                                addParameter(vEParams,"$$ClearanceDate2$$",ClearanceDate2);
+                                addParameter(vEParams,"$$QtyofMeters$$",QtyofMeters);
+                                addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
+                                addParameter(vEParams,"$$Comments$$",Comments);
                                 
                                 //Send the email
                                 sendNotification(FromEmail, ToEmail, "", "PMT_ELECTRIC_CLEARANCE", vEParams, null, capId);    
