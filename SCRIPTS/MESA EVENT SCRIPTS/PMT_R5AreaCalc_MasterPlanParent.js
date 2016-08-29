@@ -53,7 +53,7 @@ try {
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5 Livable","N")
 			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "VB Any Material (0 HR)","N")
-			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", r5_sum,"N")
+			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", ""+r5_sum,"N")
 			newRow["Occupant Load"] =  new asiTableValObj("Occupant Load", "","N")
 			newOccInfoASIT.push(newRow)
 		}
@@ -61,7 +61,7 @@ try {
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5N Non-Livable","N")
 			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "VB Any Material (0 HR)","N")
-			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", r5n_sum,"N")
+			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", ""+r5n_sum,"N")
 			newRow["Occupant Load"] =  new asiTableValObj("Occupant Load", "","N")
 			newOccInfoASIT.push(newRow)
 		}
