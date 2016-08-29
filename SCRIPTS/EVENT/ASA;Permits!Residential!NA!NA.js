@@ -13,3 +13,4 @@ include("PMT_NoAddressAddAdHoc");
 include("PMT_StapleyTag");
 
 include("PMT_R5AreaCalc_MasterPlanParent")
+include("PMT_RelateToPlanningRecord");  //mky
