@@ -6,11 +6,12 @@
 // Script Parents:WTUA;Transportation!~!~!~.js
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/25/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/29/16  |Steve Veloudos   |Added Std Choice
 /*==================================================================*/
 
 try {
       var FromEmail = "noreply@mesaaz.gov";
-      var ToEmail = "transitRC365@mesaaz.gov";
+      var ToEmail = lookup("EMAIL_RECIPIENTS","Transit");
       var vEParams = aa.util.newHashtable();
       var ProjectLocation;
       var RestrictionStart;
