@@ -7,6 +7,7 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/24/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/29/16  |Steve Veloudos   |Added Std Condition
 /*==================================================================*/
 
 try {
@@ -39,7 +40,7 @@ try {
       //Send Email For Communications Towers
       if(ComTowersFlag  == 1)
       {
-      ToEmail = "COM-CommunicationsTower@mesaaz.gov";
+      ToEmail = lookup("EMAIL_RECIPIENTS","PMT_COM_CommunicationsTower");
       sendNotification(FromEmail, ToEmail, "", "PMT_COMMUNICATIONS_TOWERS", vEParams, null, capId);
       }
 
