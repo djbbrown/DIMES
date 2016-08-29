@@ -12,6 +12,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/26/16  |Steve Veloudos   |Initial Release
 //  1.1      |08/28/16  |Steve Veloudos   |Added parms for ASIT values
+//  1.2      |08/29/16  |Steve Veloudos   |Added Std Choices for Email Addresses
 /*==================================================================*/
 
 try {
@@ -74,11 +75,11 @@ try {
                                     //Set to Email
                                     if (Clearance == "City of Mesa")
                                     {
-                                        ToEmail ="customerinfobillingops@mesaaz.gov";
+                                        ToEmail =lookup("EMAIL_RECIPIENTS","Billing Info");
                                     }
                                     if (Clearance == "Salt River Project")
                                     {
-                                        ToEmail ="ccdesk@srpnet.com";
+                                        ToEmail =lookup("EMAIL_RECIPIENTS","SRP");
                                     }
                                 }                     
                             }
