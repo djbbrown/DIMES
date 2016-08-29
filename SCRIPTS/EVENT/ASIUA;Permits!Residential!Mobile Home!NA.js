@@ -13,6 +13,7 @@ include("PMT_TotalValuation");
 // add by Brian O'Dell (Mesa)
 include("PMT_MobileHomeUtilityServiceFeeGasMeter");
 //include("PMT_MobileHomeUtilityServiceFeeGasServiceOther");  // recommended removal of this script
+include("PMT_RelateToPlanningRecord");
 
 //include("PMT_MobileHomeFireImpactFee");  // Fee schedule has changed
 //include("PMT_MobileHomeStormwaterImpactFee");  // Fee Schedule has changed

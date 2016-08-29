@@ -10,3 +10,4 @@ include("PMT_TotalValuation");
 // added by Brian O'Dell (Mesa)
 include("PMT_R5AreaCalc");
 include("PMT_R5NAreaCalc");
+include("PMT_RelateToPlanningRecord");

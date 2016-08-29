@@ -7,3 +7,4 @@ include("PMT_TotalSqFt");
 include("PMT_PlanningNumbValidate");
 include("PMT_WaterMeterAdapterFee");
 include("PMT_TotalValuation");
+include("PMT_RelateToPlanningRecord");
