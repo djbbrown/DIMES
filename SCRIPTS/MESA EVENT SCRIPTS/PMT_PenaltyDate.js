@@ -24,12 +24,12 @@
 try
 {
   if ((appMatch("Permits/Document Retrieval/NA/NA") ||
-	appMatch("Permits/Demolition/NA/NA") ||
-	appMatch("Permits/Sign/NA/NA") ||
-	appMatch("Permits/Master Plan/NA/NA") ||
-	appMatch("Permits/Residential/NA/NA") ||
-	appMatch("Permits/Commercial/NA/NA") ||
-	appMatch("Permits/Addenda/NA/NA"))
+	(appMatch("Permits/Demolition/NA/NA") ||
+	(appMatch("Permits/Sign/NA/NA") ||
+	(appMatch("Permits/Master Plan/NA/NA") ||
+	(appMatch("Permits/Residential/NA/NA") ||
+	(appMatch("Permits/Commercial/NA/NA") ||
+	(appMatch("Permits/Addenda/NA/NA"))
   {
     if ((wfTask == "Application Submittal") && (wfStatus == "Accepted – Plan Review Req"))
     {
