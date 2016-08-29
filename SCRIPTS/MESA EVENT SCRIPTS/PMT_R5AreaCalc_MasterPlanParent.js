@@ -41,10 +41,12 @@ try {
 			newRow = []
 			for (c in occInfoASIT[r]){
 				if (c == "Sq Ft" && (""+occInfoASIT[r]["Occupancy Classification"].fieldValue) == "R-5 Livable") {
+					logDebug("Updating R5")
 					newRow[c] =  new asiTableValObj(c, r5_sum.toString(),"N")
 					wasR5Updated = true
 				}
 				else if (c == "Sq Ft" && (""+occInfoASIT[r]["Occupancy Classification"].fieldValue) == "R-5N Non-Livable") {
+					logDebug("Updating R5N")
 					newRow[c] =  new asiTableValObj(c, r5n_sum.toString(),"N")
 					wasR5NUpdated = true
 				}
@@ -55,6 +57,7 @@ try {
 		}
 		
 		if (!wasR5Updated) {
+			logDebug("Adding R5")
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5 Livable","N")
 			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "","N") //"VB Any Material (0 HR)"
@@ -63,6 +66,7 @@ try {
 			newOccInfoASIT.push(newRow)
 		}
 		if (!wasR5NUpdated) {
+			logDebug("Adding R5N")
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5N Non-Livable","N")
 			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "","N") //"VB Any Material (0 HR)"
