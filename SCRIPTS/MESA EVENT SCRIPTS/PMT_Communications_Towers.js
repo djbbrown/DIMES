@@ -40,7 +40,7 @@ try {
       //Send Email For Communications Towers
       if(ComTowersFlag  == 1)
       {
-      ToEmail = lookup("EMAIL_RECIPIENTS","PMT_COM_CommunicationsTower");
+      ToEmail = lookup("EMAIL_RECIPIENTS","PMT_Communication_Towers");
       sendNotification(FromEmail, ToEmail, "", "PMT_COMMUNICATIONS_TOWERS", vEParams, null, capId);
       }
 
