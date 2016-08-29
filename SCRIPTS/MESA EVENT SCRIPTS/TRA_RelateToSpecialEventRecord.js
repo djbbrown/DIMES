@@ -28,7 +28,7 @@ try
   {
     addParent("" + specialEvent );
     //mkyOutput += "specialEvent   found: " + specialEvent + " \r";
-    logDebug("Special Event App found and added as parent");
+    //logDebug("Special Event App found and added as parent");
   }
   else
   { 
