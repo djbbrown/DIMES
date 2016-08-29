@@ -6,7 +6,7 @@
 // Script Parents:WTUA;Transportation!~!~!~.js
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/25/16  |Steve Veloudos   |Initial Release
-//  1.1      |08/29/16  |Steve Veloudos   |Added Std Condition
+//  1.1      |08/29/16  |Steve Veloudos   |Added Std Condition 
 /*==================================================================*/
 
 try {
