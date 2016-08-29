@@ -13,7 +13,7 @@
 /*==================================================================*/
 
 try {
-	updateClassifications = ["R-5 Livable","R-5N Non-Livable"]
+	logDebug("Running Script PMT_R5AreaCalc_MasterPlanParent")
 	pList = getParents("Permits/Master Plan/NA/NA")
 	
 	if (pList.length > 0) {
