@@ -36,11 +36,11 @@ try {
 			newRow = []
 			for (c in occInfoASIT[r] ){
 				if (c == "Sq Ft" && (""+occInfoASIT[r]["Occupancy Classification"].fieldValue) == "R-5 Livable") {
-					newRow[c] =  new asiTableValObj(c, r5_sum,"N")
+					newRow[c] =  new asiTableValObj(c, r5_sum.toString(),"N")
 					wasR5Updated = true
 				}
 				else if (c == "Sq Ft" && (""+occInfoASIT[r]["Occupancy Classification"].fieldValue) == "R-5N Non-Livable") {
-					newRow[c] =  new asiTableValObj(c, r5n_sum,"N")
+					newRow[c] =  new asiTableValObj(c, r5n_sum.toString(),"N")
 					wasR5NUpdated = true
 				}
 				else
@@ -52,16 +52,16 @@ try {
 		if (!wasR5Updated) {
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5 Livable","N")
-			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "VB Any Material (0 HR)","N")
-			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", ""+r5_sum,"N")
+			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "","N") //"VB Any Material (0 HR)"
+			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", r5_sum.toString(),"N")
 			newRow["Occupant Load"] =  new asiTableValObj("Occupant Load", "","N")
 			newOccInfoASIT.push(newRow)
 		}
 		if (!wasR5NUpdated) {
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5N Non-Livable","N")
-			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "VB Any Material (0 HR)","N")
-			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", ""+r5n_sum,"N")
+			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "","N") //"VB Any Material (0 HR)"
+			newRow["Sq Ft"] =  new asiTableValObj("Sq Ft", r5n_sum.toString(),"N")
 			newRow["Occupant Load"] =  new asiTableValObj("Occupant Load", "","N")
 			newOccInfoASIT.push(newRow)
 		}
@@ -77,6 +77,7 @@ try {
 catch (err){
   logDebug("A JavaScript Error occured: " + err.message);
 }
+
 
 /* Old - replaced due to changelog #57
 
