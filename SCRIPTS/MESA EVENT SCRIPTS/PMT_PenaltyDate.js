@@ -33,7 +33,7 @@ try
 	(appMatch("Permits/Addenda/NA/NA"))
 	)
   {
-    if ((wfTask == "Application Submittal") && (wfStatus == "Accepted – Plan Review Req"))
+    if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
     {
       var turnAroundTime = AInfo["Turn Around Time"];
       var theDate = new Date();
