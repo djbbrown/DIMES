@@ -13,7 +13,7 @@
 try {
     var FromEmail = "noreply@mesaaz.gov";
     var vEParams = aa.util.newHashtable();
-    var ToEmail = lookup("EMAIL_RECIPIENTS","PMT_Billing_Info");
+    var ToEmail = lookup("EMAIL_RECIPIENTS","Billing_Info");
     var InComSewer = 0;
     var BInspection = 0;
     var ProposedUse;
@@ -47,14 +47,14 @@ try {
 	    var inspectionScriptModels = getInspectionsResult.getOutput();
 	    var inspectionScriptModel = null;
 
-            //Check if Inspection is Building Final 
+            //Check if Inspection is Sewer To Building 
             for (inspectionScriptModelIndex in inspectionScriptModels)
                 {
                     inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "BUILDING FINAL")
+                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "SEWER TO BUILDING")
                     {
                        //Check for APPROVED or PARTIAL APPROVAL
-                       if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "APPROVED" || inspectionScriptModel.getInspectionStatus().toUpperCase() == "PARTIAL APPROVAL")
+                       if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "APPROVED")
                        {
                         
                         //Need to get Inspection date and Inspectors name
