@@ -10,11 +10,19 @@
 //
 // Script Run Event: ASA / ASIUA
 // Script Parents:
-//             ASA:???
-//             ASIUA:???
+//             ASA:Permits/Commercial/NA/NA
+//             ASA:Permits/Residential/NA/NA
+//             ASA:Permits/Signs/NA/NA
+//             ASA:Permits/Residential/Mobile Home/NA
+//             ASA:Permits/Addenda or Deferred/NA/NA
+//
+//             ASIUA:Permits/Commercial/NA/NA
+//             ASIUA:Permits/Residential/NA/NA
+//             ASIUA:Permits/Signs/NA/NA
+//             ASIUA:Permits/Residential/Mobile Home/NA
+//             ASIUA:Permits/Addenda or Deferred/NA/NA
 // 
 //==================================================================*/
-
 
 try
 {
