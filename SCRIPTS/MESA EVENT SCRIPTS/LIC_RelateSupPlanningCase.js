@@ -25,7 +25,7 @@ try
   // if parent exists, addParent(parent capId)
   if (getCapResult.getSuccess())
   {
-    addParent(supCaseNumber);
+    addParent("" + supCaseNumber);
     //mkyOutput += "supCaseNumber found: " + supCaseNumber + ", parentId: " + parentId + " \r";
     logDebug("SUP Case Number found and added as parent");
   }
