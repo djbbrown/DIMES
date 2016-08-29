@@ -9,6 +9,7 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/24/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/29/16  |Steve Veloudos   |Added Std Choices
 /*==================================================================*/
 
 try {
@@ -16,7 +17,7 @@ try {
     var vEParams = aa.util.newHashtable();
     var GasFlag = 0;
      
-    var ToEmail = "Engineering-Gas@mesaaz.gov";
+    var ToEmail = lookup("EMAIL_RECIPIENTS","Engineering_Gas");
     
     //Get GIS Data
     var tInfo = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");

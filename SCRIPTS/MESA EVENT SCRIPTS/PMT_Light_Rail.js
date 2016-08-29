@@ -10,6 +10,7 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/24/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/29/16  |Steve Veloudos   |Added Std Conditions
 /*==================================================================*/
 
 try {
@@ -47,14 +48,14 @@ try {
       //Send Email For Light Rail 1
       if(LightRail1Flag == 1)
       {
-      ToEmail = "LightRailCorridorPermit@mesaaz.gov";
+      ToEmail = lookup("EMAIL_RECIPIENTS","RAIL");
       sendNotification(FromEmail, ToEmail, "", "PMT_LIGHT_RAIL", vEParams, null, capId);
       }
 
       //Send Email For Light Rail 2
       if(LightRail2Flag == 1)
       {
-      ToEmail = "LightRailCorridor2Permit@mesaaz.gov";
+      ToEmail = lookup("EMAIL_RECIPIENTS","RAI2");
       sendNotification(FromEmail, ToEmail, "", "PMT_LIGHT_RAIL", vEParams, null, capId);
       }
 
