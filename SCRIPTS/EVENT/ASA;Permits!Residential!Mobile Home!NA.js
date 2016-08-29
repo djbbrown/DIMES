@@ -8,7 +8,7 @@ include("PMT_MobileHomeSolidWasteImpactFee");
 // add by Brian O'Dell (Mesa)
 include("PMT_MobileHomeUtilityServiceFeeGasMeter");
 //include("PMT_MobileHomeUtilityServiceFeeGasServiceOther");  //recommended removal of this script
-include("PMT_RelateToPlanningRecord");  //mky
+include("PMT_RelateToPlanningRecord");
 
 //include("PMT_MobileHomeFireImpactFee");  // Fee Schedule has changed
 //include("PMT_MobileHomeStormwaterImpactFee");  // Fee Schedule has changed
