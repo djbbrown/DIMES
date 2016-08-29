@@ -34,8 +34,14 @@ try {
 		r5n_sum = 0
 		for( r in parentASIT ){
 			if (updateClassifications.indexOf(""+parentASIT[r]["Occupancy Classification"].fieldValue) < 0) continue
-			if (""+parentASIT[r]["Occupancy Classification"].fieldValue == "R-5 Livable") r5_sum += parseFloat(parentASIT[r]["Sq Ft"].fieldValue)
-			if (""+parentASIT[r]["Occupancy Classification"].fieldValue == "R-5N Non-Livable") r5n_sum += parseFloat(parentASIT[r]["Sq Ft"].fieldValue)
+			if (""+parentASIT[r]["Occupancy Classification"].fieldValue == "R-5 Livable") {
+				thisR5 = parseFloat(parentASIT[r]["Sq Ft"].fieldValue)
+				if (!isNaN(thisR5)) r5_sum += thisR5
+			}
+			if (""+parentASIT[r]["Occupancy Classification"].fieldValue == "R-5N Non-Livable") {
+				thisR5N = parseFloat(parentASIT[r]["Sq Ft"].fieldValue)
+				if (!isNaN(thisR5N)) r5n_sum += thisR5N
+			}
 			newRow = []
 			for (c in parentASIT[r] ){
 				newRow[c] =  new asiTableValObj(c, parentASIT[r][c].fieldValue,"N")
