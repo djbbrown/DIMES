@@ -36,7 +36,7 @@ try
   {
     addParent("" + planningNumber);
     //mkyOutput += "planningNumber  found: " + planningNumber + " \r";
-    logDebug("Planning Number found and added as parent");
+    //logDebug("Planning Number found and added as parent");
   }
   else
   { 
