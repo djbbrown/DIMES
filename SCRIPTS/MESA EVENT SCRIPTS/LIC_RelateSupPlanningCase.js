@@ -27,12 +27,12 @@ try
   {
     addParent("" + supCaseNumber);
     //mkyOutput += "supCaseNumber found: " + supCaseNumber + ", parentId: " + parentId + " \r";
-    logDebug("SUP Case Number found and added as parent");
+    //logDebug("SUP Case Number found and added as parent");
   }
   else
   { 
     //mkyOutput += "ERROR: could not find parent supCaseNumber: " + supCaseNumber + " \r";
-    logDebug("**ERROR: could not find SUP Case Number (" + supCaseNumber + "): " + getCapResult.getErrorMessage());
+    //logDebug("**ERROR: could not find SUP Case Number (" + supCaseNumber + "): " + getCapResult.getErrorMessage());
   }
 
 }
