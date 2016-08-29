@@ -29,6 +29,7 @@ try {
 			r5_sum += (isNaN(thisR5)) ? 0 : thisR5
 			r5n_sum += (isNaN(thisR5N)) ? 0 : thisR5N
 		}
+		logDebug("R5 = " + r5_sum + " | R5N = " + r5n_sum)
 		
 		wasR5Updated = false
 		wasR5NUpdated = false
