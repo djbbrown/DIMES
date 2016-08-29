@@ -11,6 +11,7 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/23/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/29/16  |Steve Veloudos   |Adj Std Choices
 /*==================================================================*/
 
 try {
@@ -105,14 +106,14 @@ try {
       //Send Email For Electric
       if(ElectricFlag == 1)
       {
-      ToEmail = "DSCityElectricZone@MesaAZ.gov"
+      ToEmail = lookup("EMAIL_RECIPIENTS","DS_City_Electric_Zone");
       sendNotification(FromEmail, ToEmail, "", "PMT_CM_ELECTRIC", vEParams, null, capId);
       }
       
       //Send Email For Gas
       if(GasFlag == 1)
       {
-      ToEmail = "BSD-DevelopmentPlanning@mesaaz.gov"
+      ToEmail = lookup("EMAIL_RECIPIENTS","BSD_Development_Planning");
       sendNotification(FromEmail, ToEmail, "", "PMT_CM_GAS", vEParams, null, capId);
       }
     }
