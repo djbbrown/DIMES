@@ -10,11 +10,12 @@
 // ASA;Permits!Commercial!~!~
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/09/16  |Steve Veloudos   |Initial Release
+//  1.1      |08/29/16  |Steve Veloudos   |Added Std Condition
 /*==================================================================*/
 
 try {
       var FromEmail = "noreply@mesaaz.gov";
-      var ToEmail = "BSD-DevelopmentPlanning@mesaaz.gov";
+      var ToEmail =  lookup("EMAIL_RECIPIENTS","BSD_Development_Planning");
       var vEParams = aa.util.newHashtable();
       var ComDesc = workDescGet(capId);
       var GISData;
