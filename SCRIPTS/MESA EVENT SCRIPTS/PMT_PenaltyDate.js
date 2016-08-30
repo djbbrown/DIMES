@@ -56,7 +56,8 @@ try
       logDebug("theDate (after): " + theDate);
       //mkyOutput += "theDate (after): " + theDate + "\r";
 
-      editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
+      //editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
+      editAppSpecific("Penalty Date", theDate);
 
     }
   }
