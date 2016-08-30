@@ -13,10 +13,9 @@
 //		Monday through Thursday, should not include Fridays, Weekends 
 //		or Holidays.
 //
-// Script Run Event: ASA / ASIUA
+// Script Run Event: WTUA
 // Script Parents:
-//              ASA;Permits/???
-//              ASIUA;Permits/???
+//              WTUA;Permits!~!~!~
 // 
 //==================================================================*/
 
