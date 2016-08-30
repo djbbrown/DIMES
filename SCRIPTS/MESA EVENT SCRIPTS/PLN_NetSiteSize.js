@@ -5,15 +5,15 @@
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-// 		calculate the ASI fields "Net Site Size (sq ft)"and 
-/		"Net Site Size (acres)".
-/		Net Site Size (sqft)= Net Site Size (acres) * 43560)
+// 		calculate the ASI fields Net Site Size (sq ft) and 
+//		Net Site Size (acres).
+//		Net Site Size (sqft)= Net Site Size (acres) * 43560)
 //		Net Site Size (acres) = Net Site Size (sqft)/43560)
 //
 // Script Run Event: ASA, ASIUA
 // Script Parents:
 //              ASA;
-/		ASIUA;
+//		ASIUA;
 // 
 //==================================================================*/
 
