@@ -7,8 +7,9 @@
 Auto populate the ASI field "Existing Zoning" from GIS attribute.
 // Script Run Event: ASA
 // Script Parents:
-//		ASA;Planning!~!~!~
-//             
+//		ASA;Planning!Admin Review!NA!NA
+//		ASA;Planning!Subdivision!NA!NA
+//		ASA;Planning!Pre-Submittal!NA!NA
 /*==================================================================*/
 
 try
