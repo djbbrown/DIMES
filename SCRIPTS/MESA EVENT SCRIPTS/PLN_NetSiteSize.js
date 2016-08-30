@@ -33,7 +33,7 @@ try
     {
       if (sqft != null)
       {
-        acres = sqft * 43560;
+        acres = sqft / 43560;
       }
       editAppSpecific("Net Site Size (acres)", acres);
     }
