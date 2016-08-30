@@ -20,17 +20,30 @@ try
 {
   var rowPermitNo = AInfo["ROW Permit No."]; //"UTL16-00008";
   var matchCapId = aa.cap.getCapID(rowPermitNo).getOutput();
-  var matchCap = aa.cap.getCap(matchCapId).getOutput();
-  var rowRecordType = matchCap.getCapType().toString();
 
-  //mkyOutput += rowPermitNo: " + rowPermitNo + "\r";
-  logDebug("rowPermitNo: " + rowPermitNo);
-  //mkyOutput += "matchCap: " + matchCap + "\r";
-  logDebug("matchCap: " + matchCap);
-  //mkyOutput += "recordType: " + recordType + "\r";
-  logDebug("recordType: " + recordType);
 
-  if (rowRecordType != "Engineering/Right of Way/NA/NA")
+  if (matchCapId)
+  {
+
+    var matchCap = aa.cap.getCap(matchCapId).getOutput();
+    var rowRecordType = matchCap.getCapType().toString();
+
+    //mkyOutput += rowPermitNo: " + rowPermitNo + "\r";
+    logDebug("rowPermitNo: " + rowPermitNo);
+    //mkyOutput += "matchCap: " + matchCap + "\r";
+    logDebug("matchCap: " + matchCap);
+    //mkyOutput += "rowRecordType: " + rowRecordType + "\r";
+    logDebug("rowRecordType: " + rowRecordType);
+
+    if (rowRecordType != "Engineering/Right of Way/NA/NA")
+    {
+      showMessage = true;
+      comment("The ROW Permit No is not of type Engineering/Right of Way");
+      cancel = true;
+    }
+
+  }
+  else
   {
     showMessage = true;
     comment("The ROW Permit No is not valid");
