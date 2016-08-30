@@ -25,6 +25,7 @@ try
   var tInfo = DOCUMENTTYPESREQUESTED
   var tInfoCount = tInfo.length;
 
+  var docNeeded = false;
   var docFound = false;
   var curReqDocType = "";
 
@@ -34,6 +35,7 @@ try
   
     if (curReqDocType == "Zoning Verification Letter - One Parcel Request")
     {
+      docNeeded = true;
       var docListResult = aa.document.getCapDocumentList(capId,currentUserID);
   
       if (docListResult.getSuccess())
@@ -55,7 +57,7 @@ try
     }
   }
 
-  if (!(docFound))
+  if ((docNeeded) && (!(docFound)))
   {
     showMessage = true;
     comment("The document Zoning Verification Letter is required. Please add this document and submit again.");
