@@ -20,12 +20,8 @@
 // 
 //==================================================================*/
 
-
 try
 {
-
-  logDebug("script version: 20160830-4");
-
   if (
 	(appMatch("Permits/Document Retrieval/NA/NA")) ||
 	(appMatch("Permits/Demolition/NA/NA")) ||
@@ -35,25 +31,11 @@ try
 	(appMatch("Permits/Commercial/NA/NA")) ||
 	(appMatch("Permits/Addenda/NA/NA"))
 	)
-  {
-
-    logDebug("appTypeString : " + appTypeString );
-    //mkyOutput += "appTypeString : " + appTypeString + "\r";
-
-    logDebug("wfTask: " + wfTask);
-    //mkyOutput += "wfTask: " + wfTask + "\r";
-    logDebug("wfStatus: " + wfStatus);
-    //mkyOutput += "wfStatus: " + wfStatus + "\r";
-
+  {    
     if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
     {
       var turnAroundTime = AInfo["Turn Around Time"];
       var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
-
-      logDebug("turnAroundTime: " + turnAroundTime);
-      //mkyOutput += "turnAroundTime: " + turnAroundTime + "\r";
-      logDebug("theDate: " + theDate);
-      //mkyOutput += "theDate (before): " + theDate + "\r";
 
       editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
 
