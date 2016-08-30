@@ -25,18 +25,12 @@ try
   var tInfo = DOCUMENTTYPESREQUESTED
   var tInfoCount = tInfo.length;
 
-  //logDebug("tInfoCount: " + tInfoCount);
-  //mkyOutput += "tInfoCount: " + tInfoCount + " \r";
-
   var docFound = false;
   var curReqDocType = "";
 
   for (x=0;x<tInfoCount;x++)
   {
     curReqDocType = tInfo[x]["Document Type"];
-
-    //logDebug("curReqDocType: " + curReqDocType);
-    //mkyOutput += "curReqDocType: " + curReqDocType + " \r";
   
     if (curReqDocType == "Zoning Verification Letter - One Parcel Request")
     {
@@ -48,13 +42,9 @@ try
         var docCount = docListArray.length;
         var docCat = "";
 
-        //mkyOutput += "docCount: " + docCount + " \r";
- 
         for(x=0;x<docCount;x++)
         {
           docCat = docListArray[x].getDocCategory();
-
-          //mkyOutput += "docCat : " + docCat + " \r";
   
           if (docCat == "Zoning Verification Request")
           {
@@ -65,11 +55,9 @@ try
     }
   }
 
-  //logDebug("docFound: " + docFound);
-  //mkyOutput += "docFound: " + docFound + " \r";
-
   if (!(docFound))
   {
+    showMessage = true;
     comment("The document Zoning Verification Letter is required. Please add this document and submit again.");
     cancel = true;
   }
