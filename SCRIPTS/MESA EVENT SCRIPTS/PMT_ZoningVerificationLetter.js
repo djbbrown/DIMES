@@ -13,8 +13,8 @@
 //
 // Script Run Event: ASB, ASIUB
 // Script Parents:
-//              ASB;Engineering!Utilities!Non City!~
-//		ASIUB;Engineering!Utilities!Non City!~
+//              ASB;Permits/Document Retrieval/NA/NA
+//		ASIUB;Permits/Document Retrieval/NA/NA
 // 
 //==================================================================*/
 
