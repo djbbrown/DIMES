@@ -56,6 +56,8 @@ try
 
     }
   }
+
+  logDebug("script version: 20160830-4");
 }
 catch (err)
 {
