@@ -29,17 +29,24 @@ try {
 			r5_sum += (isNaN(thisR5)) ? 0 : thisR5
 			r5n_sum += (isNaN(thisR5N)) ? 0 : thisR5N
 		}
+		logDebug("R5 = " + r5_sum + " | R5N = " + r5n_sum)
+		
+		editAppSpecific("R-5 Area",r5_sum)
+		editAppSpecific("R-5N Area",r5n_sum)
+		editAppSpecific("Total Sq Ft",r5_sum+r5n_sum)
 		
 		wasR5Updated = false
 		wasR5NUpdated = false
-		for( r in occInfoASIT ){
+		for (r in occInfoASIT){
 			newRow = []
-			for (c in occInfoASIT[r] ){
+			for (c in occInfoASIT[r]){
 				if (c == "Sq Ft" && (""+occInfoASIT[r]["Occupancy Classification"].fieldValue) == "R-5 Livable") {
+					logDebug("Updating R5")
 					newRow[c] =  new asiTableValObj(c, r5_sum.toString(),"N")
 					wasR5Updated = true
 				}
 				else if (c == "Sq Ft" && (""+occInfoASIT[r]["Occupancy Classification"].fieldValue) == "R-5N Non-Livable") {
+					logDebug("Updating R5N")
 					newRow[c] =  new asiTableValObj(c, r5n_sum.toString(),"N")
 					wasR5NUpdated = true
 				}
@@ -50,6 +57,7 @@ try {
 		}
 		
 		if (!wasR5Updated) {
+			logDebug("Adding R5")
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5 Livable","N")
 			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "","N") //"VB Any Material (0 HR)"
@@ -58,6 +66,7 @@ try {
 			newOccInfoASIT.push(newRow)
 		}
 		if (!wasR5NUpdated) {
+			logDebug("Adding R5N")
 			newRow = []
 			newRow["Occupancy Classification"] =  new asiTableValObj("Occupancy Classification", "R-5N Non-Livable","N")
 			newRow["Type of Construction"] =  new asiTableValObj("Type of Construction", "","N") //"VB Any Material (0 HR)"
@@ -66,9 +75,7 @@ try {
 			newOccInfoASIT.push(newRow)
 		}
 		
-		editAppSpecific("R-5 Area",r5_sum)
-		editAppSpecific("R-5N Area",r5n_sum)
-		editAppSpecific("Total Sq Ft",r5_sum+r5n_sum)
+		
 		
 		removeASITable("OCCUPANCY  INFORMATION");
 		addASITable("OCCUPANCY  INFORMATION",newOccInfoASIT);

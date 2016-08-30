@@ -4,7 +4,7 @@
 // Script Description: Send an email to the complainant when a new record is created.
 // Script Run Event: ASA
 // Script Parents:ASA;Enforcement!Case!~!~
-//
+// Test Record: COR16-00081
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/09/16  |Steve Veloudos   |Initial Release
 //  1.1      |08/10/16  |Steve Veloudos   |Adj FromEmail
