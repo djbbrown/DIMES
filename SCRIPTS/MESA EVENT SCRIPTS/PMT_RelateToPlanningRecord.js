@@ -41,7 +41,8 @@ try
   else
   { 
     //mkyOutput += "ERROR: could not find parent planningNumber : " + planningNumber + " \r";
-    logDebug("**ERROR: could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
+    //logDebug("**ERROR: could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
+	logDebug("Could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
   }
 
 }
