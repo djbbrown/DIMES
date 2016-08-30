@@ -25,7 +25,7 @@ try
   var tInfo = DOCUMENTTYPESREQUESTED
   var tInfoCount = tInfo.length;
 
-  logDebug("tInfoCount: " + tInfoCount);
+  //logDebug("tInfoCount: " + tInfoCount);
   //mkyOutput += "tInfoCount: " + tInfoCount + " \r";
 
   var docFound = false;
@@ -35,7 +35,7 @@ try
   {
     curReqDocType = tInfo[x]["Document Type"];
 
-    logDebug("curReqDocType: " + curReqDocType);
+    //logDebug("curReqDocType: " + curReqDocType);
     //mkyOutput += "curReqDocType: " + curReqDocType + " \r";
   
     if (curReqDocType == "Zoning Verification Letter - One Parcel Request")
@@ -65,7 +65,7 @@ try
     }
   }
 
-  logDebug("docFound: " + docFound);
+  //logDebug("docFound: " + docFound);
   //mkyOutput += "docFound: " + docFound + " \r";
 
   if (!(docFound))
