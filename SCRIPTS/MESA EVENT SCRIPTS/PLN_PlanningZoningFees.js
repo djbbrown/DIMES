@@ -14,20 +14,9 @@
 /*==================================================================*/
 showDebug = false;
 try{
-	// get parcel acreage
 	var acres = 0;
-	//var capParcelResult = aa.parcel.getParcelandAttribute(capId,null);
-	//if (capParcelResult.getSuccess())
-	//{
-	//	var Parcels = capParcelResult.getOutput().toArray();
-	//	for (zz in Parcels)
-	//	{
-	//		acres += Parcels[zz].getParcelArea();
-	//	}
-	//}	
-	//else
-	//	logDebug("Error: Unable to access parcels");
-	var areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
+	areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
+	
 	for (i in areas) {
 		//logDebug("Area " + areas[i]["APN"] + ": " + (areas[i]["SHAPE_Area"] / 43560));
 		acres += (areas[i]["SHAPE_Area"] / 43560);
@@ -37,13 +26,38 @@ try{
 	var zoning = getGISInfo("Accela/Accela_Base", "Zoning Districts", "DSCR");
 	if (!zoning) logDebug("Zoning data not found for parcel.");
 	else {
-		if (zoning == "DC - Downtown Core"){
-			// inside downtown
-			addFee("PZ040","PLN_PZ","FINAL",acres,"N");
-		} else {
-			// outside downtown
-			addFee("PZ030","PLN_PZ","FINAL",acres,"N");	
-		} 
+		isDowntown = (zoning == "DC - Downtown Core")
+		
+		if( AInfo["Rezone"] == "CHECKED" ) {
+			if (isDowntown){
+				// inside downtown
+				addFee("PZ040","PLN_PZ","FINAL",acres,"N");
+			} else {
+				// outside downtown
+				addFee("PZ030","PLN_PZ","FINAL",acres,"N");	
+			}
+		
+		}
+		if( AInfo["Site Plan Review/Modification"] == "CHECKED" ) {
+			if (isDowntown){
+				// inside downtown
+				addFee("PZ060","PLN_PZ","FINAL",acres,"N");
+			} else {
+				// outside downtown
+				addFee("PZ050","PLN_PZ","FINAL",acres,"N");	
+			}
+		
+		}
+		if( AInfo["Combined Rezone and Site Plan Review /Modification"] == "CHECKED" ) {
+			if (isDowntown){
+				// inside downtown
+				addFee("PZ080","PLN_PZ","FINAL",acres,"N");
+			} else {
+				// outside downtown
+				addFee("PZ070","PLN_PZ","FINAL",acres,"N");	
+			}
+		
+		}
 	}
 } catch (err){
 	logDebug("A JavaScript Error occured: " + err.message);
