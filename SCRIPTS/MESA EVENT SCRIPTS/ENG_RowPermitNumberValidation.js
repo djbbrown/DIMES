@@ -18,29 +18,36 @@
 
 try
 {
+
   var rowPermitNo = AInfo["ROW Permit No."]; //"UTL16-00008";
-  var matchCapId = aa.cap.getCapID(rowPermitNo).getOutput();
 
-
-  if (matchCapId)
+  if (rowPermitNo != "")
   {
 
-    var matchCap = aa.cap.getCap(matchCapId).getOutput();
-    var rowRecordType = matchCap.getCapType().toString();
+    var matchCapId = aa.cap.getCapID(rowPermitNo).getOutput();
 
-    if (rowRecordType != "Engineering/Right Of Way/NA/NA")
+
+    if (matchCapId)
+    {
+
+      var matchCap = aa.cap.getCap(matchCapId).getOutput();
+      var rowRecordType = matchCap.getCapType().toString();
+
+      if (rowRecordType != "Engineering/Right Of Way/NA/NA")
+      {
+        showMessage = true;
+        comment("The ROW Permit No is not of type Engineering/Right of Way");
+        cancel = true;
+      }
+
+    }
+    else
     {
       showMessage = true;
-      comment("The ROW Permit No is not of type Engineering/Right of Way");
+      comment("The ROW Permit No is not valid");
       cancel = true;
     }
 
-  }
-  else
-  {
-    showMessage = true;
-    comment("The ROW Permit No is not valid");
-    cancel = true;
   }
 
 }
