@@ -6,7 +6,7 @@
 // Script Parents:ISRA;Enforcement!Case!~!~
 // Testing Record: COD16-00084
 // Version   |Date      |Engineer         |Details
-//  1.0      |08/30/16  |Steve Veloudos   |Initial Release
+//  1.0      |08/30/16  |Steve Veloudos   |Initial Release 
 /*==================================================================*/
 
 try {
