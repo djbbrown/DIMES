@@ -21,20 +21,17 @@
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /* reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" // only for asb events!! */
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 try
 {
-    logDebug(getAppSpecific("Flood Zone"));
-    if ( 
-        //isTaskActive("Permit Issuance") && 
-        taskStatus("Permit Issuance").toUpperCase() == "ISSUED" 
-    ) 
+    if (taskStatus("Permit Issuance").toUpperCase() == "ISSUED") 
     {
         logDebug("found record");
         // see if record is in a flood plain
         tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
         if (tagFieldArray && tagFieldArray.length > 0) 
-        {
+        {            
             if (IsStrInArry("FLDP", tagFieldArray)) 
             {
                 logDebug("record is in flood plain")
