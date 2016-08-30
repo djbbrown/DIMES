@@ -35,12 +35,12 @@ try
   {
 
     logDebug("appTypeString : " + appTypeString );
-    mkyOutput += "appTypeString : " + appTypeString + "\r";
+    //mkyOutput += "appTypeString : " + appTypeString + "\r";
 
     logDebug("wfTask: " + wfTask);
-    mkyOutput += "wfTask: " + wfTask + "\r";
+    //mkyOutput += "wfTask: " + wfTask + "\r";
     logDebug("wfStatus: " + wfStatus);
-    mkyOutput += "wfStatus: " + wfStatus + "\r";
+    //mkyOutput += "wfStatus: " + wfStatus + "\r";
 
     if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
     {
@@ -48,13 +48,13 @@ try
       var theDate = new Date();
 
       logDebug("turnAroundTime: " + turnAroundTime);
-      mkyOutput += "turnAroundTime: " + turnAroundTime + "\r";
+      //mkyOutput += "turnAroundTime: " + turnAroundTime + "\r";
       logDebug("theDate (before): " + theDate);
-      mkyOutput += "theDate (before): " + theDate + "\r";
+      //mkyOutput += "theDate (before): " + theDate + "\r";
 
       theDate = dateAdd(theDate,turnAroundTime ,'Y');
       logDebug("theDate (after): " + theDate);
-      mkyOutput += "theDate (after): " + theDate + "\r";
+      //mkyOutput += "theDate (after): " + theDate + "\r";
 
       editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
 
