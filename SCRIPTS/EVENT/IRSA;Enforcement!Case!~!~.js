@@ -6,3 +6,4 @@ include("ENF_CountyIslandEmail");
 include("ENF_Non_Violation");
 // added by Vance Smith (Mesa)
 include("ENF_NoViolationInspectionUpdateWFStatus");
+include("ENF_Enforcement_Email");
