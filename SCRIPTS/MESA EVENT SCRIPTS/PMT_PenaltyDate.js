@@ -45,19 +45,14 @@ try
     if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
     {
       var turnAroundTime = AInfo["Turn Around Time"];
-      var theDate = new Date();
+      var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
 
       logDebug("turnAroundTime: " + turnAroundTime);
       //mkyOutput += "turnAroundTime: " + turnAroundTime + "\r";
-      logDebug("theDate (before): " + theDate);
+      logDebug("theDate: " + theDate);
       //mkyOutput += "theDate (before): " + theDate + "\r";
 
-      theDate = dateAdd(theDate,turnAroundTime ,'Y');
-      logDebug("theDate (after): " + theDate);
-      //mkyOutput += "theDate (after): " + theDate + "\r";
-
-      //editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
-      editAppSpecific("Penalty Date", theDate);
+      editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
 
     }
   }
