@@ -23,7 +23,6 @@
 
 try
 {
-	getLastInspector
 	var getInspectionsResult = aa.inspection.getInspections(capId);
 
 	if (getInspectionsResult.getSuccess()) 
