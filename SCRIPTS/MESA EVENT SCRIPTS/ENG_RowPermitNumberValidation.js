@@ -32,7 +32,9 @@ try
 
   if (rowRecordType != "Engineering/Right of Way/NA/NA")
   {
-    aa.env.setValue("ScriptReturnMessage", "ROW not found");
+    showMessage = true;
+    comment("The ROW Permit No is not valid");
+    cancel = true;
   }
 
 }
