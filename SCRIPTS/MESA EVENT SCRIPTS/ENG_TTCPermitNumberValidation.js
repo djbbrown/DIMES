@@ -34,7 +34,8 @@ try
       var matchCap = aa.cap.getCap(matchCapId).getOutput();
       var rowRecordType = matchCap.getCapType().toString();
 
-      if (rowRecordType != "Engineering/Temp Traffic Control/NA/NA")
+      if ((rowRecordType != "Transportation/Temporary Traffic Control/Modification/NA") &&
+	(rowRecordType != "Transportation/Temporary Traffic Control/NA/NA"))
       {
         showMessage = true;
         comment("The TTC Permit No is not of type Engineering/Temp Traffic Control");
