@@ -23,6 +23,9 @@
 
 try
 {
+
+  logDebug("script version: 20160830-4");
+
   if (
 	(appMatch("Permits/Document Retrieval/NA/NA")) ||
 	(appMatch("Permits/Demolition/NA/NA")) ||
@@ -56,8 +59,6 @@ try
 
     }
   }
-
-  logDebug("script version: 20160830-4");
 }
 catch (err)
 {
