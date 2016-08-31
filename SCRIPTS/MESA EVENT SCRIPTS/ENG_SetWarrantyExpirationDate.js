@@ -14,6 +14,11 @@
 
 try
 {
+	//mkyOutput += "wfTask.equals(LOA): "+wfTask.equals("LOA")+" \r";
+	logDebug("wfTask.equals(LOA): "+wfTask.equals("LOA"));
+	//mkyOutput += "wfStatus.equals(Letter Sent):"+wfStatus.equals("Letter Sent")+" \r";
+	logDebug("wfStatus.equals(Letter Sent):"+wfStatus.equals("Letter Sent"));
+
 	if (wfTask.equals("LOA") && wfStatus.equals("Letter Sent")) {
 		var taskStatusDate = taskStatusDate("LOA");
 		// set ASI field for Warranty Expiration Date to 100 days from the status date
