@@ -3,6 +3,12 @@ This file if a referance of avalible methods and classes in refernce to Accela s
 best use leave open when programming w/ Atom IO or another IDE that can autocomplete from any open buffer.
 */
 //Methods of aa
+/*var ab = function() { 
+  hashCode = new function(){};
+  return {
+    hashCode: hashCode
+  };
+}();*/
 aa.hashCode();
 aa.runAdHoc();
 aa.runOracleReport();
