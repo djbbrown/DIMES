@@ -7,6 +7,3 @@ include("PLN_AutopopulateZoningClassification");
 include("PLN_NetSiteSize");
 include("PLN_GrossDUACCalc");
 include("PLN_NetDUACCalc");
-
-// added by Vance Smith (Mesa)
-include("PLN_AutopopulateGeneralPlanDesignation");
