@@ -55,8 +55,8 @@ try
     pseudocode
     DONE 1) get Priority field in record detail. 
     DONE 2) see if it is set to "Normal"
-    3) if so, schedule "Initial Inspection" on the next working day (5 day cal)
-    4) assign to Code Officer based on GIS layer
+    DONE 3) if so, schedule "Initial Inspection" on the next working day (5 day cal)
+    4) assign to Code Officer based on GIS layer (?)
     */
 }
 catch (err)
