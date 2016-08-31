@@ -36,13 +36,15 @@ if(AInfo["Notify Complainant"] == "Yes")
             if(inspectionScriptModel.getInspectionStatus() !="Scheduled")
                 {
                 
-		        //Push completed inspections (nor scheduled) into new array inspectionScriptModels2
+		        //Push completed inspections (not scheduled) into new array inspectionScriptModels2
                 inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
                 inspectionScriptModels2.push(inspectionScriptModel);
                 }
             }
                  
-                    //Get the Inspection Date of last inspection completed
+                    //Get the Inspection Date of last inspection completed if the 2nd array has data
+                    if(inspectionScriptModels2.length > 0)
+                    {
                     var thedate = inspectionScriptModels2[0].getInspectionDate();
                     var InDate =   new Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
                     InspectionDate = jsDateToASIDate(InDate);
@@ -53,7 +55,7 @@ if(AInfo["Notify Complainant"] == "Yes")
                     var CoObject = aa.person.getUser( inspectionScriptModels2[0].getInspector().getFirstName(),inspectionScriptModels2[0].getInspector().getMiddleName(),inspectionScriptModels2[0].getInspector().getLastName()).getOutput();
                     CoEmail = CoObject.getEmail();
                     CoPhone = CoObject.getPhoneNumber();
-
+                    }
       } //End of Inspection sucess 
                  //Get the address
                   var capAddResult = aa.address.getAddressByCapId(capId);
