@@ -11,3 +11,18 @@
 //		WTUA;Engineering!Right of Way!~!~
 //             
 /*==================================================================*/
+
+
+try
+{
+	if (wfTask.equals("LOA") && wfStatus.equals("Letter Sent")) {
+		var taskStatusDate = taskStatusDate("LOA");
+		// set ASI field for Warranty Expiration Date to 100 days from the status date
+		var expDate = dateAdd(taskStatusDate, 100);	
+		editAppSpecific("Warranty Expiration Date", expDate);
+	}
+}
+catch (err)
+{
+  logDebug("A JavaScript Error occured: " + err.message);
+}
