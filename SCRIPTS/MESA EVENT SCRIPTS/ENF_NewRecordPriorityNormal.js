@@ -12,6 +12,7 @@
 
 // Script Parents:
 //	ASA;Enforcement!Case!~!~ 
+//  ASIUA;Enforcement!Case!~!~  
 //            
 /*==================================================================*/
 
@@ -37,8 +38,20 @@ try
             {
                 // schedule initial inspection on the next working day (5 day cal)
                 var nextWorkingDay = dateAdd(null, 1, "Y");
-                //var inspector = null;
-                scheduleInspectDate("Initial Inspection", nextWorkingDay);//, inspector);
+
+                // get the inspector for this boundary          
+                var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");
+                if (inspector) 
+                {
+                    logDebug("Inspector: " + inspector);
+                    // schedule initial inspection for today 
+                    scheduleInspectDate("Initial Inspection", nextWorkingDay, inspector);
+                }
+                else
+                {
+                    // schedule initial inspection for today 
+                    scheduleInspectDate("Initial Inspection", nextWorkingDay);
+                }
                 logDebug("Scheduled Inspection Date for " + nextWorkingDay);
             }
         }
