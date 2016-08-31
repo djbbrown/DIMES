@@ -56,7 +56,7 @@ try {
         if(StatusType == 1)
         {
             //Email Staff
-            ToEmail = lookup("EMAIL_RECIPIENTS","Planning_Staff_Application_Withdrawn");
+            ToEmail = lookup("EMAIL_RECIPIENTS","PLN_Planning_Staff_Application_Withdrawn");
             sendNotification(FromEmail, ToEmail, "", "WITHDRAWN NOTIFICATION - STAFF", vEParams, null, capId);
             
             //Email Applicant
@@ -69,7 +69,7 @@ try {
         if(StatusType == 2)
         {
             //Email Staff
-            ToEmail = lookup("EMAIL_RECIPIENTS","Planning_Staff_Application_Distribution");
+            ToEmail = lookup("EMAIL_RECIPIENTS","PLN_Planning_Staff_Application_Distribution");
             sendNotification(FromEmail, ToEmail, "", "DISTRIBUTION LIST - STAFF", vEParams, null, capId);
             
             //Email Applicant
