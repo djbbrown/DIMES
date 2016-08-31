@@ -19,6 +19,7 @@ var fromEmail = "noreply@MesaAz.gov";
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"){
 	var vEParams = aa.util.newHashtable();
 	var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
+	if (!tmpTable) tmpTable = loadASITable("UTILITY SERVICE INFO");
 	if (tmpTable && tmpTable!=null && tmpTable.length > 0) {
 		for (rowIndex in tmpTable) {
 			thisRow = tmpTable[rowIndex];
@@ -37,8 +38,7 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 					addParameter(vEParams,"$$QTY OF METERS$$", "" + thisRow["Qty of Meters"].fieldValue);
 					addParameter(vEParams,"$$WARRANTY STATUS$$", "" + thisRow["Warranty Status"].fieldValue);
 					addParameter(vEParams,"$$COMMENTS$$", "" + thisRow["Comments"].fieldValue);
-					emailAddress = "Lauren.Lupica@MesaAZ.gov";
-					//emailAddress = 'customerinfobillingops@mesaaz.gov';
+					emailAddress = lookup("Email_Recipients", "PMT_Gas_Clearance_Mesa");
 					
 					conArr = getContactObjs(capId);
 					if (conArr && conArr.length > 0) {
@@ -67,8 +67,7 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 					addParameter(vEParams,"$$QTY OF METERS$$", "" + thisRow["Qty of Meters"].fieldValue);
 					addParameter(vEParams,"$$WARRANTY STATUS$$", "" + thisRow["Warranty Status"].fieldValue);
 					addParameter(vEParams,"$$COMMENTS$$", "" + thisRow["Comments"].fieldValue);
-					emailAddress = "Lauren.Lupica@MesaAZ.gov";
-					//emailAddress = 'gasinspectiontag@swgas.com';
+					emailAddress = lookup("Email_Recipients", "PMT_Gas_Clearance_Mesa");
 					
 					conArr = getContactObjs(capId);
 					if (conArr && conArr.length > 0) {
