@@ -10,7 +10,8 @@
 // Script Run Event: ASA
 
 // Script Parents:
-//	ASA;Enforcement!Case!~!~ 
+//	ASA;Enforcement!Case!~!~
+//  ASIUA;Enforcement!Case!~!~  
 //            
 /*==================================================================*/
 
@@ -34,9 +35,19 @@ try
             logDebug("Priority: " + priority);
             if (priority == "Priority")
             {
-                // schedule initial inspection for today
-                //var inspector = null;
-                scheduleInspectDate("Initial Inspection", new Date());//, inspector);
+                // get the inspector for this boundary          
+                var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");
+                if (inspector) 
+                {
+                    logDebug("Inspector: " + inspector);
+                    // schedule initial inspection for today 
+                    scheduleInspectDate("Initial Inspection", new Date(), inspector);
+                }
+                else
+                {
+                    // schedule initial inspection for today 
+                    scheduleInspectDate("Initial Inspection", new Date());
+                }
                 logDebug("Scheduled Inspection Date for " + new Date());
             }
         }
