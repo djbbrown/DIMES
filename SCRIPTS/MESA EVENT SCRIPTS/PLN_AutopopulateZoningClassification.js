@@ -5,11 +5,16 @@
 // Script Agency: Mesa
 // Script Description: 	
 Auto populate the ASI field "Existing Zoning" from GIS attribute.
-// Script Run Event: ASA
+// Script Run Event: ASA, ASIUA
 // Script Parents:
 //		ASA;Planning!Admin Review!NA!NA
-//		ASA;Planning!Subdivision!NA!NA
 //		ASA;Planning!Pre-Submittal!NA!NA
+//		ASA;Planning!Subdivision!NA!NA
+//
+//		ASIUA;Planning!Admin Review!NA!NA
+//		ASIUA;Planning!Pre-Submittal!NA!NA
+//		ASIUA;Planning!Subdivision!NA!NA
+//
 /*==================================================================*/
 
 try
