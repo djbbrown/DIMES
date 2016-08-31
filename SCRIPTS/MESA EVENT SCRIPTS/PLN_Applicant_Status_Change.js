@@ -2,7 +2,7 @@
 // Script Number: 243
 // Script Name: PLN_Applicant_Status_Change.js
 // Script Description: Send email to Applicant for record status changes   
-// Script Run Event: WTUA;Planning!Pre Submittal!~!~
+// Script Run Event: WTUA;Planning!Pre-Submittal!~!~
 // Testing Record: PMT16-00498
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/31/16  |Steve Veloudos   |Initial Release 
