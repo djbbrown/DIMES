@@ -18,5 +18,5 @@
 	//logDebug("totalFee65pct = " + totalFee65pct);
 	if (totalFee65pct > 0 ) {
 		removeFee("SGN010", "FINAL");  //removing fee only for ACA in case user comes back to fee page.
-		addFeeWithQty("SGN010", "PMT_SIGNS", "FINAL", 1, totalFee65pct, "N");
+		addFee("SGN010", "PMT_SIGNS", "FINAL", totalFee65pct, "N");
 	} 
