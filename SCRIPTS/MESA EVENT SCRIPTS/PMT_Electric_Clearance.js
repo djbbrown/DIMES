@@ -13,6 +13,7 @@
 //  1.0      |08/26/16  |Steve Veloudos   |Initial Release
 //  1.1      |08/28/16  |Steve Veloudos   |Added parms for ASIT values
 //  1.2      |08/29/16  |Steve Veloudos   |Added Std Choices for Email Addresses
+//  1.3      |09/01/16  |Steve Veloudos   |Fixed issues with a few ASIT fields
 /*==================================================================*/
 
 try {
@@ -64,12 +65,12 @@ try {
                                 ServiceType = "Service Type: " + (tInfo[x]["Service Type"]);
                                 ServiceSize = "Service Size: "  + (tInfo[x]["Service Size"]); 
                                 MeterSize = "Meter Size: "  + (tInfo[x]["Meter Size"]);
-                                BTULoadNumber = "BTU Load Number: "  + (tInfo[x]["BTU Load(Number)"]); 
+                                BTULoadNumber = "BTU Load Number: "  + (tInfo[x]["BTU Load"]); 
                                 ClearanceTo =  "Clearance To: "  + (tInfo[x]["Clearance To"]);
                                 ClearanceDate2 = "Clearance Date: " + ClearanceDate;
-                                QtyofMeters = "Qty of Meters: "  + (tInfo[x]["Qty of Meters(Number)"]);
+                                QtyofMeters = "Qty of Meters: "  + (tInfo[x]["Qty of Meters"]);
                                 WarrantyStatus = "Warranty Status: "  + (tInfo[x]["Warranty Status"]);
-                                Comments =  "Comments: "  + (tInfo[x]["Comments(Text Area)"]);
+                                Comments =  "Comments: "  + (tInfo[x]["Comments"]);
                                 
                                 var Clearance = (tInfo[x]["Clearance To"]);
                                     //Set to Email

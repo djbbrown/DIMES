@@ -10,8 +10,8 @@
 // Script Run Event: ASA
 
 // Script Parents:
-//	ASA;Enforcement!Case!~!~
-//  ASIUA;Enforcement!Case!~!~  
+//	ASA;Enforcement!Case!Building Issue!NA
+//  ASIUA;Enforcement!Case!Building Issue!NA
 //            
 /*==================================================================*/
 
