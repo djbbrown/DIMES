@@ -31,12 +31,10 @@ try
     if (getCapResult.getSuccess())
     {
       addParent("" + presubNumber);
-      //mkyOutput += "The Pre-Submittal Number ("+presubNumber+") was added as parent. \r";
-      comment("The Pre-Submittal Number ("+presubNumber+") was not found. Please verify this is a valid number.");
+      //comment("The Pre-Submittal Number ("+presubNumber+") was added as parent.");
     }
     else
     {
-      //mkyOutput += "The Pre-Submittal Number ("+presubNumber+") was not found. Please verify this is a valid number. \r";
       showMessage = true;
       comment("The Pre-Submittal Number ("+presubNumber+") was not found. Please verify this is a valid number.");
       //cancel = true;  // uncomment if record creation/updating blocking is requested in the future
@@ -45,7 +43,6 @@ try
   }
   else
   {
-    //mkyOutput += "The Pre-Submittal Number was not entered. \r";
     //comment("The Pre-Submittal Number was not entered.");
     //cancel = true;  // uncomment if record creation/updating blocking is requested in the future
   }
