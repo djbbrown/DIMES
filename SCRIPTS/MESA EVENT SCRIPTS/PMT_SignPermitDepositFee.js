@@ -17,5 +17,5 @@
 	var totalFee65pct = Math.ceil((totalFee * .65) * 100)/100;
 	//logDebug("totalFee65pct = " + totalFee65pct);
 	if (totalFee65pct > 0 ) {
-		addFee("SGN010", "PMT_SIGNS", "FINAL",  totalFee65pct, "N");
+		addFeeWithQty("SGN010", "PMT_SIGNS", "FINAL", 1, totalFee65pct, "N");
 	} 
