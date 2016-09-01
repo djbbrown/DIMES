@@ -21,16 +21,13 @@ try
 {
   
   var numOfDays = parseInt(AInfo["Number of Event Days"]);
-  numOfDays = 5;
-  //mkyOutput += "numOfDays: " + numOfDays + " \r";
-
+  
   if ((wfTask == "License Application")
         && (wfStatus == "Submitted")
         && (numOfDays > 4))
   {
 
     var supCaseNumber = AInfo["SUP Case Number"];
-    comment("supCaseNumber: " + supCaseNumber );
 
     if (supCaseNumber != "")
     {
@@ -41,29 +38,22 @@ try
       if (getCapResult.getSuccess())
       {
         addParent("" + supCaseNumber);
-        //mkyOutput += "supCaseNumber found: " + supCaseNumber + ", parentId: " + parentId + " \r";
-        //logDebug("SUP Case Number found and added as parent");
-        showMessage = true;
-        comment("SUP Case Number found and added as parent");
-        cancel = true;
+        //showMessage = true;
+        //comment("SUP Case Number found and added as parent");
       }
       else
       { 
-        //mkyOutput += "The SUP Case No " + supCaseNumber + " is not a valid Case No \r";
         showMessage = true;
         comment("A valid SUP Case No is required for Special Events over 4 days, the current SUP Case No ("+ supCaseNumber +") is not valid.");
         cancel = true;
-        //logDebug("The SUP Case No " + supCaseNumber + " is not a valid Case No");
       }
 
     } 
     else 
     {
-      //mkyOutput += "The SUP Case No is required for Special Events over 4 days";
       showMessage = true;
       comment("The SUP Case No is required for Special Events over 4 days");
       cancel = true;
-      //logDebug("The SUP Case No is required for Special Events over 4 days");  
     }
 
   }
