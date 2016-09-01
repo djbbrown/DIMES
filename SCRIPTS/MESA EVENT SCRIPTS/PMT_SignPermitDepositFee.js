@@ -13,9 +13,9 @@
 	var totalSignSqFt = AInfo["Total Sign Square Footage"];
 	var totalFee = 0;
 	totalFee = (102.4 + (0.03 * totalSignValuation) + (0.3 * totalSignSqFt));
-	logDebug("Total Fee: " + totalFee);
+	//logDebug("Total Fee: " + totalFee);
 	var totalFee65pct = Math.ceil((totalFee * .65) * 100)/100;
-	logDebug("totalFee65pct = " + totalFee65pct);
+	//logDebug("totalFee65pct = " + totalFee65pct);
 	if (totalFee65pct > 0 ) {
 		addFee("SGN010", "PMT_SIGNS", "FINAL",  totalFee65pct, "N");
 	} 
