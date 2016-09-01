@@ -30,7 +30,7 @@ try
   {
 
     var supCaseNumber = AInfo["SUP Case Number"];
-    comment("SUP Case Number found and added as parent");
+    comment("supCaseNumber: " + supCaseNumber );
 
     if (supCaseNumber != "")
     {
