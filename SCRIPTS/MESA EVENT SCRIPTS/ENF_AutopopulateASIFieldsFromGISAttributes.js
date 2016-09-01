@@ -14,11 +14,13 @@
 
 // ASB;Permits!Demolition!NA!NA - Zoning, Land Use
 // ASB;Permits!Residential!Mobile Home!NA - Flood Zone
+// ASB;Permits!Sign!NA!NA - Flood Zone
 // ASB;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 // ASB;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 
 // ASIUB;Permits!Demolition!NA!NA
 // ASIUB;Permits!Residential!Mobile Home!NA - Flood Zone, Base Flood Elevation
+// ASIUB;Permits!Sign!NA!NA - Flood Zone
 // ASIUB;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 // ASIUB;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 
@@ -104,7 +106,7 @@ try
     //if ( floodZone ) { // NOTE: turns out this is a boolean, so always write if the correct record type
         if ( 
             appMatch("Permits/Residential/Mobile Home/NA") ||
-            //appMatch("Permits/Sign/NA/NA") || // removed cause there is no "Flood Zone" in Permits/Sign/NA/NA
+            appMatch("Permits/Sign/NA/NA") || 
             appMatch("Permits/Commercial/NA/NA") ||
             appMatch("Permits/Residential/NA/NA")
         )
@@ -136,8 +138,8 @@ try
 
     /* pseudocode
 
-    1) check record type to know what fields need to be autopopulated
-    2) get gis data
+    1) get gis data
+    2) check record type to know what fields need to be autopopulated
     3) edit fields
 
     */
