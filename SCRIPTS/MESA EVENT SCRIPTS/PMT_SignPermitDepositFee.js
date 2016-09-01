@@ -17,5 +17,6 @@
 	var totalFee65pct = Math.ceil((totalFee * .65) * 100)/100;
 	//logDebug("totalFee65pct = " + totalFee65pct);
 	if (totalFee65pct > 0 ) {
-		addFee("SGN010", "PMT_SIGNS", "FINAL",  totalFee65pct, "N");
+		removeFee("SGN010", "FINAL");  //removing fee only for ACA in case user comes back to fee page.
+		addFee("SGN010", "PMT_SIGNS", "FINAL", totalFee65pct, "N");
 	} 
