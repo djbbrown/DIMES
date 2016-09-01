@@ -30,7 +30,7 @@ try {
       var QtyofMeters;
       var WarrantyStatus;
       var Comments;
-
+      
       //Get the Inspection results
       var getInspectionsResult = aa.inspection.getInspections(capId);
 
@@ -82,52 +82,55 @@ try {
                                     {
                                         ToEmail =lookup("EMAIL_RECIPIENTS","SRP");
                                     }
-                                }                     
-                            }
-                                //Compare dates 
-                                if( currentDate == ClearanceDate )
-                                {
-                                
-                                //Get the address
-                                var capAddResult = aa.address.getAddressByCapId(capId);
-                                if (capAddResult.getSuccess())
+                               
+                                    //Compare dates 
+                                    if( currentDate == ClearanceDate )
                                     {
-                                    var addrArray = new Array();
-                                    var addrArray = capAddResult.getOutput();
-                                        if (addrArray.length==0 || addrArray==undefined)
-                                        {
-                                        logDebug("The current CAP has no address.")
-                                        }
-                                    else
-                                        {
-                                        //Break Out each element of the address
-                                        var hseNum = addrArray[0].getHouseNumberStart();
-                                        var streetDir = addrArray[0].getStreetDirection();
-                                        var streetName = addrArray[0].getStreetName();
-                                        var streetSuffix = addrArray[0].getStreetSuffix();
-                                        var city = addrArray[0].getCity();
-                                        var state = addrArray[0].getState();
-                                        var zip = addrArray[0].getZip();
                                     
-                                        var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix + " " + city + ", " + state + " " + zip;
+                                    //Get the address
+                                    var capAddResult = aa.address.getAddressByCapId(capId);
+                                    if (capAddResult.getSuccess())
+                                        {
+                                        var addrArray = new Array();
+                                        var addrArray = capAddResult.getOutput();
+                                            if (addrArray.length==0 || addrArray==undefined)
+                                            {
+                                            logDebug("The current CAP has no address.")
+                                            }
+                                        else
+                                            {
+                                            //Break Out each element of the address
+                                            var hseNum = addrArray[0].getHouseNumberStart();
+                                            var streetDir = addrArray[0].getStreetDirection();
+                                            var streetName = addrArray[0].getStreetName();
+                                            var streetSuffix = addrArray[0].getStreetSuffix();
+                                            var city = addrArray[0].getCity();
+                                            var state = addrArray[0].getState();
+                                            var zip = addrArray[0].getZip();
+                                        
+                                            var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix + " " + city + ", " + state + " " + zip;
+                                            }
                                         }
-                                    }
 
-                                addParameter(vEParams,"$$RECORDID$$",capIDString);
-                                addParameter(vEParams,"$$Address$$",theAddress);
-                                addParameter(vEParams,"$$ServiceType$$",ServiceType);
-                                addParameter(vEParams,"$$ServiceSize$$",ServiceSize);
-                                addParameter(vEParams,"$$MeterSize$$",MeterSize);
-                                addParameter(vEParams,"$$BTULoadNumber$$",BTULoadNumber);
-                                addParameter(vEParams,"$$ClearanceTo$$",ClearanceTo);
-                                addParameter(vEParams,"$$ClearanceDate2$$",ClearanceDate2);
-                                addParameter(vEParams,"$$QtyofMeters$$",QtyofMeters);
-                                addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
-                                addParameter(vEParams,"$$Comments$$",Comments);
+                                    addParameter(vEParams,"$$RECORDID$$",capIDString);
+                                    addParameter(vEParams,"$$Address$$",theAddress);
+                                    addParameter(vEParams,"$$ServiceType$$",ServiceType);
+                                    addParameter(vEParams,"$$ServiceSize$$",ServiceSize);
+                                    addParameter(vEParams,"$$MeterSize$$",MeterSize);
+                                    addParameter(vEParams,"$$BTULoadNumber$$",BTULoadNumber);
+                                    addParameter(vEParams,"$$ClearanceTo$$",ClearanceTo);
+                                    addParameter(vEParams,"$$ClearanceDate2$$",ClearanceDate2);
+                                    addParameter(vEParams,"$$QtyofMeters$$",QtyofMeters);
+                                    addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
+                                    addParameter(vEParams,"$$Comments$$",Comments);
+                                    
+                                    //Send the email
+                                    sendNotification(FromEmail, ToEmail, "", "PMT_ELECTRIC_CLEARANCE", vEParams, null, capId);    
+                                    }
+                                } 
+
+                            }
                                 
-                                //Send the email
-                                sendNotification(FromEmail, ToEmail, "", "PMT_ELECTRIC_CLEARANCE", vEParams, null, capId);    
-                                }
                         }
                        } 
                     }                 
