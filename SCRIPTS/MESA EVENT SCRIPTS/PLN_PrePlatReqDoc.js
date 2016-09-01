@@ -20,29 +20,22 @@ try
 {
   
   var prePlat = AInfo["Pre-Plat"];
-  //mkyOutput += "prePlat: "+prePlat+" \r";
   var docCat = "";
   var docNeeded = true;
 
   if (prePlat)
   {
-    //mkyOutput += "  Checking for documents \r";
-
     var docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
 
     if (docListResult.getSuccess()) 
     {
-      //mkyOutput += "  Document list loaded \r";
-
       docListArray = docListResult.getOutput()
       docCount = docListArray.length;
-      //mkyOutput += "  docCount: "+docCount+" \r";
 
       for(x in docListArray)
       {
         docCat = docListArray[x].getDocCategory();
-        //mkyOutput += "  doc("+x+") Category: "+docCat+" \r";
-
+        
         if (docCat == "Drawings")
         {
           docNeeded = false;
@@ -53,8 +46,6 @@ try
     if (docNeeded)
     {
       commentBlah = "The following document is required for Request Types of Pre-Plat: Drawings";
-
-      //mkyOutput += "" + commentBlah + " \r";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
