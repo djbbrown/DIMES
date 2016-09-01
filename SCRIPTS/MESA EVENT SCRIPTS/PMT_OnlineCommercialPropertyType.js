@@ -17,8 +17,8 @@
 try
 {
 	if( getAppSpecific("Property Type") == "Commercial") {
-		logDebug("Property Type -> Commercial");
-		logDebug("Setting Type of Work to Construction Noise Permit");
+		//logDebug("Property Type -> Commercial");
+		//logDebug("Setting Type of Work to Construction Noise Permit");
 		editAppSpecific("Type of Work", "Construction Noise Permit");
 	}
 }
