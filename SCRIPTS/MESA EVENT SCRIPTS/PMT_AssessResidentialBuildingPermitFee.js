@@ -35,7 +35,7 @@ if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus ==
 	addFee("ONL010","PMT_ONL", "FINAL",  tNumInsp, "N");
 }
 else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
-		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req"))){	
+		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req")))){	
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
 	tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
