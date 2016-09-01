@@ -31,14 +31,8 @@ var Online = ["Residential Electrical 200a or smaller", "Residential Electrical 
 if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus == "Ready to Issue" && exists(typeOfWork,Online))
 {
 	// Get the value for the total number of inspections
-	tNumInsp += parseFloat(AInfo["Required Number of Inspections"]||0);
-	feeAmount = 90; // Base Fee
-	feeAmount = feeAmount + (90 * tNumInsp);
-	if(feeAmount > 0){
-		//addFee(fcode, fsched, fperiod, fqty, finvoice)
-		aa.print("Adding fee: "+feeAmount);
-		addFee("ONL010","PMT_ONL", "FINAL",  feeAmount, "Y");
-	}
+	tNumInsp = parseFloat(AInfo["Required Number of Inspections"]);
+	addFee("ONL010","PMT_ONL", "FINAL",  tNumInsp, "N");
 }
 else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 	// Get the value for the total number of inspections (ASI)
