@@ -51,7 +51,7 @@ try
       { 
         //mkyOutput += "The SUP Case No " + supCaseNumber + " is not a valid Case No \r";
         showMessage = true;
-        comment("The SUP Case No is required for Special Events over 4 days");
+        comment("A valid SUP Case No is required for Special Events over 4 days, the current SUP Case No ("+ supCaseNumber +") is not valid.");
         cancel = true;
         //logDebug("The SUP Case No " + supCaseNumber + " is not a valid Case No");
       }
