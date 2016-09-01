@@ -16,7 +16,10 @@
 var tNumInsp = 0;
 var valuationASI = 0;
 var feeAmount = 0;
-var typeOfWork = AInfo["Type of work"];
+
+//type of work ASI different naming between Online and Residential records 
+var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
+
 // Residential Type of Work Check
 var residential = ["Single Family (Detached)", "Single Family (Attached)", "Two-Family Duplex", "Guesthouse",
                    "Remodeling With Addition", "Renovations/Remodels", "Additions", "Garage/Carport", "Non-Structural",
