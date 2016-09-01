@@ -13,7 +13,7 @@
 //
 // Script Run Event: WTUB
 // Script Parents:
-//             WTUB;License!General!SpecialEvent!Application.js
+//             WTUB;Licenses!General!SpecialEvent!Application.js
 // 
 //==================================================================*/
 
@@ -30,6 +30,7 @@ try
   {
 
     var supCaseNumber = AInfo["SUP Case Number"];
+    comment("SUP Case Number found and added as parent");
 
     if (supCaseNumber != "")
     {
@@ -41,7 +42,10 @@ try
       {
         addParent("" + supCaseNumber);
         //mkyOutput += "supCaseNumber found: " + supCaseNumber + ", parentId: " + parentId + " \r";
-        logDebug("SUP Case Number found and added as parent");
+        //logDebug("SUP Case Number found and added as parent");
+        showMessage = true;
+        comment("SUP Case Number found and added as parent");
+        cancel = true;
       }
       else
       { 
