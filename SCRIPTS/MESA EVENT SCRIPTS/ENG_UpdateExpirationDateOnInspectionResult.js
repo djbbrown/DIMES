@@ -7,8 +7,8 @@
 //                     a status of "Approved" or "Partial Approved",
 //                     set the ASI field "Permit Expiration Date" to
 //                     the inspection result date plus 120 days.
-//                     (for Engineering/Utilities/Non-City/* -> 120 days)
-//                     (for Engineering/Right of Way/*/* -> 180 days)
+//                     (for Engineering!Utilities!Non-City!~ -> 120 days)
+//                     (for Engineering!Right of Way!~!~ -> 180 days)
 // Script Run Event: IRSA
 // Script Parents:
 //		IRSA;Engineering!Utilities!Non-City!~
