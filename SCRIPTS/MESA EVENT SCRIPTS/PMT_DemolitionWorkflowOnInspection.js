@@ -31,9 +31,9 @@ try
 			//if(isTaskActive("Inspection")) { logDebug("Inspection task is active..."); }
 			//if(matches(inspStatus, "Scheduled")) { logDebug("taskStatus: " + taskStatus("Inspection")); }
 			if (inspType == "Demo Final" && inspStatus == "Approved") {
-				//logDebug("Inspections Task Status: " + taskStatus("Inspection"));
+				logDebug("Inspections Task Status: " + taskStatus("Inspection"));
 				updateTask("Inspection", "Final Inspection Complete", "", "");
-				//logDebug("Inspection Workflow Task Status (after update): " + taskStatus("Inspection"));
+				logDebug("Inspection Workflow Task Status (after update): " + taskStatus("Inspection"));
 			}
 		}
 	}
