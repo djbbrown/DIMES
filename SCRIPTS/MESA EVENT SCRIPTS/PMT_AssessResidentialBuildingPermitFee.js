@@ -16,7 +16,10 @@
 var tNumInsp = 0;
 var valuationASI = 0;
 var feeAmount = 0;
-var typeOfWork = AInfo["Type of work"];
+
+//type of work ASI different naming between Online and Residential records 
+var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
+
 // Residential Type of Work Check
 var residential = ["Single Family (Detached)", "Single Family (Attached)", "Two-Family Duplex", "Guesthouse",
                    "Remodeling With Addition", "Renovations/Remodels", "Additions", "Garage/Carport", "Non-Structural",
@@ -24,20 +27,15 @@ var residential = ["Single Family (Detached)", "Single Family (Attached)", "Two-
 // Mobile Home Type of Work Check
 var mobileHome = ["Mobile Home Other Addition", "Park Model Other Addition", "Park Model Rebuild"];
 // Online Type of Work Check.
-var Online = ["Residential Electrical 200a or smaller", "Residential Electrical Repair (like for Like)", "Residential Gas Pressure","Residential Gas line repair/replace"];
-if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus == "Ready to Issue" && exsits(typeOfWork,mobleHome))
+var Online = ["Residential Electrical 200a or smaller", "Residential Electrical Repair (Like for Like)", "Residential Gas Pressure","Residential Gas Line Repair/Replace"];
+if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus == "Ready to Issue" && exists(typeOfWork,Online))
 {
 	// Get the value for the total number of inspections
-	tNumInsp = AInfo["Required Number of Inspections"];
-	feeAmount = 90; // Base Fee
-	feeAmount = feeAmount + (90 * tNumInsp);
-	if(feeAmount > 0){
-		//addFee(fcode, fsched, fperiod, fqty, finvoice)
-		aa.print("Adding fee: "+feeAmount);
-		addFee("RDIF170","PMT_ONL", "FINAL",  feeAmount, "Y");
-	}
+	tNumInsp = parseFloat(AInfo["Required Number of Inspections"]);
+	addFee("ONL010","PMT_ONL", "FINAL",  tNumInsp, "N");
 }
-else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
+else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
+		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req")))){	
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
 	tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
@@ -96,11 +94,10 @@ else if (appTypeArray[1] == 'Residential' && wfTask == "Plans Coordination" && w
 		// Calculate the difference
 		feeAmount = feeAmount - prePay;
 		aa.print("Adding fee: "+feeAmount);
-		addFee("RES060","PMT_RES", "FINAL",feeAmount, "Y");
+		addFee("RES060","PMT_RES", "FINAL",feeAmount, "N");
 	}
 	else if (feeAmount > 0 && appTypeArray[2]=='Mobile Home' && exists(typeOfWork,mobileHome)){
 		aa.print("Adding fee: "+feeAmount);
-		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAmount, "Y");
+		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAmount, "N");
 	}
-	//*/
 }
