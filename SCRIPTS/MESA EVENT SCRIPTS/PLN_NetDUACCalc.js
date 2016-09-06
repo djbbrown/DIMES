@@ -27,7 +27,6 @@ try
   { 
 
 
-
     var acres = 0.0;
     var existingLots = 0.0;
     var existingUnits = 0.0;
@@ -40,9 +39,7 @@ try
     else
     {
       existingLots = parseFloat(AInfo["Total Existing Lots"]);
-    }
-    comment("existingLots: " + existingLots);
-    
+    }    
 
     if (AInfo["Existing Dwelling Units"] == null)
     {
@@ -52,8 +49,6 @@ try
     {
       existingUnits = parseFloat(AInfo["Existing Dwelling Units"]);
     }
-    comment("existingUnits: " + existingUnits);
-
 
     if (AInfo["Net Site Size (acres)"] == null)
     {
@@ -63,16 +58,10 @@ try
     {
       acres = parseFloat(AInfo["Net Site Size (acres)"]);
     }
-    comment("acres: " + acres);
-
 
     if (acres > 0)
     {
-      showMessage = true;
-      comment("("+existingLots+" + "+existingUnits+") / "+acres +"");
-      comment(""+ ((existingLots + existingUnits) / acres) + "");
       duac = ((existingLots + existingUnits) / acres).toFixed(2);
-      comment("duac: " + duac);
     }
 
     editAppSpecific("Net DU/AC", duac);
