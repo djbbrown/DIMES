@@ -26,22 +26,45 @@ try
      )
   { 
 
-    var acres = parseFloat(AInfo["Net Site Size (acres)"]);
-    var existingLots = parseFloat(AInfo["Total Existing Lots"]);
-    var existingUnits = parseFloat(AInfo["Existing Dwelling Units"]);
+    var acres = 0.0;
+    var existingLots = 0.0;
+    var existingUnits = 0.0;
     var duac = 0.0;
     
-    if ((existingLots == null) || (existingLots == "Nan"))
+    if (AInfo["Total Existing Lots"] == null)
     {
-      existingLots = 0;
-    } 
-    
-    if ((existingUnits == null) || (existingUnits == "Nan"))
-    {
-      existingUnits = 0;
+      existingLots = 0.0;
     }
+    else
+    {
+      existingLots = parseFloat(AInfo["Total Existing Lots"]);
+    }
+    comment("existingLots: " + existingLots);
+    
 
-    if ((acres != null) && (acres > 0) && (acres != "Nan"))
+    if (AInfo["Existing Dwelling Units"] == null)
+    {
+      existingUnits = 0.0;
+    }
+    else
+    {
+      existingUnits = parseFloat(AInfo["Existing Dwelling Units"]);
+    }
+    comment("existingUnits: " + existingUnits);
+
+
+    if (AInfo["Net Site Size (acres)"] == null)
+    {
+      acres = 0.0;
+    }
+    else
+    {
+      acres = parseFloat(AInfo["Net Site Size (acres)"]);
+    }
+    comment("acres: " + acres);
+
+
+    if (acres > 0)
     {
       showMessage = true;
       comment("("+existingLots+" + "+existingUnits+") / "+acres +"");
