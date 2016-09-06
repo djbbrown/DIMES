@@ -26,7 +26,7 @@ var exists = feeExists("DOC050");
 if (purpose == "Commercial Purpose")
 {
   // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
-  addFee("DOC050","PMT_DOC", "FINAL",  1, "Y");
+  addFee("DOC050","PMT_DOC", "FINAL",  1, "N");
 }
 else
 {
