@@ -27,6 +27,7 @@ try
 		editAppSpecific("Existing Zoning ", zoning);
 	} else {
 		logDebug("No zoning returned from GIS ... Existing Zoning not being updated.");
+	}
 }
 catch (err)
 {
