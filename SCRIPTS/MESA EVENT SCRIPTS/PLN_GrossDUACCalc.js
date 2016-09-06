@@ -26,22 +26,42 @@ try
      )
   { 
 
-    var acres = AInfo["Net Site Size (acres)"];
-    var newLots = AInfo["Total New Lots, Tracts, Parcels"];
-    var newUnits = AInfo["Total New Dwelling Units"];
+    var acres = 0.0;
+    var newLots = 0.0;
+    var newUnits = 0.0;
     var duac = 0.0;
 
-    if (newLots == null)
+    if (AInfo["Total New Lots, Tracts, Parcels"] == null)
     {
-      newLots = 0;
+      newLots = 0.0;
     }
-    
-    if (newUnits == null)
+    else
     {
-      newUnits = 0;
+      newLots = parseFloat(AInfo["Total New Lots, Tracts, Parcels"]);
     }
+
     
-    if ((acres != null) && (acres > 0))
+    if (AInfo["Total New Dwelling Units"] == null)
+    {
+      newUnits = 0.0;
+    }
+    else
+    {
+      newUnits = parseFloat(AInfo["Total New Dwelling Units"]);
+    }
+
+  
+    if (AInfo["Net Site Size (acres)"] == null)
+    {
+      acres = 0.0;
+    }
+    else
+    {
+      acres = parseFloat(AInfo["Net Site Size (acres)"]);
+    }
+
+    
+    if (acres > 0)
     {
       duac = ((newLots + newUnits) / acres).toFixed(2);
     }
