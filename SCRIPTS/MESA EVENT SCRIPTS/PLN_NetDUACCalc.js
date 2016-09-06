@@ -46,6 +46,7 @@ try
       showMessage = true;
       comment("("+existingLots+" + "+existingUnits+") / "+acres +"");
       duac = ((existingLots + existingUnits) / acres).toFixed(2);
+      comment("duac: " + duac);
     }
 
     editAppSpecific("Net DU/AC", duac);
