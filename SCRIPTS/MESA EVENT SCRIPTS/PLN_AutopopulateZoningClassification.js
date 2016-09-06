@@ -3,8 +3,7 @@
 // Script Name: PLN_AutopopulateZoningClassification.js
 // Script Developer: Jody Bearden
 // Script Agency: Mesa
-// Script Description: 	
-Auto populate the ASI field "Existing Zoning" from GIS attribute.
+// Script Description: 	Auto populate the ASI field "Existing Zoning" from GIS attribute.
 // Script Run Event: ASA, ASIUA
 // Script Parents:
 //		ASA;Planning!Admin Review!NA!NA
@@ -17,13 +16,17 @@ Auto populate the ASI field "Existing Zoning" from GIS attribute.
 //
 /*==================================================================*/
 
+/* test with: ADM16-00215 */
+
 try
 {
 	var zoning = getGISInfo("Planning/Zoning", "Zoning Districts", "ZONING");  // use "ZONING" field for zoning info only (e.g. "RS-6") or "DSCR" (i.e. description) field for soning info plus a brief description (e.g. "RS-6 Single Residence 6")
-	if(zoning != null)
+	if(zoning != null && zoning != false)
 	{
+		logDebug("Existing Zoning being updated to: " + zoning);
 		editAppSpecific("Existing Zoning ", zoning);
-	}
+	} else {
+		logDebug("No zoning returned from GIS ... Existing Zoning not being updated.");
 }
 catch (err)
 {
