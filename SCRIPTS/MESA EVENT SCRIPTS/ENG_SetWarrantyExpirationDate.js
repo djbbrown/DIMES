@@ -25,6 +25,8 @@ try
 		var tsDate = taskStatusDate("LOA");
 		// set ASI field for Warranty Expiration Date to 100 days from the status date
 		var expDate = dateAdd(tsDate, 100);	
+		logDebug("Task Status Date: " + tsDate);
+		logDebug("Warranty Expiration Date: " + expDate);
 		editAppSpecific("Warranty Expiration Date", expDate);
 	}
 }
