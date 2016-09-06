@@ -33,7 +33,7 @@ try
   else
   { 
     //mkyOutput += "ERROR: could not find parent specialEvent : " + specialEvent + " \r";
-    logDebug("**ERROR: could not find Special Event App (" + specialEvent + "): " + getCapResult.getErrorMessage());
+    //logDebug("**ERROR: could not find Special Event App (" + specialEvent + "): " + getCapResult.getErrorMessage());
   }
 
 }

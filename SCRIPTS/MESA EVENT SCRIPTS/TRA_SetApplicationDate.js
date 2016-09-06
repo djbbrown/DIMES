@@ -27,13 +27,12 @@ try
   }
 
   editAppSpecific("Application Date",jsDateToASIDate(today),capId)
+  //logDebug("Application Date set to: " + jsDateToASIDate(today));
 }
 catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
-
-
 
 
 
