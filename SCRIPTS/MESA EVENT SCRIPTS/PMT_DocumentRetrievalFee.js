@@ -17,6 +17,7 @@
 //  1.2      |09/06/16  |Brian O'Dell     |Removing auto invoicing
 //==================================================================*/
 
+
 var purpose = AInfo["Documents Requested For"];
 var exists = feeExists("DOC050");
 
