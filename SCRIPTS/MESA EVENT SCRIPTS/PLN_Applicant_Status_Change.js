@@ -3,7 +3,7 @@
 // Script Name: PLN_Applicant_Status_Change.js
 // Script Description: Send email to Applicant for record status changes   
 // Script Run Event: WTUA;Planning!Pre-Submittal!~!~
-// Testing Record: PMT16-00498
+// Testing Record: PMT16-00498, PRS16-00193
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/31/16  |Steve Veloudos   |Initial Release 
 /*==================================================================*/
@@ -16,6 +16,7 @@ try {
       var StatusType = 0;
       var ConType;
       var AppToEmail;
+      var PlanningPhone;
  
     //Get application status
     AppStatus = capStatus;
@@ -29,6 +30,10 @@ try {
     if (AppStatus == "Distributed")
         {
         StatusType = 2;
+        }
+    if (AppStatus == "Incomplete")
+        {
+        StatusType = 3;
         }
     
     //Add parms
@@ -76,6 +81,19 @@ try {
             if(AppToEmail !="")
             {
             sendNotification(FromEmail, AppToEmail, "", "DISTRIBUTION LIST - APPLICANT", vEParams, null, capId);
+            }
+        }
+        //Incomplete
+        if(StatusType == 3)
+        {           
+            //Get Planning Phone
+            PlanningPhone = lookup("REPORT_CONFIG","Planning_Phone");
+            addParameter(vEParams,"$$PLANNINGPHONE$$",PlanningPhone);
+            
+            //Email Applicant
+            if(AppToEmail !="")
+            {
+            sendNotification(FromEmail, AppToEmail, "", "INCOMPLETE SUBMITTAL - APPLICANT", vEParams, null, capId);
             }
         }
       
