@@ -43,6 +43,8 @@ try
 
     if ((acres != null) && (acres > 0))
     {
+      showMessage = true;
+      comment("("+existingLots+" + "+existingUnits+") / "+acres +"");
       duac = ((existingLots + existingUnits) / acres).toFixed(2);
     }
 
