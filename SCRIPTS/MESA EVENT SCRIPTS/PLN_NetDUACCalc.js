@@ -26,15 +26,15 @@ try
      )
   { 
 
-    var acres = AInfo["Net Site Size (acres)"];
-    var existingLots = AInfo["Total Existing Lots"];
-    var existingUnits = AInfo["Existing Dwelling Units"];
+    var acres = parseFloat(AInfo["Net Site Size (acres)"]);
+    var existingLots = parseFloat(AInfo["Total Existing Lots"]);
+    var existingUnits = parseFloat(AInfo["Existing Dwelling Units"]);
     var duac = 0.0;
     
     if (existingLots == null)
     {
       existingLots = 0;
-    }
+    } 
     
     if (existingUnits == null)
     {
