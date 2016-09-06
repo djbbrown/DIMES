@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 001
-// Script Name: ASA;Permits!Document Retrieval!NA!NA.js
+// Script Name: ASIUA;Permits!Document Retrieval!NA!NA.js
 ==================================================================*/
 include("PMT_DocumentRetrievalFee");
 
