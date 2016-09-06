@@ -50,7 +50,7 @@ try
     logDebug("landUse: " + landUse);
 
     logDebug("Getting 'Flood Zone'");
-    var floodZone = getGISInfo("Accela/Accela_Base", "Flood Plain Area", "TAG");
+    var floodZone = getGISInfo("Accela/Accela_Base", "Flood Plain Area", "Accela_TAGS.TAG");
     if ( floodZone == undefined ) { floodZone = false; }
     logDebug("floodZone: " + floodZone);
 
