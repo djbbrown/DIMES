@@ -31,17 +31,17 @@ try
     var existingUnits = parseFloat(AInfo["Existing Dwelling Units"]);
     var duac = 0.0;
     
-    if (existingLots == null)
+    if ((existingLots == null) || (existingLots == "Nan"))
     {
       existingLots = 0;
     } 
     
-    if (existingUnits == null)
+    if ((existingUnits == null) || (existingUnits == "Nan"))
     {
       existingUnits = 0;
     }
 
-    if ((acres != null) && (acres > 0))
+    if ((acres != null) && (acres > 0) && (acres != "Nan"))
     {
       showMessage = true;
       comment("("+existingLots+" + "+existingUnits+") / "+acres +"");
