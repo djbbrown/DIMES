@@ -9,12 +9,14 @@
 //              If the ASI field does not have the value of "Commercial Purposes" and the fee 
 //              exists on the record, remove it.
 // Script Run Event: ASA
-// Script Parents: ASA;Permits/Document Retrieval/NA/NA
+// Script Parents: 
+//		ASA;Permits/Document Retrieval/NA/NA
+//		ASIUA;Permits/Document Retrieval/NA/NA
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |06/24/16  |Brian O'Dell     |Initial Release
 //  1.1      |07/26/16  |Steve Veloudos   |Adj Commercial Purposes
-//  1.2      |09/06/16  |Brian O'Dell     |Removing auto invoicing
+//  1.2      |09/06/16  |Brian O'Dell     |Updated Invoicing and added ASIUA reference
 //==================================================================*/
 
 
