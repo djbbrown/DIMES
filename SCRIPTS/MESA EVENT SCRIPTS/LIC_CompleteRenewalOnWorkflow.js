@@ -18,7 +18,7 @@ if (parentLicenseCAPID != null) {
 				if (activeLicense(parentLicenseCAPID)) {
 					renewalCapProject.setStatus("Complete");
 					logDebug("license(" + parentLicenseCAPID + ") is activated.");
-					updateExpirationStatus(parentLicenseCAPID);
+				//	updateExpirationStatus(parentLicenseCAPID);
 					aa.cap.updateProject(renewalCapProject);
 					copyKeyInfo(capID, parentLicenseCAPID);
 					aa.cap.transferRenewCapDocument(partialCapID, parentLicenseCAPID, false);
@@ -43,7 +43,7 @@ function updateExpirationStatus(licCapId) {
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
 		newExpDate = dateAddMonths(currExpDate, 12);
-		licObject.setExpiration(newExpDate);
+		//licObject.setExpiration(newExpDate);
 		// status should already be "Active"
 	}
 }

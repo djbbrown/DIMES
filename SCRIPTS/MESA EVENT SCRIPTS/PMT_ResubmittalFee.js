@@ -9,7 +9,6 @@
 //            WTUA;Permits!Residential!NA!NA
 //            WTUA;Permits!Commercial!NA!NA
 /*==================================================================*/
-showDebug = false;
 var submittalCycle = parseInt(AInfo["Submittal Cycle"]);
 var feeQty = submittalCycle - 3;
 if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submittalCycle >= 4){
