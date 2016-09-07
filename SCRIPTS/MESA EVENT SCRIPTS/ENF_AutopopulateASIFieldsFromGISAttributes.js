@@ -103,46 +103,44 @@ try
             logDebug("Land Use updated to '" + landUse + "'");
         }
     }
-    //if ( floodZone ) { // NOTE: turns out this is a boolean, so always write if the correct record type
-        if ( 
-            appMatch("Permits/Residential/Mobile Home/NA") ||
-            appMatch("Permits/Sign/NA/NA") || 
-            appMatch("Permits/Commercial/NA/NA") ||
-            appMatch("Permits/Residential/NA/NA")
-        )
-        {
-            editAppSpecific("Flood Zone", floodZone);
-            logDebug("Flood Zone updated to '" + floodZone + "'");
+    if ( 
+        appMatch("Permits/Residential/Mobile Home/NA") ||
+        appMatch("Permits/Sign/NA/NA") || 
+        appMatch("Permits/Commercial/NA/NA") ||
+        appMatch("Permits/Residential/NA/NA")
+    )
+    {
+        var fldVal = "No";
+        if ( floodZone != null && floodZone ) { 
+            fldVal = "Yes";
         }
-    //}
-    //if ( azWater ) { // NOTE: turns out this is a boolean, so always write if the correct record type
-        if ( 
-            appMatch("Permits/Commercial/NA/NA") ||
-            appMatch("Permits/Residential/NA/NA")
-        )
-        {
-            editAppSpecific("AZ Water", azWater); 
-            logDebug("AZ Water updated to '" + azWater + "'");
+        editAppSpecific("Flood Zone", fldVal);
+        logDebug("Flood Zone updated to '" + fldVal + "'");
+    }
+    if ( 
+        appMatch("Permits/Commercial/NA/NA") ||
+        appMatch("Permits/Residential/NA/NA")
+    )
+    {
+        var azValue = "No";
+        if ( azWater != null && azWater){
+            azValue = "Yes";
         }
-    //}
-    //if ( stormWaterExempt ) { // NOTE: turns out this is a boolean, so always write if the correct record type
-        if ( 
-            appMatch("Permits/Commercial/NA/NA") ||
-            appMatch("Permits/Residential/NA/NA")
-        )
-        {
-            editAppSpecific("Storm Water Exempt", stormWaterExempt);
-            logDebug("Storm Water Exempt updated to '" + stormWaterExempt + "'"); 
+        editAppSpecific("AZ Water", azValue); 
+        logDebug("AZ Water updated to '" + azValue + "'");
+    }    
+    if ( 
+        appMatch("Permits/Commercial/NA/NA") ||
+        appMatch("Permits/Residential/NA/NA")
+    )
+    {
+        var sweValue = "No";
+        if ( stormWaterExempt != null && stormWaterExempt ) {
+            sweValue = "Yes";
         }
-    //}
-
-    /* pseudocode
-
-    1) get gis data
-    2) check record type to know what fields need to be autopopulated
-    3) edit fields
-
-    */
+        editAppSpecific("Storm Water Exempt", sweValue);
+        logDebug("Storm Water Exempt updated to '" + sweValue + "'"); 
+    }
 }
 catch (err)
 {
