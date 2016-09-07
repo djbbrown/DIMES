@@ -42,7 +42,7 @@ if(matches(""+appTypeArray[1], "Case") && matches(""+appTypeArray[2], "Code Comp
 		else{
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", thisRow["Citation Number"].fieldValue, "N");
 		}
-		newRow["Dispostion"] = new asiTableValObj("Dispostion", thisRow["Dispostion"].fieldValue, "N");
+		newRow["Disposition"] = new asiTableValObj("Disposition", thisRow["Disposition"].fieldValue, "N");
 		newRow["Inspection Notes"] = new asiTableValObj("Inspection Notes", thisRow["Inspection Notes"].fieldValue, "N");
 		newRow["Fine Amount"] = new asiTableValObj("Fine Amount", thisRow["Fine Amount"].fieldValue, "N");
 		newRow["Date of Violation"] = new asiTableValObj("Date of Violation", thisRow["Date of Violation"].fieldValue, "N");
@@ -74,7 +74,7 @@ if(matches(""+appTypeArray[1], "Environmental") && matches(""+appTypeArray[2], "
 		else{
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", thisRow["Citation Number"].fieldValue, "N");
 		}
-		newRow["Dispostion"] = new asiTableValObj("Dispostion", thisRow["Dispostion"].fieldValue, "N");
+		newRow["Disposition"] = new asiTableValObj("Disposition", thisRow["Disposition"].fieldValue, "N");
 		newRow["Required Corrective Actions"] = new asiTableValObj("Required Corrective Actions", thisRow["Required Corrective Actions"].fieldValue, "N");
 		newRow["Corrective Actions Taken"] = new asiTableValObj("Corrective Actions Taken", thisRow["Corrective Actions Taken"].fieldValue, "N");
 		newRow["Date of Corrective Actions"] = new asiTableValObj("Date of Corrective Actions", thisRow["Date of Corrective Actions"].fieldValue, "N");
@@ -110,7 +110,7 @@ if(matches(""+appTypeArray[0], "AnimalControl") && matches(""+appTypeArray[1], "
 		else{
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", thisRow["Citation Number"].fieldValue, "N");
 		}
-		newRow["Dispostion"] = new asiTableValObj("Dispostion", thisRow["Dispostion"].fieldValue, "N");
+		newRow["Disposition"] = new asiTableValObj("Disposition", thisRow["Disposition"].fieldValue, "N");
 		newRow["Inspection Notes"] = new asiTableValObj("Required Corrective Actions", thisRow["Required Corrective Actions"].fieldValue, "N");
 		newRow["Date of Violation"] = new asiTableValObj("Date of Corrective Actions", thisRow["Date of Corrective Actions"].fieldValue, "N");
 		newRow["Citation Issued To"] = new asiTableValObj("Citation Issued To", thisRow["Citation Issued To"].fieldValue, "N");
