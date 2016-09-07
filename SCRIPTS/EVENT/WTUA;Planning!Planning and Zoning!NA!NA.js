@@ -1,1 +1,2 @@
-include("PLN_AssignDueDateByMeetingCalendar"); // Script 302
+//Schedule Planning and Zoning meeting and set workflow due dates.
+include("PLN_SchedulePlanningZoning");
