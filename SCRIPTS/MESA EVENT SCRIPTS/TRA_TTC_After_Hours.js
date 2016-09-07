@@ -5,10 +5,10 @@
 // Permit until After Hours work permit is obtained.
 // Script Run Event: ASA
 // Script Parents:ASA;Transportation!~!~!~.js
-// ASUA;Transportation!~!~!~.js
+// ASIUA;Transportation!~!~!~.js
 // Testing record: TTC2016-00845
 // Version   |Date      |Engineer         |Details
-//  1.0      |09/07/16  |Steve Veloudos   |Initial Release
+//  1.0      |09/07/16  |Steve Veloudos   |Initial Release 
 /*==================================================================*/
 
 try {
