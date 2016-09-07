@@ -27,15 +27,14 @@
 
 try
 {
-    if (taskStatus("Permit Issuance").toUpperCase() == "ISSUED") 
+    if (taskStatus("Permit Issuance") != null && taskStatus("Permit Issuance").toUpperCase() == "ISSUED" && AInfo["Permit Issued Date"] != null ) 
     {
         logDebug("Task 'Permit Issuance' has status = 'Issued'");
 
         var permitIssuedDate = convertDate(AInfo["Permit Issued Date"]);
         logDebug("Permit Issued Date: " + permitIssuedDate);
-
         
-        var typeOfWork = AInfo["Type of work"];
+        var typeOfWork = AInfo["Type of Work"];
         logDebug("Type of Work: " + typeOfWork);
 
         logDebug("App Type: " + appTypeString );
@@ -45,28 +44,28 @@ try
             switch (typeOfWork){
                 case "Construction Noise Permit":
                 case "Grand Opening Banners":
-                    editAppSpecific("Permit Expiration Date", jsDateToASIDate(dateAdd(permitIssuedDate, 30)));
+                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 30));
                     logDebug( appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 30 days out");
                     break;
                 case "Subdivision Sign":
                 case "Subdivision Weekend Sign":
                 case "Subdivision Directional Sign":
-                    editAppSpecific("Permit Expiration Date", jsDateToASIDate(dateAdd(permitIssuedDate, 730)));
+                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 730));
                     logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 2 years out");
                     break;
                 case "Downtown Directional A-Frames":
-                    editAppSpecific("Permit Expiration Date", jsDateToASIDate(dateAdd(permitIssuedDate, 365)));
+                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 365));
                     logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 2 years out");
                     break;
                 default:
-                    editAppSpecific("Permit Expiration Date", jsDateToASIDate(dateAdd(permitIssuedDate, 180)));
+                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 180));
                     logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 180 days out");
                     break;
             }
         }
         else 
         {
-            editAppSpecific("Permit Expiration Date", jsDateToASIDate(dateAdd(permitIssuedDate, 180)));
+            editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 180));
             logDebug(appTypeString  + ", default expiration date added: 180 days");
         }
     }
@@ -79,3 +78,7 @@ catch (err)
 {
   logDebug("A JavaScript error occurred: " + err.message);
 }
+
+/* Test Record: PMT16-00369
+
+*/

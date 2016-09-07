@@ -2,9 +2,10 @@
 // Script Number: 263
 // Script Name: PLN_ApplicationProcessInactive
 
-// Script Description: Batch script to check expiration date, and set 
-// to Registration record status to inactive if today's date exceeds 
-// the ASI 'expiration date'.
+// Script Description: Batch script to check ASI Application 
+// Expiration Date, and set record status to Inactive if today's 
+// date exceeds the ASI Application Expiration Date and is less than 
+// 90 days after the ASI Application Expiration Date.
 
 // Planning/Group Home/Application/NA
 
@@ -17,6 +18,10 @@
 //  1.0      |08/24/16  |Vance Smith      |Initial
 /*==================================================================*/
 
+/* intellisense references */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_BATCH.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -123,11 +128,11 @@ function mainProcess()
         /* FILTERING BY EXPIRATION DATE - NULL EXPIRATION
          * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
         // move to the next record if the expiration date is null
-        var expirationDate = null;
+        var expirationDate = getAppSpecific("Application Expiration Date");//null;
         try 
         {
-            var thisLic = new licenseObject(capId);            
-            expirationDate = thisLic.b1ExpDate;
+            //var thisLic = new licenseObject(capId);            
+            //expirationDate = thisLic.b1ExpDate;
             if (expirationDate == null)
             {
                 capFilterExpirationNull++;
@@ -145,13 +150,13 @@ function mainProcess()
         }
 
         /* FILTERING BY DAYS PAST EXPIRATION - USE WITH THE NULL EXP CHECK */
-        // move to the next record if days since expiration >= 365 (">= 365" this is handled by another script)
+        // move to the next record if days since expiration >= 90 (">= 90" this is handled by another script)
         // or if days since expiration <= 0
         var daysSinceExpiration = daydiff(parseDate(expirationDate), parseDate(getTodayAsString())); 
-        if (daysSinceExpiration >= 365) 
+        if (daysSinceExpiration >= 90) 
         {
             capFilterDaysPastExp++;
-            logDebug(altId + ": Record expired >= 365 days ago. Days Since Expiration: " + daysSinceExpiration );
+            logDebug(altId + ": Record expired >= 90 days ago. Days Since Expiration: " + daysSinceExpiration );
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
