@@ -27,8 +27,7 @@ try {
       var x = 0;
       
       //Iterate through GIS data
-      for (x=0;x<=(rowCount-1);x++)
-        {
+      for (x=0;x<=(rowCount-1);x++) {
         var FirstTwo = GISData[x].substring(0, 2);
             //Check for 51
             if(FirstTwo == "51")
