@@ -43,7 +43,7 @@ function updateExpirationStatus(licCapId) {
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
 		newExpDate = dateAddMonths(currExpDate, 12);
-		licObject.setExpiration(newExpDate);
+		//licObject.setExpiration(newExpDate);
 		// status should already be "Active"
 	}
 }
