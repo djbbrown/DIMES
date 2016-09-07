@@ -8,7 +8,7 @@
 // ASIUA;Transportation!~!~!~.js
 // Testing record: TTC2016-00845
 // Version   |Date      |Engineer         |Details
-//  1.0      |09/07/16  |Steve Veloudos   |Initial Release 
+//  1.0      |09/07/16  |Steve Veloudos   |Initial Release
 /*==================================================================*/
 
 try {
