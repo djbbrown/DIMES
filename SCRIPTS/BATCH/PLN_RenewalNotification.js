@@ -3,8 +3,8 @@
 // Script Name: PLN_RenewalNotification
 
 // Script Description: Batch script to automatically send renewal 
-// letter, 30 days before "expiration date" using email template 
-// "PLN_RenewalNotification".
+// letter, 30 days before "registration expiration date" using email 
+// template "PLN_RenewalNotification".
 
 // Planning/Group Home/Registration/NA
 
@@ -17,13 +17,12 @@
 //  1.0      |08/24/16  |Vance Smith      |Initial
 /*==================================================================*/
 
-
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
 | 
 /-----------------------------------------------------------------------------------------------------*/
 
-function mainProcess() 
+function mainProcess()
 {
     /***** BEGIN INITIALIZE COUNTERS *****/
 
@@ -112,17 +111,20 @@ function mainProcess()
         /* FILTERING BY EXPIRATION DATE - NULL EXPIRATION
          * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
         // move to the next record if the expiration date is null
-        var expirationDate = null;
+        var expirationDate = getAppSpecific("Registration Expiration Date");//null;
         try 
         {
-            var thisLic = new licenseObject(capId);            
-            expirationDate = thisLic.b1ExpDate;
+            //var thisLic = new licenseObject(capId);            
+            //expirationDate = thisLic.b1ExpDate;
             if (expirationDate == null)
             {
                 capFilterExpirationNull++;
                 logDebug(altId + ": Expiration Date is null." );
                 logDebug("--------------moving to next record--------------");
                 continue; // move to the next record
+            }
+            else {
+                logDebug("Registration Expiration Date: " + expirationDate );
             }
         }
         catch (err)

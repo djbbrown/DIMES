@@ -25,7 +25,7 @@
 
 try
 {
-    if (taskStatus("Permit Issuance").toUpperCase() == "ISSUED") 
+    if (taskStatus("Permit Issuance") != null && taskStatus("Permit Issuance").toUpperCase() == "ISSUED") 
     {
         logDebug("found record");
         // see if record is in a flood plain
@@ -38,6 +38,14 @@ try
                 addStdCondition("Building Permit", "Footing/Foundation Elevation");
                 addStdCondition("Building Permit", "Elevation Certificate");
                 logDebug("added conditions")
+            }
+            else
+            {
+                logDebug("Not in flood plan");
+                for ( tag in tagFieldArray)
+                {
+                    logDebug(tagFieldArray[tag])
+                }
             }
         }
     }
@@ -59,3 +67,7 @@ catch (err)
 {
   logDebug("A JavaScript error occurred: " + err.message);
 }
+
+/* Test Record: PMT16-00428
+
+*/

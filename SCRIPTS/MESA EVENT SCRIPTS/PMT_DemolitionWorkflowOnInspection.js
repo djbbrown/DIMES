@@ -15,8 +15,6 @@
 
 /* test with PMT16-00509 */
 
-// TODO: need to get inspector comments for workflow and 
-
 try
 {	
 	var getInspectionsResult = aa.inspection.getInspections(capId);
@@ -29,13 +27,17 @@ try
 		for (inspIdx in inspArr) {
 			var inspObj = inspArr[inspIdx];
 			var inspStatus = inspObj.getInspectionStatus();
-			//logDebug("inspStatus: " + inspStatus + ", inspType: " + inspType);
+			logDebug("inspStatus: " + inspStatus + ", inspType: " + inspType);
 			//if(isTaskActive("Inspection")) { logDebug("Inspection task is active..."); }
 			//if(matches(inspStatus, "Scheduled")) { logDebug("taskStatus: " + taskStatus("Inspection")); }
 			if (inspType == "Demo Final" && inspStatus == "Approved") {
 				//logDebug("Inspections Task Status: " + taskStatus("Inspection"));
-				updateTask("Inspection", "Final Inspection Complete", "Updated by script.", "Updated by Script.");
+				//updateTask("Inspection", "Final Inspection Complete", "Updated by script.", "Updated by Script.");
 				//logDebug("Inspection Workflow Task Status (after update): " + taskStatus("Inspection"));
+				// mark task complete
+				closeTask("Inspection", "Final Inspection Complete", "Updated by script.", "Updated by script."); /* spec said update, but we need to complete and deactivate */
+				// deactivate task
+				if(isTaskActive("Inspection")) { deactivateTask("Inspection"); }
 			}
 		}
 	}

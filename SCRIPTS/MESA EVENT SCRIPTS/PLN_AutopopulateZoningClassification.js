@@ -16,7 +16,7 @@
 //
 /*==================================================================*/
 
-/* test with: ADM16-00215 */
+/* test with: ADM16-00215, ADM15-00223 */
 
 try
 {
@@ -24,7 +24,11 @@ try
 	if(zoning != null && zoning != false)
 	{
 		logDebug("Existing Zoning being updated to: " + zoning);
-		editAppSpecific("Existing Zoning ", zoning);
+		ezb = getAppSpecific("Existing Zoning"); // existing zoning before setting
+		logDebug("Existing Zoning (before setting): " + ezb);
+		editAppSpecific("Existing Zoning", zoning);
+		eza = getAppSpecific("Existing Zoning"); // existing zoning after setting
+		logDebug("Existing Zoning (after setting): " + eza);
 	} else {
 		logDebug("No zoning returned from GIS ... Existing Zoning not being updated.");
 	}

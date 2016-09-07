@@ -2,9 +2,10 @@
 // Script Number: 261
 // Script Name: PLN_RegistrationProcessInactive
 
-// Script Description: Batch script to check expiration date, and 
-// set to Registration record status to inactive if today's date 
-// exceeds the ASI "expiration date".
+// Script Description: Batch script to check "Registration Expiration 
+// Date" (ASI), and set to record status to inactive if today's date 
+// exceeds "Registration Expiration date" (ASI), but is less than 365 
+// days after the "Registration Expiration Date" (ASI).
 
 // Planning/Group Home/Registration/NA
 
@@ -17,6 +18,9 @@
 //  1.0      |08/23/16  |Vance Smith      |Initial
 /*==================================================================*/
 
+/* intellisense references */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_BATCH.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -123,17 +127,20 @@ function mainProcess()
         /* FILTERING BY EXPIRATION DATE - NULL EXPIRATION
          * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
         // move to the next record if the expiration date is null
-        var expirationDate = null;
+        var expirationDate = getAppSpecific("Registration Expiration Date");//null;
         try 
         {
-            var thisLic = new licenseObject(capId);            
-            expirationDate = thisLic.b1ExpDate;
+            //var thisLic = new licenseObject(capId);            
+            //expirationDate = thisLic.b1ExpDate;
             if (expirationDate == null)
             {
                 capFilterExpirationNull++;
                 logDebug(altId + ": Expiration Date is null." );
                 logDebug("--------------moving to next record--------------");
                 continue; // move to the next record
+            }
+            else {
+                logDebug("Registration Expiration Date: " + expirationDate );
             }
         }
         catch (err)
@@ -154,8 +161,7 @@ function mainProcess()
             logDebug(altId + ": Record expired >= 365 days ago. Days Since Expiration: " + daysSinceExpiration );
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
-        }
-        
+        }        
 
         /* FILTERING BY EXPIRATION DATE - NOT EXPIRED - USE WITH THE DAYS PAST EXP CHECK */
         // move to the next record if the expiration date has not passed yet

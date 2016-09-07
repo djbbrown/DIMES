@@ -2,9 +2,9 @@
 // Script Number: 262
 // Script Name: PLN_RegistrationProcessExpiration
 
-// Script Description: Batch script to check expiration date, and set 
-// Registration record status to Expired if today's date is more than 
-// 365 days past ASI "expiration date".
+// Script Description: Batch script to check ASI Registration 
+// Expiration Date, and set record status to "Expired" if today's 
+// date is more than 365 days past ASI Registration Expiration Date.
 
 // Planning/Group Home/Registration/NA
 
@@ -123,17 +123,20 @@ function mainProcess()
         /* FILTERING BY EXPIRATION DATE - NULL EXPIRATION
          * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
         // move to the next record if the expiration date is null
-        var expirationDate = null;
+        var expirationDate = getAppSpecific("Registration Expiration Date");//null;
         try 
         {
-            var thisLic = new licenseObject(capId);            
-            expirationDate = thisLic.b1ExpDate;
+            //var thisLic = new licenseObject(capId);            
+            //expirationDate = thisLic.b1ExpDate;
             if (expirationDate == null)
             {
                 capFilterExpirationNull++;
                 logDebug(altId + ": Expiration Date is null." );
                 logDebug("--------------moving to next record--------------");
                 continue; // move to the next record
+            }
+            else {
+                logDebug("Registration Expiration Date: " + expirationDate );
             }
         }
         catch (err)
