@@ -31,7 +31,7 @@ try {
         {
         var FirstTwo = GISData[x].substring(0, 2);
             //Check for 51
-            if(FirstTwo = "51")
+            if(FirstTwo == "51")
                 {
                     Parcel51 = 1;
                 }
