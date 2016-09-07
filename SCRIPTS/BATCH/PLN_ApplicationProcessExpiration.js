@@ -2,9 +2,9 @@
 // Script Number: 264
 // Script Name: PLN_ApplicationProcessExpiration
 
-// Script Description: Batch script to check expiration date, and set 
-// Registration record status to "Withdrawn Expired" if today's date 
-// is more than 90 days past ASI "expiration date".
+// Script Description: Batch script to check ASI Application 
+// Expiration Date, and set record status to "Withdrawn Expired" if 
+// today's date is more than 90 days past ASI Application Expiration Date.
 
 // Planning/Group Home/Application/NA
 
@@ -123,11 +123,11 @@ function mainProcess()
         /* FILTERING BY EXPIRATION DATE - NULL EXPIRATION
          * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
         // move to the next record if the expiration date is null
-        var expirationDate = null;
+        var expirationDate = getAppSpecific("Application Expiration Date");//null;
         try 
         {
-            var thisLic = new licenseObject(capId);            
-            expirationDate = thisLic.b1ExpDate;
+            //var thisLic = new licenseObject(capId);            
+            //expirationDate = thisLic.b1ExpDate;
             if (expirationDate == null)
             {
                 capFilterExpirationNull++;

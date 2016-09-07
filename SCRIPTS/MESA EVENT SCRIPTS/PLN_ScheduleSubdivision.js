@@ -13,8 +13,8 @@ if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 	var vToday = new Date();
 	var vDateFrom;
 	var vDateTo;
-	var vSubmittalBuffer = lookup('SetDueDates:Planning/Planning and Zoning/NA/NA', 'Submittal Buffer (Days)');
-	var vTotalTimeTillHearing = vSubmittalBuffer + lookup('SetDueDates:Planning/Planning and Zoning/NA/NA', 'Time Till Hearing (Days)'); ;
+	var vSubmittalBuffer = lookup('SetDueDates:Planning/Subdivision/NA/NA', 'Submittal Buffer (Days)');
+	var vTotalTimeTillHearing = vSubmittalBuffer + lookup('SetDueDates:Planning/Subdivision/NA/NA', 'Time Till Hearing (Days)'); ;
 
 	//aa.print("vSubmittalBuffer " + vSubmittalBuffer);
 	//aa.print("vTotalTimeTillHearing" + vTotalTimeTillHearing);
@@ -37,5 +37,5 @@ if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 	logDebug("Scheduled Date: " + vScheduledDate);
 	
 	//Set Due Dates
-	setWFDueDate_Mesa('SetDueDates:Planning/Planning and Zoning/NA/NA', vScheduledDate);
+	setWFDueDate_Mesa('SetDueDates:Planning/Subdivision/NA/NA', vScheduledDate);
 }
