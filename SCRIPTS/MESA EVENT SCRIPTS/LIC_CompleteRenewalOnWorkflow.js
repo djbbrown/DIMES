@@ -18,7 +18,7 @@ if (parentLicenseCAPID != null) {
 				if (activeLicense(parentLicenseCAPID)) {
 					renewalCapProject.setStatus("Complete");
 					logDebug("license(" + parentLicenseCAPID + ") is activated.");
-					updateExpirationStatus(parentLicenseCAPID);
+				//	updateExpirationStatus(parentLicenseCAPID);
 					aa.cap.updateProject(renewalCapProject);
 					copyKeyInfo(capID, parentLicenseCAPID);
 					aa.cap.transferRenewCapDocument(partialCapID, parentLicenseCAPID, false);
