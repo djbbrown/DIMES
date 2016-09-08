@@ -56,8 +56,8 @@ try
     {
       var turnAroundTime = AInfo["Turn Around Time"];
       //var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
-      var theDate = new Date();
-      theDate = new Date(mesaWorkingDays(theDate,turnAroundTime));
+      var todayDate = new Date();
+      var theDate = mesaWorkingDays(todayDate,turnAroundTime);
 
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(theDate));
 
