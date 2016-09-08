@@ -36,7 +36,7 @@ try {
         {
            ConditionFlag = 1; 
         }
-        if(Notes.length == 0)
+        if(Notes == "")
         {
             ConditionFlag2 = 1; 
         }
