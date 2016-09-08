@@ -20,3 +20,6 @@ include("PMT_RelateToPlanningRecord");
 
 include("PMT_R5AreaCalc_MobileHome");
 include("PMT_R5NAreaCalc_MobileHome");
+
+// added by Vance Smith (Mesa)
+include("ENF_AutopopulateASIFieldsFromGISAttributes");

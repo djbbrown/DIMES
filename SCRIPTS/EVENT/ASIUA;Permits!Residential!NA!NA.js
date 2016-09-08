@@ -12,3 +12,6 @@ include("PMT_R5AreaCalc");
 include("PMT_R5NAreaCalc");
 include("PMT_RelateToPlanningRecord");
 include("PMT_Water_Clearance_Email");
+
+// added by Vance Smith (Mesa)
+include("ENF_AutopopulateASIFieldsFromGISAttributes");
