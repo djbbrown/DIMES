@@ -170,17 +170,17 @@ try {
 	// ---------------------------
 	// Design Review Modification
 	// ---------------------------
-	// Design Review – Board
+	// Design Review - Board
 	// Record Type:
 	//		Planning/Design Review/NA/NA
 	// none
 	if (
 		appTypeString == "Planning/Design Review/NA/NA" 
 	){
-		tBd = 'Design Review – Board'
+		tBd = 'Design Review - Board'
 	}
 	// ---------------------------
-	// Design Review – Staff
+	// Design Review - Staff
 	// Record Type:
 	//		Planning/Admin Review/NA/NA
 	// Type of Process = 'Design Review' or 'Land Division' or 'Desert Uplands Development Standards'
@@ -189,7 +189,7 @@ try {
 		appTypeString == "Planning/Admin Review/NA/NA"
 		&& exists(AInfo["Type of Process"],dRProc)
 	){
-		tBd = 'Design Review – Staff'
+		tBd = 'Design Review - Staff'
 	}
 	// ---------------------------
 	// Development Incentive Permit
@@ -243,9 +243,9 @@ try {
 		tBd = 'Development Unit Plan - Staff'
 	}
 	// ---------------------------
-	// Development Unit Plan Modification – P&Z
+	// Development Unit Plan Modification - P&Z
 	// ---------------------------
-	// Development Unit Plan Modification – Staff
+	// Development Unit Plan Modification - Staff
 	// Record Type:
 	//		Planning/Admin Review/NA/NA
 	// Type of Process = 'Development Unit Plan' and 
@@ -255,7 +255,7 @@ try {
 		&& AInfo["Type of Process"] == 'Development Unit Plan'
 		&& AInfo["Sub process type"] == 'Amendment to Development Unit Plan'
 	){
-		tBd = 'Development Unit Plan Modification – Staff'
+		tBd = 'Development Unit Plan Modification - Staff'
 	}
 	// ---------------------------
 	// Final Plat Modification
@@ -500,7 +500,7 @@ try {
 	//		or Administrative Use Permits = 'Yes'
 	if (
 			appTypeString == "Planning/Board of Adjustment/NA/NA"
-			&& AInfo['Site Plan Review/Modification'] = 'Yes'
+			&& AInfo['Site Plan Review/Modification'] == 'Yes'
 	){
 		tBd = 'Site Plan Review - P&Z'
 	}
@@ -521,7 +521,7 @@ try {
 			)
 			|| (
 				appTypeString == 'Planning/Planning and Zoning/NA/NA'
-				&& (AInfo['Special Use Permit'] == 'Yes'
+				&& (AInfo['Special Use Permit'] == 'Yes')
 			)
 	){
 		tBd = 'Special Use Permit'
@@ -547,7 +547,7 @@ try {
 	//		or Administrative Use Permits = 'Yes'
 	if (
 			appTypeString == "Planning/Board of Adjustment/NA/NA" 
-			&& AInfo['Substantial Conformance Improvement Permit'] = 'Yes'
+			&& AInfo['Substantial Conformance Improvement Permit'] == 'Yes'
 	){
 		tBd = 'Substantial Conformance Improvement Permit'
 	}
@@ -589,7 +589,7 @@ try {
 	//		or Administrative Use Permits = 'Yes'
 	if (
 			appTypeString == "Planning/Board of Adjustment/NA/NA"
-			&& AInfo['Variance'] = 'Yes'
+			&& AInfo['Variance'] == 'Yes'
 	){
 		tBd = 'Variance'
 	}
@@ -600,46 +600,46 @@ try {
 	// ===========================
 	// Check 1
 	// ===========================
-	// When workflow task “Distribution” or “Substantive Review Distribution” is set to “Resubmitted”  
+	// When workflow task "Distribution" or "Substantive Review Distribution" is set to "Resubmitted"  
 	if(
 			(wfTask == 'Substantive Review Distribution' || wfTask == 'Distribution')
 			&& wfStatus == 'Resubmitted'
 	){
-		// Update the “Start/Stop Indicator” (subgroup = “KEY DATES”) to “Started”
+		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 		editAppSpecific("Start/Stop Indicator", 'Started');
-		// Update the “Substantive Review Due Date” (subgroup = “KEY DATES”) = today’s date + # of working days.
-		// The # of working days is retrieved from “Value Desc” field of Standard Choices Item
-		// “PLN Substantive Review Days”.
+		// Update the "Substantive Review Due Date" = todays date + # of working days.
+		// The #of working days is retrieved from "Value Desc" field of Standard Choices Item
+		// "PLN Substantive Review Days".
 		// Note that the numbers are based on a five day work week.
-		workingDays = lookup("PLN Substantive Review Days",appTypeString);
+		// workingDays = lookup("PLN Substantive Review Days",appTypeString);
 		
 	}
 	// ===========================
 	// Check 2
 	// ===========================
-	// When workflow task status of “Revisions Required” is applied to workflow task “Review Consolidation” then
+	// When workflow task status of "Revisions Required" is applied to workflow task "Review Consolidation" then
 	if(
 			(wfTask == 'Review Consolidation')
 			&& wfStatus == 'Revisions Required'
 	){
-		// Update the “Start/Stop Indicator” (subgroup = “KEY DATES”) to “Stopped”
+		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
 	// ===========================
 	// Check 3
 	// ===========================
 	// For the following record types:
-	// 		‘Planning/Admin Review/NA/NA’
-	//		‘Planning/Board of Adjustment/NA/NA’
-	//		‘Planning/Design Review/NA/NA’
-	//		‘Planning/General Plan Amendment – Major/NA/NA’
-	//		‘Planning/Group Home/Application/NA’
-	//		‘Planning/Subdivision/NA/NA’
-	// When workflow task status of “Resubmitted” is applied to workflow task “Distribution” then
+	// 		'Planning/Admin Review/NA/NA'
+	//		'Planning/Board of Adjustment/NA/NA'
+	//		'Planning/Design Review/NA/NA'
+	//		'Planning/General Plan Amendment - Major/NA/NA'
+	//		'Planning/Group Home/Application/NA'
+	//		'Planning/Subdivision/NA/NA'
+	// When workflow task status of "Resubmitted" is applied to workflow task "Distribution" then
 	check3 = ['Planning/Admin Review/NA/NA',
 	      			'Planning/Board of Adjustment/NA/NA',
 	      			'Planning/Design Review/NA/NA',
-	      			'Planning/General Plan Amendment – Major/NA/NA',
+	      			'Planning/General Plan Amendment - Major/NA/NA',
 	      			'Planning/Group Home/Application/NA',
 	      			'Planning/Subdivision/NA/NA'];
 	if (
@@ -647,58 +647,55 @@ try {
 			&& (wfTask == 'Distribution')
 			&& wfStatus == 'Resubmitted'
 	){
-		// 1) Update the “Start/Stop Indicator” (subgroup = “KEY DATES”) to “Started”
+		// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 		editAppSpecific("Start/Stop Indicator", 'Started');
-		// 2) Update the “Substantive Review Due Date” (subgroup = “KEY DATES”) = current value of “Substantive Review Due Date + the number of days difference between the status date of workflow task “Review Consolidation” with task status “Revisions Required” and the status date of workflow task “Distribution” with task status “Resubmitted”. 
+		// 2) Update the "Substantive Review Due Date" (subgroup = "KEY DATES") = current value of "Substantive Review Due Date + the number of days difference between the status date of workflow task "Review Consolidation" with task status "Revisions Required" and the status date of workflow task "Distribution" with task status "Resubmitted". 
 	}
 	// ===========================	
 	// Check 4
 	// ===========================
-	// For the following record type: 'Planning/Planning and Zoning/NA/NA', ‘Planning/Annexation/NA/NA’
-	// When workflow task status of “Resubmitted” is applied to workflow task “Substantive Review Distribution” then
+	// For the following record type: 'Planning/Planning and Zoning/NA/NA', 'Planning/Annexation/NA/NA'
+	// When workflow task status of "Resubmitted" is applied to workflow task "Substantive Review Distribution" then
 	check4 = ["Planning/Planning and Zoning/NA/NA","Planning/Annexation/NA/NA"];
 	if (
 			exists(appTypeString,check4)
 			&& (wfTask == 'Substantive Review Distribution')
 			&& wfStatus == 'Resubmitted'
 	){
-		// 1) Update the “Start/Stop Indicator” (subgroup = “KEY DATES”) to “Started”
+		// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 		editAppSpecific("Start/Stop Indicator", 'Started');
-		// 2) Update the “Substantive Review Due Date” (subgroup = “KEY DATES”) = current 
-		// value of “Substantive Review Due Date + the number of days difference between
-		// the status date of workflow task “Review Consolidation” with task status-
-		// “Revisions Required” and the status date of workflow task “Substantive Review Distribution”
-		// with task status “Resubmitted”. 
+		// 2) Update the "Substantive Review Due Date" (subgroup = "KEY DATES") = current 
+		// value of "Substantive Review Due Date + the number of days difference between
+		// the status date of workflow task "Review Consolidation" with task status-
+		// "Revisions Required" and the status date of workflow task "Substantive Review Distribution"
+		// with task status "Resubmitted". 
 
 	}
 	// ===========================
 	// Check 5
 	// ===========================
 	// For all record types listed above:
-	// When workflow task status of “Proceed” or “Complete” or “DR Board” or “Planning Director” is
-	// applied to workflow task “Review Consolidation” then:
+	// When workflow task status of "Proceed" or "Complete" or "DR Board" or "Planning Director" is
+	// applied to workflow task "Review Consolidation" then:
 	check5Status = ["Proceed","Complete","DR Board","Planning Director"];
 	if (
 			(wfTask == 'Review Consolidation')
 			&& exsits(wfStatus,check5Status)
 	){
-		// Update the “Start/Stop Indicator” (subgroup = “KEY DATES”) to “Stopped”
+		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
 	// ===========================
 	// Check 6
 	// ===========================
-	// When workflow task status of “Complete” is applied to workflow task “Case Complete” then:
+	// When workflow task status of "Complete" is applied to workflow task "Case Complete" then:
 	if (
 			(wfTask == 'Case Complete')
 			&& wfStatus == 'Complete'
 	){
-		// Update the “Start/Stop Indicator” (subgroup = “KEY DATES”) to “Stopped”
+		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
-	
-
-	
 }
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
