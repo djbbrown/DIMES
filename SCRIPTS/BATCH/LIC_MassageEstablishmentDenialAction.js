@@ -9,7 +9,7 @@
 // denial action remains active. It should close out.
 
 // Script needs to do the following:
-
+ 
 // For all records that meet the following criteria
 
 // - Record Types:
