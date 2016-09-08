@@ -9,7 +9,7 @@
 //		applied to wf task “Application Submittal” then auto-fill 
 //		“Plan Review Penalty Date” ASI field with date based on 
 //		the number of days identified in the Turn around time field.  
-//		The date generated should not be based on a 4 day work week, 
+//		The date generated should be based on a 4 day work week, 
 //		Monday through Thursday, should not include Fridays, Weekends 
 //		or Holidays.
 //
@@ -18,6 +18,31 @@
 //              WTUA;Permits!~!~!~
 // 
 //==================================================================*/
+
+function mesaWorkingDays(curDate, daysToAdd)
+{
+  var theDate = new Date(curDate);
+  var dayOfWeek = theDate.getDay();
+  var mesaFactor = ((parseInt(daysToAdd/4))* 1);
+
+  if (dayOfWeek == 4)
+  {
+    mesaFactor += 1;
+  }
+
+  daysToAdd += mesaFactor;
+
+  //mkyOutput += "theDate: " + theDate + " \r";
+  //mkyOutput += "dayOfWeek: " + dayOfWeek + " \r";
+  //mkyOutput += "mkyFactor: " + mkyFactor + " \r";
+  //mkyOutput += "daysToAdd: " + daysToAdd + " \r";
+
+  theDate = dateAdd(theDate, daysToAdd);
+  //mkyOutput += "theDate: " + theDate + " \r";
+
+  return theDate;
+}
+
 
 try
 {
@@ -34,7 +59,8 @@ try
     if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
     {
       var turnAroundTime = AInfo["Turn Around Time"];
-      var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
+      //var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
+      var theDate = new Date(mesaWorkingDays(theDate,turnAroundTime));
 
       editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
 
@@ -45,6 +71,12 @@ catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
+
+
+
+
+
+
 
 
 
