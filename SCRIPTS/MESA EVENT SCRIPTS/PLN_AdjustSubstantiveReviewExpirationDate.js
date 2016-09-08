@@ -27,8 +27,9 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'A-frame Sign'
 	if (
-			AInfo["Type of Process"] == 'Historical Preservation'
-				&& AInfo["Sub process type"] == 'Section 106 Review'
+		appTypeString == 'Planning/Admin Review/NA/NA'
+		&& AInfo["Type of Process"] == 'Historical Preservation'
+		&& AInfo["Sub process type"] == 'Section 106 Review'
 	){
 		tBd = '106 Reviews'
 	}
@@ -39,8 +40,9 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'A-frame Sign'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-				&& AInfo["Sub process type"] == 'A-frame Sign'
+		appTypeString == 'Planning/Admin Review/NA/NA'
+		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+		&& AInfo["Sub process type"] == 'A-frame Sign'
 	){
 		tBd = 'A-frame Sign'
 	}
@@ -51,8 +53,9 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'Adminstrative Extension'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-				&& AInfo["Sub process type"] == 'Adminstrative Extension'
+		appTypeString == 'Planning/Admin Review/NA/NA'
+		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+		&& AInfo["Sub process type"] == 'Adminstrative Extension'
 	){
 		tBd = 'Administrative Extensions for Zoning Administration Cases'
 	}
@@ -72,8 +75,9 @@ try {
 	              'Lot Combination',
 	              'Other']	
 	if (
-			AInfo["Type of Process"] == 'Land Division'
-				&& exists(AInfo["Sub process type"],aOcSubProc)
+		appTypeString == 'Planning/Admin Review/NA/NA'
+		&& AInfo["Type of Process"] == 'Land Division'
+		&& exists(AInfo["Sub process type"],aOcSubProc)
 	){
 		tBd = 'Affidavit of Change'
 	}
@@ -84,7 +88,8 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'Alternative Landscaping'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+			appTypeString == 'Planning/Admin Review/NA/NA'
+			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 			&& AInfo["Sub process type"] == 'Alternative Landscaping'
 	){
 		tBd = 'Alternative Landscaping'
@@ -96,8 +101,9 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'Alternative Parking'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-			&& AInfo["Sub process type"] == 'Alternative Parking'
+		appTypeString=='Planning/Admin Review/NA/NA'
+		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+		&& AInfo["Sub process type"] == 'Alternative Parking'
 	){
 		tBd = 'Alternative Parking'
 	}
@@ -105,10 +111,8 @@ try {
 	// Annexation
 	// Record Type:
 	//		Planning/Annexation/NA/NA
-	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-	// Sub Process type = 'Alternative Parking'
 	if (
-			appTypeString=='Planning/Annexation/NA/NA'
+		appTypeString=='Planning/Annexation/NA/NA'
 	){
 		tBd = 'Annexation'
 	}
@@ -126,11 +130,14 @@ try {
 	//
 	cTSSubProc = ['Addition to or modification of cell towers',  'Addition to or modification of sign plan'];
 	if(
-		(
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-			&& exists(AInfo["Sub process type"],cTSSubProc)
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& (
+			(
+				AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& exists(AInfo["Sub process type"],cTSSubProc)
+			)
+			|| AInfo["Type of Process"] == 'Wireless Communications Facilities'
 		)
-		|| AInfo["Type of Process"] == 'Wireless Communications Facilities'
 	){
 		tBd = 'Cell Tower - staff'
 	}
@@ -141,15 +148,25 @@ try {
 	// Type of Process = 'Historical Preservation'
 	// and Sub Process type = 'Certificate of Appropriateness' or 'Demolition Permit'
 	if (
-			AInfo["Type of Process"] == 'Historical Preservation'
-			&& (AInfo["Sub process type"] == 'Certificate of Appropriateness'
-				|| AInfo["Sub process type"] == 'Demolition Permit'
-			)
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& AInfo["Type of Process"] == 'Historical Preservation'
+		&& (AInfo["Sub process type"] == 'Certificate of Appropriateness'
+			|| AInfo["Sub process type"] == 'Demolition Permit'
+		)
 	){
 		tBd = 'Certificate of Appropriateness'
 	}
 	// ---------------------------
 	// Council Use Permit
+	// Record Type:
+	//		Planning/Planning and Zoning/NA/NA
+	// Development Incentive Permit = 'Yes'
+	if (
+		appTypeString == "Planning/Planning and Zoning/NA/NA"
+		&& AInfo["Council Use Permit"] == 'Yes'
+	){
+		tBd = 'Council Use Permit'
+	}
 	// ---------------------------
 	// Design Review Modification
 	// ---------------------------
@@ -158,7 +175,7 @@ try {
 	//		Planning/Design Review/NA/NA
 	// none
 	if (
-		1=1
+		appTypeString == "Planning/Design Review/NA/NA" 
 	){
 		tBd = 'Design Review – Board'
 	}
@@ -169,7 +186,8 @@ try {
 	// Type of Process = 'Design Review' or 'Land Division' or 'Desert Uplands Development Standards'
 	dRProc = ['Design Review','Land Division','Desert Uplands Development Standards'];
 	if (
-			exists(AInfo["Type of Process"],dRProc);
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& exists(AInfo["Type of Process"],dRProc)
 	){
 		tBd = 'Design Review – Staff'
 	}
@@ -179,7 +197,8 @@ try {
 	//		Planning/Board of Adjustment/NA/NA
 	// Development Incentive Permit = 'Yes'
 	if (
-			AInfo["Development Incentive Permit"] == 'Yes'
+		appTypeString == 'Planning/Board of Adjustment/NA/NA'
+		&& AInfo["Development Incentive Permit"] == 'Yes'
 	){
 		tBd = 'Alternative Landscaping'
 	}
@@ -190,13 +209,23 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'Amendment of development incentive permit'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-			&& AInfo["Sub process type"] == 'Amendment of development incentive permit'
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+		&& AInfo["Sub process type"] == 'Amendment of development incentive permit'
 	){
 		tBd = 'Development Incentive Permit Modification'
 	}
 	// ---------------------------
 	// Development Unit Plan - P&Z
+	// Record Type:
+	//		Planning/Planning and Zoning/NA/NA
+	// Development Unit Plan = 'Yes'
+	if (
+		appTypeString == "Planning/Planning and Zoning/NA/NA"
+		&& AInfo["Development Unit Plan"] == 'Yes'
+	){
+		tBd = 'Council Use Permit'
+	}
 	// ---------------------------
 	// Development Unit Plan - Staff
 	// ---------------------------
@@ -208,22 +237,45 @@ try {
 	// Type of Process = 'Development Unit Plan' and 
 	// Sub Process type = 'Amendment to Development Unit Plan'
 	if (
-			AInfo["Type of Process"] == 'Development Unit Plan'
-			&& AInfo["Sub process type"] == 'Amendment to Development Unit Plan'
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& AInfo["Type of Process"] == 'Development Unit Plan'
+		&& AInfo["Sub process type"] == 'Amendment to Development Unit Plan'
 	){
 		tBd = 'Development Unit Plan Modification – Staff'
 	}
 	// ---------------------------
 	// Final Plat Modification
+	// Record Type:
+	//		Planning/Subdivision/NA/NA
+	// Application Type = 'Re-Plat' or 'Map of Dedication (MOD)'
+	if (
+		appTypeString == "Planning/Subdivision/NA/NA"
+		&& (
+			AInfo['Application Type'] == 'Re-Plat'
+			|| AInfo['Application Type'] == 'Map of Dedication (MOD)'
+		)
+	){
+		tBd = 'Final Plat and Re-plat'
+	}
 	// ---------------------------
 	// Final Plat and Re-plat
+	// Record Type:
+	//		Planning/Subdivision/NA/NA
+	// Application Type = 'Final Plat Review'
+	if (
+		appTypeString == "Planning/Subdivision/NA/NA"
+		&& AInfo['Application Type'] == 'Final Plat Review'
+	){
+		tBd = 'Final Plat and Re-plat'
+	}
 	// ---------------------------
 	// Form-based Code Zoning Clearance
 	// Record Type:
 	//		Planning/Admin Review/NA/NA
 	// Type of Process = 'Form Based Code/Zoning Clearance'
 	if (
-			AInfo["Type of Process"] == 'Form Based Code/Zoning Clearance'
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& AInfo["Type of Process"] == 'Form Based Code/Zoning Clearance'
 	){
 		tBd = 'Form-based Code Zoning Clearance'
 	}
@@ -233,7 +285,7 @@ try {
 	//		Planning/Group Home/Application/NA
 	// none
 	if (
-			
+		appTypeString == "Planning/Group Home/Application/NA"	
 	){
 		tBd = 'Group Home Registrations'
 	}
@@ -245,7 +297,8 @@ try {
 	//		Planning/Board of Adjustment/NA/NA
 	// Interpretation = 'Yes'
 	if (
-			AInfo["Interpretation"] == 'Yes'
+		appTypeString == "Planning/Board of Adjustment/NA/NA"
+		&& AInfo["Interpretation"] == 'Yes'
 	){
 		tBd = 'Alternative Landscaping'
 	}
@@ -256,8 +309,9 @@ try {
 	// Type of Process = 'Land Division' and 
 	// Sub Process type = 'Land Split'
 	if (
-			AInfo["Type of Process"] == 'Land Division'
-				&& AInfo["Sub process type"] == 'Land Split'
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& AInfo["Type of Process"] == 'Land Division'
+		&& AInfo["Sub process type"] == 'Land Split'
 	){
 		tBd = 'Land Split'
 	}
@@ -267,7 +321,7 @@ try {
 	//		Planning/General Plan Amendment - Major/NA/NA
 	// none
 	if (
-			
+		appTypeString == "Planning/General Plan Amendment - Major/NA/NA"
 	){
 		tBd = 'Design Review – Board'
 	}
@@ -277,19 +331,34 @@ try {
 	//		Planning/Admin Review/NA/NA
 	// Type of Process = 'Medical Marijuana'
 	if (
-			AInfo["Type of Process"] == 'Medical Marijuana'
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& AInfo["Type of Process"] == 'Medical Marijuana'
 	){
 		tBd = 'Medical Marijuana'
 	}
 	// ---------------------------
 	// Minor General Plan Amendment
+	// Record Type:
+	//		Planning/Planning and Zoning/NA/NA
+	// Minor General Plan Amendment = 'Yes' or 
+	// Planned Community Minor Amendment = 'Yes'
+	if (
+		appTypeString == "Planning/Planning and Zoning/NA/NA"
+		&& (
+			AInfo["Minor General Plan Amendment"] == 'Yes'
+			|| AInfo["Planned Community Minor Amendment"] == 'Yes'
+		)
+	){
+		tBd = 'Minor General Plan Amendment'
+	}
 	// ---------------------------
 	// PAD Modification - BOA
 	// Record Type:
 	//		Planning/Board of Adjustment/NA/NA
 	// Modification of Planned Area Development = 'Yes'
 	if (
-			AInfo["Modification of Planned Area Development"] == 'Yes'
+		appTypeString == "Planning/Board of Adjustment/NA/NA"
+		&& AInfo["Modification of Planned Area Development"] == 'Yes'
 	){
 		tBd = 'PAD Modification - BOA'
 	}
@@ -297,6 +366,16 @@ try {
 	// PAD Modification - P&Z
 	// ---------------------------
 	// Preliminary Plat
+		// Record Type:
+		//		Planning/Planning and Zoning/NA/NA
+		// Minor General Plan Amendment = 'Yes' or 
+		// Planned Community Minor Amendment = 'Yes'
+		if (
+			appTypeString == "Planning/Planning and Zoning/NA/NA"
+			&& AInfo["Pre-Plat"] == 'Yes'
+		){
+			tBd = 'Preliminary Plat'
+		}
 	// ---------------------------
 	// Preliminary Plat Extension
 	// Record Type:
@@ -304,8 +383,9 @@ try {
 	// Type of Process = 'Land Division' and 
 	// Sub Process type = 'Preliminary Plat Extension'
 	if (
-			AInfo["Type of Process"] == 'Land Division'
-				&& AInfo["Sub process type"] == 'Preliminary Plat Extension'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Land Division'
+			&& AInfo["Sub process type"] == 'Preliminary Plat Extension'
 	){
 		tBd = 'Preliminary Plat Extension'
 	}
@@ -316,8 +396,9 @@ try {
 	// Type of Process = 'Land Division' and 
 	// Sub Process type = Amendment to Lot layout/street system'
 	if (
-			AInfo["Type of Process"] == 'Land Division'
-				&& AInfo["Sub process type"] == 'Amendment to Lot layout/street system'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Land Division'
+			&& AInfo["Sub process type"] == 'Amendment to Lot layout/street system'
 	){
 		tBd = 'Preliminary Plat Modification'
 	}
@@ -329,10 +410,12 @@ try {
 	// Sub Process type = 'New detached product' or 'New Attached product' or 'Other'
 	pRSubProc = ['New detached product','New Attached product','Other'];
 	if (
-			AInfo["Type of Process"] == 'Product Approval'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Product Approval'
 			&& ( 
 				AInfo["Sub process type"] == 'Amendment/Addition to Approved Product'
 				|| exists(AInfo["Sub process type"],pRSubProc)
+			)
 	){
 		tBd = 'Product Review'
 	}
@@ -343,7 +426,8 @@ try {
 	// Type of Process = 'Product Approval' and 
 	// Sub Process type = 'Amendment/Addition to Approved Product'
 	if (
-			AInfo["Type of Process"] == 'Product Approval'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Product Approval'
 			&& AInfo["Sub process type"] == 'Amendment/Addition to Approved Product'
 	){
 		tBd = 'Product Review Modification'
@@ -354,6 +438,23 @@ try {
 	// Rezoning - Historic Landmark
 	// ---------------------------
 	// Rezoning - general
+	// Record Type:
+	//		Planning/Planning and Zoning/NA/NA
+	// Rezone = 'Yes' or
+	// Rezone - Infill Development District 2 = 'Yes' or 
+	// Rezone - Planned Community District = 'Yes' or
+	// Combined Rezone and Site Plan Review/Modification = 'Yes'
+	if (
+			appTypeString == "Planning/Planning and Zoning/NA/NA"
+			&& (
+				AInfo['Rezone'] == 'Yes'
+				|| AInfo['Rezone - Infill Development District 2'] == 'Yes' 
+				|| AInfo['Rezone - Planned Community District'] == 'Yes'
+				|| AInfo['Combined Rezone and Site Plan Review/Modification'] == 'Yes'
+			)
+	){
+		tBd = 'Rezoning - general'
+	}
 	// ---------------------------
 	// Shared Parking
 	// Record Type:
@@ -361,7 +462,8 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'Shared Parking'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 			&& AInfo["Sub process type"] == 'Shared Parking'
 	){
 		tBd = 'Shared Parking'
@@ -372,7 +474,8 @@ try {
 	//		Planning/Admin Review/NA/NA
 	// Type of Process = 'Zoning/Site Plan'
 	if (
-			AInfo["Type of Process"] == 'Zoning/Site Plan'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Zoning/Site Plan'
 	){
 		tBd = 'Site Plan Modification - Admin'
 	}	
@@ -380,15 +483,35 @@ try {
 	// Site Plan Review - Council
 	// ---------------------------
 	// Site Plan Review - P&Z
+	// Record Type:
+	//		Planning/Board of Adjustment/NA/NA
+	// Special Use Permit = 'Yes'
+	//		or Administrative Use Permits = 'Yes'
+	if (
+			appTypeString == "Planning/Board of Adjustment/NA/NA"
+			&& AInfo['Site Plan Review/Modification'] = 'Yes'
+	){
+		tBd = 'Site Plan Review - P&Z'
+	}
 	// ---------------------------
 	// Special Use Permit
 	// Record Type:
 	//		Planning/Board of Adjustment/NA/NA
 	// Special Use Permit = 'Yes'
 	//		or Administrative Use Permits = 'Yes'
+	// Record Type:
+	//		Planning/Planning and Zoning/NA/NA
+	// Special Use Permit = 'Yes'
 	if (
-			AInfo['Special Use Permit'] == 'Yes'
-			|| AInfo['Administrative Use Permits'] == 'Yes'
+			(
+				appTypeString == 'Planning/Board of Adjustment/NA/NA'
+				&& (AInfo['Special Use Permit'] == 'Yes'
+				|| AInfo['Administrative Use Permits'] == 'Yes')
+			)
+			|| (
+				appTypeString == 'Planning/Planning and Zoning/NA/NA'
+				&& (AInfo['Special Use Permit'] == 'Yes'
+			)
 	){
 		tBd = 'Special Use Permit'
 	}
@@ -396,6 +519,15 @@ try {
 	// Special Use Permit Modification
 	// ---------------------------
 	// Subdivision Technical Review
+	// Record Type:
+	//		Planning/Subdivision/NA/NA
+	// Application Type = 'Subdivision Technical Review'
+	if (
+			appTypeString == "Planning/Subdivision/NA/NA" 
+			&& AInfo['Application Type'] == 'Subdivision Technical Review'
+	){
+		tBd = 'Subdivision Technical Review'
+	}
 	// ---------------------------
 	// Substantial Conformance Improvement Permit
 	// Record Type:
@@ -403,7 +535,8 @@ try {
 	// Special Use Permit = 'Yes'
 	//		or Administrative Use Permits = 'Yes'
 	if (
-			AInfo['Substantial Conformance Improvement Permit'] = 'Yes'
+			appTypeString == "Planning/Board of Adjustment/NA/NA" 
+			&& AInfo['Substantial Conformance Improvement Permit'] = 'Yes'
 	){
 		tBd = 'Special Use Permit'
 	}
@@ -415,7 +548,8 @@ try {
 	// Sub Process type = 'Amendment of Substantial Conformance Improvement Plan'
 	//		or 'Other'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 			&& (
 				AInfo["Sub process type"] == 'Amendment of Substantial Conformance Improvement Plan'
 				|| AInfo["Sub process type"] == 'Other'
@@ -430,8 +564,9 @@ try {
 	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
 	// Sub Process type = 'Temporary Use Permit'
 	if (
-			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-				&& AInfo["Sub process type"] == 'Temporary Use Permit'
+			appTypeString == "Planning/Admin Review/NA/NA"
+			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+			&& AInfo["Sub process type"] == 'Temporary Use Permit'
 	){
 		tBd = 'Temporary Use Permits'
 	}
@@ -442,7 +577,8 @@ try {
 	// Special Use Permit = 'Yes'
 	//		or Administrative Use Permits = 'Yes'
 	if (
-			AInfo['Variance'] = 'Yes'
+			appTypeString == "Planning/Board of Adjustment/NA/NA"
+			&& AInfo['Variance'] = 'Yes'
 	){
 		tBd = 'Variance'
 	}
