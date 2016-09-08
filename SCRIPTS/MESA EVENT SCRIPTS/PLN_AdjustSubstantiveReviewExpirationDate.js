@@ -14,9 +14,176 @@
 //		WTUA;Planning!Group Home!Application!NA
 //		WTUA;Planning!Planning and Zoning!NA!NA
 //		WTUA;Planning!Subdivision!NA!NA
+// Good Test Record: ADM16-00221
 ===================================================================*/
 
 try {
+	// ===========================
+	// Technical breakdown
+	// ===========================
+	// 106 Reviews
+	// ---------------------------
+	// A-frame Sign
+	// Record Type:
+	//		Planning/Admin Review/NA/NA
+	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+	// Sub Process type = 'A-frame Sign'
+	if (
+			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Type of Process"] == 'A-frame Sign'
+	){
+		tBd = 'A-frame Sign'
+	}
+	// ---------------------------
+	// Administrative Extensions for Zoning Administration Cases
+	// Record Type:
+	//		Planning/Admin Review/NA/NA
+	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+	// Sub Process type = 'Adminstrative Extension'
+	if (
+			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Type of Process"] == 'Adminstrative Extension'
+	){
+		tBd = 'Administrative Extensions for Zoning Administration Cases'
+	}
+	// ---------------------------
+	// Affidavit of Change
+	// ---------------------------
+	// Alternative Landscaping
+	// Record Type:
+	//		Planning/Admin Review/NA/NA
+	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+	// Sub Process type = 'Alternative Landscaping'
+	if (
+			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Type of Process"] == 'Alternative Landscaping'
+	){
+		tBd = 'Alternative Landscaping'
+	}
+	// ---------------------------
+	// Alternative Parking
+	// Record Type:
+	//		Planning/Admin Review/NA/NA
+	// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+	// Sub Process type = 'Alternative Parking'
+	if (
+			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Type of Process"] == 'Alternative Parking'
+	){
+		tBd = 'Alternative Parking'
+	}
+	// ---------------------------
+	// Annexation
+	// ---------------------------
+	// Cell Tower - Board
+	// ---------------------------
+	// Cell Tower - staff
+	// Record Type:
+	//		Planning/Admin Review/NA/NA
+	// (
+	// 		Type of Process = 'Board of Adjustment/Zoning Admin'
+	//		and Sub Process type in ('Addition to or modification of cell towers',  'Addition to or modification of sign plan')
+	// ) 
+	// or Type of Process = 'Wireless Communications Facilities'
+	//
+	cTSSubProc = ['Addition to or modification of cell towers',  'Addition to or modification of sign plan'];
+	if(
+		(
+			AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+			&& exists(AInfo["Type of Process"],cTSSubProc)
+		)
+		|| AInfo["Type of Process"] == 'Wireless Communications Facilities'
+	){
+		tBd = 'Cell Tower - staff'
+	}
+	// ---------------------------
+	// Certificate of Appropriateness
+	// ---------------------------
+	// Council Use Permit
+	// ---------------------------
+	// Design Review Modification
+	// ---------------------------
+	// Design Review – Board
+	// ---------------------------
+	// Design Review – Staff
+	// ---------------------------
+	// Development Incentive Permit
+	// ---------------------------
+	// Development Incentive Permit Modification
+	// ---------------------------
+	// Development Unit Plan - P&Z
+	// ---------------------------
+	// Development Unit Plan - Staff
+	// ---------------------------
+	// Development Unit Plan Modification – P&Z
+	// ---------------------------
+	// Development Unit Plan Modification – Staff
+	// ---------------------------
+	// Final Plat Modification
+	// ---------------------------
+	// Final Plat and Re-plat
+	// ---------------------------
+	// Form-based Code Zoning Clearance
+	// ---------------------------
+	// Group Home Registrations
+	// ---------------------------
+	// Improvement Permit Modification
+	// ---------------------------
+	// Interpretation
+	// ---------------------------
+	// Land Split
+	// ---------------------------
+	// Major General Plan Amendment
+	// ---------------------------
+	// Medical Marijuana
+	// ---------------------------
+	// Minor General Plan Amendment
+	// ---------------------------
+	// PAD Modification - BOA
+	// ---------------------------
+	// PAD Modification - P&Z
+	// ---------------------------
+	// Preliminary Plat
+	// ---------------------------
+	// Preliminary Plat Extension
+	// ---------------------------
+	// Preliminary Plat Modification
+	// ---------------------------
+	// Product Review
+	// ---------------------------
+	// Product Review Modification
+	// ---------------------------
+	// Rezoning - Historic District
+	// ---------------------------
+	// Rezoning - Historic Landmark
+	// ---------------------------
+	// Rezoning - general
+	// ---------------------------
+	// Shared Parking
+	// ---------------------------
+	// Site Plan Modification - Admin
+	// ---------------------------
+	// Site Plan Review - Council
+	// ---------------------------
+	// Site Plan Review - P&Z
+	// ---------------------------
+	// Special Use Permit
+	// ---------------------------
+	// Special Use Permit Modification
+	// ---------------------------
+	// Subdivision Technical Review
+	// ---------------------------
+	// Substantial Conformance Improvement Permit
+	// ---------------------------
+	// Substantial Conformance Improvement Permit Modification
+	// ---------------------------
+	// Temporary Use Permits
+	// ---------------------------
+	// Variance
+	// ---------------------------
+	// Variance Modification
+	// ---------------------------
+	
 	// ===========================
 	// Check 1
 	// ===========================
