@@ -380,16 +380,16 @@ try {
 	// PAD Modification - P&Z
 	// ---------------------------
 	// Preliminary Plat
-		// Record Type:
-		//		Planning/Planning and Zoning/NA/NA
-		// Minor General Plan Amendment = 'Yes' or 
-		// Planned Community Minor Amendment = 'Yes'
-		if (
-			appTypeString == "Planning/Planning and Zoning/NA/NA"
-			&& AInfo["Pre-Plat"] == 'Yes'
-		){
-			tBd = 'Preliminary Plat'
-		}
+	// Record Type:
+	//		Planning/Planning and Zoning/NA/NA
+	// Minor General Plan Amendment = 'Yes' or 
+	// Planned Community Minor Amendment = 'Yes'
+	if (
+		appTypeString == "Planning/Planning and Zoning/NA/NA"
+		&& AInfo["Pre-Plat"] == 'Yes'
+	){
+		tBd = 'Preliminary Plat'
+	}
 	// ---------------------------
 	// Preliminary Plat Extension
 	// Record Type:
@@ -593,6 +593,7 @@ try {
 	){
 		tBd = 'Variance'
 	}
+	aa.print(tBd);
 	// ---------------------------
 	// Variance Modification
 	// ---------------------------
