@@ -54,7 +54,7 @@ try
   {    
     if ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
     {
-      var turnAroundTime = getAppSpecific["Turn Around Time"];
+      var turnAroundTime = AInfo["Turn Around Time"];
       //var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
       var todayDate = new Date();
       var theDate = mesaWorkingDays(todayDate,turnAroundTime);
