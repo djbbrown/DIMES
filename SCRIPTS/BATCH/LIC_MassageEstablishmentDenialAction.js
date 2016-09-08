@@ -12,7 +12,12 @@
 
 // For all records that meet the following criteria
 
-// - Record Type = Licenses/General/MassageEstablishment/Application
+// - Record Types:
+//   - Licenses/~/~/~ except:
+        - Licenses/Liquor/~/~ 
+        - Licenses/General/SexuallyOrientedBusiness/~
+        - Licenses/General/TeenDance/~
+
 // - Record Status = 'In Review'
 // - Current 'Workflow Task' of 'Denial Action' with NO STATUS for 10 days 
 
@@ -113,9 +118,17 @@ function mainProcess()
         /***** BEGIN FILTERS *****/
 
         /* EXAMPLE OF FILTERING BY CAP TYPE (KEY4) */
+        // We want all Licenses/~/~/~ except:
+        //   - Licenses/Liquor/~/~ 
+        //   - Licenses/General/SexuallyOrientedBusiness/~
+        //   - Licenses/General/TeenDance/~
         // move to the next record unless we have a match on the key4 we want
         // the key4 we want is passed in to this batch script
-        if (appType.length && !appMatch(appType))
+        if ( 
+            appMatch("Licenses/Liquor/*/*") ||
+            appMatch("Licenses/General/SexuallyOrientedBusiness/*") || 
+            appMatch("Licenses/General/TeenDance/*") 
+        )
         {
             capFilterType++;
             //logDebug(altId + ": Application Type does not match.");
@@ -150,7 +163,7 @@ function mainProcess()
                 if (tasks[t].getDisposition() == null)
                 {
                     // check status date - see if today = appeal deadline
-                    var daysTillDeadline = daydiff(parseDate(getTodayAsString()), parseDate(getAppSpecific("Appeal Deadline"))); // getAppSpecific() is in INCLUDES_ACCELA_FUNCTIONS
+                    var daysTillDeadline = daydiff(parseDate(getTodayAsString()), parseDate(getAppSpecific("Appeal Deadline")));
                     
                     if (daysTillDeadline == 0) 
                     {
@@ -519,7 +532,7 @@ try
         aa.env.setValue("appGroup", "Licenses"); 
         aa.env.setValue("appTypeType","General"); 
         aa.env.setValue("appSubType","MassageEstablishment"); 
-        aa.env.setValue("appCategory","Application"); 
+        aa.env.setValue("appCategory","Application");
         aa.env.setValue("taskName", "Denial Action");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
