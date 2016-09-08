@@ -15,16 +15,19 @@ function mesaWorkingDays(curDate, daysToAdd)
 {
   var theDate = new Date(curDate);
   var dayOfWeek = theDate.getDay();
-  var mesaFactor = parseInt((parseInt(daysToAdd/4))* 3);
+  var mesaFactor = parseInt((parseInt(daysToAdd/4))* 1);
 
   if (dayOfWeek == 4)
   {
-    mesaFactor += 3;
+    mesaFactor += 1;
   }
 
   var dayAdjustment = parseInt(daysToAdd) + mesaFactor;
 
-  theDate = dateAdd(theDate, dayAdjustment);
+  theDate = dateAdd(theDate, daysToAdd, 'Y');
 
   return theDate;
 }
+
+
+
