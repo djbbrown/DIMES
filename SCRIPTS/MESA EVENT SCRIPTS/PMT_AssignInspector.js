@@ -69,14 +69,12 @@ try
             // get this inspection's id Number
             var inspNumber = getThisInspectionId();
             logDebug("inspNumber: " + inspNumber);
-            //getInspections(); // test
             
             // assign inspector
             var iObjResult = aa.inspection.getInspection(capId, inspNumber);
             if (!iObjResult.getSuccess()) 
             {
 		        logDebug("**WARNING retrieving inspection " + inspNumber + " : " + iObjResult.getErrorMessage());
-		        return false;
 	        }
 	        iObj = iObjResult.getOutput();
             iObj.setInspector(inspectorObj);
