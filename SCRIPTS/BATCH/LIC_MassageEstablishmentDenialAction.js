@@ -36,6 +36,7 @@
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /// <reference path="../../INCLUDES_BATCH.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -62,7 +63,7 @@ function mainProcess()
     /***** BEGIN LOOP DATA *****/
 
     // get the records to process
-    var capResult = aa.cap.getByAppType(appGroup, appTypeType, appSubType, appCategory);    
+    var capResult = aa.cap.getByAppType(appGroup, null, null, null);    
 
     if (capResult.getSuccess())
     {
@@ -131,8 +132,8 @@ function mainProcess()
         )
         {
             capFilterType++;
-            //logDebug(altId + ": Application Type does not match.");
-            //logDebug("--------------moving to next record--------------");
+            logDebug(altId + ": Application Type does not match.");
+            logDebug("--------------moving to next record--------------");
             continue; // move to the next record
         }
         
@@ -178,6 +179,7 @@ function mainProcess()
                         updateAppStatus("Denied", "set by batch"); // this is in INCLUDES_ACCELA_FUNCTIONS
                     }
                     else {
+                        logDebug(altId + ": Today is not the deadline. Days till deadline: " + daysTillDeadline);
                         capFilterNotAppealDeadline++;
                     }
                 }
@@ -530,9 +532,9 @@ try
     {
         // set testing values
         aa.env.setValue("appGroup", "Licenses"); 
-        aa.env.setValue("appTypeType","General"); 
-        aa.env.setValue("appSubType","MassageEstablishment"); 
-        aa.env.setValue("appCategory","Application");
+        aa.env.setValue("appTypeType","*"); 
+        aa.env.setValue("appSubType","*"); 
+        aa.env.setValue("appCategory","*");
         aa.env.setValue("taskName", "Denial Action");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
