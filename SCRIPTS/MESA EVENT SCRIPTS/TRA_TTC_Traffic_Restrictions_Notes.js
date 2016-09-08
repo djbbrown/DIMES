@@ -36,7 +36,7 @@ try {
         {
            ConditionFlag = 1; 
         }
-        if(Notes == "")
+        if(Notes.length == 0)
         {
             ConditionFlag2 = 1; 
         }
@@ -45,10 +45,10 @@ try {
         if(ConditionFlag == 1 && ConditionFlag2 == 1)
         {
             //Pop up message to user
-            showMessage = true;
-            comment("When Left Turn Lane (Exclusive) is selected, describe if there are any left turn prohibitions.");
+            //showMessage = true;
+            //comment("When Left Turn Lane (Exclusive) is selected, describe if there are any left turn prohibitions.");
             //Stop the submission
-            cancel = true;
+            //cancel = true;
             //Break out of the loop
             break;
         }  
