@@ -17,6 +17,7 @@ try {
       var ConType;
       var AppToEmail;
       var PlanningPhone;
+      var tStatus = "Incomplete";
  
     //Get application status
     AppStatus = capStatus;
