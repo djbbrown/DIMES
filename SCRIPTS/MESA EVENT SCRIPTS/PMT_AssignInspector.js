@@ -43,17 +43,6 @@ function getThisInspectionId()
     }
 }
 
-/*function getInspections() 
-{
-    var vInspectionIdListArray = [];
-    vInspectionIdListArray = InspectionIdList.split("\\|");
-    var i;
-    for (i = vInspectionIdListArray.length - 1; i >= 0; i--)
-    {
-        logDebug("vInspectionIdListArray[ " + i.toString() + " ] = " + vInspectionIdListArray[i]);
-    }
-}*/
-
 function compareByNumber(a, b) {
     return a.getIdNumber() - b.getIdNumber();
 }
