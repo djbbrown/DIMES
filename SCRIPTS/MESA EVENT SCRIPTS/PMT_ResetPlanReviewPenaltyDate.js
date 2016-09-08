@@ -20,7 +20,8 @@
 // 
 //==================================================================*/
 
-function mesaWorkingDays(curDate, daysToAdd)
+
+function mesaWorkDays(curDate, daysToAdd)
 {
   var theDate = new Date(curDate);
   var dayOfWeek = theDate.getDay();
@@ -33,7 +34,13 @@ function mesaWorkingDays(curDate, daysToAdd)
 
   daysToAdd += mesaFactor;
 
-  theDate = dateAdd(theDate, daysToAdd);
+  //mkyOutput += "theDate: " + theDate + " \r";
+  //mkyOutput += "dayOfWeek: " + dayOfWeek + " \r";
+  //mkyOutput += "mesaFactor: " + mesaFactor + " \r";
+  //mkyOutput += "daysToAdd: " + daysToAdd + " \r";
+
+  theDate = dateAdd(theDate, daysToAdd, 'Y');
+  //mkyOutput += "theDate: " + theDate + " \r";
 
   return theDate;
 }
@@ -56,12 +63,18 @@ try
     {
       var turnAroundTime = AInfo["Turn Around Time"];
       //var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
-      var todayDate = new Date();
-      var theDate = mesaWorkingDays(todayDate,turnAroundTime);
+      //var todayDate = new Date();
+      //var theDate = mesaWorkingDays(todayDate,turnAroundTime);
       showMessage = true;
-      comment("todayDate: " + todayDate);
+      //comment("todayDate: " + todayDate);
       comment("turnAroundTime: " + turnAroundTime);
-      comment("theDate: " + theDate);
+      //comment("theDate: " + theDate);
+
+      var aDate = new Date();
+      //mkyOutput += "aDate: " + aDate + " \r";
+      var scheduleDate = mesaWorkDays(aDate,turnAroundTime);
+      //mkyOutput += "scheduleDate: " + scheduleDate + " \r";
+      comment("scheduleDate: " + scheduleDate);
 
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(theDate));
 
