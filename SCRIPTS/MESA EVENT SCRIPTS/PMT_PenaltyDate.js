@@ -19,23 +19,9 @@
 // 
 //==================================================================*/
 
-function mesaWorkingDays(curDate, daysToAdd)
-{
-  var theDate = new Date(curDate);
-  var dayOfWeek = theDate.getDay();
-  var mesaFactor = ((parseInt(daysToAdd/4))* 1);
 
-  if (dayOfWeek == 4)
-  {
-    mesaFactor += 1;
-  }
 
-  daysToAdd += mesaFactor;
-
-  theDate = dateAdd(theDate, daysToAdd);
-
-  return theDate;
-}
+// this script won't work until mesaWorkingDays function is uploaded into the system
 
 
 try
@@ -53,10 +39,11 @@ try
     if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
     {
       var turnAroundTime = AInfo["Turn Around Time"];
-      //var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
-      var theDate = new Date(mesaWorkingDays(theDate,turnAroundTime));
 
-      editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
+      var theDate = new Date();
+      var futureDate = new Date(mesaWorkingDays(theDate, turnAroundTime));
+
+      editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
 
     }
   }

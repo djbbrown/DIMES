@@ -25,6 +25,9 @@
 //(appMatch("Permits/Commercial/NA/NA")) ||
 //(appMatch("Permits/Residential/NA/NA")) ||
 
+
+// this script won't work until mesaWorkingDays function is uploaded into the system
+
 try
 {
   if (
@@ -37,10 +40,12 @@ try
     if ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
     {
       
-      
+      var turnAroundTime = AInfo["Turn Around Time"];
 
+      var theDate = new Date();
+      var futureDate = new Date(mesaWorkingDays(theDate, turnAroundTime));
 
-      editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(theDate));
+      editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
 
     }
   }
