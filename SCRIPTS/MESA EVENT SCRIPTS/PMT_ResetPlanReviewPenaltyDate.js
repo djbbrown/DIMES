@@ -58,6 +58,10 @@ try
       //var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
       var todayDate = new Date();
       var theDate = mesaWorkingDays(todayDate,turnAroundTime);
+      showMessage = true;
+      comment("todayDate: " + todayDate);
+      comment("turnAroundTime: " + turnAroundTime);
+      comment("theDate: " + theDate);
 
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(theDate));
 
