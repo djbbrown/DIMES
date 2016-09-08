@@ -200,7 +200,7 @@ try {
 		appTypeString == 'Planning/Board of Adjustment/NA/NA'
 		&& AInfo["Development Incentive Permit"] == 'Yes'
 	){
-		tBd = 'Alternative Landscaping'
+		tBd = 'Development Incentive Permit'
 	}
 	// ---------------------------
 	// Development Incentive Permit Modification
@@ -224,10 +224,24 @@ try {
 		appTypeString == "Planning/Planning and Zoning/NA/NA"
 		&& AInfo["Development Unit Plan"] == 'Yes'
 	){
-		tBd = 'Council Use Permit'
+		tBd = 'Development Unit Plan - P&Z'
 	}
 	// ---------------------------
 	// Development Unit Plan - Staff
+	// Record Type:
+	//		Planning/Admin Review/NA/NA
+	// Type of Process = 'Development Unit Plan' and 
+	// Sub Process type = 'Development Unit Plan' or 'Other'
+	if (
+		appTypeString == "Planning/Admin Review/NA/NA"
+		&& AInfo["Type of Process"] == 'Development Unit Plan'
+		&& (
+			AInfo["Sub process type"] == 'Development Unit Plan'
+			|| AInfo["Sub process type"] == 'Other'
+		)
+	){
+		tBd = 'Development Unit Plan - Staff'
+	}
 	// ---------------------------
 	// Development Unit Plan Modification – P&Z
 	// ---------------------------
@@ -255,7 +269,7 @@ try {
 			|| AInfo['Application Type'] == 'Map of Dedication (MOD)'
 		)
 	){
-		tBd = 'Final Plat and Re-plat'
+		tBd = 'Final Plat Modification'
 	}
 	// ---------------------------
 	// Final Plat and Re-plat
@@ -300,7 +314,7 @@ try {
 		appTypeString == "Planning/Board of Adjustment/NA/NA"
 		&& AInfo["Interpretation"] == 'Yes'
 	){
-		tBd = 'Alternative Landscaping'
+		tBd = 'Interpretation'
 	}
 	// ---------------------------
 	// Land Split
@@ -323,7 +337,7 @@ try {
 	if (
 		appTypeString == "Planning/General Plan Amendment - Major/NA/NA"
 	){
-		tBd = 'Design Review – Board'
+		tBd = 'Major General Plan Amendment'
 	}
 	// ---------------------------
 	// Medical Marijuana
@@ -412,10 +426,7 @@ try {
 	if (
 			appTypeString == "Planning/Admin Review/NA/NA"
 			&& AInfo["Type of Process"] == 'Product Approval'
-			&& ( 
-				AInfo["Sub process type"] == 'Amendment/Addition to Approved Product'
-				|| exists(AInfo["Sub process type"],pRSubProc)
-			)
+			&& exists(AInfo["Sub process type"],pRSubProc)
 	){
 		tBd = 'Product Review'
 	}
@@ -538,7 +549,7 @@ try {
 			appTypeString == "Planning/Board of Adjustment/NA/NA" 
 			&& AInfo['Substantial Conformance Improvement Permit'] = 'Yes'
 	){
-		tBd = 'Special Use Permit'
+		tBd = 'Substantial Conformance Improvement Permit'
 	}
 	// ---------------------------
 	// Substantial Conformance Improvement Permit Modification
