@@ -21,31 +21,6 @@
 //==================================================================*/
 
 
-function mesaWorkDays(curDate, daysToAdd)
-{
-  var theDate = new Date(curDate);
-  var dayOfWeek = theDate.getDay();
-  var mesaFactor = ((parseInt(daysToAdd/4))* 1);
-
-  if (dayOfWeek == 4)
-  {
-    mesaFactor += 1;
-  }
-
-  daysToAdd += mesaFactor;
-
-  //mkyOutput += "theDate: " + theDate + " \r";
-  //mkyOutput += "dayOfWeek: " + dayOfWeek + " \r";
-  //mkyOutput += "mesaFactor: " + mesaFactor + " \r";
-  //mkyOutput += "daysToAdd: " + daysToAdd + " \r";
-
-  theDate = dateAdd(theDate, daysToAdd, 'Y');
-  //mkyOutput += "theDate: " + theDate + " \r";
-
-  return theDate;
-}
-
-
 //(appMatch("Permits/Document Retrieval/NA/NA")) ||
 //(appMatch("Permits/Commercial/NA/NA")) ||
 //(appMatch("Permits/Residential/NA/NA")) ||
@@ -61,20 +36,9 @@ try
   {    
     if ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
     {
-      var turnAroundTime = AInfo["Turn Around Time"];
-      //var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
-      //var todayDate = new Date();
-      //var theDate = mesaWorkingDays(todayDate,turnAroundTime);
-      showMessage = true;
-      //comment("todayDate: " + todayDate);
-      comment("turnAroundTime: " + turnAroundTime);
-      //comment("theDate: " + theDate);
+      
+      
 
-      var aDate = new Date();
-      //mkyOutput += "aDate: " + aDate + " \r";
-      var scheduleDate = mesaWorkDays(aDate,turnAroundTime);
-      //mkyOutput += "scheduleDate: " + scheduleDate + " \r";
-      comment("scheduleDate: " + scheduleDate);
 
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(theDate));
 
