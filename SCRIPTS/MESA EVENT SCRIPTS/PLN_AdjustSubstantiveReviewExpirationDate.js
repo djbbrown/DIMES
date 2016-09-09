@@ -16,6 +16,125 @@
 //		WTUA;Planning!Subdivision!NA!NA
 // Good Test Record: ADM16-00221
 ===================================================================*/
+function convertDate2(thisDate)
+{
+	if (typeof(thisDate) == "string")
+		{
+		var retVal = new Date(String(thisDate));
+		if (!retVal.toString().equals("Invalid Date"))
+			return retVal;
+		}
+	if (typeof(thisDate)== "object")
+		{
+		if (!thisDate.getClass) // object without getClass, assume that this is a javascript date already
+			{
+			return thisDate;
+			}
+		if (thisDate.getClass().toString().equals("class com.accela.aa.emse.dom.ScriptDateTime"))
+			{
+			return new Date(thisDate.getMonth() + "/" + thisDate.getDayOfMonth() + "/" + thisDate.getYear());
+			}
+		if (thisDate.getClass().toString().equals("class com.accela.aa.emse.util.ScriptDateTime"))
+			{
+			return new Date(thisDate.getMonth() + "/" + thisDate.getDayOfMonth() + "/" + thisDate.getYear());
+			}			
+		if (thisDate.getClass().toString().equals("class java.util.Date")
+			|| thisDate.getClass().toString().equals("class java.sql.Timestamp")
+		)
+			{
+			return new Date(thisDate.getTime());
+			}
+		if (thisDate.getClass().toString().equals("class java.lang.String"))
+			{
+			return new Date(String(thisDate));
+			}
+		}
+	if (typeof(thisDate) == "number")
+		{
+		return new Date(thisDate);  // assume milliseconds
+		}
+	logDebug("**WARNING** convertDate2 cannot parse date : " + thisDate);
+	return null;
+}
+function monthDiff(d1, d2) {
+	var months;
+	d1 = convertDate2(d1);
+	d2 = convertDate2(d2);
+	months = (d2.getFullYear() - d1.getFullYear()) * 12;
+	months -= d1.getMonth();
+	months += d2.getMonth();
+	return months <= 0 ? 0 : months;
+}
+function removeA(arr) {
+	var what, a = arguments, L = a.length, ax;
+	while (L > 1 && arr.length) {
+		what = a[--L];
+		while ((ax= arr.indexOf(what)) !== -1) {
+			arr.splice(ax, 1);
+		}
+	}
+	return arr;
+}
+function workDays(sDate,aDays,aCal,aDayEx){
+	// sDate == Start Date
+	// aDays == Days to add
+	// aCal == Array of calendars to include.
+	// aDayEx == Array of day types that you wish to exclude.
+	
+	// Any weekend could be a three day weekend
+	// 3 days are added for every weekend to make sure that we cover enough for the jump.
+	aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
+	
+	// Variables
+	var dArray = []; // to store the dates between the two days.
+	var sDate2 = convertDate2(sDate);
+	var eDate2 = new Date(sDate2);
+	
+	// Change everything in aCal to upper for comparison.
+	toUpper = function(x){ 
+		  return x.toUpperCase();
+	};
+	aCal = aCal.map(toUpper);
+	
+	// eDate2 needs to be sufficiently into the future for the rest of the function.
+	eDate2.setDate(eDate2.getDate() + aDays);
+	
+	// will be used to pull sufficient days that are "off"
+	var monthsBetween = monthDiff(sDate2,eDate2)+1;
+
+	// Now create an array of dates adding one day to each date.
+	for(a = 1; a<= aDays2; a++){
+		calcDate = new Date(sDate);
+		calcDate.setDate(calcDate.getDate() + a);
+		dArray.push(calcDate.toString());
+	}
+	// Now look up the calendars that are going to be excluded.
+	// expected return is the calendar ID's
+	calNames = aa.calendar.getCalendarNames().getOutput();
+	for(x in calNames){
+		// IF the name of the calendar is included in the list we need the
+		// events from that calendar
+		if(exists(calNames[x].getCalendarName().toUpperCase(),aCal)){
+			for(a = 0; a <= monthsBetween; a++){
+				calE = aa.calendar.getEventSeriesByCalendarID(calNames[x].getCalendarID(),sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
+				for(b in calE){
+					// Get the event details
+					var evtDateDate = new Date(convertDate2(calE[b].getStartDate()));
+					var evtType = calE[b].getEventType();
+					// Now do the COMPARISON
+					if(
+						exists(evtType,aDayEx)
+						&& exists(evtDateDate.toString(),dArray)
+					)
+					{
+						removeA(dArray,evtDateDate.toString());
+					}
+				}
+			}
+		}
+	}
+	return dArray[aDays];
+}
 
 try {
 	// ===========================
@@ -612,11 +731,12 @@ try {
 		// The #of working days is retrieved from "Value Desc" field of Standard Choices Item
 		// "PLN Substantive Review Days".
 		// Note that the numbers are based on a five day work week.
-		// workingDays = lookup("PLN Substantive Review Days",appTypeString);
-		
+		workingDays = lookup("PLN Substantive Review Days",tBd); // Confirmed working
+		nextDate = workDays(Date(),workingDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		aa.print(nextDate);
 	}
 	// ===========================
-	// Check 2
+	// Check 2 COMPLETE
 	// ===========================
 	// When workflow task status of "Revisions Required" is applied to workflow task "Review Consolidation" then
 	if(
@@ -650,7 +770,10 @@ try {
 	){
 		// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 		editAppSpecific("Start/Stop Indicator", 'Started');
-		// 2) Update the "Substantive Review Due Date" (subgroup = "KEY DATES") = current value of "Substantive Review Due Date + the number of days difference between the status date of workflow task "Review Consolidation" with task status "Revisions Required" and the status date of workflow task "Distribution" with task status "Resubmitted". 
+		// 2) Update the "Substantive Review Due Date" (subgroup = "KEY DATES") = current value of 
+		// "Substantive Review Due Date + the number of days difference between the status date of
+		// workflow task "Review Consolidation" with task status "Revisions Required" and the status
+		// date of workflow task "Distribution" with task status "Resubmitted". 
 	}
 	// ===========================	
 	// Check 4
@@ -673,7 +796,7 @@ try {
 
 	}
 	// ===========================
-	// Check 5
+	// Check 5 COMPLETE
 	// ===========================
 	// For all record types listed above:
 	// When workflow task status of "Proceed" or "Complete" or "DR Board" or "Planning Director" is
@@ -687,7 +810,7 @@ try {
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
 	// ===========================
-	// Check 6
+	// Check 6 COMPLETE
 	// ===========================
 	// When workflow task status of "Complete" is applied to workflow task "Case Complete" then:
 	if (
