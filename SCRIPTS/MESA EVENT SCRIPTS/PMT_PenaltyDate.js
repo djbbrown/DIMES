@@ -59,7 +59,7 @@ try
 
       var dayAdjustment = parseInt(turnAroundTime) + mesaFactor;
       comment("  dayAdjustment: " + dayAdjustment);
-      var futureDate = dateAdd(todayDate, dayAdjustment, 'Y');
+      var futureDate = new Date(dateAdd(todayDate, dayAdjustment, 'Y'));
       comment("  futureDate: " + futureDate);
 
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
