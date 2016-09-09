@@ -24,7 +24,7 @@ function mesaWorkingDays(curDate, daysToAdd)
 
   var dayAdjustment = parseInt(daysToAdd) + mesaFactor;
 
-  theDate = dateAdd(theDate, daysToAdd, 'Y');
+  theDate = dateAdd(theDate, dayAdjustment, 'Y');
 
   return theDate;
 }
