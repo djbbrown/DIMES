@@ -8,8 +8,8 @@ try{
 		b1ExpResult = aa.expiration.getLicensesByCapID(capId)
 		if (b1ExpResult.getSuccess()) {
 			b1Exp = b1ExpResult.getOutput();
-			tmpStatus = b1Exp.getExpStatus();
-			logDebug(tmpStatus);
+			var tmpStatus = b1Exp.getExpStatus();
+			var tmpDate = b1Exp.getExpDate();
 			if(tmpDate){
 				tmpDate = b1Exp.getExpDate();
 				newExpDate = dateAddMonths(tmpDate, 12);
