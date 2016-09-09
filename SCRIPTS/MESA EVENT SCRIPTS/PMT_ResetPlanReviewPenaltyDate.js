@@ -21,34 +21,39 @@
 //==================================================================*/
 
 
-//(appMatch("Permits/Document Retrieval/NA/NA")) ||
-//(appMatch("Permits/Commercial/NA/NA")) ||
-//(appMatch("Permits/Residential/NA/NA")) ||
+// leaving in case they want the record type testing back
+// (appMatch("Permits/Addenda or Deferred/NA/NA")) ||
+// (appMatch("Permits/Demolition/NA/NA")) ||
+// (appMatch("Permits/Master Plan/NA/NA")) ||	
+//(appMatch("Permits/Residential/Mobile Home/NA")) ||
+// (appMatch("Permits/Sign/NA/NA"))
 
-
-// this script won't work until mesaWorkingDays function is uploaded into the system
 
 try
 {
-  if (
-	(appMatch("Permits/Demolition/NA/NA")) ||
-	(appMatch("Permits/Sign/NA/NA")) ||
-	(appMatch("Permits/Master Plan/NA/NA")) ||	
-	(appMatch("Permits/Addenda or Deferred/NA/NA"))
-	)
-  {    
-    if ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
-    {
-      
-      var turnAroundTime = AInfo["Turn Around Time"];
 
-      var theDate = new Date();
-      var futureDate = new Date(mesaWorkingDays(theDate, turnAroundTime));
+  if ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
+  {
+
+    var turnAroundTime = AInfo["Turn Around Time"];
+    var penaltyDate = AInfo["Penalty Date"];
+    var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
+    var todayDate = new Date();
+
+    if (typeof planReviewPenaltyDate == "undefined")
+    {
+      comment("The ASI field 'Plan Review Penalty Date' does not exist, skipping date assignment");
+    }
+    else
+    {
+      //comment("The ASI field 'Plan Review Penalty Date' exists, setting date");
+      var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
 
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
+    }    
 
-    }
   }
+
 }
 catch (err)
 {
