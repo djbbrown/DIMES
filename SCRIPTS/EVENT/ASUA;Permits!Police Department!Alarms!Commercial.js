@@ -16,11 +16,11 @@ try{
 				licEditExpInfo("Issued",newExpDate);
 			}else{
 				logDebug("Expiration date not found. Seting expiration date to one year from today.")
-				licEditExpInfo("Issued",dateAddMonths(null, 12););
+				licEditExpInfo("Issued",dateAddMonths(null, 12));
 			}
 		}else{
 			logDebug("Expiration date not found. Seting expiration date to one year from today.")
-			licEditExpInfo("Issued",dateAddMonths(null, 12););
+			licEditExpInfo("Issued",dateAddMonths(null, 12));
 		}
 	}
 }catch{
