@@ -41,31 +41,10 @@ try
     }
     else
     {
-      comment("The ASI field 'Penalty Date' exists, setting date");
-      comment("  turnAroundTime: " + turnAroundTime);
-      comment("  todayDate: " + todayDate);
+      //comment("The ASI field 'Penalty Date' exists, setting date");
       var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
-      comment("  futureDate: " + futureDate);
 
-      var penaltyDate = new Date(futureDate);
-      comment("  penaltyDate: " + penaltyDate);
-
-      //var dayOfWeek = todayDate.getDay();
-      //comment("  dayOfWeek: " + dayOfWeek);
-
-      //var mesaFactor = parseInt((parseInt(turnAroundTime/4))* 1);
-
-      //if (dayOfWeek == 4)
-      //{
-        //mesaFactor += 1;
-      //}
-
-      //var dayAdjustment = parseInt(turnAroundTime) + mesaFactor;
-      //comment("  dayAdjustment: " + dayAdjustment);
-      //var futureDate = new Date(dateAdd(todayDate, dayAdjustment, 'Y'));
-      //comment("  futureDate: " + futureDate);
-
-      editAppSpecific("Penalty Date", jsDateToASIDate(penaltyDate));
+      editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
     }
 
   }
