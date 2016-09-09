@@ -58,7 +58,7 @@ try
       }
 
       var dayAdjustment = parseInt(turnAroundTime) + mesaFactor;
-      var theDate = dateAdd(todayDate, dayAdjustment, 'Y');
+      var futureDate = dateAdd(todayDate, dayAdjustment, 'Y');
 
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
     }
