@@ -19,11 +19,11 @@ try{
 				licEditExpInfo("Issued",dateAddMonths(null, 12));
 			}
 		}else{
-			logDebug("Expiration date not found. Seting expiration date to one year from today.")
+			logDebug("Expiration date not found. Seting expiration date to one year from today.");
 			licEditExpInfo("Issued",dateAddMonths(null, 12));
 		}
 	}
-}catch{
+}catch(err){
 	logDebug("A JavaScript Error occurred: ASUA:Permits/Police Department/Alarms/Commercial: ID-325: " + err.message);
 	logDebug(err.stack);
 }
