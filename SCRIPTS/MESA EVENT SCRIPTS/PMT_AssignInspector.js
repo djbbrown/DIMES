@@ -21,13 +21,6 @@
 //            
 /*==================================================================*/
 
-/* intellisense references */
-/* reference path="../../AccelaAPI.js" /> */
-/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
-/* reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" // only for asb events!! */
-/// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
-/// <reference path="../../INCLUDES_CUSTOM.js" />
-
 function getThisInspectionId() 
 {
     var inspResultObj = aa.inspection.getInspections(capId);
@@ -42,17 +35,6 @@ function getThisInspectionId()
         return inspList[inspList.length-1].getIdNumber();
     }
 }
-
-/*function getInspections() 
-{
-    var vInspectionIdListArray = [];
-    vInspectionIdListArray = InspectionIdList.split("\\|");
-    var i;
-    for (i = vInspectionIdListArray.length - 1; i >= 0; i--)
-    {
-        logDebug("vInspectionIdListArray[ " + i.toString() + " ] = " + vInspectionIdListArray[i]);
-    }
-}*/
 
 function compareByNumber(a, b) {
     return a.getIdNumber() - b.getIdNumber();
@@ -87,14 +69,12 @@ try
             // get this inspection's id Number
             var inspNumber = getThisInspectionId();
             logDebug("inspNumber: " + inspNumber);
-            //getInspections(); // test
             
             // assign inspector
             var iObjResult = aa.inspection.getInspection(capId, inspNumber);
             if (!iObjResult.getSuccess()) 
             {
 		        logDebug("**WARNING retrieving inspection " + inspNumber + " : " + iObjResult.getErrorMessage());
-		        return false;
 	        }
 	        iObj = iObjResult.getOutput();
             iObj.setInspector(inspectorObj);

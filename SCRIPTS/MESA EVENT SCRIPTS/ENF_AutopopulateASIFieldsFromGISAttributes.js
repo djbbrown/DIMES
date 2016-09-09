@@ -8,29 +8,28 @@
 // record type)  will be auto-filled with info from GIS  
 // NOTE:  BEFORE application submit
 
-// Script Run Event: ASB, ASIUB
+// Script Run Event: ASA, ASIUA
 
 // Script Parents:
 
-// ASB;Permits!Demolition!NA!NA - Zoning, Land Use
-// ASB;Permits!Residential!Mobile Home!NA - Flood Zone
-// ASB;Permits!Sign!NA!NA - Flood Zone
-// ASB;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
-// ASB;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASA;Permits!Demolition!NA!NA - Zoning, Land Use
+// ASA;Permits!Residential!Mobile Home!NA - Flood Zone
+// ASA;Permits!Sign!NA!NA - Flood Zone
+// ASA;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASA;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 
-// ASIUB;Permits!Demolition!NA!NA
-// ASIUB;Permits!Residential!Mobile Home!NA - Flood Zone, Base Flood Elevation
-// ASIUB;Permits!Sign!NA!NA - Flood Zone
-// ASIUB;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
-// ASIUB;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASIUA;Permits!Demolition!NA!NA
+// ASIUA;Permits!Residential!Mobile Home!NA - Flood Zone, Base Flood Elevation
+// ASIUA;Permits!Sign!NA!NA - Flood Zone
+// ASIUA;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASIUA;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 
 //            
 /*==================================================================*/
 
 /* intellisense references */
-/// <reference path="../../AccelaAPI.js" />
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
-/* reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" // only for asb events!! */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" />
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
@@ -38,117 +37,143 @@ try
 {
     logDebug("appTypeString: " + appTypeString);
 
-    // get needed gis values
+    /* GET NEEDED GIS VALUES */
+
     logDebug("Getting 'Zoning'");
     var zoning = getGISInfo("Planning/Zoning", "Zoning Districts", "ZONING");
-    if ( zoning == undefined ) { zoning = false; }
+    if ( zoning == undefined ) { 
+        logDebug("Zoning was undefined, setting to false");
+        zoning = false; 
+    }
     logDebug("zoning: " + zoning);
 
     logDebug("Getting 'Land Use'");
     var landUse = getGISInfo("Accela/Accela_Base", "GeneralPlan Labels", "CharacterArea");
-    if ( landUse == undefined ) { landUse = false; }
+    if ( landUse == undefined ) { 
+        logDebug("Land Use was undefined, setting to false");
+        landUse = false; 
+    }
     logDebug("landUse: " + landUse);
-
+    
     logDebug("Getting 'Flood Zone'");
-    var floodZone = getGISInfo("Accela/Accela_Base", "Flood Plain Area", "Accela_TAGS.TAG");
-    if ( floodZone == undefined ) { floodZone = false; }
+    var floodZone = "No";
+    var tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+    if (tagFieldArray && tagFieldArray.length > 0) {
+        if (IsStrInArry("FLDP", tagFieldArray)) {
+            floodZone = "Yes";
+        }
+    }
     logDebug("floodZone: " + floodZone);
 
     var azWater = false;
     var stormWaterExempt = false;
 
     // service name / layer / field name
-    var tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+    tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
     if (tagFieldArray && tagFieldArray.length > 0) 
     {            
         for (x in tagFieldArray)
         {
-            logDebug("gis tag: " + tagFieldArray[x]);
+            //logDebug("gis tag: " + tagFieldArray[x]);
+
+            if (IsStrInArry("FLDP", tagFieldArray)) 
+            {
+                logDebug("Getting 'Flood Zone'");
+                floodZone = tagFieldArray[x];
+                if ( floodZone == undefined ) { 
+                    logDebug("Flood Zone was undefined, setting to false");
+                    floodZone = false; 
+                }
+                logDebug("floodZone: " + floodZone);
+            }
+
             if (IsStrInArry("AWCP", tagFieldArray)) 
             {
                 logDebug("Getting 'AZ Water'");
                 azWater = tagFieldArray[x];
-                if ( azWater == undefined ) { azWater = false; }
+                if ( azWater == undefined ) { 
+                    logDebug("AZ Water was undefined, setting to false");
+                    azWater = false; 
+                }
                 logDebug("azWater: " + azWater);
             }
             if (IsStrInArry("AWCP", tagFieldArray)) 
             {
-                logDebug("Getting 'Storm Water'");
+                logDebug("Getting 'Storm Water Exempt'");
                 stormWaterExempt = tagFieldArray[x];
-                if ( stormWaterExempt == undefined ) { stormWaterExempt = false; }
+                if ( stormWaterExempt == undefined ) { 
+                    logDebug("Storm Water Exempt was undefined, setting to false");
+                    stormWaterExempt = false; 
+                }
                 logDebug("stormWaterExempt: " + stormWaterExempt);
             }
         }
     }
 
-    if ( zoning && zoning != undefined ) { 
+    /* SET VALUES */
+
+    if ( zoning != false ) { 
         if ( 
             appMatch("Permits/Demolition/NA/NA") ||
             appMatch("Permits/Commercial/NA/NA") ||
             appMatch("Permits/Residential/NA/NA")
         )
         {
+            logDebug("Updating Zoning to '" + zoning + "'");
             editAppSpecific("Zoning", zoning); 
-            logDebug("Zoning updated to '" + zoning + "'");
         }
     }
-    if ( landUse ) { 
+    if ( landUse != false ) { 
         if ( 
             appMatch("Permits/Demolition/NA/NA") ||
             appMatch("Permits/Commercial/NA/NA") ||
             appMatch("Permits/Residential/NA/NA")
         )
         {
+            logDebug("Updating Land Use to '" + landUse + "'");
             editAppSpecific("Land Use", landUse); 
-            logDebug("Land Use updated to '" + landUse + "'");
         }
     }
-    //if ( floodZone ) { // NOTE: turns out this is a boolean, so always write if the correct record type
-        if ( 
-            appMatch("Permits/Residential/Mobile Home/NA") ||
-            appMatch("Permits/Sign/NA/NA") || 
-            appMatch("Permits/Commercial/NA/NA") ||
-            appMatch("Permits/Residential/NA/NA")
-        )
-        {
-            editAppSpecific("Flood Zone", floodZone);
-            logDebug("Flood Zone updated to '" + floodZone + "'");
+    if ( // Flood Zone
+        appMatch("Permits/Residential/Mobile Home/NA") ||
+        appMatch("Permits/Sign/NA/NA") || 
+        appMatch("Permits/Commercial/NA/NA") ||
+        appMatch("Permits/Residential/NA/NA")
+    )
+    {
+        logDebug("Updating Flood Zone to '" + floodZone + "'");
+        editAppSpecific("Flood Zone", floodZone);
+    }
+    if ( // AZ Water
+        appMatch("Permits/Commercial/NA/NA") ||
+        appMatch("Permits/Residential/NA/NA")
+    )
+    {
+        var azValue = "No";
+        if ( azWater != null && azWater){
+            azValue = "Yes";
         }
-    //}
-    //if ( azWater ) { // NOTE: turns out this is a boolean, so always write if the correct record type
-        if ( 
-            appMatch("Permits/Commercial/NA/NA") ||
-            appMatch("Permits/Residential/NA/NA")
-        )
-        {
-            editAppSpecific("AZ Water", azWater); 
-            logDebug("AZ Water updated to '" + azWater + "'");
+        logDebug("Updating AZ Water to '" + azValue + "'");
+        editAppSpecific("AZ Water", azValue);
+    }    
+    if ( // Storm Water Exempt
+        appMatch("Permits/Commercial/NA/NA") ||
+        appMatch("Permits/Residential/NA/NA")
+    )
+    {
+        var sweValue = "No";
+        if ( stormWaterExempt != null && stormWaterExempt ) {
+            sweValue = "Yes";
         }
-    //}
-    //if ( stormWaterExempt ) { // NOTE: turns out this is a boolean, so always write if the correct record type
-        if ( 
-            appMatch("Permits/Commercial/NA/NA") ||
-            appMatch("Permits/Residential/NA/NA")
-        )
-        {
-            editAppSpecific("Storm Water Exempt", stormWaterExempt);
-            logDebug("Storm Water Exempt updated to '" + stormWaterExempt + "'"); 
-        }
-    //}
-
-    /* pseudocode
-
-    1) get gis data
-    2) check record type to know what fields need to be autopopulated
-    3) edit fields
-
-    */
+        logDebug("Updating Storm Water Exempt to '" + sweValue + "'"); 
+        editAppSpecific("Storm Water Exempt", sweValue);
+    }
 }
 catch (err)
 {
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: 
+/* Test Record: PMT16-00413
 
 */

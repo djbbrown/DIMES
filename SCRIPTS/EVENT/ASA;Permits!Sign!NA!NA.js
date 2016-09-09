@@ -9,3 +9,6 @@ include("PMT_CM_Gas_Electric");
 include("PMT_Light_Rail");
 include("PMT_RelateToPlanningRecord");
 include("PMT_SignPermitDepositFee");
+
+// added by Vance Smith (Mesa)
+include("ENF_AutopopulateASIFieldsFromGISAttributes");

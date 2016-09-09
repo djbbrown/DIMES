@@ -1,2 +1,1 @@
-// added by Vance Smith (Mesa)
-include("ENF_AutopopulateASIFieldsFromGISAttributes");
+// ASIUB;Permits!Demolition!NA!NA

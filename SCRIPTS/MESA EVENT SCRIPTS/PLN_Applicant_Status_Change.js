@@ -5,7 +5,7 @@
 // Script Run Event: WTUA;Planning!Pre-Submittal!~!~
 // Testing Record: PMT16-00498, PRS16-00193
 // Version   |Date      |Engineer         |Details
-//  1.0      |08/31/16  |Steve Veloudos   |Initial Release 
+//  1.0      |08/31/16  |Steve Veloudos   |Initial Release  
 /*==================================================================*/
 
 try {
@@ -17,6 +17,7 @@ try {
       var ConType;
       var AppToEmail;
       var PlanningPhone;
+      var tStatus = "Incomplete";
  
     //Get application status
     AppStatus = capStatus;

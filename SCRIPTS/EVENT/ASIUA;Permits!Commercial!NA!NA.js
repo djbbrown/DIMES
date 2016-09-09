@@ -8,3 +8,6 @@ include("PMT_PlanningNumbValidate");
 include("PMT_WaterMeterAdapterFee");
 include("PMT_TotalValuation");
 include("PMT_RelateToPlanningRecord");
+
+// added by Vance Smith (Mesa)
+include("ENF_AutopopulateASIFieldsFromGISAttributes");

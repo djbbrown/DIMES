@@ -3,12 +3,13 @@ This file if a referance of avalible methods and classes in refernce to Accela s
 best use leave open when programming w/ Atom IO or another IDE that can autocomplete from any open buffer.
 */
 //Methods of aa
-/*var ab = function() { 
+var aa = function() { 
   hashCode = new function(){};
   return {
     hashCode: hashCode
   };
-}();*/
+}();
+/*
 aa.hashCode();
 aa.runAdHoc();
 aa.runOracleReport();
@@ -108,11 +109,13 @@ aa.workflow;
 aa.continuingEducation;
 aa.finance;
 aa.address;
+*/
 //class methods
 function  BizDomainScript(){
 this.getBizDomainByDescription = function() {/*
 ScriptResult getBizDomainByDescription(java.lang.String,java.lang.String,java.lang.String)
 */};
+
 
 this.notifyAll = function() {/*
 void notifyAll()
@@ -6382,6 +6385,7 @@ this.sleep = function() {/*
 void sleep(long)
 */};
 }
+
 /* Necessary methods for exploring accela code
 function exploreObject(objExplore) {
   aa.print("Methods:");
@@ -6407,4 +6411,4 @@ function getScriptText(vScriptName) {
       emseBiz.getMasterScript(aa.getServiceProviderCode(), vScriptName);
   return emseScript.getScriptText() + "";
 }
-*
+*/

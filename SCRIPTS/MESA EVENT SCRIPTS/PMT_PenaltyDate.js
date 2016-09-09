@@ -9,7 +9,7 @@
 //		applied to wf task “Application Submittal” then auto-fill 
 //		“Plan Review Penalty Date” ASI field with date based on 
 //		the number of days identified in the Turn around time field.  
-//		The date generated should not be based on a 4 day work week, 
+//		The date generated should be based on a 4 day work week, 
 //		Monday through Thursday, should not include Fridays, Weekends 
 //		or Holidays.
 //
@@ -19,32 +19,47 @@
 // 
 //==================================================================*/
 
+
+// leaving in case they want the record type testing back
+// (appMatch("Permits/Commercial/NA/NA")) ||
+// (appMatch("Permits/Document Retrieval/NA/NA")) ||
+// (appMatch("Permits/Residential/NA/NA"))
+
 try
 {
-  if (
-	(appMatch("Permits/Document Retrieval/NA/NA")) ||
-	(appMatch("Permits/Demolition/NA/NA")) ||
-	(appMatch("Permits/Sign/NA/NA")) ||
-	(appMatch("Permits/Master Plan/NA/NA")) ||
-	(appMatch("Permits/Residential/NA/NA")) ||
-	(appMatch("Permits/Commercial/NA/NA")) ||
-	(appMatch("Permits/Addenda/NA/NA"))
-	)
-  {    
-    if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
+    
+  if ((wfTask == "Application Submittal") && (wfStatus == "Accepted - Plan Review Req"))
+  {
+    var turnAroundTime = AInfo["Turn Around Time"];
+    var penaltyDate = AInfo["Penalty Date"];
+    var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
+    var todayDate = new Date();
+
+    if (typeof penaltyDate == "undefined")
     {
-      var turnAroundTime = AInfo["Turn Around Time"];
-      var theDate = new Date(dateAdd(theDate,turnAroundTime ,'Y'));
-
-      editAppSpecific("Penalty Date", jsDateToASIDate(theDate));
-
+      comment("The ASI field 'Penalty Date' does not exist, skipping date assignment");
     }
+    else
+    {
+      //comment("The ASI field 'Penalty Date' exists, setting date");
+      var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
+
+      editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
+    }
+
   }
+
 }
 catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
+
+
+
+
+
+
 
 
 

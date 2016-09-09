@@ -8,6 +8,7 @@
 // ASA;Permits!Sign!~!~
 // ASA;Permits!Residential!~!~
 // ASA;Permits!Commercial!~!~
+// Test Records, In Parcel51: PMT16-00536 Not in Parcel51: PMT16-00532
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/09/16  |Steve Veloudos   |Initial Release
 //  1.1      |08/29/16  |Steve Veloudos   |Added Std Condition
@@ -27,12 +28,14 @@ try {
       var x = 0;
       
       //Iterate through GIS data
-      for (x=0;x<=(rowCount-1);x++) {
+      for (x=0;x<=(rowCount-1);x++) 
+      {
         var FirstTwo = GISData[x].substring(0, 2);
             //Check for 51
             if(FirstTwo == "51")
                 {
                     Parcel51 = 1;
+                    break;
                 }
         }
 

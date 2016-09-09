@@ -4,4 +4,9 @@
 ==================================================================*/
 include("PMT_ResubmittalFee");
 //include("PMT_ImpactFeeSingleResDetached");//disabled script and added GIS validation to 221
+
+// added by Vance Smith (Mesa)
+include("PMT_SubmittalCycle");
+
+
 include("PMT_AssessTechFee"); // must be run last
