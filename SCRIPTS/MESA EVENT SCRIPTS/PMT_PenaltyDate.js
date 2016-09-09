@@ -44,8 +44,22 @@ try
       comment("The ASI field 'Penalty Date' exists, setting date");
       comment("  turnAroundTime: " + turnAroundTime);
       comment("  todayDate: " + todayDate);
-      var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
-      comment("  futureDate: " + futureDate);
+      //var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
+      //comment("  futureDate: " + futureDate);
+
+      var dayOfWeek = theDate.getDay();
+      comment("  dayOfWeek: " + dayOfWeek);
+
+      var mesaFactor = parseInt((parseInt(turnAroundTime/4))* 1);
+
+      if (dayOfWeek == 4)
+      {
+        mesaFactor += 1;
+      }
+
+      var dayAdjustment = parseInt(turnAroundTime) + mesaFactor;
+      var theDate = dateAdd(todayDate, dayAdjustment, 'Y');
+
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
     }
 
