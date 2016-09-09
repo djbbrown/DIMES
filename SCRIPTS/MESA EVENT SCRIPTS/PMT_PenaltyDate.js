@@ -47,7 +47,7 @@ try
       //var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
       //comment("  futureDate: " + futureDate);
 
-      var dayOfWeek = theDate.getDay();
+      var dayOfWeek = todayDate.getDay();
       comment("  dayOfWeek: " + dayOfWeek);
 
       var mesaFactor = parseInt((parseInt(turnAroundTime/4))* 1);
