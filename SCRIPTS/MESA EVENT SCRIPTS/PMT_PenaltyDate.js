@@ -42,7 +42,10 @@ try
     else
     {
       comment("The ASI field 'Penalty Date' exists, setting date");
+      comment("  turnAroundTime: " + turnAroundTime);
+      comment("  todayDate: " + todayDate);
       var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
+      comment("  futureDate: " + futureDate);
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
     }
 
