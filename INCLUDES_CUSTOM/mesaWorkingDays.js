@@ -28,6 +28,3 @@ function mesaWorkingDays(curDate, daysToAdd)
 
   return theDate;
 }
-
-
-
