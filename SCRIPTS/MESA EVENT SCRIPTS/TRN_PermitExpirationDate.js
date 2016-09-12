@@ -27,7 +27,7 @@ try
 
 	// if there is one (or more), get the value of the most current Restriction End Date field
 	if (tbl.length > 0) {
-		var resEndDate = tbl[row]["Restriction End Date"]; // init before loop
+		var resEndDate = tbl[0]["Restriction End Date"]; // init before loop
 		for (row in tbl) {
 			tempEndDate = tbl[row]["Restriction End Date"];
 			logDebug("tempEndDate: " + tempEndDate);
