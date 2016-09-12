@@ -7,7 +7,7 @@
 	
 When ASI field "Type of Work" = "Code Modification", require document "Code Modification Form".
 
-// Script Run Event: ASA, ASIUA
+// Script Run Event: ASB, ASIUB
 
 // Script Parents:
 
