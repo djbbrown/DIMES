@@ -204,7 +204,7 @@ function mainProcess() {
 		
 		if (appTypeString == "Licenses/General/BingoHall/License") {
 			updateTask("City Council", "Denied", "updated by script", "updated by script");
-			updateAppStatus("Denied"); // Added on 20160809
+			updateAppStatus("Denied");
 		}
 		else { 
 			if (taskName != "" && taskStatus != "") {
