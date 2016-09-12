@@ -70,7 +70,7 @@ try {
 			// if the fee qty has changed, void the fee
 			if (feeExists("RDIF160", "NEW", "INVOICED") && (!fireQty || feeQty("RDIF160") != fireQty)) voidRemoveFee("RDIF160");
 			if (feeExists("RDIF210", "NEW", "INVOICED") && (!publicSafetyQty || feeQty("RDIF210") != publicSafetyQty)) voidRemoveFee("RDIF210");
-			if (feeExists("RDIF260", "NEW", "INVOICED") && (!stormWaterQty || feeQty("RDIF260") != stormWaterQty) voidRemoveFee("RDIF260");
+			if (feeExists("RDIF260", "NEW", "INVOICED") && (!stormWaterQty || feeQty("RDIF260") != stormWaterQty)) voidRemoveFee("RDIF260");
 			if (feeExists("RDIF310", "NEW", "INVOICED") && (!resDevQty || feeQty("RDIF310") != resDevQty)) voidRemoveFee("RDIF310");
 			if (feeExists("RDIF010", "NEW", "INVOICED") && (!waterQty || feeQty("RDIF010") != waterQty)) voidRemoveFee("RDIF010");
 			if (feeExists("RDIF060", "NEW", "INVOICED") && (!wasteWaterQty || feeQty("RDIF060") != wasteWaterQty)) voidRemoveFee("RDIF060");
