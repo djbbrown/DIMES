@@ -48,7 +48,7 @@ try
     {
         logDebug("Inspector: " + inspector);
         var nameArray = inspector.split(" ");
-        var inpRes = null;
+        var inspRes = null;
         switch (nameArray.length)
         {
             case 1:
