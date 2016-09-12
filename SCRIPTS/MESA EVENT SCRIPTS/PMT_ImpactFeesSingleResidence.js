@@ -19,8 +19,8 @@
 // 
 // Notes: Added requirements from script 220 to check GIS on RDIF Detached Fees
 /*==================================================================*/
-//showDebug = true;
 try {
+	logDebug("Executing PMT_ImpactFeesSingleResidence.");
 	var classification = AInfo["Classification"];
 	var wmqGisTag = false;
 	var swGisTag = false;
@@ -28,7 +28,7 @@ try {
 	if (tagFieldArray && tagFieldArray.length > 0) {
 	   for (tIndex in tagFieldArray) {
 			thisTag = tagFieldArray[tIndex];
-			logDebug(thisTag);
+//			logDebug(thisTag);
 			if(matches(thisTag, "ASU", "ASUE", "AWCP")) wmqGisTag = true;
 			if(matches(thisTag, "STOR")) swGisTag = true;
 	   }
@@ -58,8 +58,8 @@ try {
 		var wasteWaterQty = AInfo["Waste Water Qty"]; 
 		if (classification == "Single Family-Detached (per dwelling unit)"){
 			// remove fees if GIS Tags change
-			if (feeExists("RDIF260", "NEW", "INVOICED") && swGisTag == true) voidRemoveFee("RDIF260");
-			if (feeExists("RDIF010", "NEW", "INVOICED") && wmqGisTag == true) voidRemoveFee("RDIF010");
+			if (feeExists("RDIF260", "NEW", "INVOICED") && !swGisTag) voidRemoveFee("RDIF260");
+			if (feeExists("RDIF010", "NEW", "INVOICED") && wmqGisTag) voidRemoveFee("RDIF010");
 			// remove any fees from previous classification
 			if (feeExists("RDIF170", "NEW", "INVOICED")) voidRemoveFee("RDIF170");
 			if (feeExists("RDIF220", "NEW", "INVOICED")) voidRemoveFee("RDIF220");
@@ -77,9 +77,9 @@ try {
 			// assess the fee
 			if (!feeExists("RDIF160") && !!fireQty && fireQty > 0) addFee("RDIF160", "PMT_RDIF", "FINAL", fireQty, "N");
 			if (!feeExists("RDIF210") && !!publicSafetyQty && publicSafetyQty > 0) addFee("RDIF210", "PMT_RDIF", "FINAL", publicSafetyQty, "N");
-			if (!feeExists("RDIF260") && !!stormWaterQty && stormWaterQty > 0 && swGisTag == false) addFee("RDIF260", "PMT_RDIF", "FINAL", stormWaterQty, "N");
+			if (!feeExists("RDIF260") && !!stormWaterQty && stormWaterQty > 0 && swGisTag ) addFee("RDIF260", "PMT_RDIF", "FINAL", stormWaterQty, "N");
 			if (!feeExists("RDIF310") && !!resDevQty && resDevQty > 0) addFee("RDIF310", "PMT_RDIF", "FINAL", resDevQty, "N");
-			if (!feeExists("RDIF010") && !!waterQty && waterQty > 0 && wmqGisTag == false) addFee("RDIF010", "PMT_RDIF", "FINAL", waterQty, "N");
+			if (!feeExists("RDIF010") && !!waterQty && waterQty > 0 && !wmqGisTag) addFee("RDIF010", "PMT_RDIF", "FINAL", waterQty, "N");
 			if (!feeExists("RDIF060") && !!wasteWaterQty && wasteWaterQty > 0) addFee("RDIF060", "PMT_RDIF", "FINAL", wasteWaterQty, "N");
 		} else if (classification == "Single Family-Attached (per dwelling unit)"){
 			// remove any fees from previous classification
@@ -120,5 +120,5 @@ try {
 		}
 	}
 } catch (err){
-	logDebug("A JavaScript Error occured: " + err.message);
-}
+	logDebug("A JavaScript Error occured in PMT_ImpactFeesSingleResidence: " + err.message);
+	logDebug(err.stack);
