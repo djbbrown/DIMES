@@ -16,6 +16,9 @@
 //		WTUA;Planning!Subdivision!NA!NA
 // Good Test Record: ADM16-00221
 ===================================================================*/
+function dayDiff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
+}
 function convertDate2(thisDate)
 {
 	if (typeof(thisDate) == "string")
@@ -75,7 +78,7 @@ function removeA(arr) {
 	}
 	return arr;
 }
-function workDays(sDate,aDays,aCal,aDayEx){
+function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	// sDate == Start Date
 	// aDays == Days to add
 	// aCal == Array of calendars to include.
@@ -97,7 +100,7 @@ function workDays(sDate,aDays,aCal,aDayEx){
 	aCal = aCal.map(toUpper);
 	
 	// eDate2 needs to be sufficiently into the future for the rest of the function.
-	eDate2.setDate(eDate2.getDate() + aDays);
+	eDate2.setDate(eDate2.getDate() + aDays2);
 	
 	// will be used to pull sufficient days that are "off"
 	var monthsBetween = monthDiff(sDate2,eDate2)+1;
@@ -133,7 +136,7 @@ function workDays(sDate,aDays,aCal,aDayEx){
 			}
 		}
 	}
-	return dArray[aDays];
+	return dArray[aDays]; // Return the Date that can be used as a working day.
 }
 
 try {
@@ -732,8 +735,9 @@ try {
 		// "PLN Substantive Review Days".
 		// Note that the numbers are based on a five day work week.
 		workingDays = lookup("PLN Substantive Review Days",tBd); // Confirmed working
-		nextDate = workDays(Date(),workingDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-		aa.print(nextDate);
+		nextDate = workDaysAdd(Date(),workingDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		// aa.print(nextDate);
+		editAppSpecific("Substantive Review Due Date", nextDate);
 	}
 	// ===========================
 	// Check 2 COMPLETE
@@ -773,7 +777,31 @@ try {
 		// 2) Update the "Substantive Review Due Date" (subgroup = "KEY DATES") = current value of 
 		// "Substantive Review Due Date + the number of days difference between the status date of
 		// workflow task "Review Consolidation" with task status "Revisions Required" and the status
-		// date of workflow task "Distribution" with task status "Resubmitted". 
+		// date of workflow task "Distribution" with task status "Resubmitted".
+		srDD = getAppSpecific("Substantive Review Due Date");
+		if(!srDD){
+			aa.print("Date not found attempting to set a new date");
+			srDD = new Date();
+		};
+		srDD = convertDate2(srDD);
+		//aa.print(aa.date.parseDate(srDD));
+		var rR;
+		wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
+		if(wf.getDisposition() == "Revisions Required"){
+			rR = convertDate2(wf.getStatusDate());
+		}
+		var dR;
+		wf = aa.workflow.getTask(capId,"Distribution").getOutput();
+		if(wf.getDisposition() == "Resubmitted"){
+			dR = convertDate2(wf.getStatusDate());
+		}
+		bTasks = (dayDiff(rR,dR));
+		if(bTasks != 0){
+			aa.print("Updating Substantive Review Due Date");
+			var nextDate = new Date();
+			nextDate.setDate(srDD.getDate() + bTasks);
+			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
+		}
 	}
 	// ===========================	
 	// Check 4
@@ -793,6 +821,30 @@ try {
 		// the status date of workflow task "Review Consolidation" with task status-
 		// "Revisions Required" and the status date of workflow task "Substantive Review Distribution"
 		// with task status "Resubmitted". 
+		srDD = getAppSpecific("Substantive Review Due Date");
+		if(!srDD){
+			aa.print("Date not found attempting to set a new date");
+			srDD = new Date();
+		};
+		srDD = convertDate2(srDD);
+		//aa.print(aa.date.parseDate(srDD));
+		var rR;
+		wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
+		if(wf.getDisposition() == "Revisions Required"){
+			rR = convertDate2(wf.getStatusDate());
+		}
+		var dR;
+		wf = aa.workflow.getTask(capId,"Substantive Review Distribution").getOutput();
+		if(wf.getDisposition() == "Resubmitted"){
+			dR = convertDate2(wf.getStatusDate());
+		}
+		bTasks = (dayDiff(rR,dR));
+		if(bTasks != 0){
+			aa.print("Updating Substantive Review Due Date");
+			var nextDate = new Date();
+			nextDate.setDate(srDD.getDate() + bTasks);
+			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
+		}
 
 	}
 	// ===========================
@@ -820,6 +872,13 @@ try {
 		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
+	/*
+	for(x in wf){
+		//aa.print(wf[x]);
+		aa.print(wf.getStatusDate());
+		aa.print(wf.getDisposition());
+	}
+	//*/
 }
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
