@@ -4,7 +4,7 @@
 // Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
 // Script Description: Updating of ASI dropdown value:
-// When value of “Single Residence Attached” chosen for ASI dropdown field “Classification”  
+// When value of "Single Residence Attached" chosen for ASI dropdown field "Classification"  
 // Assess Single Residence  Detached Fees listed below:
 // Water Impact Fee – Single Residence  Attached
 // Waste Water Impact Fee  - Single Residence  Attached
