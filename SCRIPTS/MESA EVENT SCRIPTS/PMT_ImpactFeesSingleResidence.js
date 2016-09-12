@@ -122,3 +122,4 @@ try {
 } catch (err){
 	logDebug("A JavaScript Error occured in PMT_ImpactFeesSingleResidence: " + err.message);
 	logDebug(err.stack);
+}
