@@ -1786,3 +1786,123 @@ function voidRemoveFee(vFeeCode){
 		}
 	}
 } 
+
+function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optional altId
+{
+    var theCapID = null;
+    if ( arguments.length == 3 )
+    {
+        theCapID = aa.cap.getCapID(arguments[2]).getOutput();
+    }
+    else 
+    {
+        theCapID = capId;
+    }
+
+    var beforeValueList = aa.appSpecificInfo.getAppSpecificInfos(theCapID, asiSubGroupName, asiFieldName).getOutput();
+
+    var beforeValue = null;
+    for (var i=0;i<beforeValueList.length;i++)
+    {
+        beforeValue = beforeValueList[i].getChecklistComment();
+    }
+    return beforeValue;
+}
+
+function mesaWorkingDays(curDate, daysToAdd)
+{
+  var theDate = new Date(curDate);
+  var dayOfWeek = theDate.getDay();
+  var mesaFactor = parseInt((parseInt(daysToAdd/4))* 1);
+
+  if (dayOfWeek == 4)
+  {
+    mesaFactor += 1;
+  }
+
+  var dayAdjustment = parseInt(daysToAdd) + mesaFactor;
+
+  theDate = dateAdd(theDate, daysToAdd, 'Y');
+
+  return theDate;
+}
+
+function doesCapConditionExist(conditionName) // optional altId
+{
+    var theCapID = null;
+    if ( arguments.length == 2 )
+    {
+        theCapID = aa.cap.getCapID(arguments[1]).getOutput();
+    }
+    else 
+    {
+        theCapID = capId;
+    }
+
+    var condResult = aa.capCondition.getCapConditions(theCapID);
+    if (condResult.getSuccess())
+    {
+        var capConds = condResult.getOutput();
+        for (cc in capConds) 
+        {
+            var thisCond = capConds[cc];
+            var cDesc = thisCond.getConditionDescription().toUpperCase();
+            if(cDesc == conditionName.toUpperCase())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function getInspectorObject() // optional altId
+{
+    // code officer aka inspector
+
+    if ( arguments.length == 1 )
+    {
+        capId = aa.cap.getCapID(arguments[0]).getOutput(); // this is expected in getGisInfo
+    }
+
+    var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");
+    if (inspector) 
+    {
+        logDebug("Inspector: " + inspector);
+        var nameArray = inspector.split(" ");
+        var inspRes = null;
+        switch (nameArray.length)
+        {
+            case 1:
+                inspRes = aa.person.getUser(inspector);
+                break;
+            case 2:
+                inspRes = aa.person.getUser(nameArray[0], "", nameArray[1]);
+                break;
+            case 3:
+                inspRes = aa.person.getUser(nameArray[0], nameArray[1], nameArray[2]);
+                break;
+        }
+        
+		if (inspRes.getSuccess())
+        {
+			return inspRes.getOutput();
+		}
+        else
+        {
+            logDebug("Failed to create inspector object!");
+            return null;
+        }
+    }
+	else 
+	{
+		return null;
+	}
+}
