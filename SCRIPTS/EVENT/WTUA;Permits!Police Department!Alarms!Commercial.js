@@ -32,14 +32,14 @@ try{
 			if(tmpDate){
 				tmpDate = b1Exp.getExpDate();
 				newExpDate = dateAddMonths(tmpDate, 12);
-				licEditExpInfo("Issued",newExpDate);
+				licEditExpInfo("Active",newExpDate);
 			}else{
 				logDebug("Expiration date not found. Seting expiration date to one year from today.")
-				licEditExpInfo("Issued",dateAddMonths(null, 12));
+				licEditExpInfo("Active",dateAddMonths(null, 12));
 			}
 		}else{
 			logDebug("Expiration date not found. Seting expiration date to one year from today.");
-			licEditExpInfo("Issued",dateAddMonths(null, 12));
+			licEditExpInfo("Active",dateAddMonths(null, 12));
 		}
 	}
 }catch(err){
