@@ -32,10 +32,13 @@
 try
 {
     
-  if ((wfTask == "Application Submittal") && 
-      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted")))
-      ||
-     ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
+  if ((
+      (wfTask == "Application Submittal") && 
+      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted"))
+     )||
+     (
+     (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
+     ))
   {
     var turnAroundTime = AInfo["Turn Around Time"];
     var penaltyDate = AInfo["Penalty Date"];
