@@ -36,21 +36,26 @@ try
 		var planningNumber = AInfo["PLN Number"];
 	else 
 		var planningNumber = AInfo["Planning Number"];
-  var getCapResult = aa.cap.getCapID(planningNumber);
-  
-  // if parent exists, addParent(parent capId)
-  if (getCapResult.getSuccess())
-  {
-    addParent("" + planningNumber);
-    //mkyOutput += "planningNumber  found: " + planningNumber + " \r";
-    //logDebug("Planning Number found and added as parent");
-  }
-  else
-  { 
-    //mkyOutput += "ERROR: could not find parent planningNumber : " + planningNumber + " \r";
-    //logDebug("**ERROR: could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
-	logDebug("Could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
-  }
+	
+	if (planningNumber && planningNumber != "") {
+		planningNumber = String(planningNumber).toUpperCase();
+	
+	  var getCapResult = aa.cap.getCapID(planningNumber);
+	  
+	  // if parent exists, addParent(parent capId)
+	  if (getCapResult.getSuccess())
+	  {
+	    addParent("" + planningNumber);
+	    //mkyOutput += "planningNumber  found: " + planningNumber + " \r";
+	    //logDebug("Planning Number found and added as parent");
+	  }
+	  else
+	  { 
+	    //mkyOutput += "ERROR: could not find parent planningNumber : " + planningNumber + " \r";
+	    //logDebug("**ERROR: could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
+		logDebug("Could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
+	  }
+	}
 
 }
 catch (err)
