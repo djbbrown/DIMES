@@ -36,7 +36,7 @@ try
             if (priority == "Normal")
             {
                 // see if the initial inspection has already been Scheduled
-                var insp = getScheduledInspId("Initial Inspection");
+                var insp = doesInspectionExist("Initial Inspection");
 
                 if ( !insp )
                 {
