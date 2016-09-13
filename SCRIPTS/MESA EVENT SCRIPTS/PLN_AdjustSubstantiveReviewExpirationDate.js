@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 234
-// Script Name: PLN Adjust Substantive Review Expiration Dat 
+// Script Name: PLN Adjust Substantive Review Expiration Date
 // Script Developer: Kevin Ford
 // Script Agency: Accela
 // Script Description: When the workflow task "Plans Coordination" is set to a status of "Revisions Received" adjust the Substantive Review Due Date. Adjust the date by adding the number of days between the current date (the date the info was received) and the date the info was requested (the date the status was set to "Revisions Required").  
@@ -140,7 +140,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 }
 
 try {
-	var tBd = '';
+	var tBd = [];
 	// ===========================
 	// Technical breakdown
 	// ===========================
@@ -154,7 +154,7 @@ try {
 		&& AInfo["Type of Process"] == 'Historic Preservation'
 		&& AInfo["Sub process type"] == 'Section 106 Review'
 	){
-		tBd = '106 Reviews'
+		tBd.push('106 Reviews');
 	}
 	// ---------------------------
 	// A-frame Sign - Confirmed PLN2016-00506
@@ -167,7 +167,7 @@ try {
 		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 		&& AInfo["Sub process type"] == 'A-Frame Sign'
 	){
-		tBd = 'A-frame Sign'
+		tBd.push('A-frame Sign');
 	}
 	// ---------------------------
 	// Administrative Extensions for Zoning Administration Cases - Confirmed PLN2016-00506
@@ -180,7 +180,7 @@ try {
 		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 		&& AInfo["Sub process type"] == 'Administrative Extension'
 	){
-		tBd = 'Administrative Extensions for Zoning Administration Cases'
+		tBd.push('Administrative Extensions for Zoning Administration Cases');
 	}
 	// ---------------------------
 	// Affidavit of Change - Confirmed PLN2016-00506
@@ -202,7 +202,7 @@ try {
 		&& AInfo["Type of Process"] == 'Land Division'
 		&& exists(AInfo["Sub process type"],aOcSubProc)
 	){
-		tBd = 'Affidavit of Change'
+		tBd.push('Affidavit of Change');
 	}
 	// ---------------------------
 	// Alternative Landscaping - Confirmed PLN2016-00506
@@ -215,7 +215,7 @@ try {
 			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 			&& AInfo["Sub process type"] == 'Alternative Landscaping'
 	){
-		tBd = 'Alternative Landscaping'
+		tBd.push('Alternative Landscaping');
 	}
 	// ---------------------------
 	// Alternative Parking - Confirmed PLN2016-00506
@@ -228,7 +228,7 @@ try {
 		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 		&& AInfo["Sub process type"] == 'Alternative Parking'
 	){
-		tBd = 'Alternative Parking'
+		tBd.push('Alternative Parking');
 	}
 	// ---------------------------
 	// Annexation - Confirmed ANX16-00187
@@ -237,7 +237,7 @@ try {
 	if (
 		appTypeString=='Planning/Annexation/NA/NA'
 	){
-		tBd = 'Annexation'
+		tBd.push('Annexation');
 	}
 	// ---------------------------
 	// Cell Tower - Board
@@ -262,7 +262,7 @@ try {
 			|| AInfo["Type of Process"] == 'Wireless Communications Facilities'
 		)
 	){
-		tBd = 'Cell Tower - staff'
+		tBd.push('Cell Tower - staff');
 	}
 	// ---------------------------
 	// Certificate of Appropriateness - Confirmed PLN2016-00506
@@ -277,7 +277,7 @@ try {
 			|| AInfo["Sub process type"] == 'Demolition Permit'
 		)
 	){
-		tBd = 'Certificate of Appropriateness'
+		tBd.push('Certificate of Appropriateness');
 	}
 	// ---------------------------
 	// Council Use Permit
@@ -286,9 +286,9 @@ try {
 	// Development Incentive Permit = 'Yes'
 	if (
 		appTypeString == "Planning/Planning and Zoning/NA/NA"
-		&& AInfo["Council Use Permit"] == 'Yes'
+		&& AInfo["Council Use Permit"] == 'CHECKED'
 	){
-		tBd = 'Council Use Permit'
+		tBd.push('Council Use Permit');
 	}
 	// ---------------------------
 	// Design Review Modification
@@ -300,7 +300,7 @@ try {
 	if (
 		appTypeString == "Planning/Design Review/NA/NA" 
 	){
-		tBd = 'Design Review - Board'
+		tBd.push('Design Review - Board');
 	}
 	// ---------------------------
 	// Design Review - Staff - Confirmed PLN2016-00506
@@ -312,7 +312,7 @@ try {
 		appTypeString == "Planning/Admin Review/NA/NA"
 		&& exists(AInfo["Type of Process"],dRProc)
 	){
-		tBd = 'Design Review - Staff'
+		tBd.push('Design Review - Staff');
 	}
 	// ---------------------------
 	// Development Incentive Permit
@@ -321,9 +321,9 @@ try {
 	// Development Incentive Permit = 'Yes'
 	if (
 		appTypeString == 'Planning/Board of Adjustment/NA/NA'
-		&& AInfo["Development Incentive Permit"] == 'Yes'
+		&& AInfo["Development Incentive Permit"] == 'CHECKED'
 	){
-		tBd = 'Development Incentive Permit'
+		tBd.push('Development Incentive Permit');
 	}
 	// ---------------------------
 	// Development Incentive Permit Modification - Confirmed PLN2016-00506
@@ -336,7 +336,7 @@ try {
 		&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 		&& AInfo["Sub process type"] == 'Amendment of development incentive permit'
 	){
-		tBd = 'Development Incentive Permit Modification'
+		tBd.push('Development Incentive Permit Modification');
 	}
 	// ---------------------------
 	// Development Unit Plan - P&Z
@@ -345,9 +345,9 @@ try {
 	// Development Unit Plan = 'Yes'
 	if (
 		appTypeString == "Planning/Planning and Zoning/NA/NA"
-		&& AInfo["Development Unit Plan"] == 'Yes'
+		&& AInfo["Development Unit Plan"] == 'CHECKED'
 	){
-		tBd = 'Development Unit Plan - P&Z'
+		tBd.push('Development Unit Plan - P&Z');
 	}
 	// ---------------------------
 	// Development Unit Plan - Staff - Confirmed PLN2016-00506
@@ -363,7 +363,7 @@ try {
 			|| AInfo["Sub process type"] == 'Other'
 		)
 	){
-		tBd = 'Development Unit Plan - Staff'
+		tBd.push('Development Unit Plan - Staff');
 	}
 	// ---------------------------
 	// Development Unit Plan Modification - P&Z
@@ -378,7 +378,7 @@ try {
 		&& AInfo["Type of Process"] == 'Development Unit Plan'
 		&& AInfo["Sub process type"] == 'Amendment to Development Unit Plan'
 	){
-		tBd = 'Development Unit Plan Modification - Staff'
+		tBd.push('Development Unit Plan Modification - Staff');
 	}
 	// ---------------------------
 	// Final Plat Modification - Confirmed SUB16-00208
@@ -392,7 +392,7 @@ try {
 			|| AInfo['Application Type'] == 'Map of Dedication (MOD)'
 		)
 	){
-		tBd = 'Final Plat Modification'
+		tBd.push('Final Plat Modification');
 	}
 	// ---------------------------
 	// Final Plat and Re-plat - Confirmed SUB16-00208
@@ -403,7 +403,7 @@ try {
 		appTypeString == "Planning/Subdivision/NA/NA"
 		&& AInfo['Application Type'] == 'Final Plat Review'
 	){
-		tBd = 'Final Plat and Re-plat'
+		tBd.push('Final Plat and Re-plat');
 	}
 	// ---------------------------
 	// Form-based Code Zoning Clearance - Confirmed PLN2016-00506
@@ -414,7 +414,7 @@ try {
 		appTypeString == "Planning/Admin Review/NA/NA"
 		&& AInfo["Type of Process"] == 'Form Based Code/Zoning Clearance'
 	){
-		tBd = 'Form-based Code Zoning Clearance'
+		tBd.push('Form-based Code Zoning Clearance');
 	}
 	// ---------------------------
 	// Group Home Registrations - Confirmed GHAP16-00206
@@ -424,7 +424,7 @@ try {
 	if (
 		appTypeString == "Planning/Group Home/Application/NA"	
 	){
-		tBd = 'Group Home Registrations'
+		tBd.push('Group Home Registrations');
 	}
 	// ---------------------------
 	// Improvement Permit Modification
@@ -435,9 +435,9 @@ try {
 	// Interpretation = 'Yes'
 	if (
 		appTypeString == "Planning/Board of Adjustment/NA/NA"
-		&& AInfo["Interpretation"] == 'Yes'
+		&& AInfo["Interpretation"] == 'CHECKED'
 	){
-		tBd = 'Interpretation'
+		tBd.push('Interpretation');
 	}
 	// ---------------------------
 	// Land Split - Confirmed PLN2016-00506
@@ -450,7 +450,7 @@ try {
 		&& AInfo["Type of Process"] == 'Land Division'
 		&& AInfo["Sub process type"] == 'Land Split'
 	){
-		tBd = 'Land Split'
+		tBd.push('Land Split');
 	}
 	// ---------------------------
 	// Major General Plan Amendment - Confirmed GPA16-00227
@@ -460,7 +460,7 @@ try {
 	if (
 		appTypeString == "Planning/General Plan Amendment - Major/NA/NA"
 	){
-		tBd = 'Major General Plan Amendment'
+		tBd.push('Major General Plan Amendment');
 	}
 	// ---------------------------
 	// Medical Marijuana - Confirmed PLN2016-00506
@@ -471,7 +471,7 @@ try {
 		appTypeString == "Planning/Admin Review/NA/NA"
 		&& AInfo["Type of Process"] == 'Medical Marijuana'
 	){
-		tBd = 'Medical Marijuana'
+		tBd.push('Medical Marijuana');
 	}
 	// ---------------------------
 	// Minor General Plan Amendment
@@ -482,11 +482,11 @@ try {
 	if (
 		appTypeString == "Planning/Planning and Zoning/NA/NA"
 		&& (
-			AInfo["Minor General Plan Amendment"] == 'Yes'
-			|| AInfo["Planned Community Minor Amendment"] == 'Yes'
+			AInfo["Minor General Plan Amendment"] == 'CHECKED'
+			|| AInfo["Planned Community Minor Amendment"] == 'CHECKED'
 		)
 	){
-		tBd = 'Minor General Plan Amendment'
+		tBd.push('Minor General Plan Amendment');
 	}
 	// ---------------------------
 	// PAD Modification - BOA
@@ -495,9 +495,9 @@ try {
 	// Modification of Planned Area Development = 'Yes'
 	if (
 		appTypeString == "Planning/Board of Adjustment/NA/NA"
-		&& AInfo["Modification of Planned Area Development"] == 'Yes'
+		&& AInfo["Modification of Planned Area Development"] == 'CHECKED'
 	){
-		tBd = 'PAD Modification - BOA'
+		tBd.push('PAD Modification - BOA');
 	}
 	// ---------------------------
 	// PAD Modification - P&Z
@@ -509,9 +509,9 @@ try {
 	// Planned Community Minor Amendment = 'Yes'
 	if (
 		appTypeString == "Planning/Planning and Zoning/NA/NA"
-		&& AInfo["Pre-Plat"] == 'Yes'
+		&& AInfo["Pre-Plat"] == 'CHECKED'
 	){
-		tBd = 'Preliminary Plat'
+		tBd.push('Preliminary Plat');
 	}
 	// ---------------------------
 	// Preliminary Plat Extension - Confirmed PLN2016-00506
@@ -524,7 +524,7 @@ try {
 			&& AInfo["Type of Process"] == 'Land Division'
 			&& AInfo["Sub process type"] == 'Preliminary Plat Extension'
 	){
-		tBd = 'Preliminary Plat Extension'
+		tBd.push('Preliminary Plat Extension');
 	}
 	// ---------------------------
 	// Preliminary Plat Modification - Confirmed PLN2016-00506
@@ -537,7 +537,7 @@ try {
 			&& AInfo["Type of Process"] == 'Land Division'
 			&& AInfo["Sub process type"] == 'Amendment to Lot layout/street system'
 	){
-		tBd = 'Preliminary Plat Modification'
+		tBd.push('Preliminary Plat Modification');
 	}
 	// ---------------------------
 	// Product Review - Confirmed PLN2016-00506
@@ -551,7 +551,7 @@ try {
 			&& AInfo["Type of Process"] == 'Product Approval'
 			&& exists(AInfo["Sub process type"],pRSubProc)
 	){
-		tBd = 'Product Review'
+		tBd.push('Product Review');
 	}
 	// ---------------------------
 	// Product Review Modification - Confirmed PLN2016-00506
@@ -564,7 +564,7 @@ try {
 			&& AInfo["Type of Process"] == 'Product Approval'
 			&& AInfo["Sub process type"] == 'Amendment/Addition to Approved Product'
 	){
-		tBd = 'Product Review Modification'
+		tBd.push('Product Review Modification');
 	}	
 	// ---------------------------
 	// Rezoning - Historic District
@@ -581,13 +581,13 @@ try {
 	if (
 			appTypeString == "Planning/Planning and Zoning/NA/NA"
 			&& (
-				AInfo['Rezone'] == 'Yes'
-				|| AInfo['Rezone - Infill Development District 2'] == 'Yes' 
-				|| AInfo['Rezone - Planned Community District'] == 'Yes'
-				|| AInfo['Combined Rezone and Site Plan Review/Modification'] == 'Yes'
+				AInfo['Rezone'] == 'CHECKED'
+				|| AInfo['Rezone - Infill Development District 2'] == 'CHECKED'
+				|| AInfo['Rezone - Planned Community District'] == 'CHECKED'
+				|| AInfo['Combined Rezone and Site Plan Review/Modification'] == 'CHECKED'
 			)
 	){
-		tBd = 'Rezoning - general'
+		tBd.push('Rezoning - general');
 	}
 	// ---------------------------
 	// Shared Parking - Confirmed PLN2016-00506
@@ -600,7 +600,7 @@ try {
 			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 			&& AInfo["Sub process type"] == 'Shared Parking'
 	){
-		tBd = 'Shared Parking'
+		tBd.push('Shared Parking');
 	}
 	// ---------------------------
 	// Site Plan Modification - Admin - Confirmed PLN2016-00506
@@ -611,7 +611,7 @@ try {
 			appTypeString == "Planning/Admin Review/NA/NA"
 			&& AInfo["Type of Process"] == 'Zoning/Site Plan'
 	){
-		tBd = 'Site Plan Modification - Admin'
+		tBd.push('Site Plan Modification - Admin');
 	}	
 	// ---------------------------
 	// Site Plan Review - Council
@@ -620,12 +620,12 @@ try {
 	// Record Type:
 	//		Planning/Board of Adjustment/NA/NA
 	// Special Use Permit = 'Yes'
-	//		or Administrative Use Permits = 'Yes'
+	//		or Administrative Use Permits = 'Yes'R
 	if (
-			appTypeString == "Planning/Board of Adjustment/NA/NA"
-			&& AInfo['Site Plan Review/Modification'] == 'Yes'
+			appTypeString == "Planning/Planning and Zoning/NA/NA"
+			&& AInfo['Site Plan Review/Modification'] == 'CHECKED'
 	){
-		tBd = 'Site Plan Review - P&Z'
+		tBd.push('Site Plan Review - P&Z');
 	}
 	// ---------------------------
 	// Special Use Permit
@@ -639,15 +639,15 @@ try {
 	if (
 			(
 				appTypeString == 'Planning/Board of Adjustment/NA/NA'
-				&& (AInfo['Special Use Permit'] == 'Yes'
-				|| AInfo['Administrative Use Permits'] == 'Yes')
+				&& (AInfo['Special Use Permit'] == 'CHECKED'
+				|| AInfo['Administrative Use Permits'] == 'CHECKED')
 			)
 			|| (
 				appTypeString == 'Planning/Planning and Zoning/NA/NA'
-				&& (AInfo['Special Use Permit'] == 'Yes')
+				&& (AInfo['Special Use Permit'] == 'CHECKED')
 			)
 	){
-		tBd = 'Special Use Permit'
+		tBd.push('Special Use Permit');
 	}
 	// ---------------------------
 	// Special Use Permit Modification
@@ -660,7 +660,7 @@ try {
 			appTypeString == "Planning/Subdivision/NA/NA" 
 			&& AInfo['Application Type'] == 'Subdivision Technical Review'
 	){
-		tBd = 'Subdivision Technical Review'
+		tBd.push('Subdivision Technical Review');
 	}
 	// ---------------------------
 	// Substantial Conformance Improvement Permit
@@ -670,9 +670,9 @@ try {
 	//		or Administrative Use Permits = 'Yes'
 	if (
 			appTypeString == "Planning/Board of Adjustment/NA/NA" 
-			&& AInfo['Substantial Conformance Improvement Permit'] == 'Yes'
+			&& AInfo['Substantial Conformance Improvement Permit'] == 'CHECKED'
 	){
-		tBd = 'Substantial Conformance Improvement Permit'
+		tBd.push('Substantial Conformance Improvement Permit');
 	}
 	// ---------------------------
 	// Substantial Conformance Improvement Permit Modification - Confirmed PLN2016-00506
@@ -689,7 +689,7 @@ try {
 				|| AInfo["Sub process type"] == 'Other'
 			)
 	){
-		tBd = 'Substantial Conformance Improvement Permit Modification'
+		tBd.push('Substantial Conformance Improvement Permit Modification');
 	}
 	// ---------------------------
 	// Temporary Use Permits - Confirmed PLN2016-00506
@@ -702,7 +702,7 @@ try {
 			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
 			&& AInfo["Sub process type"] == 'Temporary Use Permit'
 	){
-		tBd = 'Temporary Use Permits'
+		tBd.push('Temporary Use Permits');
 	}
 	// ---------------------------
 	// Variance
@@ -712,11 +712,11 @@ try {
 	//		or Administrative Use Permits = 'Yes'
 	if (
 			appTypeString == "Planning/Board of Adjustment/NA/NA"
-			&& AInfo['Variance'] == 'Yes'
+			&& AInfo['Variance'] == 'CHECKED'
 	){
-		tBd = 'Variance'
+		tBd.push('Variance');
 	}
-	aa.print(tBd);
+	// aa.print("tBd Value: "+tBd);
 	// ---------------------------
 	// Variance Modification
 	// ---------------------------
@@ -724,19 +724,24 @@ try {
 	// ===========================
 	// Check 1
 	// ===========================
-	// When workflow task "Distribution" or "Substantive Review Distribution" is set to "Resubmitted"  
+	// When workflow task "Distribution" or "Substantive Review Distribution" is set to "Resubmitted"
 	if(
 			(wfTask == 'Substantive Review Distribution' || wfTask == 'Distribution')
 			&& wfStatus == 'Resubmitted'
 	){
+		aa.print("Starting check 1");
 		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 		editAppSpecific("Start/Stop Indicator", 'Started');
 		// Update the "Substantive Review Due Date" = todays date + # of working days.
 		// The #of working days is retrieved from "Value Desc" field of Standard Choices Item
 		// "PLN Substantive Review Days".
 		// Note that the numbers are based on a five day work week.
-		workingDays = lookup("PLN Substantive Review Days",tBd); // Confirmed working
-		nextDate = workDaysAdd(Date(),workingDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		tBdDay = [];
+		for(x in tBd){
+			workingDays = lookup("PLN Substantive Review Days",tBd[x]); // Confirmed working
+		}
+		tBdDay.sort().reverse(); // this will order from highest to lowes, which we want the highest.
+		nextDate = workDaysAdd(Date(),tBdDay[0],['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 		// aa.print(nextDate);
 		editAppSpecific("Substantive Review Due Date", nextDate);
 	}
@@ -812,7 +817,7 @@ try {
 	check4 = ["Planning/Planning and Zoning/NA/NA","Planning/Annexation/NA/NA"];
 	if (
 			exists(appTypeString,check4)
-			&& (wfTask == 'Distribution')
+			&& (wfTask == 'oeu Distribution')
 			&& wfStatus == 'Resubmitted'
 	){
 		// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
