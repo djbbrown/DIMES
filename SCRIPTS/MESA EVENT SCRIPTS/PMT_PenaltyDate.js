@@ -40,16 +40,16 @@ try
      (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
      ))
   {
-    var turnAroundTime = parseInt(AInfo["Turn Around Time"]);
+
+    // the minus 1 is due to customer wanting today to be "day 1"
+    var turnAroundTime = (parseInt(AInfo["Turn Around Time"]) - 1);
+
     var penaltyDate = AInfo["Penalty Date"];
     var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
     var todayDate = new Date();
 
     // set the futureDate
     var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
-
-    // adjust date back one per PMT customer (today is day 1)
-    futureDate = new Date(dateAdd(futureDate, -1));
 
     // assign to Penalty Date ASI field if exists
     if (typeof penaltyDate == "undefined")
