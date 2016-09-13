@@ -44,11 +44,11 @@ try
                     var nextWorkingDay = dateAdd(null, 1, "Y");
 
                     // get the inspector for this boundary          
-                    var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");
+                    var inspector = getInspectorObject();
                     if (inspector) 
                     {
                         // schedule initial inspection for today 
-                        scheduleInspectionDateWithInspector("Initial Inspection", nextWorkingDay, inspector);
+                        scheduleInspectionDateWithInspectorObject("Initial Inspection", nextWorkingDay, inspector);
                         logDebug("Scheduled inspection for Inspector " + inspector + ".");
                     }
                     else

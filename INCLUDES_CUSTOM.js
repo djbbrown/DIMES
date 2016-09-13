@@ -1950,3 +1950,17 @@ function scheduleInspectionDateWithInspector(iType, dateToSched, inspectorID )
 		logDebug( "**ERROR: adding scheduling inspection (" + iType + "): " + schedRes.getErrorMessage());
 	}
 }
+
+function scheduleInspectionDateWithInspectorObject(iType, dateToSched, inspectorObj )
+{
+	var schedRes = aa.inspection.scheduleInspection(capId, inspectorObj, aa.date.parseDate(dateToSched), inspTime, iType, "Scheduled via Script");
+
+	if (schedRes.getSuccess())
+	{
+		logDebug("Successfully scheduled inspection: " + iType + " for " + dateToSched);
+	}
+	else
+	{
+		logDebug( "**ERROR: adding scheduling inspection (" + iType + "): " + schedRes.getErrorMessage());
+	}
+}
