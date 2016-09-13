@@ -4,12 +4,11 @@
 // Script Developer: Jody Bearden
 // Script Agency: Mesa
 // Script Description: Transportation!Temporary Traffic Control!~!~
-//                     set the value of the ASI field "Restriction End
-//                     Date" - found in ASIT "Duration Information".
-//                     If field is null, set to 180 from the current
-//                     date, and if there is no record in the ASIT
-//                     table, don't do anything.  Trigger on ASA and
-//                     ASIUA.
+//                     Populate the ASI field "Permit Expiration Date"
+//                     with the date entered in the ASIT field
+//                     "Restriction End Date. If there is more than
+//                     one record, use the date furthest out (if
+//                     dates are 10/1 and 11/5, use 11/5).
 // Script Run Event: ASA, ASIUA
 // Script Parents:
 //		ASA;Transportation!Temporary Traffic Control!~!~
@@ -22,32 +21,24 @@
 
 try
 {
-	var updateTable = false;
 	// check for record(s) in Duration Information table
 	tbl = loadASITable("DURATION INFORMATION");
-	//tbl = DURATIONINFORMATION;
-	logDebug("duration information table - record count: " + tbl.length);
-	// if there is one (or more), get the value of the Restriction End Date field (for each row)
+	//logDebug("duration information table - record count: " + tbl.length);
+
+	// if there is one (or more), get the value of the most current Restriction End Date field
 	if (tbl.length > 0) {
-		var today = new Date();
-		var resEndDate = dateAdd(today, 180);
+		var resEndDate = tbl[0]["Restriction End Date"]; // init before loop
 		for (row in tbl) {
-			endDate = tbl[row]["Restriction End Date"];
-			logDebug("endDate: " + endDate);
-			// if the field value is null, set it to today plus 180 days
-			if (endDate == null || endDate == "") {
-				logDebug("Updating Restriction End Date from empty value to: " + resEndDate);
-				tbl[row]["Restriction End Date"] = resEndDate;
-				updateTable = true;
-				logDebug("Restriction End Date updated to: " + tbl[row]["Restriction End Date"]);
-			}
+			tempEndDate = tbl[row]["Restriction End Date"];
+			logDebug("tempEndDate: " + tempEndDate);
+			if (tempEndDate > resEndDate) {  resEndDate = tempEndDate; } // get most current date
 		}
-		// out with the old, in with the new?
-		if (updateTable) {
-			removeASITable("DURATION INFORMATION");
-			addASITable("DURATION INFORMATION", tbl);
-		}
-	}
+
+		//logDebug("Current Permit Expiration Date: " + getAppSpecific("Permit Expiration Date"));
+		//logDebug("Updating Permit Expiration Date to: " + resEndDate);
+		editAppSpecific("Permit Expiration Date", resEndDate);
+		//logDebug("Permit Expiration Date updated to: " + getAppSpecific("Permit Expiration Date"));
+	} // else no records in ASIT, so no restriction end date to pull, so nothing to calculate permit date from.
 }
 catch (err)
 {

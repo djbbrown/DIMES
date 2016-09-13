@@ -45,7 +45,11 @@ function getInspectorObject() // optional altId
         else
         {
             logDebug("Failed to create inspector object!");
-            return null;
+            return false;
         }
     }
+	else 
+	{
+		return false;
+	}
 }

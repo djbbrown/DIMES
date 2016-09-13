@@ -3,4 +3,4 @@
 // Script Name: WTUB;Permits!~!~!~.js
 ==================================================================*/
 include("PMT_preventIssuanceWithBalanceDue");
-include("PMT_AssessResidentialBuildingPermitFee");
+//include("PMT_AssessResidentialBuildingPermitFee");

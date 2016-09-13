@@ -3,7 +3,7 @@
 // Script Name: ASA;Permits!Residential!NA!NA.js
 ==================================================================*/
 include("PMT_FloodControlPermit");
-include("PMT_PlanningNumbValidate");
+//include("PMT_PlanningNumbValidate");
 include("PMT_WaterMeterAdapterFee");
 include("PMT_ImpactFeesSingleResidence");
 // added by Brian O'Dell (Mesa)

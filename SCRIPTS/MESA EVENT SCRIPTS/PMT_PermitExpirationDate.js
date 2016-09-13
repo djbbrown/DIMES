@@ -19,22 +19,25 @@
 /*==================================================================*/
 
 /* intellisense references */
-/// <reference path="../../AccelaAPI.js" />
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
-/* reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" // only for asb events!! */
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
 try
 {
-    if (taskStatus("Permit Issuance") != null && taskStatus("Permit Issuance").toUpperCase() == "ISSUED" && AInfo["Permit Issued Date"] != null ) 
+    if (taskStatus("Permit Issuance") != null && taskStatus("Permit Issuance").toUpperCase() == "ISSUED" ) 
     {
         logDebug("Task 'Permit Issuance' has status = 'Issued'");
 
-        var permitIssuedDate = convertDate(AInfo["Permit Issued Date"]);
-        logDebug("Permit Issued Date: " + permitIssuedDate);
-        
-        var typeOfWork = AInfo["Type of Work"];
+        var tStatusDate = convertDate(taskStatusDate("Permit Issuance"));
+        logDebug("tStatusDate: " + tStatusDate);        
+
+        loadASITable("SIGN INFO");
+        var tInfo = SIGNINFO;
+        var typeOfWork = ""; 
+        if (tInfo.length > 0 ) {
+            typeOfWork = tInfo[0]["Type of Work"];
+        }        
         logDebug("Type of Work: " + typeOfWork);
 
         logDebug("App Type: " + appTypeString );
@@ -44,28 +47,28 @@ try
             switch (typeOfWork){
                 case "Construction Noise Permit":
                 case "Grand Opening Banners":
-                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 30));
+                    editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 30));
                     logDebug( appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 30 days out");
                     break;
                 case "Subdivision Sign":
                 case "Subdivision Weekend Sign":
                 case "Subdivision Directional Sign":
-                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 730));
+                    editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 730));
                     logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 2 years out");
                     break;
                 case "Downtown Directional A-Frames":
-                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 365));
+                    editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 365));
                     logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 2 years out");
                     break;
                 default:
-                    editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 180));
+                    editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 180));
                     logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 180 days out");
                     break;
             }
         }
         else 
         {
-            editAppSpecific("Permit Expiration Date", dateAdd(permitIssuedDate, 180));
+            editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 180));
             logDebug(appTypeString  + ", default expiration date added: 180 days");
         }
     }
