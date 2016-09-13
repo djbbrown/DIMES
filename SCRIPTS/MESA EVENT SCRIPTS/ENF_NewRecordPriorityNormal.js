@@ -23,55 +23,42 @@
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
 try
-{
-    var cdScriptObjResult = aa.cap.getCapDetail(capId);
-    if (cdScriptObjResult.getSuccess())
+{    
+    var priority = getRecordPriority();
+    logDebug("Priority: " + priority);
+    if ( !priority && priority == "Normal")
     {
-        var cdScriptObj = cdScriptObjResult.getOutput();
-        if ( cdScriptObj ) 
+        // see if the initial inspection has already been Scheduled
+        var insp = doesInspectionExist("Initial Inspection");
+
+        if ( !insp )
         {
-            var cd = cdScriptObj.getCapDetailModel();
-            var priority = cd.getPriority();
-            logDebug("Priority: " + priority);
-            if (priority == "Normal")
+            // schedule initial inspection on the next working day (5 day cal)
+            var nextWorkingDay = dateAdd(null, 1, "Y");
+
+            // get the inspector for this boundary          
+            var inspector = getInspectorObject();
+            if (!inspector) 
             {
-                // see if the initial inspection has already been Scheduled
-                var insp = doesInspectionExist("Initial Inspection");
-
-                if ( !insp )
-                {
-                    // schedule initial inspection on the next working day (5 day cal)
-                    var nextWorkingDay = dateAdd(null, 1, "Y");
-
-                    // get the inspector for this boundary          
-                    var inspector = getInspectorObject();
-                    if (inspector) 
-                    {
-                        // schedule initial inspection for today 
-                        scheduleInspectionDateWithInspectorObject("Initial Inspection", nextWorkingDay, inspector);
-                        logDebug("Scheduled inspection for Inspector " + inspector + ".");
-                    }
-                    else
-                    {
-                        // schedule initial inspection for today 
-                        scheduleInspectDate("Initial Inspection", nextWorkingDay);
-                        logDebug("Inspector was not found, so was not assigned.");
-                    }
-                }
-                else
-                {
-                    logDebug("Initial Inspection has already been scheduled.")
-                }
+                // schedule initial inspection for next working day 
+                scheduleInspectionDateWithInspectorObject("Initial Inspection", nextWorkingDay, inspector);
+                logDebug("Scheduled inspection for Inspector " + inspector + ".");
+            }
+            else
+            {
+                // schedule initial inspection for next working day 
+                scheduleInspectDate("Initial Inspection", nextWorkingDay);
+                logDebug("Inspector was not found, so was not assigned.");
             }
         }
         else
         {
-            logDebug("Failed to get record priority (cdScriptObj)")
+            logDebug("Initial Inspection has already been scheduled.")
         }
     }
     else 
     {
-        logDebug("Failed to get record priority (cdScriptObjResult)")
+        logDebug("Criteria not met.")
     }
 }
 catch (err)

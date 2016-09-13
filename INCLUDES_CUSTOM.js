@@ -1785,28 +1785,6 @@ function voidRemoveFee(vFeeCode){
 			}
 		}
 	}
-} 
-
-function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optional altId
-{
-    var theCapID = null;
-    if ( arguments.length == 3 )
-    {
-        theCapID = aa.cap.getCapID(arguments[2]).getOutput();
-    }
-    else 
-    {
-        theCapID = capId;
-    }
-
-    var beforeValueList = aa.appSpecificInfo.getAppSpecificInfos(theCapID, asiSubGroupName, asiFieldName).getOutput();
-
-    var beforeValue = null;
-    for (var i=0;i<beforeValueList.length;i++)
-    {
-        beforeValue = beforeValueList[i].getChecklistComment();
-    }
-    return beforeValue;
 }
 
 function mesaWorkingDays(curDate, daysToAdd)
@@ -1898,12 +1876,12 @@ function getInspectorObject() // optional altId
         else
         {
             logDebug("Failed to create inspector object!");
-            return null;
+            return false;
         }
     }
 	else 
 	{
-		return null;
+		return false;
 	}
 }
 
@@ -1964,4 +1942,108 @@ function scheduleInspectionDateWithInspectorObject(iType, dateToSched, inspector
 	{
 		logDebug( "**ERROR: adding scheduling inspection (" + iType + "): " + schedRes.getErrorMessage());
 	}
+}
+
+function getTodayAsString()
+{
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    return mm + '/' + dd + '/' + yyyy;
+}
+
+function getRecordPriority() // optional altId
+{
+    var theCapID = null;
+    if ( arguments.length == 1 )
+    {
+        theCapID = aa.cap.getCapID(arguments[0]).getOutput();
+    }
+    else 
+    {
+        theCapID = capId;
+    }
+    var cdScriptObjResult = aa.cap.getCapDetail(theCapID);
+    if (cdScriptObjResult.getSuccess())
+    {
+        var cdScriptObj = cdScriptObjResult.getOutput();
+        if ( cdScriptObj ) 
+        {
+            var cd = cdScriptObj.getCapDetailModel();
+            return cd.getPriority();
+        }
+        else
+        {
+            logDebug("Failed to get record priority (cdScriptObj)")
+            return false;
+        }
+    }
+    else 
+    {
+        logDebug("Failed to get record priority (cdScriptObjResult)")
+        return false;
+    }
+}
+
+function getThisInspectionId_ISA() // optional altId
+{
+    var theCapID = null;
+    if ( arguments.length == 3 )
+    {
+        theCapID = aa.cap.getCapID(arguments[2]).getOutput();
+    }
+    else 
+    {
+        theCapID = capId;
+    }
+
+    var inspResultObj = aa.inspection.getInspections(capId);
+    if (inspResultObj.getSuccess()) {
+        var inspList = inspResultObj.getOutput();
+        
+        if ( inspList.length > 1 )
+        {
+            var compareFunction = new function compareByNumber(a, b) { return a.getIdNumber() - b.getIdNumber(); }
+            inspList.sort(compareFunction);
+        }
+        
+        return inspList[inspList.length-1].getIdNumber();
+    }
+    else 
+    {
+        logDebug("Failed to get Inspection Id.")
+        return false;
+    }
+}
+
+function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optional altId
+{
+    var theCapID = null;
+    if ( arguments.length == 3 )
+    {
+        theCapID = aa.cap.getCapID(arguments[2]).getOutput();
+    }
+    else 
+    {
+        theCapID = capId;
+    }
+
+    var beforeValueList = aa.appSpecificInfo.getAppSpecificInfos(theCapID, asiSubGroupName, asiFieldName).getOutput();
+
+    var beforeValue = null;
+    for (var i=0;i<beforeValueList.length;i++)
+    {
+        beforeValue = beforeValueList[i].getChecklistComment();
+    }
+    return beforeValue;
 }
