@@ -35,7 +35,7 @@ function mesaWorkingDays(curDate, daysToAdd)
 
 
   var dayAdjustment = parseInt(daysToAdd) + fridayCount;
-
+  comment("dayAdjustment: " + dayAdjustment);
 
   theDate = dateAdd(theDate, dayAdjustment, 'Y');
 
