@@ -21,69 +21,44 @@
 //            
 /*==================================================================*/
 
-function getThisInspectionId() 
-{
-    var inspResultObj = aa.inspection.getInspections(capId);
-    if (inspResultObj.getSuccess()) {
-        var inspList = inspResultObj.getOutput();
-        
-        if ( inspList.length > 1 )
-        {
-            inspList.sort(compareByNumber);
-        }
-        
-        return inspList[inspList.length-1].getIdNumber();
-    }
-}
-
-function compareByNumber(a, b) {
-    return a.getIdNumber() - b.getIdNumber();
-}
+/* intellisense references */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 try
 {
     // get the inspector for this boundary          
-    var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");
-    if (inspector) 
+    var inspectorObj = getInspectorObject();
+    if (!inspectorObj) 
     {
-        logDebug("Inspector: " + inspector);
-        var nameArray = inspector.split(" ");
-        var inspRes = null;
-        switch (nameArray.length)
-        {
-            case 1:
-                inspRes = aa.person.getUser(inspector);
-                break;
-            case 2:
-                inspRes = aa.person.getUser(nameArray[0], "", nameArray[1]);
-                break;
-            case 3:
-                inspRes = aa.person.getUser(nameArray[0], nameArray[1], nameArray[2]);
-                break;
-        }
-        
-		if (inspRes.getSuccess())
-        {
-			var inspectorObj = inspRes.getOutput();
+        // get this inspection's id Number
+        var inspNumber = getThisInspectionId_ISA();
+        logDebug("inspNumber: " + inspNumber);
 
-            // get this inspection's id Number
-            var inspNumber = getThisInspectionId();
-            logDebug("inspNumber: " + inspNumber);
-            
+        if (!inspNumber)
+        {            
             // assign inspector
             var iObjResult = aa.inspection.getInspection(capId, inspNumber);
-            if (!iObjResult.getSuccess()) 
+            if (iObjResult.getSuccess()) 
             {
-		        logDebug("**WARNING retrieving inspection " + inspNumber + " : " + iObjResult.getErrorMessage());
-	        }
-	        iObj = iObjResult.getOutput();
-            iObj.setInspector(inspectorObj);
-            logDebug("Inspector assigned!");
-		}
+                iObj = iObjResult.getOutput();
+                iObj.setInspector(inspectorObj);
+                logDebug("Inspector assigned!");
+            }
+            else
+            {
+                logDebug("**WARNING retrieving inspection " + inspNumber + " : " + iObjResult.getErrorMessage());
+            } 
+        }
         else
         {
-            logDebug("Failed to create inspector object!");
+            logDebug("Failed to get inspection number!");
         }
+    }
+    else
+    {
+        logDebug("Failed to create inspector object!");
     }
 }
 catch (err)
