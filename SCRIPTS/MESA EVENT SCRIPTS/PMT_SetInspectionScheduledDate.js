@@ -32,7 +32,7 @@ try
 			var inspList = inspResultObj.getOutput();
 			//logDebug("Number of inspections: " + inspList.length);
 			for(insp in inspList) {
-				if (matches(inspList[insp].getInspectionStatus(), "Pending")) {
+				if (matches(inspList[insp].getInspectionStatus(), "Scheduled")) {
 					var inspType = inspList[insp].getInspectionType();
 					//logDebug("Inspection type: " + inspList[insp].getInspectionType());
 					//logDebug("Inspection status: " + inspList[insp].getInspectionStatus());
