@@ -40,10 +40,13 @@ try
      (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
      ))
   {
-    var turnAroundTime = AInfo["Turn Around Time"];
+    var turnAroundTime = parseInt(AInfo["Turn Around Time"]);
     var penaltyDate = AInfo["Penalty Date"];
     var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
     var todayDate = new Date();
+
+    // per customer, adjusting to count today as day 1
+    turnAroundTime =- 1;
 
     // set the futureDate
     var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
