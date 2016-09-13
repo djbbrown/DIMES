@@ -48,7 +48,7 @@ try
                     if (inspector) 
                     {
                         // schedule initial inspection for today 
-                        scheduleInspectDate("Initial Inspection", nextWorkingDay, inspector);
+                        scheduleInspectionDateWithInspector("Initial Inspection", nextWorkingDay, inspector);
                         logDebug("Scheduled inspection for Inspector " + inspector + ".");
                     }
                     else
