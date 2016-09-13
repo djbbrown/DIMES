@@ -812,6 +812,7 @@ try {
 			(wfTask == 'Substantive Review Distribution' || wfTask == 'Distribution')
 			&& wfStatus == 'Resubmitted'
 			&& !exists(appTypeString,check4)
+			&& getAppSpecific("Substantive Review Due Date") != 'undefined'
 	){
 		aa.print("Starting check 1");
 		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
