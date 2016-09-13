@@ -11,7 +11,7 @@
 showDebug = true;
 if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 	var pmtSignDep = 0;
-	pmtSignDep = feeAmount("SGN010");
+	pmtSignDep = feeAmount("SGN010","INVOICED");
 	var totalSignValuation = AInfo["Total Sign Valuation"];
 	var totalSignSqFt = AInfo["Total Sign Square Footage"];
 	var totalFee = 102.4 + 0.03 * totalSignValuation + 0.3 * totalSignSqFt;
