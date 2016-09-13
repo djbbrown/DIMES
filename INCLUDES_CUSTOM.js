@@ -1906,3 +1906,20 @@ function getInspectorObject() // optional altId
 		return null;
 	}
 }
+
+function doesInspectionExist(inspectionType)
+{
+	var inspResultObj = aa.inspection.getInspections(capId);
+	if (inspResultObj.getSuccess())
+	{
+		var inspList = inspResultObj.getOutput();
+		for (xx in inspList)
+		{
+			if (String(inspectionType).equals(inspList[xx].getInspectionType()))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}

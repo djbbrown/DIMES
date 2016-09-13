@@ -35,24 +35,33 @@ try
             logDebug("Priority: " + priority);
             if (priority == "Normal")
             {
-                // schedule initial inspection on the next working day (5 day cal)
-                var nextWorkingDay = dateAdd(null, 1, "Y");
+                // see if the initial inspection has already been Scheduled
+                var insp = getScheduledInspId("Initial Inspection");
 
-                // get the inspector for this boundary          
-                var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");
-                if (inspector) 
+                if ( !insp )
                 {
-                    // schedule initial inspection for today 
-                    scheduleInspectDate("Initial Inspection", nextWorkingDay, inspector);
-                    logDebug("Scheduled inspection for Inspector " + inspector + ".");
+                    // schedule initial inspection on the next working day (5 day cal)
+                    var nextWorkingDay = dateAdd(null, 1, "Y");
+
+                    // get the inspector for this boundary          
+                    var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");
+                    if (inspector) 
+                    {
+                        // schedule initial inspection for today 
+                        scheduleInspectDate("Initial Inspection", nextWorkingDay, inspector);
+                        logDebug("Scheduled inspection for Inspector " + inspector + ".");
+                    }
+                    else
+                    {
+                        // schedule initial inspection for today 
+                        scheduleInspectDate("Initial Inspection", nextWorkingDay);
+                        logDebug("Inspector was not found, so was not assigned.");
+                    }
                 }
                 else
                 {
-                    // schedule initial inspection for today 
-                    scheduleInspectDate("Initial Inspection", nextWorkingDay);
-                    logDebug("Inspector was not found, so was not assigned.");
+                    logDebug("Initial Inspection has already been scheduled.")
                 }
-                logDebug("Scheduled Inspection Date for " + nextWorkingDay);
             }
         }
         else
