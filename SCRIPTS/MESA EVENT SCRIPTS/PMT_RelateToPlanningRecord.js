@@ -15,12 +15,16 @@
 //             ASA:Permits/Signs/NA/NA
 //             ASA:Permits/Residential/Mobile Home/NA
 //             ASA:Permits/Addenda or Deferred/NA/NA
+//			   ASA:Permits/Master Plan/NA/NA
 //
 //             ASIUA:Permits/Commercial/NA/NA
 //             ASIUA:Permits/Residential/NA/NA
 //             ASIUA:Permits/Signs/NA/NA
 //             ASIUA:Permits/Residential/Mobile Home/NA
 //             ASIUA:Permits/Addenda or Deferred/NA/NA
+//			   ASIUA:Permits/Master Plan/NA/NA
+//
+// DMH - added in master plan
 // 
 //==================================================================*/
 
@@ -28,7 +32,10 @@
 try
 {
   // check if parent exists
-  var planningNumber = AInfo["Planning Number"];
+	if (appTypeString == "Permits/Master Plan/NA/NA")
+		var planningNumber = AInfo["PLN Number"];
+	else 
+		var planningNumber = AInfo["Planning Number"];
   var getCapResult = aa.cap.getCapID(planningNumber);
   
   // if parent exists, addParent(parent capId)
