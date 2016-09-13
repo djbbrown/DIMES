@@ -2,15 +2,16 @@
 This file if a referance of avalible methods and classes in refernce to Accela scripting API.  Do Not Compile or eval,
 best use leave open when programming w/ Atom IO or another IDE that can autocomplete from any open buffer.
 */
-//Methods of aa
+/*Methods of aa
 var aa = function() { 
   hashCode = new function(){};
   return {
     hashCode: hashCode
   };
-}();
+}();*/
+
 /*
-aa.hashCode();
+aa.hashCode()
 aa.runAdHoc();
 aa.runOracleReport();
 aa.log();
@@ -110,1709 +111,1710 @@ aa.continuingEducation;
 aa.finance;
 aa.address;
 */
+
 //class methods
-function  BizDomainScript(){
-this.getBizDomainByDescription = function() {/*
+function BizDomainScript() {
+  this.getBizDomainByDescription = function () {/*
 ScriptResult getBizDomainByDescription(java.lang.String,java.lang.String,java.lang.String)
 */};
 
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getBizDomainsBySuperAgency = function() {/*
+  this.getBizDomainsBySuperAgency = function () {/*
 ScriptResult getBizDomainsBySuperAgency(java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getBizDomainByValue = function() {/*
+  this.getBizDomainByValue = function () {/*
 ScriptResult getBizDomainByValue(java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getBizDomainByValue(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.createBizDomain = function() {/*
+  this.createBizDomain = function () {/*
 ScriptResult createBizDomain(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult createBizDomain(com.accela.aa.aamain.systemConfig.BizDomainModel)
 */};
 
-this.editBizDomain = function() {/*
+  this.editBizDomain = function () {/*
 ScriptResult editBizDomain(com.accela.aa.aamain.systemConfig.BizDomainModel,java.lang.String)
 ScriptResult editBizDomain(com.accela.aa.aamain.systemConfig.BizDomainModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getBizDomain = function() {/*
+  this.getBizDomain = function () {/*
 ScriptResult getBizDomain(java.lang.String)
 */};
 
-this.getSpecialHandle = function() {/*
+  this.getSpecialHandle = function () {/*
 ScriptResult getSpecialHandle()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  ServiceProviderScript(){
-this.wait = function() {/*
+function ServiceProviderScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getInspectionListForReschedule = function() {/*
+  this.getInspectionListForReschedule = function () {/*
 ScriptResult getInspectionListForReschedule(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getInspMilestoneByCapID = function() {/*
+  this.getInspMilestoneByCapID = function () {/*
 ScriptResult getInspMilestoneByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.deleteInspectionDiscipline = function() {/*
+  this.deleteInspectionDiscipline = function () {/*
 ScriptResult deleteInspectionDiscipline(java.lang.String,java.lang.String)
 */};
 
-this.assignAppForEvent = function() {/*
+  this.assignAppForEvent = function () {/*
 ScriptResult assignAppForEvent(java.lang.String,java.lang.String,java.lang.String,com.accela.aa.calendar.calendar.CalendarEventModel)
 ScriptResult assignAppForEvent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.updateInspectionForSuperVisor = function() {/*
+  this.updateInspectionForSuperVisor = function () {/*
 ScriptResult updateInspectionForSuperVisor(com.accela.aa.inspection.inspection.InspectionModel)
 */};
 
-this.needDDA = function() {/*
+  this.needDDA = function () {/*
 ScriptResult needDDA(InspectionScriptModel)
 */};
 
-this.cancelInspection = function() {/*
+  this.cancelInspection = function () {/*
 ScriptResult cancelInspection(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.getNextAvailableTime = function() {/*
+  this.getNextAvailableTime = function () {/*
 ScriptResult getNextAvailableTime(java.lang.String,java.lang.String,java.lang.String,long[],ScriptDateTime)
 ScriptResult getNextAvailableTime(long[],ScriptDateTime)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getDiscipline = function() {/*
+  this.getDiscipline = function () {/*
 ScriptResult getDiscipline(java.lang.String)
 */};
 
-this.getInspectionListForSchedule = function() {/*
+  this.getInspectionListForSchedule = function () {/*
 ScriptResult getInspectionListForSchedule(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.reschedule = function() {/*
+  this.reschedule = function () {/*
 ScriptResult reschedule(InspectionScriptModel)
 ScriptResult reschedule(com.accela.aa.aamain.cap.CapIDModel,long,com.accela.aa.aamain.people.SysUserModel,ScriptDateTime,java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getInspectorsWorkload = function() {/*
+  this.getInspectorsWorkload = function () {/*
 ScriptResult getInspectorsWorkload(long[],com.accela.aa.aamain.cap.CapIDModel,ScriptDateTime)
 */};
 
-this.checkAssignAppForEvent = function() {/*
+  this.checkAssignAppForEvent = function () {/*
 ScriptResult checkAssignAppForEvent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult checkAssignAppForEvent(java.lang.String,java.lang.String,java.lang.String,com.accela.aa.calendar.calendar.CalendarEventModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 }
 
-function  InspectionScript() {
-this.notify = function() {/*
+function InspectionScript() {
+  this.notify = function () {/*
 void notify()
 */};
 
-this.newInspectionScriptModel = function() {/*
+  this.newInspectionScriptModel = function () {/*
 InspectionScriptModel newInspectionScriptModel(java.lang.String,java.lang.String)
 */};
 
-this.deleteRecurrings = function() {/*
+  this.deleteRecurrings = function () {/*
 ScriptResult deleteRecurrings(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.saveCarryOverItems = function() {/*
+  this.saveCarryOverItems = function () {/*
 ScriptResult saveCarryOverItems(java.util.List,com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.reScheduleInspection = function() {/*
+  this.reScheduleInspection = function () {/*
 ScriptResult reScheduleInspection(com.accela.aa.inspection.inspection.InspectionModel,com.accela.aa.aamain.people.SysUserModel)
 */};
 
-this.copyInspectionWithGuideSheet = function() {/*
+  this.copyInspectionWithGuideSheet = function () {/*
 ScriptResult copyInspectionWithGuideSheet(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.inspection.inspection.InspectionModel)
 */};
 
-this.autoAssignInspectorForMultiInspection = function() {/*
+  this.autoAssignInspectorForMultiInspection = function () {/*
 ScriptResult autoAssignInspectorForMultiInspection(java.lang.String,java.lang.String,java.lang.String,long[],java.lang.String)
 */};
 
-this.findByInspectorDateRange = function() {/*
+  this.findByInspectorDateRange = function () {/*
 ScriptResult findByInspectorDateRange(com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String)
 */};
 
-this.editInspection = function() {/*
+  this.editInspection = function () {/*
 ScriptResult editInspection(InspectionScriptModel)
 */};
 
-this.getInspectionScriptModel = function() {/*
+  this.getInspectionScriptModel = function () {/*
 ScriptResult getInspectionScriptModel()
 */};
 
-this.resultInspection = function() {/*
+  this.resultInspection = function () {/*
 ScriptResult resultInspection(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getInspections = function() {/*
+  this.getInspections = function () {/*
 ScriptResult getInspections(com.accela.aa.aamain.cap.CapIDModel)
 ScriptResult getInspections(java.lang.String,java.lang.String)
 */};
 
-this.getWorkflowCalendarEvents = function() {/*
+  this.getWorkflowCalendarEvents = function () {/*
 ScriptResult getWorkflowCalendarEvents(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getInspection = function() {/*
+  this.getInspection = function () {/*
 ScriptResult getInspection(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getInspectionDiscipline = function() {/*
+  this.getInspectionDiscipline = function () {/*
 ScriptResult getInspectionDiscipline(java.lang.String)
 */};
 
-this.getUnassignedInspections = function() {/*
+  this.getUnassignedInspections = function () {/*
 ScriptResult getUnassignedInspections(java.lang.String,java.lang.String)
 ScriptResult getUnassignedInspections()
 */};
 
-this.updateInspectionMilestone = function() {/*
+  this.updateInspectionMilestone = function () {/*
 ScriptResult updateInspectionMilestone(com.accela.aa.inspection.flow.GInspProcessModel[])
 */};
 
-this.findByInspectorDaily = function() {/*
+  this.findByInspectorDaily = function () {/*
 ScriptResult findByInspectorDaily(com.accela.aa.aamain.people.SysUserModel,java.lang.String)
 */};
 
-this.scheduleInspection = function() {/*
+  this.scheduleInspection = function () {/*
 ScriptResult scheduleInspection(com.accela.aa.inspection.inspection.InspectionModel,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult scheduleInspection(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.people.SysUserModel,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.addInspectionDiscipline = function() {/*
+  this.addInspectionDiscipline = function () {/*
 ScriptResult addInspectionDiscipline(java.lang.String,java.lang.String)
 */};
 
-this.pendingInspection = function() {/*
+  this.pendingInspection = function () {/*
 ScriptResult pendingInspection(com.accela.aa.inspection.inspection.InspectionModel)
 */};
 
-this.carryOverGSItems = function() {/*
+  this.carryOverGSItems = function () {/*
 ScriptResult carryOverGSItems(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.updateInspectionType = function() {/*
+  this.updateInspectionType = function () {/*
 ScriptResult updateInspectionType(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.autoAssignInspector = function() {/*
+  this.autoAssignInspector = function () {/*
 ScriptResult autoAssignInspector(java.lang.String,java.lang.String,java.lang.String,long,java.lang.String)
 */};
 
-this.validateFailGuidesheetItems = function() {/*
+  this.validateFailGuidesheetItems = function () {/*
 ScriptResult validateFailGuidesheetItems(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getInspectionType = function() {/*
+  this.getInspectionType = function () {/*
 ScriptResult getInspectionType(java.lang.String,java.lang.String)
 */};
 
-this.checkAvailableTime = function() {/*
+  this.checkAvailableTime = function () {/*
 ScriptResult checkAvailableTime(java.lang.String,java.lang.String,java.lang.String,long[],ScriptDateTime)
 ScriptResult checkAvailableTime(long[],ScriptDateTime)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getPureEnglishText = function() {/*
+  this.getPureEnglishText = function () {/*
 ScriptResult getPureEnglishText(java.lang.String)
 */};
 
-this.createSearchData = function() {/*
+  this.createSearchData = function () {/*
 ScriptResult createSearchData(com.accela.aa.aamain.people.GenericSearchModel)
 */};
 
-this.updateSearchDataStatusByCapID = function() {/*
+  this.updateSearchDataStatusByCapID = function () {/*
 ScriptResult updateSearchDataStatusByCapID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.newSearchDataModel = function() {/*
+  this.newSearchDataModel = function () {/*
 ScriptResult newSearchDataModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.isTradeNameExist = function() {/*
+  this.isTradeNameExist = function () {/*
 ScriptResult isTradeNameExist(java.lang.String,java.lang.String)
 */};
 }
 
-function  SpecialSearchScript() {
-this.initScript = function() {/*
+function SpecialSearchScript() {
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getSearchDataList = function() {/*
+  this.getSearchDataList = function () {/*
 ScriptResult getSearchDataList(com.accela.aa.aamain.people.GenericSearchModel)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.recreateBatchSearchData = function() {/*
+  this.recreateBatchSearchData = function () {/*
 ScriptResult recreateBatchSearchData(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.people.GenericSearchModel[])
 */};
 
-this.getPureArabicText = function() {/*
+  this.getPureArabicText = function () {/*
 ScriptResult getPureArabicText(java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.removeSearchDataByCapID = function() {/*
+  this.removeSearchDataByCapID = function () {/*
 ScriptResult removeSearchDataByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createBatchSearchData = function() {/*
+  this.createBatchSearchData = function () {/*
 ScriptResult createBatchSearchData(com.accela.aa.aamain.people.GenericSearchModel[])
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getLicensedProfessionalsByPK = function() {/*
+  this.getLicensedProfessionalsByPK = function () {/*
 ScriptResult getLicensedProfessionalsByPK(LicenseProfessionalScriptModel)
 */};
 
-this.getLicensedProfessionalsByCapID = function() {/*
+  this.getLicensedProfessionalsByCapID = function () {/*
 ScriptResult getLicensedProfessionalsByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createLicensedProfessional = function() {/*
+  this.createLicensedProfessional = function () {/*
 ScriptResult createLicensedProfessional(LicenseProfessionalScriptModel)
 */};
 
-this.removeLicensedProfessional = function() {/*
+  this.removeLicensedProfessional = function () {/*
 ScriptResult removeLicensedProfessional(LicenseProfessionalScriptModel)
 */};
 
-this.removeRefInfoTableGroupCode = function() {/*
+  this.removeRefInfoTableGroupCode = function () {/*
 ScriptResult removeRefInfoTableGroupCode(LicenseProfessionalScriptModel)
 */};
 
-this.getRefLicProfByOnlineUser = function() {/*
+  this.getRefLicProfByOnlineUser = function () {/*
 ScriptResult getRefLicProfByOnlineUser(java.lang.String)
 */};
 
-this.updateRefInfoTableValues = function() {/*
+  this.updateRefInfoTableValues = function () {/*
 ScriptResult updateRefInfoTableValues(LicenseProfessionalScriptModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.copyLicenseProfessionalScriptModel = function() {/*
+  this.copyLicenseProfessionalScriptModel = function () {/*
 ScriptResult copyLicenseProfessionalScriptModel(LicenseProfessionalScriptModel,LicenseProfessionalScriptModel)
 */};
 
-this.createRefInfoTable = function() {/*
+  this.createRefInfoTable = function () {/*
 ScriptResult createRefInfoTable(LicenseProfessionalScriptModel)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  LicenseProfessionalScript() {
-this.getRefInfoTableGroupCode = function() {/*
+function LicenseProfessionalScript() {
+  this.getRefInfoTableGroupCode = function () {/*
 ScriptResult getRefInfoTableGroupCode(LicenseProfessionalScriptModel)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.removeInfoTableGroupCode = function() {/*
+  this.removeInfoTableGroupCode = function () {/*
 ScriptResult removeInfoTableGroupCode(LicenseProfessionalScriptModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.getContactAttributeScriptModel = function() {/*
+  this.getContactAttributeScriptModel = function () {/*
 ScriptResult getContactAttributeScriptModel()
 */};
 
-this.getInfoTableGroupCode = function() {/*
+  this.getInfoTableGroupCode = function () {/*
 ScriptResult getInfoTableGroupCode(LicenseProfessionalScriptModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.copyInfoTable = function() {/*
+  this.copyInfoTable = function () {/*
 ScriptResult copyInfoTable(LicenseProfessionalScriptModel)
 */};
 
-this.getLicenseProf = function() {/*
+  this.getLicenseProf = function () {/*
 ScriptResult getLicenseProf(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createInfoTable = function() {/*
+  this.createInfoTable = function () {/*
 ScriptResult createInfoTable(LicenseProfessionalScriptModel)
 */};
 
-this.editLicensedProfessional = function() {/*
+  this.editLicensedProfessional = function () {/*
 ScriptResult editLicensedProfessional(LicenseProfessionalScriptModel)
 */};
 
-this.getLicenseProfessionScriptModel = function() {/*
+  this.getLicenseProfessionScriptModel = function () {/*
 ScriptResult getLicenseProfessionScriptModel()
 ScriptResult getLicenseProfessionScriptModel(com.accela.aa.aamain.people.LicenseProfessionalModel)
 */};
 
-this.createLicensedProfessionals = function() {/*
+  this.createLicensedProfessionals = function () {/*
 ScriptResult createLicensedProfessionals(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.deleteStrucutureRelation = function() {/*
+  this.deleteStrucutureRelation = function () {/*
 ScriptResult deleteStrucutureRelation(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureModel,java.lang.String)
 */};
 
-this.getStrucutureLocation = function() {/*
+  this.getStrucutureLocation = function () {/*
 ScriptResult getStrucutureLocation(long,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getStrucutureLocation(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 */};
 
-this.addAttribute = function() {/*
+  this.addAttribute = function () {/*
 ScriptResult addAttribute(long,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addAttribute(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.AttributeModel,java.lang.String)
 */};
 
-this.deleteStrucutureOwner = function() {/*
+  this.deleteStrucutureOwner = function () {/*
 ScriptResult deleteStrucutureOwner(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureOwnerModel,java.lang.String)
 ScriptResult deleteStrucutureOwner(long,long,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.updateAttribute = function() {/*
+  this.updateAttribute = function () {/*
 ScriptResult updateAttribute(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.AttributeModel,java.lang.String)
 ScriptResult updateAttribute(long,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getStructure = function() {/*
+  this.getStructure = function () {/*
 ScriptResult getStructure(long,java.lang.String)
 */};
 
-this.getStrucutureOwners = function() {/*
+  this.getStrucutureOwners = function () {/*
 ScriptResult getStrucutureOwners(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 ScriptResult getStrucutureOwners(long,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.deleteAttribute = function() {/*
+  this.deleteAttribute = function () {/*
 ScriptResult deleteAttribute(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.AttributeModel,java.lang.String)
 ScriptResult deleteAttribute(long,long,java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getChildStructures = function() {/*
+  this.getChildStructures = function () {/*
 ScriptResult getChildStructures(long,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getChildStructures(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 */};
 
-this.addStrucutureOwner = function() {/*
+  this.addStrucutureOwner = function () {/*
 ScriptResult addStrucutureOwner(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureOwnerModel,java.lang.String)
 ScriptResult addStrucutureOwner(long,long,java.lang.String)
 */};
 }
 
-function  GStructureScript(){
-this.addStrucutureRelation = function() {/*
+function GStructureScript() {
+  this.addStrucutureRelation = function () {/*
 ScriptResult addStrucutureRelation(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureModel,java.lang.String)
 ScriptResult addStrucutureRelation(long,long,java.lang.String,java.lang.String)
 */};
 
-this.getStructures = function() {/*
+  this.getStructures = function () {/*
 ScriptResult getStructures(com.accela.aa.util.QueryFormat,java.lang.String)
 ScriptResult getStructures(java.lang.String)
 */};
 
-this.getAttributes = function() {/*
+  this.getAttributes = function () {/*
 ScriptResult getAttributes(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getAttributes(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 */};
 
-this.updateStructure = function() {/*
+  this.updateStructure = function () {/*
 ScriptResult updateStructure(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 ScriptResult updateStructure(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult updateStructure(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.deleteStructure = function() {/*
+  this.deleteStructure = function () {/*
 ScriptResult deleteStructure(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 ScriptResult deleteStructure(long,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.addStrucutureLocation = function() {/*
+  this.addStrucutureLocation = function () {/*
 ScriptResult addStrucutureLocation(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureLocationModel,java.lang.String)
 ScriptResult addStrucutureLocation(long,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.deleteStrucutureLocation = function() {/*
+  this.deleteStrucutureLocation = function () {/*
 ScriptResult deleteStrucutureLocation(com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureLocationModel,java.lang.String)
 ScriptResult deleteStrucutureLocation(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getAttribute = function() {/*
+  this.getAttribute = function () {/*
 ScriptResult getAttribute(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String)
 */};
 
-this.removeStrucutureRelation = function() {/*
+  this.removeStrucutureRelation = function () {/*
 ScriptResult removeStrucutureRelation(long,long,java.lang.String,java.lang.String)
 */};
 
-this.getParentStructures = function() {/*
+  this.getParentStructures = function () {/*
 ScriptResult getParentStructures(long,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getParentStructures(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.addStructure = function() {/*
+  this.addStructure = function () {/*
 ScriptResult addStructure(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addStructure(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Date,java.lang.String)
 ScriptResult addStructure(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String)
 ScriptResult addStructure(com.accela.aa.structure.structure.StructureModel,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.warpCapIdParcelModel2CapParcelModel = function() {/*
+  this.warpCapIdParcelModel2CapParcelModel = function () {/*
 ScriptResult warpCapIdParcelModel2CapParcelModel(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.parcel.ParcelModel)
 */};
 
-this.updateDailyParcelWithAPOAttribute = function() {/*
+  this.updateDailyParcelWithAPOAttribute = function () {/*
 ScriptResult updateDailyParcelWithAPOAttribute(com.accela.aa.aamain.parcel.CapParcelModel)
 */};
 
-this.createCapParcelWithAPOAttribute = function() {/*
+  this.createCapParcelWithAPOAttribute = function () {/*
 ScriptResult createCapParcelWithAPOAttribute(com.accela.aa.aamain.parcel.CapParcelModel)
 */};
 
-this.getParcelListByCollection = function() {/*
+  this.getParcelListByCollection = function () {/*
 ScriptResult getParcelListByCollection(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapTypeModel,com.accela.aa.aamain.people.PersonModel,com.accela.aa.aamain.address.AddressModel,java.util.ArrayList,java.util.Date,java.util.Date,com.accela.aa.util.QueryFormat,com.accela.aa.gis.gis.GISObjectModel[])
 */};
 
-this.addParceDistrictForDaily = function() {/*
+  this.addParceDistrictForDaily = function () {/*
 ScriptResult addParceDistrictForDaily(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.addParceDistrictForAdmin = function() {/*
+  this.addParceDistrictForAdmin = function () {/*
 ScriptResult addParceDistrictForAdmin(java.lang.String,java.lang.String)
 */};
 
-this.getCapParcelModel = function() {/*
+  this.getCapParcelModel = function () {/*
 ScriptResult getCapParcelModel()
 */};
 
-this.createCapParcel = function() {/*
+  this.createCapParcel = function () {/*
 ScriptResult createCapParcel(com.accela.aa.aamain.parcel.CapParcelModel)
 */};
 
-this.getParcelByCapId = function() {/*
+  this.getParcelByCapId = function () {/*
 ScriptResult getParcelByCapId(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  ParcelScript(){
-this.moveAssociatedObjs2TargetParcel = function() {/*
+function ParcelScript() {
+  this.moveAssociatedObjs2TargetParcel = function () {/*
 ScriptResult moveAssociatedObjs2TargetParcel(com.accela.aa.aamain.parcel.ParcelGenealogyModel)
 ScriptResult moveAssociatedObjs2TargetParcel(java.lang.String,java.lang.String)
 */};
 
-this.getPrimaryParcelByRefAddressID = function() {/*
+  this.getPrimaryParcelByRefAddressID = function () {/*
 ScriptResult getPrimaryParcelByRefAddressID(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getParcelGenealogy = function() {/*
+  this.getParcelGenealogy = function () {/*
 ScriptResult getParcelGenealogy(java.lang.String,java.lang.String,java.util.Date,java.util.Date)
 */};
 
-this.getParcelandAttribute = function() {/*
+  this.getParcelandAttribute = function () {/*
 ScriptResult getParcelandAttribute(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.deleteParceDistrictForDaily = function() {/*
+  this.deleteParceDistrictForDaily = function () {/*
 ScriptResult deleteParceDistrictForDaily(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.deleteParceDistrictForAdmin = function() {/*
+  this.deleteParceDistrictForAdmin = function () {/*
 ScriptResult deleteParceDistrictForAdmin(java.lang.String,java.lang.String)
 */};
 
-this.getParcelDistrictForDaily = function() {/*
+  this.getParcelDistrictForDaily = function () {/*
 ScriptResult getParcelDistrictForDaily(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.copyAssociatedObjs2TargetParcel = function() {/*
+  this.copyAssociatedObjs2TargetParcel = function () {/*
 ScriptResult copyAssociatedObjs2TargetParcel(java.lang.String,java.lang.String)
 ScriptResult copyAssociatedObjs2TargetParcel(com.accela.aa.aamain.parcel.ParcelGenealogyModel)
 */};
 
-this.getParceListForAdmin = function() {/*
+  this.getParceListForAdmin = function () {/*
 ScriptResult getParceListForAdmin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getParceDistrictForAdmin = function() {/*
+  this.getParceDistrictForAdmin = function () {/*
 ScriptResult getParceDistrictForAdmin(java.lang.String)
 */};
 
-this.getParcelListByGisObject = function() {/*
+  this.getParcelListByGisObject = function () {/*
 ScriptResult getParcelListByGisObject(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapTypeModel,com.accela.aa.aamain.people.PersonModel,com.accela.aa.aamain.address.AddressModel,java.util.ArrayList,java.util.Date,java.util.Date,com.accela.aa.util.QueryFormat,com.accela.aa.xml.model.gis.GISObjects)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.copyCapParcelModel = function() {/*
+  this.copyCapParcelModel = function () {/*
 ScriptResult copyCapParcelModel(com.accela.aa.aamain.parcel.CapParcelModel,com.accela.aa.aamain.parcel.CapParcelModel)
 */};
 
-this.getParcelDailyByCapID = function() {/*
+  this.getParcelDailyByCapID = function () {/*
 ScriptResult getParcelDailyByCapID(java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getParcelDailyByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.createWorkOrderAsset = function() {/*
+  this.createWorkOrderAsset = function () {/*
 ScriptResult createWorkOrderAsset(com.accela.ams.workorder.WorkOrderAssetModel)
 */};
 
-this.newAssetScriptModel = function() {/*
+  this.newAssetScriptModel = function () {/*
 ScriptResult newAssetScriptModel()
 */};
 
-this.editAsset = function() {/*
+  this.editAsset = function () {/*
 ScriptResult editAsset(com.accela.ams.asset.AssetDataModel)
 */};
 
-this.removeWorkOrderAssetByPK = function() {/*
+  this.removeWorkOrderAssetByPK = function () {/*
 ScriptResult removeWorkOrderAssetByPK(com.accela.ams.workorder.WorkOrderAssetModel)
 */};
 
-this.getWorkOrderListByAsset = function() {/*
+  this.getWorkOrderListByAsset = function () {/*
 ScriptResult getWorkOrderListByAsset(com.accela.ams.asset.AssetMasterPK,com.accela.aa.util.QueryFormat)
 */};
 
-this.getAssetDataList = function() {/*
+  this.getAssetDataList = function () {/*
 ScriptResult getAssetDataList(com.accela.ams.asset.AssetMasterModel,java.util.Collection,com.accela.aa.util.QueryFormat)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  AssetScript() {
-this.getAssetData = function() {/*
+function AssetScript() {
+  this.getAssetData = function () {/*
 ScriptResult getAssetData(java.lang.String)
 */};
 
-this.removeAssetData = function() {/*
+  this.removeAssetData = function () {/*
 ScriptResult removeAssetData(com.accela.ams.asset.AssetMasterPK)
 */};
 
-this.getAssetListByWorkOrder = function() {/*
+  this.getAssetListByWorkOrder = function () {/*
 ScriptResult getAssetListByWorkOrder(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.newWorkOrderAssetScriptModel = function() {/*
+  this.newWorkOrderAssetScriptModel = function () {/*
 ScriptResult newWorkOrderAssetScriptModel()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.cloneAssets = function() {/*
+  this.cloneAssets = function () {/*
 ScriptResult cloneAssets(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createAsset = function() {/*
+  this.createAsset = function () {/*
 ScriptResult createAsset(com.accela.ams.asset.AssetDataModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getGISObjectsByFeatures = function() {/*
+  this.getGISObjectsByFeatures = function () {/*
 ScriptResult getGISObjectsByFeatures(java.lang.String)
 */};
 
-this.getGISType = function() {/*
+  this.getGISType = function () {/*
 ScriptResult getGISType(java.lang.String,java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  GISScript() {
-this.getBufferByRadius = function() {/*
+function GISScript() {
+  this.getBufferByRadius = function () {/*
 ScriptResult getBufferByRadius(GISTypeScriptModel,double,java.lang.String,GISTypeScriptModel)
 */};
 
-this.getParcelGISObjects = function() {/*
+  this.getParcelGISObjects = function () {/*
 ScriptResult getParcelGISObjects(java.lang.String)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.removeAllCapGISObjects = function() {/*
+  this.removeAllCapGISObjects = function () {/*
 ScriptResult removeAllCapGISObjects(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCapGISObjects = function() {/*
+  this.getCapGISObjects = function () {/*
 ScriptResult getCapGISObjects(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getGISObjectDetails = function() {/*
+  this.getGISObjectDetails = function () {/*
 ScriptResult getGISObjectDetails(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getGISObjectAttributes = function() {/*
+  this.getGISObjectAttributes = function () {/*
 ScriptResult getGISObjectAttributes(GISTypeScriptModel)
 */};
 
-this.addCapGISObject = function() {/*
+  this.addCapGISObject = function () {/*
 ScriptResult addCapGISObject(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,boolean)
 ScriptResult addCapGISObject(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-curObj = aa.proxyInvoker.newInstance("EMSETextMessageResourcesScript").getOutput();
-for(var i in curObj){
- //var curObj = aa.proxyInvoker.newInstance(obj[i]).getOutput();
- aa.print(curObj[i]);
-}
+  curObj = aa.proxyInvoker.newInstance("EMSETextMessageResourcesScript").getOutput();
+  for (var i in curObj) {
+    //var curObj = aa.proxyInvoker.newInstance(obj[i]).getOutput();
+    aa.print(curObj[i]);
+  }
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getEventByEventID = function() {/*
+  this.getEventByEventID = function () {/*
 ScriptResult getEventByEventID(long,long)
 */};
 
-this.addInspectorCalendar = function() {/*
+  this.addInspectorCalendar = function () {/*
 ScriptResult addInspectorCalendar(long,long,java.lang.String,java.lang.String)
 */};
 
-this.scheduleHearing = function() {/*
+  this.scheduleHearing = function () {/*
 ScriptResult scheduleHearing(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.getCalendars = function() {/*
+  this.getCalendars = function () {/*
 ScriptResult getCalendars(java.lang.String,java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.scheduleHearing4V360 = function() {/*
+  this.scheduleHearing4V360 = function () {/*
 ScriptResult scheduleHearing4V360(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getCalendar = function() {/*
+  this.getCalendar = function () {/*
 ScriptResult getCalendar(long)
 */};
 
-this.getAvailableHearing = function() {/*
+  this.getAvailableHearing = function () {/*
 ScriptResult getAvailableHearing(java.lang.String,double,java.lang.String,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String)
 */};
 
-this.getAvailableHearingItem = function() {/*
+  this.getAvailableHearingItem = function () {/*
 ScriptResult getAvailableHearingItem(java.lang.String,double,java.lang.String,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String)
 */};
 }
 
-function  CalendarScript() {
-this.deleteInspectorCalendar = function() {/*
+function CalendarScript() {
+  this.deleteInspectorCalendar = function () {/*
 ScriptResult deleteInspectorCalendar(long)
 */};
 
-this.getNextWorkDay = function() {/*
+  this.getNextWorkDay = function () {/*
 ScriptResult getNextWorkDay()
 ScriptResult getNextWorkDay(ScriptDateTime)
 */};
 
-this.getEventSeriesByCalendarID = function() {/*
+  this.getEventSeriesByCalendarID = function () {/*
 ScriptResult getEventSeriesByCalendarID(long,int,int)
 */};
 
-this.updateEvent = function() {/*
+  this.updateEvent = function () {/*
 ScriptResult updateEvent(long,long,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getCalendarNames = function() {/*
+  this.getCalendarNames = function () {/*
 ScriptResult getCalendarNames()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.addEvent = function() {/*
+  this.addEvent = function () {/*
 ScriptResult addEvent(long,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getInspectorCalendars = function() {/*
+  this.getInspectorCalendars = function () {/*
 ScriptResult getInspectorCalendars(long,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.deleteEventByEventID = function() {/*
+  this.deleteEventByEventID = function () {/*
 ScriptResult deleteEventByEventID(long,long)
 */};
 
-this.addCalendar = function() {/*
+  this.addCalendar = function () {/*
 ScriptResult addCalendar(long,java.lang.String,com.accela.aa.calendar.calendar.XGStructureCalendarModel,java.lang.String)
 ScriptResult addCalendar(java.lang.String,com.accela.aa.calendar.calendar.XGStructureCalendarModel,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  EventLogScript() {
-this.createEventLog = function() {/*
+function EventLogScript() {
+  this.createEventLog = function () {/*
 ScriptResult createEventLog(java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String)
 ScriptResult createEventLog(java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,long)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.editPaymentUDFAndReceivedType = function() {/*
+  this.editPaymentUDFAndReceivedType = function () {/*
 ScriptResult editPaymentUDFAndReceivedType(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.invoiceAgeing = function() {/*
+  this.invoiceAgeing = function () {/*
 ScriptResult invoiceAgeing()
 */};
 
-this.createInvoices = function() {/*
+  this.createInvoices = function () {/*
 ScriptResult createInvoices(java.lang.String,java.lang.String,java.lang.String,java.lang.String[])
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  CashierScript() {
-this.editInvoice = function() {/*
+function CashierScript() {
+  this.editInvoice = function () {/*
 ScriptResult editInvoice(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.finance.invoice.F4InvoiceModel,ScriptDateTime)
 */};
 
-this.getTotalFeeAmount = function() {/*
+  this.getTotalFeeAmount = function () {/*
 ScriptResult getTotalFeeAmount(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.clrInvoicePrntFlg = function() {/*
+  this.clrInvoicePrntFlg = function () {/*
 ScriptResult clrInvoicePrntFlg()
 */};
 
-this.getTotalPay = function() {/*
+  this.getTotalPay = function () {/*
 ScriptResult getTotalPay(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getSumNotAllocated = function() {/*
+  this.getSumNotAllocated = function () {/*
 ScriptResult getSumNotAllocated(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.setInvoiceDueDate = function() {/*
+  this.setInvoiceDueDate = function () {/*
 ScriptResult setInvoiceDueDate(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.createInvoice = function() {/*
+  this.createInvoice = function () {/*
 ScriptResult createInvoice(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.getCountOfPermits = function() {/*
+  this.getCountOfPermits = function () {/*
 ScriptResult getCountOfPermits(long)
 */};
 
-this.getInvoice = function() {/*
+  this.getInvoice = function () {/*
 ScriptResult getInvoice(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getCurrentUser = function() {/*
+  this.getCurrentUser = function () {/*
 ScriptResult getCurrentUser()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  PersonScript() {
-this.getUser = function() {/*
+function PersonScript() {
+  this.getUser = function () {/*
 ScriptResult getUser(java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getUser(java.lang.String)
 ScriptResult getUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getFeeItemInvoiceByCustomizedNbr = function() {/*
+  this.getFeeItemInvoiceByCustomizedNbr = function () {/*
 ScriptResult getFeeItemInvoiceByCustomizedNbr(java.lang.String)
 */};
 
-this.getUnpaidInvoices = function() {/*
+  this.getUnpaidInvoices = function () {/*
 ScriptResult getUnpaidInvoices()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  InvoiceScript() {
-this.editInvoice = function() {/*
+function InvoiceScript() {
+  this.editInvoice = function () {/*
 ScriptResult editInvoice(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.finance.invoice.F4InvoiceModel)
 */};
 
-this.getFeeItemInvoiceByInvoiceNbr = function() {/*
+  this.getFeeItemInvoiceByInvoiceNbr = function () {/*
 ScriptResult getFeeItemInvoiceByInvoiceNbr(long)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.createInvoiceWithEvent = function() {/*
+  this.createInvoiceWithEvent = function () {/*
 ScriptResult createInvoiceWithEvent(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.deleteRefActivity = function() {/*
+  this.deleteRefActivity = function () {/*
 ScriptResult deleteRefActivity(java.lang.String,java.lang.String,java.util.List)
 */};
 }
 
-function  ActivitySpecInfoScript() {
-this.editRefActivity = function() {/*
+function ActivitySpecInfoScript() {
+  this.editRefActivity = function () {/*
 ScriptResult editRefActivity(com.accela.aa.aamain.activityspecinfo.RefActivityModel)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.createRefActivity = function() {/*
+  this.createRefActivity = function () {/*
 ScriptResult createRefActivity(com.accela.aa.aamain.activityspecinfo.RefActivityModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.generateFailedTransactionFile = function() {/*
+  this.generateFailedTransactionFile = function () {/*
 ScriptResult generateFailedTransactionFile()
 */};
 
-this.setSubject = function() {/*
+  this.setSubject = function () {/*
 void setSubject(java.lang.String)
 */};
 
-this.setMessageResources = function() {/*
+  this.setMessageResources = function () {/*
 void setMessageResources(java.util.Map)
 */};
 
-this.setWSProjectId = function() {/*
+  this.setWSProjectId = function () {/*
 void setWSProjectId(int)
 */};
 
-this.getTransStartDate = function() {/*
+  this.getTransStartDate = function () {/*
 java.util.Date getTransStartDate()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.setTestMode = function() {/*
+  this.setTestMode = function () {/*
 void setTestMode(boolean)
 */};
 
-this.setFileNamePrefix = function() {/*
+  this.setFileNamePrefix = function () {/*
 void setFileNamePrefix(java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.setWSUserName = function() {/*
+  this.setWSUserName = function () {/*
 void setWSUserName(java.lang.String)
 */};
 
-this.setContent = function() {/*
+  this.setContent = function () {/*
 void setContent(java.lang.String)
 */};
 
-this.setLocalDiskFolder = function() {/*
+  this.setLocalDiskFolder = function () {/*
 void setLocalDiskFolder(java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.setSuccessFileFieldValues = function() {/*
+  this.setSuccessFileFieldValues = function () {/*
 void setSuccessFileFieldValues(java.lang.String[])
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.setWSPassword = function() {/*
+  this.setWSPassword = function () {/*
 void setWSPassword(java.lang.String)
 */};
 }
 
-function  ReconciliationScript() {
-this.notify = function() {/*
+function ReconciliationScript() {
+  this.notify = function () {/*
 void notify()
 */};
 
-this.setToMailAddress = function() {/*
+  this.setToMailAddress = function () {/*
 void setToMailAddress(java.lang.String)
 */};
 
-this.setSuccessFileFieldTitles = function() {/*
+  this.setSuccessFileFieldTitles = function () {/*
 void setSuccessFileFieldTitles(java.lang.String[])
 */};
 
-this.setUploadToFTP = function() {/*
+  this.setUploadToFTP = function () {/*
 void setUploadToFTP(boolean)
 */};
 
-this.setSuccessFileFieldNames = function() {/*
+  this.setSuccessFileFieldNames = function () {/*
 void setSuccessFileFieldNames(java.lang.String[])
 */};
 
-this.getTransEndDate = function() {/*
+  this.getTransEndDate = function () {/*
 java.util.Date getTransEndDate()
 */};
 
-this.setFtpSite = function() {/*
+  this.setFtpSite = function () {/*
 void setFtpSite(java.lang.String)
 */};
 
-this.getCustomContentByType = function() {/*
+  this.getCustomContentByType = function () {/*
 java.lang.String getCustomContentByType(java.lang.String,java.util.Hashtable)
 */};
 
-this.setFailedFileFieldValues = function() {/*
+  this.setFailedFileFieldValues = function () {/*
 void setFailedFileFieldValues(java.lang.String[])
 */};
 
-this.generateApprovedTransactionFile = function() {/*
+  this.generateApprovedTransactionFile = function () {/*
 ScriptResult generateApprovedTransactionFile()
 */};
 
-this.getCurrentDate = function() {/*
+  this.getCurrentDate = function () {/*
 java.lang.String getCurrentDate()
 */};
 
-this.setFailedFileFieldNames = function() {/*
+  this.setFailedFileFieldNames = function () {/*
 void setFailedFileFieldNames(java.lang.String[])
 */};
 
-this.getServiceProviderCode = function() {/*
+  this.getServiceProviderCode = function () {/*
 java.lang.String getServiceProviderCode()
 */};
 
-this.setProvider = function() {/*
+  this.setProvider = function () {/*
 void setProvider(java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.setTransStartDate = function() {/*
+  this.setTransStartDate = function () {/*
 void setTransStartDate(java.lang.String)
 */};
 
-this.setFailedFileFieldTitles = function() {/*
+  this.setFailedFileFieldTitles = function () {/*
 void setFailedFileFieldTitles(java.lang.String[])
 */};
 
-this.uploadTransactionFile = function() {/*
+  this.uploadTransactionFile = function () {/*
 ScriptResult uploadTransactionFile()
 */};
 
-this.updateUploadStatusLog = function() {/*
+  this.updateUploadStatusLog = function () {/*
 ScriptResult updateUploadStatusLog(java.lang.String)
 */};
 
-this.setFtpUserName = function() {/*
+  this.setFtpUserName = function () {/*
 void setFtpUserName(java.lang.String)
 */};
 
-this.sendMail = function() {/*
+  this.sendMail = function () {/*
 ScriptResult sendMail()
 */};
 
 
-this.setWSDateStoreId = function() {/*
+  this.setWSDateStoreId = function () {/*
 void setWSDateStoreId(int)
 */};
 
-this.setFromMailAddress = function() {/*
+  this.setFromMailAddress = function () {/*
 void setFromMailAddress(java.lang.String)
 */};
 
-this.setFtpFolder = function() {/*
+  this.setFtpFolder = function () {/*
 void setFtpFolder(java.lang.String)
 */};
 
-this.setFtpPassword = function() {/*
+  this.setFtpPassword = function () {/*
 void setFtpPassword(java.lang.String)
 */};
 
-this.setTransEndDate = function() {/*
+  this.setTransEndDate = function () {/*
 void setTransEndDate(java.lang.String)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.setWSEndPoint = function() {/*
+  this.setWSEndPoint = function () {/*
 void setWSEndPoint(java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.setCcMailAddress = function() {/*
+  this.setCcMailAddress = function () {/*
 void setCcMailAddress(java.lang.String)
 */};
 
-this.setFtpPort = function() {/*
+  this.setFtpPort = function () {/*
 void setFtpPort(java.lang.String)
 */};
 
-this.recoverTransactionFile = function() {/*
+  this.recoverTransactionFile = function () {/*
 ScriptResult recoverTransactionFile(java.lang.String)
 */};
 
-this.newStructEstab = function() {/*
+  this.newStructEstab = function () {/*
 ScriptResult newStructEstab(StructureEstablishmentScriptModel)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getStructureEstablishmentModeData = function() {/*
+  this.getStructureEstablishmentModeData = function () {/*
 StructureEstablishmentScriptModel getStructureEstablishmentModeData(java.lang.String[])
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getStructEstablList = function() {/*
+  this.getStructEstablList = function () {/*
 ScriptResult getStructEstablList(StructureEstablishmentScriptModel)
 */};
 
-this.getStructEstablByPK = function() {/*
+  this.getStructEstablByPK = function () {/*
 ScriptResult getStructEstablByPK(java.lang.Long,java.lang.Long)
 */};
 }
 
-function  StructureEstablishmentScript() {
-this.wait = function() {/*
+function StructureEstablishmentScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getStructEStablByCapId = function() {/*
+  this.getStructEStablByCapId = function () {/*
 ScriptResult getStructEStablByCapId(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.updateStructEstabl = function() {/*
+  this.updateStructEstabl = function () {/*
 ScriptResult updateStructEstabl(StructureEstablishmentScriptModel)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.disableStructEstabl = function() {/*
+  this.disableStructEstabl = function () {/*
 ScriptResult disableStructEstabl(java.lang.Long,java.lang.Long,java.lang.String)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.createCondition = function() {/*
+  this.createCondition = function () {/*
 ScriptResult createCondition(ConditionScriptModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel[],com.accela.aa.condition.condition.ConditionModel)
 */};
 
-this.getFields4TemplateForm = function() {/*
+  this.getFields4TemplateForm = function () {/*
 ScriptResult getFields4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getNewOwnerConditionScriptModel = function() {/*
+  this.getNewOwnerConditionScriptModel = function () {/*
 ScriptResult getNewOwnerConditionScriptModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  AddressConditionScript() {
-this.createAddressCondition = function() {/*
+function AddressConditionScript() {
+  this.createAddressCondition = function () {/*
 ScriptResult createAddressCondition(AddressConditionScriptModel)
 */};
 
-this.addAddressCondition = function() {/*
+  this.addAddressCondition = function () {/*
 ScriptResult addAddressCondition(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addAddressCondition(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addAddressCondition(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel)
 */};
 
-this.createConditionFromStdCondition = function() {/*
+  this.createConditionFromStdCondition = function () {/*
 ScriptResult createConditionFromStdCondition(ConditionScriptModel,java.lang.String)
 ScriptResult createConditionFromStdCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 */};
 
-this.getNewConditionScriptModel = function() {/*
+  this.getNewConditionScriptModel = function () {/*
 ScriptResult getNewConditionScriptModel()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getAssetCondition = function() {/*
+  this.getAssetCondition = function () {/*
 ScriptResult getAssetCondition(long,long)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.editField4TemplateForm = function() {/*
+  this.editField4TemplateForm = function () {/*
 ScriptResult editField4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.createConditionWithMulLangs = function() {/*
+  this.createConditionWithMulLangs = function () {/*
 ScriptResult createConditionWithMulLangs(ConditionScriptModel[],ConditionScriptModel)
 */};
 
-this.getOwnerCondition = function() {/*
+  this.getOwnerCondition = function () {/*
 ScriptResult getOwnerCondition(long,long)
 */};
 
-this.getAddressCondition = function() {/*
+  this.getAddressCondition = function () {/*
 ScriptResult getAddressCondition(java.lang.String,long)
 */};
 
-this.editAddressCondition = function() {/*
+  this.editAddressCondition = function () {/*
 ScriptResult editAddressCondition(AddressConditionScriptModel)
 */};
 
-this.getAddressConditions = function() {/*
+  this.getAddressConditions = function () {/*
 ScriptResult getAddressConditions(java.lang.String)
 */};
 
-this.getNewAssetConditionScriptModel = function() {/*
+  this.getNewAssetConditionScriptModel = function () {/*
 ScriptResult getNewAssetConditionScriptModel()
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.editTableValue4TemplateTable = function() {/*
+  this.editTableValue4TemplateTable = function () {/*
 ScriptResult editTableValue4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String,java.lang.Long)
 */};
 
-this.getCondition = function() {/*
+  this.getCondition = function () {/*
 ScriptResult getCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 ScriptResult getCondition(ConditionScriptModel,java.lang.String)
 */};
 
-this.removeAddressCondition = function() {/*
+  this.removeAddressCondition = function () {/*
 ScriptResult removeAddressCondition(long,long)
 */};
 
-this.getFields4TemplateTable = function() {/*
+  this.getFields4TemplateTable = function () {/*
 ScriptResult getFields4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.createCondition = function() {/*
+  this.createCondition = function () {/*
 ScriptResult createCondition(ConditionScriptModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel[],com.accela.aa.condition.condition.ConditionModel)
 */};
 
-this.getFields4TemplateForm = function() {/*
+  this.getFields4TemplateForm = function () {/*
 ScriptResult getFields4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.editParcelCondition = function() {/*
+  this.editParcelCondition = function () {/*
 ScriptResult editParcelCondition(ParcelConditionScriptModel)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.addParcelCondition = function() {/*
+  this.addParcelCondition = function () {/*
 ScriptResult addParcelCondition(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.Integer)
 ScriptResult addParcelCondition(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult addParcelCondition(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
@@ -1821,1514 +1823,1514 @@ ScriptResult addParcelCondition(java.lang.String,java.lang.String,java.lang.Stri
 ScriptResult addParcelCondition(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer)
 */};
 
-this.createParcelCondition = function() {/*
+  this.createParcelCondition = function () {/*
 ScriptResult createParcelCondition(ParcelConditionScriptModel)
 */};
 
-this.getParcelCondition = function() {/*
+  this.getParcelCondition = function () {/*
 ScriptResult getParcelCondition(java.lang.String,long)
 */};
 
-this.getNewOwnerConditionScriptModel = function() {/*
+  this.getNewOwnerConditionScriptModel = function () {/*
 ScriptResult getNewOwnerConditionScriptModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  ParcelConditionScript() {
-this.createConditionFromStdCondition = function() {/*
+function ParcelConditionScript() {
+  this.createConditionFromStdCondition = function () {/*
 ScriptResult createConditionFromStdCondition(ConditionScriptModel,java.lang.String)
 ScriptResult createConditionFromStdCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 */};
 
-this.getNewConditionScriptModel = function() {/*
+  this.getNewConditionScriptModel = function () {/*
 ScriptResult getNewConditionScriptModel()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getAssetCondition = function() {/*
+  this.getAssetCondition = function () {/*
 ScriptResult getAssetCondition(long,long)
 */};
 
-this.getParcelConditions = function() {/*
+  this.getParcelConditions = function () {/*
 ScriptResult getParcelConditions(java.lang.String,java.lang.String)
 ScriptResult getParcelConditions(java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.editField4TemplateForm = function() {/*
+  this.editField4TemplateForm = function () {/*
 ScriptResult editField4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.createConditionWithMulLangs = function() {/*
+  this.createConditionWithMulLangs = function () {/*
 ScriptResult createConditionWithMulLangs(ConditionScriptModel[],ConditionScriptModel)
 */};
 
-this.removeParcelCondition = function() {/*
+  this.removeParcelCondition = function () {/*
 ScriptResult removeParcelCondition(long,java.lang.String)
 */};
 
-this.getOwnerCondition = function() {/*
+  this.getOwnerCondition = function () {/*
 ScriptResult getOwnerCondition(long,long)
 */};
 
-this.getNewAssetConditionScriptModel = function() {/*
+  this.getNewAssetConditionScriptModel = function () {/*
 ScriptResult getNewAssetConditionScriptModel()
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.editTableValue4TemplateTable = function() {/*
+  this.editTableValue4TemplateTable = function () {/*
 ScriptResult editTableValue4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String,java.lang.Long)
 */};
 
-this.getCondition = function() {/*
+  this.getCondition = function () {/*
 ScriptResult getCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 ScriptResult getCondition(ConditionScriptModel,java.lang.String)
 */};
 
-this.getFields4TemplateTable = function() {/*
+  this.getFields4TemplateTable = function () {/*
 ScriptResult getFields4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-curObj = aa.proxyInvoker.newInstance("SetScript").getOutput();
-for(var i in curObj){
- //var curObj = aa.proxyInvoker.newInstance(obj[i]).getOutput();
- aa.print(curObj[i]);
-}this.addAttribute = function() {/*
+  curObj = aa.proxyInvoker.newInstance("SetScript").getOutput();
+  for (var i in curObj) {
+    //var curObj = aa.proxyInvoker.newInstance(obj[i]).getOutput();
+    aa.print(curObj[i]);
+  } this.addAttribute = function () {/*
 ScriptResult addAttribute(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.AttributeModel)
 ScriptResult addAttribute(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.updateAttribute = function() {/*
+  this.updateAttribute = function () {/*
 ScriptResult updateAttribute(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.AttributeModel)
 ScriptResult updateAttribute(java.lang.String,com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getCapIDByStructure = function() {/*
+  this.getCapIDByStructure = function () {/*
 ScriptResult getCapIDByStructure(java.lang.String,com.accela.aa.util.QueryFormat)
 ScriptResult getCapIDByStructure(com.accela.aa.structure.structure.StructureModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getStructure = function() {/*
+  this.getStructure = function () {/*
 ScriptResult getStructure(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.removeStructure = function() {/*
+  this.removeStructure = function () {/*
 ScriptResult removeStructure(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel)
 ScriptResult removeStructure(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.deleteAttribute = function() {/*
+  this.deleteAttribute = function () {/*
 ScriptResult deleteAttribute(com.accela.aa.aamain.cap.CapIDModel,long,long)
 ScriptResult deleteAttribute(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.AttributeModel)
 */};
 
-this.cloneStructure = function() {/*
+  this.cloneStructure = function () {/*
 ScriptResult cloneStructure(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getChildStructures = function() {/*
+  this.getChildStructures = function () {/*
 ScriptResult getChildStructures(com.accela.aa.aamain.cap.CapIDModel,long)
 ScriptResult getChildStructures(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel)
 */};
 }
 
-function  BStructureScript() {
-this.getCapIDByComponentType = function() {/*
+function BStructureScript() {
+  this.getCapIDByComponentType = function () {/*
 ScriptResult getCapIDByComponentType(java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.addStrucutureRelation = function() {/*
+  this.addStrucutureRelation = function () {/*
 ScriptResult addStrucutureRelation(java.lang.String,com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureModel,java.lang.String)
 ScriptResult addStrucutureRelation(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String)
 */};
 
-this.getStructures = function() {/*
+  this.getStructures = function () {/*
 ScriptResult getStructures(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapIDByComponentGroup = function() {/*
+  this.getCapIDByComponentGroup = function () {/*
 ScriptResult getCapIDByComponentGroup(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getAttributes = function() {/*
+  this.getAttributes = function () {/*
 ScriptResult getAttributes(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel,com.accela.aa.util.QueryFormat)
 ScriptResult getAttributes(com.accela.aa.aamain.cap.CapIDModel,long,com.accela.aa.util.QueryFormat)
 */};
 
-this.updateStructure = function() {/*
+  this.updateStructure = function () {/*
 ScriptResult updateStructure(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime)
 ScriptResult updateStructure(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getAttribute = function() {/*
+  this.getAttribute = function () {/*
 ScriptResult getAttribute(com.accela.aa.aamain.cap.CapIDModel,long,long)
 */};
 
-this.removeStrucutureRelation = function() {/*
+  this.removeStrucutureRelation = function () {/*
 ScriptResult removeStrucutureRelation(java.lang.String,com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String)
 ScriptResult removeStrucutureRelation(java.lang.String,com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel,com.accela.aa.structure.structure.StructureModel,java.lang.String)
 */};
 
-this.getParentStructures = function() {/*
+  this.getParentStructures = function () {/*
 ScriptResult getParentStructures(com.accela.aa.aamain.cap.CapIDModel,long)
 ScriptResult getParentStructures(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.addStructure = function() {/*
+  this.addStructure = function () {/*
 ScriptResult addStructure(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.structure.structure.StructureModel)
 ScriptResult addStructure(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime)
 */};
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  EPaymentScript() {
-this.getEPaymentValue = function() {/*
+function EPaymentScript() {
+  this.getEPaymentValue = function () {/*
 ScriptResult getEPaymentValue(java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  AdditionalInfoScript() {
-this.getAppStatusGroupByPK = function() {/*
+function AdditionalInfoScript() {
+  this.getAppStatusGroupByPK = function () {/*
 ScriptResult getAppStatusGroupByPK(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.editAppStatusGroup = function() {/*
+  this.editAppStatusGroup = function () {/*
 ScriptResult editAppStatusGroup(com.accela.aa.aamain.cap.AppStatusGroupModel)
 */};
 
-this.createAppStatusGroup = function() {/*
+  this.createAppStatusGroup = function () {/*
 ScriptResult createAppStatusGroup(com.accela.aa.aamain.cap.AppStatusGroupModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getCheckboxByPK = function() {/*
+  this.getCheckboxByPK = function () {/*
 ScriptResult getCheckboxByPK(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getAppStatusGroupByGroup = function() {/*
+  this.getAppStatusGroupByGroup = function () {/*
 ScriptResult getAppStatusGroupByGroup(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getAppSpecificInfoGroupByCapID = function() {/*
+  this.getAppSpecificInfoGroupByCapID = function () {/*
 ScriptResult getAppSpecificInfoGroupByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.addNotice = function() {/*
+  this.addNotice = function () {/*
 ScriptResult addNotice(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addNotice(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  SmartNoticeScript() {
-this.wait = function() {/*
+function SmartNoticeScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.parseDate = function() {/*
+  this.parseDate = function () {/*
 ScriptResult parseDate(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.sendNewAppointment = function() {/*
+  this.sendNewAppointment = function () {/*
 ScriptResult sendNewAppointment(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.incrementDateByMinutes = function() {/*
+  this.incrementDateByMinutes = function () {/*
 ScriptResult incrementDateByMinutes(java.util.Date,int)
 */};
 }
 
-function  ExchangeScript() {
-this.wait = function() {/*
+function ExchangeScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.formatDateForExchange = function() {/*
+  this.formatDateForExchange = function () {/*
 ScriptResult formatDateForExchange(java.util.Date)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.init = function() {/*
+  this.init = function () {/*
 ScriptResult init(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.createCondition = function() {/*
+  this.createCondition = function () {/*
 ScriptResult createCondition(ConditionScriptModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel[],com.accela.aa.condition.condition.ConditionModel)
 */};
 
-this.getFields4TemplateForm = function() {/*
+  this.getFields4TemplateForm = function () {/*
 ScriptResult getFields4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getNewOwnerConditionScriptModel = function() {/*
+  this.getNewOwnerConditionScriptModel = function () {/*
 ScriptResult getNewOwnerConditionScriptModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  ConditionScript() {
-this.createConditionFromStdCondition = function() {/*
+function ConditionScript() {
+  this.createConditionFromStdCondition = function () {/*
 ScriptResult createConditionFromStdCondition(ConditionScriptModel,java.lang.String)
 ScriptResult createConditionFromStdCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 */};
 
-this.getNewConditionScriptModel = function() {/*
+  this.getNewConditionScriptModel = function () {/*
 ScriptResult getNewConditionScriptModel()
 */};
 
-this.getAssetCondition = function() {/*
+  this.getAssetCondition = function () {/*
 ScriptResult getAssetCondition(long,long)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.editField4TemplateForm = function() {/*
+  this.editField4TemplateForm = function () {/*
 ScriptResult editField4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.createConditionWithMulLangs = function() {/*
+  this.createConditionWithMulLangs = function () {/*
 ScriptResult createConditionWithMulLangs(ConditionScriptModel[],ConditionScriptModel)
 */};
 
-this.getOwnerCondition = function() {/*
+  this.getOwnerCondition = function () {/*
 ScriptResult getOwnerCondition(long,long)
 */};
 
-this.getNewAssetConditionScriptModel = function() {/*
+  this.getNewAssetConditionScriptModel = function () {/*
 ScriptResult getNewAssetConditionScriptModel()
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.editTableValue4TemplateTable = function() {/*
+  this.editTableValue4TemplateTable = function () {/*
 ScriptResult editTableValue4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String,java.lang.Long)
 */};
 
-this.getCondition = function() {/*
+  this.getCondition = function () {/*
 ScriptResult getCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 ScriptResult getCondition(ConditionScriptModel,java.lang.String)
 */};
 
-this.getFields4TemplateTable = function() {/*
+  this.getFields4TemplateTable = function () {/*
 ScriptResult getFields4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.parseStr2Date = function() {/*
+  this.parseStr2Date = function () {/*
 ScriptResult parseStr2Date(java.lang.String,java.lang.String)
 */};
 
-this.editCapWorkDes = function() {/*
+  this.editCapWorkDes = function () {/*
 ScriptResult editCapWorkDes(com.accela.aa.aamain.cap.CapWorkDesModel)
 */};
 
-this.createCapWorkDes = function() {/*
+  this.createCapWorkDes = function () {/*
 ScriptResult createCapWorkDes(com.accela.aa.aamain.cap.CapWorkDesModel)
 */};
 
-this.copyContact = function() {/*
+  this.copyContact = function () {/*
 ScriptResult copyContact(CapScriptModel,CapScriptModel)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.updateProject = function() {/*
+  this.updateProject = function () {/*
 ScriptResult updateProject(ProjectScriptModel)
 */};
 
-this.copyParcel = function() {/*
+  this.copyParcel = function () {/*
 ScriptResult copyParcel(CapScriptModel,CapScriptModel)
 */};
 
-this.newCapScriptModel = function() {/*
+  this.newCapScriptModel = function () {/*
 ScriptResult newCapScriptModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getCapBasicInfo = function() {/*
+  this.getCapBasicInfo = function () {/*
 ScriptResult getCapBasicInfo(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.convertAppSpecificInfoGroups2appSpecificInfos4ACA = function() {/*
+  this.convertAppSpecificInfoGroups2appSpecificInfos4ACA = function () {/*
 ScriptResult convertAppSpecificInfoGroups2appSpecificInfos4ACA(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.getCapIDListByCapModel = function() {/*
+  this.getCapIDListByCapModel = function () {/*
 ScriptResult getCapIDListByCapModel(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.runEMSEScriptAfterPaymentReceive = function() {/*
+  this.runEMSEScriptAfterPaymentReceive = function () {/*
 ScriptResult runEMSEScriptAfterPaymentReceive(com.accela.aa.aamain.cap.CapModel,PaymentScriptModel)
 */};
 
-this.deleteCapComment = function() {/*
+  this.deleteCapComment = function () {/*
 ScriptResult deleteCapComment(com.accela.aa.aamain.cap.CapCommentModel)
 */};
 
-this.getCapPrimaryContact = function() {/*
+  this.getCapPrimaryContact = function () {/*
 ScriptResult getCapPrimaryContact(CapIDScriptModel)
 */};
 
-this.createCapDetail = function() {/*
+  this.createCapDetail = function () {/*
 ScriptResult createCapDetail(com.accela.aa.aamain.cap.CapDetailModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.getCapWorkDesByPK = function() {/*
+  this.getCapWorkDesByPK = function () {/*
 ScriptResult getCapWorkDesByPK(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCapViewBySingle = function() {/*
+  this.getCapViewBySingle = function () {/*
 com.accela.aa.aamain.cap.CapModel getCapViewBySingle(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getTradeNameByTradeLicense = function() {/*
+  this.getTradeNameByTradeLicense = function () {/*
 com.accela.aa.aamain.cap.CapIDModel getTradeNameByTradeLicense(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getByAppType = function() {/*
+  this.getByAppType = function () {/*
 ScriptResult getByAppType(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,int)
 ScriptResult getByAppType(java.lang.String,java.lang.String)
 ScriptResult getByAppType(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getBValuatn4AddtInfo = function() {/*
+  this.getBValuatn4AddtInfo = function () {/*
 ScriptResult getBValuatn4AddtInfo(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createCheckbox = function() {/*
+  this.createCheckbox = function () {/*
 ScriptResult createCheckbox(com.accela.aa.aamain.cap.AppSpecificInfoModel)
 */};
 
-this.getCapIDModel = function() {/*
+  this.getCapIDModel = function () {/*
 ScriptResult getCapIDModel(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.editComment = function() {/*
+  this.editComment = function () {/*
 ScriptResult editComment(com.accela.aa.aamain.cap.CommentModel)
 */};
 
-this.createCap = function() {/*
+  this.createCap = function () {/*
 ScriptResult createCap(java.lang.String,java.lang.String,com.accela.aa.aamain.cap.CapModel,java.lang.StringBuffer,java.lang.String)
 */};
 
-this.createAppHierarchy = function() {/*
+  this.createAppHierarchy = function () {/*
 ScriptResult createAppHierarchy(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getPrimaryTrustAccountByCapID = function() {/*
+  this.getPrimaryTrustAccountByCapID = function () {/*
 ScriptResult getPrimaryTrustAccountByCapID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getCapIDByIDValue = function() {/*
+  this.getCapIDByIDValue = function () {/*
 ScriptResult getCapIDByIDValue(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.createStatusHistory = function() {/*
+  this.createStatusHistory = function () {/*
 ScriptResult createStatusHistory(com.accela.aa.aamain.cap.StatusHistoryModel)
 */};
 
-this.getStatusHistoryByCap = function() {/*
+  this.getStatusHistoryByCap = function () {/*
 ScriptResult getStatusHistoryByCap(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.requestCreateCap = function() {/*
+  this.requestCreateCap = function () {/*
 ScriptResult requestCreateCap(java.lang.String,java.lang.String)
 */};
 
-this.getProjectChildren = function() {/*
+  this.getProjectChildren = function () {/*
 ScriptResult getProjectChildren(com.accela.aa.aamain.cap.CapIDModel,int)
 */};
 
-this.getFunctionContentByPK = function() {/*
+  this.getFunctionContentByPK = function () {/*
 ScriptResult getFunctionContentByPK(com.accela.aa.aamain.cap.UserTempDataModel)
 */};
 
-this.getStaffByUser = function() {/*
+  this.getStaffByUser = function () {/*
 ScriptResult getStaffByUser(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getChildCapByParentCapId = function() {/*
+  this.getChildCapByParentCapId = function () {/*
 ScriptResult getChildCapByParentCapId(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getRelatedCapTypes = function() {/*
+  this.getRelatedCapTypes = function () {/*
 ScriptResult getRelatedCapTypes(com.accela.aa.aamain.cap.CapTypeModel)
 */};
 
-this.createTemplateAttributes = function() {/*
+  this.createTemplateAttributes = function () {/*
 ScriptResult createTemplateAttributes(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.getCapScriptModel = function() {/*
+  this.getCapScriptModel = function () {/*
 ScriptResult getCapScriptModel(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.createRenewalRecord = function() {/*
+  this.createRenewalRecord = function () {/*
 ScriptResult createRenewalRecord(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.updateRenewalCapStatus = function() {/*
+  this.updateRenewalCapStatus = function () {/*
 ScriptResult updateRenewalCapStatus(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.copyAddress = function() {/*
+  this.copyAddress = function () {/*
 ScriptResult copyAddress(CapScriptModel,CapScriptModel)
 */};
 
-this.createComment = function() {/*
+  this.createComment = function () {/*
 ScriptResult createComment(com.accela.aa.aamain.cap.CommentModel)
 */};
 
-this.createGuideItemComment = function() {/*
+  this.createGuideItemComment = function () {/*
 ScriptResult createGuideItemComment(com.accela.aa.aamain.cap.CommentModel)
 */};
 
-this.createPartialRecord = function() {/*
+  this.createPartialRecord = function () {/*
 ScriptResult createPartialRecord(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.copyRenewCapDocument = function() {/*
+  this.copyRenewCapDocument = function () {/*
 ScriptResult copyRenewCapDocument(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.copyOwner = function() {/*
+  this.copyOwner = function () {/*
 ScriptResult copyOwner(CapScriptModel,CapScriptModel)
 */};
 
-this.getStandardComment = function() {/*
+  this.getStandardComment = function () {/*
 ScriptResult getStandardComment(com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapList = function() {/*
+  this.getCapList = function () {/*
 ScriptResult getCapList(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getProjectByChildCapID = function() {/*
+  this.getProjectByChildCapID = function () {/*
 ScriptResult getProjectByChildCapID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.removeAppHierarchy = function() {/*
+  this.removeAppHierarchy = function () {/*
 ScriptResult removeAppHierarchy(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCapIDsByAPOAttributeDateRange = function() {/*
+  this.getCapIDsByAPOAttributeDateRange = function () {/*
 ScriptResult getCapIDsByAPOAttributeDateRange(java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime)
 */};
 
-this.combineDateTime = function() {/*
+  this.combineDateTime = function () {/*
 ScriptResult combineDateTime(java.util.Date,java.lang.String)
 */};
 
-this.updateTotalFees = function() {/*
+  this.updateTotalFees = function () {/*
 ScriptResult updateTotalFees(com.accela.aa.aamain.cap.CapIDModel,double)
 ScriptResult updateTotalFees(java.lang.String,java.lang.String,java.lang.String,double)
 */};
 
-this.addProjectChild = function() {/*
+  this.addProjectChild = function () {/*
 ScriptResult addProjectChild(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.parseStr2Double = function() {/*
+  this.parseStr2Double = function () {/*
 ScriptResult parseStr2Double(java.lang.String)
 */};
 
-this.removeComment = function() {/*
+  this.removeComment = function () {/*
 ScriptResult removeComment(com.accela.aa.aamain.cap.CommentModel)
 */};
 
-this.getCapTypeDetailByPK = function() {/*
+  this.getCapTypeDetailByPK = function () {/*
 ScriptResult getCapTypeDetailByPK(com.accela.aa.aamain.cap.CapTypeModel)
 */};
 
-this.getCapViewBySingle4ACA = function() {/*
+  this.getCapViewBySingle4ACA = function () {/*
 com.accela.aa.aamain.cap.CapModel getCapViewBySingle4ACA(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.updateCreatedAccessBy4ACA = function() {/*
+  this.updateCreatedAccessBy4ACA = function () {/*
 ScriptResult updateCreatedAccessBy4ACA(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String)
 */};
 }
 
-function  CapScript() {
-this.removeCommentByActivity = function() {/*
+function CapScript() {
+  this.removeCommentByActivity = function () {/*
 ScriptResult removeCommentByActivity(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getCAEConditions = function() {/*
+  this.getCAEConditions = function () {/*
 ScriptResult getCAEConditions(long,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getAssociatedCapsByOnlineUser = function() {/*
+  this.getAssociatedCapsByOnlineUser = function () {/*
 ScriptResult getAssociatedCapsByOnlineUser(java.lang.String)
 */};
 
-this.editCapDetail = function() {/*
+  this.editCapDetail = function () {/*
 ScriptResult editCapDetail(com.accela.aa.aamain.cap.CapDetailModel)
 */};
 
-this.getCapListByCollection = function() {/*
+  this.getCapListByCollection = function () {/*
 ScriptResult getCapListByCollection(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.address.AddressModel,java.lang.String,ScriptDateTime,ScriptDateTime,com.accela.aa.util.QueryFormat,com.accela.aa.xml.model.gis.GISObjects)
 ScriptResult getCapListByCollection(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.address.AddressModel,java.lang.String,ScriptDateTime,ScriptDateTime,com.accela.aa.util.QueryFormat,com.accela.aa.gis.gis.GISObjectModel[])
 */};
 
-this.removeCapWorkDes = function() {/*
+  this.removeCapWorkDes = function () {/*
 ScriptResult removeCapWorkDes(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createAssociatedFormsHierarchy = function() {/*
+  this.createAssociatedFormsHierarchy = function () {/*
 ScriptResult createAssociatedFormsHierarchy(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getCapIDsByAPOAttribute = function() {/*
+  this.getCapIDsByAPOAttribute = function () {/*
 ScriptResult getCapIDsByAPOAttribute(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getStaffModel = function() {/*
+  this.getStaffModel = function () {/*
 ScriptResult getStaffModel()
 */};
 
-this.getCapListByParcelID = function() {/*
+  this.getCapListByParcelID = function () {/*
 ScriptResult getCapListByParcelID(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapModel = function() {/*
+  this.getCapModel = function () {/*
 ScriptResult getCapModel()
 */};
 
-this.runEMSEScriptBeforeApplicationSubmit = function() {/*
+  this.runEMSEScriptBeforeApplicationSubmit = function () {/*
 ScriptResult runEMSEScriptBeforeApplicationSubmit(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.copyComments = function() {/*
+  this.copyComments = function () {/*
 ScriptResult copyComments(CapScriptModel,CapScriptModel)
 */};
 
-this.createCommentScriptModel = function() {/*
+  this.createCommentScriptModel = function () {/*
 CommentScriptModel createCommentScriptModel()
 */};
 
-this.getCapIDByInspGroup = function() {/*
+  this.getCapIDByInspGroup = function () {/*
 ScriptResult getCapIDByInspGroup(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapListByDetailAddress = function() {/*
+  this.getCapListByDetailAddress = function () {/*
 ScriptResult getCapListByDetailAddress(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapID = function() {/*
+  this.getCapID = function () {/*
 ScriptResult getCapID(java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getCapID(long)
 ScriptResult getCapID(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long)
 ScriptResult getCapID(java.lang.String)
 */};
 
-this.updateAppStatus = function() {/*
+  this.updateAppStatus = function () {/*
 ScriptResult updateAppStatus(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult updateAppStatus(com.accela.aa.aamain.cap.StatusHistoryModel,java.lang.String)
 */};
 
-this.createCapIDScriptModel = function() {/*
+  this.createCapIDScriptModel = function () {/*
 CapIDScriptModel createCapIDScriptModel(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getCapComment = function() {/*
+  this.getCapComment = function () {/*
 ScriptResult getCapComment(com.accela.aa.aamain.cap.CapCommentModel)
 */};
 
-this.getCapWithTemplateAttributes = function() {/*
+  this.getCapWithTemplateAttributes = function () {/*
 ScriptResult getCapWithTemplateAttributes(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.runEMSEScriptAfterApplicationSubmit = function() {/*
+  this.runEMSEScriptAfterApplicationSubmit = function () {/*
 ScriptResult runEMSEScriptAfterApplicationSubmit(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.editAddtInfo = function() {/*
+  this.editAddtInfo = function () {/*
 ScriptResult editAddtInfo(CapDetailScriptModel,BValuatnScriptModel)
 */};
 
-this.getCapTypeModelByCapID = function() {/*
+  this.getCapTypeModelByCapID = function () {/*
 ScriptResult getCapTypeModelByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCapDetailModel = function() {/*
+  this.getCapDetailModel = function () {/*
 ScriptResult getCapDetailModel()
 */};
 
-this.getCapTypeList = function() {/*
+  this.getCapTypeList = function () {/*
 ScriptResult getCapTypeList(java.lang.String,com.accela.aa.util.QueryFormat)
 ScriptResult getCapTypeList(com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapsByTaskItem = function() {/*
+  this.getCapsByTaskItem = function () {/*
 ScriptResult getCapsByTaskItem(long,int,java.lang.String)
 */};
 
-this.transferRenewCapDocument = function() {/*
+  this.transferRenewCapDocument = function () {/*
 ScriptResult transferRenewCapDocument(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,boolean)
 ScriptResult transferRenewCapDocument(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.runEMSEScriptBeforePaymentReceive = function() {/*
+  this.runEMSEScriptBeforePaymentReceive = function () {/*
 ScriptResult runEMSEScriptBeforePaymentReceive(com.accela.aa.aamain.cap.CapModel,PaymentScriptModel)
 */};
 
-this.isRenewalInProgess = function() {/*
+  this.isRenewalInProgess = function () {/*
 ScriptResult isRenewalInProgess(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.runEMSEScriptBeforeCreateRealCap = function() {/*
+  this.runEMSEScriptBeforeCreateRealCap = function () {/*
 ScriptResult runEMSEScriptBeforeCreateRealCap(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCapDetail = function() {/*
+  this.getCapDetail = function () {/*
 ScriptResult getCapDetail(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.editCapByPK = function() {/*
+  this.editCapByPK = function () {/*
 ScriptResult editCapByPK(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.removeExpiredIncompleteCAP = function() {/*
+  this.removeExpiredIncompleteCAP = function () {/*
 ScriptResult removeExpiredIncompleteCAP()
 */};
 
-this.getCapIDList = function() {/*
+  this.getCapIDList = function () {/*
 ScriptResult getCapIDList()
 */};
 
-this.getProjectByMasterID = function() {/*
+  this.getProjectByMasterID = function () {/*
 ScriptResult getProjectByMasterID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.updateCapAltID = function() {/*
+  this.updateCapAltID = function () {/*
 ScriptResult updateCapAltID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.updateAccessByACA = function() {/*
+  this.updateAccessByACA = function () {/*
 ScriptResult updateAccessByACA(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getCapTypeFilterName = function() {/*
+  this.getCapTypeFilterName = function () {/*
 ScriptResult getCapTypeFilterName(com.accela.aa.aamain.cap.CapTypeModel)
 */};
 
-this.getCapTypeListByModule = function() {/*
+  this.getCapTypeListByModule = function () {/*
 ScriptResult getCapTypeListByModule(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.editCapComment = function() {/*
+  this.editCapComment = function () {/*
 ScriptResult editCapComment(com.accela.aa.aamain.cap.CapCommentModel)
 */};
 
-this.createCapComment = function() {/*
+  this.createCapComment = function () {/*
 ScriptResult createCapComment(com.accela.aa.aamain.cap.CapCommentModel)
 */};
 
-this.copyCapWorkDesInfo = function() {/*
+  this.copyCapWorkDesInfo = function () {/*
 void copyCapWorkDesInfo(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCapIDsByAppSpecificInfoField = function() {/*
+  this.getCapIDsByAppSpecificInfoField = function () {/*
 ScriptResult getCapIDsByAppSpecificInfoField(java.lang.String,java.lang.String)
 */};
 
-this.createRenewalCap = function() {/*
+  this.createRenewalCap = function () {/*
 ScriptResult createRenewalCap(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,boolean)
 */};
 
-this.runEMSEScriptBeforeApplicationDetailUpdate = function() {/*
+  this.runEMSEScriptBeforeApplicationDetailUpdate = function () {/*
 ScriptResult runEMSEScriptBeforeApplicationDetailUpdate(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.getCaps = function() {/*
+  this.getCaps = function () {/*
 ScriptResult getCaps(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.batchCreateChildRecords = function() {/*
+  this.batchCreateChildRecords = function () {/*
 ScriptResult batchCreateChildRecords(com.accela.aa.aamain.cap.CapIDModel,java.util.List,java.util.List)
 */};
 
-this.createAmendmentCap = function() {/*
+  this.createAmendmentCap = function () {/*
 ScriptResult createAmendmentCap(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,boolean)
 */};
 
-this.getCapIDsByAppSpecificInfoDateRange = function() {/*
+  this.getCapIDsByAppSpecificInfoDateRange = function () {/*
 ScriptResult getCapIDsByAppSpecificInfoDateRange(java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime)
 */};
 
-this.removeProjectChild = function() {/*
+  this.removeProjectChild = function () {/*
 ScriptResult removeProjectChild(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCapTypeModel = function() {/*
+  this.getCapTypeModel = function () {/*
 ScriptResult getCapTypeModel()
 */};
 
-this.getCapWorkDesModel = function() {/*
+  this.getCapWorkDesModel = function () {/*
 ScriptResult getCapWorkDesModel()
 */};
 
-this.getTrustAccountsByCapID = function() {/*
+  this.getTrustAccountsByCapID = function () {/*
 ScriptResult getTrustAccountsByCapID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.updateTotalPayment = function() {/*
+  this.updateTotalPayment = function () {/*
 ScriptResult updateTotalPayment(java.lang.String,java.lang.String,java.lang.String,double)
 */};
 
-this.convertAppSpecTableField2Value4ACA = function() {/*
+  this.convertAppSpecTableField2Value4ACA = function () {/*
 ScriptResult convertAppSpecTableField2Value4ACA(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.createAppWithModel = function() {/*
+  this.createAppWithModel = function () {/*
 ScriptResult createAppWithModel(CapScriptModel)
 */};
 
-this.createCapCommentScriptModel = function() {/*
+  this.createCapCommentScriptModel = function () {/*
 CapCommentScriptModel createCapCommentScriptModel()
 */};
 
-this.getChildByMasterID = function() {/*
+  this.getChildByMasterID = function () {/*
 ScriptResult getChildByMasterID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.runEMSEScriptAfterCreateRealCap = function() {/*
+  this.runEMSEScriptAfterCreateRealCap = function () {/*
 ScriptResult runEMSEScriptAfterCreateRealCap(com.accela.aa.aamain.cap.CapModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.copyCapDetailInfo = function() {/*
+  this.copyCapDetailInfo = function () {/*
 void copyCapDetailInfo(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getCap = function() {/*
+  this.getCap = function () {/*
 ScriptResult getCap(com.accela.aa.aamain.cap.CapIDModel)
 ScriptResult getCap(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getCapViewByID = function() {/*
+  this.getCapViewByID = function () {/*
 ScriptResult getCapViewByID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getChildrenCaps = function() {/*
+  this.getChildrenCaps = function () {/*
 ScriptResult getChildrenCaps(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapTypeModel)
 */};
 
-this.getProjectTypeList = function() {/*
+  this.getProjectTypeList = function () {/*
 ScriptResult getProjectTypeList(com.accela.aa.util.QueryFormat)
 */};
 
-this.createSimplePartialRecord = function() {/*
+  this.createSimplePartialRecord = function () {/*
 ScriptResult createSimplePartialRecord(com.accela.aa.aamain.cap.CapTypeModel,java.lang.String,java.lang.String)
 */};
 
-this.updateAppWithModel = function() {/*
+  this.updateAppWithModel = function () {/*
 ScriptResult updateAppWithModel(CapScriptModel)
 */};
 
-this.getGuideItemComment = function() {/*
+  this.getGuideItemComment = function () {/*
 ScriptResult getGuideItemComment(long)
 */};
 
-this.transferCapDoc4EMSEPay = function() {/*
+  this.transferCapDoc4EMSEPay = function () {/*
 ScriptResult transferCapDoc4EMSEPay(com.accela.aa.finance.cashier.onlinePayment.util.ACAModel,com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getProjectParents = function() {/*
+  this.getProjectParents = function () {/*
 ScriptResult getProjectParents(com.accela.aa.aamain.cap.CapIDModel,int)
 */};
 
-this.createApp = function() {/*
+  this.createApp = function () {/*
 ScriptResult createApp(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getCommentByPK = function() {/*
+  this.getCommentByPK = function () {/*
 ScriptResult getCommentByPK(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String)
 */};
 
-this.getCapByPK = function() {/*
+  this.getCapByPK = function () {/*
 ScriptResult getCapByPK(com.accela.aa.aamain.cap.CapIDModel,boolean)
 */};
 
-this.runEMSEScriptAfterApplicationDetailUpdate = function() {/*
+  this.runEMSEScriptAfterApplicationDetailUpdate = function () {/*
 ScriptResult runEMSEScriptAfterApplicationDetailUpdate(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.createRegularCapModel4ACA = function() {/*
+  this.createRegularCapModel4ACA = function () {/*
 ScriptResult createRegularCapModel4ACA(com.accela.aa.aamain.cap.CapModel,java.lang.String,boolean,boolean)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  ProxyInvoker() {
-this.invoke = function() {/*
+function ProxyInvoker() {
+  this.invoke = function () {/*
 ScriptResult invoke(java.lang.String,java.lang.String,java.lang.Object[])
 ScriptResult invoke(java.lang.Object,java.lang.String,java.lang.Object[])
 ScriptResult invoke(java.lang.Object,java.lang.String,java.lang.String[],java.lang.Object[])
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.newInstance = function() {/*
+  this.newInstance = function () {/*
 ScriptResult newInstance(java.lang.String)
 ScriptResult newInstance(java.lang.String,java.lang.Object[])
 ScriptResult newInstance(java.lang.String,java.lang.String[],java.lang.Object[])
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.createCondition = function() {/*
+  this.createCondition = function () {/*
 ScriptResult createCondition(ConditionScriptModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel[],com.accela.aa.condition.condition.ConditionModel)
 */};
 
-this.getFields4TemplateForm = function() {/*
+  this.getFields4TemplateForm = function () {/*
 ScriptResult getFields4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.editOwnerCondition = function() {/*
+  this.editOwnerCondition = function () {/*
 ScriptResult editOwnerCondition(OwnerConditionScriptModel)
 */};
 
-this.getNewOwnerConditionScriptModel = function() {/*
+  this.getNewOwnerConditionScriptModel = function () {/*
 ScriptResult getNewOwnerConditionScriptModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.removeOwnerCondition = function() {/*
+  this.removeOwnerCondition = function () {/*
 ScriptResult removeOwnerCondition(long,long)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  OwnerConditionScript() {
-this.createConditionFromStdCondition = function() {/*
+function OwnerConditionScript() {
+  this.createConditionFromStdCondition = function () {/*
 ScriptResult createConditionFromStdCondition(ConditionScriptModel,java.lang.String)
 ScriptResult createConditionFromStdCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 */};
 
-this.getNewConditionScriptModel = function() {/*
+  this.getNewConditionScriptModel = function () {/*
 ScriptResult getNewConditionScriptModel()
 */};
 
-this.getOwnerConditions = function() {/*
+  this.getOwnerConditions = function () {/*
 ScriptResult getOwnerConditions(long)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getAssetCondition = function() {/*
+  this.getAssetCondition = function () {/*
 ScriptResult getAssetCondition(long,long)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.editField4TemplateForm = function() {/*
+  this.editField4TemplateForm = function () {/*
 ScriptResult editField4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.createConditionWithMulLangs = function() {/*
+  this.createConditionWithMulLangs = function () {/*
 ScriptResult createConditionWithMulLangs(ConditionScriptModel[],ConditionScriptModel)
 */};
 
-this.getOwnerCondition = function() {/*
+  this.getOwnerCondition = function () {/*
 ScriptResult getOwnerCondition(long,long)
 */};
 
-this.getNewAssetConditionScriptModel = function() {/*
+  this.getNewAssetConditionScriptModel = function () {/*
 ScriptResult getNewAssetConditionScriptModel()
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.editTableValue4TemplateTable = function() {/*
+  this.editTableValue4TemplateTable = function () {/*
 ScriptResult editTableValue4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String,java.lang.Long)
 */};
 
-this.createOwnerCondition = function() {/*
+  this.createOwnerCondition = function () {/*
 ScriptResult createOwnerCondition(OwnerConditionScriptModel)
 */};
 
-this.getCondition = function() {/*
+  this.getCondition = function () {/*
 ScriptResult getCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 ScriptResult getCondition(ConditionScriptModel,java.lang.String)
 */};
 
-this.getFields4TemplateTable = function() {/*
+  this.getFields4TemplateTable = function () {/*
 ScriptResult getFields4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.transferTrustAccount = function() {/*
+  this.transferTrustAccount = function () {/*
 ScriptResult transferTrustAccount(com.accela.aa.finance.trustAccount.TransactionModel)
 */};
 
-this.getPrimaryTrustAccountByCAP = function() {/*
+  this.getPrimaryTrustAccountByCAP = function () {/*
 ScriptResult getPrimaryTrustAccountByCAP(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createCapIDScriptModel = function() {/*
+  this.createCapIDScriptModel = function () {/*
 CapIDScriptModel createCapIDScriptModel()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getTrustAccountPeopleListByAccount = function() {/*
+  this.getTrustAccountPeopleListByAccount = function () {/*
 ScriptResult getTrustAccountPeopleListByAccount(java.lang.Long)
 ScriptResult getTrustAccountPeopleListByAccount(java.lang.String,java.lang.Long)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getTransactionByPK = function() {/*
+  this.getTransactionByPK = function () {/*
 ScriptResult getTransactionByPK(java.lang.Long)
 ScriptResult getTransactionByPK(java.lang.Long,java.lang.String)
 */};
 }
 
-function  TrustAccountScript() {
-this.notify = function() {/*
+function TrustAccountScript() {
+  this.notify = function () {/*
 void notify()
 */};
 
-this.autoCreateTrustAccount = function() {/*
+  this.autoCreateTrustAccount = function () {/*
 ScriptResult autoCreateTrustAccount(java.lang.String,java.lang.String)
 */};
 
-this.createTrustAccountScriptModel = function() {/*
+  this.createTrustAccountScriptModel = function () {/*
 TrustAccountScriptModel createTrustAccountScriptModel()
 */};
 
-this.getTrustAccountByPK = function() {/*
+  this.getTrustAccountByPK = function () {/*
 ScriptResult getTrustAccountByPK(java.lang.Long)
 ScriptResult getTrustAccountByPK(java.lang.Long,java.lang.String)
 */};
 
-this.adjustTrustAccount = function() {/*
+  this.adjustTrustAccount = function () {/*
 ScriptResult adjustTrustAccount(com.accela.aa.finance.trustAccount.TransactionModel)
 */};
 
-this.getTrustAccountList = function() {/*
+  this.getTrustAccountList = function () {/*
 ScriptResult getTrustAccountList(com.accela.aa.util.QueryFormat)
 ScriptResult getTrustAccountList(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getPeopleCountInfoByTrustAccount = function() {/*
+  this.getPeopleCountInfoByTrustAccount = function () {/*
 ScriptResult getPeopleCountInfoByTrustAccount(java.lang.String,java.lang.Long)
 ScriptResult getPeopleCountInfoByTrustAccount(java.lang.Long)
 */};
 
-this.getTrustAccountIDListByCAPID = function() {/*
+  this.getTrustAccountIDListByCAPID = function () {/*
 ScriptResult getTrustAccountIDListByCAPID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.removeTrustAccountPeople = function() {/*
+  this.removeTrustAccountPeople = function () {/*
 ScriptResult removeTrustAccountPeople(java.lang.Long,java.lang.String,java.lang.Long)
 ScriptResult removeTrustAccountPeople(java.lang.Long,java.lang.String,java.lang.Long,java.lang.Integer,java.lang.String)
 ScriptResult removeTrustAccountPeople(java.lang.String,java.lang.Long,java.lang.String,java.lang.Long)
 */};
 
-this.createTrustAccount = function() {/*
+  this.createTrustAccount = function () {/*
 ScriptResult createTrustAccount(com.accela.aa.finance.trustAccount.TrustAccountModel)
 */};
 
-this.getPrimaryTrustAccountID = function() {/*
+  this.getPrimaryTrustAccountID = function () {/*
 ScriptResult getPrimaryTrustAccountID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getTransactionListByCondition = function() {/*
+  this.getTransactionListByCondition = function () {/*
 ScriptResult getTransactionListByCondition(com.accela.aa.finance.trustAccount.TransactionModel)
 */};
 
-this.withdrawTrustAccount = function() {/*
+  this.withdrawTrustAccount = function () {/*
 ScriptResult withdrawTrustAccount(com.accela.aa.finance.trustAccount.TransactionModel)
 */};
 
-this.editTrustAccount = function() {/*
+  this.editTrustAccount = function () {/*
 ScriptResult editTrustAccount(com.accela.aa.finance.trustAccount.TrustAccountModel)
 */};
 
-this.depositTrustAccount = function() {/*
+  this.depositTrustAccount = function () {/*
 ScriptResult depositTrustAccount(com.accela.aa.finance.trustAccount.TransactionModel)
 */};
 
-this.createTrustAccountTransactionScriptModel = function() {/*
+  this.createTrustAccountTransactionScriptModel = function () {/*
 TrustAccountTransactionScriptModel createTrustAccountTransactionScriptModel()
 */};
 
-this.createTrustAccountAssociation = function() {/*
+  this.createTrustAccountAssociation = function () {/*
 ScriptResult createTrustAccountAssociation(com.accela.aa.finance.trustAccount.TrustAccountAssociationModel)
 */};
 
-this.getTrustAccountListWithNegativeBalance = function() {/*
+  this.getTrustAccountListWithNegativeBalance = function () {/*
 ScriptResult getTrustAccountListWithNegativeBalance()
 ScriptResult getTrustAccountListWithNegativeBalance(java.lang.String)
 */};
 
-this.getTrustAccountIDListBySetID = function() {/*
+  this.getTrustAccountIDListBySetID = function () {/*
 ScriptResult getTrustAccountIDListBySetID(java.lang.String,com.accela.aa.util.QueryFormat)
 ScriptResult getTrustAccountIDListBySetID(java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat,java.lang.String)
 */};
 
-this.closeTrustAccountByPK = function() {/*
+  this.closeTrustAccountByPK = function () {/*
 ScriptResult closeTrustAccountByPK(java.lang.Long)
 ScriptResult closeTrustAccountByPK(java.lang.Long,java.lang.String)
 */};
 
-this.getTrustAccountListByAccountStatus = function() {/*
+  this.getTrustAccountListByAccountStatus = function () {/*
 ScriptResult getTrustAccountListByAccountStatus(java.lang.String,java.lang.String)
 ScriptResult getTrustAccountListByAccountStatus(java.lang.String)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.createTrustAccountPeopleScriptModel = function() {/*
+  this.createTrustAccountPeopleScriptModel = function () {/*
 TrustAccountPeopleScriptModel createTrustAccountPeopleScriptModel()
 */};
 
-this.getTrustAccountByAccountID = function() {/*
+  this.getTrustAccountByAccountID = function () {/*
 ScriptResult getTrustAccountByAccountID(java.lang.String,java.lang.String)
 ScriptResult getTrustAccountByAccountID(java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getTrustAccountListByCondition = function() {/*
+  this.getTrustAccountListByCondition = function () {/*
 ScriptResult getTrustAccountListByCondition(com.accela.aa.finance.trustAccount.TrustAccountModel,com.accela.aa.finance.trustAccount.TrustAccountPeopleModel,com.accela.aa.aamain.address.RefAddressModel,com.accela.aa.aamain.parcel.ParcelModel)
 ScriptResult getTrustAccountListByCondition(com.accela.aa.finance.trustAccount.TrustAccountModel,com.accela.aa.finance.trustAccount.TrustAccountPeopleModel)
 */};
 
-this.getTransactionListByAccountSeq = function() {/*
+  this.getTransactionListByAccountSeq = function () {/*
 ScriptResult getTransactionListByAccountSeq(java.lang.Long)
 ScriptResult getTransactionListByAccountSeq(java.lang.Long,java.lang.String)
 */};
 
-this.getTrustAccountListByCAPID = function() {/*
+  this.getTrustAccountListByCAPID = function () {/*
 ScriptResult getTrustAccountListByCAPID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.createTrustAccountPeople = function() {/*
+  this.createTrustAccountPeople = function () {/*
 ScriptResult createTrustAccountPeople(com.accela.aa.finance.trustAccount.TrustAccountPeopleModel)
 */};
 
-this.getNewConditionScriptModel = function() {/*
+  this.getNewConditionScriptModel = function () {/*
 ScriptResult getNewConditionScriptModel()
 */};
 
-this.getCapConditionByStdConditionNum = function() {/*
+  this.getCapConditionByStdConditionNum = function () {/*
 ScriptResult getCapConditionByStdConditionNum(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getFields4TemplateTable = function() {/*
+  this.getFields4TemplateTable = function () {/*
 ScriptResult getFields4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.createCapConditionFromStdCondition = function() {/*
+  this.createCapConditionFromStdCondition = function () {/*
 ScriptResult createCapConditionFromStdCondition(com.accela.aa.aamain.cap.CapIDModel,RefStdConditionScriptModel)
 ScriptResult createCapConditionFromStdCondition(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getCondition = function() {/*
+  this.getCondition = function () {/*
 ScriptResult getCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 ScriptResult getCondition(ConditionScriptModel,java.lang.String)
 */};
 
-this.getCapConditions = function() {/*
+  this.getCapConditions = function () {/*
 ScriptResult getCapConditions(java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getCapConditions(com.accela.aa.aamain.cap.CapIDModel)
 ScriptResult getCapConditions(java.lang.String)
 ScriptResult getCapConditions(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getCapCondition = function() {/*
+  this.getCapCondition = function () {/*
 ScriptResult getCapCondition(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.createCapCondition = function() {/*
+  this.createCapCondition = function () {/*
 ScriptResult createCapCondition(CapConditionScriptModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getStandardConditionsByGroup = function() {/*
+  this.getStandardConditionsByGroup = function () {/*
 ScriptResult getStandardConditionsByGroup(java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getNewAssetConditionScriptModel = function() {/*
+  this.getNewAssetConditionScriptModel = function () {/*
 ScriptResult getNewAssetConditionScriptModel()
 */};
 }
 
-function  CapConditionScript() {
-this.editCapCondition = function() {/*
+function CapConditionScript() {
+  this.editCapCondition = function () {/*
 ScriptResult editCapCondition(CapConditionScriptModel)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getStandardConditions = function() {/*
+  this.getStandardConditions = function () {/*
 ScriptResult getStandardConditions(java.lang.String,java.lang.String,java.lang.String)
 ScriptResult getStandardConditions(java.lang.String,java.lang.String)
 */};
 
-this.createConditionFromStdCondition = function() {/*
+  this.createConditionFromStdCondition = function () {/*
 ScriptResult createConditionFromStdCondition(ConditionScriptModel,java.lang.String)
 ScriptResult createConditionFromStdCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 */};
 
-this.editTableValue4TemplateTable = function() {/*
+  this.editTableValue4TemplateTable = function () {/*
 ScriptResult editTableValue4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String,java.lang.Long)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.deleteCapCondition = function() {/*
+  this.deleteCapCondition = function () {/*
 ScriptResult deleteCapCondition(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.addCapCondition = function() {/*
+  this.addCapCondition = function () {/*
 ScriptResult addCapCondition(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addCapCondition(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addCapCondition(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.String)
@@ -3336,1973 +3338,1973 @@ ScriptResult addCapCondition(com.accela.aa.aamain.cap.CapIDModel,java.lang.Strin
 ScriptResult addCapCondition(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long)
 */};
 
-this.createConditionWithMulLangs = function() {/*
+  this.createConditionWithMulLangs = function () {/*
 ScriptResult createConditionWithMulLangs(ConditionScriptModel[],ConditionScriptModel)
 */};
 
-this.getNewOwnerConditionScriptModel = function() {/*
+  this.getNewOwnerConditionScriptModel = function () {/*
 ScriptResult getNewOwnerConditionScriptModel()
 */};
 
-this.getOwnerCondition = function() {/*
+  this.getOwnerCondition = function () {/*
 ScriptResult getOwnerCondition(long,long)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getFields4TemplateForm = function() {/*
+  this.getFields4TemplateForm = function () {/*
 ScriptResult getFields4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.getAssetCondition = function() {/*
+  this.getAssetCondition = function () {/*
 ScriptResult getAssetCondition(long,long)
 */};
 
-this.createCondition = function() {/*
+  this.createCondition = function () {/*
 ScriptResult createCondition(ConditionScriptModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel[],com.accela.aa.condition.condition.ConditionModel)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.cloneCapCondition = function() {/*
+  this.cloneCapCondition = function () {/*
 ScriptResult cloneCapCondition(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.editField4TemplateForm = function() {/*
+  this.editField4TemplateForm = function () {/*
 ScriptResult editField4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String)
 */};
 
-this.editBatchJobStatus = function() {/*
+  this.editBatchJobStatus = function () {/*
 ScriptResult editBatchJobStatus(java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  BatchJobScript() {
-this.getJobID = function() {/*
+function BatchJobScript() {
+  this.getJobID = function () {/*
 ScriptResult getJobID()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.get = function() {/*
+  this.get = function () {/*
 ScriptResult get(java.lang.String)
 */};
 }
 
-function  HttpClientScript() {
-this.wait = function() {/*
+function HttpClientScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initPostParameters = function() {/*
+  this.initPostParameters = function () {/*
 java.util.Map initPostParameters()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.post = function() {/*
+  this.post = function () {/*
 ScriptResult post(java.lang.String,java.util.Map)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.setServiceProviderCode = function() {/*
+  this.setServiceProviderCode = function () {/*
 void setServiceProviderCode(java.lang.String)
 */};
 
-this.getCallerID = function() {/*
+  this.getCallerID = function () {/*
 java.lang.String getCallerID()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.setValue = function() {/*
+  this.setValue = function () {/*
 void setValue(java.lang.String,com.accela.ams.rating.RatingFormulaFieldModel)
 */};
 
-this.getValue = function() {/*
+  this.getValue = function () {/*
 com.accela.ams.rating.RatingFormulaFieldModel getValue(java.lang.String)
 */};
 
-this.setCallerID = function() {/*
+  this.setCallerID = function () {/*
 void setCallerID(java.lang.String)
 */};
 
-this.runExpression = function() {/*
+  this.runExpression = function () {/*
 java.lang.Double runExpression(java.lang.String,java.util.List)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.setInputParams = function() {/*
+  this.setInputParams = function () {/*
 void setInputParams(java.util.HashMap)
 */};
 }
 
-function  RatingFormulaScript() {
-this.setReturnRating = function() {/*
+function RatingFormulaScript() {
+  this.setReturnRating = function () {/*
 void setReturnRating(java.lang.Double)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getScriptText = function() {/*
+  this.getScriptText = function () {/*
 java.lang.String getScriptText()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.diffDate = function() {/*
+  this.diffDate = function () {/*
 long diffDate(java.lang.String,java.lang.String)
 */};
 
-this.getServiceProviderCode = function() {/*
+  this.getServiceProviderCode = function () {/*
 java.lang.String getServiceProviderCode()
 */};
 
-this.addDate = function() {/*
+  this.addDate = function () {/*
 java.lang.String addDate(java.lang.String,long)
 */};
 
-this.setScriptText = function() {/*
+  this.setScriptText = function () {/*
 void setScriptText(java.lang.String)
 */};
 
-{}
-this.createParamList = function() {/*
+  { }
+  this.createParamList = function () {/*
 java.util.List createParamList()
 */};
 
-this.getReturnRating = function() {/*
+  this.getReturnRating = function () {/*
 java.lang.Double getReturnRating()
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getInputParams = function() {/*
+  this.getInputParams = function () {/*
 java.util.HashMap getInputParams()
 */};
 
-this.parseDate = function() {/*
+  this.parseDate = function () {/*
 java.util.Date parseDate(java.lang.String)
 */};
 
-this.getCapOwnerScriptModel = function() {/*
+  this.getCapOwnerScriptModel = function () {/*
 ScriptResult getCapOwnerScriptModel()
 */};
 
-this.updateDailyOwnerWithAPOAttribute = function() {/*
+  this.updateDailyOwnerWithAPOAttribute = function () {/*
 ScriptResult updateDailyOwnerWithAPOAttribute(CapOwnerScriptModel)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getParcelOwnersByCap = function() {/*
+  this.getParcelOwnersByCap = function () {/*
 ScriptResult getParcelOwnersByCap(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  OwnerScript() {
-this.getOwnersByParcel = function() {/*
+function OwnerScript() {
+  this.getOwnersByParcel = function () {/*
 ScriptResult getOwnersByParcel(ParcelScriptModel)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.removeCapOwnerModel = function() {/*
+  this.removeCapOwnerModel = function () {/*
 ScriptResult removeCapOwnerModel(CapOwnerScriptModel)
 */};
 
-this.copyCapOwnerModel = function() {/*
+  this.copyCapOwnerModel = function () {/*
 ScriptResult copyCapOwnerModel(CapOwnerScriptModel,CapOwnerScriptModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.createCapOwnerWithAPOAttribute = function() {/*
+  this.createCapOwnerWithAPOAttribute = function () {/*
 ScriptResult createCapOwnerWithAPOAttribute(CapOwnerScriptModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getOwnerByCapId = function() {/*
+  this.getOwnerByCapId = function () {/*
 ScriptResult getOwnerByCapId(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getUserRight = function() {/*
+  this.getUserRight = function () {/*
 ScriptResult getUserRight(java.lang.String,java.lang.String)
 */};
 
-this.isSupervisor = function() {/*
+  this.isSupervisor = function () {/*
 ScriptResult isSupervisor(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  UserRightScript() {
-this.wait = function() {/*
+function UserRightScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.updateUserProfileValue = function() {/*
+  this.updateUserProfileValue = function () {/*
 ScriptResult updateUserProfileValue(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getUserProfileValue = function() {/*
+  this.getUserProfileValue = function () {/*
 ScriptResult getUserProfileValue(java.lang.String,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getCapContactByContactID = function() {/*
+  this.getCapContactByContactID = function () {/*
 ScriptResult getCapContactByContactID(long)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getPeopleAttributeByPeople = function() {/*
+  this.getPeopleAttributeByPeople = function () {/*
 ScriptResult getPeopleAttributeByPeople(long,java.lang.String)
 */};
 
-this.getCapContactByRefPeopleModel = function() {/*
+  this.getCapContactByRefPeopleModel = function () {/*
 ScriptResult getCapContactByRefPeopleModel(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.getPeopleByPhone1 = function() {/*
+  this.getPeopleByPhone1 = function () {/*
 ScriptResult getPeopleByPhone1(java.lang.String)
 */};
 
-this.getPeopleByFullName = function() {/*
+  this.getPeopleByFullName = function () {/*
 ScriptResult getPeopleByFullName(java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getSysUserByID = function() {/*
+  this.getSysUserByID = function () {/*
 ScriptResult getSysUserByID(java.lang.String)
 */};
 
-this.getCapContactByPK = function() {/*
+  this.getCapContactByPK = function () {/*
 ScriptResult getCapContactByPK(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getContactType = function() {/*
+  this.getContactType = function () {/*
 ScriptResult getContactType(com.accela.aa.util.QueryFormat)
 */};
 
-this.deleteUserDiscipline = function() {/*
+  this.deleteUserDiscipline = function () {/*
 ScriptResult deleteUserDiscipline(java.lang.String,java.lang.String)
 */};
 
-this.createPeopleAttributeModel = function() {/*
+  this.createPeopleAttributeModel = function () {/*
 ScriptResult createPeopleAttributeModel()
 */};
 
-this.createPeopleModel = function() {/*
+  this.createPeopleModel = function () {/*
 ScriptResult createPeopleModel()
 */};
 
-this.editPeopleWithAttribute = function() {/*
+  this.editPeopleWithAttribute = function () {/*
 ScriptResult editPeopleWithAttribute(com.accela.aa.aamain.people.PeopleModel,java.util.Collection)
 */};
 
-this.getUserGroups = function() {/*
+  this.getUserGroups = function () {/*
 ScriptResult getUserGroups()
 */};
 
-this.autoAssignReviewers = function() {/*
+  this.autoAssignReviewers = function () {/*
 ScriptResult autoAssignReviewers(com.accela.aa.aamain.cap.CapIDModel,java.util.List,int,java.lang.String)
 */};
 
-this.getPeopleByOthers = function() {/*
+  this.getPeopleByOthers = function () {/*
 ScriptResult getPeopleByOthers(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.newContactByCapContact = function() {/*
+  this.newContactByCapContact = function () {/*
 ScriptResult newContactByCapContact(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.createPeopleWithAttribute = function() {/*
+  this.createPeopleWithAttribute = function () {/*
 ScriptResult createPeopleWithAttribute(com.accela.aa.aamain.people.PeopleModel,java.util.Collection)
 */};
 
-this.getPeopleByBusinessName = function() {/*
+  this.getPeopleByBusinessName = function () {/*
 ScriptResult getPeopleByBusinessName(java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getDepartmentList = function() {/*
+  this.getDepartmentList = function () {/*
 ScriptResult getDepartmentList(java.lang.String)
 */};
 
-this.editPeople = function() {/*
+  this.editPeople = function () {/*
 ScriptResult editPeople(com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.editOtherContactsWithCurrentContact = function() {/*
+  this.editOtherContactsWithCurrentContact = function () {/*
 ScriptResult editOtherContactsWithCurrentContact(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.editCapContact = function() {/*
+  this.editCapContact = function () {/*
 ScriptResult editCapContact(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.createCapContactWithAttribute = function() {/*
+  this.createCapContactWithAttribute = function () {/*
 ScriptResult createCapContactWithAttribute(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.getPeople = function() {/*
+  this.getPeople = function () {/*
 ScriptResult getPeople(long)
 */};
 
-this.createPeople = function() {/*
+  this.createPeople = function () {/*
 ScriptResult createPeople(com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.getDisciplines = function() {/*
+  this.getDisciplines = function () {/*
 ScriptResult getDisciplines(java.lang.String)
 */};
 
-this.getFIDList = function() {/*
+  this.getFIDList = function () {/*
 ScriptResult getFIDList(java.lang.String,java.lang.String)
 */};
 
-this.removeCapContact = function() {/*
+  this.removeCapContact = function () {/*
 ScriptResult removeCapContact(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getCapContactByCapID = function() {/*
+  this.getCapContactByCapID = function () {/*
 ScriptResult getCapContactByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getPeopleByAddress = function() {/*
+  this.getPeopleByAddress = function () {/*
 ScriptResult getPeopleByAddress(com.accela.aa.aamain.address.CompactAddressModel)
 ScriptResult getPeopleByAddress(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getPeopleByOthersForDaily = function() {/*
+  this.getPeopleByOthersForDaily = function () {/*
 ScriptResult getPeopleByOthersForDaily(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getSysUserListByDepartment = function() {/*
+  this.getSysUserListByDepartment = function () {/*
 ScriptResult getSysUserListByDepartment(com.accela.aa.aamain.organization.DepartmentModel)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.updateUserWorkload = function() {/*
+  this.updateUserWorkload = function () {/*
 ScriptResult updateUserWorkload(java.lang.String,java.lang.String)
 */};
 
-this.copyCapContactModel = function() {/*
+  this.copyCapContactModel = function () {/*
 ScriptResult copyCapContactModel(com.accela.aa.aamain.people.CapContactModel,com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.getUserModules = function() {/*
+  this.getUserModules = function () {/*
 ScriptResult getUserModules(java.lang.String)
 */};
 
-this.addUserDiscipline = function() {/*
+  this.addUserDiscipline = function () {/*
 ScriptResult addUserDiscipline(java.lang.String,java.lang.String)
 */};
 
-this.getContactTypeAll = function() {/*
+  this.getContactTypeAll = function () {/*
 ScriptResult getContactTypeAll(com.accela.aa.util.QueryFormat)
 */};
 
-this.removePeople = function() {/*
+  this.removePeople = function () {/*
 ScriptResult removePeople(java.lang.String)
 ScriptResult removePeople(com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.editPeopleAttribute = function() {/*
+  this.editPeopleAttribute = function () {/*
 ScriptResult editPeopleAttribute(com.accela.aa.aamain.people.PeopleAttributeModel)
 */};
 
-this.getPeopleByPeopleModel = function() {/*
+  this.getPeopleByPeopleModel = function () {/*
 ScriptResult getPeopleByPeopleModel(com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.editContactByCapContact = function() {/*
+  this.editContactByCapContact = function () {/*
 ScriptResult editContactByCapContact(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.getDepartmentBySeqID = function() {/*
+  this.getDepartmentBySeqID = function () {/*
 ScriptResult getDepartmentBySeqID(java.lang.String)
 */};
 
-this.createCapContact = function() {/*
+  this.createCapContact = function () {/*
 ScriptResult createCapContact(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.getPeopleByFMLName = function() {/*
+  this.getPeopleByFMLName = function () {/*
 ScriptResult getPeopleByFMLName(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getSysUserList = function() {/*
+  this.getSysUserList = function () {/*
 ScriptResult getSysUserList(com.accela.aa.util.QueryFormat)
 */};
 
-this.createPeopleAttribute = function() {/*
+  this.createPeopleAttribute = function () {/*
 ScriptResult createPeopleAttribute(com.accela.aa.aamain.people.PeopleAttributeModel)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.removePeopleWithAttribute = function() {/*
+  this.removePeopleWithAttribute = function () {/*
 ScriptResult removePeopleWithAttribute(com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.getSysUserListByDiscipline = function() {/*
+  this.getSysUserListByDiscipline = function () {/*
 ScriptResult getSysUserListByDiscipline(java.lang.String)
 */};
 
-this.newContactByCapContacts = function() {/*
+  this.newContactByCapContacts = function () {/*
 ScriptResult newContactByCapContacts(java.util.List)
 */};
 
-this.editContactByRefContact = function() {/*
+  this.editContactByRefContact = function () {/*
 ScriptResult editContactByRefContact(com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.getCapIDsByRefContact = function() {/*
+  this.getCapIDsByRefContact = function () {/*
 ScriptResult getCapIDsByRefContact(PeopleScriptModel)
 */};
 
-this.editContactByCapContacts = function() {/*
+  this.editContactByCapContacts = function () {/*
 ScriptResult editContactByCapContacts(java.util.List)
 */};
 }
 
-function  PeopleScript(){
-this.editCapContactWithAttribute = function() {/*
+function PeopleScript() {
+  this.editCapContactWithAttribute = function () {/*
 ScriptResult editCapContactWithAttribute(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.getSysUserListByDepartmentName = function() {/*
+  this.getSysUserListByDepartmentName = function () {/*
 ScriptResult getSysUserListByDepartmentName(java.lang.String)
 */};
 
-this.getUsersByUserIdAndName = function() {/*
+  this.getUsersByUserIdAndName = function () {/*
 ScriptResult getUsersByUserIdAndName(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.addUserDistrict = function() {/*
+  this.addUserDistrict = function () {/*
 ScriptResult addUserDistrict(java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.isExisted = function() {/*
+  this.isExisted = function () {/*
 ScriptResult isExisted(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.getUserDistricts = function() {/*
+  this.getUserDistricts = function () {/*
 ScriptResult getUserDistricts(java.lang.String)
 */};
 
-this.getPeoplesByAttrs = function() {/*
+  this.getPeoplesByAttrs = function () {/*
 ScriptResult getPeoplesByAttrs(com.accela.aa.aamain.people.PeopleModel,java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getUserDisciplines = function() {/*
+  this.getUserDisciplines = function () {/*
 ScriptResult getUserDisciplines(java.lang.String)
 */};
 
-this.getDistricts = function() {/*
+  this.getDistricts = function () {/*
 ScriptResult getDistricts(java.lang.String)
 */};
 
-this.deleteUserDistrict = function() {/*
+  this.deleteUserDistrict = function () {/*
 ScriptResult deleteUserDistrict(java.lang.String,java.lang.String)
 */};
 
-this.createCapContactWithRefPeopleModel = function() {/*
+  this.createCapContactWithRefPeopleModel = function () {/*
 ScriptResult createCapContactWithRefPeopleModel(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.people.PeopleModel)
 */};
 
-this.toObjectArray = function() {/*
+  this.toObjectArray = function () {/*
 ScriptResult toObjectArray(java.lang.Object)
 */};
 
-this.httpPostToSoapWebService = function() {/*
+  this.httpPostToSoapWebService = function () {/*
 ScriptResult httpPostToSoapWebService(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.parseDate = function() {/*
+  this.parseDate = function () {/*
 java.util.Date parseDate(java.lang.String)
 */};
 
-this.add = function() {/*
+  this.add = function () {/*
 double add(double,double)
 */};
 
-this.getValueFromXML = function() {/*
+  this.getValueFromXML = function () {/*
 java.lang.String getValueFromXML(java.lang.String,java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.newQueryFormat = function() {/*
+  this.newQueryFormat = function () {/*
 com.accela.aa.util.QueryFormat newQueryFormat()
 */};
 
-this.getLogger = function() {/*
+  this.getLogger = function () {/*
 com.accela.util.AVLogger getLogger()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getCustomContentByType4InspScheAfter = function() {/*
+  this.getCustomContentByType4InspScheAfter = function () {/*
 java.lang.String getCustomContentByType4InspScheAfter(java.lang.String,com.accela.aa.inspection.inspection.InspectionModel,com.accela.aa.aamain.cap.CapIDModel,java.util.Hashtable)
 */};
 
-this.doubleFormat = function() {/*
+  this.doubleFormat = function () {/*
 java.lang.Double doubleFormat(java.lang.Double)
 */};
 
-this.subtract = function() {/*
+  this.subtract = function () {/*
 double subtract(double,double)
 */};
 
-this.compare = function() {/*
+  this.compare = function () {/*
 int compare(double,double)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.newArrayList = function() {/*
+  this.newArrayList = function () {/*
 java.util.ArrayList newArrayList()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.parseInt = function() {/*
+  this.parseInt = function () {/*
 java.lang.Integer parseInt(java.lang.String)
 */};
 
-this.getDeadlineDay = function() {/*
+  this.getDeadlineDay = function () {/*
 ScriptResult getDeadlineDay(java.util.Date,java.util.Date,java.lang.String)
 */};
 }
 
-function  UtilScript() {
-this.notify = function() {/*
+function UtilScript() {
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getCustomContentByType = function() {/*
+  this.getCustomContentByType = function () {/*
 java.lang.String getCustomContentByType(java.lang.String,java.util.Hashtable)
 */};
 
-this.multiply = function() {/*
+  this.multiply = function () {/*
 double multiply(double,double)
 */};
 
-this.instanceOfString = function() {/*
+  this.instanceOfString = function () {/*
 boolean instanceOfString(java.lang.Object)
 */};
 
-this.divide = function() {/*
+  this.divide = function () {/*
 double divide(double,double)
 double divide(double,double,int)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.formatFee = function() {/*
+  this.formatFee = function () {/*
 java.lang.String formatFee(double)
 */};
 
-this.getCalendar = function() {/*
+  this.getCalendar = function () {/*
 java.util.Calendar getCalendar()
 */};
 
-this.parseLong = function() {/*
+  this.parseLong = function () {/*
 java.lang.Long parseLong(java.lang.String)
 */};
 
-this.dateDiff = function() {/*
+  this.dateDiff = function () {/*
 java.util.Date dateDiff(java.util.Date,java.lang.String,int)
 */};
 
-this.newHashtable = function() {/*
+  this.newHashtable = function () {/*
 java.util.Hashtable newHashtable()
 */};
 
-this.formatDate = function() {/*
+  this.formatDate = function () {/*
 java.lang.String formatDate(java.util.Date,java.lang.String)
 */};
 
-this.now = function() {/*
+  this.now = function () {/*
 java.util.Date now()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.round = function() {/*
+  this.round = function () {/*
 double round(double,int)
 */};
 
-this.httpPost = function() {/*
+  this.httpPost = function () {/*
 ScriptResult httpPost(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult httpPost(java.lang.String,java.lang.String)
 ScriptResult httpPost(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.newHashMap = function() {/*
+  this.newHashMap = function () {/*
 java.util.HashMap newHashMap()
 */};
 
-this.writeToFile = function() {/*
+  this.writeToFile = function () {/*
 java.io.File writeToFile(java.lang.Object,java.lang.String)
 */};
 
-this.newStringBuffer = function() {/*
+  this.newStringBuffer = function () {/*
 java.lang.StringBuffer newStringBuffer()
 */};
 
-this.parseDouble = function() {/*
+  this.parseDouble = function () {/*
 java.lang.Double parseDouble(java.lang.String)
 */};
 
-this.numberFormat = function() {/*
+  this.numberFormat = function () {/*
 java.lang.String numberFormat(java.lang.Double)
 */};
 
-this.deleteFile = function() {/*
+  this.deleteFile = function () {/*
 void deleteFile(java.lang.String)
 */};
 
-this.getCustomDescAsSubjectByType = function() {/*
+  this.getCustomDescAsSubjectByType = function () {/*
 java.lang.String getCustomDescAsSubjectByType(java.lang.String,java.util.Hashtable)
 */};
 
-this.createRefAppSpecDropDown = function() {/*
+  this.createRefAppSpecDropDown = function () {/*
 ScriptResult createRefAppSpecDropDown(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getByFeeIndicator = function() {/*
+  this.getByFeeIndicator = function () {/*
 ScriptResult getByFeeIndicator(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.addRefASISubgroupsToCAP = function() {/*
+  this.addRefASISubgroupsToCAP = function () {/*
 ScriptResult addRefASISubgroupsToCAP(java.lang.String,java.lang.String[],com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getByCapID = function() {/*
+  this.getByCapID = function () {/*
 ScriptResult getByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.editSingleAppSpecific = function() {/*
+  this.editSingleAppSpecific = function () {/*
 ScriptResult editSingleAppSpecific(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getCheckboxByCapIDAndGroup = function() {/*
+  this.getCheckboxByCapIDAndGroup = function () {/*
 ScriptResult getCheckboxByCapIDAndGroup(com.accela.aa.aamain.cap.CapIDModel,long,int,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getRefAppSpecInfoWithFieldList = function() {/*
+  this.getRefAppSpecInfoWithFieldList = function () {/*
 ScriptResult getRefAppSpecInfoWithFieldList(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.removeASISubgroupsFromCAP = function() {/*
+  this.removeASISubgroupsFromCAP = function () {/*
 ScriptResult removeASISubgroupsFromCAP(com.accela.aa.aamain.cap.CapIDModel,java.lang.String[])
 */};
 
-this.editAppSpecificInfo = function() {/*
+  this.editAppSpecificInfo = function () {/*
 ScriptResult editAppSpecificInfo(com.accela.aa.aamain.cap.AppSpecificInfoModel[])
 */};
 }
 
-function  AppSpecificInfoScript() {
-this.getByList = function() {/*
+function AppSpecificInfoScript() {
+  this.getByList = function () {/*
 ScriptResult getByList(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getRefASISubgroups = function() {/*
+  this.getRefASISubgroups = function () {/*
 ScriptResult getRefASISubgroups(java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.copyASISubGroups = function() {/*
+  this.copyASISubGroups = function () {/*
 ScriptResult copyASISubGroups(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,java.lang.String[])
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.editAppSpecInfos = function() {/*
+  this.editAppSpecInfos = function () {/*
 ScriptResult editAppSpecInfos(com.accela.aa.aamain.cap.AppSpecificInfoModel[])
 */};
 
-this.getCAPASISubgroups = function() {/*
+  this.getCAPASISubgroups = function () {/*
 ScriptResult getCAPASISubgroups(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getAppSpecificInfos = function() {/*
+  this.getAppSpecificInfos = function () {/*
 ScriptResult getAppSpecificInfos(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 ScriptResult getAppSpecificInfos(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getAppSpecificInfoByCap = function() {/*
+  this.getAppSpecificInfoByCap = function () {/*
 ScriptResult getAppSpecificInfoByCap(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.getByType = function() {/*
+  this.getByType = function () {/*
 ScriptResult getByType(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.editAppSpecInfoValue = function() {/*
+  this.editAppSpecInfoValue = function () {/*
 ScriptResult editAppSpecInfoValue(com.accela.aa.aamain.cap.AppSpecificInfoModel)
 */};
 
-this.getRefAppSpecDropDownList = function() {/*
+  this.getRefAppSpecDropDownList = function () {/*
 ScriptResult getRefAppSpecDropDownList(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getAppSpecificTableGroupModel = function() {/*
+  this.getAppSpecificTableGroupModel = function () {/*
 ScriptResult getAppSpecificTableGroupModel(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.editAppSpecificTableInfos = function() {/*
+  this.editAppSpecificTableInfos = function () {/*
 ScriptResult editAppSpecificTableInfos(com.accela.aa.aamain.appspectable.AppSpecificTableModel,com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 }
 
-function  AppSpecificTableScript() {
-this.wait = function() {/*
+function AppSpecificTableScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.createCapIDScriptModel = function() {/*
+  this.createCapIDScriptModel = function () {/*
 CapIDScriptModel createCapIDScriptModel()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getAppSpecificGroupTableNames = function() {/*
+  this.getAppSpecificGroupTableNames = function () {/*
 ScriptResult getAppSpecificGroupTableNames(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.removeAppSpecificTableInfos = function() {/*
+  this.removeAppSpecificTableInfos = function () {/*
 ScriptResult removeAppSpecificTableInfos(java.lang.String,com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getAppSpecificTableModel = function() {/*
+  this.getAppSpecificTableModel = function () {/*
 ScriptResult getAppSpecificTableModel(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 ScriptResult getAppSpecificTableModel(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.createTemplateRow = function() {/*
+  this.createTemplateRow = function () {/*
 com.accela.aa.template.subgroup.TemplateRow createTemplateRow(java.lang.Long,java.util.List)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  GenericTemplateScript() {
-this.getTemplate = function() {/*
+function GenericTemplateScript() {
+  this.getTemplate = function () {/*
 ScriptResult getTemplate(com.accela.aa.template.entity.EntityPKModel)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getTemplateStructureByGroupName = function() {/*
+  this.getTemplateStructureByGroupName = function () {/*
 ScriptResult getTemplateStructureByGroupName(java.lang.String)
 */};
 
-this.createGenericTemplateTableValue = function() {/*
+  this.createGenericTemplateTableValue = function () {/*
 com.accela.aa.template.field.GenericTemplateTableValue createGenericTemplateTableValue(java.lang.Long,com.accela.aa.template.field.GenericTemplateAttribute,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getReportModelByName = function() {/*
+  this.getReportModelByName = function () {/*
 ScriptResult getReportModelByName(java.lang.String)
 */};
 
-this.getReportDetailModel = function() {/*
+  this.getReportDetailModel = function () {/*
 ScriptResult getReportDetailModel()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getReportScriptModel = function() {/*
+  this.getReportScriptModel = function () {/*
 ScriptResult getReportScriptModel(com.accela.v360.reports.ReportDetailModel)
 */};
 
-this.storeReportToDisk = function() {/*
+  this.storeReportToDisk = function () {/*
 ScriptResult storeReportToDisk(ReportResultScriptModel)
 */};
 
-this.getReportInfoModelByName = function() {/*
+  this.getReportInfoModelByName = function () {/*
 ScriptResult getReportInfoModelByName(java.lang.String)
 */};
 
-this.sendReportInEmail = function() {/*
+  this.sendReportInEmail = function () {/*
 ScriptResult sendReportInEmail(ReportInfoScriptModel,ReportResultScriptModel)
 */};
 
-this.runReport = function() {/*
+  this.runReport = function () {/*
 ScriptResult runReport(java.util.HashMap,ReportScriptModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  RunReportScript() {
-this.initScript = function() {/*
+function RunReportScript() {
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.hasPermission = function() {/*
+  this.hasPermission = function () {/*
 ScriptResult hasPermission(java.lang.String,java.lang.String)
 */};
 
-this.getReportResult = function() {/*
+  this.getReportResult = function () {/*
 ScriptResult getReportResult(ReportInfoScriptModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.isAboutToExpireStatus = function() {/*
+  this.isAboutToExpireStatus = function () {/*
 ScriptResult isAboutToExpireStatus(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.sendAutoIssueLicenseEmail = function() {/*
+  this.sendAutoIssueLicenseEmail = function () {/*
 ScriptResult sendAutoIssueLicenseEmail(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getLicensesByStatus = function() {/*
+  this.getLicensesByStatus = function () {/*
 ScriptResult getLicensesByStatus(java.lang.String)
 */};
 
-this.getLicensesByCapID = function() {/*
+  this.getLicensesByCapID = function () {/*
 ScriptResult getLicensesByCapID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 ScriptResult getLicensesByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.sendDeniedNoticeEmailToCitizenUser = function() {/*
+  this.sendDeniedNoticeEmailToCitizenUser = function () {/*
 ScriptResult sendDeniedNoticeEmailToCitizenUser(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.isExpiredLicenses = function() {/*
+  this.isExpiredLicenses = function () {/*
 ScriptResult isExpiredLicenses(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  ExpirationScript() {
-this.activeLicensesByCapID = function() {/*
+function ExpirationScript() {
+  this.activeLicensesByCapID = function () {/*
 ScriptResult activeLicensesByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.sendNoAutoIssueLicenseEmail = function() {/*
+  this.sendNoAutoIssueLicenseEmail = function () {/*
 ScriptResult sendNoAutoIssueLicenseEmail(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.editB1Expiration = function() {/*
+  this.editB1Expiration = function () {/*
 ScriptResult editB1Expiration(com.accela.aa.license.expiration.B1ExpirationModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.sendApprovedNoticEmailToCitizenUser = function() {/*
+  this.sendApprovedNoticEmailToCitizenUser = function () {/*
 ScriptResult sendApprovedNoticEmailToCitizenUser(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getLicensesByDate = function() {/*
+  this.getLicensesByDate = function () {/*
 ScriptResult getLicensesByDate(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 }
 
-function  TaskSpecificInfoScript() {
-this.wait = function() {/*
+function TaskSpecificInfoScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getTaskSpecificInfoScriptModel = function() {/*
+  this.getTaskSpecificInfoScriptModel = function () {/*
 ScriptResult getTaskSpecificInfoScriptModel()
 */};
 
-this.editTaskSpecInfos = function() {/*
+  this.editTaskSpecInfos = function () {/*
 ScriptResult editTaskSpecInfos(com.accela.aa.aamain.cap.TaskSpecificInfoModel[])
 */};
 
-this.getTaskSpecificInfoByTask = function() {/*
+  this.getTaskSpecificInfoByTask = function () {/*
 ScriptResult getTaskSpecificInfoByTask(com.accela.aa.aamain.cap.CapIDModel,long,int)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getTaskSpecifiInfoByDesc = function() {/*
+  this.getTaskSpecifiInfoByDesc = function () {/*
 ScriptResult getTaskSpecifiInfoByDesc(com.accela.aa.aamain.cap.CapIDModel,long,int,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.get = function() {/*
+  this.get = function () {/*
 ScriptResult get(java.lang.String,java.lang.String)
 */};
 }
 
-function  OAuthClientScript() {
-this.wait = function() {/*
+function OAuthClientScript() {
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initPostParameters = function() {/*
+  this.initPostParameters = function () {/*
 java.util.Map initPostParameters()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.post = function() {/*
+  this.post = function () {/*
 ScriptResult post(java.lang.String,java.lang.String,java.util.Map)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getConfiguration = function() {/*
+  this.getConfiguration = function () {/*
 java.util.Map getConfiguration(java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getFeeItemByPK = function() {/*
+  this.getFeeItemByPK = function () {/*
 ScriptResult getFeeItemByPK(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getRefFeeItemByFeeCodeVersion = function() {/*
+  this.getRefFeeItemByFeeCodeVersion = function () {/*
 ScriptResult getRefFeeItemByFeeCodeVersion(java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime)
 */};
 
-this.getRefFeeItemByFeeCode = function() {/*
+  this.getRefFeeItemByFeeCode = function () {/*
 ScriptResult getRefFeeItemByFeeCode(java.lang.String,java.lang.String,java.lang.String,ScriptDateTime)
 */};
 
-this.createF4FeeItemScriptModel = function() {/*
+  this.createF4FeeItemScriptModel = function () {/*
 F4FeeItemScriptModel createF4FeeItemScriptModel()
 */};
 
-this.editFeeNotes = function() {/*
+  this.editFeeNotes = function () {/*
 ScriptResult editFeeNotes(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,long)
 */};
 
-this.addFeeItem = function() {/*
+  this.addFeeItem = function () {/*
 ScriptResult addFeeItem(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,double,java.lang.String,double,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addFeeItem(java.util.Collection)
 ScriptResult addFeeItem(FeeItemScriptModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  FeeScript() {
-this.getFeeItems = function() {/*
+function FeeScript() {
+  this.getFeeItems = function () {/*
 ScriptResult getFeeItems(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getScriptF4FeeItemModel = function() {/*
+  this.getScriptF4FeeItemModel = function () {/*
 ScriptResult getScriptF4FeeItemModel(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,double,java.lang.String,double,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getRefFeeScheduleVersionsByDate = function() {/*
+  this.getRefFeeScheduleVersionsByDate = function () {/*
 ScriptResult getRefFeeScheduleVersionsByDate(java.lang.String,ScriptDateTime)
 */};
 
-this.isFullPaid4Renewal = function() {/*
+  this.isFullPaid4Renewal = function () {/*
 ScriptResult isFullPaid4Renewal(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getFeeItemOfInvoicedByCapID = function() {/*
+  this.getFeeItemOfInvoicedByCapID = function () {/*
 ScriptResult getFeeItemOfInvoicedByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getFeeTotal = function() {/*
+  this.getFeeTotal = function () {/*
 ScriptResult getFeeTotal(com.accela.aa.aamain.cap.CapIDModel)
 ScriptResult getFeeTotal(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.createCondition = function() {/*
+  this.createCondition = function () {/*
 ScriptResult createCondition(ConditionScriptModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel)
 ScriptResult createCondition(com.accela.aa.condition.condition.ConditionModel[],com.accela.aa.condition.condition.ConditionModel)
 */};
 
-this.getFields4TemplateForm = function() {/*
+  this.getFields4TemplateForm = function () {/*
 ScriptResult getFields4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.createCAECondition = function() {/*
+  this.createCAECondition = function () {/*
 ScriptResult createCAECondition(CAEConditionScriptModel)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getCAEConditions = function() {/*
+  this.getCAEConditions = function () {/*
 ScriptResult getCAEConditions(long)
 */};
 
-this.getNewOwnerConditionScriptModel = function() {/*
+  this.getNewOwnerConditionScriptModel = function () {/*
 ScriptResult getNewOwnerConditionScriptModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getCAECondition = function() {/*
+  this.getCAECondition = function () {/*
 ScriptResult getCAECondition(long,long)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  CAEConditionScript() {
-this.createConditionFromStdCondition = function() {/*
+function CAEConditionScript() {
+  this.createConditionFromStdCondition = function () {/*
 ScriptResult createConditionFromStdCondition(ConditionScriptModel,java.lang.String)
 ScriptResult createConditionFromStdCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 */};
 
-this.getNewConditionScriptModel = function() {/*
+  this.getNewConditionScriptModel = function () {/*
 ScriptResult getNewConditionScriptModel()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getAssetCondition = function() {/*
+  this.getAssetCondition = function () {/*
 ScriptResult getAssetCondition(long,long)
 */};
 
-this.editCAECondition = function() {/*
+  this.editCAECondition = function () {/*
 ScriptResult editCAECondition(CAEConditionScriptModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.editField4TemplateForm = function() {/*
+  this.editField4TemplateForm = function () {/*
 ScriptResult editField4TemplateForm(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.createConditionWithMulLangs = function() {/*
+  this.createConditionWithMulLangs = function () {/*
 ScriptResult createConditionWithMulLangs(ConditionScriptModel[],ConditionScriptModel)
 */};
 
-this.getOwnerCondition = function() {/*
+  this.getOwnerCondition = function () {/*
 ScriptResult getOwnerCondition(long,long)
 */};
 
-this.addCAECondition = function() {/*
+  this.addCAECondition = function () {/*
 ScriptResult addCAECondition(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult addCAECondition(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult addCAECondition(long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,ScriptDateTime,ScriptDateTime,com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.people.SysUserModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.removeCAECondition = function() {/*
+  this.removeCAECondition = function () {/*
 ScriptResult removeCAECondition(long,long)
 */};
 
-this.getNewAssetConditionScriptModel = function() {/*
+  this.getNewAssetConditionScriptModel = function () {/*
 ScriptResult getNewAssetConditionScriptModel()
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.editTableValue4TemplateTable = function() {/*
+  this.editTableValue4TemplateTable = function () {/*
 ScriptResult editTableValue4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK,java.lang.String,java.lang.Long)
 */};
 
-this.getCondition = function() {/*
+  this.getCondition = function () {/*
 ScriptResult getCondition(com.accela.aa.condition.condition.ConditionModel,java.lang.String)
 ScriptResult getCondition(ConditionScriptModel,java.lang.String)
 */};
 
-this.getFields4TemplateTable = function() {/*
+  this.getFields4TemplateTable = function () {/*
 ScriptResult getFields4TemplateTable(com.accela.aa.template.entity.EntityPKModel,com.accela.aa.template.field.GenericTemplateFieldPK)
 */};
 
-this.getContrLicListByUserSeqNBR = function() {/*
+  this.getContrLicListByUserSeqNBR = function () {/*
 ScriptResult getContrLicListByUserSeqNBR(java.lang.Long)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.sendApprovNoticeEmailToUser = function() {/*
+  this.sendApprovNoticeEmailToUser = function () {/*
 ScriptResult sendApprovNoticeEmailToUser(java.lang.String,java.lang.String,java.lang.String)
 */};
 }
 
-function  ContractorLicenseScript() {
-this.issueContrLicWithExpired = function() {/*
+function ContractorLicenseScript() {
+  this.issueContrLicWithExpired = function () {/*
 ScriptResult issueContrLicWithExpired(java.lang.Long,com.accela.aa.aamain.people.LicenseModel,boolean,boolean)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.sendNoticeEmailToRelatedAccounts = function() {/*
+  this.sendNoticeEmailToRelatedAccounts = function () {/*
 ScriptResult sendNoticeEmailToRelatedAccounts(java.lang.Long,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getContrLicenseByLicSeqNBR = function() {/*
+  this.getContrLicenseByLicSeqNBR = function () {/*
 ScriptResult getContrLicenseByLicSeqNBR(java.lang.Long,java.lang.Long)
 ScriptResult getContrLicenseByLicSeqNBR(java.lang.String,java.lang.Long)
 */};
 
-this.updateContractorLicense = function() {/*
+  this.updateContractorLicense = function () {/*
 ScriptResult updateContractorLicense(com.accela.pa.people.license.ContractorLicenseModel)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.sendIssueNoticeEmail = function() {/*
+  this.sendIssueNoticeEmail = function () {/*
 ScriptResult sendIssueNoticeEmail(java.lang.Long,java.lang.String,java.lang.String)
 */};
 
-this.getTimeLogModel = function() {/*
+  this.getTimeLogModel = function () {/*
 ScriptResult getTimeLogModel(long)
 ScriptResult getTimeLogModel()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getTimeTypeByTimeTypeName = function() {/*
+  this.getTimeTypeByTimeTypeName = function () {/*
 ScriptResult getTimeTypeByTimeTypeName(java.lang.String)
 */};
 
-this.getTimeGroupTypeModel = function() {/*
+  this.getTimeGroupTypeModel = function () {/*
 ScriptResult getTimeGroupTypeModel()
 */};
 
-this.getTimeGroupTypeModels = function() {/*
+  this.getTimeGroupTypeModels = function () {/*
 ScriptResult getTimeGroupTypeModels(java.lang.String,java.lang.String)
 ScriptResult getTimeGroupTypeModels(TimeGroupTypeScriptModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 }
 
-function  TimeAccountingScript() {
-this.getTimeLogModelByEntity = function() {/*
+function TimeAccountingScript() {
+  this.getTimeLogModelByEntity = function () {/*
 ScriptResult getTimeLogModelByEntity(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.Long,java.lang.Long)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getTimeGroupByTimeGroupName = function() {/*
+  this.getTimeGroupByTimeGroupName = function () {/*
 ScriptResult getTimeGroupByTimeGroupName(java.lang.String)
 */};
 
-this.addTimeLogModel = function() {/*
+  this.addTimeLogModel = function () {/*
 ScriptResult addTimeLogModel(TimeAccountingScriptModel)
 */};
 
-this.updateTimeLogModel = function() {/*
+  this.updateTimeLogModel = function () {/*
 ScriptResult updateTimeLogModel(TimeAccountingScriptModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.createPublicUser = function() {/*
+  this.createPublicUser = function () {/*
 ScriptResult createPublicUser(com.accela.v360.publicuser.PublicUserModel,com.accela.aa.aamain.people.LicenseModel[])
 ScriptResult createPublicUser(com.accela.v360.publicuser.PublicUserModel)
 */};
 
-this.resetPassword = function() {/*
+  this.resetPassword = function () {/*
 ScriptResult resetPassword(java.lang.String)
 */};
 
-this.getPublicUserListByLicenseSeqNBR = function() {/*
+  this.getPublicUserListByLicenseSeqNBR = function () {/*
 ScriptResult getPublicUserListByLicenseSeqNBR(java.lang.Long)
 */};
 
-this.getOrganizatonOwner = function() {/*
+  this.getOrganizatonOwner = function () {/*
 ScriptResult getOrganizatonOwner(com.accela.aa.aamain.organization.DepartmentModel)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.removePublicUserInfoFromAgency = function() {/*
+  this.removePublicUserInfoFromAgency = function () {/*
 ScriptResult removePublicUserInfoFromAgency(com.accela.v360.publicuser.PublicUserModel)
 */};
 
-this.checkPublicUserAccountInAgency = function() {/*
+  this.checkPublicUserAccountInAgency = function () {/*
 ScriptResult checkPublicUserAccountInAgency(com.accela.v360.publicuser.PublicUserModel)
 */};
 
-this.getPublicUser = function() {/*
+  this.getPublicUser = function () {/*
 ScriptResult getPublicUser(java.lang.Long)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getPublicUserListByContactNBR = function() {/*
+  this.getPublicUserListByContactNBR = function () {/*
 ScriptResult getPublicUserListByContactNBR(java.lang.Long)
 */};
 
-this.getLicenseModel = function() {/*
+  this.getLicenseModel = function () {/*
 com.accela.aa.aamain.people.LicenseModel getLicenseModel()
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.purgExpiredInactiveAccount = function() {/*
+  this.purgExpiredInactiveAccount = function () {/*
 ScriptResult purgExpiredInactiveAccount()
 */};
 }
 
-function  PublicUserScript() {
-this.notify = function() {/*
+function PublicUserScript() {
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getPublicUserListByOwnerNBR = function() {/*
+  this.getPublicUserListByOwnerNBR = function () {/*
 ScriptResult getPublicUserListByOwnerNBR(java.lang.String)
 */};
 
-this.getPublicUserBySearchKeys = function() {/*
+  this.getPublicUserBySearchKeys = function () {/*
 ScriptResult getPublicUserBySearchKeys(com.accela.v360.publicuser.PublicUserModel,boolean)
 */};
 
-this.getDepartmentModel = function() {/*
+  this.getDepartmentModel = function () {/*
 com.accela.aa.aamain.organization.DepartmentModel getDepartmentModel()
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.isRegisterred = function() {/*
+  this.isRegisterred = function () {/*
 ScriptResult isRegisterred(java.lang.Long)
 */};
 
-this.disablePublicUserAccount = function() {/*
+  this.disablePublicUserAccount = function () {/*
 ScriptResult disablePublicUserAccount(com.accela.v360.publicuser.PublicUserModel,boolean)
 */};
 
-this.getPublicUserByEmail = function() {/*
+  this.getPublicUserByEmail = function () {/*
 ScriptResult getPublicUserByEmail(java.lang.String)
 */};
 
-this.updateEmail4PublicUser = function() {/*
+  this.updateEmail4PublicUser = function () {/*
 ScriptResult updateEmail4PublicUser(com.accela.v360.publicuser.PublicUserModel,java.lang.String)
 */};
 
-this.getNewPublicUserUUID = function() {/*
+  this.getNewPublicUserUUID = function () {/*
 java.lang.String getNewPublicUserUUID()
 */};
 
-this.createPublicUserForAgency = function() {/*
+  this.createPublicUserForAgency = function () {/*
 ScriptResult createPublicUserForAgency(com.accela.v360.publicuser.PublicUserModel)
 */};
 
-this.getPublicUserByUserId = function() {/*
+  this.getPublicUserByUserId = function () {/*
 ScriptResult getPublicUserByUserId(java.lang.String)
 */};
 
-this.signon = function() {/*
+  this.signon = function () {/*
 ScriptResult signon(java.lang.String,java.lang.String)
 */};
 
-this.activatePublicUser = function() {/*
+  this.activatePublicUser = function () {/*
 ScriptResult activatePublicUser(java.lang.String)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.sendActivateEmail = function() {/*
+  this.sendActivateEmail = function () {/*
 ScriptResult sendActivateEmail(com.accela.v360.publicuser.PublicUserModel,boolean,boolean)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.sendPasswordEmail = function() {/*
+  this.sendPasswordEmail = function () {/*
 ScriptResult sendPasswordEmail(com.accela.v360.publicuser.PublicUserModel)
 */};
 
-this.sendHyperlinkActivateEmail = function() {/*
+  this.sendHyperlinkActivateEmail = function () {/*
 ScriptResult sendHyperlinkActivateEmail(com.accela.v360.publicuser.PublicUserModel)
 */};
 
-this.getPublicUserByPUser = function() {/*
+  this.getPublicUserByPUser = function () {/*
 ScriptResult getPublicUserByPUser(java.lang.String)
 */};
 
-this.isExistingEmailID = function() {/*
+  this.isExistingEmailID = function () {/*
 ScriptResult isExistingEmailID(java.lang.String)
 */};
 
-this.getPublicUserModel = function() {/*
+  this.getPublicUserModel = function () {/*
 com.accela.v360.publicuser.PublicUserModel getPublicUserModel()
 */};
 
-this.editPublicUser = function() {/*
+  this.editPublicUser = function () {/*
 ScriptResult editPublicUser(com.accela.v360.publicuser.PublicUserModel)
 */};
 
-this.isExistingUser = function() {/*
+  this.isExistingUser = function () {/*
 ScriptResult isExistingUser(java.lang.String)
 */};
 
-this.insertTaskWithResourceData = function() {/*
+  this.insertTaskWithResourceData = function () {/*
 ScriptResult insertTaskWithResourceData(TaskItemScriptModel,java.lang.String)
 */};
 
-this.assignTask = function() {/*
+  this.assignTask = function () {/*
 ScriptResult assignTask(com.accela.aa.workflow.workflow.TaskItemModel)
 */};
 
-this.rebillList = function() {/*
+  this.rebillList = function () {/*
 ScriptResult rebillList(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.getProcessRelationByPK = function() {/*
+  this.getProcessRelationByPK = function () {/*
 ScriptResult getProcessRelationByPK(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String)
 */};
 
-this.getTaskItemByTaskDes = function() {/*
+  this.getTaskItemByTaskDes = function () {/*
 ScriptResult getTaskItemByTaskDes(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,long)
 */};
 
-this.editTaskStatus = function() {/*
+  this.editTaskStatus = function () {/*
 ScriptResult editTaskStatus(TaskStatusScriptModel)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getTaskItemScriptModel = function() {/*
+  this.getTaskItemScriptModel = function () {/*
 ScriptResult getTaskItemScriptModel()
 */};
 
-this.getTaskItemForTaskAssign = function() {/*
+  this.getTaskItemForTaskAssign = function () {/*
 ScriptResult getTaskItemForTaskAssign(com.accela.aa.aamain.people.SysUserModel,com.accela.aa.aamain.organization.DepartmentModel,ScriptDateTime,ScriptDateTime)
 */};
 
-this.clearPrintFlag = function() {/*
+  this.clearPrintFlag = function () {/*
 ScriptResult clearPrintFlag(java.lang.String)
 */};
 
-this.WorkflowBean = function() {/*
+  this.WorkflowBean = function () {/*
 ScriptResult WorkflowBean(java.lang.String,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getAdHocTask = function() {/*
+  this.getAdHocTask = function () {/*
 ScriptResult getAdHocTask(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.editTask = function() {/*
+  this.editTask = function () {/*
 ScriptResult editTask(com.accela.aa.workflow.workflow.TaskItemModel,java.lang.String)
 ScriptResult editTask(TaskItemScriptModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.adjustTaskWithNoAudit = function() {/*
+  this.adjustTaskWithNoAudit = function () {/*
 ScriptResult adjustTaskWithNoAudit(com.accela.aa.workflow.workflow.TaskItemModel)
 */};
 
-this.getTaskItemWorkflowByCapID = function() {/*
+  this.getTaskItemWorkflowByCapID = function () {/*
 ScriptResult getTaskItemWorkflowByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getProcessNoteScriptModel = function() {/*
+  this.getProcessNoteScriptModel = function () {/*
 ScriptResult getProcessNoteScriptModel()
 */};
 
-this.getTask = function() {/*
+  this.getTask = function () {/*
 ScriptResult getTask(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 ScriptResult getTask(com.accela.aa.aamain.cap.CapIDModel,int)
 ScriptResult getTask(com.accela.aa.aamain.cap.CapIDModel,int,long)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.handleBDisposition = function() {/*
+  this.handleBDisposition = function () {/*
 ScriptResult handleBDisposition(com.accela.aa.aamain.cap.CapIDModel,int,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult handleBDisposition(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 */};
 
-this.createTaskStatus = function() {/*
+  this.createTaskStatus = function () {/*
 ScriptResult createTaskStatus(TaskStatusScriptModel)
 */};
 }
 
-function  WorkflowScript() {
-this.notify = function() {/*
+function WorkflowScript() {
+  this.notify = function () {/*
 void notify()
 */};
 
-this.getTasksDescStatus = function() {/*
+  this.getTasksDescStatus = function () {/*
 ScriptResult getTasksDescStatus(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.copyTask = function() {/*
+  this.copyTask = function () {/*
 ScriptResult copyTask(TaskItemScriptModel,TaskItemScriptModel,java.lang.String)
 */};
 
-this.getMessageForWorkflowTaskUpdated = function() {/*
+  this.getMessageForWorkflowTaskUpdated = function () {/*
 ScriptResult getMessageForWorkflowTaskUpdated(TaskItemScriptModel)
 */};
 
-this.createTaskStatusWithResourceData = function() {/*
+  this.createTaskStatusWithResourceData = function () {/*
 ScriptResult createTaskStatusWithResourceData(TaskStatusScriptModel)
 */};
 
-this.getLayedTaskName = function() {/*
+  this.getLayedTaskName = function () {/*
 ScriptResult getLayedTaskName(com.accela.aa.workflow.workflow.TaskItemModel)
 */};
 
-this.removeTask = function() {/*
+  this.removeTask = function () {/*
 ScriptResult removeTask(TaskItemScriptModel)
 */};
 
-this.getProcess = function() {/*
+  this.getProcess = function () {/*
 ScriptResult getProcess(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getTaskStatus = function() {/*
+  this.getTaskStatus = function () {/*
 ScriptResult getTaskStatus(TaskItemScriptModel,java.lang.String)
 */};
 
-this.handleDispositionWithFlag = function() {/*
+  this.handleDispositionWithFlag = function () {/*
 ScriptResult handleDispositionWithFlag(com.accela.aa.aamain.cap.CapIDModel,int,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult handleDispositionWithFlag(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 */};
 
-this.findByRebillList = function() {/*
+  this.findByRebillList = function () {/*
 ScriptResult findByRebillList(java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime)
 */};
 
-this.findByDescStatus = function() {/*
+  this.findByDescStatus = function () {/*
 ScriptResult findByDescStatus(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.deleteAndAssignWorkflow = function() {/*
+  this.deleteAndAssignWorkflow = function () {/*
 ScriptResult deleteAndAssignWorkflow(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,boolean)
 */};
 
-this.handleUDisposition = function() {/*
+  this.handleUDisposition = function () {/*
 ScriptResult handleUDisposition(com.accela.aa.aamain.cap.CapIDModel,int,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult handleUDisposition(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 */};
 
-this.issuePermit = function() {/*
+  this.issuePermit = function () {/*
 ScriptResult issuePermit(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.createCapWorkflow = function() {/*
+  this.createCapWorkflow = function () {/*
 ScriptResult createCapWorkflow(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.adjustTask = function() {/*
+  this.adjustTask = function () {/*
 ScriptResult adjustTask(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult adjustTask(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime)
 ScriptResult adjustTask(com.accela.aa.aamain.cap.CapIDModel,int,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime)
@@ -5310,19 +5312,19 @@ ScriptResult adjustTask(com.accela.aa.workflow.workflow.TaskItemModel)
 ScriptResult adjustTask(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getTaskItemRebillByTaskDescription = function() {/*
+  this.getTaskItemRebillByTaskDescription = function () {/*
 ScriptResult getTaskItemRebillByTaskDescription(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.insertSubProcess = function() {/*
+  this.insertSubProcess = function () {/*
 ScriptResult insertSubProcess(TaskItemScriptModel,java.lang.String,boolean)
 */};
 
-this.getTasks = function() {/*
+  this.getTasks = function () {/*
 ScriptResult getTasks(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 ScriptResult getTasks(com.accela.aa.aamain.cap.CapIDModel,long)
 ScriptResult getTasks(com.accela.aa.aamain.cap.CapIDModel)
@@ -5330,538 +5332,538 @@ ScriptResult getTasks(java.lang.String,java.lang.String,ScriptDateTime,ScriptDat
 ScriptResult getTasks(java.lang.String,java.lang.String)
 */};
 
-this.insertTask = function() {/*
+  this.insertTask = function () {/*
 ScriptResult insertTask(TaskItemScriptModel,java.lang.String)
 */};
 
-this.handleLDisposition = function() {/*
+  this.handleLDisposition = function () {/*
 ScriptResult handleLDisposition(com.accela.aa.aamain.cap.CapIDModel,int,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult handleLDisposition(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 */};
 
-this.handleYDisposition = function() {/*
+  this.handleYDisposition = function () {/*
 ScriptResult handleYDisposition(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 ScriptResult handleYDisposition(com.accela.aa.aamain.cap.CapIDModel,int,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel)
 */};
 
-this.getHistory = function() {/*
+  this.getHistory = function () {/*
 ScriptResult getHistory(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getTaskItemByCapID = function() {/*
+  this.getTaskItemByCapID = function () {/*
 ScriptResult getTaskItemByCapID(java.lang.String,java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 ScriptResult getTaskItemByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getWorkflowHistory = function() {/*
+  this.getWorkflowHistory = function () {/*
 ScriptResult getWorkflowHistory(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 ScriptResult getWorkflowHistory(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getMasterProcess = function() {/*
+  this.getMasterProcess = function () {/*
 ScriptResult getMasterProcess(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getTaskItems = function() {/*
+  this.getTaskItems = function () {/*
 ScriptResult getTaskItems(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.handleDisposition = function() {/*
+  this.handleDisposition = function () {/*
 ScriptResult handleDisposition(com.accela.aa.aamain.cap.CapIDModel,int,long,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel,java.lang.String)
 ScriptResult handleDisposition(com.accela.aa.aamain.cap.CapIDModel,int,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,com.accela.aa.aamain.people.SysUserModel,java.lang.String)
 ScriptResult handleDisposition(com.accela.aa.workflow.workflow.TaskItemModel,com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.handleTimeTracking = function() {/*
+  this.handleTimeTracking = function () {/*
 ScriptResult handleTimeTracking()
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getTaskStatusList = function() {/*
+  this.getTaskStatusList = function () {/*
 ScriptResult getTaskStatusList(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.sendEmailForWorkflowTaskUpdated = function() {/*
+  this.sendEmailForWorkflowTaskUpdated = function () {/*
 ScriptResult sendEmailForWorkflowTaskUpdated(TaskItemScriptModel,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.removeSubProcess = function() {/*
+  this.removeSubProcess = function () {/*
 ScriptResult removeSubProcess(TaskItemScriptModel)
 */};
 
-this.getCapTypeScriptModel = function() {/*
+  this.getCapTypeScriptModel = function () {/*
 ScriptResult getCapTypeScriptModel()
 */};
 
-this.getProcessNoteScriptModelByTaskItem = function() {/*
+  this.getProcessNoteScriptModelByTaskItem = function () {/*
 ScriptResult getProcessNoteScriptModelByTaskItem(TaskItemScriptModel)
 */};
 
-this.getProcessRelationByCapID = function() {/*
+  this.getProcessRelationByCapID = function () {/*
 ScriptResult getProcessRelationByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapIdsByCriteria = function() {/*
+  this.getCapIdsByCriteria = function () {/*
 ScriptResult getCapIdsByCriteria(TaskItemScriptModel,ScriptDateTime,ScriptDateTime,CapTypeScriptModel,java.lang.String[])
 */};
 
-this.getTaskAuditByTime = function() {/*
+  this.getTaskAuditByTime = function () {/*
 ScriptResult getTaskAuditByTime(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String)
 */};
 
-this.getTotalSetFeeInvoiceAmount = function() {/*
+  this.getTotalSetFeeInvoiceAmount = function () {/*
 ScriptResult getTotalSetFeeInvoiceAmount(java.lang.String)
 */};
 
-this.getFeeTotal = function() {/*
+  this.getFeeTotal = function () {/*
 ScriptResult getFeeTotal(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.applyPayment = function() {/*
+  this.applyPayment = function () {/*
 ScriptResult applyPayment(com.accela.aa.aamain.cap.CapIDModel,long,double,long[],long[],double[],ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult applyPayment(com.accela.aa.aamain.cap.CapIDModel,PaymentScriptModel,long[],long[],double[],java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getReceiptByPK = function() {/*
+  this.getReceiptByPK = function () {/*
 ScriptResult getReceiptByPK(long)
 */};
 
-this.editInvoice = function() {/*
+  this.editInvoice = function () {/*
 ScriptResult editInvoice(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,ScriptDateTime,double,double,ScriptDateTime,ScriptDateTime,java.lang.String,long,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,ScriptDateTime,java.lang.String)
 */};
 
-this.createFundTransferAudit = function() {/*
+  this.createFundTransferAudit = function () {/*
 ScriptResult createFundTransferAudit(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,long,long,ScriptDateTime,double,double,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,long,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult createFundTransferAudit(com.accela.aa.finance.cashierAudit.AccountingAuditTrailModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getPaymentFeeItems = function() {/*
+  this.getPaymentFeeItems = function () {/*
 ScriptResult getPaymentFeeItems(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCashierAuditListByTranSeqNbr = function() {/*
+  this.getCashierAuditListByTranSeqNbr = function () {/*
 ScriptResult getCashierAuditListByTranSeqNbr(long,com.accela.aa.util.QueryFormat)
 */};
 
-this.getBValuatnByPeriod = function() {/*
+  this.getBValuatnByPeriod = function () {/*
 ScriptResult getBValuatnByPeriod(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getValuationCalcMultiplier = function() {/*
+  this.getValuationCalcMultiplier = function () {/*
 ScriptResult getValuationCalcMultiplier(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.editBCalcValuatn = function() {/*
+  this.editBCalcValuatn = function () {/*
 ScriptResult editBCalcValuatn(BCalcValuatnScriptModel)
 */};
 
-this.getCalculatedValuation = function() {/*
+  this.getCalculatedValuation = function () {/*
 ScriptResult getCalculatedValuation(com.accela.aa.aamain.cap.CapIDModel)
 ScriptResult getCalculatedValuation(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.editBValuatnFlag = function() {/*
+  this.editBValuatnFlag = function () {/*
 ScriptResult editBValuatnFlag(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.createInvoicingAudit = function() {/*
+  this.createInvoicingAudit = function () {/*
 ScriptResult createInvoicingAudit(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,long,long,ScriptDateTime,double,double,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,long,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String)
 ScriptResult createInvoicingAudit(com.accela.aa.finance.cashierAudit.AccountingAuditTrailModel)
 */};
 
-this.getFeeItemByPosTransaction = function() {/*
+  this.getFeeItemByPosTransaction = function () {/*
 ScriptResult getFeeItemByPosTransaction(com.accela.aa.aamain.cap.CapIDModel,java.lang.Long)
 */};
 
-this.getOnLinePaymentByDate = function() {/*
+  this.getOnLinePaymentByDate = function () {/*
 ScriptResult getOnLinePaymentByDate(java.util.Date,java.util.Date,com.accela.aa.util.QueryFormat)
 */};
 
-this.prepareTransaction4ACA = function() {/*
+  this.prepareTransaction4ACA = function () {/*
 ScriptResult prepareTransaction4ACA(com.accela.aa.aamain.cap.CapIDModel,boolean)
 */};
 
-this.createFeeAudit = function() {/*
+  this.createFeeAudit = function () {/*
 ScriptResult createFeeAudit(java.lang.String,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,double,java.lang.String,double,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult createFeeAudit(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,double,java.lang.String,double,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult createFeeAudit(com.accela.aa.finance.fee.F4FeeItemAuditTrailModel)
 */};
 
-this.editFeeItemUnit = function() {/*
+  this.editFeeItemUnit = function () {/*
 ScriptResult editFeeItemUnit(com.accela.aa.aamain.cap.CapIDModel,double,long)
 */};
 
-this.applyRefund = function() {/*
+  this.applyRefund = function () {/*
 ScriptResult applyRefund(com.accela.aa.aamain.cap.CapIDModel,long[],long[],double[],ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult applyRefund(com.accela.aa.aamain.cap.CapIDModel,PaymentScriptModel,long[],long[],double[],java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getValidFeeItemInvoiceByFeeNbr = function() {/*
+  this.getValidFeeItemInvoiceByFeeNbr = function () {/*
 ScriptResult getValidFeeItemInvoiceByFeeNbr(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getTotalPaidFeeItem = function() {/*
+  this.getTotalPaidFeeItem = function () {/*
 ScriptResult getTotalPaidFeeItem(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.createETransaction = function() {/*
+  this.createETransaction = function () {/*
 ScriptResult createETransaction(com.accela.aa.finance.cashier.onlinePayment.TransactionModel)
 */};
 
-this.editFeeitemInvoiceStatus = function() {/*
+  this.editFeeitemInvoiceStatus = function () {/*
 ScriptResult editFeeitemInvoiceStatus(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String)
 */};
 
-this.getFeeUnitByFeeCode = function() {/*
+  this.getFeeUnitByFeeCode = function () {/*
 ScriptResult getFeeUnitByFeeCode(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,ScriptDateTime)
 */};
 
-this.getRefFeeItemByFeeCodeVersion = function() {/*
+  this.getRefFeeItemByFeeCodeVersion = function () {/*
 ScriptResult getRefFeeItemByFeeCodeVersion(java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime)
 */};
 
-this.getPaymentAmount4ACA = function() {/*
+  this.getPaymentAmount4ACA = function () {/*
 ScriptResult getPaymentAmount4ACA(com.accela.aa.aamain.cap.CapIDModel,boolean)
 */};
 
-this.getTotalSetFeeInvoiceAmountExceptVoid = function() {/*
+  this.getTotalSetFeeInvoiceAmountExceptVoid = function () {/*
 ScriptResult getTotalSetFeeInvoiceAmountExceptVoid(java.lang.String)
 */};
 
-this.getTotalSetFeeAssessAmount = function() {/*
+  this.getTotalSetFeeAssessAmount = function () {/*
 ScriptResult getTotalSetFeeAssessAmount(java.lang.String)
 */};
 
-this.editFeeItemFlag = function() {/*
+  this.editFeeItemFlag = function () {/*
 ScriptResult editFeeItemFlag(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String)
 */};
 
-this.getRefFeeItemByFeeCode = function() {/*
+  this.getRefFeeItemByFeeCode = function () {/*
 ScriptResult getRefFeeItemByFeeCode(java.lang.String,java.lang.String,java.lang.String,ScriptDateTime)
 */};
 
-this.createTransactionScriptModel = function() {/*
+  this.createTransactionScriptModel = function () {/*
 com.accela.aa.finance.cashier.onlinePayment.TransactionModel createTransactionScriptModel()
 */};
 
-this.createVoidPaymentAudit = function() {/*
+  this.createVoidPaymentAudit = function () {/*
 ScriptResult createVoidPaymentAudit(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,long,long,ScriptDateTime,double,double,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,long,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String)
 ScriptResult createVoidPaymentAudit(com.accela.aa.finance.cashierAudit.AccountingAuditTrailModel)
 */};
 
-this.getTotalFullPaidApp = function() {/*
+  this.getTotalFullPaidApp = function () {/*
 ScriptResult getTotalFullPaidApp(java.lang.String)
 */};
 
-this.getACAModel = function() {/*
+  this.getACAModel = function () {/*
 ScriptResult getACAModel(com.accela.aa.aamain.cap.CapModel)
 */};
 
-this.createApplyRefundAudit = function() {/*
+  this.createApplyRefundAudit = function () {/*
 ScriptResult createApplyRefundAudit(com.accela.aa.finance.cashierAudit.AccountingAuditTrailModel)
 ScriptResult createApplyRefundAudit(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,long,long,ScriptDateTime,double,double,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,long,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String)
 */};
 
-this.generateReceipt = function() {/*
+  this.generateReceipt = function () {/*
 ScriptResult generateReceipt(com.accela.aa.aamain.cap.CapIDModel,ScriptDateTime,long,java.lang.String,java.lang.String)
 ScriptResult generateReceipt(com.accela.aa.aamain.cap.CapIDModel,ScriptDateTime,long[],java.lang.String,java.lang.String)
 */};
 
-this.getFeeItemInvoiceBySetID = function() {/*
+  this.getFeeItemInvoiceBySetID = function () {/*
 ScriptResult getFeeItemInvoiceBySetID(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getValuation = function() {/*
+  this.getValuation = function () {/*
 ScriptResult getValuation(java.lang.String)
 */};
 
-this.getInvoiceByCapID = function() {/*
+  this.getInvoiceByCapID = function () {/*
 ScriptResult getInvoiceByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.updateETransaction4ACA = function() {/*
+  this.updateETransaction4ACA = function () {/*
 ScriptResult updateETransaction4ACA(com.accela.aa.finance.cashier.onlinePayment.TransactionModel)
 */};
 
-this.getEtisalatRegisterModel = function() {/*
+  this.getEtisalatRegisterModel = function () {/*
 ScriptResult getEtisalatRegisterModel(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.util.Date,java.lang.String,java.lang.String[],java.lang.String)
 */};
 
-this.getFeeItemInvoiceByCapID = function() {/*
+  this.getFeeItemInvoiceByCapID = function () {/*
 ScriptResult getFeeItemInvoiceByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getTranBatchNbr = function() {/*
+  this.getTranBatchNbr = function () {/*
 ScriptResult getTranBatchNbr()
 */};
 
-this.createRefundAudit = function() {/*
+  this.createRefundAudit = function () {/*
 ScriptResult createRefundAudit(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,long,long,ScriptDateTime,double,double,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,long,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String)
 ScriptResult createRefundAudit(com.accela.aa.finance.cashierAudit.AccountingAuditTrailModel)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.makeFundTransfer = function() {/*
+  this.makeFundTransfer = function () {/*
 ScriptResult makeFundTransfer(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,java.lang.String,ScriptDateTime,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult makeFundTransfer(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.cap.CapIDModel,PaymentScriptModel,java.lang.String,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String)
 */};
 
-this.makeRefund = function() {/*
+  this.makeRefund = function () {/*
 ScriptResult makeRefund(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,ScriptDateTime,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,ScriptDateTime,java.lang.String)
 */};
 
-this.addFeeItem = function() {/*
+  this.addFeeItem = function () {/*
 ScriptResult addFeeItem(java.util.Collection)
 */};
 
-this.getPaymentByBatchNumber = function() {/*
+  this.getPaymentByBatchNumber = function () {/*
 ScriptResult getPaymentByBatchNumber(long)
 */};
 
-this.getFeeScheduleByCapID = function() {/*
+  this.getFeeScheduleByCapID = function () {/*
 ScriptResult getFeeScheduleByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.updateETransaction = function() {/*
+  this.updateETransaction = function () {/*
 ScriptResult updateETransaction(com.accela.aa.finance.cashier.onlinePayment.TransactionModel)
 */};
 
-this.getFeeItemByFeeCode = function() {/*
+  this.getFeeItemByFeeCode = function () {/*
 ScriptResult getFeeItemByFeeCode(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.switchCalcFactor = function() {/*
+  this.switchCalcFactor = function () {/*
 ScriptResult switchCalcFactor(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.getFeeItemInvoiceByFeeNbr = function() {/*
+  this.getFeeItemInvoiceByFeeNbr = function () {/*
 ScriptResult getFeeItemInvoiceByFeeNbr(com.accela.aa.aamain.cap.CapIDModel,long,com.accela.aa.util.QueryFormat)
 */};
 
-this.getFeeItemInvoiceByInvoiceNbr = function() {/*
+  this.getFeeItemInvoiceByInvoiceNbr = function () {/*
 ScriptResult getFeeItemInvoiceByInvoiceNbr(com.accela.aa.aamain.cap.CapIDModel,long,com.accela.aa.util.QueryFormat)
 */};
 
-this.updateMultiplierAndExtraAmount = function() {/*
+  this.updateMultiplierAndExtraAmount = function () {/*
 ScriptResult updateMultiplierAndExtraAmount(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.voidPayment = function() {/*
+  this.voidPayment = function () {/*
 ScriptResult voidPayment(com.accela.aa.aamain.cap.CapIDModel,PaymentScriptModel,java.lang.String)
 ScriptResult voidPayment(com.accela.aa.aamain.cap.CapIDModel,ScriptDateTime,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getCashierAudit = function() {/*
+  this.getCashierAudit = function () {/*
 ScriptResult getCashierAudit(long,com.accela.aa.util.QueryFormat)
 */};
 
-this.wrkItemFeeTotalBySubGroup = function() {/*
+  this.wrkItemFeeTotalBySubGroup = function () {/*
 ScriptResult wrkItemFeeTotalBySubGroup(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.createFeeItem = function() {/*
+  this.createFeeItem = function () {/*
 ScriptResult createFeeItem(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,double)
 ScriptResult createFeeItem(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,double)
 ScriptResult createFeeItem(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,double,java.lang.String,double,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult createFeeItem(com.accela.aa.finance.fee.F4FeeItemModel,int)
 */};
 
-this.editFeeItemInvoice = function() {/*
+  this.editFeeItemInvoice = function () {/*
 ScriptResult editFeeItemInvoice(com.accela.aa.finance.invoice.X4FeeItemInvoiceModel)
 */};
 
-this.getTotalSetPaid = function() {/*
+  this.getTotalSetPaid = function () {/*
 ScriptResult getTotalSetPaid(java.lang.String)
 */};
 
-this.createPaymentAudit = function() {/*
+  this.createPaymentAudit = function () {/*
 ScriptResult createPaymentAudit(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,long,long,ScriptDateTime,double,double,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,long,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult createPaymentAudit(com.accela.aa.finance.cashierAudit.AccountingAuditTrailModel)
 */};
 
-this.getTotalPaidInvoice = function() {/*
+  this.getTotalPaidInvoice = function () {/*
 ScriptResult getTotalPaidInvoice(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.createPaymentScriptModel = function() {/*
+  this.createPaymentScriptModel = function () {/*
 PaymentScriptModel createPaymentScriptModel()
 */};
 
-this.getValuationCalcExtraAmount = function() {/*
+  this.getValuationCalcExtraAmount = function () {/*
 ScriptResult getValuationCalcExtraAmount(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getPaymentByDate = function() {/*
+  this.getPaymentByDate = function () {/*
 ScriptResult getPaymentByDate(java.util.Date,java.util.Date,com.accela.aa.util.QueryFormat)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.getSetInvoicedPerApp = function() {/*
+  this.getSetInvoicedPerApp = function () {/*
 ScriptResult getSetInvoicedPerApp(java.lang.String)
 */};
 
-this.getFeeCalcFactor = function() {/*
+  this.getFeeCalcFactor = function () {/*
 ScriptResult getFeeCalcFactor(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.assignFeeFactor = function() {/*
+  this.assignFeeFactor = function () {/*
 ScriptResult assignFeeFactor(com.accela.aa.aamain.cap.CapIDModel,boolean)
 */};
 
-this.getETransaction = function() {/*
+  this.getETransaction = function () {/*
 ScriptResult getETransaction(com.accela.aa.finance.cashier.onlinePayment.TransactionModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getContractorSuppliedValuation = function() {/*
+  this.getContractorSuppliedValuation = function () {/*
 ScriptResult getContractorSuppliedValuation(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getFeeItemByCapID = function() {/*
+  this.getFeeItemByCapID = function () {/*
 ScriptResult getFeeItemByCapID(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getFeeScheduleList = function() {/*
+  this.getFeeScheduleList = function () {/*
 ScriptResult getFeeScheduleList(java.lang.String)
 */};
 
-this.getInvoiceAmountExceptVoidCredited = function() {/*
+  this.getInvoiceAmountExceptVoidCredited = function () {/*
 ScriptResult getInvoiceAmountExceptVoidCredited(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getPaymentByPK = function() {/*
+  this.getPaymentByPK = function () {/*
 ScriptResult getPaymentByPK(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String)
 */};
 
-this.getCashierSessionFromDB = function() {/*
+  this.getCashierSessionFromDB = function () {/*
 ScriptResult getCashierSessionFromDB()
 */};
 
-this.editFeeItem = function() {/*
+  this.editFeeItem = function () {/*
 ScriptResult editFeeItem(com.accela.aa.finance.fee.F4FeeItemModel)
 ScriptResult editFeeItem(com.accela.aa.finance.fee.F4FeeItemModel,int)
 ScriptResult editFeeItem(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,double,java.lang.String,double,ScriptDateTime,ScriptDateTime,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getReceiptByCapID = function() {/*
+  this.getReceiptByCapID = function () {/*
 ScriptResult getReceiptByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getTotalSetPaidByPeriod = function() {/*
+  this.getTotalSetPaidByPeriod = function () {/*
 ScriptResult getTotalSetPaidByPeriod(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getTotalSetApp = function() {/*
+  this.getTotalSetApp = function () {/*
 ScriptResult getTotalSetApp(java.lang.String)
 */};
 
-this.getReceiptsByDate = function() {/*
+  this.getReceiptsByDate = function () {/*
 ScriptResult getReceiptsByDate(java.util.Date,java.util.Date,com.accela.aa.util.QueryFormat)
 */};
 
-this.createBCalcValuatn = function() {/*
+  this.createBCalcValuatn = function () {/*
 ScriptResult createBCalcValuatn(BCalcValuatnScriptModel)
 */};
 
-this.getPaymentByCapID = function() {/*
+  this.getPaymentByCapID = function () {/*
 ScriptResult getPaymentByCapID(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.voidFeeItem = function() {/*
+  this.voidFeeItem = function () {/*
 ScriptResult voidFeeItem(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String)
 ScriptResult voidFeeItem(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.createBCalcValuatnScriptModel = function() {/*
+  this.createBCalcValuatnScriptModel = function () {/*
 BCalcValuatnScriptModel createBCalcValuatnScriptModel()
 */};
 
-this.getPaymentByReceiptNo = function() {/*
+  this.getPaymentByReceiptNo = function () {/*
 ScriptResult getPaymentByReceiptNo(com.accela.aa.aamain.cap.CapIDModel,long,com.accela.aa.util.QueryFormat)
 */};
 
-this.getFeeItemInvoiceList = function() {/*
+  this.getFeeItemInvoiceList = function () {/*
 ScriptResult getFeeItemInvoiceList(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getFeeItemList = function() {/*
+  this.getFeeItemList = function () {/*
 ScriptResult getFeeItemList(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,com.accela.aa.util.QueryFormat)
 ScriptResult getFeeItemList(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getValidFeeItemInvoiceListByFeeNbrList = function() {/*
+  this.getValidFeeItemInvoiceListByFeeNbrList = function () {/*
 ScriptResult getValidFeeItemInvoiceListByFeeNbrList(com.accela.aa.aamain.cap.CapIDModel,java.util.List)
 */};
 
-this.makePayment4ACA = function() {/*
+  this.makePayment4ACA = function () {/*
 ScriptResult makePayment4ACA(com.accela.aa.aamain.cap.CapIDModel,PaymentScriptModel,com.accela.aa.finance.cashier.onlinePayment.util.ACAModel)
 */};
 
-this.createApplyPaymentAudit = function() {/*
+  this.createApplyPaymentAudit = function () {/*
 ScriptResult createApplyPaymentAudit(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,long,long,ScriptDateTime,double,double,java.lang.String,java.lang.String,long,java.lang.String,java.lang.String,long,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String)
 ScriptResult createApplyPaymentAudit(com.accela.aa.finance.cashierAudit.AccountingAuditTrailModel)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.deleteBCalcValuatn = function() {/*
+  this.deleteBCalcValuatn = function () {/*
 ScriptResult deleteBCalcValuatn(BCalcValuatnScriptModel)
 */};
 
-this.getCashierAuditListByCapId = function() {/*
+  this.getCashierAuditListByCapId = function () {/*
 ScriptResult getCashierAuditListByCapId(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getFeeItemByPK = function() {/*
+  this.getFeeItemByPK = function () {/*
 ScriptResult getFeeItemByPK(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.calculateFees = function() {/*
+  this.calculateFees = function () {/*
 ScriptResult calculateFees(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getSetPaymentsByReceiptNbr = function() {/*
+  this.getSetPaymentsByReceiptNbr = function () {/*
 ScriptResult getSetPaymentsByReceiptNbr(long,com.accela.aa.util.QueryFormat)
 */};
 
-this.createBvaluatn = function() {/*
+  this.createBvaluatn = function () {/*
 ScriptResult createBvaluatn(com.accela.aa.finance.feeValuation.BValuatnModel)
 ScriptResult createBvaluatn(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,double,double,double,java.lang.String,ScriptDateTime,java.lang.String)
 */};
 
-this.createInvoice = function() {/*
+  this.createInvoice = function () {/*
 ScriptResult createInvoice(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 ScriptResult createInvoice(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.finance.invoice.F4InvoiceModel,java.util.Collection)
 ScriptResult createInvoice(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,ScriptDateTime,double,double,ScriptDateTime,ScriptDateTime,java.lang.String,long,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,ScriptDateTime,java.lang.String,java.util.Collection)
@@ -5869,519 +5871,519 @@ ScriptResult createInvoice(com.accela.aa.aamain.cap.CapIDModel,long[],java.lang.
 */};
 }
 
-function  FinanceScript() {
-this.applyPaymentToSet = function() {/*
+function FinanceScript() {
+  this.applyPaymentToSet = function () {/*
 ScriptResult applyPaymentToSet(java.lang.String,java.lang.String,java.lang.String,java.lang.String,double[],double[],java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,ScriptDateTime,double,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult applyPaymentToSet(java.lang.String,java.lang.String[],java.lang.String[],java.lang.String[],double[],double[],java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,ScriptDateTime,double,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getFeeAuditList = function() {/*
+  this.getFeeAuditList = function () {/*
 ScriptResult getFeeAuditList(long,com.accela.aa.util.QueryFormat)
 ScriptResult getFeeAuditList(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.editInvoiceBalanceDue = function() {/*
+  this.editInvoiceBalanceDue = function () {/*
 ScriptResult editInvoiceBalanceDue(long,double,double)
 */};
 
-this.makePayment = function() {/*
+  this.makePayment = function () {/*
 ScriptResult makePayment(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String,java.lang.String,ScriptDateTime,java.lang.String,ScriptDateTime,double,double,double,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 ScriptResult makePayment(PaymentScriptModel)
 */};
 
-this.editBValuatnValue = function() {/*
+  this.editBValuatnValue = function () {/*
 ScriptResult editBValuatnValue(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,double,java.lang.String)
 */};
 
-this.reCalculateFees = function() {/*
+  this.reCalculateFees = function () {/*
 ScriptResult reCalculateFees(com.accela.aa.aamain.cap.CapIDModel,java.lang.String,java.lang.String)
 */};
 
-this.getInvoiceFeeItemBySetID = function() {/*
+  this.getInvoiceFeeItemBySetID = function () {/*
 ScriptResult getInvoiceFeeItemBySetID(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.editFeeAudit = function() {/*
+  this.editFeeAudit = function () {/*
 ScriptResult editFeeAudit(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String)
 */};
 
-this.closeInvoice = function() {/*
+  this.closeInvoice = function () {/*
 ScriptResult closeInvoice(com.accela.aa.aamain.cap.CapIDModel,long,long,java.lang.String,ScriptDateTime,double,double,ScriptDateTime,ScriptDateTime,java.lang.String,long,ScriptDateTime,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,ScriptDateTime,java.lang.String,com.accela.aa.util.QueryFormat)
 ScriptResult closeInvoice(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.finance.invoice.F4InvoiceModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.createACAScriptModel = function() {/*
+  this.createACAScriptModel = function () {/*
 com.accela.aa.finance.cashier.onlinePayment.util.ACAModel createACAScriptModel()
 */};
 
-this.createFeeItemsForPosTransaction = function() {/*
+  this.createFeeItemsForPosTransaction = function () {/*
 ScriptResult createFeeItemsForPosTransaction(java.util.List,java.lang.Long)
 */};
 
-this.removeFeeItem = function() {/*
+  this.removeFeeItem = function () {/*
 ScriptResult removeFeeItem(com.accela.aa.aamain.cap.CapIDModel,long)
 ScriptResult removeFeeItem(com.accela.aa.finance.fee.F4FeeItemModel)
 */};
 
-this.getFeeAuditByPK = function() {/*
+  this.getFeeAuditByPK = function () {/*
 ScriptResult getFeeAuditByPK(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.voidFeeItemAddAudit = function() {/*
+  this.voidFeeItemAddAudit = function () {/*
 ScriptResult voidFeeItemAddAudit(com.accela.aa.aamain.cap.CapIDModel,long,java.lang.String,java.lang.String)
 */};
 
-this.getAddressByAddressId = function() {/*
+  this.getAddressByAddressId = function () {/*
 ScriptResult getAddressByAddressId(long,com.accela.aa.util.QueryFormat)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.getContactAddressListByCapContact = function() {/*
+  this.getContactAddressListByCapContact = function () {/*
 ScriptResult getContactAddressListByCapContact(com.accela.aa.aamain.people.CapContactModel)
 */};
 
-this.editAddressWithAPOAttribute = function() {/*
+  this.editAddressWithAPOAttribute = function () {/*
 ScriptResult editAddressWithAPOAttribute(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.getRefAddressByHouseNoDirStreetNameSuffix = function() {/*
+  this.getRefAddressByHouseNoDirStreetNameSuffix = function () {/*
 ScriptResult getRefAddressByHouseNoDirStreetNameSuffix(long,long,java.lang.String,java.lang.String)
 */};
 
-this.getCapContactAddressList = function() {/*
+  this.getCapContactAddressList = function () {/*
 ScriptResult getCapContactAddressList(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.getXRefContactAddressList = function() {/*
+  this.getXRefContactAddressList = function () {/*
 ScriptResult getXRefContactAddressList(com.accela.orm.model.address.XRefContactAddressModel)
 */};
 
-this.getAddressDistrictForDaily = function() {/*
+  this.getAddressDistrictForDaily = function () {/*
 ScriptResult getAddressDistrictForDaily(java.lang.String,java.lang.String,java.lang.String,long)
 */};
 
-this.removeAddress = function() {/*
+  this.removeAddress = function () {/*
 ScriptResult removeAddress(com.accela.aa.aamain.cap.CapIDModel,long)
 */};
 
-this.editAddressWithRefAddressModelWithLogic = function() {/*
+  this.editAddressWithRefAddressModelWithLogic = function () {/*
 ScriptResult editAddressWithRefAddressModelWithLogic(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.createXRefContactAddress = function() {/*
+  this.createXRefContactAddress = function () {/*
 ScriptResult createXRefContactAddress(com.accela.orm.model.address.XRefContactAddressModel)
 */};
 
-this.createAddressWithRefAddressModel = function() {/*
+  this.createAddressWithRefAddressModel = function () {/*
 ScriptResult createAddressWithRefAddressModel(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.createAddressWithLogic = function() {/*
+  this.createAddressWithLogic = function () {/*
 ScriptResult createAddressWithLogic(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.getAddressDistrictForAdmin = function() {/*
+  this.getAddressDistrictForAdmin = function () {/*
 ScriptResult getAddressDistrictForAdmin(long)
 */};
 
-this.getAddressByCapId = function() {/*
+  this.getAddressByCapId = function () {/*
 ScriptResult getAddressByCapId(com.accela.aa.aamain.cap.CapIDModel)
 ScriptResult getAddressByCapId(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCompactAddress = function() {/*
+  this.getCompactAddress = function () {/*
 ScriptResult getCompactAddress(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.util.QueryFormat)
 */};
 
-this.getCapIdByAddress = function() {/*
+  this.getCapIdByAddress = function () {/*
 ScriptResult getCapIdByAddress(com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.editCapContactAddress = function() {/*
+  this.editCapContactAddress = function () {/*
 ScriptResult editCapContactAddress(com.accela.aa.aamain.cap.CapIDModel,com.accela.orm.model.address.ContactAddressModel)
 */};
 
-this.getXRefContactAddressByPK = function() {/*
+  this.getXRefContactAddressByPK = function () {/*
 ScriptResult getXRefContactAddressByPK(com.accela.orm.model.address.XRefContactAddressModel)
 */};
 
-this.deleteAddressDistrictForDaily = function() {/*
+  this.deleteAddressDistrictForDaily = function () {/*
 ScriptResult deleteAddressDistrictForDaily(java.lang.String,java.lang.String,java.lang.String,long,java.lang.String)
 */};
 
-this.editAddressWithLogic = function() {/*
+  this.editAddressWithLogic = function () {/*
 ScriptResult editAddressWithLogic(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.getAddressWithAttributeByCapId = function() {/*
+  this.getAddressWithAttributeByCapId = function () {/*
 ScriptResult getAddressWithAttributeByCapId(com.accela.aa.aamain.cap.CapIDModel)
 */};
 
-this.getRefAddressByStreetName = function() {/*
+  this.getRefAddressByStreetName = function () {/*
 ScriptResult getRefAddressByStreetName(java.lang.String)
 */};
 
-this.editContactAddress = function() {/*
+  this.editContactAddress = function () {/*
 ScriptResult editContactAddress(com.accela.orm.model.address.ContactAddressModel)
 */};
 
-this.createContactAddressModel = function() {/*
+  this.createContactAddressModel = function () {/*
 ScriptResult createContactAddressModel()
 */};
 
-this.editRefAddressWithLogic = function() {/*
+  this.editRefAddressWithLogic = function () {/*
 ScriptResult editRefAddressWithLogic(java.lang.String,com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.removeRefAddress = function() {/*
+  this.removeRefAddress = function () {/*
 ScriptResult removeRefAddress(long,java.lang.String)
 ScriptResult removeRefAddress(long,int)
 */};
 
-this.deleteAddressDistrictForAdmin = function() {/*
+  this.deleteAddressDistrictForAdmin = function () {/*
 ScriptResult deleteAddressDistrictForAdmin(long,java.lang.String)
 */};
 
-this.deleteCapContactAddress = function() {/*
+  this.deleteCapContactAddress = function () {/*
 ScriptResult deleteCapContactAddress(com.accela.aa.aamain.cap.CapIDModel,long,long)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.getRefAddressByServiceProviderRefAddressModel = function() {/*
+  this.getRefAddressByServiceProviderRefAddressModel = function () {/*
 ScriptResult getRefAddressByServiceProviderRefAddressModel(com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.editRefAddress = function() {/*
+  this.editRefAddress = function () {/*
 ScriptResult editRefAddress(com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.getContactAddressList = function() {/*
+  this.getContactAddressList = function () {/*
 ScriptResult getContactAddressList(com.accela.orm.model.address.ContactAddressModel)
 */};
 
-this.getRefAddressByPK = function() {/*
+  this.getRefAddressByPK = function () {/*
 ScriptResult getRefAddressByPK(java.lang.String)
 */};
 
-this.getAssignedAddressDistrictForDaily = function() {/*
+  this.getAssignedAddressDistrictForDaily = function () {/*
 ScriptResult getAssignedAddressDistrictForDaily(java.lang.String,java.lang.String,java.lang.String,long)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.getAddressByHouseRangeStreetName = function() {/*
+  this.getAddressByHouseRangeStreetName = function () {/*
 ScriptResult getAddressByHouseRangeStreetName(long,long,java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.getAddressByRefAddressModel = function() {/*
+  this.getAddressByRefAddressModel = function () {/*
 ScriptResult getAddressByRefAddressModel(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.createRefAddressWithLogic = function() {/*
+  this.createRefAddressWithLogic = function () {/*
 ScriptResult createRefAddressWithLogic(java.lang.String,com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.addAddressDistrictForDaily = function() {/*
+  this.addAddressDistrictForDaily = function () {/*
 ScriptResult addAddressDistrictForDaily(java.lang.String,java.lang.String,java.lang.String,long,java.lang.String)
 */};
 
-this.getAssignedAddressDistrictForAdmin = function() {/*
+  this.getAssignedAddressDistrictForAdmin = function () {/*
 ScriptResult getAssignedAddressDistrictForAdmin(long)
 */};
 
-this.getContactAddressByPK = function() {/*
+  this.getContactAddressByPK = function () {/*
 ScriptResult getContactAddressByPK(com.accela.orm.model.address.ContactAddressModel)
 */};
 
-this.createCapContactAddress = function() {/*
+  this.createCapContactAddress = function () {/*
 ScriptResult createCapContactAddress(com.accela.aa.aamain.cap.CapIDModel,com.accela.orm.model.address.ContactAddressModel)
 */};
 
-this.addAddressDistrictForAdmin = function() {/*
+  this.addAddressDistrictForAdmin = function () {/*
 ScriptResult addAddressDistrictForAdmin(long,java.lang.String)
 */};
 
-this.initScript = function() {/*
+  this.initScript = function () {/*
 void initScript(java.lang.String,java.lang.String)
 */};
 
-this.deleteXRefContactAddress = function() {/*
+  this.deleteXRefContactAddress = function () {/*
 ScriptResult deleteXRefContactAddress(com.accela.orm.model.address.XRefContactAddressModel)
 */};
 
-this.editXRefContactAddress = function() {/*
+  this.editXRefContactAddress = function () {/*
 ScriptResult editXRefContactAddress(com.accela.orm.model.address.XRefContactAddressModel)
 */};
 
-this.getContactAddressModel = function() {/*
+  this.getContactAddressModel = function () {/*
 ScriptResult getContactAddressModel(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.createAddress = function() {/*
+  this.createAddress = function () {/*
 ScriptResult createAddress(com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.getAddressByStreetName = function() {/*
+  this.getAddressByStreetName = function () {/*
 ScriptResult getAddressByStreetName(java.lang.String,com.accela.aa.util.QueryFormat)
 */};
 
-this.createRefAddress = function() {/*
+  this.createRefAddress = function () {/*
 ScriptResult createRefAddress(com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.getAddressWithTypeByCapId = function() {/*
+  this.getAddressWithTypeByCapId = function () {/*
 ScriptResult getAddressWithTypeByCapId(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.getAddressByPK = function() {/*
+  this.getAddressByPK = function () {/*
 ScriptResult getAddressByPK(com.accela.aa.aamain.cap.CapIDModel,java.lang.Long)
 */};
 
-this.copyAddressModel = function() {/*
+  this.copyAddressModel = function () {/*
 ScriptResult copyAddressModel(com.accela.aa.aamain.address.AddressModel,com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.getCityList = function() {/*
+  this.getCityList = function () {/*
 ScriptResult getCityList(com.accela.aa.util.QueryFormat)
 */};
 
-this.createAddressWithAPOAttribute = function() {/*
+  this.createAddressWithAPOAttribute = function () {/*
 ScriptResult createAddressWithAPOAttribute(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.getRefAddressByHouseNoRangeStreetNameSuffix = function() {/*
+  this.getRefAddressByHouseNoRangeStreetNameSuffix = function () {/*
 ScriptResult getRefAddressByHouseNoRangeStreetNameSuffix(long,long,java.lang.String,java.lang.String)
 */};
 
-this.getPrimaryAddressByCapID = function() {/*
+  this.getPrimaryAddressByCapID = function () {/*
 ScriptResult getPrimaryAddressByCapID(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.deleteContactAddress = function() {/*
+  this.deleteContactAddress = function () {/*
 ScriptResult deleteContactAddress(com.accela.orm.model.address.ContactAddressModel)
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.editAddress = function() {/*
+  this.editAddress = function () {/*
 ScriptResult editAddress(com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.getAddressListForAdmin = function() {/*
+  this.getAddressListForAdmin = function () {/*
 ScriptResult getAddressListForAdmin(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getRefAddressByHouseRangeStreetName = function() {/*
+  this.getRefAddressByHouseRangeStreetName = function () {/*
 ScriptResult getRefAddressByHouseRangeStreetName(long,long,java.lang.String)
 */};
 
-this.removeAddressWithLogic = function() {/*
+  this.removeAddressWithLogic = function () {/*
 ScriptResult removeAddressWithLogic(com.accela.aa.aamain.cap.CapIDModel,java.lang.String)
 */};
 }
 
-function  AddressScript() {
-this.getDailyAddressByCapId = function() {/*
+function AddressScript() {
+  this.getDailyAddressByCapId = function () {/*
 ScriptResult getDailyAddressByCapId(java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.getAddressWithTypeByPK = function() {/*
+  this.getAddressWithTypeByPK = function () {/*
 ScriptResult getAddressWithTypeByPK(com.accela.aa.aamain.cap.CapIDModel,java.lang.Long,java.lang.String)
 */};
 
-this.notifyAll = function() {/*
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.createXRefContactAddressModel = function() {/*
+  this.createXRefContactAddressModel = function () {/*
 ScriptResult createXRefContactAddressModel()
 */};
 
-this.createContactAddress = function() {/*
+  this.createContactAddress = function () {/*
 ScriptResult createContactAddress(com.accela.orm.model.address.ContactAddressModel)
 */};
 
-this.isExisted = function() {/*
+  this.isExisted = function () {/*
 ScriptResult isExisted(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.AddressModel)
 ScriptResult isExisted(com.accela.aa.aamain.address.RefAddressModel)
 ScriptResult isExisted(com.accela.aa.aamain.cap.CapIDModel,com.accela.aa.aamain.address.RefAddressModel)
 */};
 
-this.removeAddressWithType = function() {/*
+  this.removeAddressWithType = function () {/*
 ScriptResult removeAddressWithType(com.accela.aa.aamain.address.AddressModel)
 */};
 
-this.createRefAddressScriptModel = function() {/*
+  this.createRefAddressScriptModel = function () {/*
 RefAddressScriptModel createRefAddressScriptModel()
 */};
 }
 
-function aa(){
-this.hashCode = function() {/*
+function aa() {
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.runAdHoc = function() {/*
+  this.runAdHoc = function () {/*
 ScriptResult runAdHoc(java.lang.String,java.util.Hashtable,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.runOracleReport = function() {/*
+  this.runOracleReport = function () {/*
 ScriptResult runOracleReport(java.lang.String,java.lang.String,java.lang.String,java.util.Hashtable,java.lang.String)
 */};
 
-this.log = function() {/*
+  this.log = function () {/*
 void log(java.lang.String)
 */};
 
-this.getHashtable = function() {/*
+  this.getHashtable = function () {/*
 ScriptResult getHashtable(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.print = function() {/*
+  this.print = function () {/*
 void print(java.lang.String)
 */};
 
-this.sendEmail = function() {/*
+  this.sendEmail = function () {/*
 ScriptResult sendEmail(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.debug = function() {/*
+  this.debug = function () {/*
 void debug(java.lang.String,java.lang.Object)
 */};
 
-this.hashCode = function() {/*
+  this.hashCode = function () {/*
 int hashCode()
 */};
 
-this.runAdHoc = function() {/*
+  this.runAdHoc = function () {/*
 ScriptResult runAdHoc(java.lang.String,java.util.Hashtable,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.runOracleReport = function() {/*
+  this.runOracleReport = function () {/*
 ScriptResult runOracleReport(java.lang.String,java.lang.String,java.lang.String,java.util.Hashtable,java.lang.String)
 */};
 
-this.log = function() {/*
+  this.log = function () {/*
 void log(java.lang.String)
 */};
 
-this.getHashtable = function() {/*
+  this.getHashtable = function () {/*
 ScriptResult getHashtable(java.lang.String,java.lang.String)
 */};
 
-this.getfunction  = function() {/*
+  this.getfunction = function () {/*
 java.lang.function  getfunction ()
 */};
 
-this.print = function() {/*
+  this.print = function () {/*
 void print(java.lang.String)
 */};
 
-this.sendEmail = function() {/*
+  this.sendEmail = function () {/*
 ScriptResult sendEmail(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.debug = function() {/*
+  this.debug = function () {/*
 void debug(java.lang.String,java.lang.Object)
 */};
 
-this.sendMail = function() {/*
+  this.sendMail = function () {/*
 ScriptResult sendMail(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 */};
 
-this.equals = function() {/*
+  this.equals = function () {/*
 boolean equals(java.lang.Object)
 */};
 
-this.runScriptInNewTransaction = function() {/*
+  this.runScriptInNewTransaction = function () {/*
 void runScriptInNewTransaction(java.lang.String)
 */};
 
-this.wait = function() {/*
+  this.wait = function () {/*
 void wait(long)
 void wait()
 void wait(long,int)
 */};
 
-this.timerStart = function() {/*
+  this.timerStart = function () {/*
 void timerStart(java.lang.String)
 */};
 
-this.runAsyncScript = function() {/*
+  this.runAsyncScript = function () {/*
 void runAsyncScript(java.lang.String,java.util.HashMap)
 */};
 
-this.getAuditID = function() {/*
+  this.getAuditID = function () {/*
 java.lang.String getAuditID()
 */};
 
-this.runScript = function() {/*
+  this.runScript = function () {/*
 void runScript(java.lang.String)
 */};
 
-this.toString = function() {/*
+  this.toString = function () {/*
 java.lang.String toString()
 */};
 
-this.timerEnd = function() {/*
+  this.timerEnd = function () {/*
 void timerEnd(java.lang.String)
 */};
 
-this.sendEmailWithAttachedFiles = function() {/*
+  this.sendEmailWithAttachedFiles = function () {/*
 ScriptResult sendEmailWithAttachedFiles(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String[])
 */};
 
-this.notify = function() {/*
+  this.notify = function () {/*
 void notify()
 */};
 
-this.abortScript = function() {/*
+  this.abortScript = function () {/*
 void abortScript()
 */};
 
-this.getServiceProviderCode = function() {/*
+  this.getServiceProviderCode = function () {/*
 java.lang.String getServiceProviderCode()
 */};
 }
 
-function  ScriptRoot() {
-this.notifyAll = function() {/*
+function ScriptRoot() {
+  this.notifyAll = function () {/*
 void notifyAll()
 */};
 
-this.getDebugOutput = function() {/*
+  this.getDebugOutput = function () {/*
 java.lang.String getDebugOutput()
 */};
 
-this.sleep = function() {/*
+  this.sleep = function () {/*
 void sleep(long)
 */};
 }
