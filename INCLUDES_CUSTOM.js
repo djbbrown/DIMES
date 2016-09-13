@@ -1953,6 +1953,7 @@ function scheduleInspectionDateWithInspector(iType, dateToSched, inspectorID )
 
 function scheduleInspectionDateWithInspectorObject(iType, dateToSched, inspectorObj )
 {
+	var inspTime = null;
 	var schedRes = aa.inspection.scheduleInspection(capId, inspectorObj, aa.date.parseDate(dateToSched), inspTime, iType, "Scheduled via Script");
 
 	if (schedRes.getSuccess())

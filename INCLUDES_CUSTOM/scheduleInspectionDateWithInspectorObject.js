@@ -8,7 +8,7 @@
 //      There are similar functions, but this one has better logging.
 // 
 //==================================================================*/
-function scheduleInspectionDateWithInspector(iType, dateToSched, inspectorObj )
+function scheduleInspectionDateWithInspectorObject(iType, dateToSched, inspectorObj )
 {
 	var inspTime = null;
 
