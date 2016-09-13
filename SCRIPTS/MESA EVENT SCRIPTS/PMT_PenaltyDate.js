@@ -45,11 +45,11 @@ try
     var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
     var todayDate = new Date();
 
-    // per customer, adjusting to count today as day 1
-    turnAroundTime =- 1;
-
     // set the futureDate
     var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
+
+    // adjust date back one per PMT customer (today is day 1)
+    futureDate = new Date(dateAdd(futureDate, -1));
 
     // assign to Penalty Date ASI field if exists
     if (typeof penaltyDate == "undefined")
