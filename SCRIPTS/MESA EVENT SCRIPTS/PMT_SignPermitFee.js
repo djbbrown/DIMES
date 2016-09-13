@@ -10,11 +10,14 @@
 /*==================================================================*/
 showDebug = true;
 if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
+	var pmtSignDep = 0;
+	pmtSignDep = feeAmount("SGN010");
 	var totalSignValuation = AInfo["Total Sign Valuation"];
 	var totalSignSqFt = AInfo["Total Sign Square Footage"];
 	var totalFee = 102.4 + 0.03 * totalSignValuation + 0.3 * totalSignSqFt;
-	logDebug("Total Fee: " + totalFee);
-	if (feeExists("SGN020", "INVOICED")) voidRemoveFee("SGN020");
-	updateFee("SGN020", "PMT_SIGNS", "FINAL", totalFee, "N");
+	var totalAdjFee = totalFee - pmtSignDep;
+	//logDebug("Total Fee: " + totalFee);
+	//if (feeExists("SGN020", "INVOICED")) voidRemoveFee("SGN020");
+	updateFee("SGN020", "PMT_SIGNS", "FINAL", totalAdjFee, "N");
 }
  
