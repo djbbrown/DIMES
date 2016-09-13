@@ -28,7 +28,6 @@ try
      )
   {
     licEditExpInfo("Inactive");
-    comment("License Exp Info updated to 'Inactive'");
   }
 
 }
