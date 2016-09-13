@@ -28,7 +28,7 @@ try
      )
   {
     licEditExpInfo("Inactive");
-    commit("License Exp Info updated to 'Inactive'");
+    comment("License Exp Info updated to 'Inactive'");
   }
 
 }
