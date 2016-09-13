@@ -27,18 +27,18 @@ try
 {    
     var priority = getRecordPriority();
     logDebug("Priority: " + priority);
-    if ( !priority && priority == "Priority")
+    if ( priority != false && priority == "Priority")
     {
         // see if the initial inspection has already been Scheduled
-        var insp = doesInspectionExist("Initial Inspection");
+        var inspExist = doesInspectionExist("Initial Inspection");
 
-        if ( !insp )
+        if ( inspExist == false )
         {
             var today = getTodayAsString();
 
             // get the inspector for this boundary          
             var inspector = getInspectorObject();
-            if (!inspector) 
+            if (inspector != false) 
             {
                 // schedule initial inspection for today 
                 scheduleInspectionDateWithInspectorObject("Initial Inspection", today, inspector);

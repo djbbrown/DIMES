@@ -26,19 +26,19 @@ try
 {    
     var priority = getRecordPriority();
     logDebug("Priority: " + priority);
-    if ( !priority && priority == "Normal")
+    if ( priority != false && priority == "Normal")
     {
         // see if the initial inspection has already been Scheduled
-        var insp = doesInspectionExist("Initial Inspection");
+        var inspExist = doesInspectionExist("Initial Inspection");
 
-        if ( !insp )
+        if ( inspExist == false )
         {
             // schedule initial inspection on the next working day (5 day cal)
             var nextWorkingDay = dateAdd(null, 1, "Y");
 
             // get the inspector for this boundary          
             var inspector = getInspectorObject();
-            if (!inspector) 
+            if (inspector != false) 
             {
                 // schedule initial inspection for next working day 
                 scheduleInspectionDateWithInspectorObject("Initial Inspection", nextWorkingDay, inspector);
@@ -66,5 +66,5 @@ catch (err)
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: COD16-00097
+/* Test Record: COD16-00099
 */
