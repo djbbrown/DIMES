@@ -78,6 +78,72 @@ function removeA(arr) {
 	}
 	return arr;
 }
+function workDaysBetween(sDate,eDate,aCal,aDayEx){
+	// sDate == Start Date
+	// eDays == End Date
+	// aCal == Array of calendars to include.
+	// aDayEx == Array of day types that you wish to exclude.
+	
+	// Any weekend could be a three day weekend
+	// 3 days are added for every weekend to make sure that we cover enough for the jump.
+	// aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
+	
+	// Variables
+	var dArray = []; // to store the dates between the two dates.
+	var sDate2 = convertDate2(sDate);
+	var eDate2 = convertDate2(eDate);
+	
+	aDays2 = dayDiff(sDate2,eDate2);
+	
+	// Change everything in aCal to upper for comparison.
+	toUpper = function(x){ 
+		  return x.toUpperCase();
+	};
+	aCal = aCal.map(toUpper);
+	
+	// eDate2 needs to be sufficiently into the future for the rest of the function.
+	eDate2.setDate(eDate2.getDate() + aDays2);
+	
+	// will be used to pull sufficient days that are "off"
+	var monthsBetween = monthDiff(sDate2,eDate2);
+
+	// Now create an array of dates adding one day to each date.
+	for(a = 1; a<= aDays2; a++){
+		calcDate = new Date(sDate);
+		calcDate.setDate(calcDate.getDate() + a);
+		dArray.push(jsDateToASIDate(calcDate));
+	}
+	// Now look up the calendars that are going to be excluded.
+	// expected return is the calendar ID's
+	calNames = aa.calendar.getCalendarNames().getOutput();
+	for(x in calNames){
+		// IF the name of the calendar is included in the list we need the
+		// events from that calendar
+		if(exists(calNames[x].getCalendarName().toUpperCase(),aCal)){
+			for(a = 0; a <= monthsBetween; a++){
+				calE = aa.calendar.getEventSeriesByCalendarID(calNames[x].getCalendarID(),sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
+				for(b in calE){
+					// Get the event details
+					var evtDateDate = new Date(convertDate2(calE[b].getStartDate()));
+					var evtType = calE[b].getEventType();
+					// Now do the COMPARISON
+					if(
+						exists(evtType,aDayEx)
+						&& exists(jsDateToASIDate(evtDateDate),dArray)
+					)
+					{
+						removeA(dArray,jsDateToASIDate(evtDateDate));
+					}
+				}
+			}
+		}
+	}
+	if(sDate2 == eDate2){
+		return 0;
+	} else {
+	return dArray.length // Return the Date that can be used as a working day.
+	}
+}
 function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	// sDate == Start Date
 	// aDays == Days to add
@@ -109,7 +175,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	for(a = 1; a<= aDays2; a++){
 		calcDate = new Date(sDate);
 		calcDate.setDate(calcDate.getDate() + a);
-		dArray.push(calcDate.toString());
+		dArray.push(jsDateToASIDate(calcDate)); // watch out this array can get to big very quickly.
 	}
 	// Now look up the calendars that are going to be excluded.
 	// expected return is the calendar ID's
@@ -124,19 +190,24 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 					// Get the event details
 					var evtDateDate = new Date(convertDate2(calE[b].getStartDate()));
 					var evtType = calE[b].getEventType();
+					// aa.print(evtDateDate);
+					// aa.print(evtDateDate.toString());
 					// Now do the COMPARISON
 					if(
-						exists(evtType,aDayEx)
-						&& exists(evtDateDate.toString(),dArray)
+						1==1
+						&& exists(evtType,aDayEx)
+						&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
-						removeA(dArray,evtDateDate.toString());
+						// aa.print("Removing element...");
+						removeA(dArray,jsDateToASIDate(evtDateDate));
+						// aa.print(evtDateDate.toString());
 					}
 				}
 			}
 		}
 	}
-	return dArray[aDays]; // Return the Date that can be used as a working day.
+	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
 
 try {
@@ -725,9 +796,22 @@ try {
 	// Check 1
 	// ===========================
 	// When workflow task "Distribution" or "Substantive Review Distribution" is set to "Resubmitted"
+	check4 = [
+				// Check 3
+				'Planning/Admin Review/NA/NA',
+				'Planning/Board of Adjustment/NA/NA',
+				'Planning/Design Review/NA/NA',
+				'Planning/General Plan Amendment - Major/NA/NA',
+				'Planning/Group Home/Application/NA',
+				'Planning/Subdivision/NA/NA',
+				// Check 4
+				'Planning/Planning and Zoning/NA/NA',
+				'Planning/Annexation/NA/NA'
+				];
 	if(
 			(wfTask == 'Substantive Review Distribution' || wfTask == 'Distribution')
 			&& wfStatus == 'Resubmitted'
+			&& !exists(appTypeString,check4)
 	){
 		aa.print("Starting check 1");
 		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
@@ -756,9 +840,10 @@ try {
 		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
+	// ===========================	
+	// Check 3 & 4 COMPLETE
 	// ===========================
 	// Check 3
-	// ===========================
 	// For the following record types:
 	// 		'Planning/Admin Review/NA/NA'
 	//		'Planning/Board of Adjustment/NA/NA'
@@ -767,91 +852,64 @@ try {
 	//		'Planning/Group Home/Application/NA'
 	//		'Planning/Subdivision/NA/NA'
 	// When workflow task status of "Resubmitted" is applied to workflow task "Distribution" then
-	check3 = ['Planning/Admin Review/NA/NA',
-	      			'Planning/Board of Adjustment/NA/NA',
-	      			'Planning/Design Review/NA/NA',
-	      			'Planning/General Plan Amendment - Major/NA/NA',
-	      			'Planning/Group Home/Application/NA',
-	      			'Planning/Subdivision/NA/NA'];
+	// Check 4
+	// For the following record type: 'Planning/Planning and Zoning/NA/NA', 'Planning/Annexation/NA/NA'
+	// When workflow task status of "Resubmitted" is applied to workflow task "Substantive Review Distribution" then
+	check4 = [
+				// Check 3
+				'Planning/Admin Review/NA/NA',
+				'Planning/Board of Adjustment/NA/NA',
+				'Planning/Design Review/NA/NA',
+				'Planning/General Plan Amendment - Major/NA/NA',
+				'Planning/Group Home/Application/NA',
+				'Planning/Subdivision/NA/NA',
+				// Check 4
+				'Planning/Planning and Zoning/NA/NA',
+				'Planning/Annexation/NA/NA'
+				];
 	if (
-			exists(appTypeString,check3)
+			exists(appTypeString,check4)
 			&& (wfTask == 'Distribution')
 			&& wfStatus == 'Resubmitted'
 	){
 		// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
-		editAppSpecific("Start/Stop Indicator", 'Started');
-		// 2) Update the "Substantive Review Due Date" (subgroup = "KEY DATES") = current value of 
-		// "Substantive Review Due Date + the number of days difference between the status date of
-		// workflow task "Review Consolidation" with task status "Revisions Required" and the status
-		// date of workflow task "Distribution" with task status "Resubmitted".
-		srDD = getAppSpecific("Substantive Review Due Date");
-		if(!srDD){
-			aa.print("Date not found attempting to set a new date");
-			srDD = new Date();
-		};
-		srDD = convertDate2(srDD);
-		//aa.print(aa.date.parseDate(srDD));
-		var rR;
-		wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
-		if(wf.getDisposition() == "Revisions Required"){
-			rR = convertDate2(wf.getStatusDate());
-		}
-		var dR;
-		wf = aa.workflow.getTask(capId,"Distribution").getOutput();
-		if(wf.getDisposition() == "Resubmitted"){
-			dR = convertDate2(wf.getStatusDate());
-		}
-		bTasks = (dayDiff(rR,dR));
-		if(bTasks != 0){
-			aa.print("Updating Substantive Review Due Date");
-			var nextDate = new Date();
-			nextDate.setDate(srDD.getDate() + bTasks);
-			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
-		}
-	}
-	// ===========================	
-	// Check 4
-	// ===========================
-	// For the following record type: 'Planning/Planning and Zoning/NA/NA', 'Planning/Annexation/NA/NA'
-	// When workflow task status of "Resubmitted" is applied to workflow task "Substantive Review Distribution" then
-	check4 = ["Planning/Planning and Zoning/NA/NA","Planning/Annexation/NA/NA"];
-	if (
-			exists(appTypeString,check4)
-			&& (wfTask == 'oeu Distribution')
-			&& wfStatus == 'Resubmitted'
-	){
-		// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
-		editAppSpecific("Start/Stop Indicator", 'Started');
+		// editAppSpecific("Start/Stop Indicator", 'Started');
+		editAppSpecific("Start/Stop Indicator", 'Started'); // note that this will only update when there is an update to do, otherwise warning
 		// 2) Update the "Substantive Review Due Date" (subgroup = "KEY DATES") = current 
 		// value of "Substantive Review Due Date + the number of days difference between
 		// the status date of workflow task "Review Consolidation" with task status-
 		// "Revisions Required" and the status date of workflow task "Substantive Review Distribution"
-		// with task status "Resubmitted". 
+		// with task status "Resubmitted".
 		srDD = getAppSpecific("Substantive Review Due Date");
-		if(!srDD){
-			aa.print("Date not found attempting to set a new date");
-			srDD = new Date();
+		if(srDD == null || srDD == 'undefined'){
+			srDD = Date();
 		};
 		srDD = convertDate2(srDD);
-		//aa.print(aa.date.parseDate(srDD));
-		var rR;
+		var rR; // Revisions required
 		wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
-		if(wf.getDisposition() == "Revisions Required"){
+		if(wf.getDisposition() == "Revisions Required" && wf.getStatusDate() != null){
 			rR = convertDate2(wf.getStatusDate());
 		}
-		var dR;
-		wf = aa.workflow.getTask(capId,"Substantive Review Distribution").getOutput();
-		if(wf.getDisposition() == "Resubmitted"){
+		else {
+			rR = Date();
+		}
+		var dR; // Distribution/Resubmitted
+		wf = aa.workflow.getTask(capId,"Distribution").getOutput();
+		if(wf.getDisposition() == "Resubmitted" && wf.getStatusDate() != null){
 			dR = convertDate2(wf.getStatusDate());
 		}
-		bTasks = (dayDiff(rR,dR));
-		if(bTasks != 0){
-			aa.print("Updating Substantive Review Due Date");
+		else {
+			dR = Date();
+		}
+		// aa.print(rR);
+		// aa.print(dR);
+		bTasks = workDaysBetween(rR,dR,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		// aa.print(bTasks);
+		if(bTasks > 0 || srDD == Date()){;
 			var nextDate = new Date();
-			nextDate.setDate(srDD.getDate() + bTasks);
+			nextDate = convertDate2(workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']));
 			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 		}
-
 	}
 	// ===========================
 	// Check 5 COMPLETE
