@@ -21,4 +21,3 @@ if (AInfo["False Alarm Fees Charged"]=="CHECKED"){
 	}
 	
 }
-include("PMT_FalseAlarmCount");
