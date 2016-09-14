@@ -6,15 +6,7 @@
 // Script Description: When the workflow task "Plans Coordination" is set to a status of "Revisions Received" adjust the Substantive Review Due Date. Adjust the date by adding the number of days between the current date (the date the info was received) and the date the info was requested (the date the status was set to "Revisions Required").  
 // Script Run Event: WTUA  
 // Script Parents:
-//		WTUA;Planning!Admin Review!NA!NA
-//		WTUA;Planning!Annexation!NA!NA
-//		WTUA;Planning!Board of Adjustment!NA!NA
-//		WTUA;Planning!Design Review!NA!NA
-//		WTUA;Planning!General Plan Amendment - Major!NA!NA
-//		WTUA;Planning!Group Home!Application!NA
-//		WTUA;Planning!Planning and Zoning!NA!NA
-//		WTUA;Planning!Subdivision!NA!NA
-// Good Test Record: ADM16-00221
+//		WTUA;Planning!~!~!~
 ===================================================================*/
 
 try {
