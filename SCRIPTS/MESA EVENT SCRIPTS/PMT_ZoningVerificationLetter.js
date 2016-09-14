@@ -64,6 +64,9 @@ try
     cancel = true;
   }
 
+  showMessage = true;
+  cancel = true;
+
 }
 catch (err)
 {
