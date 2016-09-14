@@ -3,7 +3,7 @@
 // Script Name: ASIUA;Permits!Residential!NA!NA.js
 ==================================================================*/
 include("PMT_TotalSqFt");
-include("PMT_PlanningNumbValidate");
+//include("PMT_PlanningNumbValidate");
 include("PMT_WaterMeterAdapterFee");
 include("PMT_ImpactFeesSingleResidence");
 include("PMT_TotalValuation");

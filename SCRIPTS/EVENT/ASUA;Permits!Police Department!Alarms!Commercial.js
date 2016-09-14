@@ -2,6 +2,7 @@
 	1.	Alarm PD Permit Renewal (Permits/Police Department/Alarms/Commercial Renewal) App Status = “Issued”
 	1.	Update the Alarm PD Permit Record expiration date to one year in the future.
 */
+/* lwacht: moved to WTUA
 try{
 	if(appStatus=="Issued"){
 		logDebug("Executing ID-325");
@@ -27,3 +28,4 @@ try{
 	logDebug("A JavaScript Error occurred: ASUA:Permits/Police Department/Alarms/Commercial: ID-325: " + err.message);
 	logDebug(err.stack);
 }
+*/
