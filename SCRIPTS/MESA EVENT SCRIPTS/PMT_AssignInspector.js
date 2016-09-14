@@ -30,13 +30,13 @@ try
 {
     // get the inspector for this boundary          
     var inspectorObj = getInspectorObject();
-    if (!inspectorObj) 
+    if (inspectorObj != false) 
     {
         // get this inspection's id Number
         var inspNumber = getThisInspectionId_ISA();
         logDebug("inspNumber: " + inspNumber);
 
-        if (!inspNumber)
+        if (inspNumber != false)
         {            
             // assign inspector
             var iObjResult = aa.inspection.getInspection(capId, inspNumber);
