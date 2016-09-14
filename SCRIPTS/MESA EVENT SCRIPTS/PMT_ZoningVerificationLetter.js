@@ -64,9 +64,6 @@ try
     cancel = true;
   }
 
-  comment("Test: trying to blocking all submissions on this record type to test/find unknown Expression");
-  showMessage = true;
-  cancel = true;
 
 }
 catch (err)
