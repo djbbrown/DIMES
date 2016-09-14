@@ -21,11 +21,15 @@
 
 try
 {
+	// init flags to false - these get set to true if their corresponding tags are returned from the map service
 	var mesaElectric = false;
 	var mesaGas = false;
 	var srpElectric = false;
 	var swGas = false;
 	
+	// values we'll be pushing into the ASI fields for "Electric Service" and "Gas Service"
+	//	init to empty (if the GIS call succeeds, we'll have good values to push, otherwise,
+	//	send an empty string rather than defaulting to something misleading.
 	var electService = "";
 	var gasService = "";
 	
@@ -42,7 +46,7 @@ try
 			if (matches(tagVal, "COMG")) { mesaGas = true; /* logDebug("COMG matched"); */ }
 			if (matches(tagVal, "SRPE")) { srpElectric = true; /* logDebug("SRPE matched */ }
 			if (matches(tagVal, "SWGA")) { swGas = true; /* logDebug("SWGA matched"); */ }
-			if (!matches(tagVal, "COME", "COMG", "SRPE", "SWGA")) {/* logDebug("non-matched value: " + tagVal); */ }
+			//if (!matches(tagVal, "COME", "COMG", "SRPE", "SWGA")) {/* logDebug("non-matched value: " + tagVal); */ }
 		}
 	}
 
