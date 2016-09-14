@@ -20,7 +20,9 @@ try {
 		'Planning/Planning and Zoning/NA/NA',
 		'Planning/Subdivision/NA/NA'
 	];
+	aa.print("hello");
 	if(exists(appTypeString,recTypesCheck)){
+		aa.print("hello");
 		var tBd = [];
 		// ===========================
 		// Technical breakdown
@@ -597,7 +599,7 @@ try {
 		){
 			tBd.push('Variance');
 		}
-		// aa.print("tBd Value: "+tBd);
+		aa.print("tBd Value: "+tBd);
 		// ---------------------------
 		// Variance Modification
 		// ---------------------------
@@ -631,11 +633,11 @@ try {
 			tBdDay = [];
 			for(x in tBd){
 				workingDays = lookup("PLN Substantive Review Days",tBd[x]); // Confirmed working
+				tBdDay.push(workingDays);
 			}
 			tBdDay.sort().reverse(); // this will order from highest to lowes, which we want the highest.
 			nextDate = workDaysAdd(Date(),tBdDay[0],['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-			// aa.print(nextDate);
-			editAppSpecific("Substantive Review Due Date", nextDate);
+			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 		}
 		// ===========================
 		// Check 2 COMPLETE
