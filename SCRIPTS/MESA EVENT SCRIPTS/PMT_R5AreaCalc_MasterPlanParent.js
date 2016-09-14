@@ -24,10 +24,12 @@ try {
 		r5_sum = 0
 		r5n_sum = 0
 		for (r in masterPlanASIT){
-			thisR5 = parseFloat(masterPlanASIT[r]["Livable SqFt"].fieldValue)
-			thisR5N = parseFloat(masterPlanASIT[r]["Non-Livable SqFt"].fieldValue)
-			r5_sum += (isNaN(thisR5)) ? 0 : thisR5
-			r5n_sum += (isNaN(thisR5N)) ? 0 : thisR5N
+			if ( masterPlanASIT[r]["Selection"] == "CHECKED") {
+				thisR5 = parseFloat(masterPlanASIT[r]["Livable SqFt"].fieldValue)
+				thisR5N = parseFloat(masterPlanASIT[r]["Non-Livable SqFt"].fieldValue)
+				r5_sum += (isNaN(thisR5)) ? 0 : thisR5
+				r5n_sum += (isNaN(thisR5N)) ? 0 : thisR5N
+			}
 		}
 		logDebug("R5 = " + r5_sum + " | R5N = " + r5n_sum)
 		
@@ -74,9 +76,7 @@ try {
 			newRow["Occupant Load"] =  new asiTableValObj("Occupant Load", "","N")
 			newOccInfoASIT.push(newRow)
 		}
-		
-		
-		
+
 		removeASITable("OCCUPANCY  INFORMATION");
 		addASITable("OCCUPANCY  INFORMATION",newOccInfoASIT);
 	}
