@@ -20,9 +20,7 @@ try {
 		'Planning/Planning and Zoning/NA/NA',
 		'Planning/Subdivision/NA/NA'
 	];
-	aa.print("hello");
 	if(exists(appTypeString,recTypesCheck)){
-		aa.print("hello");
 		var tBd = [];
 		// ===========================
 		// Technical breakdown
@@ -599,7 +597,6 @@ try {
 		){
 			tBd.push('Variance');
 		}
-		aa.print("tBd Value: "+tBd);
 		// ---------------------------
 		// Variance Modification
 		// ---------------------------
