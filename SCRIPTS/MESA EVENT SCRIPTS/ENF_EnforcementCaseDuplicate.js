@@ -56,7 +56,7 @@ try {
 			var addressResult = aa.address.getAddressByCapId(capId);
 			if (addressResult.getSuccess()){
 				var address = addressResult.getOutput();
-				addParameter(vEParams,"$$Address$$", address.toString());
+				addParameter(vEParams,"$$Address$$",getAddressInALine(capId));
 			}
 			var searchUrl = "https://aca.supp.accela.com/mesa/Cap/GlobalSearchResults.aspx?QueryText=" + capId.getCustomID();
 			addParameter(vEParams, "$$URL of the active case$$", searchUrl);

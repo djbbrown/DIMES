@@ -4,3 +4,4 @@ include("PMT_RelateToPlanningRecord");
 
 // added by Vance Smith (Mesa)
 include("ENF_AutopopulateASIFieldsFromGISAttributes");
+include("PMT_CodeEnforcementNumber");

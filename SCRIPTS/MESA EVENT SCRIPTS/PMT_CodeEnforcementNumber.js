@@ -35,20 +35,22 @@
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
 try
-{   var fieldSubGroup = "DEMOLITION";
+{   
+    var fieldSubGroup = "DEMOLITION";
     var fieldName = "Code Enforcement Case Number";
     var fieldNow = getAppSpecific(fieldName);
-    var fieldBefore = getASIFieldValueBeforeItChanged(fieldSubGroup, fieldName);
-    logDebug("fieldNow: " + fieldNow + ", fieldBefore: " + fieldBefore);
+    //var fieldBefore = getASIFieldValueBeforeItChanged(fieldSubGroup, fieldName);
+    logDebug(fieldName + ": " + fieldNow);
 
-    if (fieldNow != fieldBefore) 
+    if (fieldNow != null) 
     {
         logDebug("Criteria met for script.");
 
         // see if there is a record with a record id = fieldNow
         var tmpID = aa.cap.getCapID(fieldNow).getOutput(); 
         if (tmpID == null)
-        { // record not found
+        { 
+            // record not found
             logDebug("'" + fieldName + "' (" + fieldNow + ") record not found.");
         }
         else // valid record found
@@ -65,33 +67,58 @@ try
 		        addStdCondition("Building Permit", "Obtain Timeline of Completion");
             }
 
-
-            // get the code officer (inspector) for this boundary          
-            var codeOfficer = getInspectorObject();
-            if (codeOfficer) 
+            var emailInspector = false;
+            // make the record in fieldNow the parent of this record
+            var parCapId = getParent(); // getParents()?
+            if ( parCapId == false )
             {
-                logDebug("codeOfficer: " + codeOfficer.getFullName());
-
-                // build code officer email
-                var codeOfficerEmail = codeOfficer.getFirstName() + "." + codeOfficer.getLastName() + "@mesaaz.gov";
-
-                // email the code officer
-                var fromEmail = "noreply@MesaAZ.gov";
-                var vEParams = aa.util.newHashtable();
-                addParameter(vEParams,"$$Record ID$$", capIDString);
-                addParameter(vEParams,"$$Record ID2$$", fieldNow);
-                sendNotification(fromEmail, codeOfficerEmail, "", "PMT_ASSOCIATED_ENFORCEMENT_RECORD", vEParams, null, capId);
-                
-                logDebug("Sent email to Code Officer.");
-
-                // make the record in fieldNow the parent of this record
-                addParent(fieldNow);
-
-                logDebug("'" + fieldName + "' (" + fieldNow + ") record was made the parent of " + capIDString + ".");
+                logDebug("No parent record.");
+                addParent(tmpID);
+                logDebug("'" + fieldName + "' (" + fieldNow + ") record was made the parent of " + capIDString + ". (no parent before)");
+                emailInspector = true;
             }
-            else
+            else 
             {
-                logDebug("Code Officer not found.");
+                logDebug("Parent record found!");
+
+                // see if the parent is the parent specified in fieldNow
+                var parAltId = parCapId.getCapID().getAltID();
+                if ( parAltId == fieldNow )
+                {
+                    logDebug(fieldNow + " is already the parent.");
+                }
+                else 
+                {
+                    addParent(tmpID);
+                    logDebug("'" + fieldName + "' (" + fieldNow + ") record was made the parent of " + capIDString + ". (new parent)");
+                    emailInspector = true;
+                }
+            }
+
+            if ( emailInspector ) // only email the inspector if we have just added a parent
+            {
+                // get the code officer (inspector) for this boundary          
+                var codeOfficer = getInspectorObject();
+                if (codeOfficer != false) 
+                {
+                    logDebug("codeOfficer: " + codeOfficer.getFullName());
+
+                    // build code officer email
+                    var codeOfficerEmail = codeOfficer.getFirstName() + "." + codeOfficer.getLastName() + "@mesaaz.gov";
+
+                    // email the code officer
+                    var fromEmail = "noreply@MesaAZ.gov";
+                    var vEParams = aa.util.newHashtable();
+                    addParameter(vEParams,"$$Record ID$$", capIDString);
+                    addParameter(vEParams,"$$Record ID2$$", fieldNow);
+                    sendNotification(fromEmail, codeOfficerEmail, "", "PMT_ASSOCIATED_ENFORCEMENT_RECORD", vEParams, null, capId);
+                    
+                    logDebug("Sent email to Code Officer.");
+                }
+                else
+                {
+                    logDebug("Code Officer not found.");
+                }
             }
         }        
     }
