@@ -620,6 +620,7 @@ try {
 		if(
 				(wfTask == 'Substantive Review Distribution' || wfTask == 'Distribution')
 				&& wfStatus == 'Distributed'
+				&& tBd.length > 0
 		){
 			// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 			editAppSpecific("Start/Stop Indicator", 'Started');
