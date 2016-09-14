@@ -810,11 +810,8 @@ try {
 				];
 	if(
 			(wfTask == 'Substantive Review Distribution' || wfTask == 'Distribution')
-			&& wfStatus == 'Resubmitted'
-			&& !exists(appTypeString,check4)
-			&& getAppSpecific("Substantive Review Due Date") != 'undefined'
+			&& wfStatus == 'Distributed'
 	){
-		aa.print("Starting check 1");
 		// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 		editAppSpecific("Start/Stop Indicator", 'Started');
 		// Update the "Substantive Review Due Date" = todays date + # of working days.
@@ -856,20 +853,8 @@ try {
 	// Check 4
 	// For the following record type: 'Planning/Planning and Zoning/NA/NA', 'Planning/Annexation/NA/NA'
 	// When workflow task status of "Resubmitted" is applied to workflow task "Substantive Review Distribution" then
-	check4 = [
-				// Check 3
-				'Planning/Admin Review/NA/NA',
-				'Planning/Board of Adjustment/NA/NA',
-				'Planning/Design Review/NA/NA',
-				'Planning/General Plan Amendment - Major/NA/NA',
-				'Planning/Group Home/Application/NA',
-				'Planning/Subdivision/NA/NA',
-				// Check 4
-				'Planning/Planning and Zoning/NA/NA',
-				'Planning/Annexation/NA/NA'
-				];
 	if (
-			exists(appTypeString,check4)
+			1==1
 			&& (wfTask == 'Distribution')
 			&& wfStatus == 'Resubmitted'
 	){
