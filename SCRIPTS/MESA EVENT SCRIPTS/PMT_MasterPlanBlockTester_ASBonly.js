@@ -22,7 +22,6 @@
 try
 {
   
-
   showMessage = true;  
   comment("Testing Submission Blocking on Master Plan (ASB Only)");
   cancel = true;
