@@ -2,6 +2,7 @@
  Script Number: 340
  Script Name: PMT_ImpactFeesMultiResidence.js
  Script Developer: John Cheney
+ Script Version: 9/14/2016-A
  Script Agency: Mesa
  Script Description:
    When Updating of IMPACT FEES ASI field "Classification" (a dropdown in ui) to 
