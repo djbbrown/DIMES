@@ -18,7 +18,7 @@
 
 /* per Vance, see ENF_NewRecordPriorityNormal.js (26) and ENF_NewPriorityImminentHazard.js (42) for examples */
 /* test with PMT16-00420 */
-
+comment("Script 343 called.");
 logDebug("///////////////////////// Script 343 called ///////////////////////////////");
 try
 {
