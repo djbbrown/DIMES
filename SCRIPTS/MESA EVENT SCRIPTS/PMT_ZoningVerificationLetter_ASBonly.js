@@ -29,6 +29,8 @@ try
   var docFound = false;
   var curReqDocType = "";
 
+  comment("tInfoCount: " + tInfoCount);
+
   for (x=0;x<tInfoCount;x++)
   {
     curReqDocType = tInfo[x]["Document Type"];
@@ -59,11 +61,14 @@ try
 
   if ((docNeeded) && (!(docFound)))
   {
-    showMessage = true;
+    //showMessage = true;
     comment("The document Zoning Verification Letter is required. Please add this document and submit again.");
-    cancel = true;
+    //cancel = true;
   }
 
+  comment("ASB Only");
+  showMessage = true;  
+  cancel = true;
 
 }
 catch (err)
