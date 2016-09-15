@@ -23,9 +23,9 @@ try
 {
 
   
-  showMessage = true;  
-  comment("Testing Submission Blocking on Master Plan (ASB Only)");
-  cancel = true;
+  //showMessage = true;  
+  //comment("Testing Submission Blocking on Master Plan (ASB Only)");
+  //cancel = true;
 
   //logDebug("ASB Only");
 
