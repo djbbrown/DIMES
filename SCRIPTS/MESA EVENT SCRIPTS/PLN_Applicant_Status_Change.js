@@ -3,9 +3,10 @@
 // Script Name: PLN_Applicant_Status_Change.js
 // Script Description: Send email to Applicant for record status changes   
 // Script Run Event: WTUA;Planning!Pre-Submittal!~!~
-// Testing Record: PMT16-00498, PRS16-00193
+// Testing Record: PMT16-00498, PRS16-00193, PMT16-00402
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/31/16  |Steve Veloudos   |Initial Release  
+//  1.1      |09/15/16  |Steve Veloudos   |Adjusted Phone Incomplete Status  
 /*==================================================================*/
 
 try {
@@ -87,8 +88,16 @@ try {
         //Incomplete
         if(StatusType == 3)
         {           
-            //Get Planning Phone
-            PlanningPhone = lookup("REPORT_CONFIG","Planning_Phone");
+            //Get the employee that put the record in Incomplete
+            var taskActBy = getTaskActionBy("Application Submittal");
+            var iNameResult = aa.person.getUser(taskActBy);
+            //Get phone number
+            if (iNameResult.getSuccess())
+            {
+            var iUserObj = iNameResult.getOutput();
+            PlanningPhone = iUserObj.getPhoneNumber();
+            }
+            
             addParameter(vEParams,"$$PLANNINGPHONE$$",PlanningPhone);
             
             //Email Applicant
