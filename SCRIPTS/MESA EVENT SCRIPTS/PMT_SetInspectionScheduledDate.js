@@ -52,8 +52,7 @@ try
 		logDebug("inspId: " + inspId);
 		logDebug("inspInspector: " + inspInspector);
 		logDebug("inspType: " + inspType);
-		logDebug("inspSchedDate: " + inpsSchedDate);
-		logDebug("inspSchedDate: " + inpsSchedDate);
+		logDebug("inspSchedDate: " + inspSchedDate);
 		logDebug("inspection date to update to: " + inspDate);
 	}
 		
