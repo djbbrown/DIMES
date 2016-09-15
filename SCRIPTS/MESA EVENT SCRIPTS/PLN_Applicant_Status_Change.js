@@ -89,7 +89,7 @@ try {
         if(StatusType == 3)
         {           
             //Get the employee that put the record in Incomplete
-            var taskActBy = getTaskActionBy("Application Submittal");
+            var taskActBy = getTaskActionBy("Application Acceptance");
             var iNameResult = aa.person.getUser(taskActBy);
             //Get phone number
             if (iNameResult.getSuccess())
