@@ -6,3 +6,6 @@ include("PMT_UpdateMobileHomePenaltyDate");
 
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
+
+// added by John Cheney (Mesa) 9/15/16
+include("PMT_MobileHomeWaterImpactFee");
