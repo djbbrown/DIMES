@@ -1,8 +1,11 @@
 /*===================================================================
+ Versions:
+ 9/15/2016-A	John Cheney			initial
+ 9/15/2016-B	John Cheney			fixed field Water/Wastewater Meter Size 1 (added space before 1)
+ ---------------------------------------------------------------------
  Script Number: 335
  Script Name: PMT_MobileHomeWaterImpactFee.js
  Script Developer: John Cheney
- Script Version: 9/15/2016-A
  Script Agency: Mesa
  Script Description:
    
@@ -43,7 +46,7 @@ try {
 				var meterQtyTotal = 0;
 
 				// check Meter 1
-				var meterType = AInfo["Water/Wastewater Meter Size1"]; 
+				var meterType = AInfo["Water/Wastewater Meter Size 1"]; 
 				var meterQty = AInfo["Water Meter Qty 1"];
 				if (meterType && meterType == "Res Units" && meterQty && Number(meterQty) > 0){
 					meterQtyTotal = meterQtyTotal + Number(meterQty);
