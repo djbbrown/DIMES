@@ -70,6 +70,8 @@ try
   showMessage = true;  
   cancel = true;
 
+  logDebug("ASB Only");
+
 }
 catch (err)
 {
