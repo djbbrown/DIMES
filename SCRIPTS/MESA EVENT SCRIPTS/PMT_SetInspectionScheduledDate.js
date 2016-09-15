@@ -12,12 +12,14 @@
 // Script Run Event: ISA
 // Script Parents:
 //		ISA;Permits!~!~!~ (with exception of Document Retrieval, Addenda, Fire, and PD)
+//		IMSA;Permits!~!~!~ (with exception of Document Retrieval, Addenda, Fire, and PD)
 //             
 /*==================================================================*/
 
 /* per Vance, see ENF_NewRecordPriorityNormal.js (26) and ENF_NewPriorityImminentHazard.js (42) for examples */
 /* test with PMT16-00420 */
 
+logDebug("///////////////////////// Script 343 called ///////////////////////////////");
 try
 {
 	if (appMatch("Permits/Commercial/*/*") || appMatch("Permits/Demolition/*/*") ||
