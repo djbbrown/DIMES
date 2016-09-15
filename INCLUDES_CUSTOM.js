@@ -2026,7 +2026,7 @@ function getThisInspectionId_ISA() // optional altId
     }
 }
 
-function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optional altId
+/*function getASIFieldValueBeforeItChanged2(asiSubGroupName, asiFieldName) // optional altId
 {
     var theCapID = null;
     if ( arguments.length == 3 )
@@ -2046,4 +2046,93 @@ function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optio
         beforeValue = beforeValueList[i].getChecklistComment();
     }
     return beforeValue;
+}
+
+function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optional altId
+{
+	var theCapID = null;
+    if ( arguments.length == 3 )
+    {
+        theCapID = aa.cap.getCapID(arguments[2]).getOutput();
+    }
+    else 
+    {
+        theCapID = capId;
+    }
+  	var asiGroups = theCapID.getAppSpecificInfoGroups();
+  	var checklistComment;
+  	for(var i=0; i< asiGroups.size(); i++)
+  	{
+		var asiGroup = asiGroups.get(i);
+	    var fields = asiGroup.getFields();
+
+		if(asiGroup.getGroupName() != asiSubGroupName)
+		{
+			continue;
+		}
+		if(fields)
+		{
+			for(var j=0;j<fields.size();j++)
+			{        
+				var fieldLabel = fields.get(j);            
+				if(fieldLabel.getFieldLabel() == asiFieldName)
+				{
+					checklistComment = fieldLabel.getChecklistComment();
+					return checklistComment;
+				}          
+			}
+		}
+	}	
+}*/
+
+function isTaskActive_Mesa(wfstr) // optional process name
+{
+	var useProcess = false;
+	var processName = "";
+
+	if (arguments.length == 2) {
+		processName = arguments[1]; // subprocess
+		useProcess = true;
+	}
+
+	var workflowResult = aa.workflow.getTaskItems(capId, wfstr, processName, null, null, "Y");
+	if (workflowResult.getSuccess())
+    {
+		wfObj = workflowResult.getOutput();
+    }
+	else 
+    {
+		logDebug("**ERROR: Failed to get workflow object: " + s_capResult.getErrorMessage());
+		return false;
+	}
+
+    if (wfObj.length == 0) 
+    {
+        logDebug("No workflow tasks returned.");
+        return false;
+    }
+    else
+    {
+        for (i in wfObj)
+        {
+            fTask = wfObj[i];
+            if (fTask.getTaskDescription().toUpperCase().equals(wfstr.toUpperCase()) && (!useProcess || fTask.getProcessCode().equals(processName)))
+            {
+                if (fTask.getActiveFlag().equals("Y"))
+                {
+                    logDebug(wfstr + " task is active!");
+                    return true;
+                }
+                else
+                {
+                    logDebug(wfstr + " task is NOT active!");
+                    return false;
+                }
+            }
+        }
+        // if we reach this point then the workflow task was not found, return false
+        // this could be because the record has not reached that part in the workflow
+        logDebug(wfstr + " task was not found, returning false.");
+        return false;
+    }
 }
