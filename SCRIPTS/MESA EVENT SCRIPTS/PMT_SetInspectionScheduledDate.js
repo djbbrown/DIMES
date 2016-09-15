@@ -15,6 +15,7 @@
 //             
 /*==================================================================*/
 
+/* per Vance, see ENF_NewRecordPriorityNormal.js (26) and ENF_NewPriorityImminentHazard.js (42) for examples */
 /* test with PMT16-00420 */
 
 try
@@ -26,6 +27,10 @@ try
 		// on inspection scheduled, make the scheduled date the next working day (include Fridays, and exclude weekends and holidays)
 		var inspDate = dateAdd(null, 1, "Y"); // default to next working day.
 
+		/*
+		var inspArr = aa.env.getValue("InspectionDateArray");
+		logDebug("inspArr length: " + inspArr.length());
+		
 		// get list of inspections associated with record
 		var inspResultObj = aa.inspection.getInspections(capId);
 		if (inspResultObj.getSuccess()) {
@@ -40,6 +45,14 @@ try
 				}
 			}
 		}
+		*/
+		logDebug("INSPECTION INFO FROM SCRIPT 343");
+		logDebug("inspId: " + inspId);
+		logDebug("inspInspector: " + inspInspector);
+		logDebug("inspType: " + inspType);
+		logDebug("inspSchedDate: " + inpsSchedDate);
+		logDebug("inspSchedDate: " + inpsSchedDate);
+		logDebug("inspection date to update to: " + inspDate);
 	}
 		
 }
