@@ -20,3 +20,6 @@ include("PMT_NoAddressAddAdHoc");
 
 // added by Vance Smith (Mesa)
 include("ENF_AutopopulateASIFieldsFromGISAttributes");
+
+//added by Michael Kniskern (City of Mesa)
+include("PMT_MobileHomePublicSafetyImpactFee");
