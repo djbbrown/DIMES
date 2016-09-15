@@ -12,11 +12,14 @@
 // Script Run Event: ISA
 // Script Parents:
 //		ISA;Permits!~!~!~ (with exception of Document Retrieval, Addenda, Fire, and PD)
+//		IMSA;Permits!~!~!~ (with exception of Document Retrieval, Addenda, Fire, and PD)
 //             
 /*==================================================================*/
 
+/* per Vance, see ENF_NewRecordPriorityNormal.js (26) and ENF_NewPriorityImminentHazard.js (42) for examples */
 /* test with PMT16-00420 */
-
+comment("Script 343 called.");
+logDebug("///////////////////////// Script 343 called ///////////////////////////////");
 try
 {
 	if (appMatch("Permits/Commercial/*/*") || appMatch("Permits/Demolition/*/*") ||
@@ -26,6 +29,10 @@ try
 		// on inspection scheduled, make the scheduled date the next working day (include Fridays, and exclude weekends and holidays)
 		var inspDate = dateAdd(null, 1, "Y"); // default to next working day.
 
+		/*
+		var inspArr = aa.env.getValue("InspectionDateArray");
+		logDebug("inspArr length: " + inspArr.length());
+		
 		// get list of inspections associated with record
 		var inspResultObj = aa.inspection.getInspections(capId);
 		if (inspResultObj.getSuccess()) {
@@ -40,6 +47,13 @@ try
 				}
 			}
 		}
+		*/
+		logDebug("INSPECTION INFO FROM SCRIPT 343");
+		logDebug("inspId: " + inspId);
+		logDebug("inspInspector: " + inspInspector);
+		logDebug("inspType: " + inspType);
+		logDebug("inspSchedDate: " + inspSchedDate);
+		logDebug("inspection date to update to: " + inspDate);
 	}
 		
 }
