@@ -716,7 +716,7 @@ try {
 		check5Status = ["Proceed","Complete","DR Board","Planning Director"];
 		if (
 				(wfTask == 'Review Consolidation')
-				&& exsits(wfStatus,check5Status)
+				&& exists(wfStatus,check5Status)
 		){
 			// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 			editAppSpecific("Start/Stop Indicator", 'Stopped');
