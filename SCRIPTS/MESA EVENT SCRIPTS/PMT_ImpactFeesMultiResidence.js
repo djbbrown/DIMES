@@ -16,7 +16,6 @@
 Test records: BLD2015-06893, BLD2015-06384, BLD2015-05280, BLD2015-05278, BLD2015-05277
 	(none of these have a Permit Issuance task and some have null for unit count .. otherwise were good for testing )
 
-
 specs: https://portal.accelaops.com/projects/Mesa/Scripts%20Specs/340%20PMT%20Impact%20Fees%20–%20Multi-Residence.docx?web=1
 
 Script run events: WTUA

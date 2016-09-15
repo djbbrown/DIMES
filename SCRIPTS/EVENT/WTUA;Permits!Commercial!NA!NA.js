@@ -8,5 +8,5 @@ include("PMT_AssessTechFee"); // must be run last
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 
-// added by John Cheney (Mesa)
+// added by John Cheney  (Mesa)
 include("PMT_ImpactFeesMultiResidence");
