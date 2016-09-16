@@ -36,36 +36,37 @@ try
 //  try something like this
 
 loadASITablesBefore();
-var isExist = false;
+var docFound = false;
 var docList = aa.env.getValue("DocumentModelList");
+var docListCount = 0;
 
 if((docList == null) 
     || (docList == ""))
 {
   docList=aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
-  var num = docList.size();
+  docListCount = docList.size();
 }
 else
 {
-  var num =docList.size();
+  docListCount = docList.size();
 }
 	
 
-if (num>0)
+if (docListCount > 0)
 {
-  for(var i=0;i<num;i++)
+  for(x=0;x<num;x++)
   { 
-    if((docList.get(i) != null)
-        && (docList.get(i).getDocGroup() == "PMT_DOC")
-        && (docList.get(i).getDocCategory() == "Zoning Verification Request")) 
+    if((docList.get(x) != null)
+        && (docList.get(x).getDocGroup() == "PMT_DOC")
+        && (docList.get(x).getDocCategory() == "Zoning Verification Request")) 
     {
-      isExist=true;
+      docFound = true;
       break; 
     }
   }
 }
    
-if(isExist!==true) 
+if (!(docFound == true))
 {
   showMessage=true;         
   logMessage("Zoning Verification Request must be attached.");
