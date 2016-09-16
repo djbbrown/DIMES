@@ -36,41 +36,45 @@ try
 //  try something like this
 
 loadASITablesBefore();
+var docFound = false;
+var docList = aa.env.getValue("DocumentModelList");
+var docListCount = 0;
 
-var docList= aa.env.getValue("DocumentModelList");
-	if(docList ==null || docList=="")
-	{
-	 docList=aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
-	 var num = docList.size();
-    }
-    else
-    {
-	var num =docList.size();
-	}
+if((docList == null) 
+    || (docList == ""))
+{
+  docList=aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
+  docListCount = docList.size();
+}
+else
+{
+  docListCount = docList.size();
+}
 	
-	var isExist=false;
-	if (num>0)
-	{
-	   for(var i=0;i<num;i++)
-	   { 
-             if(docList.get(i)!=null&&docList.get(i).getDocGroup()=="PMT_DOC" && docList.get(i).getDocCategory()=="Zoning Verification Request") 
-             {
-              isExist=true;
-              break; 
-	         }
-	   }
-	}
+
+if (docListCount > 0)
+{
+  for(x=0;x<num;x++)
+  { 
+    if((docList.get(x) != null)
+        && (docList.get(x).getDocGroup() == "PMT_DOC")
+        && (docList.get(x).getDocCategory() == "Zoning Verification Request")) 
+    {
+      docFound = true;
+      break; 
+    }
+  }
+}
    
-	if(isExist!==true) 
-	{
-	 showMessage=true;         
-     logMessage("Zoning Verification Request must be attached.");
-     logDebug("Zoning Verification Request must be attached.");
-     cancel=true;
-	}
+if (!(docFound == true))
+{
+  showMessage=true;         
+  logMessage("Zoning Verification Request must be attached.");
+  logDebug("Zoning Verification Request must be attached.");
+  cancel=true;
 }
 
-
+}
 catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
