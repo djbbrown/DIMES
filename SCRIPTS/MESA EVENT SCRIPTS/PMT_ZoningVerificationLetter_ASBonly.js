@@ -42,7 +42,7 @@ var docNeeded = false;
 var docFound = false;
 
 
-logDebug("tInfoCount: " + tInfoCount);
+  logDebug("tInfoCount: " + tInfoCount);
 
   for (x=0;x<tInfoCount;x++)
   {
@@ -51,7 +51,7 @@ logDebug("tInfoCount: " + tInfoCount);
     if (curReqDocType == "Zoning Verification Letter - One Parcel Request")
     {
       docNeeded = true;
-      logDebugdocNeeded: " + docNeeded);
+      logDebug("docNeeded: " + docNeeded);
       
       var docList = aa.env.getValue("DocumentModelList");
       var docListCount = 0;
@@ -59,7 +59,7 @@ logDebug("tInfoCount: " + tInfoCount);
       if((docList == null) 
           || (docList == ""))
       {
-        docList=aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
+        docList = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
         docListCount = docList.size();
       }
       else
