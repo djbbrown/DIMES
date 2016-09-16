@@ -36,43 +36,63 @@ try
 //  try something like this
 
 loadASITablesBefore();
+var tInfo = DOCUMENTTYPESREQUESTED
+var tInfoCount = tInfo.length;
+var docNeeded = false;
 var docFound = false;
-var docList = aa.env.getValue("DocumentModelList");
-var docListCount = 0;
 
-if((docList == null) 
-    || (docList == ""))
-{
-  docList=aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
-  docListCount = docList.size();
-}
-else
-{
-  docListCount = docList.size();
-}
+
+logDebug("tInfoCount: " + tInfoCount);
+
+  for (x=0;x<tInfoCount;x++)
+  {
+    curReqDocType = tInfo[x]["Document Type"];
+  
+    if (curReqDocType == "Zoning Verification Letter - One Parcel Request")
+    {
+      docNeeded = true;
+      logDebugdocNeeded: " + docNeeded);
+      
+      var docList = aa.env.getValue("DocumentModelList");
+      var docListCount = 0;
+
+      if((docList == null) 
+          || (docList == ""))
+      {
+        docList=aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
+        docListCount = docList.size();
+      }
+      else
+      {
+        docListCount = docList.size();
+      }
 	
 
-if (docListCount > 0)
-{
-  for(x=0;x<num;x++)
-  { 
-    if((docList.get(x) != null)
-        && (docList.get(x).getDocGroup() == "PMT_DOC")
-        && (docList.get(x).getDocCategory() == "Zoning Verification Request")) 
-    {
-      docFound = true;
-      break; 
+      if (docListCount > 0)
+      {
+        for(x=0;x<num;x++)
+        { 
+          if((docList.get(x) != null)
+              && (docList.get(x).getDocGroup() == "PMT_DOC")
+              && (docList.get(x).getDocCategory() == "Zoning Verification Request")) 
+          {
+            docFound = true;
+            break; 
+          }
+        }
+      }
+
     }
   }
-}
    
-if (!(docFound == true))
-{
-  showMessage=true;         
-  logMessage("Zoning Verification Request must be attached.");
-  logDebug("Zoning Verification Request must be attached.");
-  cancel=true;
-}
+  if ((!(docFound == true)) && (docNeeded == true))
+  {
+    showMessage=true;         
+    //logMessage("Zoning Verification Request must be attached.");
+    logDebug("Zoning Verification Request must be attached.");
+    comment("The document Zoning Verification Letter is required. Please add this document and submit again. (ASB)");
+    cancel=true;
+  }
 
 }
 catch (err)
