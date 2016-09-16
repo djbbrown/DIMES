@@ -61,7 +61,7 @@ try
 
       if (docListCount > 0)
       {
-        for(x=0;x<num;x++)
+        for(x=0;x<docListCount;x++)
         { 
           if((docList.get(x) != null)
               && (docList.get(x).getDocGroup() == "PMT_DOC")
