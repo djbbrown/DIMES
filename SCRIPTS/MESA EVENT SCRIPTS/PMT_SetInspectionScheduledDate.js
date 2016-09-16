@@ -18,8 +18,13 @@
 
 /* per Vance, see ENF_NewRecordPriorityNormal.js (26) and ENF_NewPriorityImminentHazard.js (42) for examples */
 /* test with PMT16-00420 */
-comment("Script 343 called.");
-logDebug("///////////////////////// Script 343 called ///////////////////////////////");
+
+/*
+info from Vance - in inspectionscriptmodel class there is a setScheduleDate method
+ file://isrc01/ittechdocs/Applications/Dimes/EMSE-API-8_0_2-Doc/com/accela/aa/emse/dom/InspectionScriptModel.html 
+
+*/
+
 try
 {
 	if (appMatch("Permits/Commercial/*/*") || appMatch("Permits/Demolition/*/*") ||
@@ -28,7 +33,7 @@ try
 	
 		// on inspection scheduled, make the scheduled date the next working day (include Fridays, and exclude weekends and holidays)
 		var inspDate = dateAdd(null, 1, "Y"); // default to next working day.
-
+		
 		/*
 		var inspArr = aa.env.getValue("InspectionDateArray");
 		logDebug("inspArr length: " + inspArr.length());
@@ -48,12 +53,27 @@ try
 			}
 		}
 		*/
+		
+		// get inspection info (inspection ID and scheduled date) and update date
+		var inspResultObj = aa.inspection.getInspections(capId);
+		if (inspResultObj.getSuccess()) {
+			var inspList = inspResultObj.getOutput();
+			//logDebug("Number of inspections: " + inspList.length);
+			for(insp in inspList) {
+				if (inspList[insp].getIdNumber() == inspId) {
+					var inspModel = inspList[insp].getInspection();
+					inspModel.setScheduleDate(inspDate);
+				}
+			}
+		}
+	/*
 		logDebug("INSPECTION INFO FROM SCRIPT 343");
 		logDebug("inspId: " + inspId);
 		logDebug("inspInspector: " + inspInspector);
 		logDebug("inspType: " + inspType);
 		logDebug("inspSchedDate: " + inspSchedDate);
 		logDebug("inspection date to update to: " + inspDate);
+	*/
 	}
 		
 }
