@@ -71,9 +71,6 @@ var docList= aa.env.getValue("DocumentModelList");
 }
 
 
-}
-
-
 catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
