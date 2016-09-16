@@ -1,7 +1,7 @@
 //*===================================================================
 //
 // Script Number: 68
-// Script Name: PMT_ZoningVerificationLetter.js
+// Script Name: PMT_ZoningVerificationLetter_ASBonly.js
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
@@ -11,38 +11,29 @@
 //		then require a document of type "Zoning Verification Letter". 
 //		If the document does not exist, prevent submittal.
 //
+//		This script has the same purpose as PMT_ZoningVerificationLetter
+//		but the configuration of this record type requires different
+//		method to load document information. So the version wired to the ASIUB
+//		is a little different code to accomplish the same test.
+//
 // Script Run Event: ASB, ASIUB
 // Script Parents:
 //              ASB;Permits/Document Retrieval/NA/NA
-//		ASIUB;Permits/Document Retrieval/NA/NA
+//		ASIUB;Permits/Document Retrieval/NA/NA  (other script wired to ASIUB)
 // 
 //==================================================================*/
 
 
 try
 {
- /* loadASITable("DOCUMENT TYPES REQUESTED");
+ 
+  loadASITablesBefore();
   var tInfo = DOCUMENTTYPESREQUESTED
   var tInfoCount = tInfo.length;
-
   var docNeeded = false;
   var docFound = false;
-  var curReqDocType = "";
 
-    showMessage = true;
-    comment("The document Zoning Verification Letter is required. Please add this document and submit again.");
-    cancel = true;
-	*/
-//  try something like this
-
-loadASITablesBefore();
-var tInfo = DOCUMENTTYPESREQUESTED
-var tInfoCount = tInfo.length;
-var docNeeded = false;
-var docFound = false;
-
-
-  logDebug("tInfoCount: " + tInfoCount);
+  //logDebug("tInfoCount: " + tInfoCount);
 
   for (x=0;x<tInfoCount;x++)
   {
@@ -51,7 +42,7 @@ var docFound = false;
     if (curReqDocType == "Zoning Verification Letter - One Parcel Request")
     {
       docNeeded = true;
-      logDebug("docNeeded: " + docNeeded);
+      //logDebug("docNeeded: " + docNeeded);
       
       var docList = aa.env.getValue("DocumentModelList");
       var docListCount = 0;
@@ -87,11 +78,11 @@ var docFound = false;
    
   if ((!(docFound == true)) && (docNeeded == true))
   {
-    showMessage=true;         
+    showMessage = true;         
     //logMessage("Zoning Verification Request must be attached.");
-    logDebug("Zoning Verification Request must be attached.");
-    comment("The document Zoning Verification Letter is required. Please add this document and submit again. (ASB)");
-    cancel=true;
+    //logDebug("Zoning Verification Request must be attached.");
+    comment("The document Zoning Verification Letter is required. Please add this document and submit again.");
+    cancel = true;
   }
 
 
