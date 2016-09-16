@@ -187,6 +187,7 @@ function mainProcess() {
 	// Variables for counting
 	var capCount = 0;
 	var capProc = 0; // Actual records that were processed
+	var capFilterStatus = 0; //actual records that were filtered
 
 	var capResult = aa.cap.getCapIDsByAppSpecificInfoDateRange(asiGroup, asiField,dFromDate,dToDate);
 	if (capResult.getSuccess()) {

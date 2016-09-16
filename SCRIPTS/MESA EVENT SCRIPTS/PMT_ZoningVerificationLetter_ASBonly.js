@@ -1,7 +1,7 @@
 //*===================================================================
 //
 // Script Number: 68
-// Script Name: PMT_ZoningVerificationLetter_ASBonly.js
+// Script Name: PMT_ZoningVerificationLetter.js
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
@@ -21,7 +21,7 @@
 
 try
 {
-  loadASITablesBefore();
+  loadASITable("DOCUMENT TYPES REQUESTED");
   var tInfo = DOCUMENTTYPESREQUESTED
   var tInfoCount = tInfo.length;
 
@@ -29,48 +29,9 @@ try
   var docFound = false;
   var curReqDocType = "";
 
-  comment("tInfoCount: " + tInfoCount);
-
-  for (x=0;x<tInfoCount;x++)
-  {
-    curReqDocType = tInfo[x]["Document Type"];
-  
-    if (curReqDocType == "Zoning Verification Letter - One Parcel Request")
-    {
-      docNeeded = true;
-      var docListResult = aa.document.getCapDocumentList(capId,currentUserID);
-  
-      if (docListResult.getSuccess())
-      {
-        var docListArray = docListResult.getOutput()
-        var docCount = docListArray.length;
-        var docCat = "";
-
-        for(x=0;x<docCount;x++)
-        {
-          docCat = docListArray[x].getDocCategory();
-  
-          if (docCat == "Zoning Verification Request")
-          {
-            docFound = true;
-          }
-        }  
-      } 
-    }
-  }
-
-  if ((docNeeded) && (!(docFound)))
-  {
-    //showMessage = true;
+    showMessage = true;
     comment("The document Zoning Verification Letter is required. Please add this document and submit again.");
-    //cancel = true;
-  }
-
-  comment("ASB Only");
-  showMessage = true;  
-  cancel = true;
-
-  logDebug("ASB Only");
+    cancel = true;
 
 
 }
