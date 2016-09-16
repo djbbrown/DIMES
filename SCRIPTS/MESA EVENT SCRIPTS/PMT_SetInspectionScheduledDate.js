@@ -77,6 +77,7 @@ try
 			// setScheduledDate needs to be a type of "com.accela.aa.emse.util.ScriptDateTime"
 			var theDate = aa.date.getScriptDateTime(new Date(inspDate)); // need to convert inspDate to right type of object - 
 			inspObj.setScheduledDate(theDate);
+			//message("Script 343 setting inspection date to: " + inspDate);
 			//logDebug("inspDate: " + inspDate);
 		}
 	/*
