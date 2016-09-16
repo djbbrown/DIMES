@@ -1,5 +1,5 @@
 /*===================================================================
 // Script Number: 68
-// Script Name: ASB;Permits!Document Retrieval!NA!NA.js
+// Script Name: ASB;Permits!Master Plan!NA!NA.js
 ==================================================================*/
-include("PMT_ZoningVerificationLetter_ASBonly");
+include("PMT_MasterPlanBlockTester_ASBonly");  // for testing only
