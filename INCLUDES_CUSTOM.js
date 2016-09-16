@@ -2136,3 +2136,23 @@ function isTaskActive_Mesa(wfstr) // optional process name
         return false;
     }
 }
+
+function isInFloodZone() 
+{
+    var tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+    if (tagFieldArray && tagFieldArray.length > 0) 
+    {
+        if (IsStrInArry("FLDP", tagFieldArray)) 
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}

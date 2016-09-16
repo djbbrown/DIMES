@@ -622,6 +622,7 @@ try {
 				&& wfStatus == 'Distributed'
 				&& tBd.length > 0
 		){
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Update 4 Running");
 			// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 			editAppSpecific("Start/Stop Indicator", 'Started');
 			// Update the "Substantive Review Due Date" = todays date + # of working days.
@@ -636,6 +637,7 @@ try {
 			tBdDay.sort().reverse(); // this will order from highest to lowes, which we want the highest.
 			nextDate = workDaysAdd(Date(),tBdDay[0],['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Substantive Review Due Date updated to "+jsDateToASIDate(convertDate2(nextDate)));
 		}
 		// ===========================
 		// Check 2 COMPLETE
@@ -645,6 +647,7 @@ try {
 				(wfTask == 'Review Consolidation')
 				&& wfStatus == 'Revisions Required'
 		){
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Update 2 Running");
 			// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 			editAppSpecific("Start/Stop Indicator", 'Stopped');
 		}
@@ -662,12 +665,13 @@ try {
 		// When workflow task status of "Resubmitted" is applied to workflow task "Distribution" then
 		// Check 4
 		// For the following record type: 'Planning/Planning and Zoning/NA/NA', 'Planning/Annexation/NA/NA'
-		// When workflow task status of "Resubmitted" is applied to workflow task "Substantive Review Distribution" then
+		// When workflow task status of "Resubmitted" is applied to workflow task "Substantive Review Distribution" then;
 		if (
 				1==1
-				&& (wfTask == 'Distribution')
+				&& wfTask == 'Distribution'
 				&& wfStatus == 'Resubmitted'
 		){
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Update 3 & 4 Running");
 			// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
 			// editAppSpecific("Start/Stop Indicator", 'Started');
 			editAppSpecific("Start/Stop Indicator", 'Started'); // note that this will only update when there is an update to do, otherwise warning
@@ -677,9 +681,10 @@ try {
 			// "Revisions Required" and the status date of workflow task "Substantive Review Distribution"
 			// with task status "Resubmitted".
 			srDD = getAppSpecific("Substantive Review Due Date");
-			if(srDD == null || srDD == 'undefined'){
+			if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 				srDD = Date();
 			};
+			aa.print("srDD: "+srDD);
 			srDD = convertDate2(srDD);
 			var rR; // Revisions required
 			wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
@@ -697,15 +702,14 @@ try {
 			else {
 				dR = Date();
 			}
-			// aa.print(rR);
-			// aa.print(dR);
 			bTasks = workDaysBetween(rR,dR,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-			// aa.print(bTasks);
-			if(bTasks > 0 || srDD == Date()){;
-				var nextDate = new Date();
+			var nextDate = new Date();
+			if(bTasks > 0 ){
 				nextDate = convertDate2(workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']));
-				editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 			}
+			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Substantive Review Due Date updated to "+jsDateToASIDate(convertDate2(nextDate)));
+			//
 		}
 		// ===========================
 		// Check 5 COMPLETE
@@ -718,6 +722,7 @@ try {
 				(wfTask == 'Review Consolidation')
 				&& exists(wfStatus,check5Status)
 		){
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Update 5 Running");
 			// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 			editAppSpecific("Start/Stop Indicator", 'Stopped');
 		}
@@ -729,16 +734,10 @@ try {
 				(wfTask == 'Case Complete')
 				&& wfStatus == 'Complete'
 		){
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Update 5 Running");
 			// Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Stopped"
 			editAppSpecific("Start/Stop Indicator", 'Stopped');
 		}
-		/*
-		for(x in wf){
-			//aa.print(wf[x]);
-			aa.print(wf.getStatusDate());
-			aa.print(wf.getDisposition());
-		}
-		//*/
 	}
 }
 catch (err) {
