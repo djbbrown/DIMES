@@ -74,12 +74,10 @@ try
 		var inspResultObj = aa.inspection.getInspection(capId, inspId);
 		if (inspResultObj.getSuccess()) {
 			var inspObj = inspResultObj.getOutput();
-			var theJSDate = new Date(inspDate);
-			var theDate = aa.proxyInvoker.newInstance("com.accela.aa.emse.util.ScriptDateTime");
-			theDate.setDate(inspDate);
-			//var theDate = aa.date.transToJavaUtilDate(theJSDate.getTime());
+			// setScheduledDate needs to be a type of "com.accela.aa.emse.util.ScriptDateTime"
+			var theDate = new Date(inspDate); // need to convert inspDate to right type of object - haven't figure this out yet.
 			inspObj.setScheduledDate(theDate);
-			logDebug("inspDate: " + inspDate);
+			//logDebug("inspDate: " + inspDate);
 		}
 	/*
 		logDebug("INSPECTION INFO FROM SCRIPT 343");
