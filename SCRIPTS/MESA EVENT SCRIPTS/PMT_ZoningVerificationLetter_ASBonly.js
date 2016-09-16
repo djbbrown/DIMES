@@ -21,7 +21,7 @@
 
 try
 {
-  loadASITable("DOCUMENT TYPES REQUESTED");
+ /* loadASITable("DOCUMENT TYPES REQUESTED");
   var tInfo = DOCUMENTTYPESREQUESTED
   var tInfoCount = tInfo.length;
 
@@ -32,9 +32,48 @@ try
     showMessage = true;
     comment("The document Zoning Verification Letter is required. Please add this document and submit again.");
     cancel = true;
+	*/
+//  try something like this
+
+loadASITablesBefore();
+
+var docList= aa.env.getValue("DocumentModelList");
+	if(docList ==null || docList=="")
+	{
+	 docList=aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
+	 var num = docList.size();
+    }
+    else
+    {
+	var num =docList.size();
+	}
+	
+	var isExist=false;
+	if (num>0)
+	{
+	   for(var i=0;i<num;i++)
+	   { 
+             if(docList.get(i)!=null&&docList.get(i).getDocGroup()=="PMT_DOC" && docList.get(i).getDocCategory()=="Zoning Verification Request") 
+             {
+              isExist=true;
+              break; 
+	         }
+	   }
+	}
+   
+	if(isExist!==true) 
+	{
+	 showMessage=true;         
+     logMessage("Zoning Verification Request must be attached.");
+     logDebug("Zoning Verification Request must be attached.");
+     cancel=true;
+	}
+}
 
 
 }
+
+
 catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
