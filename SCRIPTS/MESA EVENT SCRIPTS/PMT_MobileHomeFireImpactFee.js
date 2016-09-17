@@ -62,6 +62,17 @@ try
 
   if ((isFire) && (housingUnits > 0))
   {
+
+    // since Classification might have changed, move both fees and re-assess
+    if (feeExists("RDIF190", "NEW", "INVOICED"))
+    {
+      voidRemoveFee("RDIF190");
+    }
+    if (feeExists("RDIF200", "NEW", "INVOICED"))
+    {
+      voidRemoveFee("RDIF200");
+    }
+
     if (classification  == "Manufactured Home (on platted lot)")
     {
       if (feeExists("RDIF190", "NEW", "INVOICED"))
@@ -73,10 +84,7 @@ try
 
     if (classification  == "Mfg. Home/Park Model/RV (per space or lot)")
     {
-      if (feeExists("RDIF200", "NEW", "INVOICED"))
-      {
-        voidRemoveFee("RDIF200");
-      }
+      
       addFee("RDIF200","PMT_RDIF", "FINAL", housingUnits, "N");
     }
   }
