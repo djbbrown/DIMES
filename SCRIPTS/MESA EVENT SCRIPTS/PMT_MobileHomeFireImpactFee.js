@@ -60,25 +60,24 @@ try
   var classification = AInfo["Classification"];
   var housingUnits = AInfo["Number of Units"];
 
-  if (isFire)
+  if ((isFire) && (housingUnits > 0))
   {
     if (classification  == "Manufactured Home (on platted lot)")
     {
-      //for (x=1;x<=housingUnits;x++)
-      //{
-        // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
-        //addFee("RDIF190","PMT_RDIF", "FINAL", 1, "N");  // org
-        addFee("RDIF190","PMT_RDIF", "FINAL", housingUnits, "N");
-      //}
+      if (feeExists("RDIF190", "NEW", "INVOICED"))
+      {
+        voidRemoveFee("RDIF190");
+      }
+      addFee("RDIF190","PMT_RDIF", "FINAL", housingUnits, "N");
     }
 
     if (classification  == "Mfg. Home/Park Model/RV (per space or lot)")
     {
-      //for (x=1;x<=housingUnits;x++)
-      //{
-        // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
-        addFee("RDIF200","PMT_RDIF", "FINAL", housingUnits, "N");
-      //}
+      if (feeExists("RDIF200", "NEW", "INVOICED"))
+      {
+        voidRemoveFee("RDIF200");
+      }
+      addFee("RDIF200","PMT_RDIF", "FINAL", housingUnits, "N");
     }
   }
 }
