@@ -5,27 +5,7 @@
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-// 		When ASI field “Fire” is checked in ASI subgroup “Impact Fees”
-//              and
-//                1) value of “New Mobile Home” is chosen for ASI dropdown field “Type of Work”
-//                2) value of “New Park Model” is chosen for ASI dropdown field “Type of Work”
-//              then 
-//
-//              (1) assess "Fire - Single Residence Attached/Multi-Family Impact Fee" using 
-//              #DUs entered into ASI field "Dwelling Units" in Additional Info Section.
-//                (this Fee Code do not exist, using RDIF170)
-//                Fee item Code: RDIF190
-//                Fee Schedule: PMT_RDIF
-//                Fee Period = Final
-//
-//              (2) assess "Public Safety - Single Family Detached/Mobile Home (on plotted land) Impact Fee"
-//              using #DUs entered into ASI field "Dwelling Units" in Additional Info Section. 
-//                (this Fee Code do not exist, using RDIF210)
-//                Fee item Code: USF200
-//                Fee Schedule: PMT_RDIF
-//                Fee Period = Final
-//
-//
+// 		
 //		=== update specs ===
 //		
 //		When “Y” is chosen for ASI field “Fire” in ASI subgroup “Impact Fees” then
