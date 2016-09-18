@@ -10,7 +10,7 @@ include("PMT_MobileHomeUtilityServiceFeeGasMeter");
 //include("PMT_MobileHomeUtilityServiceFeeGasServiceOther");  //recommended removal of this script
 include("PMT_RelateToPlanningRecord");
 
-//include("PMT_MobileHomeFireImpactFee");  // Fee Schedule has changed
+include("PMT_MobileHomeFireImpactFee");
 //include("PMT_MobileHomeStormwaterImpactFee");  // Fee Schedule has changed
 
 include("PMT_R5AreaCalc_MobileHome");
