@@ -18,7 +18,7 @@ try {
 	    var inspectionScriptModels = getInspectionsResult.getOutput();
 	    var inspectionScriptModel = null;
 
-            //Check if Inspection is Final Inspection
+            //Iterate through Inspections 
             for (inspectionScriptModelIndex in inspectionScriptModels)
                 {
                     //Get each inspection 
