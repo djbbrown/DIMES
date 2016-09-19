@@ -26,7 +26,7 @@ Script Parents:  WTUA;Permits!Commercial!NA!NA
 
 /*==================================================================*/
 
-logDebug("---------- start  PMT_ImpactFeesMultiResidence ----------");
+//logDebug("---------- start  PMT_ImpactFeesMultiResidence ----------");
 try {
 	var isActive = isTaskActive("Permit Issuance");
 
@@ -175,4 +175,4 @@ try {
 	logDebug("A JavaScript Error occured in PMT_ImpactFeesMultiResidence: " + err.message);
 	logDebug(err.stack);
 }
-logDebug("---------- end  PMT_ImpactFeesMultiResidence ----------");
+//logDebug("---------- end  PMT_ImpactFeesMultiResidence ----------");
