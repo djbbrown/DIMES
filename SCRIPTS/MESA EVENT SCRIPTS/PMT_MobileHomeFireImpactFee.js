@@ -34,6 +34,9 @@
 // 
 //==================================================================*/
 
+// put this back in if we decide to removed Invoiced fees
+// if (feeExists("RDIF190", "NEW", "INVOICED"))
+
 try
 {
   var isFire = Boolean(AInfo["Fire"]);
@@ -44,21 +47,17 @@ try
   {
 
     // since Classification might have changed, move both fees and re-assess
-    if (feeExists("RDIF190", "NEW", "INVOICED"))
+    if (feeExists("RDIF190", "NEW"))
     {
       voidRemoveFee("RDIF190");
     }
-    if (feeExists("RDIF200", "NEW", "INVOICED"))
+    if (feeExists("RDIF200", "NEW"))
     {
       voidRemoveFee("RDIF200");
     }
 
     if (classification  == "Manufactured Home (on platted lot)")
     {
-      if (feeExists("RDIF190", "NEW", "INVOICED"))
-      {
-        voidRemoveFee("RDIF190");
-      }
       addFee("RDIF190","PMT_RDIF", "FINAL", housingUnits, "N");
     }
 
