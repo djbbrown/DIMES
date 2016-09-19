@@ -43,6 +43,9 @@ try
   var classification = AInfo["Classification"];
   var housingUnits = AInfo["Number of Units"];
 
+  var feeNotInvoiced = feeExists("RDIF190", "NEW");
+  var feeInvoiced = feeExists("RDIF190", "INVOICED", "VOIDED", "CREDITED");
+
   if ((isFire) && (housingUnits > 0))
   {
 
@@ -56,12 +59,14 @@ try
       voidRemoveFee("RDIF200");
     }
 
-    if (classification  == "Manufactured Home (on platted lot)")
+    if ((classification  == "Manufactured Home (on platted lot)")
+      && (!(feeExists("RDIF190", "INVOICED", "VOIDED", "CREDITED"))))
     {
       addFee("RDIF190","PMT_RDIF", "FINAL", housingUnits, "N");
     }
 
-    if (classification  == "Mfg. Home/Park Model/RV (per space or lot)")
+    if ((classification  == "Mfg. Home/Park Model/RV (per space or lot)")
+      && (!(feeExists("RDIF200", "INVOICED", "VOIDED", "CREDITED"))))
     {
       
       addFee("RDIF200","PMT_RDIF", "FINAL", housingUnits, "N");
