@@ -1,7 +1,10 @@
 /*===================================================================
+ Versions:
+ 9/14/2016-A	John Cheney			initial
+ 9/19/2016-A	John Cheney			changed fee conditions, cancel only NEW, avoid changing if INVOICED
+ ---------------------------------------------------------------------
  Script Number: 340
  Script Name: PMT_ImpactFeesMultiResidence.js
- Script Developer: John Cheney
  Script Version: 9/14/2016-A
  Script Agency: Mesa
  Script Description:
@@ -55,10 +58,11 @@ try {
 				
 				// two more more units.. can now get to work!
 
-				// fire impact fee = (RDIF180, PMT_RDIF) - remove existing if found and add correct fee
+				/********* REV 1 *********** 
+				// fire impact fee = (RDIF180, PMT_RDIF)
 				if (feeExists("RDIF180", "NEW", "INVOICED")) voidRemoveFee("RDIF180");
 				addFee("RDIF180", "PMT_RDIF", "FINAL", units, "N");
-				
+
 				// public safety fee = (RDIF230, PMT_RDIF)  - remove existing if found and add correct fee
 				if (feeExists("RDIF230", "NEW", "INVOICED")) voidRemoveFee("RDIF230");
 				addFee("RDIF230", "PMT_RDIF", "FINAL", units, "N");
@@ -82,8 +86,81 @@ try {
 				if(hasStormTag == true){
 					addFee("RDIF280", "PMT_RDIF", "FINAL", units, "N");
 				}
+				************ END REV 1 **************/
 
-				logDebug("PMT_ImpactFeesMultiResidence - Fees successfully set!");
+				/************ REV 2 **************/
+
+				var feeCount = 0;
+
+				// fire impact fee = (RDIF180, PMT_RDIF)
+				// remove existing fee with status NEW if found  
+				if (feeExists("RDIF180", "NEW")) voidRemoveFee("RDIF180");
+				// add fee unless one exists with status INVOICED
+				if (!feeExists("RDIF180", "INVOICED")){
+					addFee("RDIF180", "PMT_RDIF", "FINAL", units, "N");
+					feeCount = feeCount + 1;
+				} else {
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF180 not set (a fee with status INVOICED already exists)");
+				}
+				
+				
+				// public safety fee = (RDIF230, PMT_RDIF) 
+				// remove existing fee with status NEW if found
+				if (feeExists("RDIF230", "NEW")) voidRemoveFee("RDIF230");
+				// add fee unless one exists with status INVOICED
+				if (!feeExists("RDIF230", "INVOICED")){
+					addFee("RDIF230", "PMT_RDIF", "FINAL", units, "N");
+					feeCount = feeCount + 1;
+				} else {
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF230 not set (a fee with status INVOICED already exists)");
+				} 
+				
+
+				// solid waste fee = (RDIF330, PMT_RDIF)
+				// remove existing fee with status NEW if found
+				if (feeExists("RDIF330", "NEW")) voidRemoveFee("RDIF330");
+				// add fee unless one exists with status INVOICED
+				if (!feeExists("RDIF330", "INVOICED")){
+					addFee("RDIF330", "PMT_RDIF", "FINAL", units, "N");
+					feeCount = feeCount + 1;
+				} else {
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF330 not set (a fee with status INVOICED already exists)");
+				}
+
+				// waste water fee = (RDIF080, PMT_RDIF)
+				// remove existing fee with status NEW if found
+				if (feeExists("RDIF080", "NEW")) voidRemoveFee("RDIF080");
+				// add fee unless one exists with status INVOICED
+				if (!feeExists("RDIF080", "INVOICED")){
+					addFee("RDIF080", "PMT_RDIF", "FINAL", units, "N");
+					feeCount = feeCount + 1;
+				} else {
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF080 not set (a fee with status INVOICED already exists)");
+				}
+
+				// water fee  = (RDIF030, PMT_RDIF)
+				// remove existing fee with status NEW if found
+				if (feeExists("RDIF030", "NEW")) voidRemoveFee("RDIF030");
+				// add fee if no water tag, and no fee exists with status INVOICED
+				if(hasWaterTag == false && !feeExists("RDIF030", "INVOICED")){
+					addFee("RDIF030", "PMT_RDIF", "FINAL", units, "N");
+					feeCount = feeCount + 1;
+				} else {
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF030 not set - hasWaterTag = true or a fee with status INVOICED already exists");
+				}
+
+				// stormWater fee = (RDIF280, PMT_RDIF) 
+				// remove existing fee with status NEW if found
+				if (feeExists("RDIF280", "NEW")) voidRemoveFee("RDIF280");
+				// add fee if have storm tag, and no fee exists with status INVOICED
+				if(hasStormTag == true && !feeExists("RDIF280", "INVOICED")){
+					addFee("RDIF280", "PMT_RDIF", "FINAL", units, "N");
+					feeCount = feeCount + 1;
+				} else {
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF030 not set - hasStormTag = false or a fee with status INVOICED already exists");
+				}
+
+				logDebug("PMT_ImpactFeesMultiResidence - Set " + String(feeCount) + " fees.");
 			} else{
 				logDebug("PMT_ImpactFeesMultiResidence - No Action - Number of Units is null or < 2.");	
 			}
