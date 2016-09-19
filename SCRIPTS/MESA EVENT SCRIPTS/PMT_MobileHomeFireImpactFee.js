@@ -43,9 +43,6 @@ try
   var classification = AInfo["Classification"];
   var housingUnits = AInfo["Number of Units"];
 
-  var feeNotInvoiced = feeExists("RDIF190", "NEW");
-  var feeInvoiced = feeExists("RDIF190", "INVOICED", "VOIDED", "CREDITED");
-
   if ((isFire) && (housingUnits > 0))
   {
 
