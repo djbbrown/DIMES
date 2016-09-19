@@ -36,7 +36,7 @@
 
 try
 {   
-    var fieldSubGroup = "DEMOLITION";
+    var fieldSubGroup = "GENERAL INFORMATION";
     var fieldName = "Code Enforcement Case Number";
     var fieldNow = getAppSpecific(fieldName);
     //var fieldBefore = getASIFieldValueBeforeItChanged(fieldSubGroup, fieldName);

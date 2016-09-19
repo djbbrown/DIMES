@@ -43,7 +43,7 @@
 | 
 /-----------------------------------------------------------------------------------------------------*/
 
-function mainProcess() 
+function mainProcess() // LICA16-00381, LICA16-00370
 {
     /***** BEGIN INITIALIZE COUNTERS *****/
 
@@ -104,10 +104,7 @@ function mainProcess()
         }
         altId = capId.getCustomID();
 
-        // get the CAP record, and set some variables
-        // notice that these variables are not declared in this method, they
-        // are likely declared in referenced master scripts its best to leave
-        // them even if you dont think they are needed
+        // set other useful variables
         cap = aa.cap.getCap(capId).getOutput();
         appTypeResult = cap.getCapType();
         capStatus = cap.getCapStatus();
@@ -142,10 +139,14 @@ function mainProcess()
         if (capStatus != "In Review" ) 
         {
             capFilterStatus++;
-            logDebug(altId + ": Application Status does not match.");
+            logDebug(altId + ": Application Status does not match. capStatus = " + capStatus);
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
-        }        
+        }
+        else
+        {
+            logDebug("altId: " + altId + ", capStatus: " + capStatus);
+        }      
 
         /***** END FILTERS *****/
 
@@ -157,16 +158,17 @@ function mainProcess()
         var tasks = aa.workflow.getTasks(capId).getOutput();
         for (t in tasks) {
             tName = tasks[t].getTaskDescription();
-            tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
-
+            tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items
+            //logDebug("tName: " + tName + ", tActive: " + tActive);
             if (tActive == 'Y' && tName == taskName ) { // taskName is a batch variable passed in
                 // we only want tasks that have NO status
                 if (tasks[t].getDisposition() == null)
                 {
                     // check status date - see if today = appeal deadline
-                    var daysTillDeadline = daydiff(parseDate(getTodayAsString()), parseDate(getAppSpecific("Appeal Deadline")));
-                    
-                    if (daysTillDeadline == 0) 
+                    var deadline = getAppSpecific("Appeal Deadline");
+                    var daysTillDeadline = daydiff(parseDate(getTodayAsString()), parseDate(deadline));
+                    logDebug("deadline: " + deadline );
+                    if (daysTillDeadline == dayNumToReach) 
                     {
                         // today is the day!
 
@@ -536,8 +538,9 @@ try
         aa.env.setValue("appSubType","*"); 
         aa.env.setValue("appCategory","*");
         aa.env.setValue("taskName", "Denial Action");
-        aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
-        aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
+        aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov");
+        aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov");
+        aa.env.setValue("dayNumToReach", 10);
     }    
     
     // this is the start of the body of the summary email
@@ -553,6 +556,7 @@ try
     var taskName = getParam("taskName"); // the taskname to filter by from the workflow
     var emailAdminTo = getParam("emailAdminTo"); // who to send the admin summary email to
     var emailAdminCc = getParam("emailAdminCc"); // who to cc on the admin summary email
+    var dayNumToReach = getParam("dayNumToReach"); // number of days out to check for non-status
 
     /*----------------------------------------------------------------------------------------------------/
     |

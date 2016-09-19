@@ -94,10 +94,7 @@ function mainProcess()
         }
         altId = capId.getCustomID();
 
-        // get the CAP record, and set some variables
-        // notice that these variables are not declared in this method, they
-        // are likely declared in referenced master scripts its best to leave
-        // them even if you dont think they are needed
+        // set other useful variables
         cap = aa.cap.getCap(capId).getOutput();		
         appTypeResult = cap.getCapType();
         capStatus = cap.getCapStatus();
