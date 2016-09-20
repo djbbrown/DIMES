@@ -60,7 +60,7 @@ try
 
     if (docNeeded)
     {
-      commentBlah = "The following document is required for Request Types of Pre-Plat: Drawings";
+      commentBlah = "For request types with Pre-Plat a Drawings document is required";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
