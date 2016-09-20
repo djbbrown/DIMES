@@ -16,7 +16,6 @@
 // 
 //==================================================================*/
 
-
 try
 {
   
@@ -46,7 +45,7 @@ try
 
     if (docNeeded)
     {
-      commentBlah = "For request types with Pre-Plat a Drawings document is required";
+      commentBlah = "The following document is required for Request Types of Pre-Plat: Drawings";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
