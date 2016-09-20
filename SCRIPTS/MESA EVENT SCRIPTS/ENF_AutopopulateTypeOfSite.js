@@ -22,7 +22,7 @@
 //             ASA;Enforcement!Environmental!Complaint!~
 //             ASIUA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
-/* test with ENVC16-00118 */
+/* test with ENVC16-00064 */
 
 try
 {
@@ -31,29 +31,37 @@ try
 
 	// get Zoning District from GIS
 	var zonDist = getGISInfo("Planning/Zoning", "Zoning Districts", "ZONING");
-	logDebug("zonDist: " + zonDist);
+	//logDebug("zonDist: " + zonDist);
 	if(zonDist && zonDist != "") {
-		logDebug("zonDist: " + zonDist);
+		//logDebug("zonDist: " + zonDist);
 		var zd = zonDist.slice(0,2) // grab first to chars
 		if (matches(zd, "AG", "NC", "LC", "GC", "OC", "MX", "PE", "DB", "DC", "PS", "ID") || matches(zonDist, "T4MS", "T5MSF", "T5MS", "T6MS")) {
 			// Type of Site == "Commercial"
 			tos = "Commercial";
+			matched = true;
 		}
 		if (matches(zd, "GI", "HI", "LI")) {
 			// Type of Site == "Industrial Site"
 			tos = "Industrial Site";
+			matched = true;
 		}
 		if (matches(zd, "RS", "RM", "DR", "PC") || (zonDist.slice(0,3) == "T3C") || matches(zonDist, "T3N", "T4N", "T4NF", "T5N")) {
 			// Type of Site == "Residential"
 			tos = "Residential";
+			matched = true;
 		}
 	}
 	
 	if (matched == true) {
 		// set Type of Site
-		logDebug("Type of Site (before): " + getAppSpecific("Type of Site"));
+		//logDebug("Type of Site (before): " + getAppSpecific("Type of Site"));
 		editAppSpecific("Type of Site", tos);
-		logDebug("Type of Site (after): " + getAppSpecific("Type of Site"));
+		//logDebug("Type of Site (after): " + getAppSpecific("Type of Site"));
+	} else {
+		// set to N/A
+		//logDebug("Type of Site (before): " + getAppSpecific("Type of Site"));
+		editAppSpecific("Type of Site", "N/A");
+		//logDebug("Type of Site (after): " + getAppSpecific("Type of Site"));
 	}
 }
 catch (err)
