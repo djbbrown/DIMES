@@ -26,10 +26,10 @@ try
   if (prePlat)
   {
     // this was the original way (works on ASUIB but not ASB)
-    //var docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
+    //var docList = aa.document.getCapDocumentList(capId ,currentUserID);
 
     // this is the new way (used on PMT_ZoningVerificationLetter_ASBonly script also)
-    var docListResult = aa.env.getValue("DocumentModelList");
+    var docList = aa.env.getValue("DocumentModelList");
     var docListCount = 0;
 
     if((docList == null) 
@@ -46,13 +46,13 @@ try
     if (docListCount > 0)
     {
 
-      for(x in docListArray)
-      {
-        docCat = docListArray[x].getDocCategory();
-        
-        if (docCat == "Drawings")
+      for(x=0;x<docListCount;x++)
+      { 
+        if((docList.get(x) != null)
+          && (docList.get(x).getDocCategory() == "Drawings")) 
         {
           docNeeded = false;
+          break; 
         }
       }
 
