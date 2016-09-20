@@ -4,8 +4,10 @@
 // Script Developer: Vance Smith
 // Script Agency: City of Mesa
 // Script Description:  
-//		Intended for use in ASIUA events. This will get the previous 
+//		Intended for use in ASIUB events. This will get the previous 
 //      value of the passed in field name (asiFieldName).
+//
+//      If this is run in an ASIUA, and possibly other events, it will just return the current value.
 //
 //      asiSubGroupName = ASI Sub Group Name (the sub group name that 
 //          contains the ASI field)
@@ -32,6 +34,7 @@ function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optio
     for (var i=0;i<beforeValueList.length;i++)
     {
         beforeValue = beforeValueList[i].getChecklistComment();
+        logDebug("beforeValue[" + i + "]: " + beforeValue);
     }
     return beforeValue;
 }

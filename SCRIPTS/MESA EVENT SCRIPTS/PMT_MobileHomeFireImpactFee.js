@@ -37,6 +37,7 @@
 // put this back in if we decide to removed Invoiced fees
 // if (feeExists("RDIF190", "NEW", "INVOICED"))
 
+
 try
 {
   var isFire = Boolean(AInfo["Fire"]);
