@@ -27,7 +27,7 @@
 
 try
 {
-    // if status = "Case Closed" then close each Violation
+    // if status = "Closed" then close each Violation
     if ( capStatus == "Closed")
     {
         // get the violation information
