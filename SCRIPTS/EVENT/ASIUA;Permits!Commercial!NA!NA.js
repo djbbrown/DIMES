@@ -12,3 +12,5 @@ include("PMT_RelateToPlanningRecord");
 // added by Vance Smith (Mesa)
 include("ENF_AutopopulateASIFieldsFromGISAttributes");
 include("PMT_CodeEnforcementNumber");
+
+include("PMT_CommercialImpactFees"); // Script 337 (jb - Mesa)

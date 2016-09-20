@@ -10,3 +10,5 @@ include("PMT_SubmittalCycle");
 
 // added by John Cheney  (Mesa)
 include("PMT_ImpactFeesMultiResidence");
+
+include("PMT_CommercialImpactFees"); // Script 337 (jb - Mesa)
