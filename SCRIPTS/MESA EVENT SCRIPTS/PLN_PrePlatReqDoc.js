@@ -11,8 +11,8 @@
 //
 // Script Run Event: ASB, ASIUB
 // Script Parents:
-//		ASB;Planning!Admin Review!NA!NA.js
-//		ASIUB;Planning!Admin Review!NA!NA.js
+//		ASB;Planning!Planning and Zoning!NA!NA.js
+//		ASIUB;Planning!Planning and Zoning!NA!NA.js
 // 
 //==================================================================*/
 
