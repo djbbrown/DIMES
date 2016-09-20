@@ -7,7 +7,6 @@ function LetsDoThisThing()
 
 //---------end------------
 }/////////////////////////
-LogEnvVariables();
 
 
 /**** PASTE INTO "SCRIPT TEXT" WINDOW ****/
@@ -154,9 +153,6 @@ function exploreObject(objExplore)
     }
 }
 
-
-
-
 function LogEnvVariables() 
 {
     //Log All Environmental Variables as  globals
@@ -176,6 +172,7 @@ function LogEnvVariables()
     aa.print("END Available Environmental Variables");
 
 }
+LogEnvVariables();
 
 //=======================================================
 //User code goes here
