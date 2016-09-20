@@ -1,7 +1,7 @@
 //*===================================================================
 //
 // Script Number: 312
-// Script Name: PLN_PrePlatReqDoc.js
+// Script Name: PLN_PrePlatReqDoc_ASBOnly.js
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
