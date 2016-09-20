@@ -52,6 +52,8 @@ try
       cancel = true;    
     }
 
+  }
+
 }
 catch (err)
 {
