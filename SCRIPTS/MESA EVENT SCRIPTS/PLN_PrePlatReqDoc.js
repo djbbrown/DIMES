@@ -25,37 +25,22 @@ try
 
   if (prePlat)
   {
-    // this was the original way (works on ASUIB but not ASB)
-    //var docList = aa.document.getCapDocumentList(capId ,currentUserID);
+    var docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
 
-    // this is the new way (used on PMT_ZoningVerificationLetter_ASBonly script also)
-    var docList = aa.env.getValue("DocumentModelList");
-    var docListCount = 0;
-
-    if((docList == null) 
-        || (docList == ""))
+    if (docListResult.getSuccess()) 
     {
-      docList = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
-      docListCount = docList.size();
-    }
-    else
-    {
-      docListCount = docList.size();
-    }
+      docListArray = docListResult.getOutput()
+      docCount = docListArray.length;
 
-    if (docListCount > 0)
-    {
-
-      for(x=0;x<docListCount;x++)
-      { 
-        if((docList.get(x) != null)
-          && (docList.get(x).getDocCategory() == "Drawings")) 
+      for(x in docListArray)
+      {
+        docCat = docListArray[x].getDocCategory();
+        
+        if (docCat == "Drawings")
         {
           docNeeded = false;
-          break; 
         }
       }
-
     }
 
     if (docNeeded)
@@ -65,8 +50,6 @@ try
       comment(commentBlah);
       cancel = true;    
     }
-
-  }
 
 }
 catch (err)
