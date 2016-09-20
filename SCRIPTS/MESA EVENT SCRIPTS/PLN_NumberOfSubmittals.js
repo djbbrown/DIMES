@@ -33,25 +33,39 @@ try
 {
   if (
 	(appMatch("Planning/Design Review/NA/NA")) ||
-	(appMatch("Planning/Board of Adjustment/NA/NA")) ||
-	(appMatch("Planning/Planning and Zoning/NA/NA"))
+	(appMatch("Planning/Group Home/Application/NA")) ||
+	(appMatch("Planning/Subdivision/NA/NA")) ||
+	(appMatch("Planning/General Plan Amendment – Major/NA/NA")) ||
+	(appMatch("Planning/Planning and Zoning/NA/NA")) ||
+	(appMatch("Planning/Annexation/NA/NA")) ||
+	(appMatch("Planning/Admin Review/NA/NA")) ||
+	(appMatch("Planning/Board of Adjustment/NA/NA"))	
 	)
-  {    
-    
-    var numOfSubmittals = AInfo["Number of Submittals"];
+  {
 
-    if (numOfSubmittals == null)
+    if (
+        (wfTask == "Distribution") 
+        && 
+        ((wfStatus == "Distributed") || (wfStatus == "Resubmitted"))
+       )
     {
-      //mkyOutput += "Number of Submittals is null \r";
-      numOfSubmittals = 0;
+    
+      var numOfSubmittals = AInfo["Number of Submittals"];
+
+      if (numOfSubmittals == null)
+      {
+        //mkyOutput += "Number of Submittals is null \r";
+        numOfSubmittals = 0;
+      }
+
+      //mkyOutput += "numOfSubmittals: "+ numOfSubmittals +" \r";
+
+      numOfSubmittals++;
+      //mkyOutput += "numOfSubmittals: "+ numOfSubmittals +" \r";
+
+      editAppSpecific("Number of Submittals", numOfSubmittals)
+
     }
-
-    //mkyOutput += "numOfSubmittals: "+ numOfSubmittals +" \r";
-
-    numOfSubmittals++;
-    //mkyOutput += "numOfSubmittals: "+ numOfSubmittals +" \r";
-
-    editAppSpecific("Number of Submittals", numOfSubmittals)
 
   }
 }
