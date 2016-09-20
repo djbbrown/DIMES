@@ -30,7 +30,7 @@ try
 
     if (docListResult.getSuccess()) 
     {
-      docListArray = docListResult.getOutput()
+      docListArray = docListResult.getOutput();
       docCount = docListArray.length;
 
       for(x in docListArray)
