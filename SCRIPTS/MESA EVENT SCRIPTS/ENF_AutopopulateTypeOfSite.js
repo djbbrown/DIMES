@@ -32,7 +32,7 @@ try
 	// get Zoning District from GIS
 	var zonDist = getGISInfo("Planning/Zoning", "Zoning Districts", "ZONING");
 	logDebug("zonDist: " + zonDist);
-	if(zonDist and zonDist != "") {
+	if(zonDist && zonDist != "") {
 		logDebug("zonDist: " + zonDist);
 		var zd = zonDist.slice(0,2) // grab first to chars
 		if (matches(zd, "AG", "NC", "LC", "GC", "OC", "MX", "PE", "DB", "DC", "PS", "ID") || matches(zonDist, "T4MS", "T5MSF", "T5MS", "T6MS")) {
