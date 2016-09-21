@@ -63,26 +63,29 @@ try
 
     comment("Housing Units: " + housingUnits);
 
-    if (classification == "Manufactured Home (on platted lot)")
+    // remove any existing fees related to this script
+    if ((classification == "Manufactured Home (on platted lot)")
+        || (classification == "Mfg. Home/Park Model/RV (per space or lot)"))
     {
-
       if (feeExists("RDIF290", "NEW"))
       {
         voidRemoveFee("RDIF290");
       }
 
-      addFee("RDIF290","PMT_RDIF", "FINAL", housingUnits, "N");
-    }
-
-
-    if (classification == "Mfg. Home/Park Model/RV (per space or lot)")
-    {
-
       if (feeExists("RDIF300", "NEW"))
       {
         voidRemoveFee("RDIF300");
-      }
+      }      
+    }    
 
+    // add new fees if applicable
+    if (classification == "Manufactured Home (on platted lot)")
+    {
+      addFee("RDIF290","PMT_RDIF", "FINAL", housingUnits, "N");
+    }
+
+    if (classification == "Mfg. Home/Park Model/RV (per space or lot)")
+    {
       addFee("RDIF300","PMT_RDIF", "FINAL", housingUnits, "N");
     }
 
