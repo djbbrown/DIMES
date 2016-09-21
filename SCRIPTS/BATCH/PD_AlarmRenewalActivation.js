@@ -279,8 +279,11 @@ function mainProcess() {
 		}
 		
 		// Filter by CAP Status
-		if (capStatus != "Issued" && capStatus != "About to Expire")
+		if (!matches(capStatus,"Issued","About to Expire")){
+			capFilterStatus++;
+			logDebug("     " +"skipping, due to application status of " + capStatus)
 			continue;
+		}
 		
 		// Calculate Expiration Date Difference
 		lic = new licenseObject(null);
