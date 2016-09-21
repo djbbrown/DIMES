@@ -263,7 +263,7 @@ function mainProcess() {
 		leDate = new Date(lic.b1ExpDate)
 		leDaysDiff = Math.ceil(dateDiff(curDate,leDate));
 		leDaysDifftxt = leDaysDiff.toString();
-		logDebug("leDaysDiff = " + leDaysDiff);
+		//logDebug("leDaysDiff = " + leDaysDiff);
 		if(!matches(leDaysDiff,"60","30","0")) 
 			continue;		
 						
@@ -280,16 +280,18 @@ function mainProcess() {
 		if (leDaysDiff == "60" && newExpStatus60.length > 0) {
 			licEditExpInfo(newExpStatus60,null);
 			updateAppStatus(newRecStatus60);
-			conArr = new Array();
-			conArr = getContactArray(capId);
-			for (c in conArr) {
-				if (conArr[c]["contactType"] = "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined) && balanceDue > 0){
-				params = aa.util.newHashtable();
-				addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
-				addParameter(params, "$$altid$$", altId);
-				addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
-				addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
-				sendNotification(efromPD60,conArr[c]["email"],"",emailTemplatePD60,params,null);
+			if (balanceDue > 0){
+				conArr = new Array();
+				conArr = getContactArray(capId);
+				for (c in conArr) {
+					if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
+					params = aa.util.newHashtable();
+					addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
+					addParameter(params, "$$altid$$", altId);
+					addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
+					addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
+					sendNotification(efromPD60,conArr[c]["email"],"",emailTemplatePD60,params,null);
+					}
 				}
 			}
 		}
@@ -298,7 +300,7 @@ function mainProcess() {
 			conArr = new Array();
 			conArr = getContactArray(capId);
 			for (c in conArr) {
-				if (conArr[c]["contactType"] = "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
+				if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
 				params = aa.util.newHashtable();
 				addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
 				addParameter(params, "$$altid$$", altId);
@@ -313,16 +315,18 @@ function mainProcess() {
 			licEditExpInfo(newExpStatus0,null);
 			//updateTask("Closed","Expired","updated via script","",capId);
 			updateAppStatus(newRecStatus0);
-			conArr = new Array();
-			conArr = getContactArray(capId);
-			for (c in conArr) {
-				if (conArr[c]["contactType"] = "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined) && balanceDue > 0){
-				params = aa.util.newHashtable();
-				addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
-				addParameter(params, "$$altid$$", altId);
-				addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
-				addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
-				sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD00,params,null);
+			if (balanceDue > 0){
+				conArr = new Array();
+				conArr = getContactArray(capId);
+				for (c in conArr) {
+					if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
+					params = aa.util.newHashtable();
+					addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
+					addParameter(params, "$$altid$$", altId);
+					addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
+					addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
+					sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD00,params,null);
+					}
 				}
 			}
 		}
