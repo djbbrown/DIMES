@@ -217,7 +217,7 @@ function mainProcess() {
 		logDebug("Processing " + myRec2.length + " about to expire expiration records");
 	}
 	myRec = myRec1.concat(myRec2);
-	
+	//logDebug("Processing " + myRec.length + " all records");
 	
 	/*
 	var recResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
