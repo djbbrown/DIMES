@@ -1,6 +1,6 @@
 // testing parameters, uncomment to use in script test
 
-aa.env.setValue("paramStdChoice","PDAlarms Renewal Activation");
+//aa.env.setValue("paramStdChoice","PDAlarms Renewal Activation");
 
 /*------------------------------------------------------------------------------------------------------/
 | Program: License Expirations.js  Trigger: Batch
@@ -77,7 +77,8 @@ var appGroup = getJobParam("appGroup"); //   app Group to process {Licenses}
 var appTypeType = getJobParam("appTypeType"); //   app type to process {Rental License}
 var appSubtype = getJobParam("appSubtype"); //   app subtype to process {NA}
 var appCategory = getJobParam("appCategory"); //   app category to process {NA}
-var expStatus = getJobParam("expirationStatus"); //   test for this expiration status
+var expStatus1 = getJobParam("expirationStatus1"); //   test for this expiration status active
+var expStatus2 = getJobParam("expirationStatus2"); //   test for this expiration status about to expire
 var newExpStatus = getJobParam("newExpirationStatus"); //   update to this expiration status
 var newExpStatus60 = getJobParam("newRecStatus60"); //   update to this expiration status
 var newExpStatus0 = getJobParam("newRecStatus0"); //   update to this expiration status
@@ -204,6 +205,21 @@ function mainProcess() {
 	// Obtain the array of records to loop through.   This can be changed as needed based on the business rules
 	
 	//var recResult = aa.cap.getByAppType(appGroup,appTypeType,appSubtype,appCategory);
+	var recResult1 = aa.expiration.getLicensesByDate(expStatus1, fromDate, toDate);
+	var recResult2 = aa.expiration.getLicensesByDate(expStatus2, fromDate, toDate);
+
+	if (recResult1.getSuccess()) {
+		myRec1 = recResult1.getOutput();
+		logDebug("Processing " + myRec1.length + " active expiration records");
+	}
+	if (recResult2.getSuccess()) {
+		myRec2 = recResult2.getOutput();
+		logDebug("Processing " + myRec2.length + " about to expire expiration records");
+	}
+	myRec = myRec1.concat(myRec2);
+	//logDebug("Processing " + myRec.length + " all records");
+	
+	/*
 	var recResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
 
 	if (recResult.getSuccess()) {
@@ -213,7 +229,8 @@ function mainProcess() {
 		logDebug("ERROR: Getting Expirations, reason is: " + recResult.getErrorType() + ":" + recResult.getErrorMessage());
 		return false
 	}
-
+	*/
+	
 	for (thisExp in myRec) // for each b1expiration (effectively, each license app)
 	{
 		b1Exp = myRec[thisExp];
@@ -254,16 +271,26 @@ function mainProcess() {
 			var balanceDue = capDetail.getBalance();
 		}
 
-		// Filter by CAP Status
-		if (capStatus != "Issued" && capStatus != "Pending")
+		// Filter by CAP Type
+		if (appType.length && !appMatch(appType)) {
+			capFilterType++;
+			logDebug("     " +"skipping, Application Type does not match")
 			continue;
+		}
+		
+		// Filter by CAP Status
+		if (!matches(capStatus,"Issued","About to Expire")){
+			capFilterStatus++;
+			logDebug("     " +"skipping, due to application status of " + capStatus)
+			continue;
+		}
 		
 		// Calculate Expiration Date Difference
 		lic = new licenseObject(null);
 		leDate = new Date(lic.b1ExpDate)
 		leDaysDiff = Math.ceil(dateDiff(curDate,leDate));
 		leDaysDifftxt = leDaysDiff.toString();
-		logDebug("leDaysDiff = " + leDaysDiff);
+		//logDebug("leDaysDiff = " + leDaysDiff);
 		if(!matches(leDaysDiff,"60","30","0")) 
 			continue;		
 						
@@ -280,16 +307,18 @@ function mainProcess() {
 		if (leDaysDiff == "60" && newExpStatus60.length > 0) {
 			licEditExpInfo(newExpStatus60,null);
 			updateAppStatus(newRecStatus60);
-			conArr = new Array();
-			conArr = getContactArray(capId);
-			for (c in conArr) {
-				if (conArr[c]["contactType"] = "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined) && balanceDue > 0){
-				params = aa.util.newHashtable();
-				addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
-				addParameter(params, "$$altid$$", altId);
-				addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
-				addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
-				sendNotification(efromPD60,conArr[c]["email"],"",emailTemplatePD60,params,null);
+			if (balanceDue > 0){
+				conArr = new Array();
+				conArr = getContactArray(capId);
+				for (c in conArr) {
+					if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
+					params = aa.util.newHashtable();
+					addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
+					addParameter(params, "$$altid$$", altId);
+					addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
+					addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
+					sendNotification(efromPD60,conArr[c]["email"],"",emailTemplatePD60,params,null);
+					}
 				}
 			}
 		}
@@ -298,7 +327,7 @@ function mainProcess() {
 			conArr = new Array();
 			conArr = getContactArray(capId);
 			for (c in conArr) {
-				if (conArr[c]["contactType"] = "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
+				if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
 				params = aa.util.newHashtable();
 				addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
 				addParameter(params, "$$altid$$", altId);
@@ -313,16 +342,18 @@ function mainProcess() {
 			licEditExpInfo(newExpStatus0,null);
 			//updateTask("Closed","Expired","updated via script","",capId);
 			updateAppStatus(newRecStatus0);
-			conArr = new Array();
-			conArr = getContactArray(capId);
-			for (c in conArr) {
-				if (conArr[c]["contactType"] = "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined) && balanceDue > 0){
-				params = aa.util.newHashtable();
-				addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
-				addParameter(params, "$$altid$$", altId);
-				addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
-				addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
-				sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD00,params,null);
+			if (balanceDue > 0){
+				conArr = new Array();
+				conArr = getContactArray(capId);
+				for (c in conArr) {
+					if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
+					params = aa.util.newHashtable();
+					addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
+					addParameter(params, "$$altid$$", altId);
+					addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
+					addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
+					sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD00,params,null);
+					}
 				}
 			}
 		}
