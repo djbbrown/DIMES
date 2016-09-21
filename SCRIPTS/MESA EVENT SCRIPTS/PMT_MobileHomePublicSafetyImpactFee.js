@@ -46,7 +46,9 @@ try
     var isPermitIssuanceActive = isTaskActive("Permit Issuance");
     var isInspectionActive = isTaskActive("Inspection");
 
-    if(isPermitIssuanceActive && isInspectionActive)
+    //modified if statement to validate that isPermitIssuanceActive and isInspectionActive are not null and switch the "And" syntax to an "IF" syntax
+
+    if((isPermitIssuanceActive != null && isPermitIssuanceActive) || (isInspectionActive != null && isInspectionActive))
         passedCriteria = true;
     else {
         var tasks = aa.workflow.getTasks(capId).getOutput();
