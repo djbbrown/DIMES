@@ -1,6 +1,6 @@
 // testing parameters, uncomment to use in script test
 
-aa.env.setValue("paramStdChoice","PDAlarms Renewal Activation");
+//aa.env.setValue("paramStdChoice","PDAlarms Renewal Activation");
 
 /*------------------------------------------------------------------------------------------------------/
 | Program: License Expirations.js  Trigger: Batch
