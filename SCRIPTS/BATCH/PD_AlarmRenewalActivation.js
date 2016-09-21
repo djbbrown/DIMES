@@ -279,7 +279,7 @@ function mainProcess() {
 		}
 		
 		// Filter by CAP Status
-		if (capStatus != "Issued" && capStatus != "Pending")
+		if (capStatus != "Issued" && capStatus != "About to Expire")
 			continue;
 		
 		// Calculate Expiration Date Difference
