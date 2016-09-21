@@ -18,8 +18,8 @@
 
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
-/* reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" // only for asb events!! */
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 try
 {

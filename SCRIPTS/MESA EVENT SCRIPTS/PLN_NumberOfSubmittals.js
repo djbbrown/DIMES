@@ -53,14 +53,10 @@ try
 
       if (numOfSubmittals == null)
       {
-        //mkyOutput += "Number of Submittals is null \r";
         numOfSubmittals = 0;
       }
 
-      //mkyOutput += "numOfSubmittals: "+ numOfSubmittals +" \r";
-
       numOfSubmittals++;
-      //mkyOutput += "numOfSubmittals: "+ numOfSubmittals +" \r";
 
       editAppSpecific("Number of Submittals", numOfSubmittals)
 

@@ -1,64 +1,64 @@
 /*===================================================================
-// Script Number: 42
-// Script Name: ENF_NewRecordPriorityImminentHazard.js
+// Script Number: 354
+// Script Name: ENF_EnvironmentalInspectionReschedules.js
 // Script Developer: Vance Smith
 // Script Agency: Mesa
-// Script Description: When Priority field in Record Detail is set 
-// to "Priority" on ASA or Record field updated Schedule "Initial 
-// Inspection" today and assign to Code Officer based on GIS layer.
+// Script Description: When any inspection is resulted as "In Violation", 
+// apply status of "In Violation" to the active inspection wf task 
+// "Initial Inspection" or "Follow-Up Inspection" or "Citation Inspections" 
+// (whichever one is active) and schedule a new "Follow-Up" inspection 
+// for the number of days out specified in ASI field "Inspection Interval".
 
-// Script Run Event: ASA
+// Script Run Event: IRSA
 
 // Script Parents:
-//	ASA;Enforcement!Case!Building Issue!NA
-//  ASIUA;Enforcement!Case!Building Issue!NA
-//            
+//	IRSA;Enforcement!Environmental!Complaint!NA            
 /*==================================================================*/
 
 /* intellisense references */
-/// <reference path="../../AccelaAPI.js" />
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
-/* reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" // only for asb events!! */
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
-
 try
 {    
-    var priority = getRecordPriority();
-    logDebug("Priority: " + priority);
-    if ( priority != false && priority == "Priority")
+    // check inspection result, if "In Violation"
+    if (inspResult == "In Violation")
     {
-        // see if the initial inspection has already been Scheduled
-        var inspExist = doesInspectionExist("Initial Inspection");
-
-        if ( inspExist == false )
+        // then get and loop through workflow tasks and look for tasks that meet criteria
+        var tasksResult = aa.workflow.getTasks(capId);
+        if (tasksResult.getSuccess())
         {
-            var today = getTodayAsString();
+            var tasks = tasksResult.getOutput();
+            for (task in tasks){
+                var taskName = tasks[task].getTaskDescription();
+                logDebug("taskName: " + taskName);
+                if ( 
+                    tasks[task].getActiveFlag().equals("Y") && 
+                    (taskName == "Initial Inspection" || taskName == "Follow-Up Inspection" || taskName == "Citation Inspections")
+                )
+                {
+                    logDebug(taskName + " is active");
 
-            // get the inspector for this boundary          
-            var inspector = getInspectorObject();
-            if (inspector != false) 
-            {
-                // schedule initial inspection for today 
-                scheduleInspectionDateWithInspectorObject("Initial Inspection", today, inspector);
-                logDebug("Scheduled inspection for Inspector " + inspector + ".");
+                    // apply status of "In Violation"
+                    updateTask(taskName, "In Violation", "Updated By Script", "");
+                    
+                    // then schedule a new "Follow-Up Inspection" inspection for the number of days 
+                    // out specified in ASI field "Inspection Interval" (business days)
+                    var numDays = Number(getAppSpecific("Inspection Interval").replace(" Days", ""));
+                    var scheduleDate = dateAdd(null, numDays, "Y");
+                    var inspectorObject = getInspectorObject();
+                    if (inspectorObject != false)
+                    {
+                        scheduleInspectionDateWithInspectorObject("Follow-Up Inspection", scheduleDate, inspectorObject);
+                    }
+                }
             }
-            else
-            {
-                // schedule initial inspection for today 
-                scheduleInspectDate("Initial Inspection", today);
-                logDebug("Inspector was not found, so was not assigned.");
-            }
-        }
-        else
-        {
-            logDebug("Initial Inspection has already been scheduled.")
         }
     }
     else 
     {
-        logDebug("Criteria not met.")
+        logDebug("Criteria not met. Inpsection Result: " + inspResult + ", Inspection Type: " + inspType)
     }
 }
 catch (err)
@@ -66,6 +66,6 @@ catch (err)
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: COB16-00017
+/* Test Record: ENVC16-00064
 
 */

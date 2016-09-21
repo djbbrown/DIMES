@@ -1,7 +1,7 @@
 //*===================================================================
 //
 // Script Number: 312
-// Script Name: PLN_PrePlatReqDoc.js
+// Script Name: PLN_PrePlatReqDoc_ASBOnly.js
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
@@ -26,27 +26,42 @@ try
 
   if (prePlat)
   {
-    var docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
+    // this was the original way (works on ASUIB but not ASB)
+    //var docList = aa.document.getCapDocumentList(capId ,currentUserID);
 
-    if (docListResult.getSuccess()) 
+    // this is the new way (used on PMT_ZoningVerificationLetter_ASBonly script also)
+    var docList = aa.env.getValue("DocumentModelList");
+    var docListCount = 0;
+
+    if((docList == null) 
+        || (docList == ""))
     {
-      docListArray = docListResult.getOutput();
-      docCount = docListArray.length;
+      docList = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
+      docListCount = docList.size();
+    }
+    else
+    {
+      docListCount = docList.size();
+    }
 
-      for(x in docListArray)
-      {
-        docCat = docListArray[x].getDocCategory();
-        
-        if (docCat == "Drawings")
+    if (docListCount > 0)
+    {
+
+      for(x=0;x<docListCount;x++)
+      { 
+        if((docList.get(x) != null)
+          && (docList.get(x).getDocCategory() == "Drawings")) 
         {
           docNeeded = false;
+          break; 
         }
       }
+
     }
 
     if (docNeeded)
     {
-      commentBlah = "The following document is required for Request Types of Pre-Plat: Drawings";
+      commentBlah = "For request types with Pre-Plat a Drawings document is required";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
