@@ -14,6 +14,10 @@
 //		ASB;Planning!Planning and Zoning!NA!NA.js
 //		ASIUB;Planning!Planning and Zoning!NA!NA.js
 // 
+//		NOTE: check 275 PMT_RequireDrawing and PMT_RequireDrawings_ASBOnly
+//		if criteria on this script change. Both scripts require Drawings
+//		document on Planing and Zoning record type
+//
 //==================================================================*/
 
 
