@@ -44,7 +44,7 @@ try {
                 for (inspectionScriptModelIndex in inspectionScriptModels)
                 {
                     inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "ELECTRIC FINAL")
+                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "ELECTRICAL FINAL")
                     {
                        //Check for APPROVED - UTL CLEARANCE REQ status
                        if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "APPROVED - UTL CLEARANCE REQ")
