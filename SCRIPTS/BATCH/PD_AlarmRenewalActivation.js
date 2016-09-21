@@ -77,7 +77,8 @@ var appGroup = getJobParam("appGroup"); //   app Group to process {Licenses}
 var appTypeType = getJobParam("appTypeType"); //   app type to process {Rental License}
 var appSubtype = getJobParam("appSubtype"); //   app subtype to process {NA}
 var appCategory = getJobParam("appCategory"); //   app category to process {NA}
-var expStatus = getJobParam("expirationStatus"); //   test for this expiration status
+var expStatus1 = getJobParam("expirationStatus1"); //   test for this expiration status active
+var expStatus2 = getJobParam("expirationStatus2"); //   test for this expiration status about to expire
 var newExpStatus = getJobParam("newExpirationStatus"); //   update to this expiration status
 var newExpStatus60 = getJobParam("newRecStatus60"); //   update to this expiration status
 var newExpStatus0 = getJobParam("newRecStatus0"); //   update to this expiration status
@@ -204,6 +205,21 @@ function mainProcess() {
 	// Obtain the array of records to loop through.   This can be changed as needed based on the business rules
 	
 	//var recResult = aa.cap.getByAppType(appGroup,appTypeType,appSubtype,appCategory);
+	var recResult1 = aa.expiration.getLicensesByDate(expStatus1, fromDate, toDate);
+	var recResult2 = aa.expiration.getLicensesByDate(expStatus2, fromDate, toDate);
+
+	if (recResult1.getSuccess()) {
+		myRec1 = recResult1.getOutput();
+		logDebug("Processing " + myRec1.length + " active expiration records");
+	}
+	if (recResult2.getSuccess()) {
+		myRec2 = recResult2.getOutput();
+		logDebug("Processing " + myRec2.length + " about to expire expiration records");
+	}
+	myRec = myRec1.concat(myRec2);
+	
+	
+	/*
 	var recResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
 
 	if (recResult.getSuccess()) {
@@ -213,7 +229,8 @@ function mainProcess() {
 		logDebug("ERROR: Getting Expirations, reason is: " + recResult.getErrorType() + ":" + recResult.getErrorMessage());
 		return false
 	}
-
+	*/
+	
 	for (thisExp in myRec) // for each b1expiration (effectively, each license app)
 	{
 		b1Exp = myRec[thisExp];
@@ -254,6 +271,13 @@ function mainProcess() {
 			var balanceDue = capDetail.getBalance();
 		}
 
+		// Filter by CAP Type
+		if (appType.length && !appMatch(appType)) {
+			capFilterType++;
+			logDebug("     " +"skipping, Application Type does not match")
+			continue;
+		}
+		
 		// Filter by CAP Status
 		if (capStatus != "Issued" && capStatus != "Pending")
 			continue;
