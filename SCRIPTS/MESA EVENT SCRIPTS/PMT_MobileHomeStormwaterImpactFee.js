@@ -5,29 +5,38 @@
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-// 		When “Y” is chosen for ASI field “Stormwater” 
-//              in ASI subgroup “Impact Fees” and
-//              (1) value of “New Mobile Home” is chosen for ASI dropdown field “Type of Work”
-//              (2) value of “New Park Model” is chosen for ASI dropdown field “Type of Work”
-//              then
-//                (a) assess Storm Water - Single Family Detached/Mobile Home (on plotted land) 
-//                Impact Fee using #DUs entered into ASI field "Dwelling Units" in 
-//                Additional Info Section.
-//                  Fee item Code: RDIF290
-//                  Fee Schedule: PMT_RDIF
-//                  Fee Period = Final
-//                (b) assess Storm Water - Single Family Detached/Mobile Home (on plotted land) 
-//                Impact Fee using #DUs entered into ASI field "Dwelling Units" in 
-//                Additional Info Section.
-//                  (this Fee Code does not exist, seems to be a dup of the above Fee Code)
-//                  Fee item Code: USF291
-//                  Fee Schedule: PMT_RDIF
-//                  Fee Period = Final
+// 		When “Y” is chosen for ASI field “Storm Water” 
+//		in ASI subgroup “Impact Fees” 
+//		and...
+//
+//		1) value of “Manufactured Home (on platted lot)” is chosen for 
+//		ASI dropdown field “Classification” then…
+//
+//		assess Storm Water - Mobile Home (on plotted land) Impact Fee 
+//		using #DUs entered into ASI field Number of Units in General Section
+//		Fee item Code: RDIF290
+//		Fee Schedule: PMT_RDIF
+//		Fee Period = Final
+//
+//		2) value of “Mfg. Home/Park Model/RV (per space or lot)” is 
+//		chosen for ASI dropdown field “Classification” then…
+//
+//		assess Storm Water - Manufactured Home or Recreational Vehicle 
+//		Impact Fee using #DUs entered into ASI field 
+//		Number of Units in General Section
+//		Fee item Code: RDIF300
+//		Fee Schedule: PMT_RDIF
+//		Fee Period = Final
+//
+//		Additional criteria: Fire when workflow task Permit Issuance is 
+//		activated AND/OR on ApplicationSpecificInfoUpdateAfter ONLY IF 
+//		workflow task Permit Issuance is activated
 //
 // Script Run Event: ASA / ASIUA
 // Script Parents:
-//              ASA;Permits/Residential/Mobile Home/NA
+//              ASA;Permits/Residential/Mobile Home/NA  (remove)
 //              ASIUA;Permits/Residential/Mobile Home/NA
+//              WTUA;Permits/Residential/Mobile Home/NA
 // 
 //==================================================================*/
 
@@ -35,22 +44,50 @@
 try
 {
   var isStormWater = Boolean(AInfo["Storm Water"]);
-  var typeOfWork = AInfo["Type of Work"];
-  var housingUnits = 2;  // verify this is correct field
+  var isActive = isTaskActive("Permit Issuance");
+  var classification = AInfo["Classification"];
+
+  var typeOfWork = AInfo["Type of Work"];  // is this still needed???
+  var housingUnits = AInfo["Number of Units"];
   var x = 0;
 
-  if (isStormWater)
+  if ((isStormWater) && (isActive))
   {
-    if ((typeOfWork == "New Mobile Home") || (typeOfWork == "New Park Model"))
+
+    comment("Storm Water is true / Permit Issuance task is active");
+
+    if (housingUnits == null)
     {
-      for (x=1;x<=housingUnits;x++)
+      housingUnits = 0;
+    }
+
+    comment("Housing Units: " + housingUnits);
+
+    if (classification == "Manufactured Home (on platted lot)")
+    {
+
+      if (feeExists("RDIF290", "NEW"))
       {
-        // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
-        addFee("RDIF290","PMT_RDIF", "FINAL",  1, "N");
+        voidRemoveFee("RDIF290");
       }
 
+      addFee("RDIF290","PMT_RDIF", "FINAL", housingUnits, "N");
     }
+
+
+    if (classification == "Mfg. Home/Park Model/RV (per space or lot)")
+    {
+
+      if (feeExists("RDIF300", "NEW"))
+      {
+        voidRemoveFee("RDIF300");
+      }
+
+      addFee("RDIF300","PMT_RDIF", "FINAL", housingUnits, "N");
+    }
+
   }
+
 }
 catch (err)
 {
