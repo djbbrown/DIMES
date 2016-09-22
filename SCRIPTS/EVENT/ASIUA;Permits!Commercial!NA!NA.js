@@ -8,7 +8,7 @@ include("PMT_TotalSqFt");
 include("PMT_WaterMeterAdapterFee");
 include("PMT_TotalValuation");
 include("PMT_RelateToPlanningRecord");
-
+include("PMT_Condition_Email");
 // added by Vance Smith (Mesa)
 include("ENF_AutopopulateASIFieldsFromGISAttributes");
 include("PMT_CodeEnforcementNumber");
