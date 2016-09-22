@@ -50,7 +50,8 @@ try {
        
                 //Send Email 
                 ToEmail = lookup("EMAIL_RECIPIENTS","City_Building_Official");
-                ToEmail = ToEmail + "," + lookup("EMAIL_RECIPIENTS","Permits_Supervisor");
+                sendNotification(FromEmail, ToEmail, "", "STOP_WORK_ORDER", vEParams, null, capId); 
+                ToEmail = lookup("EMAIL_RECIPIENTS","Permits_Supervisor");
                 sendNotification(FromEmail, ToEmail, "", "STOP_WORK_ORDER", vEParams, null, capId); 
                 }
             }
