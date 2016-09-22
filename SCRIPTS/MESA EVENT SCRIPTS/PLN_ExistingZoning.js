@@ -20,15 +20,11 @@ test records: ADM16-00299
 specs:
 https://portal.accelaops.com/projects/Mesa/Lists/Script%20Tracker/DispForm.aspx?ID=237&Source=https%3A%2F%2Fportal%2Eaccelaops%2Ecom%2Fprojects%2FMesa%2FLists%2FScript%2520Tracker%2Factive%2Easpx 
 
-// Script Run Event: ASA, ASIUA
+// Script Run Event: ASA
 // Script Parents:
 //		ASA;Planning!Admin Review!NA!NA
 //		ASA;Planning!Pre-Submittal!NA!NA
 //		ASA;Planning!Subdivision!NA!NA
-//
-//		ASIUA;Planning!Admin Review!NA!NA
-//		ASIUA;Planning!Pre-Submittal!NA!NA
-//		ASIUA;Planning!Subdivision!NA!NA
 //
 /*==================================================================*/
 
