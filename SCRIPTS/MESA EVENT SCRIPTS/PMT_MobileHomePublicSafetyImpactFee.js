@@ -19,13 +19,13 @@ Fee item Code: RDIF350
 Fee Schedule: PMT_RDIF
 Fee Period = Final
 
-// Script Run Event: ASA, ASIUA
+// Script Run Event: ASIUA, WTUA
 
 // Script Parents:
 
-//	ASA;Permits/Residential/Mobile Home/NA
+//	ASA;Permits/Residential/Mobile Home/NA (removed 9/22/16)
     ASIUA;Permits/Residential/Mobile Home/NA
-
+    WTUA;Permits/Residential/Mobie Home/NA (added 9/22/16)
 //            
 /*==================================================================*/
 

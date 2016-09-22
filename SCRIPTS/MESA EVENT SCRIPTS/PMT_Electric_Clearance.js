@@ -14,6 +14,7 @@
 //  1.1      |08/28/16  |Steve Veloudos   |Added parms for ASIT values
 //  1.2      |08/29/16  |Steve Veloudos   |Added Std Choices for Email Addresses
 //  1.3      |09/01/16  |Steve Veloudos   |Fixed issues with a few ASIT fields
+//  1.4      |09/22/16  |Steve Veloudos   |Changed to ELECTRIC FINAL per Steve A
 /*==================================================================*/
 
 try {
@@ -40,11 +41,11 @@ try {
 	    var inspectionScriptModels = getInspectionsResult.getOutput();
 	    var inspectionScriptModel = null;
 
-        //Check if Inspection is Electrical Final 
+        //Check if Inspection is Electric Final 
                 for (inspectionScriptModelIndex in inspectionScriptModels)
                 {
                     inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "ELECTRICAL FINAL")
+                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "ELECTRIC FINAL")
                     {
                        //Check for APPROVED - UTL CLEARANCE REQ status
                        if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "APPROVED - UTL CLEARANCE REQ")

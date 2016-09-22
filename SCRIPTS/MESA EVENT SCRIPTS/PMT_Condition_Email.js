@@ -28,6 +28,7 @@ try {
     if(GreaseTrapFlag == 1)
         {
         sendNotification(FromEmail, ToEmail, "", "PMT_GREASE_TRAP_CONDITION", vEParams, null, capId); 
+        addAppCondition("Planning COA","Planning","Pretreat Final Required","","Required");
         }   
     }
     catch (err)
