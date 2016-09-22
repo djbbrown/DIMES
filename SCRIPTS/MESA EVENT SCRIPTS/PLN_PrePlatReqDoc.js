@@ -11,10 +11,15 @@
 //
 // Script Run Event: ASB, ASIUB
 // Script Parents:
-//		ASB;Planning!Admin Review!NA!NA.js
-//		ASIUB;Planning!Admin Review!NA!NA.js
+//		ASB;Planning!Planning and Zoning!NA!NA.js
+//		ASIUB;Planning!Planning and Zoning!NA!NA.js
 // 
+//		NOTE: check 275 PMT_RequireDrawing and PMT_RequireDrawings_ASBOnly
+//		if criteria on this script change. Both scripts require Drawings
+//		document on Planing and Zoning record type
+//
 //==================================================================*/
+
 
 try
 {
@@ -29,7 +34,7 @@ try
 
     if (docListResult.getSuccess()) 
     {
-      docListArray = docListResult.getOutput()
+      docListArray = docListResult.getOutput();
       docCount = docListArray.length;
 
       for(x in docListArray)

@@ -37,23 +37,32 @@ try
     {
       docNeeded = true;
       var docListResult = aa.document.getCapDocumentList(capId,currentUserID);
-  
-      if (docListResult.getSuccess())
-      {
-        var docListArray = docListResult.getOutput()
-        var docCount = docListArray.length;
-        var docCat = "";
 
-        for(x=0;x<docCount;x++)
+      if (docListResult == null)
+      {
+        showMessage = true;
+        comment("The document List is null");
+      }
+      else
+      {
+
+        if (docListResult.getSuccess())
         {
-          docCat = docListArray[x].getDocCategory();
-  
-          if (docCat == "Zoning Verification Request")
+          var docListArray = docListResult.getOutput()
+          var docCount = docListArray.length;
+          var docCat = "";
+
+          for(x=0;x<docCount;x++)
           {
-            docFound = true;
-          }
-        }  
-      } 
+            docCat = docListArray[x].getDocCategory();
+    
+            if (docCat == "Zoning Verification Request")
+            {
+              docFound = true;
+            }
+          }  
+        } 
+      }
     }
   }
 

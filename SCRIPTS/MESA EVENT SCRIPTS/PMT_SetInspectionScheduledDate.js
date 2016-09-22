@@ -17,7 +17,7 @@
 /*==================================================================*/
 
 /* per Vance, see ENF_NewRecordPriorityNormal.js (26) and ENF_NewPriorityImminentHazard.js (42) for examples */
-/* test with PMT16-00420 */
+/* test with PMT16-00420, PMT16-00509 */
 
 /*
 info from Vance - in inspectionscriptmodel class there is a setScheduleDate method
@@ -55,6 +55,7 @@ try
 		*/
 		
 		// get inspection info (inspection ID and scheduled date) and update date
+		/*
 		var inspResultObj = aa.inspection.getInspections(capId);
 		if (inspResultObj.getSuccess()) {
 			var inspList = inspResultObj.getOutput();
@@ -62,9 +63,22 @@ try
 			for(insp in inspList) {
 				if (inspList[insp].getIdNumber() == inspId) {
 					var inspModel = inspList[insp].getInspection();
-					inspModel.setScheduleDate(inspDate);
+					//inspModel.setScheduledDate(inspDate);
+					for(i in inspModel) {
+						logDebug("inspModel[" + i + "]" + inspModel[i]);
+					}
 				}
 			}
+		}
+		*/
+		var inspResultObj = aa.inspection.getInspection(capId, inspId);
+		if (inspResultObj.getSuccess()) {
+			var inspObj = inspResultObj.getOutput();
+			// setScheduledDate needs to be a type of "com.accela.aa.emse.util.ScriptDateTime"
+			var theDate = aa.date.getScriptDateTime(new Date(inspDate)); // need to convert inspDate to right type of object - 
+			inspObj.setScheduledDate(theDate);
+			//message("Script 343 setting inspection date to: " + inspDate);
+			//logDebug("inspDate: " + inspDate);
 		}
 	/*
 		logDebug("INSPECTION INFO FROM SCRIPT 343");

@@ -1,6 +1,7 @@
 /*===================================================================
  Versions:
  9/15/2016-A	John Cheney			initial
+ 9/19/2016-A	John Cheney			changed fee conditions, cancel only NEW, avoid changing if INVOICED
  ---------------------------------------------------------------------
  Script Number: 336
  Script Name: PMT_MobileHomeWasteWaterImpactFee.js
@@ -78,19 +79,27 @@ try {
 				var feeCode = "RDIF090";
 				if (classification == "Mfg. Home/Park Model/RV (per space or lot)"){feeCode = "RDIF100";}
 
-				// cancel existing fee (if found)
-				if (feeExists(feeCode, "NEW", "INVOICED")) voidRemoveFee(feeCode);
+				// remove existing fee if found with status NEW
+				if (feeExists(feeCode, "NEW")){
+					voidRemoveFee(feeCode);
+					logDebug("PMT_MobileHomeWaterImpactFee - Removed existing fee with status NEW");
+				} 
 
-				// set new fee if there is a fee to assess
-				if (meterQtyTotal > 0){
-					addFee(feeCode, "PMT_RDIF", "FINAL", meterQtyTotal, "N");
+				// any fee due?
+				if(meterQtyTotal > 0){
+					// yes, only add if an invoiced fee does not already exist 
+					if (!feeExists(feeCode, "INVOICED") ){
+						addFee(feeCode, "PMT_RDIF", "FINAL", meterQtyTotal, "N");
+						logDebug("PMT_MobileHomeWaterImpactFee - Classification = " + classification + ".  Set fee with code = " + feeCode + " for meterQtyTotal = " + meterQtyTotal);
+					} else {
+						logDebug("PMT_MobileHomeWaterImpactFee - No Fee - Found an existing fee with status INVOICED");	
+					}	
+				} else {
+					logDebug("PMT_MobileHomeWaterImpactFee - No Fee - meterQtyTotal = 0");		
 				}
-
-				logDebug("PMT_MobileHomeWasteWaterImpactFee - Classification = " + classification + ", set fee with code = " + feeCode + " for meterQtyTotal = " + meterQtyTotal);
 			} else {
 				logDebug("PMT_MobileHomeWasteWaterImpactFee - No Action - Classification does not match criteria.");	
 			}
-
 		} else {
 			logDebug("PMT_MobileHomeWasteWaterImpactFee - No Action - Classification is null.");
 		}
