@@ -44,36 +44,43 @@ if (!!t){
 	}
 	
 	// apply fees
+	// 050
 	if (feeExists("SGN050", "INVOICED") && feeQty("SGN050") != numberOfGrandOpeningBannerSigns)
 		voidRemoveFee("SGN050");
 	if (feeExists("SGN050", "NEW") && numberOfGrandOpeningBannerSigns == 0)
 		removeFee("SGN050");
 	if (numberOfGrandOpeningBannerSigns > 0)
 		updateFee("SGN050", "PMT_SIGNS", "FINAL", numberOfGrandOpeningBannerSigns, "N");
+	/*
+	// 060
 	if (feeExists("SGN060", "INVOICED") && feeQty("SGN060") != numberOfSubdivisionSigns)
 		voidRemoveFee("SGN060");
 	if (feeExists("SGN060", "NEW") && numberOfSubdivisionSigns == 0)
 		removeFee("SGN060");
 	if (numberOfSubdivisionSigns > 0)
 		updateFee("SGN060", "PMT_SIGNS", "FINAL", numberOfSubdivisionSigns, "N");
+	// 070
 	if (feeExists("SGN070", "INVOICED") && feeQty("SGN070") != numberOfSubdivisionWeekendSigns)
 		voidRemoveFee("SGN070");
 	if (feeExists("SGN070", "NEW") && numberOfSubdivisionWeekendSigns == 0)
 		removeFee("SGN070");
 	if (numberOfSubdivisionWeekendSigns > 0)
 		updateFee("SGN070", "PMT_SIGNS", "FINAL", numberOfSubdivisionWeekendSigns, "N");
+	// 080
 	if (feeExists("SGN080", "INVOICED") && feeQty("SGN080") != numberOfSubdivisionDirectionalSigns)
 		voidRemoveFee("SGN080");
 	if (feeExists("SGN080", "NEW") && numberOfSubdivisionDirectionalSigns == 0)
 		removeFee("SGN080");
 	if (numberOfSubdivisionDirectionalSigns > 0)
 		updateFee("SGN080", "PMT_SIGNS", "FINAL", numberOfSubdivisionDirectionalSigns, "N");
+	// 090
 	if (feeExists("SGN090", "INVOICED") && feeQty("SGN090") != numberOfDowntownDirectionalSigns)
 		voidRemoveFee("SGN090");
 	if (feeExists("SGN090", "NEW") && numberOfDowntownDirectionalSigns == 0)
 		removeFee("SGN090");
 	if (numberOfDowntownDirectionalSigns > 0)
 		updateFee("SGN090", "PMT_SIGNS", "FINAL", numberOfDowntownDirectionalSigns, "N");
+	//*/
 } else {
 	logDebug("Did not find table 'SIGN INFO'");
 }
