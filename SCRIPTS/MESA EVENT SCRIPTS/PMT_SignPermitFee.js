@@ -9,7 +9,10 @@
 //            WTUA;Permits!Sign!NA!NA
 /*==================================================================*/
 showDebug = true;
-if	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
+if	(
+		(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+		|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req ")
+	){
 	var pmtSignDep = 0;
 	pmtSignDep = feeAmount("SGN010","NEW","INVOICED");
 	var totalSignValuation = AInfo["Total Sign Valuation"];
