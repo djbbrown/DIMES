@@ -16,7 +16,7 @@
 
 try
 {
-  var theDate = new Date(dateAdd(null,30));
+  var theDate = new Date(dateAdd(null,90));
 
   editAppSpecific("Application Expiration Date", jsDateToASIDate(theDate),capId);
 }
