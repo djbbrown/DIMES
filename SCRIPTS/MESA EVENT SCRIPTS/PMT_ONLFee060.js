@@ -13,7 +13,8 @@ var sameDayGas = (AInfo["Same Day Turn On - Gas"] != undefined) ? AInfo["Same Da
 var sameDayElec = (AInfo["Same Day Turn On - Electric"] != undefined) ? AInfo["Same Day Turn On - Electric"] : AInfo["Same Day Turn On - Electric"];
 
 var Online = ["Construction Noise Permit"];
-if(appTypeArray[1]=='Online' && (sameDayGas == 'CHECKED' || sameDayElec == 'CHECKED'))
+//if(appTypeArray[1]=='Online' && (sameDayGas == 'CHECKED' || sameDayElec == 'CHECKED'))
+if(appTypeArray[1]=='Online' && (sameDayElec == 'CHECKED'))
 {
 	addFee("ONL060","PMT_ONL", "FINAL",  1, "Y");
 }
