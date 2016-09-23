@@ -6,7 +6,7 @@
 // Script Description: Assess an Electrical fee with Fee code = SGN030 for “Sign Type” of “Illuminated”.
 // Script Run Event: ASA
 // Script Parents:
-// 	ASA:Permits/Sign/NA/NA
+// 	WTUA:Permits/Sign/NA/NA
 //	
 // 2016.06.03 request to update.
 // 1.2.	If the Type of Work field = “Sign” or “Freeway Landmark” – fee should not be added 
