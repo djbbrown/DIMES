@@ -26,37 +26,42 @@ try {
 
     //Get the contact info
     var tInfo = getContactArray();
-    var rowCount = tInfo.length;
-    var x = 0;
+    if (tInfo !== null)
+    {
+        var rowCount = tInfo.length;
+        var x = 0;
 
-    //Get name of applicant
-    for (x=0;x<=(rowCount-1);x++)
-        {
-            ConType = tInfo[x]["contactType"];
-            if(ConType == "Applicant" )
+        //Get name of applicant
+        for (x=0;x<=(rowCount-1);x++)
             {
-            FirstName = tInfo[x]["firstName"];
-            LastName = tInfo[x]["lastName"];
-            FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
+                ConType = tInfo[x]["contactType"];
+                if(ConType == "Applicant" )
+                {
+                FirstName = tInfo[x]["firstName"];
+                LastName = tInfo[x]["lastName"];
+                FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
+                }
             }
-        } 
+    } 
     //Get Owner Name
     capOwnerResult = aa.owner.getOwnerByCapId(capId);
-    if (capOwnerResult.getSuccess()) 
+    if(capOwnerResult !== null)
     {
-    owner = capOwnerResult.getOutput();
-        for (o in owner) 
+        if (capOwnerResult.getSuccess()) 
         {
-            TheOwner = owner[o];
-            //Specify primary owner
-			if (TheOwner.getPrimaryOwner() == "Y") 
+        owner = capOwnerResult.getOutput();
+            for (o in owner) 
             {
-				OwnerName = TheOwner.getOwnerFullName().toUpperCase();
-				break;	
-	        }
+                TheOwner = owner[o];
+                //Specify primary owner
+                if (TheOwner.getPrimaryOwner() == "Y") 
+                {
+                    OwnerName = TheOwner.getOwnerFullName().toUpperCase();
+                    break;	
+                }
+            }
         }
     }
-
     //Compare Names & set flag
     if(FullName == OwnerName)
     {
@@ -65,24 +70,25 @@ try {
     
     //Get Documents 
     docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
-            
+    if(docListResult !== null) 
+    {      
     //Get documents uploaded
-    if (docListResult.getSuccess()) 
-        { 
-            docListArray = docListResult.getOutput()
-            for (doc in docListArray)
-            {
-                DocCat =  docListArray[doc].getDocCategory();
-                
-                //Check doc category
-                if(DocCat == "Lease Agreement for Application")
+        if (docListResult.getSuccess()) 
+            { 
+                docListArray = docListResult.getOutput()
+                for (doc in docListArray)
                 {
-                    DocFlag = 1; 
-                    break; 
+                    DocCat =  docListArray[doc].getDocCategory();
+                    
+                    //Check doc category
+                    if(DocCat == "Lease Agreement for Application")
+                    {
+                        DocFlag = 1; 
+                        break; 
+                    }
                 }
             }
-        }
-        
+     } 
         //If not the same name and doc was not uploaded stop the submission
         if(SameNameFlag == 0 && DocFlag == 0)
         {
