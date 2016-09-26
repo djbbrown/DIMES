@@ -15,6 +15,7 @@
 //  1.2      |08/29/16  |Steve Veloudos   |Added Std Choices for Email Addresses
 //  1.3      |09/01/16  |Steve Veloudos   |Fixed issues with a few ASIT fields
 //  1.4      |09/22/16  |Steve Veloudos   |Changed to ELECTRIC FINAL per Steve A
+//  1.5      |09/26/16  |Steve Veloudos   |Adjust standard choice to Billing_Info
 /*==================================================================*/
 
 try {
@@ -77,7 +78,7 @@ try {
                                     //Set to Email
                                     if (Clearance == "City of Mesa")
                                     {
-                                        ToEmail =lookup("EMAIL_RECIPIENTS","Billing Info");
+                                        ToEmail =lookup("EMAIL_RECIPIENTS","Billing_Info");
                                     }
                                     if (Clearance == "Salt River Project")
                                     {
