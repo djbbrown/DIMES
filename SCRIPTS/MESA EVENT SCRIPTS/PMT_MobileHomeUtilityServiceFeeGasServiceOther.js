@@ -45,7 +45,7 @@ try
       serviceType = UTILITYSERVICEINFO[x]["Service Type"];
       if ((serviceType == "Gas Service/Meter - Large Residential") ||
           (serviceType == "Gas Service/Meter - Commercial") ||
-          (serviceType == "Gas Relocation/Retrofit"))
+          (serviceType == "Gas Relocation/Retrofit"))
       {
         // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
         addFee("USF030","PMT_UTL_SERV", "FINAL",  1, "N");
