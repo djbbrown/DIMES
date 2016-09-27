@@ -67,7 +67,7 @@ try
 	  }
 	}
 	else {
-        addAppCondition("Building Permit","Applied(Applied)","Planning Approval Letter Is Required","Planning Approval Letter is required to associate a Planning record to Building Permit.","Required");
+		addAppCondition("Building Permit","Applied(Applied)","Planning Approval Letter Is Required","Planning Approval Letter is required to associate a Planning record to Building Permit.","Required");
 	}
 
 }
