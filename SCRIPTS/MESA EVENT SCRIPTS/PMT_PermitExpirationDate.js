@@ -30,20 +30,22 @@ try
         logDebug("Task 'Permit Issuance' has status = 'Issued'");
 
         var tStatusDate = convertDate(taskStatusDate("Permit Issuance"));
-        logDebug("tStatusDate: " + tStatusDate);        
+        logDebug("tStatusDate: " + tStatusDate); 
 
-        loadASITable("SIGN INFO");
-        var tInfo = SIGNINFO;
-        var typeOfWork = ""; 
-        if (tInfo.length > 0 ) {
-            typeOfWork = tInfo[0]["Type of Work"];
-        }        
-        logDebug("Type of Work: " + typeOfWork);
+        var today = new Date();          
 
         logDebug("App Type: " + appTypeString );
 
-        if (appMatch("Permits/Sign/NA/NA") || appMatch("Permits/Online/NA/NA"))
+        if (appMatch("Permits/Sign/NA/NA"))
         {
+            loadASITable("SIGN INFO");
+            var tInfo = SIGNINFO;
+            var typeOfWork = ""; 
+            if (tInfo.length > 0 ) {
+                typeOfWork = tInfo[0]["Type of Work"];
+            }        
+            logDebug("Type of Work: " + typeOfWork);
+
             switch (typeOfWork){
                 case "Construction Noise Permit":
                 case "Grand Opening Banners":
@@ -66,10 +68,24 @@ try
                     break;
             }
         }
-        else 
+        else if (appMatch("Permits/Online/NA/NA"))
+        {
+            var typeOfWork = getAppSpecific("Type of Work");
+            if (typeOfWork == "Construction Noise Permit")
+            {
+                editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 30));
+                logDebug( appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 30 days out");
+            }
+            else
+            {
+                editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 180));
+                logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 180 days out");
+            }
+        }
+        else if (appMatch("Permits/Demolition/NA/NA") || appMatch("Permits/Residential/Mobile Home/NA"))
         {
             editAppSpecific("Permit Expiration Date", dateAdd(tStatusDate, 180));
-            logDebug(appTypeString  + ", default expiration date added: 180 days");
+            logDebug(appTypeString  + ", default expiration date added: 180 days from status date");
         }
     }
     else
@@ -82,6 +98,6 @@ catch (err)
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: PMT16-00369
+/* Test Record: PMT16-00833
 
 */
