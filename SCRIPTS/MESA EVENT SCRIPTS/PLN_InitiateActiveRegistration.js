@@ -1,6 +1,7 @@
 /*===================================================================
  Versions:
  9/20/2016-A	John Cheney			initial
+ 9/26/2016-A	John Cheney			wfStatus.equals changed to "Approved - Finalize Marking"
  ---------------------------------------------------------------------
  Script Number: 250
  Script Name: PLN_InitiateActiveRegistration.js
@@ -25,7 +26,7 @@ Script Parents:  WTUA;Planning!Group Home!Application!NA
 
 logDebug("---------- start  PLN_InitiateActiveRegistration ----------");
 try {
-    if (wfTask.equals("Planning Final Review") && wfStatus.equals("Approved")){
+    if (wfTask.equals("Planning Final Review") && wfStatus.equals("Approved - Finalize Marking")){
 
         // create child record that is a registration, then copy data over
         // createChild() copies the following data from the current record to the new child record: parcels, contacts, property addresses
