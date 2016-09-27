@@ -1,6 +1,7 @@
 /*===================================================================
  Versions:
  9/26/2016-A	John Cheney			initial
+ 9/27/2016-A	John Cheney			removed msg var from switch statement
  ---------------------------------------------------------------------
 // Script Number: 313
 // Script Name: PLN_PlanningAndZoningSitePlanReview.js
@@ -65,8 +66,7 @@ try
 
     if(matches){
 
-        // get the docs!  
-         // assume ASIUA
+        // get the docs!  (method works with ASB and later events)  
          var docArray = getDocs();
 
         if (docArray){
@@ -87,27 +87,22 @@ try
                 switch(docArray[i]){
                         case "Site Plan":
                             hasSite = true;
-                            msg = msg + "Site Plan, ";
                             break;
 
                         case "Preliminary Grading Drainage and Utility Plan":
                             hasGrad = true;
-                            msg = msg + "Preliminary Grading Drainage and Utility Plan, ";
                             break;
 
                         case "Floor Plans":
                             hasFloor = true;
-                            msg = msg + "Floor Plans, ";
                             break;
 
                         case "Landscape Plan":
                             hasLand = true;
-                            msg = msg + "Landscape Plan, ";
                             break;
 
                         case "Building Elevations":
                             hasBuild = true;
-                            msg = msg + "Building Elevations, ";
                             break;
                     }
             } // end for through docs
