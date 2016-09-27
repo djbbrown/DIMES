@@ -5,3 +5,7 @@
 include("PLN_PrePlatReqDoc");
 include("PLN_RequireDrawingsDoc");
 
+// added by John Cheney (Mesa) 9/26/2016
+include("PLN_PlanningAndZoningSitePlanReview");
+
+
