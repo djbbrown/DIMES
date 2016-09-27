@@ -46,6 +46,9 @@ try
     var isPermitIssuanceActive = isTaskActive("Permit Issuance");
     var isInspectionActive = isTaskActive("Inspection");
 
+    //logDebug("Is Permit Issuance Active: " + isPermitIssuanceActive);
+    //logDebug("Is Inspection Active: " + isInspectionActive);
+
     //modified if statement to validate that isPermitIssuanceActive and isInspectionActive are not null and switch the "And" syntax to an "IF" syntax
 
     if((isPermitIssuanceActive != null && isPermitIssuanceActive) || (isInspectionActive != null && isInspectionActive))
@@ -90,12 +93,12 @@ try
                 //Mfg. Home/Park Model/RV (per space or lot)
                 switch(classification) {
                     case "MANUFACTURED HOME (ON PLATTED LOT)":
-                        feeItemCode = "RDIF340";
+                        feeItemCode = "RDIF240"; //9.27.16 - MRK changed RDIF340 to RDIF240
                         assessFee = true;
                         break;
 
                     case "MFG. HOME/PARK MODEL/RV (PER SPACE OR LOT)":
-                        feeItemCode = "RDIF350";             
+                        feeItemCode = "RDIF250"; //9.27.16 - MRK changed RDIF350 to RDIF250             
                         assessFee = true;
                         break;
                 }
@@ -116,5 +119,5 @@ catch (err)
 }
 
 /* Test Record: 
-     
+     PMT16-00850
 */
