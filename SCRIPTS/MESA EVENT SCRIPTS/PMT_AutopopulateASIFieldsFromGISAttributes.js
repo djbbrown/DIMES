@@ -4,7 +4,7 @@
 // Script Developer: Vance Smith
 // Script Agency: Mesa
 // Script Description: (ASI Field) Field will be "Read Only" for all
-// users. Script – Fields (see Record Type list for field list per 
+// users. Script - Fields (see Record Type list for field list per 
 // record type)  will be auto-filled with info from GIS  
 // NOTE:  BEFORE application submit
 
