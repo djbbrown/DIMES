@@ -16,6 +16,7 @@
 //  1.3      |09/01/16  |Steve Veloudos   |Fixed issues with a few ASIT fields
 //  1.4      |09/22/16  |Steve Veloudos   |Changed to ELECTRIC FINAL per Steve A
 //  1.5      |09/26/16  |Steve Veloudos   |Adjust standard choice to Billing_Info
+//  1.6      |09/27/16  |Steve Veloudos   |UTILITYSERVICEINFORMATION was incorrect
 /*==================================================================*/
 
 try {
@@ -53,9 +54,9 @@ try {
                        {
                         //Check if Approved and ASIT Clearance Date is the same current date --Verified working need remaining fields & logic --
                         loadASITables();
-                        var tInfo = UTILITYSERVICEINFO;
+                        var tInfo = UTILITYSERVICEINFORMATION;
                            
-                        if (UTILITYSERVICEINFO.length > 0) 
+                        if (UTILITYSERVICEINFORMATION.length > 0) 
                             {
                             for (x in tInfo) 
                                 {
