@@ -110,7 +110,6 @@ var batchJobName = "" + aa.env.getValue("batchJobName");
 /* 
 aa.env.setValue("lookAheadDays", 30);
 aa.env.setValue("daySpan", 1);
-aa.env.setValue("emailAddress", "dhoops@accela.com");
 aa.env.setValue("asiGroup", "KEY DATES");
 aa.env.setValue("asiField", "Administrative Review Due");
 aa.env.setValue("emailTemplate", "ADMINISTRATIVE REVIEW DUE");
@@ -118,7 +117,6 @@ aa.env.setValue("emailTemplate", "ADMINISTRATIVE REVIEW DUE");
 
 var lookAheadDays = aa.env.getValue("lookAheadDays");   		// Number of days from today
 var daySpan = aa.env.getValue("daySpan");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var emailAddress = getParam("emailAddress");
 var emailTemplate = getParam("emailTemplate");
 var asiGroup = getParam("asiGroup");
 var asiField = getParam("asiField");
@@ -191,6 +189,7 @@ function mainProcess() {
 	if (capFoundArray.length > 0 && emailTemplate != "" && emailAddress != "") {
 			var vEParams = aa.util.newHashtable(); 
 			addParameter(vEParams,"$$altIdList$$",capFoundArray.join(","));
+			emailAddress = lookup("EMAIL_RECIPIENTS", "Revenue_Collections_Supervisor");
 			sendNotification("", emailAddress, "", emailTemplate, vEParams, null, capId)
 	}	
 	
