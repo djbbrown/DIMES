@@ -4,7 +4,7 @@
 // Script Developer: Vance Smith
 // Script Agency: Mesa
 // Script Description: (ASI Field) Field will be "Read Only" for all
-// users. Script - Fields (see Record Type list for field list per 
+// users. Script Fields (see Record Type list for field list per 
 // record type)  will be auto-filled with info from GIS  
 // NOTE:  BEFORE application submit
 
@@ -12,19 +12,19 @@
 
 // Script Parents:
 
-// ASA;Permits!Demolition!NA!NA - Zoning, Land Use
-// ASA;Permits!Residential!Mobile Home!NA - Flood Zone
-// ASA;Permits!Sign!NA!NA - Flood Zone
-// ASA;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
-// ASA;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
-// ASA;Permits!Online!NA!NA - Flood Zone
+// ASA;Permits!Demolition!NA!NA :  Zoning, Land Use
+// ASA;Permits!Residential!Mobile Home!NA : Flood Zone
+// ASA;Permits!Sign!NA!NA : Flood Zone
+// ASA;Permits!Commercial!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASA;Permits!Residential!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASA;Permits!Online!NA!NA : Flood Zone
 
 // ASIUA;Permits!Demolition!NA!NA
-// ASIUA;Permits!Residential!Mobile Home!NA - Flood Zone, Base Flood Elevation
-// ASIUA;Permits!Sign!NA!NA - Flood Zone
-// ASIUA;Permits!Commercial!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
-// ASIUA;Permits!Residential!NA!NA - Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
-// ASIUA;Permits!Online!NA!NA - Flood Zone
+// ASIUA;Permits!Residential!Mobile Home!NA :  Flood Zone, Base Flood Elevation
+// ASIUA;Permits!Sign!NA!NA : Flood Zone
+// ASIUA;Permits!Commercial!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASIUA;Permits!Residential!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
+// ASIUA;Permits!Online!NA!NA : Flood Zone
 
 //            
 /*==================================================================*/
@@ -122,7 +122,7 @@ try
         appMatch("Permits/Commercial/NA/NA") ||
         appMatch("Permits/Residential/NA/NA") ||
         appMatch("Permits/Online/NA/NA") ||
-        appMatch("Permits/Demolition/NA/NA") ||
+        appMatch("Permits/Demolition/NA/NA")
     )
     {
         logDebug("Updating Flood Zone to '" + floodZone + "'");
