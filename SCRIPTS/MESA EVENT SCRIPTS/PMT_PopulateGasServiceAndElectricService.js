@@ -17,10 +17,15 @@
 //             
 /*==================================================================*/
 
-/* test with PMT16-00588 */
+/* test with PMT16-00588 PMT16-0835 */
 
 try
 {
+	// see what's currently assigned to record
+	logDebug("gas service: " + getAppSpecific("Gas Service"));
+	logDebug("electric service: " + getAppSpecific("Electric Service"));
+	
+if (false) { // temp wrapper to disable script for testing
 	// init flags to false - these get set to true if their corresponding tags are returned from the map service
 	var mesaElectric = false;
 	var mesaGas = false;
@@ -44,7 +49,7 @@ try
 			// update vars if tags are matched (tried a switch statement, but doesn't seem to work in Accela ... always went to 'default' branch, even when tag values should have matched)
 			if (matches(tagVal, "COME")) { mesaElectric = true; /* logDebug("COME matched"); */ }
 			if (matches(tagVal, "COMG")) { mesaGas = true; /* logDebug("COMG matched"); */ }
-			if (matches(tagVal, "SRPE")) { srpElectric = true; /* logDebug("SRPE matched */ }
+			if (matches(tagVal, "SRPE")) { srpElectric = true; /* logDebug("SRPE matched"); */ }
 			if (matches(tagVal, "SWGA")) { swGas = true; /* logDebug("SWGA matched"); */ }
 			//if (!matches(tagVal, "COME", "COMG", "SRPE", "SWGA")) {/* logDebug("non-matched value: " + tagVal); */ }
 		}
@@ -53,7 +58,7 @@ try
 	/* if we didn't get a value for either Mesa or other (e.g. error with service) don't set these to anything */
 	electService = mesaElectric ? "City of Mesa Electric" : (srpElectric ? "Salt River Project Electric" : "");
 	gasService = mesaGas ? "City of Mesa Gas" : (swGas ? "Southwest Gas" : "");
-/*	
+	
 	logDebug("mesaElectric: " + mesaElectric);
 	logDebug("mesaGas: " + mesaGas);
 	logDebug("srpElectric: " + srpElectric);
@@ -66,14 +71,16 @@ try
 	
 	logDebug("Updating Gas Service to: " + gasService);
 	logDebug("Updating Electric Service to: " + electService);
-*/
+
 	/* set ASI fields for "Gas Service" and "Electric Service" */
 	editAppSpecific("Gas Service", gasService);
 	editAppSpecific("Electric Service", electService);
-/*	
+
 	logDebug("(Post) Gas Service: " + getAppSpecific("Gas Service"));
 	logDebug("(Post) Electric Service: " + getAppSpecific("Electric Service"));
-*/	
+	
+}// end temp wrapper to disable script
+
 }
 catch (err)
 {
