@@ -46,6 +46,9 @@ try
     var isPermitIssuanceActive = isTaskActive("Permit Issuance");
     var isInspectionActive = isTaskActive("Inspection");
 
+    //logDebug("Is Permit Issuance Active: " + isPermitIssuanceActive);
+    //logDebug("Is Inspection Active: " + isInspectionActive);
+
     //modified if statement to validate that isPermitIssuanceActive and isInspectionActive are not null and switch the "And" syntax to an "IF" syntax
 
     if((isPermitIssuanceActive != null && isPermitIssuanceActive) || (isInspectionActive != null && isInspectionActive))
@@ -116,5 +119,5 @@ catch (err)
 }
 
 /* Test Record: 
-     
+     PMT16-00850
 */
