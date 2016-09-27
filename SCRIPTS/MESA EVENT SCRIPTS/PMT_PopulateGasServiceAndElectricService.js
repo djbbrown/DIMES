@@ -51,8 +51,8 @@ try
 	}
 
 	/* if we didn't get a value for either Mesa or other (e.g. error with service) don't set these to anything */
-	electService = mesaElectric ? "City of Mesa Electric" : (srpElectric ? "Salt River Project Electric" : "NA");
-	gasService = mesaGas ? "City of Mesa Gas" : (swGas ? "Southwest Gas" : "NA");
+	electService = mesaElectric ? "City of Mesa Electric" : (srpElectric ? "Salt River Project Electric" : "N/A");
+	gasService = mesaGas ? "City of Mesa Gas" : (swGas ? "Southwest Gas" : "N/A");
 	
 	logDebug("mesaElectric: " + mesaElectric);
 	logDebug("mesaGas: " + mesaGas);
