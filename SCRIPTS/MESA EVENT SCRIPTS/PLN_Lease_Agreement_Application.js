@@ -6,6 +6,7 @@
 // Testing Record: GHAP16-00218 Doc: PLN_GH
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/19/16  |Steve Veloudos   |Initial Release
+//  2.0      |09/27/16  |Steve Veloudos   |Adjusted for not stopping submission
 /*==================================================================*/
 
 try {
@@ -21,82 +22,74 @@ try {
     var OwnerName;
     var DocFlag = 0;
     var DocCat;
-    var docListResult;
-    var docListArray; 
+    var docListArray= [];
 
     //Get the contact info
     var tInfo = getContactArray();
-    if (tInfo !== null)
-    {
-        var rowCount = tInfo.length;
-        var x = 0;
-
-        //Get name of applicant
-        for (x=0;x<=(rowCount-1);x++)
-            {
-                ConType = tInfo[x]["contactType"];
-                if(ConType == "Applicant" )
-                {
-                FirstName = tInfo[x]["firstName"];
-                LastName = tInfo[x]["lastName"];
-                FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
-                }
-            }
-    } 
-    //Get Owner Name
-    capOwnerResult = aa.owner.getOwnerByCapId(capId);
-    if(capOwnerResult !== null)
-    {
-        if (capOwnerResult.getSuccess()) 
+        if (tInfo !== null)
         {
-        owner = capOwnerResult.getOutput();
-            for (o in owner) 
-            {
-                TheOwner = owner[o];
-                //Specify primary owner
-                if (TheOwner.getPrimaryOwner() == "Y") 
+            var rowCount = tInfo.length;
+            var x = 0;
+
+            //Get name of applicant
+            for (x=0;x<=(rowCount-1);x++)
                 {
-                    OwnerName = TheOwner.getOwnerFullName().toUpperCase();
-                    break;	
-                }
-            }
-        }
-    }
-    //Compare Names & set flag
-    if(FullName == OwnerName)
-    {
-       SameNameFlag = 1; 
-    }
-    
-    //Get Documents 
-    docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
-    if(docListResult !== null) 
-    {      
-    //Get documents uploaded
-        if (docListResult.getSuccess()) 
-            { 
-                docListArray = docListResult.getOutput()
-                for (doc in docListArray)
-                {
-                    DocCat =  docListArray[doc].getDocCategory();
-                    
-                    //Check doc category
-                    if(DocCat == "Lease Agreement for Application")
+                    ConType = tInfo[x]["contactType"];
+                    if(ConType == "Applicant" )
                     {
-                        DocFlag = 1; 
-                        break; 
+                    FirstName = tInfo[x]["firstName"];
+                    LastName = tInfo[x]["lastName"];
+                    FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
+                    }
+                }
+        } 
+        //Get Owner Name
+        capOwnerResult = aa.owner.getOwnerByCapId(capId);
+        if(capOwnerResult !== null)
+        {
+            if (capOwnerResult.getSuccess()) 
+            {
+            owner = capOwnerResult.getOutput();
+                for (o in owner) 
+                {
+                    TheOwner = owner[o];
+                    //Specify primary owner
+                    if (TheOwner.getPrimaryOwner() == "Y") 
+                    {
+                        OwnerName = TheOwner.getOwnerFullName().toUpperCase();
+                        break;	
                     }
                 }
             }
-     } 
+        }
+        //Compare Names & set flag
+        if(FullName == OwnerName)
+        {
+        SameNameFlag = 1; 
+        }
+    
+        //Get documents
+        docListArray = getDocumentList();
+        for (doc in docListArray)
+        {
+            DocCat =  docListArray[doc].getDocCategory();
+            
+            //Check doc category
+            if(DocCat == "Lease Agreement for Application")
+            {
+                DocFlag = 1; 
+                break; 
+            }
+        }
+                
         //If not the same name and doc was not uploaded stop the submission
         if(SameNameFlag == 0 && DocFlag == 0)
         {
+           //Stop the submission
+            cancel = true;
            //Pop up message to user
             showMessage = true;
             comment("You must upload a Lease Agreement for Application document");
-            //Stop the submission
-            cancel = true;
         }                       
     }
 catch (err)
