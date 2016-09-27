@@ -25,4 +25,4 @@ include("PMT_AutopopulateASIFieldsFromGISAttributes");
 include("PMT_CodeEnforcementNumber");
 
 //added by Michael Kniskern (City of Mesa)
-include("PMT_MobileHomePublicSafetyImpactFee");
+//include("PMT_MobileHomePublicSafetyImpactFee"); //removed by Michaek Kniskern (City of Mesa) 9.27.2016
