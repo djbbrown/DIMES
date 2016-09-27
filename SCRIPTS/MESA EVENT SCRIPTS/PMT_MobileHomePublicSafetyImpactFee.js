@@ -90,12 +90,12 @@ try
                 //Mfg. Home/Park Model/RV (per space or lot)
                 switch(classification) {
                     case "MANUFACTURED HOME (ON PLATTED LOT)":
-                        feeItemCode = "RDIF340";
+                        feeItemCode = "RDIF240"; //9.27.16 - MRK changed RDIF340 to RDIF240
                         assessFee = true;
                         break;
 
                     case "MFG. HOME/PARK MODEL/RV (PER SPACE OR LOT)":
-                        feeItemCode = "RDIF350";             
+                        feeItemCode = "RDIF250"; //9.27.16 - MRK changed RDIF350 to RDIF250             
                         assessFee = true;
                         break;
                 }
