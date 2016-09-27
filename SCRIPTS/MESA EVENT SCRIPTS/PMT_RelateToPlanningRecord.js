@@ -66,6 +66,9 @@ try
 	    logDebug("Could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
 	  }
 	}
+	else {
+        addAppCondition("Building Permit","Applied(Applied)","Planning Approval Letter Is Required","Planning Approval Letter is required to associate a Planning record to Building Permit.","Required");
+	}
 
 }
 catch (err)
