@@ -21,11 +21,6 @@
 
 try
 {
-	// see what's currently assigned to record
-	logDebug("gas service: " + getAppSpecific("Gas Service"));
-	logDebug("electric service: " + getAppSpecific("Electric Service"));
-	
-if (false) { // temp wrapper to disable script for testing
 	// init flags to false - these get set to true if their corresponding tags are returned from the map service
 	var mesaElectric = false;
 	var mesaGas = false;
@@ -56,8 +51,8 @@ if (false) { // temp wrapper to disable script for testing
 	}
 
 	/* if we didn't get a value for either Mesa or other (e.g. error with service) don't set these to anything */
-	electService = mesaElectric ? "City of Mesa Electric" : (srpElectric ? "Salt River Project Electric" : "");
-	gasService = mesaGas ? "City of Mesa Gas" : (swGas ? "Southwest Gas" : "");
+	electService = mesaElectric ? "City of Mesa Electric" : (srpElectric ? "Salt River Project Electric" : "NA");
+	gasService = mesaGas ? "City of Mesa Gas" : (swGas ? "Southwest Gas" : "NA");
 	
 	logDebug("mesaElectric: " + mesaElectric);
 	logDebug("mesaGas: " + mesaGas);
@@ -78,8 +73,6 @@ if (false) { // temp wrapper to disable script for testing
 
 	logDebug("(Post) Gas Service: " + getAppSpecific("Gas Service"));
 	logDebug("(Post) Electric Service: " + getAppSpecific("Electric Service"));
-	
-}// end temp wrapper to disable script
 
 }
 catch (err)
