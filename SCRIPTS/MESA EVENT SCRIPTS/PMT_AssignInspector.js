@@ -32,41 +32,36 @@ try
     var inspectorObj = getBuildingInspectorObject();
     if (inspectorObj != false) 
     {
-        // get this inspection's id Number
-        var inspNumber;
-        //var test = 0;
-        if ( typeof inpsId == "undefined")
-        {
-            //test = 1;
-            logDebug("Used getThisInspectionId_ISA() to get inspNumber")
-            inspNumber = getThisInspectionId_ISA();
-        }
-        else
-        {
-            //test = 2;
-            inspNumber = inspId;
-        }
-        logDebug("inspNumber: " + inspNumber);
+        // get all inspections, assign inspector (if not already assigned)
+        var inspResultObj = aa.inspection.getInspections(capId);
+        if (inspResultObj.getSuccess()) {
+            var inspList = inspResultObj.getOutput();
 
-        if (inspNumber != false)
-        {            
-            // assign inspector
-            var iObjResult = aa.inspection.getInspection(capId, inspNumber);
-            if (iObjResult.getSuccess()) 
+            for ( var xx in inspList )
             {
-                iObj = iObjResult.getOutput();
-                iObj.setInspector(inspectorObj);
-                aa.inspection.editInspection(iObj)
-                logDebug("Inspector assigned!");
+                var iObj = inspList[xx];
+                var inspNumber = iObj.getIdNumber();
+                logDebug("inspNumber: " + inspNumber);
+           
+                // see if inspector is already assigned
+                var curInspObj = iObj.getInspector();
+
+                if (curInspObj.getSuccess())
+                {
+                    logDebug("Inspector already assigned for " + inspNumber);
+                }
+                else
+                {
+                    // assign inspector          
+                    iObj.setInspector(inspectorObj);
+                    aa.inspection.editInspection(iObj);
+                    logDebug("Inspector assigned!");
+                }
             }
-            else
-            {
-                logDebug("**WARNING retrieving inspection " + inspNumber + " : " + iObjResult.getErrorMessage());
-            } 
         }
-        else
+        else 
         {
-            logDebug("Failed to get inspection number!");
+            logDebug("Failed to get inspections...")
         }
     }
     else
@@ -74,7 +69,7 @@ try
         logDebug("Failed to create building inspector object!");
     }
 
-    aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Test Script: 110", "ISA event fired! " + test);
+    //aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Test Script: 110", "ISA event fired! " + test);
 }
 catch (err)
 {
