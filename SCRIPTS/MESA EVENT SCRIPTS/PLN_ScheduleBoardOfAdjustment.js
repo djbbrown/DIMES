@@ -37,5 +37,5 @@ if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 	logDebug("Scheduled Date: " + vScheduledDate);
 	
 	//Set Due Dates
-	setWFDueDate_Mesa('SetDueDates:Planning/Planning and Zoning/NA/NA', vScheduledDate);
+	setWFDueDate_Mesa('SetDueDates:Planning/Board of Adjustment/NA/NA', vScheduledDate);
 }
