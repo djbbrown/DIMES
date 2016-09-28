@@ -67,27 +67,17 @@ try {
             SameNameFlag = 1; 
           }
     
-        //Get documents
-        var docList = aa.env.getValue("DocumentModelList");
-        var docListCount = 0;
-
-      if((docList == null) || (docList == ""))
-        {
-            docList = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
-            docListCount = docList.size();
-        }
-      else
-        {
-            docListCount = docList.size();
-        }
+    //Get documents
+      var docArray = getDocs();
+      docListCount = docArray.length;
       
       if (docListCount > 0)
         {
             for(x=0;x<docListCount;x++)
             { 
-            if((docList.get(x) != null)
-                && (docList.get(x).getDocGroup() == "PLN_GH")
-                && (docList.get(x).getDocCategory() == "Lease Agreement for Application")) 
+            if((docArray.get(x) != null)
+                && (docArray.get(x).getDocGroup() == "PLN_GH")
+                && (docArray.get(x).getDocCategory() == "Lease Agreement for Application")) 
             {
                 DocFlag = 1; 
                 break; 
@@ -109,3 +99,56 @@ catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
     }
+
+////////////////////////// Functions ///////////////////////
+function getDocs()
+{
+    // works after a record has been submitted.
+    // if run during ASB, will return a zero length array
+    logDebug("PLN_PlanningAndZoningSitePlanReview - getDocs()");
+
+    var docArray = [];
+    var getResult = aa.document.getCapDocumentList(capId ,currentUserID);
+
+    if (getResult.getSuccess()){
+        // copy data from [object JavaArray]  to javascript array of strings
+        var objArray = getResult.getOutput();
+        for(i in objArray){
+            var xx = objArray[i].getDocCategory();
+            // logDebug("xx = " + xx);
+            docArray.push(xx);
+        }
+    } else{
+        // method failed, so try method for ASB event
+        return getDocsAsb();
+    } 
+    return docArray;
+}
+
+function getDocsAsb()
+{
+    // works before a record has been submitted
+    // to test, create a record and save without submitting 
+    logDebug("PLN_PlanningAndZoningSitePlanReview - getDocsAsb()");
+    var docArray = [];
+    var getResult = aa.env.getValue("DocumentModelList");
+
+    if((getResult == null) || (getResult == "")){
+        getResult = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP");
+    }
+
+    if (getResult.getSuccess()){
+        // copy data from [object JavaObject]  to javascript array of strings
+        var objArray = getResult.getOutput();
+        var arrCount = objArray.size();
+        for(i=0; i<arrCount; i++)
+        { 
+            if(objArray.get(i) != null){
+                var xx = objArray.get(i).getDocCategory()
+                //logDebug("xx = " + xx);
+                docArray.push(xx);
+            }
+        }
+    } 
+    return docArray; 
+}
