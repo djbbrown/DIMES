@@ -1,13 +1,20 @@
 //*===================================================================
-//
+
+
+
+//  CANCELLED THIS SCRIPT PER STEVE ALLRED 9/28/2016
+
+
+
+
 // Script Number: 131
 // Script Name: PMT_UpdateMobileHomePenaltyDate.js
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-// 		when a status of “Accepted – Plan Review Req” is applied 
-//		to wf task “Application Submittal” then auto-fill “Plan 
-//		Review Penalty Date” ASI field with date 10 days from status date.
+// 		when a status of ï¿½Accepted ï¿½ Plan Review Reqï¿½ is applied 
+//		to wf task ï¿½Application Submittalï¿½ then auto-fill ï¿½Plan 
+//		Review Penalty Dateï¿½ ASI field with date 10 days from status date.
 //
 // Script Run Event: WTUA
 // Script Parents:
