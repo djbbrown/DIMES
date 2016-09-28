@@ -33,11 +33,15 @@ try
     if (inspectorObj != false) 
     {
         // get this inspection's id Number
-        var inspNumber = inspId;
-        if ( typeof inspNumber == "undefined")
+        var inspNumber;
+        if ( typeof inpsId == "undefined")
         {
             logDebug("Used getThisInspectionId_ISA() to get inspNumber")
             inspNumber = getThisInspectionId_ISA();
+        }
+        else
+        {
+            inspNumber = inspId;
         }
         logDebug("inspNumber: " + inspNumber);
 
@@ -49,6 +53,7 @@ try
             {
                 iObj = iObjResult.getOutput();
                 iObj.setInspector(inspectorObj);
+                aa.inspection.editInspection(iObj)
                 logDebug("Inspector assigned!");
             }
             else
@@ -65,6 +70,8 @@ try
     {
         logDebug("Failed to create building inspector object!");
     }
+
+    aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Test Script: 110", "ISA event fired!");
 }
 catch (err)
 {
