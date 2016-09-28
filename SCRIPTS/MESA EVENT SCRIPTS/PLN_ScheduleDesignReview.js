@@ -24,7 +24,6 @@ if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 
 	vDateFrom = new Date(dateAdd(vToday, 59));
 	vDateTo = new Date(dateAdd(vToday, 90));
-	
 	logDebug("FromDate: " + vDateFrom);
 	logDebug("ToDate: " + vDateTo);
 	
