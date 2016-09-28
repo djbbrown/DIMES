@@ -29,7 +29,7 @@
 try
 {
     // get the inspector for this boundary          
-    var inspectorObj = getInspectorObject();
+    var inspectorObj = getBuildingInspectorObject();
     if (inspectorObj != false) 
     {
         // get this inspection's id Number
@@ -58,7 +58,7 @@ try
     }
     else
     {
-        logDebug("Failed to create inspector object!");
+        logDebug("Failed to create building inspector object!");
     }
 }
 catch (err)
