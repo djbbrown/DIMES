@@ -33,7 +33,12 @@ try
     if (inspectorObj != false) 
     {
         // get this inspection's id Number
-        var inspNumber = getThisInspectionId_ISA();
+        var inspNumber = inspId;
+        if ( typeof inspNumber == "undefined")
+        {
+            logDebug("Used getThisInspectionId_ISA() to get inspNumber")
+            inspNumber = getThisInspectionId_ISA();
+        }
         logDebug("inspNumber: " + inspNumber);
 
         if (inspNumber != false)
