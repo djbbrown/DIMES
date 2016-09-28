@@ -2011,11 +2011,11 @@ function getThisInspectionId_ISA() // optional altId
     if (inspResultObj.getSuccess()) {
         var inspList = inspResultObj.getOutput();
         
-        if ( inspList.length > 1 )
-        {
-            var compareFunction = new function compareByNumber(a, b) { return a.getIdNumber() - b.getIdNumber(); }
-            inspList.sort(compareFunction);
-        }
+        //if ( inspList.length > 1 )
+        //{
+            //var compareFunction = new function compareByNumber(a, b) { return a.getIdNumber() - b.getIdNumber(); }
+            //inspList.sort(compareFunction);
+        //}
         
         return inspList[inspList.length-1].getIdNumber();
     }

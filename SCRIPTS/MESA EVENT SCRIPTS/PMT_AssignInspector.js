@@ -34,16 +34,16 @@ try
     {
         // get this inspection's id Number
         var inspNumber;
-        var test = 0;
+        //var test = 0;
         if ( typeof inpsId == "undefined")
         {
-            test = 1;
+            //test = 1;
             logDebug("Used getThisInspectionId_ISA() to get inspNumber")
             inspNumber = getThisInspectionId_ISA();
         }
         else
         {
-            test = 2;
+            //test = 2;
             inspNumber = inspId;
         }
         logDebug("inspNumber: " + inspNumber);
