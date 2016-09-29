@@ -16,6 +16,8 @@ Standard Choices Item = ENF_VIOLATION_ORDINANCE_LONG_DESC
 
 //	ASA;Enforcement/Case/~/~
     ASIUA;Enforcement/Case/~/~
+    ASA;Enforcement/Environmental/~/~
+    ASIUA;Enforcement/Environmental/~/~
 
 //            
 /*==================================================================*/
@@ -27,7 +29,9 @@ Standard Choices Item = ENF_VIOLATION_ORDINANCE_LONG_DESC
 
 try
 {
-    if(appMatch("Enforcement/Case/*/*")) {
+    //MRK - 9.27.2016 - added "Enforcement/Environmental/*/*" to the record type check 
+
+    if(appMatch("Enforcement/Case/*/*") || appMatch("Enforcement/Environmental/*/*")) {
 
         //get the ASIT Violation Information table for the Record
         var originalViolationInfoTable = loadASITable("VIOLATION INFORMATION"); 
