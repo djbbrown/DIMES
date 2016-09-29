@@ -9,7 +9,7 @@
 //            WTUA;Planning!Planning and Zoning!NA!NA
 ===================================================================*/
 if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
-	var vMeetingBody = lookup('SetDueDates:Planning/Planning and Zoning/NA/NA', 'Meeting Body');
+	var vMeetingBody = lookup('SetDueDates:Planning/Subdivision/NA/NA', 'Meeting Body');
 	var vToday = new Date();
 	var vDateFrom;
 	var vDateTo;
