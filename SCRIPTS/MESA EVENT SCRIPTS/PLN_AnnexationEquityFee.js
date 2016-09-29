@@ -1,6 +1,6 @@
 /*===================================================================
  Versions:
- 9/29/2016-A	John Cheney			initial
+ 9/29/2016-B	John Cheney			initial
  ---------------------------------------------------------------------
  Script Number: 329
  Script Name: PLN_AnnexationEquityFee.js
@@ -27,9 +27,9 @@ Script Parents:
 try
 {
     var useClass = AInfo["Use Classification"];
-    var equityFee = AInfo["Equity Fee Variable"];
+    var equityVar = AInfo["Equity Fee Variable"];
 
-    if(useClass && equityFee){
+    if(useClass && equityVar){
         var feeCode = "ANX020";
         // found the required values..
 
@@ -40,19 +40,13 @@ try
         }
 
         // levy fee
-        var rate = lookup("PLN ANX Equity_Fee_Rates", useClass);
 
-        if(rate){
-            var fee = Number(rate) * Number(equityFee);
-            if(fee > 0){
-                addFee(feeCode, "PLN_ANX", "FINAL", fee, "N");
-                logDebug("PLN_AnnexationEquityFee - Assessed fee of " + String(fee));
+        if(equityVar > 0){
+                addFee(feeCode, "PLN_ANX", "FINAL", equityVar, "N");
             } else {
-                logDebug("PLN_AnnexationEquityFee - fee = 0!");
+                logDebug("PLN_AnnexationEquityFee - equityVar = 0!");
             }
-        } else {
-            logDebug("PLN_AnnexationEquityFee - No Action - Value Desc not found.");
-        }
+
     } else {
         logDebug("PLN_AnnexationEquityFee - No Action - Out of Scope.  Use Classification = " + useClass + " and Equity Fee Variable = " + equityFee);
     }
