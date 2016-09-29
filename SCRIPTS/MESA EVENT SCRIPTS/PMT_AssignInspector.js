@@ -45,17 +45,16 @@ try
            
                 // see if inspector is already assigned
                 var curInspObj = iObj.getInspector();
-
-                if (curInspObj.getSuccess())
-                {
-                    logDebug("Inspector already assigned for " + inspNumber);
-                }
-                else
+                if (curInspObj == "")
                 {
                     // assign inspector          
                     iObj.setInspector(inspectorObj);
                     aa.inspection.editInspection(iObj);
                     logDebug("Inspector assigned!");
+                }
+                else
+                {
+                    logDebug("Inspector already assigned for " + inspNumber);
                 }
             }
         }
