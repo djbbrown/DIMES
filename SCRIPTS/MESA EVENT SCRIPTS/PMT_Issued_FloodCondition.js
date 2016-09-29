@@ -10,10 +10,10 @@
     - Footing/Foundation Elevation
     - Elevation Certificate
 
-// Script Run Event: WTUA
+// Script Run Event: ASA
 
 // Script Parents:
-//	WTUA;Permits!~!~!~ 
+//	ASU;Permits!~!~!~ 
 //            
 /*==================================================================*/
 
@@ -25,43 +25,26 @@
 
 try
 {
-    if (taskStatus("Permit Issuance") != null && taskStatus("Permit Issuance").toUpperCase() == "ISSUED") 
-    {
-        logDebug("found record");
-        // see if record is in a flood plain
-        tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
-        if (tagFieldArray && tagFieldArray.length > 0) 
-        {            
-            if (IsStrInArry("FLDP", tagFieldArray)) 
+    // see if record is in a flood plain
+    tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+    if (tagFieldArray && tagFieldArray.length > 0) 
+    {            
+        if (IsStrInArry("FLDP", tagFieldArray)) 
+        {
+            logDebug("record is in flood plain")
+            addStdCondition("Building Permit", "Footing/Foundation Elevation");
+            addStdCondition("Building Permit", "Elevation Certificate");
+            logDebug("added conditions")
+        }
+        else
+        {
+            logDebug("Not in flood plan");
+            for ( tag in tagFieldArray)
             {
-                logDebug("record is in flood plain")
-                addStdCondition("Building Permit", "Footing/Foundation Elevation");
-                addStdCondition("Building Permit", "Elevation Certificate");
-                logDebug("added conditions")
-            }
-            else
-            {
-                logDebug("Not in flood plan");
-                for ( tag in tagFieldArray)
-                {
-                    logDebug(tagFieldArray[tag])
-                }
+                logDebug(tagFieldArray[tag])
             }
         }
     }
-    else
-    {
-        logDebug("Criteria not met.")
-    }
-	/*
-    pseudocode
-    DONE 1) get wftask = "Permit Issuance"
-    DONE 2) check if wftask status = "Issued"
-    DONE 3) check if record is in a flood plain
-    DONE 4) add conditions
-            - Footing/Foundation Elevation
-            - Elevation Certificate
-    */
 }
 catch (err)
 {
