@@ -20,6 +20,7 @@
 // Notes: Added requirements from script 220 to check GIS on RDIF Detached Fees
 /*==================================================================*/
 try {
+	if (isTaskActive("Permit Issuance")) {
 	logDebug("Executing PMT_ImpactFeesSingleResidence.");
 	var classification = AInfo["Classification"];
 	var wmqGisTag = false;
@@ -118,6 +119,7 @@ try {
 			if (feeExists("RDIF010", "NEW", "INVOICED")) voidRemoveFee("RDIF010");
 			if (feeExists("RDIF060", "NEW", "INVOICED")) voidRemoveFee("RDIF060");
 		}
+	}
 	}
 } catch (err){
 	logDebug("A JavaScript Error occured in PMT_ImpactFeesSingleResidence: " + err.message);

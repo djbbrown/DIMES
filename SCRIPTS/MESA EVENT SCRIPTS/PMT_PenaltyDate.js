@@ -1,13 +1,17 @@
 //*===================================================================
-//
+// Versions:
+ // 9/?/2016	 Brian O'Dell			initial
+ // 9/28/2016	 John Cheney			added include("PMT_CopyPenaltyDateToDueDate") 
+
+ //---------------------------------------------------------------------
 // Script Number: 66, 169
 // Script Name: PMT_PenaltyDate.js 
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-// 		Script – when a status of “Accepted – Plan Review Req” is 
-//		applied to wf task “Application Submittal” then auto-fill 
-//		“Penalty Date” ASI field with date based on 
+// 		Script ï¿½ when a status of ï¿½Accepted ï¿½ Plan Review Reqï¿½ is 
+//		applied to wf task ï¿½Application Submittalï¿½ then auto-fill 
+//		ï¿½Penalty Dateï¿½ ASI field with date based on 
 //		the number of days identified in the Turn around time field.  
 //		The date generated should be based on a 4 day work week, 
 //		Monday through Thursday, should not include Fridays, Weekends 
@@ -50,6 +54,7 @@ try
 
     // set the futureDate
     var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
+    var setDate = false;
 
     // assign to Penalty Date ASI field if exists
     if (typeof penaltyDate == "undefined")
@@ -61,6 +66,7 @@ try
       //comment("The ASI field 'Penalty Date' exists, setting date");     
       //comment("futureDate: " + futureDate );
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
+      setDate = true;
     }
 
     // assign to Plan Review Penalty Date ASI field if exists
@@ -73,7 +79,14 @@ try
       //comment("The ASI field 'Plan Review Penalty Date' exists, setting date");      
       //comment("futureDate: " + futureDate );
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
-    }    
+      setDate = true;
+    }
+
+    // added by John Cheney 
+    if(setDate){
+      include("PMT_CopyPenaltyDateToDueDate");
+    }
+        
 
   }
 

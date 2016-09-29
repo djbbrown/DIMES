@@ -64,6 +64,6 @@ catch (err)
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: COB16-00022
+/* Test Record: COB16-00022, COB16-00030
 
 */

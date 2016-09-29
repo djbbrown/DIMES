@@ -4,8 +4,8 @@
 // Script Developer: Vance Smith
 // Script Agency: Mesa
 // Script Description: If the ASI group "Site Information" ASI field
-// "Flood Zone" is set to "Yes" make the "Maricopa County Flood Control
-// District Permit" document type Required. 
+// "Flood Zone" is set to "Yes" make the "ADEQ Authorization 
+// Certificate - Stormwater" document type Required. 
  
 // Script Run Event: ASB
 
@@ -35,9 +35,9 @@ try
                 var currentDoc = docList[doc];
                 var docCategory = currentDoc.getDocCategory();
 
-                if(docCategory.toUpperCase() == "MARICOPA COUNTY FLOOD CONTROL DISTRICT PERMIT") {
+                if(docCategory.toUpperCase() == "ADEQ AUTHORIZATION CERTIFICATE - STORMWATER") {
                     showMessage = true;
-                    comment("The 'Maricopa County Flood Control District Permit' document type is required.")
+                    comment("The 'ADEQ AUTHORIZATION CERTIFICATE - STORMWATER' document type is required.")
                     cancel = true;
                 }
             }

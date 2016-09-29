@@ -29,43 +29,52 @@
 try
 {
     // get the inspector for this boundary          
-    var inspectorObj = getInspectorObject();
+    var inspectorObj = getBuildingInspectorObject();
     if (inspectorObj != false) 
     {
-        // get this inspection's id Number
-        var inspNumber = getThisInspectionId_ISA();
-        logDebug("inspNumber: " + inspNumber);
+        // get all inspections, assign inspector (if not already assigned)
+        var inspResultObj = aa.inspection.getInspections(capId);
+        if (inspResultObj.getSuccess()) {
+            var inspList = inspResultObj.getOutput();
 
-        if (inspNumber != false)
-        {            
-            // assign inspector
-            var iObjResult = aa.inspection.getInspection(capId, inspNumber);
-            if (iObjResult.getSuccess()) 
+            for ( var xx in inspList )
             {
-                iObj = iObjResult.getOutput();
-                iObj.setInspector(inspectorObj);
-                logDebug("Inspector assigned!");
+                var iObj = inspList[xx];
+                var inspNumber = iObj.getIdNumber();
+                logDebug("inspNumber: " + inspNumber);
+           
+                // see if inspector is already assigned
+                var curInspObj = iObj.getInspector();
+                if (curInspObj == "")
+                {
+                    // assign inspector          
+                    iObj.setInspector(inspectorObj);
+                    aa.inspection.editInspection(iObj);
+                    logDebug("Inspector assigned!");
+                }
+                else
+                {
+                    logDebug("Inspector already assigned for " + inspNumber);
+                }
             }
-            else
-            {
-                logDebug("**WARNING retrieving inspection " + inspNumber + " : " + iObjResult.getErrorMessage());
-            } 
         }
-        else
+        else 
         {
-            logDebug("Failed to get inspection number!");
+            logDebug("Failed to get inspections...")
         }
     }
     else
     {
-        logDebug("Failed to create inspector object!");
+        logDebug("Failed to create building inspector object!");
     }
+
+    //aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Test Script: 110", "ISA event fired! " + test);
 }
 catch (err)
 {
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: PMT16-00509
+/* Test Record: PMT16-00874
 
 */
