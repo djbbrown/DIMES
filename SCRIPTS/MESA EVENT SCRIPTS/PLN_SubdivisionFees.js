@@ -9,7 +9,7 @@
 //            ASA;Planning!Subdivision!NA!NA 
 /*==================================================================*/
 try{
-	if (AInfo["Application Type"] == "Final Plat Review") {
+	if (AInfo["Application Type"] == "Final Plat Review" && AInfo["Total New Lots, Tracts, Parcels"] != null) {
 		addFee("SUBD010","PLN_SUBD","FINAL",AInfo["Total New Lots, Tracts, Parcels"],"N");
 	}
 } catch (err){
@@ -27,7 +27,7 @@ try{
 //            ASA;Planning!Subdivision!NA!NA 
 /*==================================================================*/
 try{
-	if (AInfo["Application Type"] == "Subdivision Technical Review") {
+	if (AInfo["Application Type"] == "Subdivision Technical Review" && AInfo["Total New Lots, Tracts, Parcels"] != null) {
 		addFee("SUBD040","PLN_PZ","FINAL",AInfo["Total New Lots, Tracts, Parcels"],"N");
 	}
 } catch (err){
