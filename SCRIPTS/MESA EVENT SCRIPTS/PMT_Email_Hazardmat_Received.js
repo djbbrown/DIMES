@@ -18,7 +18,7 @@ try {
       var DocFlag = 0;
       var DocCategory;
     
-    //Retrieve last document
+    //Retrieve documents
     var docListResult = getDocumentList();
     if (docListResult.length > 0) 
 	    { 
@@ -26,14 +26,20 @@ try {
         for (doc in docListResult)
         {
              //Get category
-             DocCategory =  docListResult[doc].getDocCategory();
+             DocCategory =  docListResult[doc].getDocCategory().toUpperCase();
             
             //Test for Doc category
-            if (DocCategory =="Industrial Pretreatment Form" || DocCategory == "Hazardous Materials Inventory Statement")
+            if (DocCategory == "INDUSTRIAL PRETREATMENT FORM")
             {
                 DocFlag = 1;
                 break;
             }
+            else if (DocCategory == "HAZARDOUS MATERIALS INVENTORY STATEMENT")
+            {
+                DocFlag = 1;
+                break;
+            }
+
         } 
       }
     
