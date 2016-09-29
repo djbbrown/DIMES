@@ -2,7 +2,7 @@
  Versions:
  9/26/2016-A	John Cheney			initial
  9/27/2016-A	John Cheney			removed msg var from switch statement
- 9/29/2016-A	John Cheney			getDocs() - added check for getResult = null
+ 9/29/2016-B	John Cheney			getDocs() - added check for getResult = null
  ---------------------------------------------------------------------
 // Script Number: 313
 // Script Name: PLN_PlanningAndZoningSitePlanReview.js
@@ -171,13 +171,17 @@ function getDocsAsb()
     // to test, create a record and save without submitting 
     logDebug("PLN_PlanningAndZoningSitePlanReview - getDocsAsb()");
     var docArray = [];
+    logDebug("PLN_PlanningAndZoningSitePlanReview - trying aa.env.getValue..");
     var getResult = aa.env.getValue("DocumentModelList");
 
-    if(!getResult || (getResult == "")){
+    if(!getResult || getResult == ""){
+        logDebug("PLN_PlanningAndZoningSitePlanReview - trying aa.document.getDoc..");
         getResult = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP");
     }
 
-    if (getResult && getResult.getSuccess()){
+    // note: this getResult object does not support getSuccess()
+    if (getResult &&  getResult != "") {
+        logDebug("PLN_PlanningAndZoningSitePlanReview - have docs!");
         // copy data from [object JavaObject]  to javascript array of strings
         var objArray = getResult.getOutput();
         var arrCount = objArray.size();
