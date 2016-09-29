@@ -30,8 +30,10 @@ Standard Choices Item = ENF_VIOLATION_ORDINANCE_LONG_DESC
 try
 {
     //MRK - 9.27.2016 - added "Enforcement/Environmental/*/*" to the record type check 
+    var isEnforcementCase = appMatch("Enforcement/Case/*/*");
+    var isEnforcementEnv = appMatch("Enforcement/Environmental/*/*");
 
-    if(appMatch("Enforcement/Case/*/*") || appMatch("Enforcement/Environmental/*/*")) {
+    if(isEnforcementCase || isEnforcementEnv) {
 
         //get the ASIT Violation Information table for the Record
         var originalViolationInfoTable = loadASITable("VIOLATION INFORMATION"); 
@@ -39,7 +41,14 @@ try
         if(originalViolationInfoTable != null && originalViolationInfoTable.length > 0) {
             //create new table that will stored the updated rows with violation ordiance
             var newViolationInfoTable = new Array();
-            var standardChoicesItem = "ENF_VIOLATION_ORDINANCE_LONG_DESC";
+            var standardChoicesItem = "";
+
+            if(isEnforcementCase) {
+                standardChoicesItem = "ENF_VIOLATION_ORDINANCE_LONG_DESC";
+            } 
+            else if(isEnforcementEnv) {
+                standardChoicesItem = "";
+            }
 
             //loop through the violation information table
             for(count in originalViolationInfoTable) {
@@ -48,14 +57,19 @@ try
                 //get the violation code from current row
                 var violationCode = "" + currentRow["Violation Code"];
 
-                //get the violation ordiance by violation code using the lookup function
+                //get the violation ordiance/detail by violation code using the lookup function
                 var violationOrdiance = "" + lookup(standardChoicesItem, violationCode);
 
-                //if a violation ordiance exists, update the current row
+                //if a violation ordiance exists, update the appropriate column in the current row
                 if(violationOrdiance != null && violationOrdiance != "undefined") {
-                    currentRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", violationOrdiance, "N");
+                    if(isEnforcementCase) {
+                        currentRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", violationOrdiance, "N");
+                    }
+                    else if (isEnforcementEnv) {
+                        currentRow["Violation Detail"] = new asiTableValObj("Violation Detail", violationOrdiance, "N");
+                    }
                 }
-
+                
                 //add updated row to new violation table
                 newViolationInfoTable.push(currentRow); 
             }
@@ -74,5 +88,6 @@ catch (err)
 }
 
 /* Test Record: 
-     COD16-00102
+     COD16-00102 - Enforcement/Case
+     - Enforcement/Environmental
 */
