@@ -34,10 +34,6 @@ try
     else
     {
         logDebug("Not in flood plan");
-        for ( tag in tagFieldArray)
-        {
-            logDebug(tagFieldArray[tag])
-        }
     }
 }
 catch (err)
