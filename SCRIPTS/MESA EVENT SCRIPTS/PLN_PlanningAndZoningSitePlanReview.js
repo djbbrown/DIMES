@@ -2,6 +2,7 @@
  Versions:
  9/26/2016-A	John Cheney			initial
  9/27/2016-A	John Cheney			removed msg var from switch statement
+ 9/29/2016-A	John Cheney			getDocs() - added check for getResult = null
  ---------------------------------------------------------------------
 // Script Number: 313
 // Script Name: PLN_PlanningAndZoningSitePlanReview.js
@@ -149,7 +150,7 @@ function getDocs()
     var docArray = [];
     var getResult = aa.document.getCapDocumentList(capId ,currentUserID);
 
-    if (getResult.getSuccess()){
+    if (getResult && getResult.getSuccess()){
         // copy data from [object JavaArray]  to javascript array of strings
         var objArray = getResult.getOutput();
         for(i in objArray){
@@ -172,11 +173,11 @@ function getDocsAsb()
     var docArray = [];
     var getResult = aa.env.getValue("DocumentModelList");
 
-    if((getResult == null) || (getResult == "")){
+    if(!getResult || (getResult == "")){
         getResult = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP");
     }
 
-    if (getResult.getSuccess()){
+    if (getResult && getResult.getSuccess()){
         // copy data from [object JavaObject]  to javascript array of strings
         var objArray = getResult.getOutput();
         var arrCount = objArray.size();
