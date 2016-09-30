@@ -5,6 +5,7 @@ include("PMT_OnlineCommercialPropertyType"); // Script 326
 include("PMT_PopulateGasServiceAndElectricService"); // Script 347
 include("PMT_ONLFee030"); // Fee scripting 030
 include("PMT_ONLFee060"); // Fee scripting 060
+include("PMT_ONLFee010"); // Fee scripting 010
 
 // added by Vance Smith (Mesa)
 include("PMT_AutopopulateASIFieldsFromGISAttributes"); // 109
