@@ -7,7 +7,9 @@
  Script Agency: Mesa
  Script Description:
     	
-Copy the date found in ASI field "Penalty Date" to the "Due Date" field on the wfTask for the following tasks:
+((revised by cheney))
+
+Copy the date found in ASI field ("Penalty Date" or "Plan Review Penalty Date") to the "Due Date" field of the following tasks:
 - Building Review
 - Fire Review
 - Planning Review
@@ -19,28 +21,19 @@ Copy the date found in ASI field "Penalty Date" to the "Due Date" field on the w
 - DIS Review
 - Plans Coordination
 
-The date in the Penalty Date ASI field should be copied to the Due Date field in EVERY "Review and 
-Plans Coordination" workflow tasks in ALL PMT record types.  
-This should occur on ASIUA.  The Penalty Date is calculated and populated via script (#66)
+Scope: Permits\*\*\*    EXCEPT  Demo, Document Retrieval, Online, Commercial\Annual Facilities, Fire and PD
 
-Permits\*\*\*    EXCEPT  Demo, Document Retrieval, Online, Commercial\Annual Facilities, Fire and PD
-
-Test records: PMT16-00606, PMT16-00483
-Test records of types to avoid:
-    - demo: PMT16-00589,PMT16-00567
-    - document: DOC16-00626,DOC16-00625
-    - online:   PMT16-00572, PMT16-00534
-    - annual: AFP16-00600, AFP16-00571
-    - fire: FTP16-00596, 16EST-000141
-    - police: ALR16-00728, ALR16-00727
+This script for ASIUA (to cover when penalty date was modified outside of a task) AND WTUA (called by  
+script 66 - PMT_PenaltyDate after it sets penalty date)
+ 
 
 specs: https://portal.accelaops.com/projects/Mesa/Lists/Script%20Tracker/DispForm.aspx?ID=334&Source=https%3A%2F%2Fportal%2Eaccelaops%2Ecom%2Fprojects%2FMesa%2FLists%2FScript%2520Tracker%2Factive%2Easpx  
 
 task object model reference:
 file://isrc01/ittechdocs/Applications/Dimes/EMSE-API-8_0_2-Doc/com/accela/aa/emse/dom/TaskItemScriptModel.html#setDueDate(com.accela.aa.emse.util.ScriptDateTime) 
 
-Script run events: ASIUA
-Script Parents:  ASIUA;Permits!~!~!~
+Script run events: ASIUA, WTUA
+Script Parents:  ASIUA;Permits!~!~!~ , PMT_PenaltyDate
 
 /*==================================================================*/
 

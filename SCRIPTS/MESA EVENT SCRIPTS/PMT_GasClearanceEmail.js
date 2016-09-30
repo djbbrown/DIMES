@@ -13,10 +13,35 @@
 //	IRSA:Permits/Commercial/NA/NA
 //
 // This script calls the notification template "GAS CLEARANCE"
+//
+// Version   |Date      |Engineer         |Details
+//  1.0      |Unknown   |Accela   		  |Initial Release
+//  2.0      |09/27/16  |Steve Veloudos   |Added Address
 // ==================================================================
 var fromEmail = "noreply@MesaAz.gov";
 
 if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"){
+
+	//Get the address
+	var capAddResult = aa.address.getAddressByCapId(capId);
+	if (capAddResult.getSuccess())
+	{
+	var addrArray = new Array();
+	var addrArray = capAddResult.getOutput();
+	if (addrArray.length==0 || addrArray==undefined)
+		{
+		logDebug("The current CAP has no address.")
+		}
+
+	//Break Out each element of the address
+	var hseNum = addrArray[0].getHouseNumberStart();
+	var streetDir = addrArray[0].getStreetDirection();
+	var streetName = addrArray[0].getStreetName();
+	var streetSuffix = addrArray[0].getStreetSuffix();
+	var zip = addrArray[0].getZip();
+
+	var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+	}	
 	var vEParams = aa.util.newHashtable();
 	var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
 	if (!tmpTable) tmpTable = loadASITable("UTILITY SERVICE INFO");
@@ -29,6 +54,7 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 				cDateJS = new Date(clDate);
 				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
 					addParameter(vEParams,"$$RECORD ID$$",capIDString);
+					addParameter(vEParams,"$$ADDRESS$$",theAddress);
 					addParameter(vEParams,"$$CLEARANCE TO$$","City of Mesa");
 					addParameter(vEParams,"$$CLEARANCE DATE$$", clDate);
 					addParameter(vEParams,"$$SERVICE TYPE$$", "" + thisRow["Service Type"].fieldValue);
@@ -57,7 +83,29 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 			if (cl == "Southwest Gas" && clDate != "" && clDate != "null" && clDate != "undefined") {
 				cDateJS = new Date(clDate);
 				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
+
+					//Get the address
+					var capAddResult = aa.address.getAddressByCapId(capId);
+					if (capAddResult.getSuccess())
+					{
+					var addrArray = new Array();
+					var addrArray = capAddResult.getOutput();
+					if (addrArray.length==0 || addrArray==undefined)
+						{
+						logDebug("The current CAP has no address.")
+						}
+
+					//Break Out each element of the address
+					var hseNum = addrArray[0].getHouseNumberStart();
+					var streetDir = addrArray[0].getStreetDirection();
+					var streetName = addrArray[0].getStreetName();
+					var streetSuffix = addrArray[0].getStreetSuffix();
+					var zip = addrArray[0].getZip();
+
+					var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+					}
 					addParameter(vEParams,"$$RECORD ID$$",capIDString);
+					addParameter(vEParams,"$$ADDRESS$$",theAddress);
 					addParameter(vEParams,"$$CLEARANCE TO$$","Southwest Gas");
 					addParameter(vEParams,"$$CLEARANCE DATE$$", clDate);
 					addParameter(vEParams,"$$SERVICE TYPE$$", "" + thisRow["Service Type"].fieldValue);

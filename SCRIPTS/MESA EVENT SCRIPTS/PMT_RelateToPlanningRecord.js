@@ -33,11 +33,23 @@ try
 {
   // check if parent exists
 	if (appTypeString == "Permits/Master Plan/NA/NA")
+	{
 		var planningNumber = AInfo["PLN Number"];
-	else 
+	}	
+	if ((appTypeString == "Permits/Commercial/NA/NA") ||
+		(appTypeString == "Permits/Residential/NA/NA") ||
+		(appTypeString == "Permits/Addenda or Deferred/NA/NA"))
+	{
 		var planningNumber = AInfo["Planning Number"];
+	}	
+	if ((appTypeString == "Permits/Signs/NA/NA") ||
+		(appTypeString == "Permits/Residential/Mobile Home/NA"))
+	{
+		var planningNumber = AInfo["Planning Case Number"];
+	}
 	
-	if (planningNumber && planningNumber != "") {
+	if (planningNumber && planningNumber != "") 
+        {
 		planningNumber = String(planningNumber).toUpperCase();
 	
 	  var getCapResult = aa.cap.getCapID(planningNumber);
@@ -51,11 +63,13 @@ try
 	  }
 	  else
 	  { 
-	    //mkyOutput += "ERROR: could not find parent planningNumber : " + planningNumber + " \r";
-	    //logDebug("**ERROR: could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
-		logDebug("Could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
+	    logDebug("Could not find SUP Case Number (" + planningNumber + "): " + getCapResult.getErrorMessage());
 	  }
 	}
+	// Added 9/27 per Heather Removed 9/29 per Lauren
+	//else {  
+	//	addAppCondition("Building Permit","Applied(Applied)","Planning Approval Letter Is Required","Planning Approval Letter is required to associate a Planning record to Building Permit.","Required");
+	//}
 
 }
 catch (err)

@@ -8,6 +8,7 @@
 // Testing Record: PMT16-00498
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/31/16  |Steve Veloudos   |Initial Release 
+//  2.0      |09/28/16  |Steve Veloudos   |Adj to iterate through all docs
 /*==================================================================*/
 
 try {
@@ -17,20 +18,30 @@ try {
       var DocFlag = 0;
       var DocCategory;
     
-    //Retrieve last document
+    //Retrieve documents
     var docListResult = getDocumentList();
     if (docListResult.length > 0) 
 	    { 
-	    var DocCount = docListResult.length;
-	    var LastPos = DocCount -1
-	    DocCategory = docListResult[LastPos].getDocCategory();
-	    var docDate = docListResult[LastPos].getFileUpLoadDate();
+
+        for (doc in docListResult)
+        {
+             //Get category
+             DocCategory =  docListResult[doc].getDocCategory().toUpperCase();
+            
             //Test for Doc category
-            if (DocCategory =="Industrial Pretreatment Form" || DocCategory == "Hazardous Materials Inventory Statement")
+            if (DocCategory == "INDUSTRIAL PRETREATMENT FORM")
             {
                 DocFlag = 1;
+                break;
             }
-	    }  
+            else if (DocCategory == "HAZARDOUS MATERIALS INVENTORY STATEMENT")
+            {
+                DocFlag = 1;
+                break;
+            }
+
+        } 
+      }
     
     //Add parms
     addParameter(vEParams,"$$RECORDID$$",capIDString);

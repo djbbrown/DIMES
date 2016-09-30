@@ -17,7 +17,7 @@
 //             
 /*==================================================================*/
 
-/* test with PMT16-00588 */
+/* test with PMT16-00588 PMT16-0835 */
 
 try
 {
@@ -44,16 +44,16 @@ try
 			// update vars if tags are matched (tried a switch statement, but doesn't seem to work in Accela ... always went to 'default' branch, even when tag values should have matched)
 			if (matches(tagVal, "COME")) { mesaElectric = true; /* logDebug("COME matched"); */ }
 			if (matches(tagVal, "COMG")) { mesaGas = true; /* logDebug("COMG matched"); */ }
-			if (matches(tagVal, "SRPE")) { srpElectric = true; /* logDebug("SRPE matched */ }
+			if (matches(tagVal, "SRPE")) { srpElectric = true; /* logDebug("SRPE matched"); */ }
 			if (matches(tagVal, "SWGA")) { swGas = true; /* logDebug("SWGA matched"); */ }
 			//if (!matches(tagVal, "COME", "COMG", "SRPE", "SWGA")) {/* logDebug("non-matched value: " + tagVal); */ }
 		}
 	}
 
 	/* if we didn't get a value for either Mesa or other (e.g. error with service) don't set these to anything */
-	electService = mesaElectric ? "City of Mesa Electric" : (srpElectric ? "Salt River Project Electric" : "");
-	gasService = mesaGas ? "City of Mesa Gas" : (swGas ? "Southwest Gas" : "");
-/*	
+	electService = mesaElectric ? "City of Mesa Electric" : (srpElectric ? "Salt River Project Electric" : "N/A");
+	gasService = mesaGas ? "City of Mesa Gas" : (swGas ? "Southwest Gas" : "N/A");
+	
 	logDebug("mesaElectric: " + mesaElectric);
 	logDebug("mesaGas: " + mesaGas);
 	logDebug("srpElectric: " + srpElectric);
@@ -66,14 +66,14 @@ try
 	
 	logDebug("Updating Gas Service to: " + gasService);
 	logDebug("Updating Electric Service to: " + electService);
-*/
+
 	/* set ASI fields for "Gas Service" and "Electric Service" */
 	editAppSpecific("Gas Service", gasService);
 	editAppSpecific("Electric Service", electService);
-/*	
+
 	logDebug("(Post) Gas Service: " + getAppSpecific("Gas Service"));
 	logDebug("(Post) Electric Service: " + getAppSpecific("Electric Service"));
-*/	
+
 }
 catch (err)
 {

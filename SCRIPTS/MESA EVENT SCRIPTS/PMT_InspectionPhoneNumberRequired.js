@@ -29,11 +29,17 @@ Require a phone number be entered on the inspection.
 
 try
 {
+    //MRK - 9.27.2016 - Removed (XXX)XXX-XXXX Regex pattern check from validation script.
+    //MRK - 9.29.2016 - Added Document Retrieval, Addenda or Deferred to excluded types
+
     var firePermitType = "Permits/Fire/*/*";
     var policePermitType = "Permits/Police Department/*/*";
+    var documentRetrievalType = "Permits/Document Retrieval/*/*";
+    var addendaAndDeferredType = "Permits/Addenda or Deferred/*/*";
 
-    //check to see if the permit type is not a fire or police permit
-    if(!appMatch(firePermitType) && !appMatch(policePermitType))
+    //check to see if the permit type is not a fire, police, addenda or deferred and document retrieval permit
+    if(!appMatch(firePermitType) && !appMatch(policePermitType) &&
+        !appMatch(documentRetrievalType) && !appMatch(addendaAndDeferredType))
     {
         //get all the inspections for the current record
         var inspectionResult = aa.inspection.getInspections(capId);
@@ -83,20 +89,9 @@ try
                         //get the requestor's phone number from current inspection object
                         var phoneNumber = "" + inspectionObj.getRequestPhoneNum();
 
-                        //logDebug("phone number: " + phoneNumber);
-
                         //if the phone number field is empty, they must enter a valid phone number
-                        if(phoneNumber.length != 0)
+                        if(phoneNumber.length == 0)
                         {
-                            //if the phone number is not in the valid format (XXX)XXX-XXXX, the user will be notified
-                            var validPattern = /^(?:\(\d{3}\))\d{3}-\d{4}$/;
-
-                            if(!phoneNumber.match(validPattern)) {
-                                validPhoneNumber = false;
-                                validationMessage = "The Requestor's phone number must be entered in the following format: (XXX)XXX-XXXX";
-                            }
-                        }
-                        else {
                             validPhoneNumber = false;
                             validationMessage = "Please enter valid phone number for the Requestor's Phone Number field.";
                         }
@@ -111,8 +106,6 @@ try
             }
         }        
     }
-    //else
-        //logDebug("Criteria not met.");
 }
 catch (err)
 {

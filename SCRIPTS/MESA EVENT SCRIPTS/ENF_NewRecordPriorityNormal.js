@@ -66,5 +66,5 @@ catch (err)
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: COD16-00099
+/* Test Record: COD16-00145
 */

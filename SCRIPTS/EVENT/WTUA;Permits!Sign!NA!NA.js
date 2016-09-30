@@ -9,3 +9,5 @@ include("PMT_AssessTechFee"); // must be run last
 
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
+
+include("PMT_AssessTechFee"); // must be run last

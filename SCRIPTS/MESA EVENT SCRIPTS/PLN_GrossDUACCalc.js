@@ -6,7 +6,7 @@
 // Script Agency: City of Mesa
 // Script Description: 
 // 		Calculate "Gross DU/AC" ASI field. 
-//		Calculation =  ((“Total New Lots” + “Total New Units”) / “Net Site Size (acres)”)
+//		Calculation =  ((“Total New Lots” + “Total New Units”) / “Gross Site Size (acres)”)
 //
 // Script Run Event: ASA, ASIUA
 // Script Parents:
@@ -52,13 +52,13 @@ try
     }
 
   
-    if (AInfo["Net Site Size (acres)"] == null)
+    if (AInfo["Gross Site Size (acres)"] == null)
     {
       acres = 0.0;
     }
     else
     {
-      acres = parseFloat(AInfo["Net Site Size (acres)"]);
+      acres = parseFloat(AInfo["Gross Site Size (acres)"]);
     }
 
     

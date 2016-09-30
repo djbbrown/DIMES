@@ -19,7 +19,7 @@ function mesaWorkingDays(curDate, daysToAdd)
   var theDate = new Date(curDate);
   var dayOfWeek = theDate.getDay();
   var fridayCount = 0;
-  var x = 0;
+  var x = 1;
 
   while (x < daysToAdd)
   {
