@@ -34,7 +34,7 @@ try
 				preAppExists = true;
 				var preAppRecResult = aa.cap.getCap(preAppCapID);
 				if (preAppRecResult.getSuccess()) {
-					var preAppRec = preAppCapIDResult.getOutput();
+					var preAppRec = preAppRecResult.getOutput();
 					logDebug("preAppRec: " + preAppRec);
 					
 					if (preAppRec != null) {
