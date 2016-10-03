@@ -302,6 +302,25 @@ if (tmpTable) {
 				updateFee("USF210","PMT_UTL_SERV", "FINAL",  waterSum3, "N");
 		}
 		if (waterSum3 == 0 && feeExists("USF210")) removeFee("USF210", "FINAL");
+	//USF220 Service Type - Water Service 
+	// Service Size - Water - 3.0
+		if (countWaterService > 0) {
+			var waterSum3 = 0;
+			for (var rowIndex in tmpTable) {
+				thisRow = tmpTable[rowIndex];
+				if ((thisRow["Service Type"].fieldValue == "Water Service")
+						&& (thisRow["Service Size"].fieldValue == 'Water 3.0' || thisRow["Service Size"].fieldValue == 'Water 3.0"')
+						&& matches("" + appTypeArray[1], "Commercial")
+				)
+				{
+					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+					waterSum3 = waterSum3 + parseFloat(thisRow["Qty of Meters"].fieldValue);
+				}
+			}							
+			if (waterSum3 > 0)
+				updateFee("USF220","PMT_UTL_SERV", "FINAL",  waterSum3, "N");
+		}
+		if (waterSum3 == 0 && feeExists("USF220")) removeFee("USF220", "FINAL");
 }
 // This should really only execute if the table fails to load
 // which would be exactly what we woulhd want.
