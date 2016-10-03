@@ -1,6 +1,7 @@
 /*===================================================================
  Versions:
  9/19/2016-A	John Cheney			initial
+ 10/3/2016-A	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active) 
  ---------------------------------------------------------------------
  Script Number: 334
  Script Name: PMT_CopyPenaltyDateToDueDate.js
@@ -9,35 +10,54 @@
     	
 ((revised by cheney))
 
-Copy the date found in ASI field ("Penalty Date" or "Plan Review Penalty Date") to the "Due Date" field of the following tasks:
-- Building Review
-- Fire Review
-- Planning Review
-- Public Works Review
-- Utilities Review
-- Arborist Review
-- Civil Review
-- Civil Engineering Review
-- DIS Review
-- Plans Coordination
+Applies to Permits/* except: 
+-	Permits/Commercial
+-	Permits/Demolition
+-	Permits/Document Retrieval
+-	Permits/Fire
+-	Permits/Online
+-	Permits/Police Department
 
-Scope: Permits\*\*\*    EXCEPT  Demo, Document Retrieval, Online, Commercial\Annual Facilities, Fire and PD
+Goal: the due date of the following tasks should match the ASI field (“Penalty Date” or “Plan Review Penalty Date”):
+-	Building Review
+-	Fire Review
+-	Planning Review
+-	Public Works Review
+-	Utilities Review
+-	Arborist Review
+-	Civil Review
+-	Civil Engineering Review
+-	DIS Review
+-	Plans Coordination
 
-This script for ASIUA (to cover when penalty date was modified outside of a task) AND WTUA (called by  
-script 66 - PMT_PenaltyDate after it sets penalty date)
- 
+Limitation: cannot set due date for tasks except when they are active.  
 
-specs: https://portal.accelaops.com/projects/Mesa/Lists/Script%20Tracker/DispForm.aspx?ID=334&Source=https%3A%2F%2Fportal%2Eaccelaops%2Ecom%2Fprojects%2FMesa%2FLists%2FScript%2520Tracker%2Factive%2Easpx  
+Solution:
 
-task object model reference:
-file://isrc01/ittechdocs/Applications/Dimes/EMSE-API-8_0_2-Doc/com/accela/aa/emse/dom/TaskItemScriptModel.html#setDueDate(com.accela.aa.emse.util.ScriptDateTime) 
+- detect if type of permit is in scope, exit if not
+- detect if currently active task is in scope, exit if not
+- if task in scope: 
+    - get ASI field (“Penalty Date” or “Plan Review Penalty Date”), exit if not found
+    - set the task due date = the penalty date
 
-Script run events: ASIUA, WTUA
-Script Parents:  ASIUA;Permits!~!~!~ , PMT_PenaltyDate
+
+Events: 
+-	ASIUA: handles change to currently active task if penalty date is modified
+-	WTUA: insure that due date is correct after task events (such as task becomes active)
+
+Script parents:
+- PMT_PenaltyDate (WTUA script that sets penalty date) – assumption to test: if a WTUA event modifies an ASI field, ASIUA is not fired
+- ASIUA;Permits!~!~
+- WTUA;Permits!Addenda or Deferred!NA!NA
+- WTUA;Permits!Master Plan!NA!NA
+- WTUA;Permits!Residential!
+
+
+specs: https://portal.accelaops.com/projects/Mesa/Lists/Script%20Tracker/DispForm.aspx?ID=334  
 
 /*==================================================================*/
 
-//logDebug("---------- start  PMT_CopyPenaltyDateToDueDate ----------");
+logDebug("---------- start  PMT_CopyPenaltyDateToDueDate ----------");
 try {
 
     // is this a type to avoid?
@@ -45,52 +65,32 @@ try {
     var appType = String(appTypeString);
 
     if(typesToAvoid.indexOf(appType) == -1){
-        
-        // nope, we have work to do..
-        // get the due date (from either penalty date or plan review penalty date)
-        var dueDate = AInfo["Penalty Date"];
-        if(!dueDate){
-            dueDate = AInfo["Plan Review Penalty Date"];
-        }
+        // not a record type to avoid .. is the active task this script cares about?
 
-        if(dueDate){
-    //      logDebug("-dueDate = " + dueDate);
-            var tasks = aa.workflow.getTasks(capId).getOutput();
+        var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination"];
 
-            if (tasks)
-            {
-                var changeCount = 0;
-                var taskCount = 0;
-                var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination"];
-                
-                for (t in tasks) {
-                    taskCount = taskCount + 1;
-                    var taskName = String(tasks[t].getTaskDescription());
-
-                    if(tasksToUpdate.indexOf(taskName) > -1){
-                        editTaskDueDate(taskName, dueDate);
-                        // debug
-                        //var tDate2 = getTaskDueDate(taskName); 
-                        //logDebug("--- updated task = " + taskName + " - dueDate = " + tDate2);
-                        changeCount = changeCount + 1;
-                    }
-                }
-                
-                logDebug("PMT_CopyPenaltyDateToDueDate - Set dueDate = " + dueDate + " in " + changeCount + " of " + taskCount + " tasks.");
-
-            } else {
-                logDebug("PMT_CopyPenaltyDateToDueDate - No Action - No Tasks found.");    
+        if(wfTask && tasksToUpdate.indexOf(wfTask) > -1){
+            // yes
+            // get the due date (from either penalty date or plan review penalty date)
+            var dueDate = AInfo["Penalty Date"];
+            if(!dueDate){
+                dueDate = AInfo["Plan Review Penalty Date"];
             }
+
+            if(dueDate){ 
+                // due date is found, so set it
+                editTaskDueDate(wfTask, dueDate);
+                logDebug("PMT_CopyPenaltyDateToDueDate - Set dueDate = " + dueDate + " for wfTask: " + wfTask);
+            }
+
+        } else {
+            logDebug("PMT_CopyPenaltyDateToDueDate - No Action - wfTask " + wfTask +  " is out of scope.");
         }
-        else{
-            logDebug("PMT_CopyPenaltyDateToDueDate - No Action - Cannot find Penalty Date or Plan Review Penalty Date.");
-        }        
     }else{
         logDebug("PMT_CopyPenaltyDateToDueDate - No Action - appTypeString " + appTypeString + " is out of scope.");
     }
-
 } catch (err) {
 	logDebug("A JavaScript Error occured in PMT_CopyPenaltyDateToDueDate: " + err.message);
 	logDebug(err.stack);
 }
-//logDebug("---------- end  PMT_CopyPenaltyDateToDueDate ----------");
+logDebug("---------- end  PMT_CopyPenaltyDateToDueDate ----------");
