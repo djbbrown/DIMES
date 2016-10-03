@@ -229,8 +229,9 @@ if (tmpTable) {
 						|| thisRow["Service Type"].fieldValue == "Electric Meter: Upgrade"
 			)
 			{
-				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue))) {
 					usf140sum = usf140sum + parseFloat(thisRow["Qty of Meters"].fieldValue);
+				}
 			}
 		}
 		if (usf140sum > 0) {
