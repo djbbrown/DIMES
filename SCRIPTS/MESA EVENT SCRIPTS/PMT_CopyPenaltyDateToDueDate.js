@@ -1,7 +1,7 @@
 /*===================================================================
  Versions:
  9/19/2016-A	John Cheney			initial
- 10/3/2016-A	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active) 
+ 10/3/2016-C	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active) 
  ---------------------------------------------------------------------
  Script Number: 334
  Script Name: PMT_CopyPenaltyDateToDueDate.js
@@ -66,7 +66,7 @@ try {
 
     if(typesToAvoid.indexOf(appType) == -1){
         // not a record type to avoid .. is the active task this script cares about?
-
+        /** TRY ONE.. DID NOT WORK BECAUSE WFtASK = PREVIOUS TASK 
         var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination"];
 
         if(wfTask && tasksToUpdate.indexOf(wfTask) > -1){
@@ -85,6 +85,48 @@ try {
 
         } else {
             logDebug("PMT_CopyPenaltyDateToDueDate - No Action - wfTask " + wfTask +  " is out of scope.");
+        }
+        */
+
+        // try to get penalty date 
+        var dueDate = AInfo["Penalty Date"];
+        if(!dueDate){ dueDate = AInfo["Plan Review Penalty Date"];}
+
+        if(dueDate){
+            var tasks = aa.workflow.getTasks(capId).getOutput();
+
+            if (tasks)
+            {
+                var changeCount = 0;
+                var taskCount = 0;
+                var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination"];
+                
+                for (t in tasks) {
+                    taskCount = taskCount + 1;
+                    var taskName = String(tasks[t].getTaskDescription());
+                    var isActive = isTaskActive(taskName);
+
+                    logDebug("PMT_CopyPenaltyDateToDueDate - Found Task = " + taskName + " - isActive = " + String(isActive));
+
+                    if(tasksToUpdate.indexOf(taskName) > -1 && isActive && isActive == true){
+                        editTaskDueDate(taskName, dueDate);
+                        // debug
+                        //var tDate2 = getTaskDueDate(taskName); 
+                        logDebug("PMT_CopyPenaltyDateToDueDate - updated task = " + taskName + " - dueDate = " + tDate2);
+                        changeCount = changeCount + 1;
+                    } else {
+                        logDebug("PMT_CopyPenaltyDateToDueDate - did not update task = " + taskName + " ( is not active)");
+                    }
+
+                }
+                // summarize activity
+                logDebug("PMT_CopyPenaltyDateToDueDate - Set dueDate = " + dueDate + " in " + changeCount + " of " + taskCount + " tasks.");
+
+            } else {
+                logDebug("PMT_CopyPenaltyDateToDueDate - No Action - No Tasks found.");    
+            }
+        } else {
+            logDebug("PMT_CopyPenaltyDateToDueDate - No Action - Penalty Date not found");
         }
     }else{
         logDebug("PMT_CopyPenaltyDateToDueDate - No Action - appTypeString " + appTypeString + " is out of scope.");
