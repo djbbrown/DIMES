@@ -12,7 +12,6 @@
 // Script Parents:
 //            ASA;Planning!Planning and Zoning!NA!NA 
 /*==================================================================*/
-showDebug = false;
 try{
 	var acres = 0;
 	areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
@@ -58,6 +57,115 @@ try{
 			}
 		
 		}
+	}
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
+}
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_PlanningZoningFees
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: If Pre-Plat Box is checked assess Preliminary Plat Approval
+using ASI field Total New Lots, Tracts, Parcels.
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Planning and Zoning!NA!NA 
+/*==================================================================*/
+try{
+	if (AInfo["Pre-Plat"] == "CHECKED" && AInfo["Total New Lots, Tracts, Parcels"] != null) {
+		addFee("PZ010","PLN_PZ","FINAL",AInfo["Total New Lots, Tracts, Parcels"],"N");
+	}
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
+}
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_PlanningZoningFees
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: If Infill Development District 2 is checked assess Rezoning to the Infill Development District 2
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Planning and Zoning!NA!NA 
+/*==================================================================*/
+try{
+	if (AInfo["Rezone - Infill Development District 2"] == "CHECKED" && AInfo["Total New Lots, Tracts, Parcels"] != null) {
+		addFee("PZ090","PLN_PZ","FINAL",AInfo["Total New Lots, Tracts, Parcels"],"N");
+	}
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
+}
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_PlanningZoningFees
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: If Rezone - Planned Community District is checked assess Rezoning to the Planned Community District
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Planning and Zoning!NA!NA 
+/*==================================================================*/
+try{
+	if (AInfo["Rezone - Planned Community District"] == "CHECKED" && AInfo["Total New Lots, Tracts, Parcels"] != null) {
+		addFee("PZ100","PLN_PZ","FINAL",AInfo["Total New Lots, Tracts, Parcels"],"N");
+	}
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
+}
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_PlanningZoningFees
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: If Planned Community Minor Admendment is checked assess Minor Planned Community Amendment
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Planning and Zoning!NA!NA 
+/*==================================================================*/
+try{
+	if (AInfo["Planned Community Minor Amendment"] == "CHECKED") {
+		addFee("PZ110","PLN_PZ","FINAL",1,"N");
+	}
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
+}
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_PlanningZoningFees
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: If Development Unit Plan is checked assess Development Unit Plans
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Planning and Zoning!NA!NA 
+/*==================================================================*/
+try{
+	if (AInfo["Planned Community Minor Amendment"] == "CHECKED" && AInfo["Total New Lots, Tracts, Parcels"] != null) {
+		addFee("PZ120","PLN_PZ","FINAL",AInfo["Total New Lots, Tracts, Parcels"],"N");
+	}
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
+}
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_PlanningZoningFees
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: If Council Use Permit is checked assess Council Use Permit
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Planning and Zoning!NA!NA 
+/*==================================================================*/
+try{
+	if (AInfo["Planned Community Minor Amendment"] == "CHECKED") {
+		addFee("PZ130","PLN_PZ","FINAL",1,"N");
 	}
 } catch (err){
 	logDebug("A JavaScript Error occured: " + err.message);

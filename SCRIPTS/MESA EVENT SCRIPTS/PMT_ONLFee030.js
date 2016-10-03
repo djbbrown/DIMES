@@ -1,5 +1,5 @@
 /*===================================================================
-// Script Number: Fee 030 
+// Script Number: Fee 030 After-Hours Work Permit
 // Script Name: PMT_ONLFee030
 // Script Developer: Kevin Ford
 // Script Agency: Accela
@@ -15,5 +15,5 @@ if(appTypeArray[1]=='Online' && exists(typeOfWork,Online))
 {
 	// Get the value for the total number of inspections
 	// tNumInsp = parseFloat(AInfo["Required Number of Inspections"]);
-	addFee("ONL030","PMT_ONL", "FINAL",  1, "N");
+	addFee("ONL030","PMT_ONL", "FINAL",  1, "Y");
 }

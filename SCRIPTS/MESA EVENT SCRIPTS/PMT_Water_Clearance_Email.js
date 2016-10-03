@@ -8,6 +8,7 @@
 // Test Record: PMT16-00507
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/01/16  |Steve Veloudos   |Initial Release
+//  2.0      |09/29/16  |Steve Veloudos   |Fixed Inconsistant UTILITY SERVICE INFO ASIT
 /*==================================================================*/
 
 try {
@@ -35,9 +36,10 @@ try {
     var CurrentDate = String(d2);  
     
     //Get the values from ASIT   
-    loadASITables();
-    var tInfo = UTILITYSERVICEINFO;
-    var rowCount = UTILITYSERVICEINFO.length;
+    var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
+	if (!tmpTable) tmpTable = loadASITable("UTILITY SERVICE INFO");
+    var tInfo = tmpTable;
+    var rowCount = tInfo.length;
     var x = 0;
     var i = 0;
 

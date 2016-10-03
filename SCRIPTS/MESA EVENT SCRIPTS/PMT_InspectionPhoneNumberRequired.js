@@ -30,12 +30,16 @@ Require a phone number be entered on the inspection.
 try
 {
     //MRK - 9.27.2016 - Removed (XXX)XXX-XXXX Regex pattern check from validation script.
+    //MRK - 9.29.2016 - Added Document Retrieval, Addenda or Deferred to excluded types
 
     var firePermitType = "Permits/Fire/*/*";
     var policePermitType = "Permits/Police Department/*/*";
+    var documentRetrievalType = "Permits/Document Retrieval/*/*";
+    var addendaAndDeferredType = "Permits/Addenda or Deferred/*/*";
 
-    //check to see if the permit type is not a fire or police permit
-    if(!appMatch(firePermitType) && !appMatch(policePermitType))
+    //check to see if the permit type is not a fire, police, addenda or deferred and document retrieval permit
+    if(!appMatch(firePermitType) && !appMatch(policePermitType) &&
+        !appMatch(documentRetrievalType) && !appMatch(addendaAndDeferredType))
     {
         //get all the inspections for the current record
         var inspectionResult = aa.inspection.getInspections(capId);
