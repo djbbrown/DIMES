@@ -9,6 +9,6 @@ include("PMT_CMSW_Gas");
 include("PMT_Light_Rail");
 include("PMT_Communications_Towers");
 include("PMT_RelateToPlanningRecord");
-
+include("PMT_Email_Hazardmat_Received");
 // added by Vance Smith (Mesa)
 include("PMT_AutopopulateASIFieldsFromGISAttributes");
