@@ -3,4 +3,4 @@
 //=======================================
 // added by Michael Kniskern (City of Mesa)
 include("PLN_BoardOfAdjustmentRequiredDocs");
-//include("PLN_BOAValidation"); // Script 333
+include("PLN_BOAValidation"); // Script 333
