@@ -22,7 +22,7 @@ Script Parents:
 
 ==================================================================*/
 
-// logDebug("---------- start  PLN_AnnexationEquityFee ----------");
+ logDebug("---------- start  PLN_AnnexationEquityFee ver 10/3 ----------");
 
 try
 {
