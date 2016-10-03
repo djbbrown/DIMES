@@ -66,7 +66,7 @@ try {
 
     if(typesToAvoid.indexOf(appType) == -1){
         // not a record type to avoid .. is the active task this script cares about?
-
+        /** TRY ONE.. DID NOT WORK BECAUSE WFtASK = PREVIOUS TASK 
         var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination"];
 
         if(wfTask && tasksToUpdate.indexOf(wfTask) > -1){
@@ -86,6 +86,38 @@ try {
         } else {
             logDebug("PMT_CopyPenaltyDateToDueDate - No Action - wfTask " + wfTask +  " is out of scope.");
         }
+        */
+
+        var tasks = aa.workflow.getTasks(capId).getOutput();
+
+        if (tasks)
+        {
+            var changeCount = 0;
+            var taskCount = 0;
+            var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination"];
+            
+            for (t in tasks) {
+                taskCount = taskCount + 1;
+                var taskName = String(tasks[t].getTaskDescription());
+                var isActive = isTaskActive(taskName);
+
+                logDebug("PMT_CopyPenaltyDateToDueDate - Found Task = " + taskName + " - isActive = " + String(isActive));
+
+                if(tasksToUpdate.indexOf(taskName) > -1){
+                    editTaskDueDate(taskName, dueDate);
+                    // debug
+                    //var tDate2 = getTaskDueDate(taskName); 
+                    logDebug("--- updated task = " + taskName + " - dueDate = " + tDate2);
+                    changeCount = changeCount + 1;
+                }
+            }
+            // summarize activity
+            logDebug("PMT_CopyPenaltyDateToDueDate - Set dueDate = " + dueDate + " in " + changeCount + " of " + taskCount + " tasks.");
+
+        } else {
+            logDebug("PMT_CopyPenaltyDateToDueDate - No Action - No Tasks found.");    
+        }
+
     }else{
         logDebug("PMT_CopyPenaltyDateToDueDate - No Action - appTypeString " + appTypeString + " is out of scope.");
     }
