@@ -189,6 +189,7 @@ if (tmpTable) {
 			}
 		if (tempSum8 == 0 && feeExists("USF100")) removeFee("USF100", "FINAL");
 		
+	// Water Meter 10 - 12 inch
 	// Service Size - Water 10 - 12 // just need to add the fee item, value isn't going to be know.
 		if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
 			var tempSum1012=0;
@@ -199,12 +200,10 @@ if (tmpTable) {
 						tempSum1012 = tempSum8 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				}
 			}
-			//logDebug(tempSum8);
 			if (tempSum1012 > 0)
 				updateFee("USF110","PMT_UTL_SERV", "FINAL",  tempSum1012, "N");
 			}
 		if (tempSum1012 == 0 && feeExists("USF110")) removeFee("USF110", "FINAL");
-	//
 					
 	//Water relocation - USF120
 		if (countWaterRelocation == 0 && feeExists("USF120")) removeFee("USF120", "FINAL");
@@ -282,20 +281,25 @@ if (tmpTable) {
 				if (waterSum2 > 0)
 					updateFee("USF200","PMT_UTL_SERV", "FINAL",  waterSum2, "N");
 		}
-		if (waterSum2 == 0 && feeExists("USF200")) removeFee("USF200", "FINAL");		
+		if (waterSum2 == 0 && feeExists("USF200")) removeFee("USF200", "FINAL");
+		
 	//USF210 Service Type - Water Service 
 	// Service Size - Water - 2.0
 		if (countWaterService > 0) {
 			var waterSum3 = 0;
 			for (var rowIndex in tmpTable) {
 				thisRow = tmpTable[rowIndex];
-				if ((thisRow["Service Type"].fieldValue == "Water Service") && (thisRow["Service Size"].fieldValue == 'Water 2.0' || thisRow["Service Size"].fieldValue == 'Water 2.0"'))  {
-				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+				if ((thisRow["Service Type"].fieldValue == "Water Service")
+						&& (thisRow["Service Size"].fieldValue == 'Water 2.0' || thisRow["Service Size"].fieldValue == 'Water 2.0"')
+						&& matches("" + appTypeArray[1], "Commercial")
+				)
+				{
+					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
 					waterSum3 = waterSum3 + parseFloat(thisRow["Qty of Meters"].fieldValue);
-				 }
-				}							
-				if (waterSum3 > 0)
-					updateFee("USF210","PMT_UTL_SERV", "FINAL",  waterSum3, "N");
+				}
+			}							
+			if (waterSum3 > 0)
+				updateFee("USF210","PMT_UTL_SERV", "FINAL",  waterSum3, "N");
 		}
 		if (waterSum3 == 0 && feeExists("USF210")) removeFee("USF210", "FINAL");
 }
