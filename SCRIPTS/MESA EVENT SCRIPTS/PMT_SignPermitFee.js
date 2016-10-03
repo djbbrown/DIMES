@@ -22,5 +22,14 @@ if	(
 	//logDebug("Total Fee: " + totalFee);
 	//if (feeExists("SGN020", "INVOICED")) voidRemoveFee("SGN020");
 	updateFee("SGN020", "PMT_SIGNS", "FINAL", totalAdjFee, "N");
+	// Expedite Fee
+	if(AInfo["Expedite"]=="Expedite"){
+		// Add the extra fee for expedite
+		updateFee("SGN110", "PMT_SIGNS", "FINAL", totalAdjFee, "N");
+	}
+	// Super Expedite Fee
+	if(AInfo["Expedite"]=="Super Expedite"){
+		// Add the extra fee for expedite
+		updateFee("SGN120", "PMT_SIGNS", "FINAL", totalAdjFee*2, "N");
+	}
 }
- 
