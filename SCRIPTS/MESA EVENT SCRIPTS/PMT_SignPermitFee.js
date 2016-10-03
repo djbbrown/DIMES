@@ -25,11 +25,11 @@ if	(
 	// Expedite Fee
 	if(AInfo["Expedite"]=="Expedite"){
 		// Add the extra fee for expedite
-		addFee("SGN110", "PMT_SIGNS", "FINAL", totalAdjFee, "N");
+		updateFee("SGN110", "PMT_SIGNS", "FINAL", totalAdjFee, "N");
 	}
 	// Super Expedite Fee
 	if(AInfo["Expedite"]=="Super Expedite"){
 		// Add the extra fee for expedite
-		addFee("SGN120", "PMT_SIGNS", "FINAL", totalAdjFee*2, "N");
+		updateFee("SGN120", "PMT_SIGNS", "FINAL", totalAdjFee*2, "N");
 	}
 }
