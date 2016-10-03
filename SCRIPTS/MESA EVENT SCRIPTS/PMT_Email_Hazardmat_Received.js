@@ -4,7 +4,7 @@
 // Script Description: Send email when a document with a category of "Industrial PreTreatment Form" or "Hazardous Material Inventory Statement" is uploaded    
 // Script Run Event: ASA, ASIUA
 // Script Parents:ASA;Permits/Commercial/NA/NA
-// ASIUA;Permits/Commercial/NA/NA
+// DUA;Permits/Commercial/NA/NA
 // Testing Record: PMT16-00498
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/31/16  |Steve Veloudos   |Initial Release 
