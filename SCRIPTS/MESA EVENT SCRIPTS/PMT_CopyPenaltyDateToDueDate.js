@@ -10,7 +10,7 @@
     	
 ((revised by cheney))
 
-Applies to Permits/* except 
+Applies to Permits/* except: 
 -	Permits/Commercial
 -	Permits/Demolition
 -	Permits/Document Retrieval
@@ -34,9 +34,10 @@ Limitation: cannot set due date for tasks except when they are active.
 
 Solution:
 
-- detect if currently active task = one in the list
-- if yes: 
-    - get ASI field (“Penalty Date” or “Plan Review Penalty Date”)
+- detect if type of permit is in scope, exit if not
+- detect if currently active task is in scope, exit if not
+- if task in scope: 
+    - get ASI field (“Penalty Date” or “Plan Review Penalty Date”), exit if not found
     - set the task due date = the penalty date
 
 
@@ -45,12 +46,11 @@ Events:
 -	WTUA: insure that due date is correct after task events (such as task becomes active)
 
 Script parents:
-- PMT_CopyPenaltyDateToDueDate (WTUA script that sets penalty date) – assumption to test: if a WTUA event modifies an ASI field, ASIUA is not fired
+- PMT_PenaltyDate (WTUA script that sets penalty date) – assumption to test: if a WTUA event modifies an ASI field, ASIUA is not fired
 - ASIUA;Permits!~!~
 - WTUA;Permits!Addenda or Deferred!NA!NA
 - WTUA;Permits!Master Plan!NA!NA
 - WTUA;Permits!Residential!
-
 
 
 specs: https://portal.accelaops.com/projects/Mesa/Lists/Script%20Tracker/DispForm.aspx?ID=334  
