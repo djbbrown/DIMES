@@ -20,14 +20,15 @@
 		removeFee("SGN010", "FINAL");  //removing fee only for ACA in case user comes back to fee page.
 		addFee("SGN010", "PMT_SIGNS", "FINAL", totalFee65pct, "N");
 		//addFeeWithQtyAndAmt("SGN010", "PMT_SIGNS", "FINAL", 1, totalFee65pct, "CONSTANT", 1);
-	}
-	// Expedite Fee
-	if(AInfo["Expedite"]=="Expedite"){
-		// Add the extra fee for expedite
-		addFee("SGN130", "PMT_SIGNS", "FINAL", totalFee65pct, "N");
-	}
-	// Super Expedite Fee
-	if(AInfo["Expedite"]=="Super Expedite"){
-		// Add the extra fee for expedite
-		addFee("SGN150", "PMT_SIGNS", "FINAL", totalFee65pct*2, "N");
+		
+		// Expedite Fee
+		if(AInfo["Expedite"]=="Expedite"){
+			// Add the extra fee for expedite
+			addFee("SGN130", "PMT_SIGNS", "FINAL", totalFee65pct, "N");
+		}
+		// Super Expedite Fee
+		if(AInfo["Expedite"]=="Super Expedite"){
+			// Add the extra fee for expedite
+			addFee("SGN150", "PMT_SIGNS", "FINAL", totalFee65pct*2, "N");
+		}
 	}
