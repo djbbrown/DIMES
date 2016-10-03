@@ -217,7 +217,25 @@ if (tmpTable) {
 		if (countElecServTurn > 0) {
 			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Electric Service Turn on Same Day");
 			updateFee("USF130","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
-			}	
+			}
+		
+	//Electric Meter - USF140
+		if (countElecServTurn == 0 && feeExists("USF140")) removeFee("USF130", "FINAL");
+		var usf140sum = 0;
+		for (var rowIndex in tmpTable){
+			thisRow = tmpTable[rowIndex];
+			if (
+					(thisRow["Service Type"].fieldValue == "Electric Meter: New" 
+						|| thisRow["Service Type"].fieldValue == "Electric Meter: Relocate"
+						|| thisRow["Service Type"].fieldValue == "Electric Meter: Upgrade"
+					)
+			) {
+				usf140sum++;	
+			}
+		}
+		if (usf140sum > 0) {
+			updateFee("USF140","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+		}
 					
 	//Temporary Electric - USF150
 		if (countTempElec == 0 && feeExists("USF150")) removeFee("USF150", "FINAL");
