@@ -10,11 +10,12 @@ When the renew button on the renewal tab or the renew license link is clicked in
 record and copy any ASI information (like for like) from the Registration record to the renewal record. Set Registration Expiration Date 
 to 356 days in the future.  Make the Renewal record a child of the Registration record.
 
-// Script Run Event: ASIUA
+// Script Run Event: ASA
 
 // Script Parents: 
 
-//  ASIUA;Planning!Group Home!Registration!NA
+//  ASA;Planning!Group Home!Registration!NA (added by MRK 10.3.2016)
+//  ASIUA;Planning!Group Home!Registration!NA (removed by MRK 10.3.2016)
 //            
 /*==================================================================*/
 
