@@ -188,6 +188,22 @@ if (tmpTable) {
 				updateFee("USF100","PMT_UTL_SERV", "FINAL",  tempSum8, "N");
 			}
 		if (tempSum8 == 0 && feeExists("USF100")) removeFee("USF100", "FINAL");
+		
+	// Service Size - Water 10 - 12 // just need to add the fee item, value isn't going to be know.
+		if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
+			var tempSum1012=0;
+			for (var rowIndex in tmpTable) {
+				thisRow = tmpTable[rowIndex];
+				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 10" or 12"'))  {    
+					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
+						tempSum1012 = tempSum8 + parseFloat(thisRow["Qty of Meters"].fieldValue);
+				}
+			}
+			//logDebug(tempSum8);
+			if (tempSum1012 > 0)
+				updateFee("USF110","PMT_UTL_SERV", "FINAL",  tempSum1012, "N");
+			}
+		if (tempSum1012 == 0 && feeExists("USF110")) removeFee("USF110", "FINAL");
 	//
 					
 	//Water relocation - USF120
