@@ -51,13 +51,13 @@ try
 		}
 	}
 	
-/*
+
 	logDebug("recID: " + recID);
 	logDebug("preAppCapID: " + preAppCapID);
 	logDebug("preAppExists: " + preAppExists);
 	logDebug("preAppNewerThan2YearsAgo: " + preAppNewerThan2YearsAgo);
 	logDebug("recDate: " + recDate);
-*/
+
 	
 	if (!(preAppExists && preAppNewerThan2YearsAgo)) {
 		showMessage = true;
