@@ -83,11 +83,12 @@ try
 
             for (var i = 0; i < docArray.length; i++) {
 
-//                logDebug("doc = " + docArray[i]);
+                logDebug("doc = " + docArray[i]);
 
                 switch(docArray[i]){
                         case "Site Plan":
                             hasSite = true;
+                            logDebug(" found site plan!");
                             break;
 
                         case "Preliminary Grading Drainage and Utility Plan":
