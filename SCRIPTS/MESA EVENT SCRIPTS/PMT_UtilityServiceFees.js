@@ -243,7 +243,7 @@ if (tmpTable) {
 		if (countTempElec > 0) {
 			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Temporary Electric");
 			updateFee("USF150","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
-			}	
+			}
 					
 	//Pavement Replacement – Local Roadway- USF160
 	//   logDebug(countPavReplLocal);
