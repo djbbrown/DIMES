@@ -19,28 +19,28 @@ try
 	var preAppExists = false;
 	var preAppNewerThan2YearsAgo = false;
 	var twoYearsAgo = getTwoYearsAgo();	// comparison date
-	//var recID = getAppSpecific("Pre-App Record");
-	var recID = AInfo["Pre-App Record"];
+
+	var recID = AInfo["Pre-App Record"]; // getAppSpecific() doesn't work on ASB events.
 	
-	logDebug("Pre-App Record [ASI value]: " + recID);
+	//logDebug("Pre-App Record [ASI value]: " + recID);
 	
 	if (recID != null) {  // got ASI value - see if record exists
 		var preAppCapIDResult = aa.cap.getCapID(recID);
 		
 		if (preAppCapIDResult.getSuccess()) {
 			var preAppCapID = preAppCapIDResult.getOutput();
-			logDebug("preAppCapID: " + preAppCapID);
+			//logDebug("preAppCapID: " + preAppCapID);
 			
 			if (preAppCapID != null) { // record exists
 				preAppExists = true;
 				var preAppRecResult = aa.cap.getCap(preAppCapID);
 				if (preAppRecResult.getSuccess()) {
 					var preAppRec = preAppRecResult.getOutput();
-					logDebug("preAppRec: " + preAppRec);
+					//logDebug("preAppRec: " + preAppRec);
 					
 					if (preAppRec != null) {
 						var fd = preAppRec.getFileDate();
-						logDebug("FileDate: " + fd);
+						//logDebug("FileDate: " + fd);
 						if (fd != null) {
 							var recDate = convertDate(fd); // get creation date
 							logDebug("recDate: " + recDate);
@@ -60,6 +60,7 @@ try
 	logDebug("recDate: " + recDate);
 
 	
+	preAppExists = false; /* test */
 	if (!(preAppExists && preAppNewerThan2YearsAgo)) {
 		showMessage = true;
 		comment("Pre-App Record must exist, and be less than 2 years old.");
