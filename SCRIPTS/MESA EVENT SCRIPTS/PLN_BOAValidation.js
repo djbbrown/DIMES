@@ -19,7 +19,8 @@ try
 	var preAppExists = false;
 	var preAppNewerThan2YearsAgo = false;
 	var twoYearsAgo = getTwoYearsAgo();	// comparison date
-	var recID = getAppSpecific("Pre-App Record");
+	//var recID = getAppSpecific("Pre-App Record");
+	var recID = AInfo["Pre-App Record"];
 	
 	logDebug("Pre-App Record [ASI value]: " + recID);
 	
