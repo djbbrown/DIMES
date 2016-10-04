@@ -2,7 +2,7 @@
  Versions:
  9/26/2016-A	John Cheney			initial
  9/27/2016-A	John Cheney			removed msg var from switch statement
- 9/29/2016-C	John Cheney			getDocs() - added check for getResult = null
+ 10/4/2016-B	John Cheney			getDocs() - added check for getResult = null
  ---------------------------------------------------------------------
 // Script Number: 313
 // Script Name: PLN_PlanningAndZoningSitePlanReview.js
@@ -82,12 +82,14 @@ try
             logDebug("docArray length = " + String(docArray.length));
 
             for (var i = 0; i < docArray.length; i++) {
+                // convert to string so switch cases will work
+                var doc = String(docArray[i]);
+                logDebug("doc = " + doc);
 
-//                logDebug("doc = " + docArray[i]);
-
-                switch(docArray[i]){
+                switch(doc){
                         case "Site Plan":
                             hasSite = true;
+                            logDebug(" found site plan!");
                             break;
 
                         case "Preliminary Grading Drainage and Utility Plan":
@@ -95,6 +97,7 @@ try
                             break;
 
                         case "Floor Plans":
+                        logDebug(" found floor plans!");
                             hasFloor = true;
                             break;
 

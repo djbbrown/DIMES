@@ -157,7 +157,7 @@ try {
 					addFee("RDIF280", "PMT_RDIF", "FINAL", units, "N");
 					feeCount = feeCount + 1;
 				} else {
-					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF030 not set - hasStormTag = false or a fee with status INVOICED already exists");
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF280 not set - hasStormTag = false or a fee with status INVOICED already exists");
 				}
 
 				logDebug("PMT_ImpactFeesMultiResidence - Set " + String(feeCount) + " fees.");
