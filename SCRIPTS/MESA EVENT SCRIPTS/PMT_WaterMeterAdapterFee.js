@@ -42,14 +42,30 @@ try {
 					meterSize = t[entry]["Meter Size"];
 					qtyOfMeters = t[entry]["Qty of Meters"];
 					logDebug(serviceSize + " " + meterSize + " " + qtyOfMeters);
-					if (serviceSize == 'Water 3/4"' && meterSize != 'Water 00.75 (3/4")' || serviceSize == 'Water 3/4' && meterSize != 'Water 00.75 (3/4' ||
-						serviceSize == 'Water 1.0"' && meterSize != 'Water 01.0"' || serviceSize == 'Water 1.0' && meterSize != 'Water 01.0' ||
-						serviceSize == 'Water 1 1/2"' && meterSize != 'Water 01.5 (1 1/2")' || serviceSize == 'Water 1 1/2' && meterSize != 'Water 01.5 (1 1/2' ||
-						serviceSize == 'Water 2.0"' && meterSize != 'Water 02.0"' || serviceSize == 'Water 2.0' && meterSize != 'Water 02.0' ||
-						serviceSize == 'Water - 4"' && meterSize != 'Water 04.0"' || serviceSize == 'Water - 4' && meterSize != 'Water 04.0' ||
-						serviceSize == 'Water - 6"' && meterSize != 'Water 06.0"' || serviceSize == 'Water - 6' && meterSize != 'Water 06.0' ||
-						serviceSize == 'Water - 8"' && meterSize != 'Water 08.0"' || serviceSize == 'Water - 8' && meterSize != 'Water 08.0' ||
-						serviceSize == 'Water - 10" or 12"' || serviceSize == 'Water - 10')
+					if (
+							(serviceSize == 'Water 3/4"' && meterSize != 'Water 00.75 (3/4")')
+							|| (serviceSize == 'Water 3/4' && meterSize != 'Water 00.75 (3/4'
+							// 1 Inch Comparison
+							|| (serviceSize == 'Water 1.0"' && meterSize != 'Water 01.0"')
+							|| (serviceSize == 'Water 1.0' && meterSize != 'Water 01.0')
+							// 1.5 Inch Comparison
+							|| (serviceSize == 'Water 1 1/2"' && meterSize != 'Water 01.5 (1 1/2")')
+							|| (serviceSize == 'Water 1 1/2' && meterSize != 'Water 01.5 (1 1/2')
+							// 2.0 Inch Comparison
+							|| (serviceSize == 'Water 2.0"' && meterSize != 'Water 02.0"')
+							|| (serviceSize == 'Water 2.0' && meterSize != 'Water 02.0')
+							// 4.0 Inch Comparison
+							|| (serviceSize == 'Water - 4"' && meterSize != 'Water 04.0"')
+							|| (serviceSize == 'Water - 4' && meterSize != 'Water 04.0')
+							// 6.0 Inch Comparison
+							|| (serviceSize == 'Water - 6"' && meterSize != 'Water 06.0"')
+							|| (serviceSize == 'Water - 6' && meterSize != 'Water 06.0')
+							// 8.0 Inch Comparison
+							|| (serviceSize == 'Water - 8"' && meterSize != 'Water 08.0"')
+							|| (serviceSize == 'Water - 8' && meterSize != 'Water 08.0')
+							// 10.0 Inch Comparison
+							|| (serviceSize == 'Water - 10" or 12"' || serviceSize == 'Water - 10')
+					)
 					{
 						logDebug("Mismatch row " + entry);
 //						var newRow = new Array();
