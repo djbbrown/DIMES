@@ -43,7 +43,7 @@ try
 						//logDebug("FileDate: " + fd);
 						if (fd != null) {
 							var recDate = convertDate(fd); // get creation date
-							logDebug("recDate: " + recDate);
+							//logDebug("recDate: " + recDate);
 							if ((recDate != null) && (recDate > twoYearsAgo)) { preAppNewerThan2YearsAgo = true; } // is record newer than 2 years ago?
 						}
 					}
@@ -52,15 +52,14 @@ try
 		}
 	}
 	
-
+/*
 	logDebug("recID: " + recID);
 	logDebug("preAppCapID: " + preAppCapID);
 	logDebug("preAppExists: " + preAppExists);
 	logDebug("preAppNewerThan2YearsAgo: " + preAppNewerThan2YearsAgo);
 	logDebug("recDate: " + recDate);
-
+*/
 	
-	preAppExists = false; /* test */
 	if (!(preAppExists && preAppNewerThan2YearsAgo)) {
 		showMessage = true;
 		comment("Pre-App Record must exist, and be less than 2 years old.");
