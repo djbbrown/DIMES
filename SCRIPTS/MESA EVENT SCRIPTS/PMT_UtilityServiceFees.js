@@ -224,17 +224,18 @@ if (tmpTable) {
 		var usf140sum = 0;
 		for (var rowIndex in tmpTable){
 			thisRow = tmpTable[rowIndex];
-			if (
-					(thisRow["Service Type"].fieldValue == "Electric Meter: New" 
+			if (thisRow["Service Type"].fieldValue == "Electric Meter: New" 
 						|| thisRow["Service Type"].fieldValue == "Electric Meter: Relocate"
 						|| thisRow["Service Type"].fieldValue == "Electric Meter: Upgrade"
-					)
-			) {
-				usf140sum++;	
+			)
+			{
+				if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue))) {
+					usf140sum = usf140sum + parseFloat(thisRow["Qty of Meters"].fieldValue);
+				}
 			}
 		}
 		if (usf140sum > 0) {
-			updateFee("USF140","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+			updateFee("USF140","PMT_UTL_SERV", "FINAL",  usf140sum, "N");
 		}
 					
 	//Temporary Electric - USF150

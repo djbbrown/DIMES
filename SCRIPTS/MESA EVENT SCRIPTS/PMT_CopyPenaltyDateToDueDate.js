@@ -1,7 +1,7 @@
 /*===================================================================
  Versions:
  9/19/2016-A	John Cheney			initial
- 10/3/2016-D	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active) 
+ 10/3/2016-E	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active) 
  ---------------------------------------------------------------------
  Script Number: 334
  Script Name: PMT_CopyPenaltyDateToDueDate.js
@@ -30,20 +30,20 @@ Goal: the due date of the following tasks should match the ASI field (“Penalty
 -	DIS Review
 -	Plans Coordination
 
-Limitation: cannot set due date for tasks except when they are active.  
+Limitation: cannot set due date for tasks except when they are active.  Multiple tasks can be active at the same time.
 
 Solution:
 
 - detect if type of permit is in scope, exit if not
-- detect if currently active task is in scope, exit if not
-- if task in scope: 
-    - get ASI field (“Penalty Date” or “Plan Review Penalty Date”), exit if not found
-    - set the task due date = the penalty date
+- get ASI field (“Penalty Date” or “Plan Review Penalty Date”), exit if not found
+- iterate through all tasks:
+    -  if task status = active, then set due date = the penalty date
 
 
 Events: 
--	ASIUA: handles change to currently active task if penalty date is modified
--	WTUA: insure that due date is correct after task events (such as task becomes active)
+-	ASIUA: insure that due dates are correct if penalty date is modified
+-	WTUA: insure that due dates are correct after task events (such as task becomes active)
+
 
 Script parents:
 - PMT_PenaltyDate (WTUA script that sets penalty date) – assumption to test: if a WTUA event modifies an ASI field, ASIUA is not fired
@@ -57,7 +57,7 @@ specs: https://portal.accelaops.com/projects/Mesa/Lists/Script%20Tracker/DispFor
 
 /*==================================================================*/
 
-logDebug("---------- start  PMT_CopyPenaltyDateToDueDate ----------");
+//logDebug("---------- start  PMT_CopyPenaltyDateToDueDate ----------");
 try {
 
     // is this a type to avoid?
@@ -86,12 +86,12 @@ try {
                     var taskName = String(tasks[t].getTaskDescription());
                     var isActive = isTaskActive(taskName);
 
-                    logDebug("PMT_CopyPenaltyDateToDueDate - Found Task = " + taskName + " - isActive = " + String(isActive));
+                    //logDebug("PMT_CopyPenaltyDateToDueDate - Found Task = " + taskName + " - isActive = " + String(isActive));
 
                     if(tasksToUpdate.indexOf(taskName) > -1 && isActive && isActive == true){
                         editTaskDueDate(taskName, dueDate);
                         // debug
-                        logDebug("PMT_CopyPenaltyDateToDueDate - updated task = " + taskName + " - dueDate = " + dueDate);
+                        //logDebug("PMT_CopyPenaltyDateToDueDate - updated task = " + taskName + " - dueDate = " + dueDate);
                         changeCount = changeCount + 1;
                     }
 
@@ -112,4 +112,4 @@ try {
 	logDebug("A JavaScript Error occured in PMT_CopyPenaltyDateToDueDate: " + err.message);
 	logDebug(err.stack);
 }
-logDebug("---------- end  PMT_CopyPenaltyDateToDueDate ----------");
+//logDebug("---------- end  PMT_CopyPenaltyDateToDueDate ----------");
