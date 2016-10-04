@@ -1,7 +1,7 @@
 /*===================================================================
  Versions:
  9/29/2016-B	John Cheney			initial
- 10/3/2016-a	John Cheney			use equityVar when assessing fee (not dollar amt) 
+ 10/3/2016-b	John Cheney			added standard choice lookup 
  ---------------------------------------------------------------------
  Script Number: 329
  Script Name: PLN_AnnexationEquityFee.js
@@ -32,23 +32,27 @@ try
     var equityVar = AInfo["Equity Fee Variable"];
 
     if(useClass && equityVar){
-        var feeCode = "ANX020";
-        // found the required values..
+        // have classification and equity var.. try to lookup standard choice 
+        var choiceVar = lookup("PLN ANX Equity_Fee_Rates", useClass);
 
-        // remove existing fee if found and not invoiced
-        if (feeExists(feeCode, "NEW")){
-            voidRemoveFee(feeCode);
-//    		logDebug("PLN_AnnexationEquityFee - Removed fee with code " + feeCode + " and status NEW");
-        }
+        if(choiceVar){
+            // found a value, so try to calculate fee
+            logDebug("PLN_AnnexationEquityFee - calculating feeQty = " + choiceVar + " x " + equityVar);
+            var feeQty = Number(equityVar) * Number(choiceVar);
 
-        // levy fee
+            var feeCode = "ANX020";
 
-        if(equityVar > 0){
-                addFee(feeCode, "PLN_ANX", "FINAL", equityVar, "N");
-            } else {
-                logDebug("PLN_AnnexationEquityFee - No Action - equityVar = " + String(equityVar));
+            // remove existing fee if found and not invoiced
+            if (feeExists(feeCode, "NEW")){
+                voidRemoveFee(feeCode);
             }
 
+            // levy fee
+            addFee(feeCode, "PLN_ANX", "FINAL", feeQty, "N");
+
+        } else{
+            logDebug("PLN_AnnexationEquityFee - No Action - failed to lookup Standard Choice for Use Classification = " + useClass);
+        }
     } else {
         logDebug("PLN_AnnexationEquityFee - No Action - Use Classification or Equity Fee Variable is null");
     }
