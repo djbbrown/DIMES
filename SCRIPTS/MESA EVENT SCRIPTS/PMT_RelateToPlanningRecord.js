@@ -42,7 +42,7 @@ try
 	{
 		var planningNumber = AInfo["Planning Number"];
 	}	
-	if ((appTypeString == "Permits/Signs/NA/NA") ||
+	if ((appTypeString == "Permits/Sign/NA/NA") ||
 		(appTypeString == "Permits/Residential/Mobile Home/NA"))
 	{
 		var planningNumber = AInfo["Planning Case Number"];
