@@ -19,14 +19,16 @@ if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 		// sum hours across tasks
 		totHours  = getWFHours(capId,"Building Review","Planning Review","Fire Review","Civil Engineering Review","Plans Coordination")
 		if (totHours > 0) {
-			if (AInfo["Expedite"] == "Expedite")
+			if (AInfo["Expedite"] == "Expedite") {
 					depAmount = feeAmount("MST070","NEW","INVOICED");
 					totFeeAmount = (110*totHours) - depAmount;
-					updateFee("MST040", "PMT_MST", "FINAL", totFeeAmount, "N");				
-		    if (AInfo["Expedite"] == "Super Expedite")
+					updateFee("MST040", "PMT_MST", "FINAL", totFeeAmount, "N");
+			}
+		    if (AInfo["Expedite"] == "Super Expedite") {
 					depAmount = feeAmount("MST080","NEW","INVOICED");
 		    		totFeeAmount = (220*totHours) - depAmount;
-					updateFee("MST050", "PMT_MST", "FINAL", totFeeAmount, "N");		
+					updateFee("MST050", "PMT_MST", "FINAL", totFeeAmount, "N");
+		    }
 		}
 		else {
 			if (feeExists("MST040", "NEW", "INVOICED")) voidRemoveFee("MST040");
