@@ -2,7 +2,7 @@
  Versions:
  9/26/2016-A	John Cheney			initial
  9/27/2016-A	John Cheney			removed msg var from switch statement
- 9/29/2016-C	John Cheney			getDocs() - added check for getResult = null
+ 10/4/2016-C	John Cheney			getDocs() - added check for getResult = null
  ---------------------------------------------------------------------
 // Script Number: 313
 // Script Name: PLN_PlanningAndZoningSitePlanReview.js
@@ -79,13 +79,14 @@ try
             var hasLand = false;
             var hasBuild = false;
 
-            logDebug("docArray length = " + String(docArray.length));
+            logDebug("PLN_PlanningAndZoningSitePlanReview - docArray length = " + String(docArray.length));
 
             for (var i = 0; i < docArray.length; i++) {
+                // convert to string so switch cases will work
+                var doc = String(docArray[i]);
+                //logDebug("doc = " + doc);
 
-//                logDebug("doc = " + docArray[i]);
-
-                switch(docArray[i]){
+                switch(doc){
                         case "Site Plan":
                             hasSite = true;
                             break;
@@ -181,7 +182,6 @@ function getDocsAsb()
 
     // note: this getResult object does not support getSuccess()
     if (getResult) {
-        logDebug("PLN_PlanningAndZoningSitePlanReview - have docs!");
         // copy data from [object JavaObject]  to javascript array of strings
         var arrCount = getResult.size();
         for(i=0; i<arrCount; i++)
