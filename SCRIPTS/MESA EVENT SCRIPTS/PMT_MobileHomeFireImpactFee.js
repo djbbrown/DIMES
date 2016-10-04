@@ -29,7 +29,7 @@
 //
 // Script Run Event: ASA / ASIUA
 // Script Parents:
-//		WTUA;Permits!Residential!Mobile Home!NA
+//		WTUA;Permits!Residential!Mobile Home!NA (updated spec - added to)
 //              ASA;Permits/Residential/Mobile Home/NA (org spec - removed from)
 //              ASIUA;Permits/Residential/Mobile Home/NA (org spec - removed from)
 // 
@@ -42,7 +42,7 @@
 try
 {
 
-  if ((wfTask == "Plans Distribution") && (wfStatus == "Ready to Issue"))
+  if ((wfTask == "Plans Coordination") && (wfStatus == "Ready to Issue"))
   {
 
     var isFire = Boolean(AInfo["Fire"]);
