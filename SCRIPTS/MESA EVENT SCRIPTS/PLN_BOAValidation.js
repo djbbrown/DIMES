@@ -19,30 +19,31 @@ try
 	var preAppExists = false;
 	var preAppNewerThan2YearsAgo = false;
 	var twoYearsAgo = getTwoYearsAgo();	// comparison date
-	var recID = getAppSpecific("Pre-App Record");
+
+	var recID = AInfo["Pre-App Record"]; // getAppSpecific() doesn't work on ASB events.
 	
-	logDebug("Pre-App Record [ASI value]: " + recID);
+	//logDebug("Pre-App Record [ASI value]: " + recID);
 	
 	if (recID != null) {  // got ASI value - see if record exists
 		var preAppCapIDResult = aa.cap.getCapID(recID);
 		
 		if (preAppCapIDResult.getSuccess()) {
 			var preAppCapID = preAppCapIDResult.getOutput();
-			logDebug("preAppCapID: " + preAppCapID);
+			//logDebug("preAppCapID: " + preAppCapID);
 			
 			if (preAppCapID != null) { // record exists
 				preAppExists = true;
 				var preAppRecResult = aa.cap.getCap(preAppCapID);
 				if (preAppRecResult.getSuccess()) {
 					var preAppRec = preAppRecResult.getOutput();
-					logDebug("preAppRec: " + preAppRec);
+					//logDebug("preAppRec: " + preAppRec);
 					
 					if (preAppRec != null) {
 						var fd = preAppRec.getFileDate();
-						logDebug("FileDate: " + fd);
+						//logDebug("FileDate: " + fd);
 						if (fd != null) {
 							var recDate = convertDate(fd); // get creation date
-							logDebug("recDate: " + recDate);
+							//logDebug("recDate: " + recDate);
 							if ((recDate != null) && (recDate > twoYearsAgo)) { preAppNewerThan2YearsAgo = true; } // is record newer than 2 years ago?
 						}
 					}
@@ -51,13 +52,13 @@ try
 		}
 	}
 	
-
+/*
 	logDebug("recID: " + recID);
 	logDebug("preAppCapID: " + preAppCapID);
 	logDebug("preAppExists: " + preAppExists);
 	logDebug("preAppNewerThan2YearsAgo: " + preAppNewerThan2YearsAgo);
 	logDebug("recDate: " + recDate);
-
+*/
 	
 	if (!(preAppExists && preAppNewerThan2YearsAgo)) {
 		showMessage = true;
