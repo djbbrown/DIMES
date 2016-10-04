@@ -16,7 +16,7 @@ try
 {
 	// get result of currently resulted inspection
 	var status = inspResult;
-	lodDebug("status: " + status);
+	logDebug("status: " + status);
 	if (status) {
 		// update WF task
 		logDebug("status: " + status);
