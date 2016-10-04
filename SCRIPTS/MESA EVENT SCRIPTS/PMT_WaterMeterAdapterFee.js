@@ -44,7 +44,7 @@ try {
 					logDebug(serviceSize + " " + meterSize + " " + qtyOfMeters);
 					if (
 							(serviceSize == 'Water 3/4"' && meterSize != 'Water 00.75 (3/4")')
-							|| (serviceSize == 'Water 3/4' && meterSize != 'Water 00.75 (3/4'
+							|| (serviceSize == 'Water 3/4' && meterSize != 'Water 00.75 (3/4')
 							// 1 Inch Comparison
 							|| (serviceSize == 'Water 1.0"' && meterSize != 'Water 01.0"')
 							|| (serviceSize == 'Water 1.0' && meterSize != 'Water 01.0')
