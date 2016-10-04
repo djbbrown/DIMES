@@ -64,7 +64,8 @@ try {
 							|| (serviceSize == 'Water - 8"' && meterSize != 'Water 08.0"')
 							|| (serviceSize == 'Water - 8' && meterSize != 'Water 08.0')
 							// 10.0 Inch Comparison
-							|| (serviceSize == 'Water - 10" or 12"' || serviceSize == 'Water - 10')
+							|| serviceSize == 'Water - 10" or 12"' 
+							|| serviceSize == 'Water - 10'
 					)
 					{
 						logDebug("Mismatch row " + entry);
