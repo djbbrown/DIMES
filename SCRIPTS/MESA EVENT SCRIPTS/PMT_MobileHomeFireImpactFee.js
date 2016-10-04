@@ -29,8 +29,9 @@
 //
 // Script Run Event: ASA / ASIUA
 // Script Parents:
-//              ASA;Permits/Residential/Mobile Home/NA
-//              ASIUA;Permits/Residential/Mobile Home/NA
+//		WTUA;Permits!Residential!Mobile Home!NA (updated spec - added to)
+//              ASA;Permits/Residential/Mobile Home/NA (org spec - removed from)
+//              ASIUA;Permits/Residential/Mobile Home/NA (org spec - removed from)
 // 
 //==================================================================*/
 
@@ -40,36 +41,43 @@
 
 try
 {
-  var isFire = Boolean(AInfo["Fire"]);
-  var classification = AInfo["Classification"];
-  var housingUnits = AInfo["Number of Units"];
 
-  if ((isFire) && (housingUnits > 0))
+  if ((wfTask == "Plans Coordination") && (wfStatus == "Ready to Issue"))
   {
 
-    // since Classification might have changed, move both fees and re-assess
-    if (feeExists("RDIF190", "NEW"))
-    {
-      voidRemoveFee("RDIF190");
-    }
-    if (feeExists("RDIF200", "NEW"))
-    {
-      voidRemoveFee("RDIF200");
-    }
+    var isFire = Boolean(AInfo["Fire"]);
+    var classification = AInfo["Classification"];
+    var housingUnits = AInfo["Number of Units"];
 
-    if ((classification  == "Manufactured Home (on platted lot)")
-      && (!(feeExists("RDIF190", "INVOICED", "VOIDED", "CREDITED"))))
+    if ((isFire) && (housingUnits > 0))
     {
-      addFee("RDIF190","PMT_RDIF", "FINAL", housingUnits, "N");
-    }
 
-    if ((classification  == "Mfg. Home/Park Model/RV (per space or lot)")
-      && (!(feeExists("RDIF200", "INVOICED", "VOIDED", "CREDITED"))))
-    {
+      // since Classification might have changed, move both fees and re-assess
+      if (feeExists("RDIF190", "NEW"))
+      {
+        voidRemoveFee("RDIF190");
+      }
+      if (feeExists("RDIF200", "NEW"))
+      {
+        voidRemoveFee("RDIF200");
+      }
+
+      if ((classification  == "Manufactured Home (on platted lot)")
+        && (!(feeExists("RDIF190", "INVOICED", "VOIDED", "CREDITED"))))
+      {
+        addFee("RDIF190","PMT_RDIF", "FINAL", housingUnits, "N");
+      }
+
+      if ((classification  == "Mfg. Home/Park Model/RV (per space or lot)")
+        && (!(feeExists("RDIF200", "INVOICED", "VOIDED", "CREDITED"))))
+      {
       
-      addFee("RDIF200","PMT_RDIF", "FINAL", housingUnits, "N");
+        addFee("RDIF200","PMT_RDIF", "FINAL", housingUnits, "N");
+      }
     }
+
   }
+
 }
 catch (err)
 {
