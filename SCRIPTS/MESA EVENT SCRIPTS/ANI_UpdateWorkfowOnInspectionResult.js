@@ -14,6 +14,7 @@
 
 try
 {
+	logDebug("ANI_UpdateWorkfowOnInspectionResult.js called...");
 	// get result of currently resulted inspection
 	var status = inspResult;
 	logDebug("status: " + status);
