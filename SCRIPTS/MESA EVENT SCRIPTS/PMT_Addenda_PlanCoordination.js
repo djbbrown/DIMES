@@ -48,3 +48,6 @@ if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 		updateFee("PMT020", "PMT_ADD", "FINAL", 1, "N");
 	}
 }
+
+//add tech fee
+addFee("PMT070", "PMT_ADD", "FINAL", 1, "N");
