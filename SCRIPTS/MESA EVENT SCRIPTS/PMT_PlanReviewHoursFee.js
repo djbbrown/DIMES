@@ -20,15 +20,22 @@ if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
 		totHours  = getWFHours(capId,"Building Review","Planning Review","Fire Review","Civil Engineering Review","Plans Coordination")
 		if (totHours > 0) {
 			if (AInfo["Expedite"] == "Expedite") {
-					depAmount = feeAmount("MST070","NEW","INVOICED");
-					totFeeAmount = (110*totHours) - depAmount;
+					depAmount = feeAmount("MST070","NEW","INVOICED") + feeAmount("MST080","NEW","INVOICED");
+					totFeeAmount = (110*totHours) - depAmount; // Total Fee Amount
+					if (feeExists("MST050", "NEW", "INVOICED")) voidRemoveFee("MST050");
 					updateFee("MST040", "PMT_MST", "FINAL", totFeeAmount, "N");
 			}
 		    if (AInfo["Expedite"] == "Super Expedite") {
-					depAmount = feeAmount("MST080","NEW","INVOICED");
-		    		totFeeAmount = (220*totHours) - depAmount;
+		    		depAmount = feeAmount("MST070","NEW","INVOICED") + feeAmount("MST080","NEW","INVOICED");
+		    		totFeeAmount = (220*totHours) - depAmount; // Total Fee Amount
+		    		if (feeExists("MST040", "NEW", "INVOICED")) voidRemoveFee("MST040");
 					updateFee("MST050", "PMT_MST", "FINAL", totFeeAmount, "N");
 		    }
+		}
+		// If the Expedite has changed then remove the fee's
+		else if (AInfo["Expedite"] != "Expedite" && AInfo["Expedite"] != "Super Expedite"){
+			if (feeExists("MST040", "NEW", "INVOICED")) voidRemoveFee("MST040");
+			if (feeExists("MST050", "NEW", "INVOICED")) voidRemoveFee("MST050");
 		}
 		else {
 			if (feeExists("MST040", "NEW", "INVOICED")) voidRemoveFee("MST040");
