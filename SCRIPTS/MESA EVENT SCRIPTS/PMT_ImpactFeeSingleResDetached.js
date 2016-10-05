@@ -24,8 +24,9 @@ if(AInfo["Classification"] == "Single Family-Detached (per dwelling unit)"){
 			if(matches(thisTag, "STOR")) swGisTag = true;
 	   }
 	}
-	if(AInfo["Water Meter Qty"] > 0 && wmqGisTag == false){
-		var aQty = AInfo["Water Meter Qty"];
+	if(AInfo["Number of Units"] > 0 && wmqGisTag == false){
+		var aQty = AInfo["Number of Units"];
+		// var aQty = AInfo["Water Meter Qty"];
 		updateFee("RDIF010", "PMT_RDIF", "Final", aQty, "N");
 	}else if(feeExists("RDIF010", "NEW", "INVOICED")) voidRemoveFee("RDIF010");
 	if(AInfo["Waste Water Qty"] > 0){

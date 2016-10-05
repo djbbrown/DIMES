@@ -54,6 +54,7 @@ try {
 		var fireQty = AInfo["Fire"];
 		var resDevQty = AInfo["Solid Waste"];
 		var waterQty = AInfo["Water Meter Qty"];
+		var numberUnits = AInfo["Number of Units"];
 		var publicSafetyQty = AInfo["Public Safety"];
 		var stormWaterQty = AInfo["Stormwater"];
 		var wasteWaterQty = AInfo["Waste Water Qty"]; 
@@ -80,7 +81,8 @@ try {
 			if (!feeExists("RDIF210") && !!publicSafetyQty && publicSafetyQty > 0) addFee("RDIF210", "PMT_RDIF", "FINAL", publicSafetyQty, "N");
 			if (!feeExists("RDIF260") && !!stormWaterQty && stormWaterQty > 0 && swGisTag ) addFee("RDIF260", "PMT_RDIF", "FINAL", stormWaterQty, "N");
 			if (!feeExists("RDIF310") && !!resDevQty && resDevQty > 0) addFee("RDIF310", "PMT_RDIF", "FINAL", resDevQty, "N");
-			if (!feeExists("RDIF010") && !!waterQty && waterQty > 0 && !wmqGisTag) addFee("RDIF010", "PMT_RDIF", "FINAL", waterQty, "N");
+			// Invoice/Add RDIF010 fee based on "Water Meter Qty"
+			if (!feeExists("RDIF010") && !!numberUnits && numberUnits > 0 && !wmqGisTag) addFee("RDIF010", "PMT_RDIF", "FINAL", numberUnits, "N");
 			if (!feeExists("RDIF060") && !!wasteWaterQty && wasteWaterQty > 0) addFee("RDIF060", "PMT_RDIF", "FINAL", wasteWaterQty, "N");
 		} else if (classification == "Single Family-Attached (per dwelling unit)"){
 			// remove any fees from previous classification
