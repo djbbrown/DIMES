@@ -6,8 +6,8 @@
 // Script Description: 
 // Script Run Event: WTUA
 // Script Parents:
-// WUTA:Permits!Residential!~!~
-// WTUA:Permits!Online!~!~
+// 	WUTA:Permits!Residential!~!~
+// 	WTUA:Permits!Online!~!~
 //
 ===================================================================*/
 
