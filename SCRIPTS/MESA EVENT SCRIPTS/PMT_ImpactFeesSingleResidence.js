@@ -83,6 +83,7 @@ try {
 			
 			if (!feeExists("RDIF060") && !!wasteWaterQty && wasteWaterQty > 0) addFee("RDIF060", "PMT_RDIF", "FINAL", wasteWaterQty, "N");
 		}
+		// ==================================================================
 		// Update for removing RDIF010 if it's not Singled Family Detached or Manufactured home.
 		else if (classification == "Single Family-Detached (per dwelling unit)"
 			|| classification == "Manufactured Home (on platted lot)"
@@ -92,6 +93,7 @@ try {
 			// Invoice/Add RDIF010 fee based on "Water Meter Qty"
 			if (!feeExists("RDIF010") && !!numberUnits && numberUnits > 0 && !wmqGisTag) addFee("RDIF010", "PMT_RDIF", "FINAL", numberUnits, "N");
 		}
+		// ==================================================================
 		// Update for RDIF020 so that it can be multiple Classifications
 		else if (classification == "Single Family-Attached (per dwelling unit)"
 			|| classification == "Multiple-Family Residential (per dwelling unit)"
@@ -100,6 +102,7 @@ try {
 			if (feeExists("RDIF020", "NEW", "INVOICED") && (!numberUnits || feeQty("RDIF020") != numberUnits || wmqGisTag)) voidRemoveFee("RDIF020");
 			if (!feeExists("RDIF020") && !!numberUnits && numberUnits > 0 && !wmqGisTag) addFee("RDIF020", "PMT_RDIF", "FINAL", numberUnits, "N");
 		}
+		// ==================================================================
 		// Update for removing RDIF040 if it's not Singled Family Detached or Manufactured home.
 		else if (classification == "Single Family-Detached (per dwelling unit)"
 			|| classification == "Manufactured Home (on platted lot)"
@@ -109,6 +112,18 @@ try {
 			// Invoice/Add RDIF010 fee based on "Water Meter Qty"
 			if (!feeExists("RDIF040") && !!numberUnits && numberUnits > 0 && !wmqGisTag) addFee("RDIF040", "PMT_RDIF", "FINAL", numberUnits, "N");
 		}
+		// ==================================================================
+		// Update for removing RDIF050 if it's not Singled Family Detached or Manufactured home.
+		/*else if (classification == "Single Family-Detached (per dwelling unit)"
+			|| classification == "Manufactured Home (on platted lot)"
+		){
+			if (feeExists("RDIF050", "NEW", "INVOICED") && wmqGisTag) voidRemoveFee("RDIF050");
+			if (feeExists("RDIF050", "NEW", "INVOICED") && (!numberUnits || feeQty("RDIF050") != numberUnits)) voidRemoveFee("RDIF050");
+			// Invoice/Add RDIF010 fee based on "Water Meter Qty"
+			if (!feeExists("RDIF050") && !!numberUnits && numberUnits > 0 && !wmqGisTag) addFee("RDIF050", "PMT_RDIF", "FINAL", numberUnits, "N");
+		}
+		*/
+		// ==================================================================
 		else if (classification == "Single Family-Attached (per dwelling unit)"){
 			// remove any fees from previous classification
 			if (feeExists("RDIF160", "NEW", "INVOICED")) voidRemoveFee("RDIF160");
