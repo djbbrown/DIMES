@@ -16,10 +16,8 @@ try
 {
 	// get result of currently resulted inspection
 	var status = inspResult;
-	logDebug("status: " + status);
 	if (status) {
 		// update WF task
-		logDebug("status: " + status);
 		setTask("Animal Control Officer", "Y", "N");
 		updateTask("Animal Control Officer", status, "Updated by script.", "Updated by script.");
 	}
