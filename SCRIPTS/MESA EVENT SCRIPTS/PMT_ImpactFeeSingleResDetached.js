@@ -11,24 +11,37 @@
 
 // Under this line create the function that will need to run at script runtime.
 // the function will be called in the event ("WorkflowTaskUpdateAfter") major event.
-
-if(AInfo["Classification"] == "Single Family-Detached (per dwelling unit)"){
-	var wmqGisTag = false;
-	var swGisTag = false;
-	tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
-	if (tagFieldArray && tagFieldArray.length > 0) {
-	   for (tIndex in tagFieldArray) {
-			thisTag = tagFieldArray[tIndex];
-			logDebug(thisTag);
-			if(matches(thisTag, "ASU", "ASUE", "AWCP")) wmqGisTag = true;
-			if(matches(thisTag, "STOR")) swGisTag = true;
-	   }
-	}
+var wmqGisTag = false;
+var swGisTag = false;
+tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+if (tagFieldArray && tagFieldArray.length > 0) {
+   for (tIndex in tagFieldArray) {
+		thisTag = tagFieldArray[tIndex];
+		logDebug(thisTag);
+		if(matches(thisTag, "ASU", "ASUE", "AWCP")) wmqGisTag = true;
+		if(matches(thisTag, "STOR")) swGisTag = true;
+   }
+}
+if(
+	AInfo["Classification"] == "Single Family-Detached (per dwelling unit)"
+	|| AInfo["Classification"] == "Manufactured Home (on platted lot)"
+){
+	// RDIF010
 	if(AInfo["Number of Units"] > 0 && wmqGisTag == false){
 		var aQty = AInfo["Number of Units"];
 		// var aQty = AInfo["Water Meter Qty"];
 		updateFee("RDIF010", "PMT_RDIF", "Final", aQty, "N");
 	}else if(feeExists("RDIF010", "NEW", "INVOICED")) voidRemoveFee("RDIF010");
+	// RDIF040
+	if(AInfo["Number of Units"] > 0
+		// && wmqGisTag == false
+	){
+		var aQty = AInfo["Number of Units"];
+		// var aQty = AInfo["Water Meter Qty"];
+		updateFee("RDIF040", "PMT_RDIF", "Final", aQty, "N");
+	}else if(feeExists("RDIF040", "NEW", "INVOICED")) voidRemoveFee("RDIF040");
+}	
+else if(AInfo["Classification"] == "Single Family-Detached (per dwelling unit)"){
 	if(AInfo["Waste Water Qty"] > 0){
 		var aQty = AInfo["Waste Water Qty"];
 		updateFee("RDIF060", "PMT_RDIF", "Final", aQty, "N");
@@ -49,8 +62,15 @@ if(AInfo["Classification"] == "Single Family-Detached (per dwelling unit)"){
 		var aQty = AInfo["Solid Waste"];
 		updateFee("RDIF310", "PMT_RDIF", "Final", aQty, "N");
 	}else if(feeExists("RDIF310", "NEW", "INVOICED")) voidRemoveFee("RDIF310");
-}else if(AInfo["Classification"] != "Single Family-Detached (per dwelling unit)"){
+}
+else if(AInfo["Classification"] != "Single Family-Detached (per dwelling unit)"
+	&& AInfo["Classification"] != "Manufactured Home (on platted lot)"
+){
 	if(feeExists("RDIF010", "NEW", "INVOICED")) voidRemoveFee("RDIF010");
+	if(feeExists("RDIF040", "NEW", "INVOICED")) voidRemoveFee("RDIF040");
+}
+else if(AInfo["Classification"] != "Single Family-Detached (per dwelling unit)"){
+	// if(feeExists("RDIF010", "NEW", "INVOICED")) voidRemoveFee("RDIF010");
 	if(feeExists("RDIF060", "NEW", "INVOICED")) voidRemoveFee("RDIF060");
 	if(feeExists("RDIF160", "NEW", "INVOICED")) voidRemoveFee("RDIF160");
 	if(feeExists("RDIF210", "NEW", "INVOICED")) voidRemoveFee("RDIF210");
