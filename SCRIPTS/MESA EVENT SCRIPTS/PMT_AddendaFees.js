@@ -17,7 +17,7 @@ if (publicUser) {
 //         	ASA;Permits!Addenda or Deferred!NA!NA
 ===================================================================*/
 
-if (AInfo["Type of Work"] == "Addenda"){
+if (matches(AInfo["Type of Work"],"Commercial - Addenda","Residential - Addenda","Sign Commercial - Addenda","Master Plan - Residential - Addenda","Master Plan - Commercial - Addenda")){
 	updateFee("PMT010", "PMT_ADD", "FINAL", 1, "N");
 }
 
