@@ -65,7 +65,7 @@ try
                 case "Subdivision Weekend Sign":
                     expDate = dateAdd(tStatusDate, 365);
                     editAppSpecific_Mesa("Permit Expiration Date", expDate);
-                    logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 1 years out");
+                    logDebug(appTypeString  + " and 'Type of Work' = '" + typeOfWork + "': expiration date 1 year out");
                     break;
                 default: // as of this writing, this would catch: "Freeway Landmark Monument" and "Sign"
                     expDate = dateAdd(tStatusDate, 180);
@@ -114,10 +114,10 @@ catch (err)
 
 /* Test Record: 
 PMT16-00951: Banners - passed
-PMT16-00833: Online
-PMT16-00952: Subdivision Weekend Sign
-PMT16-00954: Subdivision Sign
-PMT16-00955: Subdivision Directional Sign
+PMT16-00833: Online - passed
+PMT16-00952: Subdivision Weekend Sign - passed
+PMT16-00954: Subdivision Sign - passed
+PMT16-00955: Subdivision Directional Sign - passed
 PMT16-00957: Downtown Directional A-Frames
 PMT16-00958: Online
 
