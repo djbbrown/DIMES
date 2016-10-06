@@ -3,8 +3,9 @@
 // Script Name: PMT_Water_Clearance_Email.js
 // Script Description: Send email if ASIT field Utility Service Info comtains values Permit Issuance is Issued & Fees have been paid  
 // Script Run Event: WTUA
-// Script Parents:WTUA WTUA;Permits/Commercial/NA/NA
-// WTUA WTUA;Permits/Residential/NA/NA
+// Script Parents:WTUA;Permits/Commercial/NA/NA
+// WTUA;Permits/Residential/NA/NA
+// WTUA;Permits/Residential/Mobile Home/NA
 // Test Record: PMT16-00507
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/01/16  |Steve Veloudos   |Initial Release

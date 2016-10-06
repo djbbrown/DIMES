@@ -5,7 +5,6 @@
 include("PMT_TotalSqFt");
 include("PMT_assessFeeRDIF140OrRDIF150");
 include("PMT_WaterMeterAdapterFee");
-include("PMT_Water_Clearance_Email");
 include("PMT_Stop_Work_Order");
 //added by Bryan de Jesus (Woolpert)
 include("PMT_MobileHomeSolidWasteImpactFee");
