@@ -1,4 +1,13 @@
-
+/*===================================================================
+// Script Number: 
+// Script Name: 
+// Script Developer: Kevin Ford
+// Script Agency: Accela
+// Script Description: Fee Scripting for Mobile Home
+// Script Run Event: 
+// Script Parents:
+//		
+===================================================================*/
 // MH010
 if(
 	(
