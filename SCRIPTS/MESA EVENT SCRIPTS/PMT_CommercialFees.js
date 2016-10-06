@@ -14,3 +14,6 @@ if (classification && classification =='Construction Trailer') {
 	if (feeExists("COM440", "NEW", "INVOICED")) voidRemoveFee("COM440");
 	addFee("COM440", "PMT_RDIF", "FINAL", 1, "N");
 }
+if(classification && classification !='Construction Trailer' && feeExists("COM440", "NEW", "INVOICED")){
+	voidRemoveFee("COM440");
+}
