@@ -18,6 +18,7 @@
 //  1.5      |09/26/16  |Steve Veloudos   |Adjust standard choice to Billing_Info
 //  1.6      |09/27/16  |Steve Veloudos   |UTILITYSERVICEINFORMATION was incorrect
 //  1.7      |09/29/16  |Steve Veloudos   |Added Service Type starting with Electric only
+//  1.8      |10/06/16  |Steve Veloudos   |Added break on for loop for ASIT table. Per Taryn Martinez only one email needs to be sent
 /*==================================================================*/
 
 try {
@@ -136,7 +137,10 @@ try {
                                             addParameter(vEParams,"$$Comments$$",Comments);
                                             
                                             //Send the email
-                                            sendNotification(FromEmail, ToEmail, "", "PMT_ELECTRIC_CLEARANCE", vEParams, null, capId);    
+                                            sendNotification(FromEmail, ToEmail, "", "PMT_ELECTRIC_CLEARANCE", vEParams, null, capId);  
+
+                                            //Break Out loop only need one email sent
+                                            break;  
                                             }
                                         } 
 
