@@ -18,6 +18,10 @@
 //  1.0      |08/23/16  |Vance Smith      |Initial
 /*==================================================================*/
 
+/* intellisense references */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_BATCH.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -33,13 +37,9 @@ function mainProcess()
      * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
     var capCount = 0;
     var capFilterType = 0;
-    //var capFilterAppType = 0; 
     var capFilterStatus = 0;
     var capFilterFeesOrDocs = 0;
     var capFilterFileDate = 0;
-    //var capFilterExpiration = 0; 
-    //var capFilterExpirationNull = 0; 
-    //var capFilterExpirationGet = 0; 
     var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
@@ -47,7 +47,6 @@ function mainProcess()
 
 
     /***** BEGIN LOOP DATA *****/
-
     
     //var capResult = aa.cap.getCaps(appTypeType, taskName, "Note", ""); // Permits - filter down to "Annual Facilities" below
     var capResult = aa.cap.getByAppType(appGroup, appTypeType, appSubType, null);    
@@ -179,62 +178,6 @@ function mainProcess()
             continue; // move to the next record
         }
 
-        /* EXAMPLE OF FILTERING BY CAP STATUS
-        // move to the next record unless we have a match on the capStatus we want
-        if (capStatus != "Submitted" ) 
-        {
-            capFilterStatus++;
-            logDebug(altId + ": Application Status does not match.");
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY A LIST OF APP TYPES
-        if ( !(new RegExp( '\\b' + includeAppTypesArray.join('\\b|\\b') + '\\b') ).test(appTypeArray[1]) )
-        {
-            capFilterAppType++;
-            logDebug(altId + ": Application Type does not match the list of include app types.");
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE
-         * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION
-        // move to the next record if the expiration date is null
-        var expirationDate = null;
-        try 
-        {
-            var thisLic = new licenseObject(capId);            
-            expirationDate = thisLic.b1ExpDate;
-            if (expirationDate == null)
-            {
-                capFilterExpirationNull++;
-                logDebug(altId + ": Expiration Date is null." );
-                continue; // move to the next record
-            }
-        }
-        catch (err)
-        {
-            capFilterExpirationGet++;
-            //logDebug("JavaScript Error getting expiration date: " + err.message); // too many to log!!
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE         
-        // move to the next record if the expiration date is not "numDaysOut" days out
-        var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
-        var dateOut = dateAdd(null, numDaysOut);
-        if (dateOut != expirationDate) 
-        {
-            capFilterExpiration++;
-            logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
-            continue; // move to the next record
-        }
-        */
-
         /***** END FILTERS *****/
 
 
@@ -256,49 +199,6 @@ function mainProcess()
             closeWorkflow(); // this is in INCLUDES_CUSTOM
         }	
         updateAppStatus("Void", "set by batch"); // this is in INCLUDES_ACCELA_FUNCTIONS	
-        
-        /* EMAIL EXAMPLE 
-        // get applicant email
-        var contactArray = getContactArray(capId), emailAddress = null;
-        for (contact in contactArray)
-        {
-            if (contactArray[contact]["contactType"] == "Applicant")
-            {
-                emailAddress = contactArray[contact]["email"];
-            }
-        }
-        
-        // if emailAddress is not null then send the notification
-        if (emailAddress != null)
-        {
-            var vEParams = aa.util.newHashtable();
-
-            addParameter(vEParams, "$$RECORD ID$$", altId);
-            addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
-            
-            var mDocsString = "";
-            if ( missingDocs.length > 0)
-            {
-                mDocsString = "Missing Documents:<br/><ul>";
-                for (mD in missingDoc)
-                {
-                    mDocsString = mDocsString + "<li>" + missingDoc[mD] + "</li>";
-                }
-                mDocsString = mDocsString + "</ul>";
-            }
-            addParameter(vEParams, "$$MISSING DOCUMENTS$$", mDocString);
-
-            logDebug("Sending notification to " + emailAddress);
-            sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, altId);
-            // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
-        } 
-        else 
-        {
-            applicantEmailNotFound++;
-            logDebug(altId + ": Applicant email address not found");
-        }
-
-        */
 
         /***** END CUSTOM PROCESSING *****/
     }
@@ -316,14 +216,10 @@ function mainProcess()
     logDebugAndEmail("Processed count:" + capCount);
 
     /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */	
-    logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
-    //logDebugAndEmail("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type ");
+    logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");    
     logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");	
     logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed")
     logDebugAndEmail("Skipped " + capFilterFileDate + " due to file date not being " + numDaysOut + " days out");
-    //logDebugAndEmail("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
-    //logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null ");
-    //logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
     logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
     
     logDebugAndEmail(""); // empty line

@@ -2287,7 +2287,6 @@ function getTaskAssignedStaff(wfstr) // optional process name.
 	}
 	return false;
 }
-
 function editAppSpecific_Mesa(itemName,itemValue)  // optional: itemCap
 {
 	var itemCap = capId;
@@ -2323,7 +2322,7 @@ function editAppSpecific_Mesa(itemName,itemValue)  // optional: itemCap
     { 
         logDebug( "WARNING: " + itemName + " was not updated. Error message: " + appSpecInfoResult.getErrorMessage()); 
     }
-
+}
 function getWFHours(capId) {
 	// array to hold the tasks that were passed as extra parameters(arguments)
 	var tasks = new Array;
@@ -2352,7 +2351,6 @@ function getWFHours(capId) {
 	}
 	return hoursSpent;
 }
-
 function sendNotificationAndSaveInRecord(from, to, cc, templateName, templateParameters, fileNames)
 {
     // can pass in a capId as an optional parameter

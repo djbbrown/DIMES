@@ -21,6 +21,7 @@
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /// <reference path="../../INCLUDES_BATCH.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
