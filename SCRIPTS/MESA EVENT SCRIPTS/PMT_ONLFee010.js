@@ -9,8 +9,6 @@
 // Script Parents:
 //            ASA;Permit/Online/NA/NA
 ===================================================================*/
-
-
 if(AInfo["Property Type"] == "Residential" && AInfo["Required Number of Inspections"] != null)
 {
 	addFee("ONL010","PMT_ONL", "FINAL",  AInfo["Required Number of Inspections"], "Y");
