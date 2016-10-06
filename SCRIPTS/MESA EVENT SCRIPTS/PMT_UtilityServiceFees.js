@@ -51,6 +51,7 @@ if (tmpTable) {
 			updateFee("USF020","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 			}
 	//Gas Service and Meter - USF030
+		/*
 		if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countGasRelocationRetrofit == 0 ) {
 			var tempSum9 = 0;
 			for (var rowIndex in tmpTable) {
@@ -71,7 +72,7 @@ if (tmpTable) {
 			if (tempSum9 > 0)	updateFee("USF030","PMT_UTL_SERV", "FINAL",  tempSum9, "N");	
 		}
 		if (tempSum9 == 0 && feeExists("USF030")) removeFee("USF030", "FINAL");
-
+		//*/
 	//Water Meter: Adapter - USF040  - Service Size - Water Meter Adapter A24
 		if (countWaterMeterAdapter > 0) {
 			var tempSum=0;
