@@ -30,8 +30,8 @@ try {
     var QtyofMeters;
     var WarrantyStatus;
     var Comments; 
-    var tStatus = "Permit Issuance";
-    var tName = "Issued";  
+    var tStatus = "Issued";
+    var tName = "Permit Issuance";  
     
    //Get WF Task
    var tasks = aa.workflow.getTasks(capId).getOutput();
