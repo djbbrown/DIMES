@@ -2288,7 +2288,6 @@ function getTaskAssignedStaff(wfstr) // optional process name.
 	return false;
 }
 
-<<<<<<< HEAD
 function editAppSpecific_Mesa(itemName,itemValue)  // optional: itemCap
 {
 	var itemCap = capId;
@@ -2324,7 +2323,7 @@ function editAppSpecific_Mesa(itemName,itemValue)  // optional: itemCap
     { 
         logDebug( "WARNING: " + itemName + " was not updated. Error message: " + appSpecInfoResult.getErrorMessage()); 
     }
-=======
+
 function getWFHours(capId) {
 	// array to hold the tasks that were passed as extra parameters(arguments)
 	var tasks = new Array;
@@ -2352,5 +2351,58 @@ function getWFHours(capId) {
 		logDebug("getWFHours could not get a workflow history")
 	}
 	return hoursSpent;
->>>>>>> 77786a7849203c13e4fbdd80478bd56b776d1898
+}
+
+function sendNotificationAndSaveInRecord(from, to, cc, templateName, templateParameters, fileNames)
+{
+    // can pass in a capId as an optional parameter
+    if (arguments.length == 7) 
+    {
+        capId = arguments[6];
+    }
+
+    if (typeof (templateName) == "undefined" || templateName == null) 
+    {
+        logDebug("Could not send email. No nofification template specified.");
+        return;
+    }
+
+    if (typeof (to) == "undefined" || to == null) 
+    {
+        to = "";
+    }
+
+    if (typeof (cc) == "undefined" || cc == null) 
+    {
+        cc = "";
+    }
+
+    if (typeof (fileNames) == "undefined" || fileNames == null) 
+    {
+        fileNames = [];
+    }
+
+    var capId4Email = aa.cap.createCapIDScriptModel(capId.getID1(), capId.getID2(), capId.getID3());
+
+    // If we have template parameters, stuff them in a hashtable
+    // so they can be passed to the template
+    var emailParameters = aa.util.newHashtable();
+
+    if (typeof (templateParameters) != "undefined" && templateParameters != null) 
+    {
+        for (templParamKey in templateParameters) 
+        {
+            var templParamValue = templateParameters[templParamKey];
+
+            if (templParamValue == null)
+            {
+                templParamValue = "";
+            }
+
+            var notificationKey = "$$" + templParamKey + "$$";
+            emailParameters.put(notificationKey, templParamValue);
+        }
+    }
+
+    aa.document.sendEmailAndSaveAsDocument(from, to, cc, templateName, emailParameters, capId4Email, fileNames);
 }

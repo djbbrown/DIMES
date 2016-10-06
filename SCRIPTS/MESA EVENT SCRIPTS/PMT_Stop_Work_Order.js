@@ -2,11 +2,12 @@
 // Script Number: 222
 // Script Name: PMT_Stop_Work_Order.js
 // Script Description: Send email When a stop work order lock (condition) is added to the record
-// Script Run Event: ASIUA
-// Script Parents:ASIUA;Permits/NA/NA/NA
+// Script Run Event: ACAA ASIUA
+// Script Parents:ACAA ASIUA;Permits/NA/NA/NA
 // Test Record: PMT16-00507
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/01/16  |Steve Veloudos   |Initial Release
+//  1.1      |10/06/16  |Steve Veloudos   |Switched from ASIUA to ACAA ApplicationConditionAddAfter
 /*==================================================================*/
 
 try {
@@ -53,6 +54,8 @@ try {
                 sendNotification(FromEmail, ToEmail, "", "STOP_WORK_ORDER", vEParams, null, capId); 
                 ToEmail = lookup("EMAIL_RECIPIENTS","Permits_Supervisor");
                 sendNotification(FromEmail, ToEmail, "", "STOP_WORK_ORDER", vEParams, null, capId); 
+
+                break;
                 }
             }
         }         
