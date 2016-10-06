@@ -10,6 +10,13 @@
 //            ASA;Permit/Online/NA/NA
 ===================================================================*/
 //Temporary Electric - USF150
+// Load the table.
+var tmpTable;
+tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
+if(!tmpTable){
+	tmpTable = loadASITable("UTILITY SERVICE INFO");
+}
+// Start parsing info
 var countTempElec = countASITRows(tmpTable, "Service Type", "Temporary Electric" );
 // Remove just in case it already exists
 if (countTempElec == 0 && feeExists("USF150")) removeFee("USF150", "FINAL");
