@@ -18,6 +18,7 @@
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /// <reference path="../../INCLUDES_BATCH.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -142,7 +143,7 @@ function mainProcess()
         {
             var vEParams = aa.util.newHashtable();
 
-            addParameter(vEParams, "$$RECORD ID$$", altId);
+            addParameter(vEParams, "$$RECORDID$$", altId);
             addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
 
             logDebug("Sending notification to " + emailAddress);
@@ -288,7 +289,6 @@ function getRecordBalanceDue(capId)
       return 0;
    }
 }
-
 
 function parseDate(str) {
     var mdy = str.split('/');

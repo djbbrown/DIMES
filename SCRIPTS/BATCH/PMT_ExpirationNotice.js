@@ -16,6 +16,10 @@
 //  1.0      |08/18/16  |Vance Smith      |Initial
 /*==================================================================*/
 
+/* intellisense references */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_BATCH.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -162,7 +166,7 @@ function mainProcess()
                 addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
 
                 logDebug("Sending notification to " + emailAddress);
-                sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, altId);
+                sendNotificationAndSaveInRecord("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
                 // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
             } 
             else 
