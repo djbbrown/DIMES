@@ -6,7 +6,7 @@
 // denied...the workflow status should go to "Denial Action" if the 
 // applicant does not request a hearing within the 10 days then the
 // status should be closed. When the status changes to closed the 
-// denial action remains active. It should close out.
+// denial action remains active. It should close out. 
 
 // Script needs to do the following:
  
