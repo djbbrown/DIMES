@@ -88,7 +88,7 @@ try
                                 case "SITE PLAN":
                                     sitePlanDoc = true;
                                     break;
-                                case "PRELIMINARY GRADING DRAINAGE AND UTILITY PLAN":
+                                case "PRELIMINARY GRADING, DRAINAGE AND UTILITY PLAN":
                                     prelimDoc = true;
                                     break;
                                 case "FLOOR PLANS":
