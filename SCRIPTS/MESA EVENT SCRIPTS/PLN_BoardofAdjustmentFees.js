@@ -18,12 +18,13 @@ if (AInfo["Variance"] == "CHECKED" && AInfo["Application Type"] == "Single Resid
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Variance Commercial/Industrial fee when ASI Variance = CHECKED and Application Type = Commercial/Industrial or Comprehensive Sign Plan
+// or Multiple Residence or Wireless Communications Facility
 // Script Run Event: ASA
 // Script Parents:
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Variance"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan")){
+if (AInfo["Variance"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility")){
 	updateFee("BOA020","PLN_BOA","FINAL",1,"N");
 }
 
@@ -53,7 +54,7 @@ if (AInfo["Special Use Permit"] == "CHECKED" && AInfo["Application Type"] == "Si
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Special Use Permit"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan")){
+if (AInfo["Special Use Permit"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility")){
 	updateFee("BOA060","PLN_BOA","FINAL",1,"N");
 }
 
@@ -98,7 +99,7 @@ if (AInfo["Modification of Planned Area Development"] == "CHECKED" && AInfo["App
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Modification of Planned Area Development"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Multiple Residence")){
+if (AInfo["Modification of Planned Area Development"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility")){
 	updateFee("BOA110","PLN_BOA","FINAL",1,"N");
 }
 
