@@ -25,9 +25,8 @@ if (AInfo["Concurrent with Rezoning or Site Plan Review"] != "CHECKED"){
 /*==================================================================*/
 
 if (AInfo["Concurrent with Rezoning or Site Plan Review"] == "CHECKED"){
-	updateFee("DRB020","PLN_DRB","FINAL",1,"N");
+	updateFee("DRB030","PLN_DRB","FINAL",1,"N");
 }
-
 
 /*===================================================================
 // Script Number: TBD
