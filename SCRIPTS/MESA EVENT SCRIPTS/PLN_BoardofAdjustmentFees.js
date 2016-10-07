@@ -49,6 +49,7 @@ if (AInfo["Special Use Permit"] == "CHECKED" && AInfo["Application Type"] == "Si
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Special Use Permit Commercial/Industrial fee when ASI Variance = CHECKED and Application Type = Commercial/Industrial or Comprehensive Sign Plan
+// or Multiple Residence or Wireless Communications Facility
 // Script Run Event: ASA
 // Script Parents:
 //            ASA;Planning!Board of Adjustment!NA!NA
@@ -93,7 +94,8 @@ if (AInfo["Modification of Planned Area Development"] == "CHECKED" && AInfo["App
 // Script Name: PLN_BoardofAdjustmentFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
-// Script Description: Assess the  Modification to PAD Commercial/Industrial fee when ASI Variance = CHECKED and Application Type = Commercial/Industrial or Multiple Residence
+// Script Description: Assess the Special Use Permit Commercial/Industrial fee when ASI Variance = CHECKED and Application Type = Commercial/Industrial or Comprehensive Sign Plan
+// or Multiple Residence or Wireless Communications Facility
 // Script Run Event: ASA
 // Script Parents:
 //            ASA;Planning!Board of Adjustment!NA!NA
