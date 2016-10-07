@@ -6,7 +6,7 @@
 // Script Description: Assess the Annexation Fees using the ASI field Total Existing Lots 
 // Script Run Event: ASA
 // Script Parents:
-//            ASA;Planning!Admin Review!NA!NA
+//            ASA;Planning!Annexation!NA!NA
 /*==================================================================*/
 
 if (AInfo["Total Existing Lots"] != null){
@@ -21,7 +21,7 @@ if (AInfo["Total Existing Lots"] != null){
 // Script Description: Assess the Technology Fee 
 // Script Run Event: ASA
 // Script Parents:
-//            ASA;Planning!Admin Review!NA!NA
+//            ASA;Planning!Annexation!NA!NA
 // NOTE:  THIS MUST BE THE LAST FEE ASSESSED
 /*==================================================================*/
 
