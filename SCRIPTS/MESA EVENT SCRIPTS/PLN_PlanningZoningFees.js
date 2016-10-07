@@ -206,3 +206,20 @@ try{
 } catch (err){
 	logDebug("A JavaScript Error occured: " + err.message);
 }
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_PlanningZoningFees
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: Assess the Technology Fee
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Planning and Zoning!NA!NA 
+// NOTE: THIS MUST BE THE LAST FEE ASSESSED THE TECH FEE
+/*==================================================================*/
+try{
+	addFee("PZ170","PLN_PZ","FINAL",1,"N");
+} catch (err){
+	logDebug("A JavaScript Error occured: " + err.message);
+}
