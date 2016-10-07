@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the LandSplit Application Fee when ASI Type of Process = Land Division and Sub process type = Land Split
@@ -15,7 +15,7 @@ if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == 
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Administrative Application Fee when 
@@ -58,7 +58,7 @@ if (adminAppFee) {
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Affidavit of Change/Correction Fee when ASI Type of Process = Land Division and Sub process type = Affidavit of Change/Correction
@@ -73,7 +73,7 @@ if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == 
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Special Use Permit - Commercial/Industrial Fee when ASI Type of Process = Wireless Communication Facilities and Sub process type = New by Right 
@@ -88,7 +88,7 @@ if (AInfo["Type of Process"] == "Wireless Communication Facilities" && AInfo["Su
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Design Review Fee when ASI Type of Process = Design Review 
@@ -103,7 +103,7 @@ if (AInfo["Type of Process"] == "Design Review"){
 	
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Preliminary Plat Extension Fee when ASI Type of Process = Land Division and Sub process type = Preliminary Plat Extension 
@@ -118,7 +118,7 @@ if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == 
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Historic Preservation Section 106 Review Fee when ASI Type of Process = Historic Preservation and Sub process type = Section 106 Review 
@@ -133,7 +133,7 @@ if (AInfo["Type of Process"] == "Historic Preservation" && AInfo["Sub process ty
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Historic Preservation Certificate of Appropriateness Fee when ASI Type of Process = Historic Preservation and Sub process type = Certificat of Appropriateness or Demolition Permit 
@@ -148,7 +148,7 @@ if (AInfo["Type of Process"] == "Historic Preservation" && matches(AInfo["Sub pr
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Medical Marijuana Registration Fee when ASI Type of Process = Medical Marijuana 
@@ -163,7 +163,7 @@ if (AInfo["Type of Process"] == "Medical Marijuana"){
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Board of Adjustment Fee when ASI Type of Process = Board of Adjustment/Zoning Admin and Sub process type = Addition to or modification of cell towers or 
@@ -179,7 +179,7 @@ if (AInfo["Type of Process"] == "Historic Preservation" && matches(AInfo["Sub pr
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Subdivision Administrative Review Fee when ASI Type of Process = Subdivision  
@@ -194,7 +194,7 @@ if (AInfo["Type of Process"] == "Subdivision"){
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Zoning Administrative Review Fee when ASI Type of Process = Zoning/Site Plan 
@@ -209,7 +209,7 @@ if (AInfo["Type of Process"] == "Zoning/Site Plan"){
 
 /*===================================================================
 // Script Number: TBD
-// Script Name: PMT_AdministrativeReviewFees.js
+// Script Name: PLN_AdministrativeReviewFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
 // Script Description: Assess the Technology Fee 
