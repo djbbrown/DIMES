@@ -12,7 +12,7 @@
 // Script Run Event: ASA
 
 // Script Parents:
-//	ASU;Permits!~!~!~ 
+//	ASA;Permits!~!~!~ 
 //            
 /*==================================================================*/
 
