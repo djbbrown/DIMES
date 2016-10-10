@@ -3,19 +3,19 @@
 // Script Name: PMT_SignFees.js
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
-// Script Description: SGN050 Banner Fee If Type of Work = “Grand Opening Banners”
-// 	$110 where ASIT Type of Work = “Grand Opening Banners” Enter 1 TECH
-// 	SGN060 Subdivision Sign If Type of Work = “Subdivision Sign”
-//	$110 where ASIT Type of Work = “Subdivision Sign” Enter 1 TECH
-// 	SGN070 Weekend Directional Sign Fee If Type of Work = “Subdivision Weekend Sign”
+// Script Description: SGN050 Banner Fee If Type of Work = "Grand Opening Banners"
+// 	$110 where ASIT Type of Work = "Grand Opening Banners" Enter 1 TECH
+// 	SGN060 Subdivision Sign If Type of Work = "Subdivision Sign"
+//	$110 where ASIT Type of Work = "Subdivision Sign" Enter 1 TECH
+// 	SGN070 Weekend Directional Sign Fee If Type of Work = "Subdivision Weekend Sign"
 //
-//	$550 where ASIT Type of Work = “Subdivision Weekend Sign” Enter 1 TECH
-//	SGN080 Subdivision Directional Signs If Type of Work = “Subdivision Directional Sign”
+//	$550 where ASIT Type of Work = "Subdivision Weekend Sign" Enter 1 TECH
+//	SGN080 Subdivision Directional Signs If Type of Work = "Subdivision Directional Sign"
 //
-//	$110 where ASIT Type of Work = “Subdivision Directional Sign” Enter 1 TECH
-//	SGN090 Downtown Directional A-Frames If Type of Work = “Downtown Directional A-Frames”
+//	$110 where ASIT Type of Work = "Subdivision Directional Sign" Enter 1 TECH
+//	SGN090 Downtown Directional A-Frames If Type of Work = "Downtown Directional A-Frames"
 //
-//	$25 where ASIT Type of Work = “Downtown Directional A-Frames” Enter 1 TECH
+//	$25 where ASIT Type of Work = "Downtown Directional A-Frames" Enter 1 TECH
 // Script Run Event: ASA
 // Script Parents:
 //            ASA;Permits!Sign!NA!NA
