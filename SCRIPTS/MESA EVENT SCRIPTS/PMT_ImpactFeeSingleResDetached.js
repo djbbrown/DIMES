@@ -18,7 +18,7 @@ if (tagFieldArray && tagFieldArray.length > 0) {
    for (tIndex in tagFieldArray) {
 		thisTag = tagFieldArray[tIndex];
 		logDebug(thisTag);
-		if(matches(thisTag, "ASU", "ASUE", "AWCP")) wmqGisTag = true;
+		if(matches(thisTag, "ASU", "ASUE", "AWCP")) wmqGisTag = true; 
 		if(matches(thisTag, "STOR")) swGisTag = true;
    }
 }
