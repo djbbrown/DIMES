@@ -9,6 +9,12 @@
 /*==================================================================*/
 
 try {
+               //Pop up message to user
+            showMessage = true;
+            comment("This is a test to see if this works with an ASB");
+           //Stop the submission
+            cancel = true;
+   /*
     var FirstName;
     var LastName; 
     var FullName;
@@ -103,7 +109,8 @@ try {
             comment("You must upload a Lease Agreement for Application document");
            //Stop the submission
             cancel = true;
-        }                       
+        }
+        */                       
     }
 catch (err)
     {
