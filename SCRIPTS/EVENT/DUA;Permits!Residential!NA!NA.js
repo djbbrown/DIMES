@@ -3,4 +3,4 @@
 // Script Name: DUA;Permits!Residential!NA!NA.js
 //
 ==================================================================*/
-include("PMT_Email_Resdiential_DocUpload");
+include("PMT_Email_Residential_DocUpload");
