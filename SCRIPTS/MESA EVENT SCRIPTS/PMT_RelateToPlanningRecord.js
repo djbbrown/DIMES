@@ -12,14 +12,14 @@
 // Script Parents:
 //             ASA:Permits/Commercial/NA/NA
 //             ASA:Permits/Residential/NA/NA
-//             ASA:Permits/Signs/NA/NA
+//             ASA:Permits/Sign/NA/NA
 //             ASA:Permits/Residential/Mobile Home/NA
 //             ASA:Permits/Addenda or Deferred/NA/NA
 //			   ASA:Permits/Master Plan/NA/NA
 //
 //             ASIUA:Permits/Commercial/NA/NA
 //             ASIUA:Permits/Residential/NA/NA
-//             ASIUA:Permits/Signs/NA/NA
+//             ASIUA:Permits/Sign/NA/NA
 //             ASIUA:Permits/Residential/Mobile Home/NA
 //             ASIUA:Permits/Addenda or Deferred/NA/NA
 //			   ASIUA:Permits/Master Plan/NA/NA
@@ -27,6 +27,7 @@
 // DMH - added in master plan
 // 
 //==================================================================*/
+
 
 try
 {
@@ -41,7 +42,7 @@ try
 	{
 		var planningNumber = AInfo["Planning Number"];
 	}	
-	if ((appTypeString == "Permits/Signs/NA/NA") ||
+	if ((appTypeString == "Permits/Sign/NA/NA") ||
 		(appTypeString == "Permits/Residential/Mobile Home/NA"))
 	{
 		var planningNumber = AInfo["Planning Case Number"];
@@ -75,8 +76,6 @@ catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
-
-
 
 
 
