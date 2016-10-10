@@ -27,9 +27,15 @@ try
     if ( isInFloodZone() )
     {
         logDebug("record is in flood plain")
-        addStdCondition("Building Permit", "Footing/Foundation Elevation");
-        addStdCondition("Building Permit", "Elevation Certificate");
-        logDebug("added conditions")
+        if ( doesCapConditionExist("Footing/Foundation Elevation" == false))
+        {
+            addStdCondition("Building Permit", "Footing/Foundation Elevation");
+        }
+        if ( doesCapConditionExist("Elevation Certificate" == false))
+        {
+            addStdCondition("Building Permit", "Elevation Certificate");
+        }        
+        logDebug("added conditions (if necessary)")
     }
     else
     {
