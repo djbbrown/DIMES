@@ -11,7 +11,7 @@
 //Test email document upload
 
 //Get Notification Template information
-var tmpl = aa.communication.getNotificationTemplate("PMT_GREASE_TRAP_CONDITION").getOutput();
+var tmpl = aa.communication.getNotificationTemplate("PMT_RESIDENTIAL_DOCUMENT_UPLOAD").getOutput();
 var ebody = tmpl.getEmailTemplateModel().getContentText();
 var esub = tmpl.getEmailTemplateModel().getTitle();
 var efrom = tmpl.getEmailTemplateModel().getFrom();
@@ -21,5 +21,5 @@ var vEParams = aa.util.newHashtable();
 vEParams.put("$$altid$$", capIDString);
 
 if (currentUserID == "KGURNEY") {
-	sendNotification(efrom, "kgurney@accela.com", "", "PMT_GREASE_TRAP_CONDITION", vEParams, null, capId);
+	sendNotification(efrom, "kgurney@accela.com", "", "PMT_RESIDENTIAL_DOCUMENT_UPLOAD", vEParams, null, capId);
 }
