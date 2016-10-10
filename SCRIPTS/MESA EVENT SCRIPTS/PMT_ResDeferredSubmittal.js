@@ -6,7 +6,7 @@
 // Script Description: 
 // Script Run Event: Application Submit After
 // Script Parents:
-//		WTUA;Permits!Commercial!~!~         
+//		WTUA;Permits!Residential!~!~         
 /*==================================================================*/
 try{
 	if(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
