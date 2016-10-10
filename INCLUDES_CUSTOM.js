@@ -2026,65 +2026,6 @@ function getThisInspectionId_ISA() // optional altId
     }
 }
 
-/*function getASIFieldValueBeforeItChanged2(asiSubGroupName, asiFieldName) // optional altId
-{
-    var theCapID = null;
-    if ( arguments.length == 3 )
-    {
-        theCapID = aa.cap.getCapID(arguments[2]).getOutput();
-    }
-    else 
-    {
-        theCapID = capId;
-    }
-
-    var beforeValueList = aa.appSpecificInfo.getAppSpecificInfos(theCapID, asiSubGroupName, asiFieldName).getOutput();
-
-    var beforeValue = null;
-    for (var i=0;i<beforeValueList.length;i++)
-    {
-        beforeValue = beforeValueList[i].getChecklistComment();
-    }
-    return beforeValue;
-}
-
-function getASIFieldValueBeforeItChanged(asiSubGroupName, asiFieldName) // optional altId
-{
-	var theCapID = null;
-    if ( arguments.length == 3 )
-    {
-        theCapID = aa.cap.getCapID(arguments[2]).getOutput();
-    }
-    else 
-    {
-        theCapID = capId;
-    }
-  	var asiGroups = theCapID.getAppSpecificInfoGroups();
-  	var checklistComment;
-  	for(var i=0; i< asiGroups.size(); i++)
-  	{
-		var asiGroup = asiGroups.get(i);
-	    var fields = asiGroup.getFields();
-
-		if(asiGroup.getGroupName() != asiSubGroupName)
-		{
-			continue;
-		}
-		if(fields)
-		{
-			for(var j=0;j<fields.size();j++)
-			{        
-				var fieldLabel = fields.get(j);            
-				if(fieldLabel.getFieldLabel() == asiFieldName)
-				{
-					checklistComment = fieldLabel.getChecklistComment();
-					return checklistComment;
-				}          
-			}
-		}
-	}	
-}*/
-
 function isTaskActive_Mesa(wfstr) // optional process name
 {
 	var useProcess = false;
@@ -2255,6 +2196,7 @@ function getDocsAsb()
     } 
     return docArray; 
 }
+
 function getTaskAssignedStaff(wfstr) // optional process name.
 {
 	var useProcess = false;
@@ -2287,6 +2229,7 @@ function getTaskAssignedStaff(wfstr) // optional process name.
 	}
 	return false;
 }
+
 function editAppSpecific_Mesa(itemName,itemValue)  // optional: itemCap
 {
 	var itemCap = capId;
@@ -2351,6 +2294,7 @@ function getWFHours(capId) {
 	}
 	return hoursSpent;
 }
+
 function sendNotificationAndSaveInRecord(from, to, cc, templateName, templateParameters, fileNames)
 {
     // can pass in a capId as an optional parameter

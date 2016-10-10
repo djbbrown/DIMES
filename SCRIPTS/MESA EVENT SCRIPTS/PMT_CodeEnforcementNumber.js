@@ -58,11 +58,11 @@ try
             logDebug("'" + fieldName + "' (" + fieldNow + ") record was found.");
 
             // add conditions to record
-            if ( !doesCapConditionExist("Unauthorized Construction Fee"))
+            if ( doesCapConditionExist("Unauthorized Construction Fee") == false)
             {
                 addStdCondition("Building Permit", "Unauthorized Construction Fee");
             }
-            if ( !doesCapConditionExist("Obtain Timeline of Completion"))
+            if ( doesCapConditionExist("Obtain Timeline of Completion") == false)
             {
 		        addStdCondition("Building Permit", "Obtain Timeline of Completion");
             }
@@ -111,7 +111,7 @@ try
                     var vEParams = aa.util.newHashtable();
                     addParameter(vEParams,"$$Record ID$$", capIDString);
                     addParameter(vEParams,"$$Record ID2$$", fieldNow);
-                    sendNotification(fromEmail, codeOfficerEmail, "", "PMT_ASSOCIATED_ENFORCEMENT_RECORD", vEParams, null, capId);
+                    sendNotificationAndSaveInRecord(fromEmail, codeOfficerEmail, "", "PMT_ASSOCIATED_ENFORCEMENT_RECORD", vEParams, null, capId);
                     
                     logDebug("Sent email to Code Officer.");
                 }
