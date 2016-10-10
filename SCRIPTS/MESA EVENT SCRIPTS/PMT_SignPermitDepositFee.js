@@ -11,12 +11,24 @@
 
 	var totalSignValuation = AInfo["Total Sign Valuation"];
 	var totalSignSqFt = AInfo["Total Sign Square Footage"];
+	var signTypeFound = false;
+	var signInfo = loadASITable("SIGN INFO");
 	var totalFee = 0;
 	totalFee = (102.4 + (0.03 * totalSignValuation) + (0.3 * totalSignSqFt));
 	//logDebug("Total Fee: " + totalFee);
 	var totalFee65pct = Math.ceil((totalFee * .65) * 100)/100;
 	//logDebug("totalFee65pct = " + totalFee65pct);
-	if (totalFee65pct > 0 ) {
+	
+	if (signInfo != null) {
+		for (x in signInfo) {
+			var row = signInfo[x];
+			var	signType = row["Type of Work"];
+			if (matches(signType,"Sign","Freeway Landmark Monument")) signTypeFound = true;
+		}
+	}
+	//logDebug("signTypeFound = " + signTypeFound);
+	
+	if (totalFee65pct > 0 && signTypeFound) {
 		removeFee("SGN010", "FINAL");  //removing fee only for ACA in case user comes back to fee page.
 		addFee("SGN010", "PMT_SIGNS", "FINAL", totalFee65pct, "N");
 		//addFeeWithQtyAndAmt("SGN010", "PMT_SIGNS", "FINAL", 1, totalFee65pct, "CONSTANT", 1);
