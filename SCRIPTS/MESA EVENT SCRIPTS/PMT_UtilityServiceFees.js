@@ -51,6 +51,7 @@ if (tmpTable) {
 			updateFee("USF020","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 			}
 	//Gas Service and Meter - USF030
+		/*
 		if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countGasRelocationRetrofit == 0 ) {
 			var tempSum9 = 0;
 			for (var rowIndex in tmpTable) {
@@ -71,7 +72,7 @@ if (tmpTable) {
 			if (tempSum9 > 0)	updateFee("USF030","PMT_UTL_SERV", "FINAL",  tempSum9, "N");	
 		}
 		if (tempSum9 == 0 && feeExists("USF030")) removeFee("USF030", "FINAL");
-
+		//*/
 	//Water Meter: Adapter - USF040  - Service Size - Water Meter Adapter A24
 		if (countWaterMeterAdapter > 0) {
 			var tempSum=0;
@@ -208,15 +209,15 @@ if (tmpTable) {
 	//Water relocation - USF120
 		if (countWaterRelocation == 0 && feeExists("USF120")) removeFee("USF120", "FINAL");
 		if (countWaterRelocation > 0) {
-			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Water Relocation");
-			updateFee("USF120","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+			//var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Water Relocation");
+			updateFee("USF120","PMT_UTL_SERV", "FINAL",  countWaterRelocation, "N");
 			}
 			
 	//Electric Service Turn on Same Day - USF130
 		if (countElecServTurn == 0 && feeExists("USF130")) removeFee("USF130", "FINAL");
 		if (countElecServTurn > 0) {
-			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Electric Service Turn on Same Day");
-			updateFee("USF130","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+			// var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Electric Service Turn on Same Day");
+			updateFee("USF130","PMT_UTL_SERV", "FINAL",  countElecServTurn, "N");
 			}
 		
 	//Electric Meter - USF140
@@ -243,30 +244,30 @@ if (tmpTable) {
 		if (countTempElec > 0) {
 			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Temporary Electric");
 			updateFee("USF150","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
-			}
+			}	
 					
 	//Pavement Replacement – Local Roadway- USF160
 	//   logDebug(countPavReplLocal);
 		if (countPavReplLocal == 0 && feeExists("USF160")) removeFee("USF160", "FINAL");
 		if (countPavReplLocal > 0) {
-			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Local Roadway");
-			updateFee("USF160","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+			// var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Local Roadway");
+			updateFee("USF160","PMT_UTL_SERV", "FINAL",  countPavReplLocal, "N");
 			}	
 	//Pavement Replacement – Collector Roadway - USF170
 
 		if (countPavReplColl == 0 && feeExists("USF170")) removeFee("USF170", "FINAL");
 		if (countPavReplColl > 0) {
-			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Collector Roadway");
-			updateFee("USF170","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+			// var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Collector Roadway");
+			updateFee("USF170","PMT_UTL_SERV", "FINAL",  countPavReplColl, "N");
 			}					
 					
 	//Pavement Replacement – Arterial Roadway - USF180
 		aa.print(countPavReplArt);
 		if (countPavReplArt == 0 && feeExists("USF180")) removeFee("USF180", "FINAL");
 		if (countPavReplArt > 0) {
-			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Arterial Roadway");
-			var sumQtyMeters = sumQtyMeters + sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Arterial Roadway");
-			updateFee("USF180","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
+			//var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement – Arterial Roadway");
+			//var sumQtyMeters = sumQtyMeters + sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Pavement Replacement - Arterial Roadway");
+			updateFee("USF180","PMT_UTL_SERV", "FINAL",  countPavReplArt, "N");
 			}					
 					
 					
@@ -310,7 +311,7 @@ if (tmpTable) {
 				thisRow = tmpTable[rowIndex];
 				if ((thisRow["Service Type"].fieldValue == "Water Service")
 						&& (thisRow["Service Size"].fieldValue == 'Water 2.0' || thisRow["Service Size"].fieldValue == 'Water 2.0"')
-						&& matches("" + appTypeArray[1], "Commercial")
+						//&& matches("" + appTypeArray[1], "Commercial")
 				)
 				{
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))

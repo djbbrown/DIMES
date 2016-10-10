@@ -5,9 +5,9 @@
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-// 		When value of “Gas Service/Meter – Large Residential”, 
-//              “Gas Service/Meter – Commercial”, “Gas Relocation/Retrofit”
-//              is chosen in ASIT dropdown field “Service Type” 
+// 		When value of ï¿½Gas Service/Meter ï¿½ Large Residentialï¿½, 
+//              ï¿½Gas Service/Meter ï¿½ Commercialï¿½, ï¿½Gasï¿½Relocation/Retrofitï¿½
+//              is chosen in ASIT dropdown field ï¿½Service Typeï¿½ 
 //              (in ASIT subgroup "Utility Service Info") assess the 
 //              following fee item:
 //                Fee item Code: USF030
@@ -48,7 +48,7 @@ try
           (serviceType == "Gas Relocation/Retrofit"))
       {
         // syntax: addFee(fcode,fsched,fperiod,fqty,finvoice)
-        addFee("USF030","PMT_UTL_SERV", "FINAL",  1, "N");
+        // addFee("USF030","PMT_UTL_SERV", "FINAL",  1, "N");
         x = rowCount;
       }
     }

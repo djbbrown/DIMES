@@ -1,8 +1,8 @@
 /*===================================================================
-// Script Number: 131(CANCELLED), 214, 336, 335, 146, 144
+// Script Number: 131(CANCELLED), 214, 336, 335, 146
 // Script Name: WTUA;Permits!Residential!Mobile Home!NA.js
 ==================================================================*/
-
+include("PMT_Water_Clearance_Email");
 include("PMT_MobileHomeStormwaterImpactFee");
 
 // added by Vance Smith (Mesa)
@@ -16,6 +16,3 @@ include("PMT_MobileHomeWasteWaterImpactFee");
 
 //added by Michael Kniskern (City of Mesa) 9/22/2016
 include("PMT_MobileHomePublicSafetyImpactFee");
-
-//added by Brian ODell (City of Mesa) 10/04/2016
-include("PMT_MobileHomeFireImpactFee");

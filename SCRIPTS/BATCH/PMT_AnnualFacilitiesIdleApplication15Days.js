@@ -19,6 +19,10 @@
 //  1.0      |08/18/16  |Vance Smith      |Initial
 /*==================================================================*/
 
+/* intellisense references */
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_BATCH.js" />
+/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 /*------------------------------------------------------------------------------------------------------/
 | <===========Custom Functions================>
@@ -34,13 +38,9 @@ function mainProcess()
      * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
     var capCount = 0;
     var capFilterType = 0;
-    //var capFilterAppType = 0; 
     var capFilterStatus = 0;
     var capFilterFeesOrDocs = 0;
     var capFilterFileDate = 0;
-    //var capFilterExpiration = 0; 
-    //var capFilterExpirationNull = 0; 
-    //var capFilterExpirationGet = 0; 
     var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
@@ -180,62 +180,6 @@ function mainProcess()
             continue; // move to the next record
         }
 
-        /* EXAMPLE OF FILTERING BY CAP STATUS
-        // move to the next record unless we have a match on the capStatus we want
-        if (capStatus != "Submitted" ) 
-        {
-            capFilterStatus++;
-            logDebug(altId + ": Application Status does not match.");
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY A LIST OF APP TYPES
-        if ( !(new RegExp( '\\b' + includeAppTypesArray.join('\\b|\\b') + '\\b') ).test(appTypeArray[1]) )
-        {
-            capFilterAppType++;
-            logDebug(altId + ": Application Type does not match the list of include app types.");
-            logDebug("--------------moving to next record--------------");
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE
-         * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION
-        // move to the next record if the expiration date is null
-        var expirationDate = null;
-        try 
-        {
-            var thisLic = new licenseObject(capId);            
-            expirationDate = thisLic.b1ExpDate;
-            if (expirationDate == null)
-            {
-                capFilterExpirationNull++;
-                logDebug(altId + ": Expiration Date is null." );
-                continue; // move to the next record
-            }
-        }
-        catch (err)
-        {
-            capFilterExpirationGet++;
-            //logDebug("JavaScript Error getting expiration date: " + err.message); // too many to log!!
-            continue; // move to the next record
-        }
-        */
-
-        /* EXAMPLE OF FILTERING BY EXPIRATION DATE         
-        // move to the next record if the expiration date is not "numDaysOut" days out
-        var expirationDate = expScriptDateTime.getMonth() + '/' + expScriptDateTime.getDayOfMonth() + '/' + expScriptDateTime.getYear();
-        var dateOut = dateAdd(null, numDaysOut);
-        if (dateOut != expirationDate) 
-        {
-            capFilterExpiration++;
-            logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
-            continue; // move to the next record
-        }
-        */
-
         /***** END FILTERS *****/
 
 
@@ -276,7 +220,7 @@ function mainProcess()
             addParameter(vEParams, "$$MISSING DOCUMENTS$$", mDocString);
 
             logDebug("Sending notification to " + emailAddress);
-            sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, altId);
+            sendNotificationAndSaveInRecord("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
             // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
         } 
         else 
@@ -284,21 +228,6 @@ function mainProcess()
             applicantEmailNotFound++;
             logDebug(altId + ": Applicant email address not found");
         }
-
-        /* TASKS, WORKFLOW, AND UPDATE STATUS EXAMPLE
-        // expire the active tasks, close the workflow, and then set the record status to void
-        var tasks = aa.workflow.getTasks(capId).getOutput();
-        for (t in tasks) {
-            tName = tasks[t].getTaskDescription();
-            tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
-            if (tActive == 'Y') {
-                updateTask(tName, "Expired", "set by batch", "");
-                setTask(tName, 'N', 'Y');
-            }
-            closeWorkflow(); // this is in INCLUDES_CUSTOM
-        }	
-        updateAppStatus("Void", "set by batch"); // this is in INCLUDES_ACCELA_FUNCTIONS
-        */
 
         /***** END CUSTOM PROCESSING *****/
     }

@@ -27,27 +27,27 @@ try
 	)
   {    
     
-    var acres = 0.00;
-    var parcelArea = 0.00;
-    var sqft = 0.00;
-
-    var capParcelResult = aa.parcel.getParcelandAttribute(capId,null);
-
-    if (capParcelResult.getSuccess())
+    var acres = AInfo["Gross Site Size (acres)"];
+    var sqft = AInfo["Gross Site Size (sqft)"];
+    
+    if (acres == null)
     {
-      var Parcels = capParcelResult.getOutput().toArray();
-      for (item in Parcels)
+      if (sqft != null)
       {
-        parcelArea = Parcels[item].getParcelArea();
-        acres += parcelArea;
+        acres = sqft/43560;
       }
+      editAppSpecific("Gross Site Size (acres)", acres);
+    }
+    
+    if (sqft == null)
+    {
+      if (acres != null)
+      {
+        sqft = acres*43560;
+      }
+      editAppSpecific("Gross Site Size (sqft)", sqft);
     }
 
-    editAppSpecific("Gross Site Size (acres)", acres);
-    
-    sqft = acres*43560;
-    editAppSpecific("Gross Site Size (sqft)", sqft);
-    
   }
 }
 catch (err)

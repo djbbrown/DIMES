@@ -3,7 +3,7 @@
 // Script Name: WTUA;Permits!Commercial!NA!NA.js
 ==================================================================*/
 include("PMT_ResubmittalFee");
-
+include("PMT_Water_Clearance_Email");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 
@@ -11,3 +11,4 @@ include("PMT_SubmittalCycle");
 include("PMT_ImpactFeesMultiResidence");
 
 include("PMT_AssessTechFee"); // must be run last
+include("PMT_ComDeferredSubmittal");
