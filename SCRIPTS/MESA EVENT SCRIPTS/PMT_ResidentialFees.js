@@ -22,6 +22,7 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		voidRemoveFee("RES380");
 	}
 }
+// Pool
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (typeOfWork && typeOfWork =='Swimming Pool') {
 		if (feeExists("RES270", "NEW", "INVOICED")) voidRemoveFee("RES270");
@@ -29,5 +30,14 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 	if(typeOfWork && typeOfWork !='Swimming Pool' && feeExists("RES270", "NEW", "INVOICED")){
 		voidRemoveFee("RES270");
+	}
+}
+if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if (typeOfWork && typeOfWork =='SPA') {
+		if (feeExists("RES280", "NEW", "INVOICED")) voidRemoveFee("RES280");
+		addFee("RES280", "PMT_RES","FINAL", 1, "N");
+	}
+	if(typeOfWork && typeOfWork !='SPA' && feeExists("RES280", "NEW", "INVOICED")){
+		voidRemoveFee("RES280");
 	}
 }
