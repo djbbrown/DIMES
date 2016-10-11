@@ -15,7 +15,7 @@
 // Script Parents:
 //             WTUA;Permits!Online!NA!NA
 /*==================================================================*/
-/* test with PMT16-00738 */
+/* test with PMT16-00738, PMT16-01007, PMT16-00932 */
 
 try
 {
