@@ -35,22 +35,22 @@ var signTypeInfo = loadASITable("SIGN INFO");
 		}
 		
 		//Check to assess Downtown Directional A-Frams fee
-		if(countBanners > 0) {
+		if(countDowntownDirA > 0) {
 			updateFee("SGN090", "PMT_SIGNS", "FINAL", 1, "N");
 		}
 		
 		//Check to assess Subdivision Directional Sign
-		if(countBanners > 0) {
+		if(countSubdivisionDir > 0) {
 			updateFee("SGN080", "PMT_SIGNS", "FINAL", 1, "N");
 		}
 		
 		//Check to assess Subdivision Sign
-		if(countBanners > 0) {
+		if(countSubdivisionSgn > 0) {
 			updateFee("SGN060", "PMT_SIGNS", "FINAL", 1, "N");
 		}
 		
 		//Check to assess Subdivision Weekend Sign
-		if(countBanners > 0) {
+		if(countSubdivisionWkEnd > 0) {
 			updateFee("SGN070", "PMT_SIGNS", "FINAL", 1, "N");
 		}
 		
