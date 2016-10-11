@@ -15,10 +15,11 @@
 // Script Parents:
 //             WTUA;Permits!Online!NA!NA
 /*==================================================================*/
-/* test with PMT16-00738, PMT16-01007, PMT16-00932 */
+/* test with PMT16-00738, PMT16-01007, PMT16-00932, PMT16-01046 */
 
 try
 {
+	logDebug("Script348 called...");
 	if (wfTask == "Application Submittal" && wfStatus == "Ready To Issue") {
 		if (matches(getAppSpecific("Same Day Turn On - Gas"), "Y", "CHECKED")) {
 			if (feeExists("ONL080", "NEW")) { voidRemoveFee("ONL080"); }
