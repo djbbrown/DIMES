@@ -11,7 +11,7 @@
 //             
 /*==================================================================*/
 
-/* test with PMT16-00599  PMT16-00730 */
+/* test with PMT16-01042 */
 
 /* Run when workflow task Permit Issuance is activated AND/OR – on
  * ApplicationSpecificInfoUpdateAfter ONLY IF workflow task Permit
@@ -108,8 +108,8 @@ try {
 			var wmq3 = getAppSpecific("Water Meter Qty 3");
 			var wmq4 = getAppSpecific("Water Meter Qty 4");
 			
-			var wwms1 = getAppSpecific("Water/Wastewater Meter Size1"); // TODO: update this to put space back in if ASI field name gets updated again.
-			var wwms2 = getAppSpecific("Water/Wastewater Meter Size2"); // TODO: update this to put space back in if ASI field name gets updated again.
+			var wwms1 = getAppSpecific("Water/Wastewater Meter Size 1");
+			var wwms2 = getAppSpecific("Water/Wastewater Meter Size 2");
 			var wwms3 = getAppSpecific("Water/Wastewater Meter Size 3");
 			var wwms4 = getAppSpecific("Water/Wastewater Meter Size 4");
 			
