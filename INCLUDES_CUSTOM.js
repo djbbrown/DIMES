@@ -2348,3 +2348,138 @@ function sendNotificationAndSaveInRecord(from, to, cc, templateName, templatePar
 
     aa.document.sendEmailAndSaveAsDocument(from, to, cc, templateName, emailParameters, capId4Email, fileNames);
 }
+
+function getUnpaidFeeBalance() { // optional capId
+	// Searches payment fee items and returns the unpaid balance of a fee item
+	// Sums fee items if more than one exists.  
+	var amtFee = 0;
+	var amtPaid = 0;
+	var feeSch;
+    var thisCapId;
+
+	if (arguments.length == 1)
+    {
+		thisCapId = arguments[0];
+    }
+    else {
+        thisCapId = capId;
+    }
+
+	var feeResult = aa.fee.getFeeItems(thisCapId);
+
+	if (feeResult.getSuccess()) 
+    {
+		var feeObjArr = feeResult.getOutput();
+	} 
+    else 
+    {
+		logDebug("**ERROR: getting fee items: " + capContResult.getErrorMessage());
+		return false
+	}
+
+	for (ff in feeObjArr)
+    {
+		if (feeObjArr[ff].getFeeitemStatus() != "INVOICED" ) {
+			amtFee += feeObjArr[ff].getFee();
+			var pfResult = aa.finance.getPaymentFeeItems(thisCapId, null);
+			if (pfResult.getSuccess()) {
+				var pfObj = pfResult.getOutput();
+				for (ij in pfObj)
+                {
+					if (feeObjArr[ff].getFeeSeqNbr() == pfObj[ij].getFeeSeqNbr())
+                    {
+						amtPaid += pfObj[ij].getFeeAllocation()
+                    }
+                }
+			}
+		}
+    }
+	return amtFee - amtPaid;
+}
+
+function getUnpaidFeeBalance() { // optional capId
+	// Searches payment fee items and returns the unpaid balance of a fee item
+	// Sums fee items if more than one exists.  
+	var amtFee = 0;
+	var amtPaid = 0;
+	var feeSch;
+    var thisCapId;
+
+	if (arguments.length == 1)
+    {
+		thisCapId = arguments[0];
+    }
+    else {
+        thisCapId = capId;
+    }
+
+	var feeResult = aa.fee.getFeeItems(thisCapId);
+
+	if (feeResult.getSuccess()) 
+    {
+		var feeObjArr = feeResult.getOutput();
+	} 
+    else 
+    {
+		logDebug("**ERROR: getting fee items: " + capContResult.getErrorMessage());
+		return false
+	}
+
+	for (ff in feeObjArr)
+    {
+		if (feeObjArr[ff].getFeeitemStatus() != "INVOICED" ) {
+			amtFee += feeObjArr[ff].getFee();
+			var pfResult = aa.finance.getPaymentFeeItems(thisCapId, null);
+			if (pfResult.getSuccess()) {
+				var pfObj = pfResult.getOutput();
+				for (ij in pfObj)
+                {
+					if (feeObjArr[ff].getFeeSeqNbr() == pfObj[ij].getFeeSeqNbr())
+                    {
+						amtPaid += pfObj[ij].getFeeAllocation()
+                    }
+                }
+			}
+		}
+    }
+	return amtFee - amtPaid;
+}
+
+function getLastRecordDateInWorkflowHistory()
+{ // optional capId
+    var thisCapId;
+
+	if (arguments.length == 1)
+    {
+		thisCapId = arguments[0];
+    }
+    else {
+        thisCapId = capId;
+    }
+
+    var retDate = false;
+
+	// get the workflow history
+	var workflowResult = aa.workflow.getWorkflowHistory(thisCapId, null);
+
+	// working with the workflow result
+	if(workflowResult.getSuccess())
+    {
+		wfResult = workflowResult.getOutput(); // get the output
+		for(x in wfResult){ // parse through each process in the workflow
+            var audDate = new Date( wfResult[x].taskItem.auditDateString.replace("T", " ").replace(".0", "").replace("-", "/"));
+            if ( retDate == false )
+            {
+                retDate = audDate;
+            }
+            else if ( retDate < audDate )
+            {
+                retDate = audDate;
+            }
+		}
+	}
+	else {
+		logDebug("getLastRecordDateInWorkflowHistory() could not get a workflow history")
+	}
+	return retDate;
+}

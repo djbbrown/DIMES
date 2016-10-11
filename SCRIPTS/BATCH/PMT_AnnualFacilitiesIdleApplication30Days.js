@@ -39,7 +39,8 @@ function mainProcess()
     var capFilterType = 0;
     var capFilterStatus = 0;
     var capFilterFeesOrDocs = 0;
-    var capFilterFileDate = 0;
+    //var capFilterFileDate = 0;
+    var capFilterDaysIdle = 0;
     var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
 
@@ -115,15 +116,14 @@ function mainProcess()
             continue; // move to the next record
         }
 
-        /* EXAMPLE OF FILTERING BY FILE DATE */
-        // move to the next record if the file date is not "numDaysOut" days out
-        var fileDateObj = cap.getFileDate();
-        var fileDate =  fileDateObj.getMonth() + "/" + fileDateObj.getDayOfMonth() + "/" + fileDateObj.getYear();
-        var daysSinceSubmittal = daydiff(parseDate(fileDate), parseDate(getTodayAsString())); 
-        if (daysSinceSubmittal != numDaysOut) 
+        /* EXAMPLE OF FILTERING BY AUDIT DATE */
+        // move to the next record if the audit date is not "numDaysOut" days out
+        var auditDate = getLastRecordDateInWorkflowHistory(capId);
+        var daysIdle = daydiff(auditDate, parseDate(getTodayAsString()));
+        if (daysIdle != numDaysOut )
         {
-            capFilterFileDate++;
-            logDebug(altId + ": File Date is not " + numDaysOut + " days out. Days Since Submittal: " + daysSinceSubmittal );
+            capFilterDaysIdle++;
+            logDebug(altId + ": Audit Date is not " + numDaysOut + " days out. Days idle: " + daysIdle );
             continue; // move to the next record
         }
 
@@ -131,7 +131,7 @@ function mainProcess()
         // move to the next record if this cap has paid all of its fees
         var missingDocs = new Array();
         var feesOrDocsNeeded = false;
-        var balanceDue = getRecordBalanceDue(capId);
+        var balanceDue = getUnpaidFeeBalance(capId);// getRecordBalanceDue(capId);
         if (balanceDue > 0) 
         {
             feesOrDocsNeeded = true;
@@ -188,16 +188,8 @@ function mainProcess()
 
         /* TASKS, WORKFLOW, AND UPDATE STATUS EXAMPLE */
         // expire the active tasks, close the workflow, and then set the record status to void
-        var tasks = aa.workflow.getTasks(capId).getOutput();
-        for (t in tasks) {
-            tName = tasks[t].getTaskDescription();
-            tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
-            /*if (tActive == 'Y') {
-                updateTask(tName, "Expired", "set by batch", "");
-                setTask(tName, 'N', 'Y');
-            }*/
-            closeWorkflow(); // this is in INCLUDES_CUSTOM
-        }	
+        //var tasks = aa.workflow.getTasks(capId).getOutput();
+        closeWorkflow(capId); // this is in INCLUDES_CUSTOM	
         updateAppStatus("Void", "set by batch"); // this is in INCLUDES_ACCELA_FUNCTIONS	
 
         /***** END CUSTOM PROCESSING *****/
@@ -214,14 +206,11 @@ function mainProcess()
     logDebugAndEmail("");// empty line
     logDebugAndEmail("Query count: " + queryResultsCount);
     logDebugAndEmail("Processed count:" + capCount);
-
-    /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */	
     logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");    
     logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");	
     logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed")
-    logDebugAndEmail("Skipped " + capFilterFileDate + " due to file date not being " + numDaysOut + " days out");
-    logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
-    
+    logDebugAndEmail("Skipped " + capFilterDaysIdle + " due to audit date not being " + numDaysOut + " days out");
+    logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");    
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
@@ -236,6 +225,11 @@ function getBatchScriptTimeOut(jobName)
     var bjb = aa.proxyInvoker.newInstance("com.accela.v360.batchjob.BatchEngineBusiness").getOutput();
     var bj = bjb.getBatchJobByName(aa.getServiceProviderCode(), jobName);
     return bj.getTimeOut();
+}
+
+function daydiff(first, second) 
+{
+    return Math.round((second-first)/(1000*60*60*24));
 }
 
 function getTodayAsString(){
