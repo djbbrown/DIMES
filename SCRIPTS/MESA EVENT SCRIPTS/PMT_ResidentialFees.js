@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 
-// Script Name: 
+// Script Name: PMT_ResidentialFees.js
 // Script Developer: Kevin Ford
 // Script Agency: Accela
 // Script Description: Residential Fees 
@@ -13,7 +13,7 @@
 var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
 
 //RES380 -- Charged at Stauts
-if((wfTask == "Plans Coordination"  wfStatus=="Ready to Issue") {
+if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (typeOfWork && typeOfWork =='Model Home Complex') {
 		if (feeExists("RES380", "NEW", "INVOICED")) voidRemoveFee("RES380");
 		addFee("RES380", "PMT_RES","FINAL", 1, "N");
@@ -22,7 +22,7 @@ if((wfTask == "Plans Coordination"  wfStatus=="Ready to Issue") {
 		voidRemoveFee("RES380");
 	}
 }
-if((wfTask == "Plans Coordination"  wfStatus=="Ready to Issue") {
+if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (typeOfWork && typeOfWork =='Swimming Pool') {
 		if (feeExists("RES270", "NEW", "INVOICED")) voidRemoveFee("RES270");
 		addFee("RES270", "PMT_RES","FINAL", 1, "N");
