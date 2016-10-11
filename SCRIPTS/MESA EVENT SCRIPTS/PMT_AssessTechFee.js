@@ -14,7 +14,7 @@
 /*if (appMatch("Permits/Online/NA/NA") && wfTask == "Application Submittal" && wfStatus == "Ready To Issue"){
 	updateFee("ONL020", "PMT_ONL", "FINAL", 1, "N");
 } else //*/
-	if (appMatch("Permits/Sign/NA/NA") && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
+	if (appMatch("Permits/Sign/NA/NA") && (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req") || (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")){
 	updateFee("SGN040", "PMT_SIGNS", "FINAL", 1, "N");
 } else if (appMatch("Permits/Residential/NA/NA") && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 	updateFee("RES160", "PMT_RES", "FINAL", 1, "N");
