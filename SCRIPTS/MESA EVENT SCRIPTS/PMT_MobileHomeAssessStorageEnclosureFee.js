@@ -16,7 +16,7 @@ var tNumInsp = 0;
 var valuationASI = 0;
 var feeAmt = 0;
 
-if (appTypeArray[2] == 'Mobile Home) {	
+if (appTypeArray[2] == 'Mobile Home') {	
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
 	tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
