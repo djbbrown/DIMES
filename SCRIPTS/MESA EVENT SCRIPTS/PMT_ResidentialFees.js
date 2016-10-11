@@ -1,9 +1,9 @@
 /*===================================================================
 // Script Number: 
-// Script Name: Commercial Fees
+// Script Name: 
 // Script Developer: Kevin Ford
 // Script Agency: Accela
-// Script Description: 
+// Script Description: Residential Fees 
 // Script Run Event: Application Submit After
 // Script Parents:
 //		ASA;Permits!Residential!~!~
