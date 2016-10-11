@@ -99,9 +99,10 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 	else if (feeAmt > 0 && appTypeArray[2]=='Mobile Home' && exists(typeOfWork,mobileHome)){
 		//find amount already paid
 		var prePayMH = 0;
+		var feeAdjAmt = 0;
 		prePayMH = feeAmount("MH185","NEW","INVOICED");
 		feeAdjAmt = feeAmt - prePayMH;
-		aa.print("Adding fee: "+feeAdjAmount);
+		aa.print("Adding fee: "+feeAdjAmt);
 		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAdjAmt, "N");
 	}
 }
