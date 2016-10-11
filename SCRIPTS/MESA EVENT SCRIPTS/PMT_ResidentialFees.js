@@ -32,6 +32,7 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		voidRemoveFee("RES270");
 	}
 }
+// Spa
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (typeOfWork && typeOfWork =='SPA') {
 		if (feeExists("RES280", "NEW", "INVOICED")) voidRemoveFee("RES280");
