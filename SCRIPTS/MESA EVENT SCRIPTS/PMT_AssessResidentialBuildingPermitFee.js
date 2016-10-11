@@ -94,7 +94,7 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		// Calculate the difference
 		feeAmt = feeAmt - prePay;
 		aa.print("Adding fee: "+feeAmt);
-		addFee("RES060","PMT_RES", "FINAL",feeAmt, "N");
+		updateFee("RES060","PMT_RES", "FINAL",feeAmt, "N");
 	}
 	else if (feeAmt > 0 && appTypeArray[2]=='Mobile Home' && exists(typeOfWork,mobileHome)){
 		//find amount already paid
@@ -103,6 +103,6 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		prePayMH = feeAmount("MH185","NEW","INVOICED");
 		feeAdjAmt = feeAmt - prePayMH;
 		aa.print("Adding fee: "+feeAdjAmt);
-		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAdjAmt, "N");
+		updateFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAdjAmt, "N");
 	}
 }
