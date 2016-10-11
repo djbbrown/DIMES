@@ -3,7 +3,7 @@
 // Script Name: PMT Impact Fees – Single Residence Detached
 // Script Developer: Chris Godwin
 // Script Agency: Woolpert
-// Script Description: When value of “Single Family-Detached (per dwelling unit)” chosen for ASIT dropdown field “Classification” in ASIT subgroup “IMPACT FEES” and a value > 0 is entered into ASIT fields listed below, assess the corresponding fees using the value in the ASIT field to calculate the correct fee value
+// Script Description: When value of "Single Family-Detached (per dwelling unit)" chosen for ASIT dropdown field "Classification" in ASIT subgroup "IMPACT FEES" and a value > 0 is entered into ASIT fields listed below, assess the corresponding fees using the value in the ASIT field to calculate the correct fee value
 // Script Run Event: WorkflowTaskUpdateAfter
 // Script Parents:
 //            WTUA;Permits!Residential!NA!NA
