@@ -107,7 +107,7 @@ function getSubGrpFeeAmt(subGrp){
 				thisFeeSubGrp = thisFee.subGroup;
 				thisFeeSubGrpAry = thisFeeSubGrp.split(",");
 				if (IsStrInArry(subGrp,thisFeeSubGrpAry) && (thisFee.status == "INVOICED" || thisFee.status == "NEW")) {
-																if (IsStrInArry(thisFee.Code,excludedFeeCode)) {
+					if (IsStrInArry(thisFee.Code,excludedFeeCode)) {
 						logDebug("Fee " + thisFee.code + " found with sub group: " + thisFee.subGroup + "; Amount: " + thisFee.amount + "; Status: " + thisFee.status );
 						logDebug("Fee " + thisFee.code + " is excluded from the Running Total: " + runFeeTot);
 					}
