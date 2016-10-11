@@ -15,7 +15,7 @@
 // the function will be called in the event ("AppSubmitAfter") major event.
 var tNumInsp = 0;
 var valuationASI = 0;
-var feeAmount = 0;
+var feeAmt = 0;
 
 //type of work ASI different naming between Online and Residential records 
 var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
@@ -43,35 +43,35 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 	valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
 	// Get the Valuation as well (ASI)
 	if(valuationASI <25000){
-		feeAmount = 90; // Base Fee
-		feeAmount = feeAmount + (90 * tNumInsp);
+		feeAmt = 90; // Base Fee
+		feeAmt = feeAmt + (90 * tNumInsp);
 	}
 	else if (valuationASI >= 25000 && valuationASI <=200000){
-		feeAmount = 500;  // Base Fee
+		feeAmt = 500;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 25000)/1000);
-		feeAmount = feeAmount + (6*tNumInsp);
+		feeAmt = feeAmt + (6*tNumInsp);
 	}
 	else if (valuationASI > 200000 && valuationASI <=500000){
-		feeAmount = 1550;  // Base Fee
+		feeAmt = 1550;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 200000)/1000);
-		feeAmount = feeAmount + (9*tNumInsp);
+		feeAmt = feeAmt + (9*tNumInsp);
 	}
 	else if (valuationASI > 500000 && valuationASI <=2000000){
-		feeAmount = 4250;  // Base Fee
+		feeAmt = 4250;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 500000)/1000);
-		feeAmount = feeAmount + (6*tNumInsp);
+		feeAmt = feeAmt + (6*tNumInsp);
 	}
 	else if (valuationASI > 2000000){
-		feeAmount = 13250;  // Base Fee
+		feeAmt = 13250;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 2000000)/1000);
-		feeAmount = feeAmount + (3*tNumInsp);
+		feeAmt = feeAmt + (3*tNumInsp);
 	}
 	//==========================
 	// Process Fees
 	// Residential/NA/NA First
 	// Before the amount for Residential/NA/NA can be fully calculated we must
 	// get the amount that had been put on deposit and paid.
-	if(feeAmount > 0 && appTypeArray[2]=='NA' && exists(typeOfWork,residential)){
+	if(feeAmt > 0 && appTypeArray[2]=='NA' && exists(typeOfWork,residential)){
 		//addFee(fcode, fsched, fperiod, fqty, finvoice)
 		var prePay = 0;
 		// Get all feeitems on the record
@@ -92,16 +92,16 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 			}
 		}
 		// Calculate the difference
-		feeAmount = feeAmount - prePay;
-		aa.print("Adding fee: "+feeAmount);
-		addFee("RES060","PMT_RES", "FINAL",feeAmount, "N");
+		feeAmt = feeAmt - prePay;
+		aa.print("Adding fee: "+feeAmt);
+		addFee("RES060","PMT_RES", "FINAL",feeAmt, "N");
 	}
-	else if (feeAmount > 0 && appTypeArray[2]=='Mobile Home' && exists(typeOfWork,mobileHome)){
+	else if (feeAmt > 0 && appTypeArray[2]=='Mobile Home' && exists(typeOfWork,mobileHome)){
 		//find amount already paid
 		var prePayMH = 0;
 		prePayMH = feeAmount("MH185","NEW","INVOICED");
-		feeAdjAmount = feeAmount - prePayMH;
+		feeAdjAmt = feeAmt - prePayMH;
 		aa.print("Adding fee: "+feeAdjAmount);
-		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAdjAmount, "N");
+		addFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAdjAmt, "N");
 	}
 }
