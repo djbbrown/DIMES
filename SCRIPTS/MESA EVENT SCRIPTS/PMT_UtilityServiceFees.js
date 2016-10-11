@@ -236,7 +236,6 @@ if (tmpTable) {
 				}
 			}
 		}
-		//logDebug("usf140sum = " + usf140sum);
 		if (usf140sum > 0) {
 			updateFee("USF140","PMT_UTL_SERV", "FINAL",  usf140sum, "N");
 		}
