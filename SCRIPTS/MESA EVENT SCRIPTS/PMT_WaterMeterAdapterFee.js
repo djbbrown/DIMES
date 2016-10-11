@@ -26,8 +26,9 @@ try {
 //		t = loadASITable("UTILITY SERVICE INFO");
 //		isMobileHome = true;
 //	}
-	
-	var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0, numExistingAdapters = 0, rows = [];
+
+	// Variables
+	var serviceSize = null, meterSize = null, qtyOfMeters = 0, numAdapters = 0, numExistingAdapters = 0, rows = [], allNumAdapters = 0, countExAdapters = 0;
 	if (!t){
 		logDebug("Utility Service Information table not found.");
 	} else {
@@ -42,14 +43,31 @@ try {
 					meterSize = t[entry]["Meter Size"];
 					qtyOfMeters = t[entry]["Qty of Meters"];
 					logDebug(serviceSize + " " + meterSize + " " + qtyOfMeters);
-					if (serviceSize == 'Water 3/4"' && meterSize != 'Water 00.75 (3/4")' || serviceSize == 'Water 3/4' && meterSize != 'Water 00.75 (3/4' ||
-						serviceSize == 'Water 1.0"' && meterSize != 'Water 01.0"' || serviceSize == 'Water 1.0' && meterSize != 'Water 01.0' ||
-						serviceSize == 'Water 1 1/2"' && meterSize != 'Water 01.5 (1 1/2")' || serviceSize == 'Water 1 1/2' && meterSize != 'Water 01.5 (1 1/2' ||
-						serviceSize == 'Water 2.0"' && meterSize != 'Water 02.0"' || serviceSize == 'Water 2.0' && meterSize != 'Water 02.0' ||
-						serviceSize == 'Water - 4"' && meterSize != 'Water 04.0"' || serviceSize == 'Water - 4' && meterSize != 'Water 04.0' ||
-						serviceSize == 'Water - 6"' && meterSize != 'Water 06.0"' || serviceSize == 'Water - 6' && meterSize != 'Water 06.0' ||
-						serviceSize == 'Water - 8"' && meterSize != 'Water 08.0"' || serviceSize == 'Water - 8' && meterSize != 'Water 08.0' ||
-						serviceSize == 'Water - 10" or 12"' || serviceSize == 'Water - 10')
+					if (
+							(serviceSize == 'Water 3/4"' && meterSize != 'Water 00.75 (3/4")')
+							|| (serviceSize == 'Water 3/4' && meterSize != 'Water 00.75 (3/4')
+							// 1 Inch Comparison
+							|| (serviceSize == 'Water 1.0"' && meterSize != 'Water 01.0"')
+							|| (serviceSize == 'Water 1.0' && meterSize != 'Water 01.0')
+							// 1.5 Inch Comparison
+							|| (serviceSize == 'Water 1 1/2"' && meterSize != 'Water 01.5 (1 1/2")')
+							|| (serviceSize == 'Water 1 1/2' && meterSize != 'Water 01.5 (1 1/2')
+							// 2.0 Inch Comparison
+							|| (serviceSize == 'Water 2.0"' && meterSize != 'Water 02.0"')
+							|| (serviceSize == 'Water 2.0' && meterSize != 'Water 02.0')
+							// 4.0 Inch Comparison
+							|| (serviceSize == 'Water - 4"' && meterSize != 'Water 04.0"')
+							|| (serviceSize == 'Water - 4' && meterSize != 'Water 04.0')
+							// 6.0 Inch Comparison
+							|| (serviceSize == 'Water - 6"' && meterSize != 'Water 06.0"')
+							|| (serviceSize == 'Water - 6' && meterSize != 'Water 06.0')
+							// 8.0 Inch Comparison
+							|| (serviceSize == 'Water - 8"' && meterSize != 'Water 08.0"')
+							|| (serviceSize == 'Water - 8' && meterSize != 'Water 08.0')
+							// 10.0 Inch Comparison
+							|| serviceSize == 'Water - 10" or 12"' 
+							|| serviceSize == 'Water - 10'
+					)
 					{
 						logDebug("Mismatch row " + entry);
 //						var newRow = new Array();
@@ -60,13 +78,21 @@ try {
 //						if (isMobileHome) addToASITable("UTILITY SERVICE INFO", newRow);
 //						else addToASITable("UTILITY SERVICE INFORMATION", newRow);
 						numAdapters++;
+						allNumAdapters += Number(qtyOfMeters);
+						logDebug("Q: "+qtyOfMeters);
 					}	
 					rows.push(t[entry]);
-				} else if (t[entry]["Service Type"] == "Water Meter: Adapter") numExistingAdapters++;
+				} else if (t[entry]["Service Type"] == "Water Meter: Adapter"){
+					numExistingAdapters++;
+					countExAdapters += Number(qtyOfMeters);
+				}
 				else rows.push(t[entry]); 
 			}
-			
-			if (numExistingAdapters != numAdapters) {
+			logDebug("allNumAdapters:"+allNumAdapters);
+			logDebug("countExAdapters:"+countExAdapters);
+			logDebug()
+			//if (numExistingAdapters != numAdapters) { // Removed for an actual count of adapters
+			if (allNumAdapters != countExAdapters) {
 				// reload table without adapter entries
 				if (isMobileHome) removeASITable("UTILITY SERVICE INFO");
 				else removeASITable("UTILITY SERVICE INFORMATION");
@@ -74,13 +100,14 @@ try {
 					if (isMobileHome) addToASITable("UTILITY SERVICE INFO", rows[exRow]);
 					else addToASITable("UTILITY SERVICE INFORMATION", rows[exRow]);
 				}
-				// add adapters
-				for (var a=0; a<numAdapters; a++){
+				// add adapters // Not sure why a new row is often added, we may want to look at updating an existing if exists.
+				for (var a=0; a<1; a++){
 					var newRow = new Array();
 					newRow["Service Type"] = new asiTableValObj("Service Type", "Water Meter: Adapter", "");
 					newRow["Service Size"] = new asiTableValObj("Service Size", "Water Meter Adapter A24", "N");
 					newRow["Meter Size"] = new asiTableValObj("Meter Size", "N/A", "N");
-					newRow["Qty of Meters"] = new asiTableValObj("Qty of Meters", "" + qtyOfMeters, "N");
+					// newRow["Qty of Meters"] = new asiTableValObj("Qty of Meters", "" + qtyOfMeters, "N");
+					newRow["Qty of Meters"] = new asiTableValObj("Qty of Meters", "" + allNumAdapters, "N");
 					newRow["BTU Load"] =  new asiTableValObj("BTU Load", "", "N");
 					newRow["Clearance To"] = new asiTableValObj("Clearance To", "", "N");
 					newRow["Clearance Date"] = new asiTableValObj("Clearance Date", "", "N");
@@ -89,7 +116,7 @@ try {
 					if (isMobileHome) addToASITable("UTILITY SERVICE INFO", newRow);
 					else addToASITable("UTILITY SERVICE INFORMATION", newRow);				
 				}
-				
+				numAdapters = allNumAdapters;
 				logDebug("Number of adapters: " + numAdapters);
 				if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
 				else {
