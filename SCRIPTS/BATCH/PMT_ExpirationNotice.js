@@ -113,8 +113,9 @@ function mainProcess()
             var expirationDate = null;
             try 
             {
-                var thisLic = new licenseObject(capId);            
-                expirationDate = thisLic.b1ExpDate;
+                //var thisLic = new licenseObject(capId);            
+                expirationDate = convertDate(getAppSpecific("Permit Expiration Date"), capId); //thisLic.b1ExpDate;
+                logDebug(expirationDate);
                 if (expirationDate == null)
                 {
                     capFilterExpirationNull++;
@@ -132,10 +133,10 @@ function mainProcess()
             /* EXAMPLE OF FILTERING BY EXPIRATION DATE */
             // move to the next record if the expiration date is not "numDaysOut" days out
             var dateOut = dateAdd(null, numDaysOut);
-            if (dateOut != expirationDate) 
+            if (daydiff(new Date(dateOut), expirationDate) != 0) 
             {
                 capFilterExpiration++;
-                logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." );
+                //logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." + daydiff(new Date(dateOut),expirationDate) );
                 continue; // move to the next record
             }
 
@@ -248,6 +249,11 @@ function getScriptText(vScriptName)
     {
         return "";
     }
+}
+
+function daydiff(first, second) 
+{
+    return Math.round((second-first)/(1000*60*60*24));
 }
 
 function exploreObject(objExplore) {

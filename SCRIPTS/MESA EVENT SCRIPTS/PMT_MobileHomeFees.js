@@ -19,8 +19,7 @@ if(
 	if (feeExists("MH010", "NEW")) voidRemoveFee("MH010");
 	// add fee unless one exists with status INVOICED
 	if (!feeExists("MH010","INVOICED")){
-		addFee("MH010", "PMT_MOBILE HOME", "FINAL", units, "N");
-		feeCount = feeCount + 1;
+		addFee("MH010", "PMT_MOBILE HOME", "FINAL", 1, "N");
 	}
 }
 // MH020
@@ -34,8 +33,7 @@ if(
 	if (feeExists("MH020", "NEW")) voidRemoveFee("MH020");
 	// add fee unless one exists with status INVOICED
 	if (!feeExists("MH020","INVOICED")){
-		addFee("MH020", "PMT_MOBILE HOME", "FINAL", units, "N");
-		feeCount = feeCount + 1;
+		addFee("MH020", "PMT_MOBILE HOME", "FINAL", 1, "N");
 	}
 }
 // MH030
@@ -46,10 +44,9 @@ if(
 	)
 	&& AInfo["Type of Work"] == "New Mobile Home"  
 ){
-	if (feeExists("MH030", "NEW")) voidRemoveFee("MH020");
+	if (feeExists("MH030", "NEW")) voidRemoveFee("MH030");
 	// add fee unless one exists with status INVOICED
 	if (!feeExists("MH030","INVOICED")){
-		addFee("MH030", "PMT_MOBILE HOME", "FINAL", units, "N");
-		feeCount = feeCount + 1;
+		addFee("MH030", "PMT_MOBILE HOME", "FINAL", 1, "N");
 	}
 }

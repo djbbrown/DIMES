@@ -36,7 +36,7 @@ try {
 		// Calculate the difference
 		feeAmount = Number(feeAmount);
 		aa.print("Adding fee: "+feeAmount);
-		updateFee("RES010","PMT_RES", "FINAL",feeAmount, "Y");
+		updateFee("MH185","PMT_MOBILE HOME", "FINAL",feeAmount, "Y");
 	}
 }
 catch (err) {

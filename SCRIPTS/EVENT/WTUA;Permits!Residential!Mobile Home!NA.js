@@ -16,3 +16,6 @@ include("PMT_MobileHomeWasteWaterImpactFee");
 
 //added by Michael Kniskern (City of Mesa) 9/22/2016
 include("PMT_MobileHomePublicSafetyImpactFee");
+
+//added by Kevin Gurney (Accela) 10/11/2016
+include("PMT_MobileHomeFees");
