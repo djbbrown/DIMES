@@ -42,3 +42,14 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		voidRemoveFee("RES280");
 	}
 }
+// Moving/Relocating
+//Spa
+if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if (typeOfWork && typeOfWork =='Moving/Relocating') {
+		if (feeExists("RES290", "NEW", "INVOICED")) voidRemoveFee("RES290");
+		addFee("RES290", "PMT_RES","FINAL", 1, "N");
+	}
+	if(typeOfWork && typeOfWork !='Moving/Relocating' && feeExists("RES290", "NEW", "INVOICED")){
+		voidRemoveFee("RES290");
+	}
+}
