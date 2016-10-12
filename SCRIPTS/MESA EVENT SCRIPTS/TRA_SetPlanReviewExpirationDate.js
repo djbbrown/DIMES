@@ -22,9 +22,14 @@ try
   var theDate = new Date(AInfo["Application Date"]);
   var planReviewDays = parseInt(AInfo["Plan Review Days"]);
 
+  comment("theDate: " + theDate);
+  comment("planReviewDays: " + planReviewDays);
+
   planReviewDays -= 1;
 
   theDate = new Date(dateAdd(theDate,planReviewDays,'Y'));
+
+  comment("theDate (after calc): " + theDate);
 
   editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(theDate),capId);
 
