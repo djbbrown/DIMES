@@ -22,6 +22,20 @@ try
   var theDate = new Date(AInfo["Application Date"]);
   var planReviewDays = parseInt(AInfo["Plan Review Days"]);
 
+  // fix for when no date is in system
+  if (theDate.getYear() <= 2016)
+  {
+    var today = new Date();
+    var currentTime = new Date().getHours();
+
+    if (currentTime >= 11)
+    {
+      today.setDate(today.getDate() + 1);
+    }
+
+    theDate = today;
+  }
+
   comment("theDate: " + theDate);
   comment("planReviewDays: " + planReviewDays);
 
