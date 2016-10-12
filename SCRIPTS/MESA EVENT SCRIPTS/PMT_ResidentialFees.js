@@ -59,7 +59,7 @@ try {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
-		totalSheets += sumASITColumn2(
+		totalSheets += sumASITColumn(
 			pRInfoTable, // Table that is going to be looked at
 			"Number of Civil Engineering Sheets", // Column to be summed
 			"INCLUDE", // Include the following
@@ -100,7 +100,7 @@ try {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
-		totalSheets += sumASITColumn2(
+		totalSheets += sumASITColumn(
 			pRInfoTable, // Table that is going to be looked at
 			"Number of Civil Engineering Sheets", // Column to be summed
 			"INCLUDE", // Include the following
@@ -133,7 +133,7 @@ try {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
-		totalSheets += sumASITColumn2(
+		totalSheets += sumASITColumn(
 			pRInfoTable, // Table that is going to be looked at
 			"Number of Civil Engineering Sheets", // Column to be summed
 			"INCLUDE", // Include the following
