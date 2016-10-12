@@ -63,12 +63,11 @@ try
                     "HOOD TEST",
                     "FIRE FINAL"
                 ];
-
+                    
                 for(inspection in inspectionArray) {
-                    var inspectionType = "";
                     var inspectionObj = inspectionArray[inspection];
 
-                    inspectionType = inspectionObj.getInspectionType().toUpperCase();
+                    var inspectionType = inspectionObj.getInspectionType().toUpperCase();
 
                     //check to see if inspection type of current inspection matches any of the inspection types in array
                     for(type in inspectionTypes) {
