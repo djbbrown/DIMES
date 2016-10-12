@@ -45,7 +45,7 @@ if	(
 		}
 	}
 	
-	//logDebug("Total Fee: " + totalFee);
+	logDebug("signTypeFound = " + signTypeFound);
 	if (signTypeFound){
 		updateFee("SGN020", "PMT_SIGNS", "FINAL", totalAdjFee, "N");
 		// Expedite Fee
