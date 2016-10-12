@@ -16,14 +16,14 @@ try {
 		fTotal = getSubGrpFeeAmt("EDEP","","RES180");
 		removeFee("RES180", "FINAL");
 		// Add the extra fee for expedite
-		updateFee("RES180", "PMT_RES", "FINAL", fTotal, "N");
+		updateFee("RES180", "PMT_RES", "FINAL", fTotal, "Y");
 	}
 	// Super Expedite Fee
 	if(AInfo["Expedite"]=="Super Expedite"){
 		fTotal = getSubGrpFeeAmt("SDEP","","RES200");
 		removeFee("RES200", "FINAL");
 		// Add the extra fee for expedite
-		updateFee("RES200", "PMT_RES", "FINAL", fTotal, "N");
+		updateFee("RES200", "PMT_RES", "FINAL", fTotal, "Y");
 	}
 }
 catch (err) {
