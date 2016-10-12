@@ -9,6 +9,7 @@
 // ASA:Permits!~!~!~
 /*==================================================================*/
 
+if (appTypeArray[1] != "Fire" && appTypeArray[1] != "Police Department") {
 tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
 
 if (tagFieldArray && tagFieldArray.length > 0) {
@@ -39,4 +40,5 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 			default: break;
 		}
 	}
+}
 }
