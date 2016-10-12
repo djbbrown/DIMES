@@ -26,11 +26,11 @@ try
     today.setDate(today.getDate() + 1);
   }
 
-  editAppSpecific("Application Date",jsDateToASIDate(today),capId)
-  //logDebug("Application Date set to: " + jsDateToASIDate(today));
-
   var traAppDate = today;
   comment("traAppDate: " + traAppDate);
+
+  editAppSpecific("Application Date",jsDateToASIDate(today),capId)
+  //logDebug("Application Date set to: " + jsDateToASIDate(today));
 }
 catch (err)
 {
