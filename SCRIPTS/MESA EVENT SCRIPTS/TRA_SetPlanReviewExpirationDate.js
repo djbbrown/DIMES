@@ -19,7 +19,8 @@
 
 try
 {
-  var theDate = new Date(AInfo["Application Date"]);
+  //var theDate = new Date(AInfo["Application Date"]);
+  var theDate = new Date(getAppSpecific["Application Date"];);
   var planReviewDays = parseInt(AInfo["Plan Review Days"]);
 
   comment("theDate: " + theDate);
