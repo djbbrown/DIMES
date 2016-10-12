@@ -12,7 +12,7 @@
 //
 // Script Run Event: ASA / ASIUA
 // Script Parents:
-//             ASA:Transportation/*/*/*
+//             	ASA:Transportation/*/*/*
 //		ASIUA;Transportation/*/*/*
 // 
 //==================================================================*/
@@ -21,6 +21,8 @@ try
 {
   var theDate = new Date(AInfo["Application Date"]);
   var planReviewDays = parseInt(AInfo["Plan Review Days"]);
+
+  planReviewDays -= 1;
 
   theDate = new Date(dateAdd(theDate,planReviewDays,'Y'));
 
