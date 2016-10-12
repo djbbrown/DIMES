@@ -50,3 +50,19 @@ if(
 		addFee("MH030", "PMT_MOBILE HOME", "FINAL", 1, "N");
 	}
 }
+
+//Expedited and Super Expedited Fees
+var totalFeeExp = getSubGrpFeeAmt("EXP");
+var totalFeeSupExp = (getSubGrpFeeAmt("SUPEXP") * 2);
+			
+// Expedite Fee
+if(AInfo["Expedite"]=="Expedite"){
+	// Add the extra fee for expedite
+	updateFee("MH190", "PMT_MOBILE HOME", "FINAL", totalFeeExp, "N");
+}
+	// Super Expedite Fee
+if(AInfo["Expedite"]=="Super Expedite"){
+	// Add the extra fee for expedite
+	updateFee("MH200", "PMT_MOBILE HOME", "FINAL", totalFeeSupExp, "N");
+}
+
