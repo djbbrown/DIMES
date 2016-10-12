@@ -30,6 +30,7 @@ try
   //logDebug("Application Date set to: " + jsDateToASIDate(today));
 
   var traAppDate = today;
+  comment("traAppDate: " + traAppDate);
 }
 catch (err)
 {
