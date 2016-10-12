@@ -1,4 +1,6 @@
 /*===================================================================
 // Script Name: FAA;Permits!Residential!Mobile Home!NA.js
 ==================================================================*/
-include("PMT_MobileHomeAssessStorageEnclosureFee");
+if(feeExists("MH070","NEW")){
+	include("PMT_MobileHomeAssessStorageEnclosureFee");
+}

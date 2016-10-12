@@ -83,7 +83,7 @@ function getSubGrpFeeAmt(subGrp){
 				thisFeeSubGrpAry = thisFeeSubGrp.split(",");
 				if (IsStrInArry(subGrp,thisFeeSubGrpAry) && (thisFee.status == spStatus)){
 					//Check to see if fee should be excluded, if not then count it.
-					if (IsStrInArry(thisFee.Code,excludedFeeCode)) {
+					if (IsStrInArry(thisFee.code,excludedFeeCode)) {
 						logDebug("Fee " + thisFee.code + " found with sub group: " + thisFee.subGroup + "; Amount: " + thisFee.amount + "; Status: " + thisFee.status);
 						logDebug("Fee " + thisFee.code + " is excluded from the Running Total: " + runFeeTot);
 					}
@@ -107,7 +107,7 @@ function getSubGrpFeeAmt(subGrp){
 				thisFeeSubGrp = thisFee.subGroup;
 				thisFeeSubGrpAry = thisFeeSubGrp.split(",");
 				if (IsStrInArry(subGrp,thisFeeSubGrpAry) && (thisFee.status == "INVOICED" || thisFee.status == "NEW")) {
-																if (IsStrInArry(thisFee.Code,excludedFeeCode)) {
+					if (IsStrInArry(thisFee.code,excludedFeeCode)) {
 						logDebug("Fee " + thisFee.code + " found with sub group: " + thisFee.subGroup + "; Amount: " + thisFee.amount + "; Status: " + thisFee.status );
 						logDebug("Fee " + thisFee.code + " is excluded from the Running Total: " + runFeeTot);
 					}

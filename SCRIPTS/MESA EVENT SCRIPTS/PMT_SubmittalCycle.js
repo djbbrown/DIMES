@@ -26,7 +26,9 @@
 
 try
 {
-    if (taskStatus("Plans Coordination") != null && taskStatus("Plans Coordination").toUpperCase() == "REVISIONS REQUIRED") 
+    var tStatus = taskStatus("Plans Coordination");
+    var tActive = isTaskActive_Mesa("Plans Coordination");
+    if ( tStatus != null && tStatus.toUpperCase() == "REVISIONS REQUIRED" && tActive == true) 
     {
         logDebug("Criteria met for script.");
 
@@ -57,6 +59,6 @@ catch (err)
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: PMT16-00339
+/* Test Record: PMT16-01012
 
 */
