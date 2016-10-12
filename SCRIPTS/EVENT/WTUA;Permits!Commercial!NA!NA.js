@@ -4,6 +4,7 @@
 ==================================================================*/
 include("PMT_ResubmittalFee");
 include("PMT_Water_Clearance_Email");
+include("PMT_SetPermitIssuedDate");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 

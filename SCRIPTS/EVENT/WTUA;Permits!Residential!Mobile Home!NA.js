@@ -4,7 +4,7 @@
 ==================================================================*/
 include("PMT_Water_Clearance_Email");
 include("PMT_MobileHomeStormwaterImpactFee");
-
+include("PMT_SetPermitIssuedDate");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 
