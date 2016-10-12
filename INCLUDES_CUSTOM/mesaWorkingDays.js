@@ -38,5 +38,12 @@ function mesaWorkingDays(curDate, daysToAdd)
 
   theDate = dateAdd(theDate, dayAdjustment, 'Y');
 
+  var fridayCheck = new Date(theDate).getDay();
+
+  if (fridayCheck == 5)
+  {
+    theDate = dateAdd(theDate, 1, 'Y');
+  }
+
   return theDate;
 }

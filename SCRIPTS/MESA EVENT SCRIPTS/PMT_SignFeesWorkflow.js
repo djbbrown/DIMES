@@ -28,6 +28,8 @@ var signTypeInfo = loadASITable("SIGN INFO");
 		var countSubdivisionDir = countASITRows(signTypeInfo, "Type of Work", "Subdivision Directional Sign" );
 		var countSubdivisionSgn = countASITRows(signTypeInfo, "Type of Work", "Subdivision Sign" );
 		var countSubdivisionWkEnd = countASITRows(signTypeInfo, "Type of Work", "Subdivision Weekend Sign");
+		var countSign = countASITRows(signTypeInfo, "Type of Work", "Sign");
+		var countFreewayLandmark = countASITRows(signTypeInfo, "Type of Work", "Freeway Landmark Monument");
 				
 		//Check to assess Grand Opening Banner fee
 		if(countBanners > 0) {
@@ -52,6 +54,22 @@ var signTypeInfo = loadASITable("SIGN INFO");
 		//Check to assess Subdivision Weekend Sign
 		if(countSubdivisionWkEnd > 0) {
 			updateFee("SGN070", "PMT_SIGNS", "FINAL", 1, "N");
+		}
+		
+		if (countDowntownDirA > 0 || countSubdivisionDir > 0 || countSubdivisionSgn > 0 || countSubdivisionWkEnd > 0 && (countSign == 0 && countFreewayLandmark == 0)) {
+			var totalFeeExp = getSubGrpFeeAmt("EXPIDITE");
+			var totalFeeSupExp = (getSubGrpFeeAmt("SUPEXP") * 2);
+			
+			// Expedite Fee
+			if(AInfo["Expedite"]=="Expedite"){
+			// Add the extra fee for expedite
+			updateFee("SGN110", "PMT_SIGNS", "FINAL", totalFeeExp, "N");
+			}
+			// Super Expedite Fee
+			if(AInfo["Expedite"]=="Super Expedite"){
+			// Add the extra fee for expedite
+			updateFee("SGN120", "PMT_SIGNS", "FINAL", totalFeeSupExp, "N");
+			}
 		}
 		
 }

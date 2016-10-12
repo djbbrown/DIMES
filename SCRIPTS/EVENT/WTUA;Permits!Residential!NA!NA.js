@@ -6,7 +6,7 @@ include("PMT_ResubmittalFee");
 //include("PMT_ImpactFeeSingleResDetached");//disabled script and added GIS validation to 221
 include("PMT_Water_Clearance_Email");
 include("PMT_ImpactFeesSingleResidence");
-
+include("PMT_SetPermitIssuedDate");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 

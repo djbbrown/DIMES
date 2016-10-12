@@ -27,7 +27,7 @@ try
   }
 
   editAppSpecific("Application Date",jsDateToASIDate(today),capId)
-  //logDebug("Application Date set to: " + jsDateToASIDate(today));
+  comment("Application Date set to: " + jsDateToASIDate(today));
 }
 catch (err)
 {
