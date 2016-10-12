@@ -106,7 +106,7 @@ try {
 			"INCLUDE", // Include the following
 			"Type of Civil Engineering Sheets", // Look in this column for items to include.
 			// List of items to include.
-			"Combination Street Improvement and Utility Plan/Profiles and Details",
+			"Combination Street Improvement and Utility Plan/Profiles and Details"
 			);
 		// Get the amount that had previously been charged.
 		//resSheetDep = feeAmount("RES020","NEW","INVOICED");
