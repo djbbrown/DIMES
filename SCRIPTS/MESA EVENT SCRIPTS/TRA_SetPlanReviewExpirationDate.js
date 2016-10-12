@@ -32,10 +32,9 @@ try
 
   var mesaDate = mesaWorkingDays(theDate, planReviewDays);
   comment("mesaDate: " + mesaDate);
+  theDate = new Date(mesaDate);
 
-  //editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(theDate),capId);
-
-  editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(mesaDate),capId);
+  editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(theDate),capId);
 
 }
 catch (err)
