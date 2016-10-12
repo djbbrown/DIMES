@@ -38,15 +38,17 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req")))){	
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
-	tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
-	tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
+	// tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
+	// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
 	valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
 	// Get the Valuation as well (ASI)
+	/*
 	if(valuationASI <25000){
 		feeAmt = 90; // Base Fee
 		feeAmt = feeAmt + (90 * tNumInsp);
 	}
-	else if (valuationASI >= 25000 && valuationASI <=200000){
+	//*/
+	if (valuationASI >= 25000 && valuationASI <=200000){
 		feeAmt = 500;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 25000)/1000);
 		feeAmt = feeAmt + (6*tNumInsp);

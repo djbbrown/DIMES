@@ -161,3 +161,28 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+
+// RES070
+try {
+	var tNumInsp = 0;
+	var valuationASI = 0;
+	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
+		// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
+		valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
+		if(valuationASI < 25000){
+			if (feeExists("RES070", "NEW", "INVOICED")) {
+				voidRemoveFee("RES070");
+			}
+			if (tNumInsp > 0){
+				addFee("RES070", "PMT_RES","FINAL", tNumInsp, "N");
+			}
+			if(!tNumInsp > 0 && feeExists("RES070", "NEW", "INVOICED")){
+				voidRemoveFee("RES070");
+			}
+		}
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
