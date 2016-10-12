@@ -6,7 +6,7 @@ include("ENF_AutopopulateZoningDistrict");
 include("ENF_CountyIslandEmail");
 
 // added by Vance Smith (Mesa)
-//include("ENF_NewRecordPriorityNormal"); // 26 temp disabled by Vance
+include("ENF_NewRecordPriorityNormal"); // 26
 
 //added by Michael Kniskern (Mesa)
 include("ENF_AddViolationOrdinanceOnViolationCode");
