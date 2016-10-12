@@ -27,11 +27,15 @@ try
 
   planReviewDays -= 1;
 
-  theDate = new Date(dateAdd(theDate,planReviewDays,'Y'));
+  //theDate = new Date(dateAdd(theDate,planReviewDays,'Y'));
+  //comment("theDate (after calc): " + theDate);
 
-  comment("theDate (after calc): " + theDate);
+  var mesaDate = mesaWorkingDays(theDate, planReviewDays);
+  comment("mesaDate: " + mesaDate);
 
-  editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(theDate),capId);
+  //editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(theDate),capId);
+
+  editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(mesaDate),capId);
 
 }
 catch (err)
