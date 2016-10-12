@@ -28,6 +28,8 @@ try
 
   editAppSpecific("Application Date",jsDateToASIDate(today),capId)
   //logDebug("Application Date set to: " + jsDateToASIDate(today));
+
+  var traAppDate = today;
 }
 catch (err)
 {
