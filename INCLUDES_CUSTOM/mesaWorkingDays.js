@@ -40,7 +40,7 @@ function mesaWorkingDays(curDate, daysToAdd)
 
   var fridayCheck = new Date(theDate).getDay();
 
-  if (fridayCheck == 4)
+  if (fridayCheck == 5)
   {
     theDate = dateAdd(theDate, 1, 'Y');
   }
