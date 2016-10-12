@@ -94,3 +94,70 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+// Script for pages fees RES040
+try {
+	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		// Count up the sheets from the ASIT
+		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
+		var totalSheets = 0;
+		totalSheets += sumASITColumn2(
+			pRInfoTable, // Table that is going to be looked at
+			"Number of Civil Engineering Sheets", // Column to be summed
+			"INCLUDE", // Include the following
+			"Type of Civil Engineering Sheets", // Look in this column for items to include.
+			// List of items to include.
+			"Combination Street Improvement and Utility Plan/Profiles and Details",
+			);
+		// Get the amount that had previously been charged.
+		//resSheetDep = feeAmount("RES020","NEW","INVOICED");
+		
+		// Multiply Actual Number of sheets by the fee 390 and subtract the resSheetDep
+		// feeLessDep = (totalSheets * 390) - resSheetDep
+		
+		if (feeExists("RES040", "NEW", "INVOICED")) {
+			voidRemoveFee("RES040");
+		}
+		addFee("RES040", "PMT_RES","FINAL", totalSheets, "N");
+		
+		if(!totalSheets > 0 && feeExists("RES040", "NEW", "INVOICED")){
+			voidRemoveFee("RES040");
+		}
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
+// Script for pages fees RES050
+try {
+	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		// Count up the sheets from the ASIT
+		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
+		var totalSheets = 0;
+		totalSheets += sumASITColumn2(
+			pRInfoTable, // Table that is going to be looked at
+			"Number of Civil Engineering Sheets", // Column to be summed
+			"INCLUDE", // Include the following
+			"Type of Civil Engineering Sheets", // Look in this column for items to include.
+			// List of items to include.
+			"Civil Cover Sheet",
+			"Single Public Utility Plan/Profiles",
+			"Grading/Site Plans and Details",
+			"R-O-W Landscaping Plans and Details",
+			"Street Lighting/Traffic Signal Plans and Details",
+			"Street Improvement Plan/Profiles and Details",
+			"Dual Public Utility Plan/Profiles and Details"
+			);
+		
+		if (feeExists("RES030", "NEW", "INVOICED")) {
+			voidRemoveFee("RES030");
+		}
+		addFee("RES030", "PMT_RES","FINAL", totalSheets, "N");
+	
+		if(!totalSheets > 0 && feeExists("RES030", "NEW", "INVOICED")){
+			voidRemoveFee("RES030");
+		}
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
