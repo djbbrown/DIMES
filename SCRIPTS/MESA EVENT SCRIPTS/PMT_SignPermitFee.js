@@ -15,10 +15,24 @@ if	(
 	){
 	var pmtSignDep = 0;
 	pmtSignDep = feeAmount("SGN010","NEW","INVOICED");
+	var pmtSignDepExp = 0;
+	pmtSignDepExp = feeAmount("SGN130","NEW","INVOICED");
+	//logDebug("pmtSignDepExp = " + pmtSignDepExp);
+	var pmtSignDepSupExp = 0;
+	pmtSignDepSupExp = feeAmount("SGN140","NEW","INVOICED");
+	//logDebug("pmtSignDepSupExp = " + pmtSignDepSupExp);
 	var totalSignValuation = AInfo["Total Sign Valuation"];
 	var totalSignSqFt = AInfo["Total Sign Square Footage"];
 	var totalFee = 102.4 + 0.03 * totalSignValuation + 0.3 * totalSignSqFt;
+	//logDebug("totalFee = " + totalFee);
+	//var totalFeeExp = getSubGrpFeeAmt("EXPIDITE","NEW");
+	//var totalFeeSupExp = getSubGrpFeeAmt("SUPEXP","NEW");
 	var totalAdjFee = totalFee - pmtSignDep;
+	var totalAdjFeeExp = totalFee - pmtSignDepExp;
+	var totalAdjFeeSupExp = ((totalFee * 2) - pmtSignDepSupExp);
+	//logDebug("totalAdjFee = " + totalAdjFee);
+	//logDebug("totalAdjFeeExp = " + totalAdjFeeExp);
+	//logDebug("totalAdjFeeSupExp = " + totalAdjFeeSupExp);
 	
 	var signTypeFound = false;
 	var signInfo = loadASITable("SIGN INFO");
@@ -37,12 +51,12 @@ if	(
 		// Expedite Fee
 		if(AInfo["Expedite"]=="Expedite"){
 		// Add the extra fee for expedite
-		updateFee("SGN110", "PMT_SIGNS", "FINAL", totalAdjFee, "N");
+		updateFee("SGN110", "PMT_SIGNS", "FINAL", totalAdjFeeExp, "N");
 		}
 		// Super Expedite Fee
 		if(AInfo["Expedite"]=="Super Expedite"){
 		// Add the extra fee for expedite
-		updateFee("SGN120", "PMT_SIGNS", "FINAL", totalAdjFee*2, "N");
+		updateFee("SGN120", "PMT_SIGNS", "FINAL", totalAdjFeeSupExp, "N");
 		}
 	}
 	
