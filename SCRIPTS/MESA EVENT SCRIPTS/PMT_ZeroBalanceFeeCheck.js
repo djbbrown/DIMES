@@ -22,20 +22,24 @@ try {
             //Check for Planning Review Task
             if(tasks[t].getTaskDescription().toUpperCase() == "PLANS DISTRIBUTION")
             {
-                //Check task status 
-                if (tasks[t].getDisposition().toUpperCase() == "ROUTED FOR REVIEW")
+                //Check if PLANS DISTRIBUTION is active
+                if(tasks[t].getActiveFlag() == "Y")
                 {
-                    //Get balance due not invoiced fees
-                    balance = getUnpaidFeeBalance();
-                    
-                    //Stop processing if Balance is not 0
-                    if(balance > 0 || balanceDue > 0)
+                    //Check task status 
+                    if (tasks[t].getDisposition().toUpperCase() == "ROUTED FOR REVIEW")
                     {
-                        //Pop up message to user
-                        showMessage = true;
-                        comment("Deposit fees have not been paid yet. You cannot proceed");
-                        //Stop the submission
-                        cancel = true;
+                        //Get balance due not invoiced fees
+                        balance = getUnpaidFeeBalance();
+                        
+                        //Stop processing if Balance is not 0
+                        if(balance > 0 || balanceDue > 0)
+                        {
+                            //Pop up message to user
+                            showMessage = true;
+                            comment("Deposit fees have not been paid yet. You cannot proceed.");
+                            //Stop the submission
+                            cancel = true;
+                        }
                     }
                 }
             }
