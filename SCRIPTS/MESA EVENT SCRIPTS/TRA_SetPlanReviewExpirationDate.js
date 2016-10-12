@@ -22,13 +22,13 @@ try
   var theDate = new Date(AInfo["Application Date"]);
   var planReviewDays = parseInt(AInfo["Plan Review Days"]);
 
-  //comment("theDate: " + theDate);
-  //comment("planReviewDays: " + planReviewDays);
+  comment("theDate: " + theDate);
+  comment("planReviewDays: " + planReviewDays);
 
   planReviewDays -= 1;
 
   //theDate = new Date(dateAdd(theDate,planReviewDays,'Y'));
-  //comment("theDate (after calc): " + theDate);
+  comment("theDate (after calc): " + theDate);
 
   var mesaDate = mesaWorkingDays(theDate, planReviewDays);
   comment("Plan Review Expiration Date: " + mesaDate);
