@@ -26,9 +26,6 @@ try
     today.setDate(today.getDate() + 1);
   }
 
-  var traAppDate = today;
-  comment("traAppDate: " + traAppDate);
-
   editAppSpecific("Application Date",jsDateToASIDate(today),capId)
   //logDebug("Application Date set to: " + jsDateToASIDate(today));
 }

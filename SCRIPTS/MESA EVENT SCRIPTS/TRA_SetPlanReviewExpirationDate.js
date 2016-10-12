@@ -19,12 +19,11 @@
 
 try
 {
-  //var theDate = new Date(AInfo["Application Date"]);
-  var theDate = new Date(getAppSpecific["Application Date"]);
+  var theDate = new Date(AInfo["Application Date"]);
   var planReviewDays = parseInt(AInfo["Plan Review Days"]);
 
-  comment("theDate: " + theDate);
-  comment("planReviewDays: " + planReviewDays);
+  //comment("theDate: " + theDate);
+  //comment("planReviewDays: " + planReviewDays);
 
   planReviewDays -= 1;
 
@@ -32,7 +31,7 @@ try
   //comment("theDate (after calc): " + theDate);
 
   var mesaDate = mesaWorkingDays(theDate, planReviewDays);
-  comment("mesaDate: " + mesaDate);
+  comment("Plan Review Expiration Date: " + mesaDate);
   theDate = new Date(mesaDate);
 
   editAppSpecific("Plan Review Expiration Date",jsDateToASIDate(theDate),capId);
