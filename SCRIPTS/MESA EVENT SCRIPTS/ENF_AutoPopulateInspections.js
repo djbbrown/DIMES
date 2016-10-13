@@ -10,10 +10,19 @@
 /*==================================================================*/
 
 try {
+    var todayDate = new Date();
+
+    //get the futureDate
+    var futureDate = new Date(mesaWorkingDays(todayDate, 3));
+    
+    //Get date difference
+    var day = 1000*60*60*24;
+    var diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
+    
     //Schedule Air Quality Inspection
-    scheduleInspection("Air Quality Inspection", 3);
+    scheduleInspection("Air Quality Inspection", diff);
     //Schedule Storm Water Inspection
-    scheduleInspection("Storm Water Inspection", 3);
+    scheduleInspection("Storm Water Inspection", diff);
     }
 catch (err)
     {
