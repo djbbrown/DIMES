@@ -18,14 +18,14 @@
 try
 {
 	if (wfTask == "Renewal Review" && wfStatus == "Renewed") {
-		logDebug("reg exp date (before): " + getAppSpecific("Registration Expiration Date"));
+		//logDebug("reg exp date (before): " + getAppSpecific("Registration Expiration Date"));
 		editAppSpecific("Registration Expiration Date", dateAdd(null, 365));
-		logDebug("reg exp date (after): " + getAppSpecific("Registration Expiration Date"));
+		//logDebug("reg exp date (after): " + getAppSpecific("Registration Expiration Date"));
 		// Copy all ASI data from Renewal record to parent Registration record
 		parentRec = getParent(); //("Planning/Group Home/Registration/NA");
 		if (parentRec) {
-			logDebug("parent found.");
-			logDebug("parent recs: " + parentRec);
+			//logDebug("parent found.");
+			//logDebug("parent recs: " + parentRec);
 			copyASIFields(capId, parentRec);
 		} else { logDebug("Script 252 => no parent records found."); }
 	}
