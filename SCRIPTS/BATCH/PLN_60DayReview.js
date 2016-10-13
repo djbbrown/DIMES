@@ -190,7 +190,7 @@ function mainProcess() // GPA16-00359
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
-    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: SCRIPTNAMEHERE Completion Summary", emailText);
+    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: PLN_60DayReview Completion Summary", emailText);
 
     /***** END ADMIN NOTIFICATION *****/
 }
