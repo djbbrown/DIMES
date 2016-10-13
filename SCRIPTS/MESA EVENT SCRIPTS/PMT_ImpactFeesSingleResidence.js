@@ -12,10 +12,10 @@
 // Fire Impact Fee  - Single Residence  Attached
 // Public Safety Impact Fee  - Single Residence  Attached Storm Water Impact Fee  - Single Residence  Attached 
 // Residential Development Impact Fee - Single Residence  Attached
-// Script Run Event: ASA, ASIUA
+// Script Run Event: ASA, WTUA
 // Script Parents:
-//            ASA;Residential!NA!NA
-//            ASIUA;Residential!NA!NA
+//            ASA;Permits!Residential!NA!NA
+//            WTUA;Permits!Residential!NA!NA
 // 
 // Notes: Added requirements from script 220 to check GIS on RDIF Detached Fees
 /*==================================================================*/
