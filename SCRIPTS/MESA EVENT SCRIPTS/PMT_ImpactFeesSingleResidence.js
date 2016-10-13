@@ -157,12 +157,12 @@ try {
 				if (!feeExists("RDIF070") && !!wasteWaterQty && wasteWaterQty > 0) addFee("RDIF070", "PMT_RDIF", "FINAL", wasteWaterQty, "N");
 			}
 			if(
-				classification != "Single Family-Attached (per dwelling unit)"
-				|| classification != "Single Family-Detached (per dwelling unit)"
-				|| classification != "Manufactured Home (on platted lot)"
-				|| classification != "Multiple-Family Residential (per dwelling unit)"
-				|| classification != "Mfg. Home/Park Model/RV (per space or lot)"
-			){
+				!(classification == "Single Family-Attached (per dwelling unit)"
+				|| classification == "Single Family-Detached (per dwelling unit)"
+				|| classification == "Manufactured Home (on platted lot)"
+				|| classification == "Multiple-Family Residential (per dwelling unit)"
+				|| classification == "Mfg. Home/Park Model/RV (per space or lot)"
+			)){
 				// remove any fees from previous classification
 				if (feeExists("RDIF170", "NEW", "INVOICED")) voidRemoveFee("RDIF170");
 				if (feeExists("RDIF220", "NEW", "INVOICED")) voidRemoveFee("RDIF220");
