@@ -9,8 +9,6 @@
 //            FAA;Permits/Residential/NA/NA
 ===================================================================*/
 try {
-	//workflow = aa.workflow.getWorkflowHistory(capId, null).getOutput();
-	//workflow = aa.workflow.getHistory(capId).getOutput();
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES230", "NEW", "INVOICED")){
 		fTotal = getSubGrpFeeAmt("PBI");
@@ -22,8 +20,6 @@ catch (err) {
 }
 // RES150
 try {
-	//workflow = aa.workflow.getWorkflowHistory(capId, null).getOutput();
-	//workflow = aa.workflow.getHistory(capId).getOutput();
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES150", "NEW", "INVOICED")){
 		fTotal = getSubGrpFeeAmt("UC2","","RES150");
@@ -35,12 +31,32 @@ catch (err) {
 }
 // RES140
 try {
-	//workflow = aa.workflow.getWorkflowHistory(capId, null).getOutput();
-	//workflow = aa.workflow.getHistory(capId).getOutput();
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES140", "NEW", "INVOICED")){
 		fTotal = getSubGrpFeeAmt("UC1","","RES140");
 		updateFee("RES140", "PMT_RES", "FINAL", fTotal, "N");
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}h
+//RES130
+try {
+	// If the fee item exists then we need to re-calc every time.
+	if(feeExists("RES130", "NEW", "INVOICED")){
+		fTotal = getSubGrpFeeAmt("UC50","","RES130");
+		updateFee("RES130", "PMT_RES", "FINAL", fTotal, "N");
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
+//RES120
+try {
+	// If the fee item exists then we need to re-calc every time.
+	if(feeExists("RES120", "NEW", "INVOICED")){
+		fTotal = getSubGrpFeeAmt("UC25","","RES120");
+		updateFee("RES120", "PMT_RES", "FINAL", fTotal, "N");
 	}
 }
 catch (err) {

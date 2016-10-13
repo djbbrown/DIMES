@@ -43,7 +43,6 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 }
 // Moving/Relocating
-//Spa
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (typeOfWork && typeOfWork =='Moving/Relocating') {
 		if (feeExists("RES290", "NEW", "INVOICED")) voidRemoveFee("RES290");
@@ -51,6 +50,16 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 	if(typeOfWork && typeOfWork !='Moving/Relocating' && feeExists("RES290", "NEW", "INVOICED")){
 		voidRemoveFee("RES290");
+	}
+}
+// Walls/Fences
+if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if (typeOfWork && typeOfWork =='Walls/Fences') {
+		if (feeExists("RES310", "NEW", "INVOICED")) voidRemoveFee("RES310");
+		addFee("RES310", "PMT_RES","FINAL", 1, "N");
+	}
+	if(typeOfWork && typeOfWork !='Moving/Relocating' && feeExists("RES310", "NEW", "INVOICED")){
+		voidRemoveFee("RES310");
 	}
 }
 // Script for pages fee RES030

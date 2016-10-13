@@ -20,7 +20,7 @@ if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submit
 	}
 	if (appMatch("Permits/Residential/NA/NA")){
 		if (feeExists("RES170", "INVOICED")) voidRemoveFee("RES170");
-		updateFee("RES170", "PMT_RES", "FINAL", feeQty, "N");		
+		updateFee("RES170", "PMT_RES", "FINAL", feeQty, "N");
 	}		
 }
 	

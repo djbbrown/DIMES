@@ -115,7 +115,7 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		fTotal = getSubGrpFeeAmt("EXP","","RES190") - prePay;
 		removeFee("RES190", "FINAL");
 		// Add the extra fee for expedite
-		updateFee("RES190", "PMT_RES", "FINAL", fTotal, "Y");
+		updateFee("RES190", "PMT_RES", "FINAL", fTotal, "N");
 	}
 	// Super Expedite Fee
 	if(AInfo["Expedite"]=="Super Expedite"){
@@ -124,7 +124,7 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		fTotal = getSubGrpFeeAmt("SEXP","","RES210") - prePay;
 		removeFee("RES210", "FINAL");
 		// Add the extra fee for expedite
-		updateFee("RES210", "PMT_RES", "FINAL", fTotal, "Y");
+		updateFee("RES210", "PMT_RES", "FINAL", fTotal, "N");
 	}
 	
 }

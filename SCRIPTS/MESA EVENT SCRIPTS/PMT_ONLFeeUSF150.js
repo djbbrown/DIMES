@@ -8,6 +8,7 @@
 // Script Run Event: ASA 
 // Script Parents:
 //            ASA;Permit/Online/NA/NA
+//            ASIUA;Permit/Online/NA/NA
 ===================================================================*/
 //Temporary Electric - USF150
 // Load the table.
