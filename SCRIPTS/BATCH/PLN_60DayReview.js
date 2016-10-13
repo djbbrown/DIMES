@@ -135,10 +135,11 @@ function mainProcess() // GPA16-00359
         var tasks = aa.workflow.getTasks(capId).getOutput();
         for (t in tasks) {
             tName = tasks[t].getTaskDescription();
-            tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
+            //tActive = tasks[t].getActiveFlag(); // we will only want to work with the active items, this should do it.
 
             // filter by passed in task name
-            if (tActive == 'Y' && tName == tName ) { 
+            if ( tName == tName ) // tActive == 'Y' && 
+            { 
                 // filter by passed in task status
                 if (tasks[t].getDisposition() == tStatus)
                 {
