@@ -190,6 +190,7 @@ if (tmpTable) {
 			}
 		if (tempSum8 == 0 && feeExists("USF100")) removeFee("USF100", "FINAL");
 		
+	/* Remarked out since dollar amount won't be known.  Staff will manually assess the USF110 fee.
 	// Water Meter 10 - 12 inch - USF110
 	// Service Size - Water 10 - 12 // just need to add the fee item, value isn't going to be know.
 		if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
@@ -205,7 +206,8 @@ if (tmpTable) {
 				updateFee("USF110","PMT_UTL_SERV", "FINAL",  tempSum1012, "N");
 			}
 		if (tempSum1012 == 0 && feeExists("USF110")) removeFee("USF110", "FINAL");
-					
+		*/
+		
 	//Water relocation - USF120
 		if (countWaterRelocation == 0 && feeExists("USF120")) removeFee("USF120", "FINAL");
 		if (countWaterRelocation > 0) {
