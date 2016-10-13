@@ -31,12 +31,12 @@ This should run on the first Monday in June.
 function mainProcess() // GPA16-00359
 {
     /*** ONLY CONTINUE IF THIS IS THE 1ST MONDAY OF JUNE OR IF WE ARE TESTING ***/
-    if ( batchJobName == "") // batchJobName is empty when testing in script tester
+    if ( batchJobName == "" || testingScript == true) // batchJobName is empty when testing in script tester
     {
         logDebug("TESTING");
 
     }
-    else // see if this is the fist Monday in June...
+    else // see if this is the first Monday in June...
     {
         var curMonth = new Date().getMonth();
         if ( curMonth != 7 ) { 
@@ -56,17 +56,7 @@ function mainProcess() // GPA16-00359
      * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
     var capCount = 0;
     var capFilterType = 0;
-    //var capFilterAppType = 0; 
-    //var capFilterStatus = 0;
-    //var capFilterFeesOrDocs = 0;
-    //var capFilterFileDate = 0;
-    //var capFilterExpiration = 0; 
-    //var capFilterExpirationNull = 0; 
-    //var capFilterExpirationGet = 0; 
-    //var capFilterDaysPastExp = 0;
-    //var capFilterDaysPastDenied = 0;
     var capFilterTaskNotFound = 0;
-    //var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
     var myCaps = null;
 
@@ -195,18 +185,7 @@ function mainProcess() // GPA16-00359
 
     /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */
     logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
-    //logDebugAndEmail("Skipped " + capFilterAppType + " due to record type mismatch - filter on app type ");
-    //logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");
-    //logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed");
-    //logDebugAndEmail("Skipped " + capFilterFileDate + " due to file date not being " + numDaysOut + " days out");
-    //logDebugAndEmail("Skipped " + capFilterExpiration + " due to not being " + numDaysOut + " days out from expiration");
-    //logDebugAndEmail("Skipped " + capFilterExpirationNull + " due to expiration date being null ");
-    //logDebugAndEmail("Skipped " + capFilterExpirationGet + " due to error getting expiration date (object null)");
-    //logDebugAndEmail("Skipped " + capFilterNotExpiredYet + " due to record not expiring yet");
-    //logDebugAndEmail("Skipped " + capFilterDaysPastExp + " due to record expiring >= 365 days ago");
-    //logDebugAndEmail("Skipped " + capFilterDaysPastDenied + " due to record not " + numDaysOut + " past being denied");
     logDebugAndEmail("Skipped " + capFilterTaskNotFound + " due to task with the appropriate status not being found");
-    //logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
 
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
@@ -642,9 +621,9 @@ try
         aa.env.setValue("taskName", "Planning Review");
         aa.env.setValue("tStatus", "60 Day Review");
         aa.env.setValue("numDaysOut", "60");
-        //aa.env.setValue("emailTemplate", "PMT_AnnualFacilitiesIdleApplication15Day");
-        aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
-        aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
+        aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov");
+        aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov");
+        aa.env.setValue("testingScript", "true");
     }    
     
     // this is the start of the body of the summary email
@@ -660,9 +639,9 @@ try
     var taskName = getParam("taskName"); // the taskname to filter by from the workflow
     var tStatus = getParam("tStatus"); // the taskstatus to filter by from the workflow
     var numDaysOut = getParam("numDaysOut"); // the number of days out to set ASI fields
-    //var emailTemplate = getParam("emailTemplate"); // the email template to use for notifications
     var emailAdminTo = getParam("emailAdminTo"); // who to send the admin summary email to
     var emailAdminCc = getParam("emailAdminCc"); // who to cc on the admin summary email
+    var testingScript = getParam("testingScript"); // set to true to test this script (have it run now, not 1st Monday in June)
 
     /*----------------------------------------------------------------------------------------------------/
     |
