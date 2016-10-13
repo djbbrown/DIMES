@@ -6,7 +6,7 @@
 // Testing Cap: COB16-00010
 // Script Parents:ASA;Enforcement/Environmental/Construction/NA
 // Version   |Date      |Engineer         |Details
-//  1.0      |10/13/16  |Steve Veloudos   |Initial Release
+//  1.0      |10/13/16  |Steve Veloudos   |Initial Release 
 /*==================================================================*/
 
 try {
