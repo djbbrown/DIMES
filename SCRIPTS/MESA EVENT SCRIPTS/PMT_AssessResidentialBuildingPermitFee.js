@@ -35,18 +35,20 @@ if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus ==
 	addFee("ONL010","PMT_ONL", "FINAL",  tNumInsp, "N");
 }
 else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
-		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req")))){	
+		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req")))){
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
-	tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
-	tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
+	// tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
+	// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
 	valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
 	// Get the Valuation as well (ASI)
+	/*
 	if(valuationASI <25000){
 		feeAmt = 90; // Base Fee
 		feeAmt = feeAmt + (90 * tNumInsp);
 	}
-	else if (valuationASI >= 25000 && valuationASI <=200000){
+	//*/
+	if (valuationASI >= 25000 && valuationASI <=200000){
 		feeAmt = 500;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 25000)/1000);
 		feeAmt = feeAmt + (6*tNumInsp);
@@ -105,4 +107,24 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		aa.print("Adding fee: "+feeAdjAmt);
 		updateFee("MH180", "PMT_MOBILE HOME", "FINAL",feeAdjAmt, "N");
 	}
+	// Assess the Expedited Premium
+	// Expedite Fee
+	if(AInfo["Expedite"]=="Expedite"){
+		// Get the amount that was on the deposit and then reduce the fee.
+		prePay = feeAmount("RES180","NEW","INVOICED");
+		fTotal = getSubGrpFeeAmt("EXP","","RES190") - prePay;
+		removeFee("RES190", "FINAL");
+		// Add the extra fee for expedite
+		updateFee("RES190", "PMT_RES", "FINAL", fTotal, "Y");
+	}
+	// Super Expedite Fee
+	if(AInfo["Expedite"]=="Super Expedite"){
+		// Get the amount that was on the deposit and then reduce the fee.
+		prePay = feeAmount("RES200","NEW","INVOICED");
+		fTotal = getSubGrpFeeAmt("SEXP","","RES210") - prePay;
+		removeFee("RES210", "FINAL");
+		// Add the extra fee for expedite
+		updateFee("RES210", "PMT_RES", "FINAL", fTotal, "Y");
+	}
+	
 }

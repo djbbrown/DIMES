@@ -20,3 +20,29 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+// RES150
+try {
+	//workflow = aa.workflow.getWorkflowHistory(capId, null).getOutput();
+	//workflow = aa.workflow.getHistory(capId).getOutput();
+	// If the fee item exists then we need to re-calc every time.
+	if(feeExists("RES150", "NEW", "INVOICED")){
+		fTotal = getSubGrpFeeAmt("UC2","","RES150");
+		updateFee("RES150", "PMT_RES", "FINAL", fTotal, "N");
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
+// RES140
+try {
+	//workflow = aa.workflow.getWorkflowHistory(capId, null).getOutput();
+	//workflow = aa.workflow.getHistory(capId).getOutput();
+	// If the fee item exists then we need to re-calc every time.
+	if(feeExists("RES140", "NEW", "INVOICED")){
+		fTotal = getSubGrpFeeAmt("UC1","","RES140");
+		updateFee("RES140", "PMT_RES", "FINAL", fTotal, "N");
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}

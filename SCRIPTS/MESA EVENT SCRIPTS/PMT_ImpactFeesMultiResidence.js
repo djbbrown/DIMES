@@ -148,6 +148,17 @@ try {
 				} else {
 					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF030 not set - hasWaterTag = true or a fee with status INVOICED already exists");
 				}
+				
+				// water fee  = (RDIF030, PMT_RDIF)
+				// remove existing fee with status NEW if found
+				if (feeExists("RDIF050", "NEW")) voidRemoveFee("RDIF050");
+				// add fee if no water tag, and no fee exists with status INVOICED
+				if(hasWaterTag == false && !feeExists("RDIF050", "INVOICED")){
+					addFee("RDIF050", "PMT_RDIF", "FINAL", units, "N");
+					feeCount = feeCount + 1;
+				} else {
+					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF050 not set - hasWaterTag = true or a fee with status INVOICED already exists");
+				}
 
 				// stormWater fee = (RDIF280, PMT_RDIF) 
 				// remove existing fee with status NEW if found

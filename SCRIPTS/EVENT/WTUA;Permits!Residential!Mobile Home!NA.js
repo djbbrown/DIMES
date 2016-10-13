@@ -4,7 +4,7 @@
 ==================================================================*/
 include("PMT_Water_Clearance_Email");
 include("PMT_MobileHomeStormwaterImpactFee");
-
+include("PMT_SetPermitIssuedDate");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 
@@ -19,3 +19,6 @@ include("PMT_MobileHomePublicSafetyImpactFee");
 
 //added by Kevin Gurney (Accela) 10/11/2016
 include("PMT_MobileHomeFees");
+
+//added by Kevin Gurney (Accela) 10/11/2016
+include("PMT_AssessTechFee");
