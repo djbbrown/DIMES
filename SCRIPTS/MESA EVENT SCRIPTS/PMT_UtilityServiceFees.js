@@ -138,7 +138,7 @@ if (tmpTable) {
 		if (tempSum3 == 0 && feeExists("USF070")) removeFee("USF070", "FINAL");
 		
 	//
-	//not tested yet		//USF080 Service Type - Water Meter: Domestic or Water Meter: Landscaping   
+	//USF080 Service Type - Water Meter: Domestic or Water Meter: Landscaping   
 	// Service Size - Water - 4
 		if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
 			var tempSum4=0;
@@ -190,7 +190,7 @@ if (tmpTable) {
 			}
 		if (tempSum8 == 0 && feeExists("USF100")) removeFee("USF100", "FINAL");
 		
-	// Water Meter 10 - 12 inch
+	// Water Meter 10 - 12 inch - USF110
 	// Service Size - Water 10 - 12 // just need to add the fee item, value isn't going to be know.
 		if (countWaterMeterDom > 0 || countWaterMeterLand > 0) {
 			var tempSum1012=0;
@@ -198,7 +198,7 @@ if (tmpTable) {
 				thisRow = tmpTable[rowIndex];
 				if ((thisRow["Service Type"].fieldValue == "Water Meter: Domestic" || thisRow["Service Type"].fieldValue == "Water Meter: Landscaping") && (thisRow["Service Size"].fieldValue == 'Water - 10" or 12"'))  {    
 					if (!isNaN(parseFloat(thisRow["Qty of Meters"].fieldValue)))
-						tempSum1012 = tempSum8 + parseFloat(thisRow["Qty of Meters"].fieldValue);
+						tempSum1012 = tempSum1012 + parseFloat(thisRow["Qty of Meters"].fieldValue);
 				}
 			}
 			if (tempSum1012 > 0)
@@ -323,6 +323,7 @@ if (tmpTable) {
 				updateFee("USF210","PMT_UTL_SERV", "FINAL",  waterSum3, "N");
 		}
 		if (waterSum3 == 0 && feeExists("USF210")) removeFee("USF210", "FINAL");
+	/* Remarking fee out since not used
 	//USF220 Service Type - Water Service 
 	// Service Size - Water - 3.0
 		if (countWaterService > 0) {
@@ -342,6 +343,7 @@ if (tmpTable) {
 				updateFee("USF220","PMT_UTL_SERV", "FINAL",  waterSum3, "N");
 		}
 		if (waterSum3 == 0 && feeExists("USF220")) removeFee("USF220", "FINAL");
+		*/
 }
 // This should really only execute if the table fails to load
 // which would be exactly what we woulhd want.
