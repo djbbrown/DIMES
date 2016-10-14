@@ -138,8 +138,14 @@ catch (err) {
 }
 
 
-if (appTypeArray[1] == 'Commercial' && ((wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
-		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req")))){
+var valuationASI = 0;
+if (
+	appTypeArray[1] == 'Commercial' 
+	&& (
+		(wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
+		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req"))
+	)
+){
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
 	// tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
@@ -158,22 +164,22 @@ if (appTypeArray[1] == 'Commercial' && ((wfTask == "Plans Coordination" && match
 		feeAmt = feeAmt + (10*tNumInsp);
 	}
 	else if (valuationASI > 500000 && valuationASI <=1000000){
-		feeAmt = 1550;  // Base Fee
+		feeAmt = 5250;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 500000)/1000);
 		feeAmt = feeAmt + (5*tNumInsp);
 	}
 	else if (valuationASI > 1000000 && valuationASI <=5000000){
-		feeAmt = 4250;  // Base Fee
+		feeAmt = 7750;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 1000000)/1000);
 		feeAmt = feeAmt + (4*tNumInsp);
 	}
 	else if (valuationASI > 5000000 && valuationASI <=10000000){
-		feeAmt = 4250;  // Base Fee
+		feeAmt = 23750;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 5000000)/1000);
 		feeAmt = feeAmt + (2*tNumInsp);
 	}
 	else if (valuationASI > 10000000){
-		feeAmt = 13250;  // Base Fee
+		feeAmt = 33750;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 10000000)/1000);
 		feeAmt = feeAmt + (1*tNumInsp);
 	}
@@ -182,7 +188,11 @@ if (appTypeArray[1] == 'Commercial' && ((wfTask == "Plans Coordination" && match
 	// Residential/NA/NA First
 	// Before the amount for Residential/NA/NA can be fully calculated we must
 	// get the amount that had been put on deposit and paid.
-	if(feeAmt > 0 && appTypeArray[2]=='NA' && exists(typeOfWork,residential)){
+	if(
+		feeAmt > 0
+		&& appTypeArray[2]=='NA'
+		//&& exists(typeOfWork,residential)
+	){
 		//addFee(fcode, fsched, fperiod, fqty, finvoice)
 		var prePay = 0;
 		// Get all feeitems on the record
@@ -203,11 +213,13 @@ if (appTypeArray[1] == 'Commercial' && ((wfTask == "Plans Coordination" && match
 			}
 		}
 		// Calculate the difference
+		logDebug("Fee prior to reducing based on deposit: "+feeAmt);
+		logDebug("Deposit: "+prePay);
 		feeAmt = feeAmt - prePay;
 		aa.print("Adding fee: "+feeAmt);
 		updateFee("COM040","PMT_COM", "FINAL",feeAmt, "N");
 	}
-	
+}
 // COM050
 	try {
 		var tNumInsp = 0;
@@ -262,5 +274,4 @@ if (
 		// Add the extra fee for expedite
 		updateFee("COM165", "PMT_COM", "FINAL", fTotal, "N");
 	}
-}
 }
