@@ -13,7 +13,7 @@ try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM430", "NEW", "INVOICED")){
 		fTotal = getSubGrpFeeAmt("USF","","COM430");
-		updateFee("COM430", "PMT_RES", "FINAL", fTotal, "N");
+		updateFee("COM430", "PMT_COM", "FINAL", fTotal, "N");
 	}
 }
 catch (err) {
@@ -26,7 +26,7 @@ try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM290", "NEW", "INVOICED")){
 		fTotal = feeAmount("COM040","NEW","INVOICED");
-		updateFee("COM290", "PMT_RES", "FINAL", fTotal, "N");
+		updateFee("COM290", "PMT_COM", "FINAL", fTotal, "N");
 	}
 }
 catch (err) {
@@ -39,10 +39,18 @@ try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM280", "NEW", "INVOICED")){
 		fTotal = feeAmount("COM040","NEW","INVOICED");
-		updateFee("COM280", "PMT_RES", "FINAL", fTotal, "N");
+		updateFee("COM280", "PMT_COM", "FINAL", fTotal, "N");
 	}
 }
 catch (err) {
 	logDebug("Error assessing fee COM280")
 	aa.print("A JavaScript Error occurred: " + err.message);
+}
+// COM110
+try {
+	// If the fee item exists then we need to re-calc every time.
+	if(feeExists("COM110", "NEW", "INVOICED")){
+		fTotal = getSubGrpFeeAmt("UC1","","COM110");
+		updateFee("COM110", "PMT_COM", "FINAL", fTotal, "N");
+	}
 }
