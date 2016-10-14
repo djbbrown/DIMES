@@ -108,12 +108,12 @@ try {
 			var wmq2 = getAppSpecific("Water Meter Qty 2");
 			var wmq3 = getAppSpecific("Water Meter Qty 3");
 			var wmq4 = getAppSpecific("Water Meter Qty 4");
-
+/*
 			logDebug("wmq1: " + wmq1);
 			logDebug("wmq2: " + wmq2);
 			logDebug("wmq3: " + wmq3);
 			logDebug("wmq4: " + wmq4);
-			
+*/			
 			var wwms1 = getAppSpecific("Water/Wastewater Meter Size 1");
 			var wwms2 = getAppSpecific("Water/Wastewater Meter Size 2");
 			var wwms3 = getAppSpecific("Water/Wastewater Meter Size 3");
@@ -135,12 +135,12 @@ try {
 			// http://unicode.org/cldr/utility/confusables.jsp?a=%22&r=None
 			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
 			
-			
+/*			
 			logDebug("wwms1: " + wwms1);
 			logDebug("wwms2: " + wwms2);
 			logDebug("wwms3: " + wwms3);
 			logDebug("wwms4: " + wwms4);
-			
+*/			
 			
 			var waterNonResTotal = 0; // Water - Non-Residential (RDIF057)
 			var wasteWaterNonResTotal = 0; // Waste Water - Non-Residential (RDIF107)
@@ -492,11 +492,12 @@ try {
 			//============
 			// log totals:
 			//============
+/*			
 			logDebug("RDIF057: Water (Non-Residential) total: " + waterNonResTotal);
 			logDebug("RDIF107: Wastewater (Non-Residential) total: " + wasteWaterNonResTotal);
 			logDebug("RDIF055: Water (Hotel/Motel) total: " + waterHotMotTotal);
 			logDebug("RDIF105: Water (Hotel/Motel) total: " + wasteWaterHotMotTotal);
-			
+*/			
 			//===================================================================
 			// All fee totals should be calculated by now - add them if necessary
 			//===================================================================
@@ -527,7 +528,7 @@ try {
 				}
 			}
 			
-			logDebug("PMT_CommercialImpactFees - Fees successfully set!");
+			//logDebug("PMT_CommercialImpactFees - Fees successfully set!");
         }else {
             logDebug("PMT_CommercialImpactFees - No Action - Classification not found.");
         }
