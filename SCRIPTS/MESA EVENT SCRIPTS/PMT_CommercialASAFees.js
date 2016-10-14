@@ -10,6 +10,11 @@
 //             
 /*==================================================================*/
 
+// COM010 Commercial Permit Deposit
+var valuation = AInfo["Total Valuation"]
+if (feeExists("COM010", "NEW", "INVOICED")) voidRemoveFee("COM010");
+addFee("COM010", "PMT_COM", "FINAL", valuation, "Y");
+
 var classification = AInfo["Classification Type"];
 
 //COM400
@@ -38,7 +43,7 @@ if (classification && classification =='Holiday Lot') {
 if(classification && classification !='Construction Trailer' && feeExists("COM380", "NEW", "INVOICED")){
 	voidRemoveFee("COM380");
 }
-// Deposite COM020
+// Deposit COM020
 try {
 	// Count up the sheets from the ASIT
 	pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
