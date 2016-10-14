@@ -16,11 +16,11 @@ var classOfWork = (AInfo["Classification Type"] != undefined) ? AInfo["Classific
 // Walls/Fences
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (classOfWork && classOfWork =='Walls/Fences') {
-		if (feeExists("RES320", "NEW", "INVOICED")) voidRemoveFee("RES310");
-		addFee("RES320", "PMT_COM","FINAL", 1, "N");
+		if (feeExists("COM320", "NEW", "INVOICED")) voidRemoveFee("RES310");
+		addFee("COM320", "PMT_COM","FINAL", 1, "N");
 	}
-	if(classOfWork && classOfWork !='Moving/Relocating' && feeExists("RES320", "NEW", "INVOICED")){
-		voidRemoveFee("RES320");
+	if(classOfWork && classOfWork !='Moving/Relocating' && feeExists("COM320", "NEW", "INVOICED")){
+		voidRemoveFee("COM320");
 	}
 }
 
@@ -228,4 +228,30 @@ if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" && matc
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		if (feeExists("COM120", "NEW", "INVOICED")) voidRemoveFee("RES310");
 		updateFee("COM120", "PMT_COM","FINAL", 1, "N");
+}
+
+if (
+		(wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
+		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req"))
+){
+	// Assess the Expedited Premium
+	// Expedite Fee
+	if(AInfo["Expedite"]=="Expedite"){
+		// Get the amount that was on the deposit and then reduce the fee.
+		prePay = feeAmount("COM150","NEW","INVOICED");
+		fTotal = getSubGrpFeeAmt("EXP","","COM155") - prePay;
+		removeFee("COM155", "FINAL");
+		// Add the extra fee for expedite
+		updateFee("COM155", "PMT_COM", "FINAL", fTotal, "N");
+	}
+	// Super Expedite Fee
+	if(AInfo["Expedite"]=="Super Expedite"){
+		// Get the amount that was on the deposit and then reduce the fee.
+		prePay = feeAmount("COM160","NEW","INVOICED");
+		fTotal = getSubGrpFeeAmt("SEXP","","COM165") - prePay;
+		removeFee("COM165", "FINAL");
+		// Add the extra fee for expedite
+		updateFee("COM165", "PMT_COM", "FINAL", fTotal, "N");
+	}
+}
 }

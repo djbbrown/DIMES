@@ -57,3 +57,24 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+
+// Deposits
+try {
+	// Expedite Fee
+	if(AInfo["Expedite"]=="Expedite"){
+		fTotal = getSubGrpFeeAmt("EDEP","","COM150");
+		removeFee("COM150", "FINAL");
+		// Add the extra fee for expedite
+		updateFee("COM150", "PMT_COM", "FINAL", fTotal, "Y");
+	}
+	// Super Expedite Fee
+	if(AInfo["Expedite"]=="Super Expedite"){
+		fTotal = getSubGrpFeeAmt("SDEP","","COM160");
+		removeFee("COM160", "FINAL");
+		// Add the extra fee for expedite
+		updateFee("COM160", "PMT_COM", "FINAL", fTotal, "Y");
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
