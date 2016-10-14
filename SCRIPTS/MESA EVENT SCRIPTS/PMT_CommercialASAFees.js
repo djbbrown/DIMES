@@ -11,10 +11,10 @@
 /*==================================================================*/
 
 // COM010 Commercial Permit Deposit
-var valuation = AInfo["Total Valuation"]
+var valuation = parseFloat(AInfo["Total Valuation"])|0;
 if (feeExists("COM010", "NEW", "INVOICED")) voidRemoveFee("COM010");
-addFee("COM010", "PMT_COM", "FINAL", valuation, "Y");
-
+if(valuation>0){addFee("COM010", "PMT_COM", "FINAL", valuation, "Y")};
+//*/
 var classification = AInfo["Classification Type"];
 
 //COM400
@@ -53,7 +53,9 @@ try {
 	if (feeExists("COM020", "NEW", "INVOICED")) {
 		voidRemoveFee("COM020");
 	}
-	addFee("COM020", "PMT_COM","FINAL", totalSheets, "N");
+	if(totalSheets > 0 ){
+		addFee("COM020", "PMT_COM","FINAL", totalSheets, "N");
+	}
 	if(!totalSheets > 0 && feeExists("COM020", "NEW", "INVOICED")){
 		logDebug("")
 		voidRemoveFee("COM020");
@@ -82,4 +84,4 @@ try {
 }
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
-}
+}//*/
