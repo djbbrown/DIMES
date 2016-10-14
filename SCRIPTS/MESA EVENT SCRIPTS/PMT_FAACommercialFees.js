@@ -54,6 +54,10 @@ try {
 		updateFee("COM110", "PMT_COM", "FINAL", fTotal, "N");
 	}
 }
+catch (err) {
+	logDebug("Error assessing fee COM110")
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
 //COM115
 try {
 	// If the fee item exists then we need to re-calc every time.
@@ -61,4 +65,8 @@ try {
 		fTotal = getSubGrpFeeAmt("UC2","","COM115");
 		updateFee("COM115", "PMT_COM", "FINAL", fTotal, "N");
 	}
+}
+catch (err) {
+	logDebug("Error assessing fee COM115")
+	aa.print("A JavaScript Error occurred: " + err.message);
 }
