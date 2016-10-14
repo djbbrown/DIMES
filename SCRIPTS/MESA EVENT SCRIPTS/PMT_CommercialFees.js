@@ -48,7 +48,7 @@ try {
 			"Dual Public Utility Plan/Profiles and Details"
 			);
 		// Get the amount that had previously been charged.
-		resSheetDep = feeAmount("RES020","NEW","INVOICED");
+		resSheetDep = feeAmount("COM020","NEW","INVOICED");
 		
 		// Multiply Actual Number of sheets by the fee 390 and subtract the resSheetDep
 		feeLessDep = (totalSheets * 390) - resSheetDep
