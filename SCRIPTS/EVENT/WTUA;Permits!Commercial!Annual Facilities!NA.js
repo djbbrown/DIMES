@@ -4,3 +4,4 @@
 ==================================================================*/
 include("PMT_Annual_Facilities_Expiration");
 include("PMT_SetPermitIssuedDate");
+include("PMT_CommercialFees");

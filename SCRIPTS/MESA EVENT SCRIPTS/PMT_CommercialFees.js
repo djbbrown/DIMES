@@ -28,7 +28,7 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 try {
 	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		// Count up the sheets from the ASIT
-		pRInfoTable = loadASITable("PLANREVIEWINFORMATION");
+		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
 		totalSheets += sumASITColumn(
 			pRInfoTable, // Table that is going to be looked at

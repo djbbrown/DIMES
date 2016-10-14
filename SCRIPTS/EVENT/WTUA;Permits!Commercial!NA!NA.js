@@ -13,4 +13,5 @@ include("PMT_ImpactFeesMultiResidence");
 
 include("PMT_CommercialImpactFees"); // Script 337
 include("PMT_ComDeferredSubmittal");
+include("PMT_CommercialFees");
 include("PMT_AssessTechFee"); // must be run last
