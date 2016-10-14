@@ -146,11 +146,12 @@ if (
 		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req"))
 	)
 ){
+	feemt = 0;
 	// Get the value for the total number of inspections (ASI)
 	// this could be one of two ASI values so we need to be careful about this.
 	// tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
 	// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
-	valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
+	valuationASI = parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
 	// Get the Valuation as well (ASI)
 	/*
 	if(valuationASI <25000){
@@ -221,29 +222,29 @@ if (
 	}
 }
 // COM050
-	try {
-		var tNumInsp = 0;
-		var valuationASI = 0;
-		if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
-			tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
-			// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
-			valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
-			if(valuationASI < 25000){
-				if (feeExists("COM050", "NEW", "INVOICED")) {
-					voidRemoveFee("COM050");
-				}
-				if (tNumInsp > 0){
-					addFee("COM050", "PMT_COM","FINAL", tNumInsp, "N");
-				}
-				if(!tNumInsp > 0 && feeExists("COM050", "NEW", "INVOICED")){
-					voidRemoveFee("COM050");
-				}
+try {
+	var tNumInsp = 0;
+	var valuationASI = 0;
+	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
+		// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
+		valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
+		if(valuationASI < 25000){
+			if (feeExists("COM050", "NEW", "INVOICED")) {
+				voidRemoveFee("COM050");
+			}
+			if (tNumInsp > 0){
+				addFee("COM050", "PMT_COM","FINAL", tNumInsp, "N");
+			}
+			if(!tNumInsp > 0 && feeExists("COM050", "NEW", "INVOICED")){
+				voidRemoveFee("COM050");
 			}
 		}
 	}
-	catch (err) {
-		aa.print("A JavaScript Error occurred: " + err.message);
-	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
 	
 // COM120
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
