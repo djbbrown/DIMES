@@ -16,10 +16,10 @@ var classOfWork = (AInfo["Classification Type"] != undefined) ? AInfo["Classific
 // Walls/Fences
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (classOfWork && classOfWork =='Walls/Fences') {
-		if (feeExists("COM320", "NEW", "INVOICED")) voidRemoveFee("RES310");
+		if (feeExists("COM320", "NEW", "INVOICED")){voidRemoveFee("RES310");}
 		addFee("COM320", "PMT_COM","FINAL", 1, "N");
 	}
-	if(classOfWork && classOfWork !='Moving/Relocating' && feeExists("COM320", "NEW", "INVOICED")){
+	if(classOfWork && classOfWork !='Walls/Fences' && feeExists("COM320", "NEW", "INVOICED")){
 		voidRemoveFee("COM320");
 	}
 }
