@@ -18,7 +18,7 @@ addFee("COM010", "PMT_COM", "FINAL", valuation, "Y");
 var classification = AInfo["Classification Type"];
 
 //COM400
-if (classification && classification =='Night Watchman’s Quarters') {
+if (classification && classification =='Night Watchmans Quarters') {
 	if (feeExists("COM400", "NEW", "INVOICED")) voidRemoveFee("COM400");
 	addFee("COM400", "PMT_COM", "FINAL", 1, "N");
 }
