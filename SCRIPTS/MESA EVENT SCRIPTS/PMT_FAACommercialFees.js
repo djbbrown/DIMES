@@ -54,3 +54,11 @@ try {
 		updateFee("COM110", "PMT_COM", "FINAL", fTotal, "N");
 	}
 }
+//COM115
+try {
+	// If the fee item exists then we need to re-calc every time.
+	if(feeExists("COM115", "NEW", "INVOICED")){
+		fTotal = getSubGrpFeeAmt("UC2","","COM115");
+		updateFee("COM115", "PMT_COM", "FINAL", fTotal, "N");
+	}
+}
