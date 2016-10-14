@@ -16,11 +16,11 @@ var classOfWork = (AInfo["Classification Type"] != undefined) ? AInfo["Classific
 // Walls/Fences
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (classOfWork && classOfWork =='Walls/Fences') {
-		if (feeExists("RES310", "NEW", "INVOICED")) voidRemoveFee("RES310");
-		addFee("RES310", "PMT_COM","FINAL", 1, "N");
+		if (feeExists("RES320", "NEW", "INVOICED")) voidRemoveFee("RES310");
+		addFee("RES320", "PMT_COM","FINAL", 1, "N");
 	}
-	if(classOfWork && classOfWork !='Moving/Relocating' && feeExists("RES310", "NEW", "INVOICED")){
-		voidRemoveFee("RES310");
+	if(classOfWork && classOfWork !='Moving/Relocating' && feeExists("RES320", "NEW", "INVOICED")){
+		voidRemoveFee("RES320");
 	}
 }
 
@@ -223,3 +223,9 @@ if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" && matc
 	catch (err) {
 		aa.print("A JavaScript Error occurred: " + err.message);
 	}
+	
+// COM120
+if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		if (feeExists("COM120", "NEW", "INVOICED")) voidRemoveFee("RES310");
+		updateFee("COM120", "PMT_COM","FINAL", 1, "N");
+}
