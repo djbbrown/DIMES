@@ -103,15 +103,44 @@ try {
 			//==============================================
 			// Commercial Water and Waster Water Impact Fees
 			//==============================================
+
 			var wmq1 = getAppSpecific("Water Meter Qty 1");
 			var wmq2 = getAppSpecific("Water Meter Qty 2");
 			var wmq3 = getAppSpecific("Water Meter Qty 3");
 			var wmq4 = getAppSpecific("Water Meter Qty 4");
+
+			logDebug("wmq1: " + wmq1);
+			logDebug("wmq2: " + wmq2);
+			logDebug("wmq3: " + wmq3);
+			logDebug("wmq4: " + wmq4);
 			
 			var wwms1 = getAppSpecific("Water/Wastewater Meter Size 1");
 			var wwms2 = getAppSpecific("Water/Wastewater Meter Size 2");
 			var wwms3 = getAppSpecific("Water/Wastewater Meter Size 3");
 			var wwms4 = getAppSpecific("Water/Wastewater Meter Size 4");
+			
+			/* fix wonky unicode 'right double quotes' in valve size values
+			 * (i.e. replace them with the kind of double quote that we
+			 * can actually type on our keyboards, so we're able to match
+			 * against valve sizes in our switch statements when a double
+			 * quote is used to represent the 'inch' portion of the size).
+			*/
+			if (wwms1) { wwms1 = wwms1.replace("\u201D", '"'); }
+			if (wwms2) { wwms2 = wwms2.replace("\u201D", '"'); }
+			if (wwms3) { wwms3 = wwms3.replace("\u201D", '"'); }
+			if (wwms4) { wwms4 = wwms4.replace("\u201D", '"'); }
+
+			// see the following for more info (plus Mike's email from W, 9/28/2016, 9:53 A.M.:
+			// http://stackoverflow.com/questions/18735921/are-there-different-types-of-double-quotes-in-utf-8-php-str-replace
+			// http://unicode.org/cldr/utility/confusables.jsp?a=%22&r=None
+			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
+			
+			
+			logDebug("wwms1: " + wwms1);
+			logDebug("wwms2: " + wwms2);
+			logDebug("wwms3: " + wwms3);
+			logDebug("wwms4: " + wwms4);
+			
 			
 			var waterNonResTotal = 0; // Water - Non-Residential (RDIF057)
 			var wasteWaterNonResTotal = 0; // Waste Water - Non-Residential (RDIF107)
@@ -142,9 +171,10 @@ try {
 
 		
 			/* Non-Residential (per sq ft) */
+			//logDebug("nonRes: " + nonRes + " && !inAsuOrWaterArea: " + !inAsuOrWaterArea);
 			if (nonRes && !inAsuOrWaterArea) {
-				if (wmq1 && wmq1 > 0) {
-					switch("" + wwms1) {
+				if (wwms1 && wmq1 && wmq1 > 0) {
+					switch("" + wwms1) { // 
 						case 'Com-3/4"':
 							waterNonResTotal += wmq1 * wtrThreeQuarterInch;
 							wasteWaterNonResTotal += wmq1 * swrThreeQuarterInch;
@@ -182,7 +212,7 @@ try {
 					}
 				}
 
-				if (wmq2 && wmq2 > 0) {
+				if (wwms2 && wmq2 && wmq2 > 0) {
 					switch("" + wwms2) {
 						case 'Com-3/4"':
 							waterNonResTotal += wmq2 * wtrThreeQuarterInch;
@@ -221,7 +251,7 @@ try {
 					}
 				}
 
-				if (wmq3 && wmq3 > 0) {
+				if (wwms3 && wmq3 && wmq3 > 0) {
 					switch("" + wwms3) {
 						case 'Com-3/4"':
 							waterNonResTotal += wmq3 * wtrThreeQuarterInch;
@@ -260,7 +290,7 @@ try {
 					}
 				}
 				
-				if (wmq4 && wmq4 > 0) {
+				if (wwms4 && wmq4 && wmq4 > 0) {
 					switch("" + wwms4) {
 						case 'Com-3/4"':
 							waterNonResTotal += wmq4 * wtrThreeQuarterInch;
@@ -302,7 +332,7 @@ try {
 			
 			/* Hotels/Motels (per room) */
 			if (hotMot && !inAsuOrWaterArea) {
-				if (wmq1 && wmq1 > 0) {
+				if (wwms1 && wmq1 && wmq1 > 0) {
 					switch("" + wwms1) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq1 * wtrThreeQuarterInch;
@@ -341,7 +371,7 @@ try {
 					}
 				}
 				
-				if (wmq2 && wmq2 > 0) {
+				if (wwms2 && wmq2 && wmq2 > 0) {
 					switch("" + wwms2) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq2 * wtrThreeQuarterInch;
@@ -380,7 +410,7 @@ try {
 					}
 				}
 				
-				if (wmq3 && wmq3 > 0) {
+				if (wwms3 && wmq3 && wmq3 > 0) {
 					switch("" + wwms3) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq3 * wtrThreeQuarterInch;
@@ -419,7 +449,7 @@ try {
 					}
 				}
 				
-				if (wmq4 && wmq4 > 0) {
+				if (wwms4 && wmq4 && wmq4 > 0) {
 					switch("" + wwms4) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq4 * wtrThreeQuarterInch;
@@ -473,20 +503,28 @@ try {
 			
 			if (nonRes && !inAsuOrWaterArea) {			
 				// Water - Non-Residential
-				if (feeExists("RDIF057", "NEW")) voidRemoveFee("RDIF057");
-				addFee("RDIF057", "PMT_RDIF", "FINAL",  waterNonResTotal, "N");
+				if (waterNonResTotal && waterNonResTotal > 0) {
+					if (feeExists("RDIF057", "NEW")) voidRemoveFee("RDIF057");
+					addFee("RDIF057", "PMT_RDIF", "FINAL",  waterNonResTotal, "N");
+				}
 				// Waste Water - Non-Residential
-				if (feeExists("RDIF107", "NEW")) voidRemoveFee("RDIF107");
-				addFee("RDIF107", "PMT_RDIF", "FINAL",  wasteWaterNonResTotal, "N");
+				if (wasteWaterNonResTotal && wasteWaterNonResTotal > 0) {
+					if (feeExists("RDIF107", "NEW")) voidRemoveFee("RDIF107");
+					addFee("RDIF107", "PMT_RDIF", "FINAL",  wasteWaterNonResTotal, "N");
+				}
 			}
 			
 			if (hotMot && !inAsuOrWaterArea) {
 				// Water - Hotel/Motel
-				if (feeExists("RDIF055", "NEW")) voidRemoveFee("RDIF055");
-				addFee("RDIF055", "PMT_RDIF", "FINAL",  waterHotMotTotal, "N");
+				if (waterHotMotTotal && waterHotMotTotal > 0) {
+					if (feeExists("RDIF055", "NEW")) voidRemoveFee("RDIF055");
+					addFee("RDIF055", "PMT_RDIF", "FINAL",  waterHotMotTotal, "N");
+				}
 				// Waste Water - Hotel/Motel
-				if (feeExists("RDIF105", "NEW")) voidRemoveFee("RDIF105");
-				addFee("RDIF105", "PMT_RDIF", "FINAL",  wasteWaterHotMotTotal, "N");
+				if (wasteWaterHotMotTotal && wasteWaterHotMotTotal) {
+					if (feeExists("RDIF105", "NEW")) voidRemoveFee("RDIF105");
+					addFee("RDIF105", "PMT_RDIF", "FINAL",  wasteWaterHotMotTotal, "N");
+				}
 			}
 			
 			logDebug("PMT_CommercialImpactFees - Fees successfully set!");
