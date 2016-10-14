@@ -24,7 +24,7 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 }
 
-//Script for pages fee RES030
+//Script for pages fee COM030
 try {
 	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		// Count up the sheets from the ASIT
@@ -37,8 +37,9 @@ try {
 			"Type of Civil Engineering Sheets", // Look in this column for items to include.
 			// List of items to include.
 			"Civil Cover Sheet",
-			"Onsite Landscaping Plans and Details",
+			"Cover Sheet",
 			"Single Public Utility Plan/Profiles",
+			"Utility Plan/Profiles",
 			"Grading/Site Plans and Details",
 			"R-O-W Landscaping Plans and Details",
 			"Street Lighting/Traffic Signal Plans and Details",
@@ -65,7 +66,7 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
-// Script for pages fees RES040
+// Script for pages fees COM033
 try {
 	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		// Count up the sheets from the ASIT
@@ -98,7 +99,7 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
-// Script for pages fees RES050
+// Script for pages fees COM036
 try {
 	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		// Count up the sheets from the ASIT
@@ -111,12 +112,15 @@ try {
 			"Type of Civil Engineering Sheets", // Look in this column for items to include.
 			// List of items to include.
 			"Civil Cover Sheet",
+			"Cover Sheet",
 			"Single Public Utility Plan/Profiles",
+			"Utility Plan/Profiles",
 			"Grading/Site Plans and Details",
 			"R-O-W Landscaping Plans and Details",
 			"Street Lighting/Traffic Signal Plans and Details",
 			"Street Improvement Plan/Profiles and Details",
-			"Dual Public Utility Plan/Profiles and Details"
+			"Dual Public Utility Plan/Profiles and Details",
+			"Commercial Civil Without Drawings"
 			);
 		
 		if (feeExists("COM036", "NEW", "INVOICED")) {
