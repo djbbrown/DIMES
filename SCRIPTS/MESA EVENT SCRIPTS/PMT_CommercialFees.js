@@ -152,25 +152,30 @@ if (appTypeArray[1] == 'Commercial' && ((wfTask == "Plans Coordination" && match
 		feeAmt = feeAmt + (90 * tNumInsp);
 	}
 	//*/
-	if (valuationASI >= 25000 && valuationASI <=200000){
+	if (valuationASI >= 25000 && valuationASI <=500000){
 		feeAmt = 500;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 25000)/1000);
-		feeAmt = feeAmt + (6*tNumInsp);
+		feeAmt = feeAmt + (10*tNumInsp);
 	}
-	else if (valuationASI > 200000 && valuationASI <=500000){
+	else if (valuationASI > 500000 && valuationASI <=1000000){
 		feeAmt = 1550;  // Base Fee
-		tNumInsp = Math.ceil((valuationASI - 200000)/1000);
-		feeAmt = feeAmt + (9*tNumInsp);
-	}
-	else if (valuationASI > 500000 && valuationASI <=2000000){
-		feeAmt = 4250;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 500000)/1000);
-		feeAmt = feeAmt + (6*tNumInsp);
+		feeAmt = feeAmt + (5*tNumInsp);
 	}
-	else if (valuationASI > 2000000){
+	else if (valuationASI > 1000000 && valuationASI <=5000000){
+		feeAmt = 4250;  // Base Fee
+		tNumInsp = Math.ceil((valuationASI - 1000000)/1000);
+		feeAmt = feeAmt + (4*tNumInsp);
+	}
+	else if (valuationASI > 5000000 && valuationASI <=10000000){
+		feeAmt = 4250;  // Base Fee
+		tNumInsp = Math.ceil((valuationASI - 5000000)/1000);
+		feeAmt = feeAmt + (2*tNumInsp);
+	}
+	else if (valuationASI > 10000000){
 		feeAmt = 13250;  // Base Fee
-		tNumInsp = Math.ceil((valuationASI - 2000000)/1000);
-		feeAmt = feeAmt + (3*tNumInsp);
+		tNumInsp = Math.ceil((valuationASI - 10000000)/1000);
+		feeAmt = feeAmt + (1*tNumInsp);
 	}
 	//==========================
 	// Process Fees
