@@ -28,7 +28,7 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 // Annual record
 if(
 	appTypeString == "Permits/Commercial/Annual Facilities/NA"
-	&& wfTask == "Plans Coordination" 
+	&& wfTask == "Application Submittal" 
 	&& wfStatus=="Ready to Issue"
 ){
 	// get inspection hours
