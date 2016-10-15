@@ -22,7 +22,7 @@ if (classification && classification =='Night Watchmans Quarters') {
 	if (feeExists("COM400", "NEW", "INVOICED")) voidRemoveFee("COM400");
 	addFee("COM400", "PMT_COM", "FINAL", 1, "N");
 }
-if(classification && classification !='Construction Trailer' && feeExists("COM400", "NEW", "INVOICED")){
+if(classification && classification !='Night Watchmans Quarters' && feeExists("COM400", "NEW", "INVOICED")){
 	voidRemoveFee("COM400");
 }
 
