@@ -13,14 +13,30 @@
 var classOfWork = (AInfo["Classification Type"] != undefined) ? AInfo["Classification Type"] : AInfo["Classification Type"];
 // Get the total number of inspections on the record.
 
-// Walls/Fences
+//Walls/Fences
 if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	if (classOfWork && classOfWork =='Walls/Fences') {
-		if (feeExists("COM320", "NEW", "INVOICED")){voidRemoveFee("RES310");}
+		if (feeExists("COM320", "NEW", "INVOICED")){voidRemoveFee("COM320");}
 		addFee("COM320", "PMT_COM","FINAL", 1, "N");
 	}
 	if(classOfWork && classOfWork !='Walls/Fences' && feeExists("COM320", "NEW", "INVOICED")){
 		voidRemoveFee("COM320");
+	}
+}
+
+
+// Annual record
+if(
+	appTypeString == "Permits/Commercial/Annual Facilities/NA"
+	&& wfTask == "Plans Coordination" 
+	&& wfStatus=="Ready to Issue"
+){
+	// get inspection hours
+	inspHours = totalInspHours();
+	if (feeExists("COM270", "NEW", "INVOICED")){voidRemoveFee("COM270");}
+	if (inspHours > 0){addFee("COM270", "PMT_COM","FINAL", inspHours, "N");}
+	if(!inspHours && feeExists("COM270", "NEW", "INVOICED")){
+		voidRemoveFee("COM270");
 	}
 }
 
