@@ -15,6 +15,10 @@
 
 try {
        var balance = 0;
+
+       //Get balance due not invoiced fees
+       balance = getUnpaidFeeBalance();
+
        if(wfTask == "Plans Distribution" && wfStatus == "Routed for Review")
        {
             //Stop processing if Balance is not 0
