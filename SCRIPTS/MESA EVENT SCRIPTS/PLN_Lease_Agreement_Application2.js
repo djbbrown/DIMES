@@ -6,6 +6,7 @@
 // Testing Record: GHAP16-00324 Doc: PLN_GH
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/28/16  |Steve Veloudos   |Initial Release
+//  2.0      |10/17/16  |Steve Veloudos   |Adj to get contact & owner on ASB
 /*==================================================================*/
 
 try {
@@ -24,51 +25,12 @@ try {
     var DocCat;
     var docListArray= [];
 
-    //Get the contact info
-    /*
-    var tInfo = getContactArray();
-        if (tInfo !== null)
-        {
-            var rowCount = tInfo.length;
-            var x = 0;
-
-            //Get name of applicant
-            for (x=0;x<=(rowCount-1);x++)
-                {
-                    ConType = tInfo[x]["contactType"];
-                    if(ConType == "Applicant" )
-                    {
-                    FirstName = tInfo[x]["firstName"];
-                    LastName = tInfo[x]["lastName"];
-                    FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
-                    }
-                }
-        }
-      */
+       //Get the contact info
        FirstName = aa.env.getValue("ApplicantFirstName");
        LastName =  aa.env.getValue("ApplicantLastName");
        FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
 
-        //Get Owner Name
-        /*capOwnerResult = aa.owner.getOwnerByCapId(capId);
-        if(capOwnerResult !== null)
-        {
-            if (capOwnerResult.getSuccess()) 
-            {
-            owner = capOwnerResult.getOutput();
-                for (o in owner) 
-                {
-                    TheOwner = owner[o];
-                    //Specify primary owner
-                    if (TheOwner.getPrimaryOwner() == "Y") 
-                    {
-                        OwnerName = TheOwner.getOwnerFullName().toUpperCase();
-                        break;	
-                    }
-                }
-            }
-        }
-        */
+       //Get Owner Name
        OwnerName = aa.env.getValue("OwnerFullName").toUpperCase();
 
         //Compare Names & set flag
