@@ -70,3 +70,12 @@ catch (err) {
 	logDebug("Error assessing fee COM115")
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+// COM140
+try {
+	totHours  = getWFHours(capId,"Planning Review","Building Review","Fire Review","Civil Engineering Review");
+	updateFee("COM140", "PMT_COM", "FINAL", totHours, "N");
+}
+catch (err) {
+	logDebug("Error assessing fee COM140")
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
