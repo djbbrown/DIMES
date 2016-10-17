@@ -2,6 +2,7 @@
 // Versions:
  // 9/?/2016	 Brian O'Dell			initial
  // 9/28/2016	 John Cheney			added include("PMT_CopyPenaltyDateToDueDate") 
+// 10/17/2016	 John Cheney			removed include("PMT_CopyPenaltyDateToDueDate")
 
  //---------------------------------------------------------------------
 // Script Number: 66, 169
@@ -81,13 +82,6 @@ try
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
       setDate = true;
     }
-
-    // added by John Cheney 
-    if(setDate){
-      include("PMT_CopyPenaltyDateToDueDate");
-    }
-        
-
   }
 
 }
