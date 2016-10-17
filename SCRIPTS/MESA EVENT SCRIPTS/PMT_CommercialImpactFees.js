@@ -11,7 +11,7 @@
 //             
 /*==================================================================*/
 
-/* test with PMT16-01042 */
+/* test with PMT16-01042, PMT16-01084, PMT16-01128 */
 
 /* Run when workflow task Permit Issuance is activated AND/OR – on
  * ApplicationSpecificInfoUpdateAfter ONLY IF workflow task Permit
@@ -108,11 +108,33 @@ try {
 			var wmq2 = getAppSpecific("Water Meter Qty 2");
 			var wmq3 = getAppSpecific("Water Meter Qty 3");
 			var wmq4 = getAppSpecific("Water Meter Qty 4");
+			
+			var wwmq1 = getAppSpecific("Waste Water Qty 1");
+			var wwmq2 = getAppSpecific("Waste Water Qty 2");
+			var wwmq3 = getAppSpecific("Waste Water Qty 3");
+			var wwmq4 = getAppSpecific("Waste Water Qty 4");
+			
+			// if nulls or empty strings, change quantities to zeros for proper calculations
+			if (!wmq1) { wmq1 = 0; }
+			if (!wmq2) { wmq2 = 0; }
+			if (!wmq3) { wmq3 = 0; }
+			if (!wmq4) { wmq4 = 0; }
+			
+			if (!wwmq1) { wwmq1 = 0; }
+			if (!wwmq2) { wwmq2 = 0; }
+			if (!wwmq3) { wwmq3 = 0; }
+			if (!wwmq4) { wwmq4 = 0; }
+			
+			
 /*
 			logDebug("wmq1: " + wmq1);
 			logDebug("wmq2: " + wmq2);
 			logDebug("wmq3: " + wmq3);
 			logDebug("wmq4: " + wmq4);
+			logDebug("wwmq1: " + wwmq1);
+			logDebug("wwmq2: " + wwmq2);
+			logDebug("wwmq3: " + wwmq3);
+			logDebug("wwmq4: " + wwmq4);
 */			
 			var wwms1 = getAppSpecific("Water/Wastewater Meter Size 1");
 			var wwms2 = getAppSpecific("Water/Wastewater Meter Size 2");
@@ -173,156 +195,156 @@ try {
 			/* Non-Residential (per sq ft) */
 			//logDebug("nonRes: " + nonRes + " && !inAsuOrWaterArea: " + !inAsuOrWaterArea);
 			if (nonRes && !inAsuOrWaterArea) {
-				if (wwms1 && wmq1 && wmq1 > 0) {
+				if (wwms1) {
 					switch("" + wwms1) { // 
 						case 'Com-3/4"':
 							waterNonResTotal += wmq1 * wtrThreeQuarterInch;
-							wasteWaterNonResTotal += wmq1 * swrThreeQuarterInch;
+							wasteWaterNonResTotal += wwmq1 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterNonResTotal += wmq1 * wtrOneInch;
-							wasteWaterNonResTotal += wmq1 * swrOneInch;
+							wasteWaterNonResTotal += wwmq1 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterNonResTotal += wmq1 * wtrOneAndOneHalfInch;
-							wasteWaterNonResTotal += wmq1 * swrOneAndOneHalfInch;
+							wasteWaterNonResTotal += wwmq1 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterNonResTotal += wmq1 * wtrTwoInch;
-							wasteWaterNonResTotal += wmq1 * swrTwoInch;
+							wasteWaterNonResTotal += wwmq1 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterNonResTotal += wmq1 * wtrThreeInch;
-							wasteWaterNonResTotal += wmq1 * swrThreeInch;
+							wasteWaterNonResTotal += wwmq1 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterNonResTotal += wmq1 * wtrFourInch;
-							wasteWaterNonResTotal += wmq1 * swrFourInch;
+							wasteWaterNonResTotal += wwmq1 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterNonResTotal += wmq1 * wtrSixInch;
-							wasteWaterNonResTotal += wmq1 * swrSixInch;
+							wasteWaterNonResTotal += wwmq1 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterNonResTotal += wmq1 * wtrEightInch;
-							wasteWaterNonResTotal += wmq1 * swrEightInch;
+							wasteWaterNonResTotal += wwmq1 * swrEightInch;
 							break;
 						default:
 							// do nothing
 					}
 				}
 
-				if (wwms2 && wmq2 && wmq2 > 0) {
+				if (wwms2) {
 					switch("" + wwms2) {
 						case 'Com-3/4"':
 							waterNonResTotal += wmq2 * wtrThreeQuarterInch;
-							wasteWaterNonResTotal += wmq2 * swrThreeQuarterInch;
+							wasteWaterNonResTotal += wwmq2 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterNonResTotal += wmq2 * wtrOneInch;
-							wasteWaterNonResTotal += wmq2 * swrOneInch;
+							wasteWaterNonResTotal += wwmq2 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterNonResTotal += wmq2 * wtrOneAndOneHalfInch;
-							wasteWaterNonResTotal += wmq2 * swrOneAndOneHalfInch;
+							wasteWaterNonResTotal += wwmq2 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterNonResTotal += wmq2 * wtrTwoInch;
-							wasteWaterNonResTotal += wmq2 * swrTwoInch;
+							wasteWaterNonResTotal += wwmq2 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterNonResTotal += wmq2 * wtrThreeInch;
-							wasteWaterNonResTotal += wmq2 * swrThreeInch;
+							wasteWaterNonResTotal += wwmq2 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterNonResTotal += wmq2 * wtrFourInch;
-							wasteWaterNonResTotal += wmq2 * swrFourInch;
+							wasteWaterNonResTotal += wwmq2 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterNonResTotal += wmq2 * wtrSixInch;
-							wasteWaterNonResTotal += wmq2 * swrSixInch;
+							wasteWaterNonResTotal += wwmq2 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterNonResTotal += wmq2 * wtrEightInch;
-							wasteWaterNonResTotal += wmq2 * swrEightInch;
+							wasteWaterNonResTotal += wwmq2 * swrEightInch;
 							break;
 						default:
 							// do nothing
 					}
 				}
 
-				if (wwms3 && wmq3 && wmq3 > 0) {
+				if (wwms3) {
 					switch("" + wwms3) {
 						case 'Com-3/4"':
 							waterNonResTotal += wmq3 * wtrThreeQuarterInch;
-							wasteWaterNonResTotal += wmq3 * swrThreeQuarterInch;
+							wasteWaterNonResTotal += wwmq3 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterNonResTotal += wmq3 * wtrOneInch;
-							wasteWaterNonResTotal += wmq3 * swrOneInch;
+							wasteWaterNonResTotal += wwmq3 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterNonResTotal += wmq3 * wtrOneAndOneHalfInch;
-							wasteWaterNonResTotal += wmq3 * swrOneAndOneHalfInch;
+							wasteWaterNonResTotal += wwmq3 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterNonResTotal += wmq3 * wtrTwoInch;
-							wasteWaterNonResTotal += wmq3 * swrTwoInch;
+							wasteWaterNonResTotal += wwmq3 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterNonResTotal += wmq3 * wtrThreeInch;
-							wasteWaterNonResTotal += wmq3 * swrThreeInch;
+							wasteWaterNonResTotal += wwmq3 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterNonResTotal += wmq3 * wtrFourInch;
-							wasteWaterNonResTotal += wmq3 * swrFourInch;
+							wasteWaterNonResTotal += wwmq3 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterNonResTotal += wmq3 * wtrSixInch;
-							wasteWaterNonResTotal += wmq3 * swrSixInch;
+							wasteWaterNonResTotal += wwmq3 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterNonResTotal += wmq3 * wtrEightInch;
-							wasteWaterNonResTotal += wmq3 * swrEightInch;
+							wasteWaterNonResTotal += wwmq3 * swrEightInch;
 							break;
 						default:
 							// do nothing
 					}
 				}
 				
-				if (wwms4 && wmq4 && wmq4 > 0) {
+				if (wwms4) {
 					switch("" + wwms4) {
 						case 'Com-3/4"':
 							waterNonResTotal += wmq4 * wtrThreeQuarterInch;
-							wasteWaterNonResTotal += wmq4 * swrThreeQuarterInch;
+							wasteWaterNonResTotal += wwmq4 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterNonResTotal += wmq4 * wtrOneInch;
-							wasteWaterNonResTotal += wmq4 * swrOneInch;
+							wasteWaterNonResTotal += wwmq4 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterNonResTotal += wmq4 * wtrOneAndOneHalfInch;
-							wasteWaterNonResTotal += wmq4 * swrOneAndOneHalfInch;
+							wasteWaterNonResTotal += wwmq4 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterNonResTotal += wmq4 * wtrTwoInch;
-							wasteWaterNonResTotal += wmq4 * swrTwoInch;
+							wasteWaterNonResTotal += wwmq4 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterNonResTotal += wmq4 * wtrThreeInch;
-							wasteWaterNonResTotal += wmq4 * swrThreeInch;
+							wasteWaterNonResTotal += wwmq4 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterNonResTotal += wmq4 * wtrFourInch;
-							wasteWaterNonResTotal += wmq4 * swrFourInch;
+							wasteWaterNonResTotal += wwmq4 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterNonResTotal += wmq4 * wtrSixInch;
-							wasteWaterNonResTotal += wmq4 * swrSixInch;
+							wasteWaterNonResTotal += wwmq4 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterNonResTotal += wmq4 * wtrEightInch;
-							wasteWaterNonResTotal += wmq4 * swrEightInch;
+							wasteWaterNonResTotal += wwmq4 * swrEightInch;
 							break;
 						default:
 							// do nothing
@@ -332,156 +354,156 @@ try {
 			
 			/* Hotels/Motels (per room) */
 			if (hotMot && !inAsuOrWaterArea) {
-				if (wwms1 && wmq1 && wmq1 > 0) {
+				if (wwms1) {
 					switch("" + wwms1) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq1 * wtrThreeQuarterInch;
-							wasteWaterHotMotTotal += wmq1 * swrThreeQuarterInch;
+							wasteWaterHotMotTotal += wwmq1 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterHotMotTotal += wmq1 * wtrOneInch;
-							wasteWaterHotMotTotal += wmq1 * swrOneInch;
+							wasteWaterHotMotTotal += wwmq1 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterHotMotTotal += wmq1 * wtrOneAndOneHalfInch;
-							wasteWaterHotMotTotal += wmq1 * swrOneAndOneHalfInch;
+							wasteWaterHotMotTotal += wwmq1 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterHotMotTotal += wmq1 * wtrTwoInch;
-							wasteWaterHotMotTotal += wmq1 * swrTwoInch;
+							wasteWaterHotMotTotal += wwmq1 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterHotMotTotal += wmq1 * wtrThreeInch;
-							wasteWaterHotMotTotal += wmq1 * swrThreeInch;
+							wasteWaterHotMotTotal += wwmq1 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterHotMotTotal += wmq1 * wtrFourInch;
-							wasteWaterHotMotTotal += wmq1 * swrFourInch;
+							wasteWaterHotMotTotal += wwmq1 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterHotMotTotal += wmq1 * wtrSixInch;
-							wasteWaterHotMotTotal += wmq1 * swrSixInch;
+							wasteWaterHotMotTotal += wwmq1 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterHotMotTotal += wmq1 * wtrEightInch;
-							wasteWaterHotMotTotal += wmq1 * swrEightInch;
+							wasteWaterHotMotTotal += wwmq1 * swrEightInch;
 							break;
 						default:
 							// do nothing
 					}
 				}
 				
-				if (wwms2 && wmq2 && wmq2 > 0) {
+				if (wwms2) {
 					switch("" + wwms2) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq2 * wtrThreeQuarterInch;
-							wasteWaterHotMotTotal += wmq2 * swrThreeQuarterInch;
+							wasteWaterHotMotTotal += wwmq2 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterHotMotTotal += wmq2 * wtrOneInch;
-							wasteWaterHotMotTotal += wmq2 * swrOneInch;
+							wasteWaterHotMotTotal += wwmq2 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterHotMotTotal += wmq2 * wtrOneAndOneHalfInch;
-							wasteWaterHotMotTotal += wmq2 * swrOneAndOneHalfInch;
+							wasteWaterHotMotTotal += wwmq2 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterHotMotTotal += wmq2 * wtrTwoInch;
-							wasteWaterHotMotTotal += wmq2 * swrTwoInch;
+							wasteWaterHotMotTotal += wwmq2 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterHotMotTotal += wmq2 * wtrThreeInch;
-							wasteWaterHotMotTotal += wmq2 * swrThreeInch;
+							wasteWaterHotMotTotal += wwmq2 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterHotMotTotal += wmq2 * wtrFourInch;
-							wasteWaterHotMotTotal += wmq2 * swrFourInch;
+							wasteWaterHotMotTotal += wwmq2 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterHotMotTotal += wmq2 * wtrSixInch;
-							wasteWaterHotMotTotal += wmq2 * swrSixInch;
+							wasteWaterHotMotTotal += wwmq2 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterHotMotTotal += wmq2 * wtrEightInch;
-							wasteWaterHotMotTotal += wmq2 * swrEightInch;
+							wasteWaterHotMotTotal += wwmq2 * swrEightInch;
 							break;
 						default:
 							// do nothing
 					}
 				}
 				
-				if (wwms3 && wmq3 && wmq3 > 0) {
+				if (wwms3) {
 					switch("" + wwms3) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq3 * wtrThreeQuarterInch;
-							wasteWaterHotMotTotal += wmq3 * swrThreeQuarterInch;
+							wasteWaterHotMotTotal += wwmq3 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterHotMotTotal += wmq3 * wtrOneInch;
-							wasteWaterHotMotTotal += wmq3 * swrOneInch;
+							wasteWaterHotMotTotal += wwmq3 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterHotMotTotal += wmq3 * wtrOneAndOneHalfInch;
-							wasteWaterHotMotTotal += wmq3 * swrOneAndOneHalfInch;
+							wasteWaterHotMotTotal += wwmq3 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterHotMotTotal += wmq3 * wtrTwoInch;
-							wasteWaterHotMotTotal += wmq3 * swrTwoInch;
+							wasteWaterHotMotTotal += wwmq3 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterHotMotTotal += wmq3 * wtrThreeInch;
-							wasteWaterHotMotTotal += wmq3 * swrThreeInch;
+							wasteWaterHotMotTotal += wwmq3 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterHotMotTotal += wmq3 * wtrFourInch;
-							wasteWaterHotMotTotal += wmq3 * swrFourInch;
+							wasteWaterHotMotTotal += wwmq3 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterHotMotTotal += wmq3 * wtrSixInch;
-							wasteWaterHotMotTotal += wmq3 * swrSixInch;
+							wasteWaterHotMotTotal += wwmq3 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterHotMotTotal += wmq3 * wtrEightInch;
-							wasteWaterHotMotTotal += wmq3 * swrEightInch;
+							wasteWaterHotMotTotal += wwmq3 * swrEightInch;
 							break;
 						default:
 							// do nothing
 					}
 				}
 				
-				if (wwms4 && wmq4 && wmq4 > 0) {
+				if (wwms4) {
 					switch("" + wwms4) {
 						case 'Com-3/4"':
 							waterHotMotTotal += wmq4 * wtrThreeQuarterInch;
-							wasteWaterHotMotTotal += wmq4 * swrThreeQuarterInch;
+							wasteWaterHotMotTotal += wwmq4 * swrThreeQuarterInch;
 							break;
 						case 'Com-1"':
 							waterHotMotTotal += wmq4 * wtrOneInch;
-							wasteWaterHotMotTotal += wmq4 * swrOneInch;
+							wasteWaterHotMotTotal += wwmq4 * swrOneInch;
 							break;
 						case 'Com-1.5"':
 							waterHotMotTotal += wmq4 * wtrOneAndOneHalfInch;
-							wasteWaterHotMotTotal += wmq4 * swrOneAndOneHalfInch;
+							wasteWaterHotMotTotal += wwmq4 * swrOneAndOneHalfInch;
 							break;
 						case 'Com-2"':
 							waterHotMotTotal += wmq4 * wtrTwoInch;
-							wasteWaterHotMotTotal += wmq4 * swrTwoInch;
+							wasteWaterHotMotTotal += wwmq4 * swrTwoInch;
 							break;
 						case 'Com-3"':
 							waterHotMotTotal += wmq4 * wtrThreeInch;
-							wasteWaterHotMotTotal += wmq4 * swrThreeInch;
+							wasteWaterHotMotTotal += wwmq4 * swrThreeInch;
 							break;
 						case 'Com-4"':
 							waterHotMotTotal += wmq4 * wtrFourInch;
-							wasteWaterHotMotTotal += wmq4 * swrFourInch;
+							wasteWaterHotMotTotal += wwmq4 * swrFourInch;
 							break;
 						case 'Com-6"':
 							waterHotMotTotal += wmq4 * wtrSixInch;
-							wasteWaterHotMotTotal += wmq4 * swrSixInch;
+							wasteWaterHotMotTotal += wwmq4 * swrSixInch;
 							break;
 						case 'Com-8"':
 							waterHotMotTotal += wmq4 * wtrEightInch;
-							wasteWaterHotMotTotal += wmq4 * swrEightInch;
+							wasteWaterHotMotTotal += wwmq4 * swrEightInch;
 							break;
 						default:
 							// do nothing
