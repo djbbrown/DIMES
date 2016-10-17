@@ -25,6 +25,7 @@ try {
     var docListArray= [];
 
     //Get the contact info
+    /*
     var tInfo = getContactArray();
         if (tInfo !== null)
         {
@@ -42,9 +43,14 @@ try {
                     FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
                     }
                 }
-        } 
+        }
+      */
+       FirstName = aa.env.getValue("ApplicantFirstName");
+       LastName =  aa.env.getValue("ApplicantLastName");
+       FullName = FirstName.toUpperCase() + " " + LastName.toUpperCase();
+
         //Get Owner Name
-        capOwnerResult = aa.owner.getOwnerByCapId(capId);
+        /*capOwnerResult = aa.owner.getOwnerByCapId(capId);
         if(capOwnerResult !== null)
         {
             if (capOwnerResult.getSuccess()) 
@@ -62,6 +68,9 @@ try {
                 }
             }
         }
+        */
+       OwnerName = aa.env.getValue("OwnerFullName").toUpperCase();
+
         //Compare Names & set flag
         if(FullName == OwnerName)
           {
@@ -72,8 +81,7 @@ try {
       var docList = aa.env.getValue("DocumentModelList");
       var docListCount = 0;
 
-      if((docList == null) 
-          || (docList == ""))
+      if((docList == null) || (docList == ""))
       {
         docList = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
         docListCount = docList.size();
