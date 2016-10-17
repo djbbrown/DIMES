@@ -11,7 +11,8 @@
 /*==================================================================*/
 
 // COM010 Commercial Permit Deposit
-var valuation = parseFloat(AInfo["Total Valuation"])|0;
+// var valuation = parseFloat(AInfo["Total Valuation"])|0;
+var valuation = estValue|calcValue;
 if (feeExists("COM010", "NEW", "INVOICED")) voidRemoveFee("COM010");
 if(valuation>0){addFee("COM010", "PMT_COM", "FINAL", valuation, "Y")};
 //*/
