@@ -31,38 +31,6 @@ try {
                 cancel = true;
             }
        }
-       
-       //Get WF Task
-       /*
-       var tasks = aa.workflow.getTasks(capId).getOutput();
-       for (t in tasks) 
-        {
-            //Check for Planning Review Task
-            if(tasks[t].getTaskDescription() == "Plans Distribution")
-            {
-                //Check if PLANS DISTRIBUTION is active
-                if(tasks[t].getActiveFlag() == "Y")
-                {
-                    //Check task status 
-                    if (tasks[t].getDisposition() == "Routed for Review")
-                    {
-                        //Get balance due not invoiced fees
-                        balance = getUnpaidFeeBalance();
-                        
-                        //Stop processing if Balance is not 0
-                        if(balance > 0 || balanceDue > 0)
-                        {
-                            //Pop up message to user
-                            showMessage = true;
-                            comment("Deposit fees have not been paid yet. You cannot proceed.");
-                            //Stop the submission
-                            cancel = true;
-                        }
-                    }
-                }
-            }
-        }
-        */     
     }
 catch (err)
     {
