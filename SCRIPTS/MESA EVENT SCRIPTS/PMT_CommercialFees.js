@@ -24,6 +24,18 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 }
 
+// Construction Storage Unit
+// Get the Type of Work
+//type of work ASI different naming between Online and Residential records 
+if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if (classOfWork && classOfWork =='Portable Storage Containers') {
+		if (feeExists("COM570", "NEW", "INVOICED")){voidRemoveFee("COM570");}
+		addFee("COM570", "PMT_COM","FINAL", 1, "N");
+	}
+	if(classOfWork && classOfWork !='Portable Storage Containers' && feeExists("COM570", "NEW", "INVOICED")){
+		voidRemoveFee("COM570");
+	}
+}
 
 // Annual record
 if(
