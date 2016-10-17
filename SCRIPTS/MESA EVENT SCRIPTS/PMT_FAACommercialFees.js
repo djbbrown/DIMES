@@ -72,7 +72,7 @@ catch (err) {
 }
 // COM140
 try {
-	totHours  = getWFHours(capId,"Planning Review","Building Review","Fire Review","Civil Engineering Review");
+	totHours  = getWFHours(capId,"Planning Review","Building Review","Fire Review","Civil Engineering Review","DIS Review","Plans Coordination");
 	updateFee("COM140", "PMT_COM", "FINAL", totHours, "N");
 }
 catch (err) {
