@@ -28,19 +28,18 @@ function doesCapConditionExist(conditionName) // optional altId
     if (condResult.getSuccess())
     {
         var capConds = condResult.getOutput();
+		var retVal = false;
         for (cc in capConds) 
         {
             var thisCond = capConds[cc];
             var cDesc = thisCond.getConditionDescription().toUpperCase();
             if(cDesc == conditionName.toUpperCase())
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                retVal = true;
+				break;
             }
         }
+		return retVal;
     }
     else
     {

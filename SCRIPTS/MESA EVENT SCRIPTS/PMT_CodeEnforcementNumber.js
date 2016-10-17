@@ -62,9 +62,17 @@ try
             {
                 addStdCondition("Building Permit", "Unauthorized Construction Fee");
             }
+            else 
+            {
+                logDebug("'Unauthorized Construction Fee' condition already exists");
+            }
             if ( doesCapConditionExist("Obtain Timeline of Completion") == false)
             {
 		        addStdCondition("Building Permit", "Obtain Timeline of Completion");
+            }
+            else
+            {
+                logDebug("'Obtain Timeline of Completion' condition already exists");
             }
 
             var emailInspector = false;
@@ -80,9 +88,9 @@ try
             else 
             {
                 logDebug("Parent record found!");
-
+                
                 // see if the parent is the parent specified in fieldNow
-                var parAltId = parCapId.getCapID().getAltID();
+                var parAltId = parCapId.getCustomID();
                 if ( parAltId == fieldNow )
                 {
                     logDebug(fieldNow + " is already the parent.");
