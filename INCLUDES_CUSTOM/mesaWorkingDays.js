@@ -11,6 +11,8 @@
 // 
 //		09/13/2016 - Updated to factor in today as day 1 (per customer)
 //
+//		10/17/2016 - Refactored due to Friday Holiday bug
+//
 //==================================================================*/
 
 
@@ -23,26 +25,23 @@ function mesaWorkingDays(curDate, daysToAdd)
 
   while (x < daysToAdd)
   {
+
+    dayOfWeek = new Date(theDate).getDay();
+
     if (dayOfWeek == 4)
     {
       dayOfWeek = 0;
       fridayCount += 1;
+
+      theDate = dateAdd(theDate, 2, 'Y');
+    }
+    else
+    {
+      theDate = dateAdd(theDate, 1, 'Y');
     }
 
     dayOfWeek += 1;
     x += 1;
-  }
-
-
-  var dayAdjustment = parseInt(daysToAdd) + fridayCount;
-
-  theDate = dateAdd(theDate, dayAdjustment, 'Y');
-
-  var fridayCheck = new Date(theDate).getDay();
-
-  if (fridayCheck == 5)
-  {
-    theDate = dateAdd(theDate, 1, 'Y');
   }
 
   return theDate;

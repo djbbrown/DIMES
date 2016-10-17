@@ -26,9 +26,7 @@
 
 try
 {
-    var tStatus = taskStatus("Plans Coordination");
-    var tActive = isTaskActive_Mesa("Plans Coordination");
-    if ( tStatus != null && tStatus.toUpperCase() == "REVISIONS REQUIRED" && tActive == true) 
+    if ( wfTask == "Plans Coordination" && wfStatus == "Revisions Required" ) 
     {
         logDebug("Criteria met for script.");
 
@@ -45,7 +43,7 @@ try
 
         revisions++; // increment by one
 
-        editAppSpecific("Submittal Cycle", revisions );
+        editAppSpecific_Mesa("Submittal Cycle", revisions );
 
         logDebug("Updated Revisions to " + revisions );
     }
