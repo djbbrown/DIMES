@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 361
-// Script Name: ENF_AutoPopulateInspection.js
+// Script Name: ENF_AutoPopulateInspections.js
 // Script Description: When the record is created an air quality inspection and a storm water inspection should be created automatically, scheduled 3 business days out. 
 // Script Run Event: ASA
 // Testing Cap: COB16-00010
