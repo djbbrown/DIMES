@@ -10,6 +10,12 @@
 //		Gross Site Size (sqft) = Gross Site Size (acres) * 43560)
 //		Gross Site Size (acres) = Gross Site Size (sqft)/ 43560)
 //
+//		Spec Update (10/17/2016)
+//		Grab the Gross Site Size (acres) from the Parcel information
+//		field "ParcelAttribute.SIZE(ACRES)", and reset the Gross Site
+//		Size (acres) ASI field value as well as calculate/update the 
+//		Gross Site Size (sqft) ASI field.
+//
 // Script Run Event: ASA, ASIUA
 // Script Parents:
 //              ASA;Planning/~/~/~
@@ -27,26 +33,14 @@ try
 	)
   {    
     
-    var acres = AInfo["Gross Site Size (acres)"];
-    var sqft = AInfo["Gross Site Size (sqft)"];
+    //var acres = AInfo["Gross Site Size (acres)"];  // used in original spec
+    //var sqft = AInfo["Gross Site Size (sqft)"];  // used in original spec
+
+    var acres = AInfo["ParcelAttribute.SIZE(ACRES)"];    
+    var sqft = acres*43560;
     
-    if (acres == null)
-    {
-      if (sqft != null)
-      {
-        acres = sqft/43560;
-      }
-      editAppSpecific("Gross Site Size (acres)", acres);
-    }
-    
-    if (sqft == null)
-    {
-      if (acres != null)
-      {
-        sqft = acres*43560;
-      }
-      editAppSpecific("Gross Site Size (sqft)", sqft);
-    }
+    editAppSpecific("Gross Site Size (acres)", acres);
+    editAppSpecific("Gross Site Size (sqft)", sqft);
 
   }
 }
