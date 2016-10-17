@@ -15,8 +15,21 @@
 
 try {
        var balance = 0;
+       if(wfTask == "Plans Distribution" && wfStatus == "Routed for Review")
+       {
+            //Stop processing if Balance is not 0
+            if(balance > 0 || balanceDue > 0)
+            {
+                //Pop up message to user
+                showMessage = true;
+                comment("Deposit fees have not been paid yet. You cannot proceed.");
+                //Stop the submission
+                cancel = true;
+            }
+       }
        
        //Get WF Task
+       /*
        var tasks = aa.workflow.getTasks(capId).getOutput();
        for (t in tasks) 
         {
@@ -44,7 +57,8 @@ try {
                     }
                 }
             }
-        }     
+        }
+        */     
     }
 catch (err)
     {
