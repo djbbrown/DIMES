@@ -25,6 +25,9 @@ function mesaWorkingDays(curDate, daysToAdd)
 
   while (x < daysToAdd)
   {
+
+    dayOfWeek = new Date(theDate).getDay();
+
     if (dayOfWeek == 4)
     {
       dayOfWeek = 0;
