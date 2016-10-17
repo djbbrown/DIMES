@@ -40,7 +40,8 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 	// this could be one of two ASI values so we need to be careful about this.
 	// tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
 	// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
-	valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
+	// valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
+	valuationASI = estValue|calcValue;
 	// Get the Valuation as well (ASI)
 	/*
 	if(valuationASI <25000){
