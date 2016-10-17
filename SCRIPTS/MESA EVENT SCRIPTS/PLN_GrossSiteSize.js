@@ -37,7 +37,7 @@ try
     //var sqft = AInfo["Gross Site Size (sqft)"];  // used in original spec
 
     var acres = AInfo["ParcelAttribute.SIZE(ACRES)"];    
-    var sqft = acres*43560;
+    var sqft = parseFloat(acres*43560).toFixed(2);
     
     editAppSpecific("Gross Site Size (acres)", acres);
     editAppSpecific("Gross Site Size (sqft)", sqft);
