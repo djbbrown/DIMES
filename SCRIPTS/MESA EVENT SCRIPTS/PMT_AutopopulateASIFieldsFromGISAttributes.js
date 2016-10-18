@@ -1,4 +1,8 @@
 /*===================================================================
+Versions:
+ 9/?/2016-A	    Vance Smith			initial
+ 10/18/2016-A	John Cheney			fixed bug related to Storm Water Exempt setting  
+ ---------------------------------------------------------------------
 // Script Number: 109
 // Script Name: PMT_AutopopulateASIFieldsFromGISAttributes.js
 // Script Developer: Vance Smith
@@ -58,7 +62,7 @@ try
     logDebug("landUse: " + landUse);
     
     var azWater = false;
-    var stormWaterExempt = false;
+    var stormWaterExempt = true;
     var floodZone = isInFloodZone();
 
     // service name / layer / field name
@@ -79,16 +83,14 @@ try
                 }
                 logDebug("azWater: " + azWater);
             }
-            if (IsStrInArry("AWCP", tagFieldArray)) 
-            {
-                logDebug("Getting 'Storm Water Exempt'");
-                stormWaterExempt = tagFieldArray[x];
-                if ( stormWaterExempt == undefined ) { 
-                    logDebug("Storm Water Exempt was undefined, setting to false");
-                    stormWaterExempt = false; 
-                }
-                logDebug("stormWaterExempt: " + stormWaterExempt);
+
+            // storm water Exempt - jcheney 10/18/2016
+            var thisTag = tagFieldArray[x];
+            if(matches(thisTag, "STOR")) {
+                logDebug("Found GIS tag STOR - setting stormWaterExempt = false");
+                stormWaterExempt = false;
             }
+
         }
     }
 
