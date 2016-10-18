@@ -18,6 +18,8 @@ if ((wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review No
 
 	//added by Michael Kniskern (City of Mesa) 9/22/2016
 	include("PMT_MobileHomePublicSafetyImpactFee");
+	
+	include("PMT_MobileHomeFireImpactFee");
 
 	//added by Kevin Gurney (Accela)
 	include("PMT_MobileHomeStormwaterImpactFee");
