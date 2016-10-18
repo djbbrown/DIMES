@@ -17,7 +17,7 @@ try {
        var CCategory;
 
        //Check Workflow
-       if(wfTask == "Animal Control Officer " && wfStatus == "Letter Sent")
+       if(wfTask == "Animal Control Officer" && wfStatus == "Letter Sent")
        {
            //Check Violation Info ASIT Citation Category
             loadASITables();
