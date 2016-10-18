@@ -45,36 +45,16 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            runReport("113-ANI Courtesy Notice");
-            //runReportAttach(capId,"113-ANI Courtesy Notice");
+            runReportAttach(capId,"113-ANI Courtesy Notice");
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            runReport("114-ANI Courtesy Notice");
-            //runReportAttach(capId,"114-ANI Courtesy Notice");
+            runReportAttach(capId,"114-ANI Courtesy Notice");
             }
        }
     }
 catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
-    }
-
-    function runReport(aaReportName)
-    {
-        var bReport = false;
-        var reportName=aaReportName;
-        report = aa.reportManager.getReportModelByName(reportName);
-        report = report.getOutput();
-        var permit = aa.reportManager.hasPermission(reportName,currentUserID);
-        if (permit.getOutput().booleanValue())
-        {
-            var parameters = aa.util.newHashMap();
-            parameters.put("BatchNumber", setCode);
-            //report.setReportParameters(parameters);
-            var msg = aa.reportManager.runReport(parameters,report);
-            aa.env.setValue("ScriptReturnCode", "0"); 
-            aa.env.setValue("ScriptReturnMessage", msg.getOutput());
-        }
     }
