@@ -9,6 +9,7 @@
 //            FAA;Permits/Commercial/NA/NA
 ===================================================================*/
 //COM430
+//==============================================
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM430", "NEW", "INVOICED")){
@@ -21,7 +22,9 @@ catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
 
+//==============================================
 // Fee COM290
+//==============================================
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM290", "NEW", "INVOICED")){
@@ -33,8 +36,9 @@ catch (err) {
 	logDebug("Error assessing fee COM290")
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
-
+//==============================================
 // Fee COM280
+//==============================================
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM280", "NEW", "INVOICED")){
@@ -46,7 +50,9 @@ catch (err) {
 	logDebug("Error assessing fee COM280")
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+//==============================================
 // COM110
+//==============================================
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM110", "NEW", "INVOICED")){
@@ -58,7 +64,9 @@ catch (err) {
 	logDebug("Error assessing fee COM110")
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+//==============================================
 //COM115
+//==============================================
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM115", "NEW", "INVOICED")){
@@ -70,10 +78,14 @@ catch (err) {
 	logDebug("Error assessing fee COM115")
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+//==============================================
 // COM140
+//==============================================
 try {
-	totHours  = getWFHours(capId,"Planning Review","Building Review","Civil Engineering Review","DIS Review","Plans Coordination");
-	updateFee("COM140", "PMT_COM", "FINAL", totHours, "N");
+	if(feeExists("COM140", "NEW", "INVOICED")){
+		totHours  = getWFHours(capId,"Planning Review","Building Review","Civil Engineering Review","DIS Review","Plans Coordination");
+		updateFee("COM140", "PMT_COM", "FINAL", totHours, "N");
+	}
 }
 catch (err) {
 	logDebug("Error assessing fee COM140")
