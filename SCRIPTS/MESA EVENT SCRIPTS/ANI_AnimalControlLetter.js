@@ -8,7 +8,7 @@
 // Script Run Event: WTUA
 // Script Parents:WTUA;​Animal Control!~!~!~
 // Version   |Date      |Engineer         |Details
-//  1.0      |10/18/16  |Steve Veloudos   |Initial Release
+//  1.0      |10/18/16  |Steve Veloudos   |Initial Release 
 /*==================================================================*/
 
 try {
