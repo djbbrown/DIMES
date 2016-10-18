@@ -9,7 +9,7 @@
 // Script Parents:
 //	ISB;Engineering!Right of Way!~!~.js
 /*===================================================================*/
-if(inspType == "Final Inspection" && isTaskActive("Inspections") && (balanceDue > 0 || feeTotalByStatus("NEW") > 0)){
+if(appTypeArray[1] == "Right Of Way" && inspType == "Final Inspection" && isTaskActive("Inspections") && (balanceDue > 0 || feeTotalByStatus("NEW") > 0)){
 	showDebug = false;
 	showMessage = true;
 	message = "";
