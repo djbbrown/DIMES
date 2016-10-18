@@ -3,7 +3,7 @@ include("PMT_FloodControlPermit");
 include("PMT_WaterMeterAdapterFee");
 
 // added by Bryan de Jesus (Woolpert)
-include("PMT_MobileHomeSolidWasteImpactFee");
+//include("PMT_MobileHomeSolidWasteImpactFee");  //moved to WTUA;Permits!Residential!Mobile Home!NA
 
 // add by Brian O'Dell (Mesa)
 include("PMT_MobileHomeUtilityServiceFeeGasMeter");
