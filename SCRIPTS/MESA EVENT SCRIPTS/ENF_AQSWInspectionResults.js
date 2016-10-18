@@ -21,8 +21,13 @@ try {
             //Check if Pass/Fail
             if(inspResult == "Pass")
             {
+            
             //get the futureDate
-            var insResultsD = Date.parse(inspResultDate);
+            var mon1   = parseInt(inspResultDate.substring(0,2));
+            var dt1  = parseInt(inspResultDate.substring(3,5));
+            var yr1   = parseInt(inspResultDate.substring(6,10));
+            var insResultsD = new Date(yr1, mon1-1, dt1);
+
             futureDate = new Date(mesaWorkingDays(insResultsD, 86));
             
             //Get date difference
