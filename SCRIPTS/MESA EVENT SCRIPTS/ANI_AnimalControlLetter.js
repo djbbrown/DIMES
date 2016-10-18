@@ -45,12 +45,12 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            runReportAttach(CapId,"113-ANI Courtesy Notice");
+            runReportAttach(capId,"113-ANI Courtesy Notice");
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            runReportAttach(CapId,"114-ANI Courtesy Notice");
+            runReportAttach(capId,"114-ANI Courtesy Notice");
             }
        }
     }
