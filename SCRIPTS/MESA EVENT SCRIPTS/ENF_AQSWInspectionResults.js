@@ -22,11 +22,12 @@ try {
             if(inspResult == "Pass")
             {
             //get the futureDate
-            futureDate = new Date(mesaWorkingDays(inspSchedDate, 86));
+            var insResultsD = Date.parse(inspResultDate);
+            futureDate = new Date(mesaWorkingDays(insResultsD, 86));
             
             //Get date difference
             day = 1000*60*60*24;
-            diff = Math.ceil((futureDate.getTime() - inspSchedDate.getTime())/(day));
+            diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
             
             //Schedule Inspection
             scheduleInspection(inspType, diff);
