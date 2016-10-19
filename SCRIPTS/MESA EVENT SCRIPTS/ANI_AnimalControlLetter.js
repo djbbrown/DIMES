@@ -45,14 +45,14 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            //var msg = runReportAttach(capId,"113-ANI Courtesy Notice");
-            runMyReportAttach("113-ANI Courtesy Notice","CaseNbr",capId);
+            //runReportAttach(capId,"113-ANI Courtesy Notice");
+            RunMyReport("113-ANI Courtesy Notice");
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            //var msg = runReportAttach(capId,"114-ANI Courtesy Notice");
-            runMyReportAttach("114-ANI Courtesy Notice","CaseNbr",capId);
+            //runReportAttach(capId,"114-ANI Courtesy Notice");
+             RunMyReport("114-ANI Courtesy Notice");
             }
        }
     }
@@ -61,40 +61,60 @@ catch (err)
       logDebug("A JavaScript Error occured: " + err.message);
     }
 
-function runMyReportAttach(aaReportName,aaReportParamName,aaReportParamValue)
-{
-	var reportName = aaReportName;
- 	report = aa.reportManager.getReportInfoModelByName(reportName);
-	report = report.getOutput(); 
-	cap = aa.cap.getCap(capId).getOutput();
-	appTypeResult = cap.getCapType();
-	appTypeString = appTypeResult.toString(); 
-	appTypeArray = appTypeString.split("/");
-
-	report.setModule(appTypeArray[0]); 
-	report.setCapId(capId); 
-
-	var parameters = aa.util.newHashMap(); 
-	//Make sure the parameters includes some key parameters. 
-	parameters.put(aaReportParamName, aaReportParamValue);
-
-	report.setReportParameters(parameters);
-
-	var permit = aa.reportManager.hasPermission(reportName,currentUserID); 
-	if(permit.getOutput().booleanValue()) 
-	{ 
-		var reportResult = aa.reportManager.getReportResult(report); 
-
-		if(reportResult) 
-		{ 
-			reportResult = reportResult.getOutput(); 
-			var reportFile = aa.reportManager.storeReportToDisk(reportResult);
-
-			reportFile = reportFile.getOutput();
-		}
-		logDebug("Report has been run for " + altID);
-
-	}
-	else
-		logDebug("No permission to report: "+ reportName + " for Admin" + systemUserObj);
-}
+    RunMyReport(ReportName)
+    {
+        try{
+            // Step 1.  Get Report Model by ReportName
+            logDebug("Step 1.  Get Report Model by ReportName");
+            var reportInfoResult = aa.reportManager.getReportInfoModelByName(reportName);
+            if(reportInfoResult.getSuccess() == false) 
+            {
+                // Notify adimistrator via Email, for example
+                logError("Could not found this report " + reportName);		
+                return false;
+            }
+            
+            // Step 2. Initialize report
+            logDebug("Step 2. Initialize report");
+            report = reportInfoResult.getOutput();
+            report.setModule(module);
+            report.setCapId(capIDString);
+            report.setReportParameters(reportParameters);
+            
+            // Step 3. Check permission on report
+            logDebug("Step 3. Check permission on report");
+            var permissionResult = aa.reportManager.hasPermission(reportName,reportUser);
+            if(permissionResult.getSuccess() == false || permissionResult.getOutput().booleanValue() == false) 
+            {
+                // Notify adimistrator via Email, for example
+                logError("The user " + reportUser + " does not have perssion on this report " + reportName);		
+                return false;
+            }
+            
+            // Step 4. Run report
+            logDebug("Step 4. Run report");
+            var reportResult = aa.reportManager.getReportResult(report);
+            if(reportResult.getSuccess() == false)
+            {
+                // Notify adimistrator via Email, for example
+                logError("Could not get report from report manager normally, error message please refer to (" + capIDString +"): " + reportResult.getErrorType() + ":" + reportResult.getErrorMessage());		
+                return false;
+            }
+            
+            // Step 5, Store Report File to harddisk
+            logDebug("Step 5, Store Report File to harddisk");
+            reportResult = reportResult.getOutput();
+            var reportFileResult = aa.reportManager.storeReportToDisk(reportResult);
+            if(reportFileResult.getSuccess() == false) 
+            {
+                // Notify adimistrator via Email, for example
+                logError("The appliation does not have permission to store this temporary report " + reportName + ", error message please refer to:" + reportResult.getErrorMessage());		
+                return false;
+            }
+        }
+        catch(err)
+        {
+		logError("One error occurs. Error description: " + err );
+		return false;
+        }
+    }
