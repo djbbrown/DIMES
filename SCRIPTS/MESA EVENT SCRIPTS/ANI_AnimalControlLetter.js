@@ -86,6 +86,6 @@ catch (err)
         }
         catch(err)
         {
-		logError("One error occurs. Error description: " + err );
+		 logDebug("A JavaScript Error occured: " + err.message);
         }
     }
