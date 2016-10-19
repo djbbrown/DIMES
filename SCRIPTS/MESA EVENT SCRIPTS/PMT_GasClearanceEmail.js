@@ -17,6 +17,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |Unknown   |Accela   		  |Initial Release
 //  2.0      |09/27/16  |Steve Veloudos   |Added Address
+//  3.0      |10/19/16  |Steve Veloudos   |Corrected SW Gas std choice email and new email template for SW Gas
 // ==================================================================
 var fromEmail = "noreply@MesaAz.gov";
 
@@ -50,6 +51,8 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 			thisRow = tmpTable[rowIndex];
 			cl = "" + thisRow["Clearance To"].fieldValue;
 			clDate = "" + thisRow["Clearance Date"].fieldValue;
+			
+			//Clearance To City of Mesa
 			if (cl == "City of Mesa" && clDate != "" && clDate != "null" && clDate != "undefined") {
 				cDateJS = new Date(clDate);
 				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
@@ -80,6 +83,7 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 				}
 
 			} 
+			//Clearance To Southwest Gas
 			if (cl == "Southwest Gas" && clDate != "" && clDate != "null" && clDate != "undefined") {
 				cDateJS = new Date(clDate);
 				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
@@ -115,7 +119,7 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 					addParameter(vEParams,"$$QTY OF METERS$$", "" + thisRow["Qty of Meters"].fieldValue);
 					addParameter(vEParams,"$$WARRANTY STATUS$$", "" + thisRow["Warranty Status"].fieldValue);
 					addParameter(vEParams,"$$COMMENTS$$", "" + thisRow["Comments"].fieldValue);
-					emailAddress = lookup("Email_Recipients", "PMT_Gas_Clearance_Mesa");
+					emailAddress = lookup("Email_Recipients", "PMT_Gas_Clearance_SW");
 					
 					conArr = getContactObjs(capId);
 					if (conArr && conArr.length > 0) {
@@ -127,7 +131,7 @@ if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"
 							}
 						}
 					}
-					sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE", vEParams, null, capId);
+					sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE_SW", vEParams, null, capId);
 				}
 			} 
 		}
