@@ -61,7 +61,7 @@ catch (err)
       logDebug("A JavaScript Error occured: " + err.message);
     }
 
-    RunMyReport(ReportName)
+    function RunMyReport(ReportName)
     {
         try{
             // Step 1.  Get Report Model by ReportName
