@@ -65,7 +65,7 @@ catch (err)
     {
         try{
             // Step 1.  Get Report Model by ReportName
-            var reportInfoResult = aa.reportManager.getReportInfoModelByName(reportName);
+            var reportInfoResult = aa.reportManager.getReportInfoModelByName(ReportName);
             
             // Step 2. Initialize report
             report = reportInfoResult.getOutput();
@@ -74,7 +74,7 @@ catch (err)
             report.setReportParameters(reportParameters);
             
             // Step 3. Check permission on report
-            var permissionResult = aa.reportManager.hasPermission(reportName,reportUser);
+            var permissionResult = aa.reportManager.hasPermission(ReportName,reportUser);
             
             // Step 4. Run report
             var reportResult = aa.reportManager.getReportResult(report);
