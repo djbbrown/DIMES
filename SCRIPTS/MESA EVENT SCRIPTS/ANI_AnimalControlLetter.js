@@ -45,20 +45,14 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            var msg = runReportAttach(capId,"113-ANI Courtesy Notice");
-            showMessage=true; 
-            showDebug=false; 
-            aa.env.setValue("ScriptReturnCode", "0"); 
-		    aa.env.setValue("ScriptReturnMessage", msg.getOutput());
+            //var msg = runReportAttach(capId,"113-ANI Courtesy Notice");
+            runMyReportAttach("113-ANI Courtesy Notice","CaseNbr",capId);
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            var msg = runReportAttach(capId,"114-ANI Courtesy Notice");
-            showMessage=true; 
-            showDebug=false; 
-		    aa.env.setValue("ScriptReturnCode", "0"); 
-		    aa.env.setValue("ScriptReturnMessage", msg.getOutput());
+            //var msg = runReportAttach(capId,"114-ANI Courtesy Notice");
+            runMyReportAttach("114-ANI Courtesy Notice","CaseNbr",capId);
             }
        }
     }
@@ -67,19 +61,40 @@ catch (err)
       logDebug("A JavaScript Error occured: " + err.message);
     }
 
-function runMyReport(aaReportName)
+function runMyReportAttach(aaReportName,aaReportParamName,aaReportParamValue)
 {
-	var bReport = false;
-	var reportName=aaReportName;
-	report = aa.reportManager.getReportModelByName(reportName);
-	report = report.getOutput();
-	var permit = aa.reportManager.hasPermission(reportName,currentUserID);
-	if (permit.getOutput().booleanValue())
-	{
-		var parameters = aa.util.newHashMap();
-		parameters.put("CaseNbr", capId);
-		var msg = aa.reportManager.runReport(parameters,report);
-		aa.env.setValue("ScriptReturnCode", "0"); 
-		aa.env.setValue("ScriptReturnMessage", msg.getOutput());
+	var reportName = aaReportName;
+ 	report = aa.reportManager.getReportInfoModelByName(reportName);
+	report = report.getOutput(); 
+	cap = aa.cap.getCap(capId).getOutput();
+	appTypeResult = cap.getCapType();
+	appTypeString = appTypeResult.toString(); 
+	appTypeArray = appTypeString.split("/");
+
+	report.setModule(appTypeArray[0]); 
+	report.setCapId(capId); 
+
+	var parameters = aa.util.newHashMap(); 
+	//Make sure the parameters includes some key parameters. 
+	parameters.put(aaReportParamName, aaReportParamValue);
+
+	report.setReportParameters(parameters);
+
+	var permit = aa.reportManager.hasPermission(reportName,currentUserID); 
+	if(permit.getOutput().booleanValue()) 
+	{ 
+		var reportResult = aa.reportManager.getReportResult(report); 
+
+		if(reportResult) 
+		{ 
+			reportResult = reportResult.getOutput(); 
+			var reportFile = aa.reportManager.storeReportToDisk(reportResult);
+
+			reportFile = reportFile.getOutput();
+		}
+		logDebug("Report has been run for " + altID);
+
 	}
+	else
+		logDebug("No permission to report: "+ reportName + " for Admin" + systemUserObj);
 }
