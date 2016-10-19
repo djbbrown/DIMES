@@ -45,16 +45,12 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            //var reportResult = runReportAttach(capId,"113-ANI Courtesy Notice");
-            var parameters = {CaseNbr:capId};
-            var reportResult = generateReport(capId,"113-ANI Courtesy Notice","AnimalControl",parameters)
-            var reportFileResult = aa.reportManager.storeReportToDisk(reportResult);
+            runReportAttach(capId,"113-ANI Courtesy Notice");
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            //runReportAttach(capId,"114-ANI Courtesy Notice");
-             RunMyReport("114-ANI Courtesy Notice");
+            runReportAttach(capId,"114-ANI Courtesy Notice");
             }
        }
     }
