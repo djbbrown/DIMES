@@ -21,8 +21,22 @@ try {
 	}
 	addFee("RES020", "PMT_RES","FINAL", totalSheets, "N");
 	if(!totalSheets > 0 && feeExists("RES020", "NEW", "INVOICED")){
-		logDebug("")
 		voidRemoveFee("RES020");
+	}
+}
+catch (err) {
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
+
+//RES010
+try {
+	valuation = estValue|calcValue;
+	if (feeExists("RES010", "NEW", "INVOICED")) {
+		voidRemoveFee("RES010");
+	}
+	addFee("RES010", "PMT_RES","FINAL", valuation, "Y");
+	if(!valuation > 0 && feeExists("RES010", "NEW", "INVOICED")){
+		voidRemoveFee("RES010");
 	}
 }
 catch (err) {
