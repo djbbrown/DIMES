@@ -12,7 +12,7 @@
 
 try {
       var FromEmail = "noreply@mesaaz.gov";
-       var ToEmail = lookup("EMAIL_RECIPIENTS","Transit");
+      var ToEmail = lookup("EMAIL_RECIPIENTS","TTC_Staff");
       var vEParams = aa.util.newHashtable();
       var Url = lookup("Agency_URL","ACA");
       var tStatus = "Revisions Required";
