@@ -167,7 +167,7 @@ function mainProcess()
                 addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
 
                 logDebug("Sending notification to " + emailAddress);
-                sendNotificationAndSaveInRecord("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
+                sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
                 // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
             } 
             else 
