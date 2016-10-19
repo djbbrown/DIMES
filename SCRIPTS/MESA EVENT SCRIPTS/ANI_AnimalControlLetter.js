@@ -69,7 +69,7 @@ catch (err)
             
             // Step 2. Initialize report
             report = reportInfoResult.getOutput();
-            report.setModule(module);
+            report.setModule("AnimalControl");
             report.setCapId(capIDString);
             report.setReportParameters(reportParameters);
             
