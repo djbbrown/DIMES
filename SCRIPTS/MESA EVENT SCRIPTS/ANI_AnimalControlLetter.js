@@ -45,14 +45,20 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            //runReportAttach(capId,"113-ANI Courtesy Notice");
-            runMyReport("113-ANI Courtesy Notice");
+            var msg = runReportAttach(capId,"113-ANI Courtesy Notice");
+            showMessage=true; 
+            showDebug=false; 
+            aa.env.setValue("ScriptReturnCode", "0"); 
+		    aa.env.setValue("ScriptReturnMessage", msg.getOutput());
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            //runReportAttach(capId,"114-ANI Courtesy Notice");
-            runMyReport("114-ANI Courtesy Notice");
+            var msg = runReportAttach(capId,"114-ANI Courtesy Notice");
+            showMessage=true; 
+            showDebug=false; 
+		    aa.env.setValue("ScriptReturnCode", "0"); 
+		    aa.env.setValue("ScriptReturnMessage", msg.getOutput());
             }
        }
     }
