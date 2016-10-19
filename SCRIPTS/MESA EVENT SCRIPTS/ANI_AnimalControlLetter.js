@@ -45,8 +45,10 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            //runReportAttach(capId,"113-ANI Courtesy Notice");
-            RunMyReport("113-ANI Courtesy Notice");
+            //var reportResult = runReportAttach(capId,"113-ANI Courtesy Notice");
+            var parameters = {CaseNbr:capId};
+            var reportResult = generateReport(capId,"113-ANI Courtesy Notice","AnimalControl",parameters)
+            var reportFileResult = aa.reportManager.storeReportToDisk(reportResult);
             }
         if(CriminalFlag == 1)
             {
@@ -59,33 +61,4 @@ try {
 catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
-    }
-
-    function RunMyReport(ReportName)
-    {
-        try{
-            // Step 1.  Get Report Model by ReportName
-            var reportInfoResult = aa.reportManager.getReportInfoModelByName(ReportName);
-            
-            // Step 2. Initialize report
-            report = reportInfoResult.getOutput();
-            report.setModule("AnimalControl");
-            report.setCapId(capIDString);
-            report.setReportParameters(reportParameters);
-            
-            // Step 3. Check permission on report
-            var permissionResult = aa.reportManager.hasPermission(ReportName,reportUser);
-            
-            // Step 4. Run report
-            var reportResult = aa.reportManager.getReportResult(report);
-          
-           // Step 5, Store Report File to harddisk
-            reportResult = reportResult.getOutput();
-            var reportFileResult = aa.reportManager.storeReportToDisk(reportResult);
-
-        }
-        catch(err)
-        {
-		 logDebug("A JavaScript Error occured: " + err.message);
-        }
     }
