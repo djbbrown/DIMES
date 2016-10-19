@@ -65,3 +65,17 @@ if (AInfo["Expedite"] == "Super Expedite"){
 if (AInfo["Type of Work"] == "Code Modification"){
 	updateFee("PMT110", "PMT_ADD", "FINAL", 1, "N");
 }
+
+/*===================================================================
+//Script Number: TBD
+//Script Name: PMT_AddendaFees.js
+//Script Developer: Kevin Ford
+//Script Agency: Accela
+//Script Description: Technology Fees 
+//Script Run Event: ASA
+//Script Parents:
+//      	ASA;Permits!Addenda or Deferred!NA!NA
+===================================================================*/
+if (AInfo["Type of Work"] == "Code Modification"){
+	updateFee("PMT070", "PMT_ADD", "FINAL", 1, "N");
+}
