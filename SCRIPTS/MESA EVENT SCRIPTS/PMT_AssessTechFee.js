@@ -27,12 +27,6 @@ if (
 	updateFee("RES160", "PMT_RES", "FINAL", 1, "N");
 } else if (appMatch("Permits/Commercial/NA/NA") && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 	updateFee("COM120", "PMT_COM", "FINAL", 1, "N");
-} else if (
-		appMatch("Permits/Residential/Mobile Home/NA")
-		&& (
-			(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
-			|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
-		)
-){
-	updateFee("MH210", "PMT_RES", "FINAL", 1, "N");
+} else if (appMatch("Permits/Residential/Mobile Home/NA")){
+	updateFee("MH210", "PMT_MOBILE HOME", "FINAL", 1, "N");
 }

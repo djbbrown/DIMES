@@ -50,7 +50,8 @@ try
                 var docCategory = currentDoc.getDocCategory();
 
                 //MRK - 9.27.2016 - removed "Code Modification Form" and replaced with "Construction Documents"
-                if(docCategory.equals("Construction Documents"))
+                //MRK - 10.18.2016 - I guess i never changed to the correct required document "Code Modification Form" (facepalm) 
+                if(docCategory.equals("Code Modification Form"))
                     isMatch = true;
             }
 
@@ -62,7 +63,7 @@ try
         if(!passed)
         {
             showMessage = true;
-            comment("Construction Documents Required!") 
+            comment("Code Modification Form Required!") 
             cancel = true;
         }
     }
@@ -73,6 +74,6 @@ catch (err)
 }
 
 /* Test Record: 
-    PMT16-00492 - has documents attached but no Construction Documents Form
-    PMT16-00869 - has Construction documents attached 
+     PMT16-01147 - has documents attached but no Code Modification Form
+     PMT16-00986 - has Code Modification Form attached 
 */
