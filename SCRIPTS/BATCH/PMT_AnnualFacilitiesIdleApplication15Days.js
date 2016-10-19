@@ -232,7 +232,7 @@ function mainProcess()
             addParameter(vEParams, "$$MISSING DOCUMENTS$$", mDocString);
 
             logDebug("Sending notification to " + emailAddress);
-            sendNotificationAndSaveInRecord("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
+            sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
             // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
         } 
         else 

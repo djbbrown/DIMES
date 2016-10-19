@@ -35,7 +35,7 @@ try
         var tInfo = VIOLATIONINFORMATION;
         var tInfoCount = tInfo.length;
         var newTable = new Array();
-
+        var criteriaMet = false;
         for(var eachRow in tInfo)
         {
             var thisRow = tInfo[eachRow];
@@ -44,7 +44,7 @@ try
             // ASIT with 'Status' = 'Open':
             var rowStatus = thisRow["Status"];
 
-            if ( rowStatus == "Open")
+            if ( rowStatus == "Open" || rowStatus == "")
             {
                 //  -- Set 'Status' = 'Closed'
                 thisRow["Status"] = new asiTableValObj("Status", "Closed", "N");
@@ -55,11 +55,15 @@ try
                 logDebug("Updated Date Closed to '" + getTodayAsString() +"'");
 
                 newTable.push(thisRow);
+                criteriaMet = true;
             }
         }
 
-        removeASITable("VIOLATION INFORMATION");
-        addASITable("VIOLATION INFORMATION", newTable);
+        if (criteriaMet)
+        {
+            removeASITable("VIOLATION INFORMATION");
+            addASITable("VIOLATION INFORMATION", newTable);
+        }
     }
     else
     {

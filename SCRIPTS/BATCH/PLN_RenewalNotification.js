@@ -41,6 +41,7 @@ function mainProcess()
     var capFilterExpirationGet = 0;
     var capFilterExpiration = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
+    var applicantEmailNotFound = 0;
 
     /***** END INITIALIZE COUNTERS *****/
 
@@ -172,15 +173,26 @@ function mainProcess()
         // if emailAddress is not null then send the notification
         if (emailAddress != null)
         {
+            var opName = getPrimaryOwnerName(capId);
+            if ( opName == "" )
+            {
+                opName = "[NOT ENTERED]";
+            }
+            var addy = getAddress(capId);
+            if (addy == null )
+            {
+                addy = "[NOT ENTERED]";
+            }
+            var url = lookup("Agency_URL","ACA");
+            logDebug("Operator Name = " + opName + ", address: " + addy + ", URL: " + url );
+
             var vEParams = aa.util.newHashtable();
-            addParameter(vEParams, "$$OPERATOR NAME$$", getPrimaryOwner(capId));
-            addParameter(vEParams, "$$ADDRESS$$", getAddress(capId));
-            addParameter(vEParams, "$$RECORD ID$$", altId);
-            addParameter(vEParams, "$$URL$$", lookup("Agency_URL","ACA"));
+            addParameter(vEParams, "$$OPERATOR NAME$$", opName);
+            addParameter(vEParams, "$$ADDRESS$$", addy);
+            addParameter(vEParams, "$$URL$$", url);
 
             logDebug("Sending notification to " + emailAddress);
-            sendNotificationAndSaveInRecord("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
-            // method signature: sendNotification(emailFrom, emailTo, emailCC, templateName, params, reportFile)
+            sendNotification("NoReply@MesaAz.gov", emailAddress, "", emailTemplate, vEParams, null, capId);
         } 
         else 
         {

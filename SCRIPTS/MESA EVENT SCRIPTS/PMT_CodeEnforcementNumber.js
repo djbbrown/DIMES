@@ -119,7 +119,7 @@ try
                     var vEParams = aa.util.newHashtable();
                     addParameter(vEParams,"$$Record ID$$", capIDString);
                     addParameter(vEParams,"$$Record ID2$$", fieldNow);
-                    sendNotificationAndSaveInRecord(fromEmail, codeOfficerEmail, "", "PMT_ASSOCIATED_ENFORCEMENT_RECORD", vEParams, null, capId);
+                    sendNotification(fromEmail, codeOfficerEmail, "", "PMT_ASSOCIATED_ENFORCEMENT_RECORD", vEParams, null, capId);
                     
                     logDebug("Sent email to Code Officer.");
                 }
