@@ -45,12 +45,12 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            runReportAttach(capId,"113-ANI Courtesy Notice","CaseNbr", capIDString);
+            runReportAttach(capId,"113-ANI Courtesy Notice","CaseNbr", capId.getCustomID());
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            runReportAttach(capId,"114-ANI Courtesy Notice","Alt_ID", capIDString);
+            runReportAttach(capId,"114-ANI Courtesy Notice","Alt_ID", capId.getCustomID());
             }
        }
     }
