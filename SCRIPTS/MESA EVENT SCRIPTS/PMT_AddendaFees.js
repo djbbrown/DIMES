@@ -76,6 +76,8 @@ if (AInfo["Type of Work"] == "Code Modification"){
 //Script Parents:
 //      	ASA;Permits!Addenda or Deferred!NA!NA
 ===================================================================*/
+/*
 if (AInfo["Type of Work"] == "Code Modification"){
 	updateFee("PMT070", "PMT_ADD", "FINAL", 1, "N");
 }
+--*/

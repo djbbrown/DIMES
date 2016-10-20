@@ -11,6 +11,7 @@
 //			WTUA;Permits!Sign!NA!NA
 //			WTUA;Permits!Online!NA!NA
 //          WTUA;Permits!Residential!Mobile Home!NA
+//          WTUA;Permits!Residential!Mobile Home!NA
 ===================================================================*/
 /*if (appMatch("Permits/Online/NA/NA") && wfTask == "Application Submittal" && wfStatus == "Ready To Issue"){
 	updateFee("ONL020", "PMT_ONL", "FINAL", 1, "N");
@@ -27,6 +28,8 @@ if (
 	updateFee("RES160", "PMT_RES", "FINAL", 1, "N");
 } else if (appMatch("Permits/Commercial/NA/NA") && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 	updateFee("COM120", "PMT_COM", "FINAL", 1, "N");
+} else if (appMatch("Permits/Addenda or Deferred/NA/NA") && wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
+	updateFee("PMT070", "PMT_ADD", "FINAL", 1, "N");
 } else if (appMatch("Permits/Residential/Mobile Home/NA")){
 	updateFee("MH210", "PMT_MOBILE HOME", "FINAL", 1, "N");
 }
