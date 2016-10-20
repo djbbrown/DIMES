@@ -14,10 +14,11 @@
 //  -- Set 'Status' = 'Closed'
 //  -- Set 'Date Closed' = Today's date.
 
-// Script Run Event: ASIUA
+// Script Run Event: ASIUA, WTUA
 
 // Script Parents:
 // ASIUA;Enforcement!Case!~!~
+// WTUA;Enforcement!Case!~!~
 /*==================================================================*/
 
 /* intellisense references */
