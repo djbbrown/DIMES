@@ -669,7 +669,10 @@ try {
 		if (
 				1==1
 				&& wfTask == 'Distribution'
-				&& wfStatus == 'Resubmitted'
+				&& (
+						wfStatus == 'Resubmitted'
+						|| wfStatus == 'Revisions Received'
+				)
 		){
 			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Update 3 & 4 Running");
 			// 1) Update the "Start/Stop Indicator" (subgroup = "KEY DATES") to "Started"
@@ -696,7 +699,11 @@ try {
 			}
 			var dR; // Distribution/Resubmitted
 			wf = aa.workflow.getTask(capId,"Distribution").getOutput();
-			if(wf.getDisposition() == "Resubmitted" && wf.getStatusDate() != null){
+			if(
+				(
+					wf.getDisposition() == "Resubmitted"
+					|| wf.getDisposition() == "Revisions Received"
+				) && wf.getStatusDate() != null){
 				dR = convertDate2(wf.getStatusDate());
 			}
 			else {
