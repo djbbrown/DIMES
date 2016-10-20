@@ -27,7 +27,7 @@ try{
 			removeFee("RES220","FINAL");
 		}
 		else {
-			updateFee("RES220","PMT_COM", "FINAL",  tempSum, "N");
+			updateFee("RES220","PMT_RES", "FINAL",  tempSum, "N");
 		}	
 	}
 }
