@@ -3,7 +3,7 @@
 // Script Name: PMT_OneTenthAcre.js
 // Script Developer: 
 // Script Agency: 
-// Script Description:  If parcel size is greater than 1/10 of an acre make ADEQ  and Dust Control document required. 
+// Script Description:  If parcel size is greater than 1/10 of an acre make Maricopa County Flood Control District Permit and Dust Control document required. 
 // Script Run Event: WTUB
 // Script Parents:
 //			WTUB;Permits!Demolition!NA!NA
@@ -15,64 +15,14 @@ try{
 	if (wfTask == "Permit Issuance" && wfStatus == "Issued"){
 		var acres = parcelArea;
 		var docArr = getDocumentList();
-		var classificationCode = AInfo["Classification Code"];
-		if (
-			classificationCode == 101 ||
-			classificationCode == 102 ||
-			classificationCode == 103 ||
-			classificationCode == 104 ||
-			classificationCode == 105 ||
-			classificationCode == 106 ||
-			classificationCode == 107 ||
-			classificationCode == 109 ||
-			classificationCode == 110 ||
-			classificationCode == 113 ||
-			classificationCode == 213 ||
-			classificationCode == 214 ||
-			classificationCode == 315 ||
-			classificationCode == 317 ||
-			classificationCode == 318 ||
-			classificationCode == 319 ||
-			classificationCode == 320 ||
-			classificationCode == 321 ||
-			classificationCode == 322 ||
-			classificationCode == 323 ||
-			classificationCode == 324 ||
-			classificationCode == 325 ||
-			classificationCode == 326 ||
-			classificationCode == 327 ||
-			classificationCode == 328 ||
-			classificationCode == 329 ||
-			classificationCode == 330 ||
-			classificationCode == 340 ||
-			classificationCode == 341 ||
-			classificationCode == 430 ||
-			classificationCode == 431 ||
-			classificationCode == 434 ||
-			classificationCode == 436 ||
-			classificationCode == 437 ||
-			classificationCode == 438 ||
-			classificationCode == 439 ||
-			classificationCode == 440 ||
-			classificationCode == 600 ||
-			classificationCode == 644 ||
-			classificationCode == 645 ||
-			classificationCode == 646 ||
-			classificationCode == 647 ||
-			classificationCode == 648 ||
-			classificationCode == 650 ||
-			classificationCode == 652 ||
-			classificationCode == 755 ||
-			classificationCode == 804 ||
-			classificationCode == 988 ||
-			classificationCode == 989 ||
-			classificationCode == 990 ||
-			classificationCode == 991 ||
-			classificationCode == 992 ||
-			classificationCode == 993 ||
-			classificationCode == 998 ||
-			classificationCode == 999
-		){
+		var recordAppType = appTypeArray[1];
+		//type of work ASI different naming between Commercial and Residential records 
+		var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
+		var classificationType = AInfo["Classification Type"];
+		if (recordAppType == "Demolition" || 
+			(recordAppType == "Residential" && matches(typeOfWork,"Single Family (Detached)","Single Family (Attached)","Two-Family Duplex","Guesthouse","Remodeling With Addition","Additions","Garage/Carport")) ||
+			(recordAppType == "Commercial" && ((matches(typeOfWork,"At Risk Grading","Commercial/Industrial Projects")) || (typeOfWork == "Other Commercial" && matches(classificationType,"Additions","Carport","Park/Stadium/Outdoor Theatre/Marinas","Parking Garage (Enclosed/Open)","Public Works/Utilities","Remodeling with Addition","Storage Shed/Barn","Swimming Pool","Foundation Permits"))))
+			){
 			if (!acres) logDebug("ERROR: Unable to get acreage.");
 			else{
 				logDebug("Parcel acreage: " + acres);
@@ -83,7 +33,7 @@ try{
 					reqDocTypes.push("Maricopa County Dust Control Plan");
 				} 
 				else logDebug("Parcel is under 0.1 acres. No additional documents are required.");
-				if (acres > 1.0) reqDocTypes.push("ADEQ");
+				if (acres > 1.0) reqDocTypes.push("Maricopa County Flood Control District Permit");
 				
 				// get attached docs
 				if (reqDocTypes.length > 0){
