@@ -11,7 +11,7 @@
 //			WTUA;Permits!Sign!NA!NA
 //			WTUA;Permits!Online!NA!NA
 //          WTUA;Permits!Residential!Mobile Home!NA
-//          WTUA;Permits!Residential!Mobile Home!NA
+//          WTUA;Permits!Addenda or Deferred!Mobile Home!NA
 ===================================================================*/
 /*if (appMatch("Permits/Online/NA/NA") && wfTask == "Application Submittal" && wfStatus == "Ready To Issue"){
 	updateFee("ONL020", "PMT_ONL", "FINAL", 1, "N");
