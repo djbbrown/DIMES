@@ -1,7 +1,8 @@
 /*===================================================================
  Versions:
  9/19/2016-A	John Cheney			initial
- 10/3/2016-E	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active) 
+ 10/3/2016-E	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active)
+ 10/20/2016-A	John Cheney			adjusted wire up events and improved logDebug messages 
  ---------------------------------------------------------------------
  Script Number: 334
  Script Name: PMT_CopyPenaltyDateToDueDate.js
@@ -46,11 +47,8 @@ Events:
 
 
 Script parents:
-- PMT_PenaltyDate (WTUA script that sets penalty date) – assumption to test: if a WTUA event modifies an ASI field, ASIUA is not fired
 - ASIUA;Permits!~!~
-- WTUA;Permits!Addenda or Deferred!NA!NA
-- WTUA;Permits!Master Plan!NA!NA
-- WTUA;Permits!Residential!
+- WTUA;Permits!~!~
 
 
 specs: https://portal.accelaops.com/projects/Mesa/Lists/Script%20Tracker/DispForm.aspx?ID=334  
@@ -83,18 +81,20 @@ try {
                 
                 for (t in tasks) {
                     taskCount = taskCount + 1;
+                    // is this a task to work with?
                     var taskName = String(tasks[t].getTaskDescription());
-                    var isActive = isTaskActive(taskName);
-
-                    //logDebug("PMT_CopyPenaltyDateToDueDate - Found Task = " + taskName + " - isActive = " + String(isActive));
-
-                    if(tasksToUpdate.indexOf(taskName) > -1 && isActive && isActive == true){
-                        editTaskDueDate(taskName, dueDate);
-                        // debug
-                        //logDebug("PMT_CopyPenaltyDateToDueDate - updated task = " + taskName + " - dueDate = " + dueDate);
-                        changeCount = changeCount + 1;
+                    if(tasksToUpdate.indexOf(taskName) > -1){
+                        // yes - is it active?
+                        if(isTaskActive(taskName)){
+                            // yes, so set due date
+                            changeCount = changeCount + 1;
+                            editTaskDueDate(taskName, dueDate);
+                            logDebug("PMT_CopyPenaltyDateToDueDate - updated task = " + taskName + " - dueDate = " + dueDate);
+                        }else{
+                            logDebug("PMT_CopyPenaltyDateToDueDate - found task = " + taskName + " - cannot update because it is not active");
+                        }
                     }
-
+                    logDebug("PMT_CopyPenaltyDateToDueDate - found task = " + taskName + " - no update - out of scope");
                 }
                 // summarize activity
                 logDebug("PMT_CopyPenaltyDateToDueDate - Set dueDate = " + dueDate + " in " + changeCount + " of " + taskCount + " tasks.");
