@@ -634,7 +634,7 @@ try {
 				workingDays = lookup("PLN Substantive Review Days",tBd[x]); // Confirmed working
 				tBdDay.push(workingDays);
 			}
-			tBdDay.sort().reverse(); // this will order from highest to lowes, which we want the highest.
+			tBdDay.sort().reverse(); // this will order from highest to lowest, which we want the highest.
 			nextDate = workDaysAdd(Date(),tBdDay[0],['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Substantive Review Due Date updated to "+jsDateToASIDate(convertDate2(nextDate)));
