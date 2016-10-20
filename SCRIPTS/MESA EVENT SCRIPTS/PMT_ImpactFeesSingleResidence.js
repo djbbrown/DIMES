@@ -96,6 +96,7 @@ try {
 			}
 			// ==================================================================
 			// Update for RDIF020 so that it can be multiple Classifications
+			// RDIF020 ==  "Water - Single Residence Attached"
 			if (classification == "Single Family-Attached (per dwelling unit)"
 				|| classification == "Multiple-Family Residential (per dwelling unit)"
 			){
@@ -117,8 +118,8 @@ try {
 			}
 			// ==================================================================
 			// Update for removing RDIF050 if it's not Singled Family Detached or Manufactured home.
-			if (classification == "Single Family-Attached (per dwelling unit)"
-				|| classification == "Multiple-Family Residential (per dwelling unit)"
+			if (classification == "Mfg. Home/Park Model/RV (per pad/space)"
+				//|| classification == "Multiple-Family Residential (per dwelling unit)"
 			){
 				logDebug("Starting RDIF050 check");
 				if (feeExists("RDIF050", "NEW", "INVOICED") && wmqGisTag) voidRemoveFee("RDIF050");
@@ -128,7 +129,7 @@ try {
 			}
 			// ==================================================================
 			// Update for removing RDIF060 if it's not Singled Family Detached or Manufactured home.
-			if (classification == "Mfg. Home/Park Model/RV (per space or lot)"
+			if (classification == "Mfg. Home/Park Model/RV (per pad/space)"
 			){
 				logDebug("Starting RDIF060 check");
 				if (feeExists("RDIF060", "NEW", "INVOICED") && (!wasteWaterQty || feeQty("RDIF060") != wasteWaterQty)) voidRemoveFee("RDIF060");
@@ -161,7 +162,7 @@ try {
 				|| classification == "Single Family-Detached (per dwelling unit)"
 				|| classification == "Manufactured Home (on platted lot)"
 				|| classification == "Multiple-Family Residential (per dwelling unit)"
-				|| classification == "Mfg. Home/Park Model/RV (per space or lot)"
+				|| classification == "Mfg. Home/Park Model/RV (per pad/space)"
 			)){
 				// remove any fees from previous classification
 				if (feeExists("RDIF170", "NEW", "INVOICED")) voidRemoveFee("RDIF170");
