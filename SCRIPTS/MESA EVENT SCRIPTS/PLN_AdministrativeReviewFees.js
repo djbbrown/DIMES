@@ -43,7 +43,7 @@ var adminAppFee = false;
 if (matches(AInfo["Type of Process"],"Board of Adjustment/Zoning Admin","Deser Uplands Development Standards","Design Review","Product Approval","Zoning/Site Plan")) {
 	adminAppFee = true;
 }
-if (AInfo["Type of Process"] == "Development Unit Plan" && matches(AInfo["Sub process type"],"Amendment to Development Unit Plan","Other")) {
+if (AInfo["Type of Process"] == "Development Unit Plan" && matches(AInfo["Sub process type"],"Development Unit Plan","Amendment to Development Unit Plan","Other")) {
 	adminAppFee = true;
 }
 if (AInfo["Type of Process"] == "Land Division" && matches(AInfo["Sub process type"],"Addition to or modification of amenity package","Amendment to Lot layout/street system","Change to Wall Design or Entry Feature","Other","Preliminary Plat Extension")) {
