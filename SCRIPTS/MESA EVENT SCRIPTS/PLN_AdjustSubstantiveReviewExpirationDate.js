@@ -20,493 +20,524 @@ try {
 		'Planning/Planning and Zoning/NA/NA',
 		'Planning/Subdivision/NA/NA'
 	];
-	if(exists(appTypeString,recTypesCheck)){
+	if(
+			exists(appTypeString,recTypesCheck)
+			&& (
+				// Check to make sure that it's even in the correct workflow.
+				// Check 1
+				(
+					(wfTask == 'Substantive Review Distribution' || wfTask == 'Distribution')
+					&& wfStatus == 'Distributed'
+				)
+				// Check 2
+				||(wfTask == 'Review Consolidation' && wfStatus == 'Revisions Required')
+				// Check 3 and 4
+				||(
+					wfTask == 'Distribution'
+					&& (wfStatus == 'Resubmitted'|| wfStatus == 'Revisions Received')
+				)
+				// Check 5
+				|| (
+					(wfTask == 'Review Consolidation')
+					&& exists(wfStatus,["Proceed","Complete","DR Board","Planning Director"])
+				)
+				// Check 6
+				|| (wfTask == 'Case Complete' && wfStatus == 'Complete')
+			)
+	){
 		var tBd = [];
 		// ===========================
 		// Technical breakdown
 		// ===========================
 		// 106 Reviews - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'A-frame Sign'
 		if (
 			appTypeString == 'Planning/Admin Review/NA/NA'
-			&& AInfo["Type of Process"] == 'Historic Preservation'
-			&& AInfo["Sub process type"] == 'Section 106 Review'
 		){
-			tBd.push('106 Reviews');
-		}
-		// ---------------------------
-		// A-frame Sign - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'A-frame Sign'
-		if (
-			appTypeString == 'Planning/Admin Review/NA/NA'
-			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-			&& AInfo["Sub process type"] == 'A-Frame Sign'
-		){
-			tBd.push('A-frame Sign');
-		}
-		// ---------------------------
-		// Administrative Extensions for Zoning Administration Cases - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'Adminstrative Extension'
-		if (
-			appTypeString == 'Planning/Admin Review/NA/NA'
-			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-			&& AInfo["Sub process type"] == 'Administrative Extension'
-		){
-			tBd.push('Administrative Extensions for Zoning Administration Cases');
-		}
-		// ---------------------------
-		// Affidavit of Change - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Land Division' and 
-		// Sub Process type = 'Affidavit of Change/Correction'
-		// 		or 'Addition to or modification of amenity package'
-		//		or 'Change to Wall Design or Entry Feature'
-		// 		or 'Lot Combination'
-		//		or 'Other'
-		aOcSubProc = ['Affidavit of Change/Correction', 
-		              'Addition to or modification of amenity package',
-		              'Change to Wall Design or Entry Feature',
-		              'Lot Combination',
-		              'Other']	
-		if (
-			appTypeString == 'Planning/Admin Review/NA/NA'
-			&& AInfo["Type of Process"] == 'Land Division'
-			&& exists(AInfo["Sub process type"],aOcSubProc)
-		){
-			tBd.push('Affidavit of Change');
-		}
-		// ---------------------------
-		// Alternative Landscaping - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'Alternative Landscaping'
-		if (
-				appTypeString == 'Planning/Admin Review/NA/NA'
-				&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-				&& AInfo["Sub process type"] == 'Alternative Landscaping'
-		){
-			tBd.push('Alternative Landscaping');
-		}
-		// ---------------------------
-		// Alternative Parking - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'Alternative Parking'
-		if (
-			appTypeString=='Planning/Admin Review/NA/NA'
-			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-			&& AInfo["Sub process type"] == 'Alternative Parking'
-		){
-			tBd.push('Alternative Parking');
+			// Affidavit of Change array below
+			aOcSubProc = ['Affidavit of Change/Correction', 
+	              'Addition to or modification of amenity package',
+	              'Change to Wall Design or Entry Feature',
+	              'Lot Combination',
+	              'Other'];
+			// Cell Tower staff array below
+			cTSSubProc = ['Addition to or modification of cell towers',  'Addition to or modification of sign plan'];
+			// Design Review Staff array
+			dRProc = ['Design Review','Land Division','Desert Uplands Development Standards'];
+			// Product Review
+			pRSubProc = ['New detached product','New Attached product','Other'];
+			
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'A-frame Sign'
+			if (
+				AInfo["Type of Process"] == 'Historic Preservation'
+				&& AInfo["Sub process type"] == 'Section 106 Review'
+			){
+				tBd.push('106 Reviews');
+			}
+			// ---------------------------
+			// A-frame Sign - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'A-frame Sign'
+			else if (
+				AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Sub process type"] == 'A-Frame Sign'
+			){
+				tBd.push('A-frame Sign');
+			}
+			// ---------------------------
+			// Administrative Extensions for Zoning Administration Cases - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'Adminstrative Extension'
+			else if (
+				AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Sub process type"] == 'Administrative Extension'
+			){
+				tBd.push('Administrative Extensions for Zoning Administration Cases');
+			}
+			// ---------------------------
+			// Affidavit of Change - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Land Division' and 
+			// Sub Process type = 'Affidavit of Change/Correction'
+			// 		or 'Addition to or modification of amenity package'
+			//		or 'Change to Wall Design or Entry Feature'
+			// 		or 'Lot Combination'
+			//		or 'Other'
+			// aOcSubProc 
+			else if (
+				AInfo["Type of Process"] == 'Land Division'
+				&& exists(AInfo["Sub process type"],aOcSubProc)
+			){
+				tBd.push('Affidavit of Change');
+			}
+			// ---------------------------
+			// Alternative Landscaping - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'Alternative Landscaping'
+			else if (
+					AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+					&& AInfo["Sub process type"] == 'Alternative Landscaping'
+			){
+				tBd.push('Alternative Landscaping');
+			}
+			// ---------------------------
+			// Alternative Parking - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'Alternative Parking'
+			else if (
+				AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Sub process type"] == 'Alternative Parking'
+			){
+				tBd.push('Alternative Parking');
+			}
+			// ---------------------------
+			// Certificate of Appropriateness - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Historical Preservation'
+			// and Sub Process type = 'Certificate of Appropriateness' or 'Demolition Permit'
+			else if (
+				AInfo["Type of Process"] == 'Historic Preservation'
+				&& (AInfo["Sub process type"] == 'Certificate of Appropriateness'
+					|| AInfo["Sub process type"] == 'Demolition Permit'
+				)
+			){
+				tBd.push('Certificate of Appropriateness');
+			}
+			// ---------------------------
+			// Cell Tower - staff - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// (
+			// 		Type of Process = 'Board of Adjustment/Zoning Admin'
+			//		and Sub Process type in ('Addition to or modification of cell towers',  'Addition to or modification of sign plan')
+			// ) 
+			// or Type of Process = 'Wireless Communications Facilities'
+			// defined above cTSSubProc = ['Addition to or modification of cell towers',  'Addition to or modification of sign plan'];
+			else if(
+				(
+					(
+						AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+						&& exists(AInfo["Sub process type"],cTSSubProc)
+					)
+					|| AInfo["Type of Process"] == 'Wireless Communications Facilities'
+				)
+			){
+				tBd.push('Cell Tower - staff');
+			}
+			// ---------------------------
+			// Design Review - Staff - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Design Review' or 'Land Division' or 'Desert Uplands Development Standards'
+			// defined as array above dRProc = ['Design Review','Land Division','Desert Uplands Development Standards'];
+			else if (
+				exists(AInfo["Type of Process"],dRProc)
+			){
+				tBd.push('Design Review - Staff');
+			}
+			// ---------------------------
+			// Development Unit Plan - Staff - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Development Unit Plan' and 
+			// Sub Process type = 'Development Unit Plan' or 'Other'
+			else if (
+				AInfo["Type of Process"] == 'Development Unit Plan'
+				&& (
+					AInfo["Sub process type"] == 'Development Unit Plan'
+					|| AInfo["Sub process type"] == 'Other'
+				)
+			){
+				tBd.push('Development Unit Plan - Staff');
+			}
+			// ---------------------------
+			// Development Unit Plan Modification - Staff - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Development Unit Plan' and 
+			// Sub Process type = 'Amendment to Development Unit Plan'
+			else if (
+				AInfo["Type of Process"] == 'Development Unit Plan'
+				&& AInfo["Sub process type"] == 'Amendment to Development Unit Plan'
+			){
+				tBd.push('Development Unit Plan Modification - Staff');
+			}
+			// ---------------------------
+			// Development Incentive Permit Modification - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'Amendment of development incentive permit'
+			else if (
+				AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+				&& AInfo["Sub process type"] == 'Amendment of development incentive permit'
+			){
+				tBd.push('Development Incentive Permit Modification');
+			}
+			// ---------------------------
+			// Form-based Code Zoning Clearance - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Form Based Code/Zoning Clearance'
+			else if (
+				AInfo["Type of Process"] == 'Form Based Code/Zoning Clearance'
+			){
+				tBd.push('Form-based Code Zoning Clearance');
+			}
+			// ---------------------------
+			// Land Split - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Land Division' and 
+			// Sub Process type = 'Land Split'
+			else if (
+				AInfo["Type of Process"] == 'Land Division'
+				&& AInfo["Sub process type"] == 'Land Split'
+			){
+				tBd.push('Land Split');
+			}
+			// ---------------------------
+			// Medical Marijuana - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Medical Marijuana'
+			else if (
+				AInfo["Type of Process"] == 'Medical Marijuana'
+			){
+				tBd.push('Medical Marijuana');
+			}
+			// ---------------------------
+			// Preliminary Plat Extension - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Land Division' and 
+			// Sub Process type = 'Preliminary Plat Extension'
+			else if (
+					AInfo["Type of Process"] == 'Land Division'
+					&& AInfo["Sub process type"] == 'Preliminary Plat Extension'
+			){
+				tBd.push('Preliminary Plat Extension');
+			}
+			// ---------------------------
+			// Preliminary Plat Modification - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Land Division' and 
+			// Sub Process type = Amendment to Lot layout/street system'
+			else if (
+					AInfo["Type of Process"] == 'Land Division'
+					&& AInfo["Sub process type"] == 'Amendment to Lot layout/street system'
+			){
+				tBd.push('Preliminary Plat Modification');
+			}
+			// ---------------------------
+			// Product Review - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Product Approval' and 
+			// Sub Process type = 'New detached product' or 'New Attached product' or 'Other'
+			// define above pRSubProc = ['New detached product','New Attached product','Other'];
+			else if (
+					AInfo["Type of Process"] == 'Product Approval'
+					&& exists(AInfo["Sub process type"],pRSubProc)
+			){
+				tBd.push('Product Review');
+			}
+			// ---------------------------
+			// Product Review Modification - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Product Approval' and 
+			// Sub Process type = 'Amendment/Addition to Approved Product'
+			else if (
+					AInfo["Type of Process"] == 'Product Approval'
+					&& AInfo["Sub process type"] == 'Amendment/Addition to Approved Product'
+			){
+				tBd.push('Product Review Modification');
+			}
+			// ---------------------------
+			// Shared Parking - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'Shared Parking'
+			else if (
+					AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+					&& AInfo["Sub process type"] == 'Shared Parking'
+			){
+				tBd.push('Shared Parking');
+			}
+			// ---------------------------
+			// Site Plan Modification - Admin - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Zoning/Site Plan'
+			else if (
+					AInfo["Type of Process"] == 'Zoning/Site Plan'
+			){
+				tBd.push('Site Plan Modification - Admin');
+			}
+			// ---------------------------
+			// Substantial Conformance Improvement Permit Modification - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'Amendment of Substantial Conformance Improvement Plan'
+			//		or 'Other'
+			else if (
+					AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+					&& (
+						AInfo["Sub process type"] == 'Amendment of Substantial Conformance Improvement Permit'
+						|| AInfo["Sub process type"] == 'Other'
+					)
+			){
+				tBd.push('Substantial Conformance Improvement Permit Modification');
+			}
+			// ---------------------------
+			// Temporary Use Permits - Confirmed PLN2016-00506
+			// Record Type:
+			//		Planning/Admin Review/NA/NA
+			// Type of Process = 'Board of Adjustment/Zoning Admin' and 
+			// Sub Process type = 'Temporary Use Permit'
+			else if (
+					AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
+					&& AInfo["Sub process type"] == 'Temporary Use Permit'
+			){
+				tBd.push('Temporary Use Permits');
+			}
 		}
 		// ---------------------------
 		// Annexation - Confirmed ANX16-00187
 		// Record Type:
 		//		Planning/Annexation/NA/NA
-		if (
+		else if (
 			appTypeString=='Planning/Annexation/NA/NA'
 		){
 			tBd.push('Annexation');
 		}
-		// ---------------------------
-		// Cell Tower - Board
-		// ---------------------------
-		// Cell Tower - staff - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// (
-		// 		Type of Process = 'Board of Adjustment/Zoning Admin'
-		//		and Sub Process type in ('Addition to or modification of cell towers',  'Addition to or modification of sign plan')
-		// ) 
-		// or Type of Process = 'Wireless Communications Facilities'
-		//
-		cTSSubProc = ['Addition to or modification of cell towers',  'Addition to or modification of sign plan'];
-		if(
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& (
-				(
-					AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-					&& exists(AInfo["Sub process type"],cTSSubProc)
-				)
-				|| AInfo["Type of Process"] == 'Wireless Communications Facilities'
-			)
-		){
-			tBd.push('Cell Tower - staff');
+		else if(appTypeString == "Planning/Planning and Zoning/NA/NA")
+		{
+			// ---------------------------
+			// Council Use Permit
+			// Record Type:
+			//		Planning/Planning and Zoning/NA/NA
+			// Development Incentive Permit = 'Yes'
+			if (AInfo["Council Use Permit"] == 'CHECKED'){
+				tBd.push('Council Use Permit');
+			}
+			// ---------------------------
+			// Development Unit Plan - P&Z
+			// Record Type:
+			//		Planning/Planning and Zoning/NA/NA
+			// Development Unit Plan = 'Yes'
+			if (AInfo["Development Unit Plan"] == 'CHECKED'){
+				tBd.push('Development Unit Plan - P&Z');
+			}
+			// ---------------------------
+			// Minor General Plan Amendment
+			// Record Type:
+			//		Planning/Planning and Zoning/NA/NA
+			// Minor General Plan Amendment = 'Yes' or 
+			// Planned Community Minor Amendment = 'Yes'
+			if (
+					AInfo["Minor General Plan Amendment"] == 'CHECKED'
+					|| AInfo["Planned Community Minor Amendment"] == 'CHECKED'
+			){
+				tBd.push('Minor General Plan Amendment');
+			}
+			// ---------------------------
+			// Preliminary Plat
+			// Record Type:
+			//		Planning/Planning and Zoning/NA/NA
+			// Minor General Plan Amendment = 'Yes' or 
+			// Planned Community Minor Amendment = 'Yes'
+			if (AInfo["Pre-Plat"] == 'CHECKED'){
+				tBd.push('Preliminary Plat');
+			}
+			// ---------------------------
+			// Rezoning - general 
+			// Record Type:
+			//		Planning/Planning and Zoning/NA/NA
+			// Rezone = 'Yes' or
+			// Rezone - Infill Development District 2 = 'Yes' or 
+			// Rezone - Planned Community District = 'Yes' or
+			// Combined Rezone and Site Plan Review/Modification = 'Yes'
+			if (
+			
+				AInfo['Rezone'] == 'CHECKED'
+				|| AInfo['Rezone - Infill Development District 2'] == 'CHECKED'
+				|| AInfo['Rezone - Planned Community District'] == 'CHECKED'
+				|| AInfo['Combined Rezone and Site Plan Review/Modification'] == 'CHECKED'
+			){
+				tBd.push('Rezoning - general');
+			}
+			// ---------------------------
+			// Site Plan Review - P&Z
+			// Record Type:
+			//		Planning/Board of Adjustment/NA/NA
+			// Special Use Permit = 'Yes'
+			//		or Administrative Use Permits = 'Yes'R
+			if (AInfo['Site Plan Review/Modification'] == 'CHECKED'){
+				tBd.push('Site Plan Review - P&Z');
+			}
 		}
-		// ---------------------------
-		// Certificate of Appropriateness - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Historical Preservation'
-		// and Sub Process type = 'Certificate of Appropriateness' or 'Demolition Permit'
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& AInfo["Type of Process"] == 'Historic Preservation'
-			&& (AInfo["Sub process type"] == 'Certificate of Appropriateness'
-				|| AInfo["Sub process type"] == 'Demolition Permit'
-			)
-		){
-			tBd.push('Certificate of Appropriateness');
+		else if(appTypeString == "Planning/Board of Adjustment/NA/NA")
+		{
+			// ---------------------------
+			// Substantial Conformance Improvement Permit
+			// Record Type:
+			//		Planning/Board of Adjustment/NA/NA
+			// Special Use Permit = 'Yes'
+			//		or Administrative Use Permits = 'Yes'
+			if (AInfo['Substantial Conformance Improvement Permit'] == 'CHECKED'){
+				tBd.push('Substantial Conformance Improvement Permit');
+			}
+			// ---------------------------
+			// Development Incentive Permit
+			// Record Type:
+			//		Planning/Board of Adjustment/NA/NA
+			// Development Incentive Permit = 'Yes'
+			if (AInfo["Development Incentive Permit"] == 'CHECKED'){
+				tBd.push('Development Incentive Permit');
+			}
+			// ---------------------------
+			// Variance
+			// Record Type:
+			//		Planning/Board of Adjustment/NA/NA
+			// Special Use Permit = 'Yes'
+			//		or Administrative Use Permits = 'Yes'
+			if (AInfo['Variance'] == 'CHECKED'){
+				tBd.push('Variance');
+			}
+			// ---------------------------
+			// Interpretation
+			// Record Type:
+			//		Planning/Board of Adjustment/NA/NA
+			// Interpretation = 'Yes'
+			if (AInfo["Interpretation"] == 'CHECKED'){
+				tBd.push('Interpretation');
+			}
+			// ---------------------------
+			// PAD Modification - BOA
+			// Record Type:
+			//		Planning/Board of Adjustment/NA/NA
+			// Modification of Planned Area Development = 'Yes'
+			if (AInfo["Modification of Planned Area Development"] == 'CHECKED'){
+				tBd.push('PAD Modification - BOA');
+			}
 		}
-		// ---------------------------
-		// Council Use Permit
-		// Record Type:
-		//		Planning/Planning and Zoning/NA/NA
-		// Development Incentive Permit = 'Yes'
-		if (
-			appTypeString == "Planning/Planning and Zoning/NA/NA"
-			&& AInfo["Council Use Permit"] == 'CHECKED'
-		){
-			tBd.push('Council Use Permit');
-		}
-		// ---------------------------
-		// Design Review Modification
 		// ---------------------------
 		// Design Review - Board - Confirmed DRB16-00226
 		// Record Type:
 		//		Planning/Design Review/NA/NA
 		// none
-		if (
+		else if (
 			appTypeString == "Planning/Design Review/NA/NA" 
 		){
 			tBd.push('Design Review - Board');
-		}
-		// ---------------------------
-		// Design Review - Staff - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Design Review' or 'Land Division' or 'Desert Uplands Development Standards'
-		dRProc = ['Design Review','Land Division','Desert Uplands Development Standards'];
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& exists(AInfo["Type of Process"],dRProc)
-		){
-			tBd.push('Design Review - Staff');
-		}
-		// ---------------------------
-		// Development Incentive Permit
-		// Record Type:
-		//		Planning/Board of Adjustment/NA/NA
-		// Development Incentive Permit = 'Yes'
-		if (
-			appTypeString == 'Planning/Board of Adjustment/NA/NA'
-			&& AInfo["Development Incentive Permit"] == 'CHECKED'
-		){
-			tBd.push('Development Incentive Permit');
-		}
-		// ---------------------------
-		// Development Incentive Permit Modification - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'Amendment of development incentive permit'
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-			&& AInfo["Sub process type"] == 'Amendment of development incentive permit'
-		){
-			tBd.push('Development Incentive Permit Modification');
-		}
-		// ---------------------------
-		// Development Unit Plan - P&Z
-		// Record Type:
-		//		Planning/Planning and Zoning/NA/NA
-		// Development Unit Plan = 'Yes'
-		if (
-			appTypeString == "Planning/Planning and Zoning/NA/NA"
-			&& AInfo["Development Unit Plan"] == 'CHECKED'
-		){
-			tBd.push('Development Unit Plan - P&Z');
-		}
-		// ---------------------------
-		// Development Unit Plan - Staff - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Development Unit Plan' and 
-		// Sub Process type = 'Development Unit Plan' or 'Other'
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& AInfo["Type of Process"] == 'Development Unit Plan'
-			&& (
-				AInfo["Sub process type"] == 'Development Unit Plan'
-				|| AInfo["Sub process type"] == 'Other'
-			)
-		){
-			tBd.push('Development Unit Plan - Staff');
-		}
-		// ---------------------------
-		// Development Unit Plan Modification - P&Z
-		// ---------------------------
-		// Development Unit Plan Modification - Staff - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Development Unit Plan' and 
-		// Sub Process type = 'Amendment to Development Unit Plan'
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& AInfo["Type of Process"] == 'Development Unit Plan'
-			&& AInfo["Sub process type"] == 'Amendment to Development Unit Plan'
-		){
-			tBd.push('Development Unit Plan Modification - Staff');
 		}
 		// ---------------------------
 		// Final Plat Modification - Confirmed SUB16-00208
 		// Record Type:
 		//		Planning/Subdivision/NA/NA
 		// Application Type = 'Re-Plat' or 'Map of Dedication (MOD)'
-		if (
-			appTypeString == "Planning/Subdivision/NA/NA"
-			&& (
-				AInfo['Application Type'] == 'Re-Plat'
-				|| AInfo['Application Type'] == 'Map of Dedication (MOD)'
-			)
-		){
-			tBd.push('Final Plat Modification');
-		}
-		// ---------------------------
-		// Final Plat and Re-plat - Confirmed SUB16-00208
-		// Record Type:
-		//		Planning/Subdivision/NA/NA
-		// Application Type = 'Final Plat Review'
-		if (
-			appTypeString == "Planning/Subdivision/NA/NA"
-			&& AInfo['Application Type'] == 'Final Plat Review'
-		){
-			tBd.push('Final Plat and Re-plat');
-		}
-		// ---------------------------
-		// Form-based Code Zoning Clearance - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Form Based Code/Zoning Clearance'
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& AInfo["Type of Process"] == 'Form Based Code/Zoning Clearance'
-		){
-			tBd.push('Form-based Code Zoning Clearance');
+		else if (appTypeString == "Planning/Subdivision/NA/NA")
+		{
+			
+			if (
+					AInfo['Application Type'] == 'Re-Plat'
+					|| AInfo['Application Type'] == 'Map of Dedication (MOD)'
+			){
+				tBd.push('Final Plat Modification');
+			}
+			// ---------------------------
+			// Final Plat and Re-plat - Confirmed SUB16-00208
+			// Record Type:
+			//		Planning/Subdivision/NA/NA
+			// Application Type = 'Final Plat Review'
+			else if (AInfo['Application Type'] == 'Final Plat Review'){
+				tBd.push('Final Plat and Re-plat');
+			}
+			// ---------------------------
+			// Subdivision Technical Review - Confirmed SUB16-00208
+			// Record Type:
+			//		Planning/Subdivision/NA/NA
+			// Application Type = 'Subdivision Technical Review'
+			else if (AInfo['Application Type'] == 'Subdivision Technical Review'){
+				tBd.push('Subdivision Technical Review');
+			}
 		}
 		// ---------------------------
 		// Group Home Registrations - Confirmed GHAP16-00206
 		// Record Type:
 		//		Planning/Group Home/Application/NA
 		// none
-		if (
+		else if (
 			appTypeString == "Planning/Group Home/Application/NA"	
 		){
 			tBd.push('Group Home Registrations');
-		}
-		// ---------------------------
-		// Improvement Permit Modification
-		// ---------------------------
-		// Interpretation
-		// Record Type:
-		//		Planning/Board of Adjustment/NA/NA
-		// Interpretation = 'Yes'
-		if (
-			appTypeString == "Planning/Board of Adjustment/NA/NA"
-			&& AInfo["Interpretation"] == 'CHECKED'
-		){
-			tBd.push('Interpretation');
-		}
-		// ---------------------------
-		// Land Split - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Land Division' and 
-		// Sub Process type = 'Land Split'
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& AInfo["Type of Process"] == 'Land Division'
-			&& AInfo["Sub process type"] == 'Land Split'
-		){
-			tBd.push('Land Split');
 		}
 		// ---------------------------
 		// Major General Plan Amendment - Confirmed GPA16-00227
 		// Record Type:
 		//		Planning/General Plan Amendment - Major/NA/NA
 		// none
-		if (
+		else if (
 			appTypeString == "Planning/General Plan Amendment - Major/NA/NA"
 		){
 			tBd.push('Major General Plan Amendment');
-		}
-		// ---------------------------
-		// Medical Marijuana - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Medical Marijuana'
-		if (
-			appTypeString == "Planning/Admin Review/NA/NA"
-			&& AInfo["Type of Process"] == 'Medical Marijuana'
-		){
-			tBd.push('Medical Marijuana');
-		}
-		// ---------------------------
-		// Minor General Plan Amendment
-		// Record Type:
-		//		Planning/Planning and Zoning/NA/NA
-		// Minor General Plan Amendment = 'Yes' or 
-		// Planned Community Minor Amendment = 'Yes'
-		if (
-			appTypeString == "Planning/Planning and Zoning/NA/NA"
-			&& (
-				AInfo["Minor General Plan Amendment"] == 'CHECKED'
-				|| AInfo["Planned Community Minor Amendment"] == 'CHECKED'
-			)
-		){
-			tBd.push('Minor General Plan Amendment');
-		}
-		// ---------------------------
-		// PAD Modification - BOA
-		// Record Type:
-		//		Planning/Board of Adjustment/NA/NA
-		// Modification of Planned Area Development = 'Yes'
-		if (
-			appTypeString == "Planning/Board of Adjustment/NA/NA"
-			&& AInfo["Modification of Planned Area Development"] == 'CHECKED'
-		){
-			tBd.push('PAD Modification - BOA');
-		}
-		// ---------------------------
-		// PAD Modification - P&Z
-		// ---------------------------
-		// Preliminary Plat
-		// Record Type:
-		//		Planning/Planning and Zoning/NA/NA
-		// Minor General Plan Amendment = 'Yes' or 
-		// Planned Community Minor Amendment = 'Yes'
-		if (
-			appTypeString == "Planning/Planning and Zoning/NA/NA"
-			&& AInfo["Pre-Plat"] == 'CHECKED'
-		){
-			tBd.push('Preliminary Plat');
-		}
-		// ---------------------------
-		// Preliminary Plat Extension - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Land Division' and 
-		// Sub Process type = 'Preliminary Plat Extension'
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Land Division'
-				&& AInfo["Sub process type"] == 'Preliminary Plat Extension'
-		){
-			tBd.push('Preliminary Plat Extension');
-		}
-		// ---------------------------
-		// Preliminary Plat Modification - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Land Division' and 
-		// Sub Process type = Amendment to Lot layout/street system'
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Land Division'
-				&& AInfo["Sub process type"] == 'Amendment to Lot layout/street system'
-		){
-			tBd.push('Preliminary Plat Modification');
-		}
-		// ---------------------------
-		// Product Review - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Product Approval' and 
-		// Sub Process type = 'New detached product' or 'New Attached product' or 'Other'
-		pRSubProc = ['New detached product','New Attached product','Other'];
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Product Approval'
-				&& exists(AInfo["Sub process type"],pRSubProc)
-		){
-			tBd.push('Product Review');
-		}
-		// ---------------------------
-		// Product Review Modification - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Product Approval' and 
-		// Sub Process type = 'Amendment/Addition to Approved Product'
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Product Approval'
-				&& AInfo["Sub process type"] == 'Amendment/Addition to Approved Product'
-		){
-			tBd.push('Product Review Modification');
-		}	
-		// ---------------------------
-		// Rezoning - Historic District
-		// ---------------------------
-		// Rezoning - Historic Landmark
-		// ---------------------------
-		// Rezoning - general 
-		// Record Type:
-		//		Planning/Planning and Zoning/NA/NA
-		// Rezone = 'Yes' or
-		// Rezone - Infill Development District 2 = 'Yes' or 
-		// Rezone - Planned Community District = 'Yes' or
-		// Combined Rezone and Site Plan Review/Modification = 'Yes'
-		if (
-				appTypeString == "Planning/Planning and Zoning/NA/NA"
-				&& (
-					AInfo['Rezone'] == 'CHECKED'
-					|| AInfo['Rezone - Infill Development District 2'] == 'CHECKED'
-					|| AInfo['Rezone - Planned Community District'] == 'CHECKED'
-					|| AInfo['Combined Rezone and Site Plan Review/Modification'] == 'CHECKED'
-				)
-		){
-			tBd.push('Rezoning - general');
-		}
-		// ---------------------------
-		// Shared Parking - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'Shared Parking'
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-				&& AInfo["Sub process type"] == 'Shared Parking'
-		){
-			tBd.push('Shared Parking');
-		}
-		// ---------------------------
-		// Site Plan Modification - Admin - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Zoning/Site Plan'
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Zoning/Site Plan'
-		){
-			tBd.push('Site Plan Modification - Admin');
-		}	
-		// ---------------------------
-		// Site Plan Review - Council
-		// ---------------------------
-		// Site Plan Review - P&Z
-		// Record Type:
-		//		Planning/Board of Adjustment/NA/NA
-		// Special Use Permit = 'Yes'
-		//		or Administrative Use Permits = 'Yes'R
-		if (
-				appTypeString == "Planning/Planning and Zoning/NA/NA"
-				&& AInfo['Site Plan Review/Modification'] == 'CHECKED'
-		){
-			tBd.push('Site Plan Review - P&Z');
 		}
 		// ---------------------------
 		// Special Use Permit
@@ -517,7 +548,7 @@ try {
 		// Record Type:
 		//		Planning/Planning and Zoning/NA/NA
 		// Special Use Permit = 'Yes'
-		if (
+		else if (
 				(
 					appTypeString == 'Planning/Board of Adjustment/NA/NA'
 					&& (AInfo['Special Use Permit'] == 'CHECKED'
@@ -530,73 +561,7 @@ try {
 		){
 			tBd.push('Special Use Permit');
 		}
-		// ---------------------------
-		// Special Use Permit Modification
-		// ---------------------------
-		// Subdivision Technical Review - Confirmed SUB16-00208
-		// Record Type:
-		//		Planning/Subdivision/NA/NA
-		// Application Type = 'Subdivision Technical Review'
-		if (
-				appTypeString == "Planning/Subdivision/NA/NA" 
-				&& AInfo['Application Type'] == 'Subdivision Technical Review'
-		){
-			tBd.push('Subdivision Technical Review');
-		}
-		// ---------------------------
-		// Substantial Conformance Improvement Permit
-		// Record Type:
-		//		Planning/Board of Adjustment/NA/NA
-		// Special Use Permit = 'Yes'
-		//		or Administrative Use Permits = 'Yes'
-		if (
-				appTypeString == "Planning/Board of Adjustment/NA/NA" 
-				&& AInfo['Substantial Conformance Improvement Permit'] == 'CHECKED'
-		){
-			tBd.push('Substantial Conformance Improvement Permit');
-		}
-		// ---------------------------
-		// Substantial Conformance Improvement Permit Modification - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'Amendment of Substantial Conformance Improvement Plan'
-		//		or 'Other'
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-				&& (
-					AInfo["Sub process type"] == 'Amendment of Substantial Conformance Improvement Permit'
-					|| AInfo["Sub process type"] == 'Other'
-				)
-		){
-			tBd.push('Substantial Conformance Improvement Permit Modification');
-		}
-		// ---------------------------
-		// Temporary Use Permits - Confirmed PLN2016-00506
-		// Record Type:
-		//		Planning/Admin Review/NA/NA
-		// Type of Process = 'Board of Adjustment/Zoning Admin' and 
-		// Sub Process type = 'Temporary Use Permit'
-		if (
-				appTypeString == "Planning/Admin Review/NA/NA"
-				&& AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-				&& AInfo["Sub process type"] == 'Temporary Use Permit'
-		){
-			tBd.push('Temporary Use Permits');
-		}
-		// ---------------------------
-		// Variance
-		// Record Type:
-		//		Planning/Board of Adjustment/NA/NA
-		// Special Use Permit = 'Yes'
-		//		or Administrative Use Permits = 'Yes'
-		if (
-				appTypeString == "Planning/Board of Adjustment/NA/NA"
-				&& AInfo['Variance'] == 'CHECKED'
-		){
-			tBd.push('Variance');
-		}
+
 		// ---------------------------
 		// Variance Modification
 		// ---------------------------
@@ -926,8 +891,6 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 					// Get the event details
 					var evtDateDate = new Date(convertDate2(calE[b].getStartDate()));
 					var evtType = calE[b].getEventType();
-					// aa.print(evtDateDate);
-					// aa.print(evtDateDate.toString());
 					// Now do the COMPARISON
 					if(
 						1==1
@@ -935,9 +898,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 						//&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
-						// aa.print("Removing element...");
 						removeA(dArray,jsDateToASIDate(evtDateDate));
-						// aa.print(evtDateDate.toString());
 					}
 				}
 			}
