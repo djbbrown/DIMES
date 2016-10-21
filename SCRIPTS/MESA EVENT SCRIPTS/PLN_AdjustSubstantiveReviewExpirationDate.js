@@ -865,7 +865,7 @@ function workDaysBetween(sDate,eDate,aCal,aDayEx){
 					// Now do the COMPARISON
 					if(
 						exists(evtType,aDayEx)
-						&& exists(jsDateToASIDate(evtDateDate),dArray)
+						//&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
 						removeA(dArray,jsDateToASIDate(evtDateDate));
@@ -932,7 +932,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 					if(
 						1==1
 						&& exists(evtType,aDayEx)
-						&& exists(jsDateToASIDate(evtDateDate),dArray)
+						//&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
 						// aa.print("Removing element...");
