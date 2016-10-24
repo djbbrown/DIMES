@@ -27,12 +27,12 @@ if(
 	// Check that it has the correct workflow task/status
 	&& (
 			(wfTask =='Accepted' && wfStatus=='Application Acceptance')
-			|| (wfTask =='Completeness Review' && wfStatus=='Information Received')
-			|| (wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
-			|| (wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
 			|| (wfTask =='Completeness Review' && wfStatus=='Incomplete Submittal')
+			|| (wfTask =='Completeness Review' && wfStatus=='Information Received')
 			|| (wfTask =='Completeness Review' && wfStatus=='Returned to Applicant')
+			|| (wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
 			|| (wfTask =='Planning Initial Review' && wfStatus=='Corrections Required')
+			|| (wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
 			|| (wfTask =='Review Consolidation' && wfStatus=='Revisions Required')
 	)
 ){
@@ -310,52 +310,319 @@ if(
 	}
 	tBdDay.sort().reverse(); // this will order from highest to lowest, which we want the highest.
 	shiftDays = tBdDay[0];
-	
+	//------------------------------------------------------------------------
 	// Test 1 - 1.	Update ASI “Start/Stop Indicator” to “Started”
+	//------------------------------------------------------------------------
 	if(
 		(wfTask =='Accepted' && wfStatus=='Application Acceptance')
 		|| (wfTask =='Completeness Review' && wfStatus=='Information Received')
 		|| (wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
 		|| (wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
 	){
-		// 1.	Update ASI “Start/Stop Indicator” to “Started” 
+		editAppSpecific("Start/Stop Indicator", 'Started');
 	}
-	
+	//------------------------------------------------------------------------
 	// Test 2 - 1.	Update ASI “Start/Stop Indicator” to “Stopped”
+	//------------------------------------------------------------------------
 	if(
 		(wfTask =='Completeness Review' && wfStatus=='Incomplete Submittal')
 		|| (wfTask =='Completeness Review' && wfStatus=='Returned to Applicant')
 		|| (wfTask =='Planning Initial Review' && wfStatus=='Corrections Required')
 		|| (wfTask =='Review Consolidation' && wfStatus=='Revisions Required')
 	){
-		// 1.	Update ASI “Start/Stop Indicator” to “Stopped”
-		
+		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
-	
+	//------------------------------------------------------------------------
 	// Test 3 - 1.	Update ASI “Completeness Review Due Date” to crdDate1.
+	//------------------------------------------------------------------------
 	if(
 		(wfTask =='Accepted' && wfStatus=='Application Acceptance')
 		|| (wfTask =='Completeness Review' && wfStatus=='Information Received')
 	){
-		
+		nextDate = workDaysAdd(Date(),shiftDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
+	//------------------------------------------------------------------------
 	// Test 4 - 1.	 Update ASI “Completeness Review Due Date” to crdDate2.
+	// Since this is tracked in completeness review it is going to require that we look at the workflow
+	// history to get the information needed.
+	//------------------------------------------------------------------------
+	recTypesCheck4 = [
+		'Planning/Admin Review/NA/NA',
+		'Planning/Annexation/NA/NA',
+		'Planning/Board of Adjustment/NA/NA',
+		'Planning/Design Review/NA/NA',
+		'Planning/General Plan Amendment - Major/NA/NA',
+		'Planning/Group Home/Application/NA',
+		'Planning/Planning and Zoning/NA/NA',
+		'Planning/Subdivision/NA/NA'
+	];
 	if(
 		(wfTask =='Completeness Review' && wfStatus=='Information Received')
+		&& exists(appTypeString,recTypesCheck4)
 	){
-		
+		srDD = getAppSpecific("Completeness Review Due Date");
+		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
+			srDD = Date();
+		};
+		aa.print("srDD: "+srDD);
+		srDD = convertDate2(srDD);
+		var rR; // Revisions required
+		wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
+		if(wf.getDisposition() == "Revisions Required" && wf.getStatusDate() != null){
+			rR = convertDate2(wf.getStatusDate());
+		}
+		else {
+			rR = Date();
+		}
+		var dR; // Distribution/Resubmitted
+		wf = aa.workflow.getTask(capId,"Completeness Review").getOutput();
+		if(
+			wf.getDisposition() == "Information Received"
+			&& wf.getStatusDate() != null
+		){
+			dR = convertDate2(wf.getStatusDate());
+		}
+		else {
+			dR = Date();
+		}
+		bTasks = workDaysBetween(rR,dR,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		var nextDate = new Date();
+		if(bTasks > 0 ){
+			nextDate = convertDate2(workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']));
+		}
+		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 	}
+	//------------------------------------------------------------------------
 	// Test 5 - 1.	 Update ASI “Completeness Review Due Date” to crdDate3.
+	//------------------------------------------------------------------------
+	recTypesCheck5 = [
+		'Planning/Admin Review/NA/NA',
+		'Planning/Annexation/NA/NA',
+		'Planning/Board of Adjustment/NA/NA',
+		'Planning/Design Review/NA/NA',
+		'Planning/General Plan Amendment - Major/NA/NA',
+		'Planning/Group Home/Application/NA',
+		'Planning/Planning and Zoning/NA/NA',
+		'Planning/Subdivision/NA/NA'
+	];
 	if(
 		(wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
+		&& exists(appTypeString,recTypesCheck5)
 	){
 		
 	}
-	
+	//------------------------------------------------------------------------
 	// Test 6 - 1.	 Update ASI “Completeness Review Due Date” to crdDate4.
+	//------------------------------------------------------------------------
+	recTypesCheck6 = [
+		'Planning/Admin Review/NA/NA',
+		'Planning/Annexation/NA/NA',
+		'Planning/Board of Adjustment/NA/NA',
+		'Planning/Design Review/NA/NA',
+		'Planning/General Plan Amendment - Major/NA/NA',
+		'Planning/Group Home/Application/NA',
+		'Planning/Planning and Zoning/NA/NA',
+		'Planning/Subdivision/NA/NA'
+	];
 	if (
 		(wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
+		&& exists(appTypeString,recTypesCheck6)
 	){
 		
 	}
+}
+//================================================
+//================================================
+// FUNCTIONS
+//================================================
+//================================================
+function dayDiff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
+}
+function convertDate2(thisDate)
+{
+	if (typeof(thisDate) == "string")
+		{
+		var retVal = new Date(String(thisDate));
+		if (!retVal.toString().equals("Invalid Date"))
+			return retVal;
+		}
+	if (typeof(thisDate)== "object")
+		{
+		if (!thisDate.getClass) // object without getClass, assume that this is a javascript date already
+			{
+			return thisDate;
+			}
+		if (thisDate.getClass().toString().equals("class com.accela.aa.emse.dom.ScriptDateTime"))
+			{
+			return new Date(thisDate.getMonth() + "/" + thisDate.getDayOfMonth() + "/" + thisDate.getYear());
+			}
+		if (thisDate.getClass().toString().equals("class com.accela.aa.emse.util.ScriptDateTime"))
+			{
+			return new Date(thisDate.getMonth() + "/" + thisDate.getDayOfMonth() + "/" + thisDate.getYear());
+			}			
+		if (thisDate.getClass().toString().equals("class java.util.Date")
+			|| thisDate.getClass().toString().equals("class java.sql.Timestamp")
+		)
+			{
+			return new Date(thisDate.getTime());
+			}
+		if (thisDate.getClass().toString().equals("class java.lang.String"))
+			{
+			return new Date(String(thisDate));
+			}
+		}
+	if (typeof(thisDate) == "number")
+		{
+		return new Date(thisDate);  // assume milliseconds
+		}
+	logDebug("**WARNING** convertDate2 cannot parse date : " + thisDate);
+	return null;
+}
+function monthDiff(d1, d2) {
+	var months;
+	d1 = convertDate2(d1);
+	d2 = convertDate2(d2);
+	months = (d2.getFullYear() - d1.getFullYear()) * 12;
+	months -= d1.getMonth();
+	months += d2.getMonth();
+	return months <= 0 ? 0 : months;
+}
+function removeA(arr) {
+	var what, a = arguments, L = a.length, ax;
+	while (L > 1 && arr.length) {
+		what = a[--L];
+		while ((ax= arr.indexOf(what)) !== -1) {
+			arr.splice(ax, 1);
+		}
+	}
+	return arr;
+}
+function workDaysBetween(sDate,eDate,aCal,aDayEx){
+	// sDate == Start Date
+	// eDays == End Date
+	// aCal == Array of calendars to include.
+	// aDayEx == Array of day types that you wish to exclude.
+	
+	// Any weekend could be a three day weekend
+	// 3 days are added for every weekend to make sure that we cover enough for the jump.
+	// aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
+	
+	// Variables
+	var dArray = []; // to store the dates between the two dates.
+	var sDate2 = convertDate2(sDate);
+	var eDate2 = convertDate2(eDate);
+	
+	aDays2 = dayDiff(sDate2,eDate2);
+	
+	// Change everything in aCal to upper for comparison.
+	toUpper = function(x){ 
+		  return x.toUpperCase();
+	};
+	aCal = aCal.map(toUpper);
+	
+	// eDate2 needs to be sufficiently into the future for the rest of the function.
+	eDate2.setDate(eDate2.getDate() + aDays2);
+	
+	// will be used to pull sufficient days that are "off"
+	var monthsBetween = monthDiff(sDate2,eDate2);
+
+	// Now create an array of dates adding one day to each date.
+	for(a = 1; a<= aDays2; a++){
+		calcDate = new Date(sDate);
+		calcDate.setDate(calcDate.getDate() + a);
+		dArray.push(jsDateToASIDate(calcDate));
+	}
+	// Now look up the calendars that are going to be excluded.
+	// expected return is the calendar ID's
+	calNames = aa.calendar.getCalendarNames().getOutput();
+	for(x in calNames){
+		// IF the name of the calendar is included in the list we need the
+		// events from that calendar
+		if(exists(calNames[x].getCalendarName().toUpperCase(),aCal)){
+			for(a = 0; a <= monthsBetween; a++){
+				calE = aa.calendar.getEventSeriesByCalendarID(calNames[x].getCalendarID(),sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
+				for(b in calE){
+					// Get the event details
+					var evtDateDate = new Date(convertDate2(calE[b].getStartDate()));
+					var evtType = calE[b].getEventType();
+					// Now do the COMPARISON
+					if(
+						exists(evtType,aDayEx)
+						//&& exists(jsDateToASIDate(evtDateDate),dArray)
+					)
+					{
+						removeA(dArray,jsDateToASIDate(evtDateDate));
+					}
+				}
+			}
+		}
+	}
+	if(sDate2 == eDate2){
+		return 0;
+	} else {
+	return dArray.length // Return the Date that can be used as a working day.
+	}
+}
+function workDaysAdd(sDate,aDays,aCal,aDayEx){
+	// sDate == Start Date
+	// aDays == Days to add
+	// aCal == Array of calendars to include.
+	// aDayEx == Array of day types that you wish to exclude.
+	
+	// Any weekend could be a three day weekend
+	// 3 days are added for every weekend to make sure that we cover enough for the jump.
+	aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
+	
+	// Variables
+	var dArray = []; // to store the dates between the two days.
+	var sDate2 = convertDate2(sDate);
+	var eDate2 = new Date(sDate2);
+	
+	// Change everything in aCal to upper for comparison.
+	toUpper = function(x){ 
+		  return x.toUpperCase();
+	};
+	aCal = aCal.map(toUpper);
+	
+	// eDate2 needs to be sufficiently into the future for the rest of the function.
+	eDate2.setDate(eDate2.getDate() + aDays2);
+	
+	// will be used to pull sufficient days that are "off"
+	var monthsBetween = monthDiff(sDate2,eDate2)+1;
+
+	// Now create an array of dates adding one day to each date.
+	for(a = 1; a<= aDays2; a++){
+		calcDate = new Date(sDate);
+		calcDate.setDate(calcDate.getDate() + a);
+		dArray.push(jsDateToASIDate(calcDate)); // watch out this array can get to big very quickly.
+	}
+	// Now look up the calendars that are going to be excluded.
+	// expected return is the calendar ID's
+	calNames = aa.calendar.getCalendarNames().getOutput();
+	for(x in calNames){
+		// IF the name of the calendar is included in the list we need the
+		// events from that calendar
+		if(exists(calNames[x].getCalendarName().toUpperCase(),aCal)){
+			for(a = 0; a <= monthsBetween; a++){
+				calE = aa.calendar.getEventSeriesByCalendarID(calNames[x].getCalendarID(),sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
+				for(b in calE){
+					// Get the event details
+					var evtDateDate = new Date(convertDate2(calE[b].getStartDate()));
+					var evtType = calE[b].getEventType();
+					// Now do the COMPARISON
+					if(
+						1==1
+						&& exists(evtType,aDayEx)
+						//&& exists(jsDateToASIDate(evtDateDate),dArray)
+					)
+					{
+						removeA(dArray,jsDateToASIDate(evtDateDate));
+					}
+				}
+			}
+		}
+	}
+	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
