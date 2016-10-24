@@ -36,7 +36,7 @@ try
   {
 
     // the minus 1 is due to customer wanting today to be "day 1"
-    var turnAroundTime = (parseInt(AInfo["Turn Around Time"]) - 1);
+    var turnAroundTime = (parseInt(AInfo["Turn Around Time"]));
 
     var penaltyDate = AInfo["Penalty Date"];
     var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
