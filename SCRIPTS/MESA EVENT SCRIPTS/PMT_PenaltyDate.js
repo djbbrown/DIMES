@@ -24,8 +24,8 @@
 //
 // Script Run Event: WTUA, ASIUA
 // Script Parents:
-//              WTUA;Permits!~!~!~
-//		ASIUA;Permits!~!~!~
+//              WTUA;Permits!~!~!~ (this script is wired to this parent)
+//		ASIUA;Permits!~!~!~ (_ForAsiua is wired to this parent)
 // 
 //==================================================================*/
 
@@ -47,9 +47,7 @@ try
      )||
      (
      (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
-     ) ||
-     (okayToUpdate)
-     )
+     ))
   {
 
     // the minus 1 is due to customer wanting today to be "day 1"
