@@ -22,18 +22,17 @@
 //		"Plan Review Penalty Date" ASI field and Workflow task
 //		"Plans Distribution"
 //
+//		**NOTE: User changed spec to include ASIUA if workflow after "Application Submittal",
+//		so this various of script 66 was created.
+//
+//
 // Script Run Event: WTUA, ASIUA
 // Script Parents:
-//              WTUA;Permits!~!~!~
-//		ASIUA;Permits!~!~!~
+//              WTUA;Permits!~!~!~  (see other script for specs)
+//		ASIUA;Permits!~!~!~ (this script is hooked to this parent)
 // 
 //==================================================================*/
 
-
-// leaving in case they want the record type testing back
-// (appMatch("Permits/Commercial/NA/NA")) ||
-// (appMatch("Permits/Document Retrieval/NA/NA")) ||
-// (appMatch("Permits/Residential/NA/NA"))
 
 try
 {
@@ -41,15 +40,7 @@ try
   var okayToUpdate = isTaskComplete("Application Submittal");
 
 
-  if ((
-      (wfTask == "Application Submittal") && 
-      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted"))
-     )||
-     (
-     (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
-     ) ||
-     (okayToUpdate)
-     )
+  if (okayToUpdate)
   {
 
     // the minus 1 is due to customer wanting today to be "day 1"
