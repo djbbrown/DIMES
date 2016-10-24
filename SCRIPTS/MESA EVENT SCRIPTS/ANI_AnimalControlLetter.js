@@ -45,7 +45,7 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            runReportAttach(capId,"113-ANI Courtesy Notice","CaseNbr", capId.getCustomID());
+            runReportAttach(capId,"113-ANI Courtesy Notice","Case Number", capId.getCustomID());
             }
         if(CriminalFlag == 1)
             {
