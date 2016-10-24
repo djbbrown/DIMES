@@ -7,6 +7,7 @@
 // Test Record: TTC16-00020
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/26/16  |Steve Veloudos   |Initial Release
+//  1.0      |10/24/16  |Steve Veloudos   |Removed adjust the task status per Mong
 /*==================================================================*/
 
 try {
@@ -47,7 +48,7 @@ try {
                 sendNotification(FromEmail, ToEmail, "", "TRA_TTC_INCOMPLETE_SUBMITTAL", vEParams, null, capId); 
 
                 //Set status to Incomplete
-                setTask(tName,"N","N");
+                //setTask(tName,"N","N");
             }
         }     
     }
