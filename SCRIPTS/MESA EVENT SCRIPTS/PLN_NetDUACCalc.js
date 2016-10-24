@@ -37,7 +37,7 @@ try
     }
     else
     {
-      newDwellingUnits = parseFloat(AInfo["Total Existing Lots"]);
+      newDwellingUnits = parseFloat(AInfo["Total New Dwelling Units"]);
     }    
 
     if (AInfo["Net Site Size (acres)"] == null)
