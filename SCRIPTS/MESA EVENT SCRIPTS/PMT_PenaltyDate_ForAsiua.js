@@ -38,7 +38,6 @@ try
   
   var okayToUpdate = isTaskComplete("Application Submittal");
 
-
   if (okayToUpdate)
   {
 
