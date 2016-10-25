@@ -283,7 +283,8 @@ function getDocs() {
     var docArray = [];
     var getResult = aa.document.getCapDocumentList(capId, currentUserID);
 
-    if(getResult.getSuccess()) {
+    //10.25.2016 - MRK - added getResult to the if statement
+    if(getResult && getResult.getSuccess()) {
         var objArray = getResult.getOutput();
         for(i in objArray) {
             var xx = objArray[i].getDocCategory();
