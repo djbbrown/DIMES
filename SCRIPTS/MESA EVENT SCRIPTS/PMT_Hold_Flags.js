@@ -10,7 +10,7 @@
 /*==================================================================*/
 
 if (appTypeArray[1] != "Fire" && appTypeArray[1] != "Police Department") {
-tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
+tagFieldArray = getGISInfoArray2("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG",-1,"feet");
 
 if (tagFieldArray && tagFieldArray.length > 0) {
    for (tIndex in tagFieldArray) {
