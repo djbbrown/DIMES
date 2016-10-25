@@ -43,6 +43,7 @@ try {
                         if(CondStatus == "CONDITION MET")
                         {
                             CondFlag = 1;
+                            break;
                         }
 
                     }
@@ -67,6 +68,7 @@ try {
                        if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "OK")
                        {
                            FinalInspectionFlag = 1;
+                           break;
                        }
                     }
                 }
