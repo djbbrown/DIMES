@@ -6,6 +6,7 @@
 // Test Record: TTC16-00028
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/15/16  |Steve Veloudos   |Initial Release
+//  2.0      |10/25/16  |Steve Veloudos   |Added unpaid non invoiced balance due
 /*==================================================================*/
 
 try {
@@ -14,10 +15,14 @@ try {
       var CondFlag = 0;
       var BalanceDueFlag = 0;
       var FinalInspectionFlag = 0;
+      var UnpaidBalance;
 
+      //Get balance due not invoiced fees
+      UnpaidBalance = getUnpaidFeeBalance();
+      
       //Get balance due 
        balance = balanceDue;
-       if(balance != 0)
+       if(balance > 0 || UnpaidBalance > 0)
        {
          BalanceDueFlag = 1;  
        }
