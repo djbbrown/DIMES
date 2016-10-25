@@ -1,4 +1,9 @@
 /*===================================================================
+Versions:
+ 9/19/2016      Vance Smith     initial
+ 10/25/2016     Vance Smith     modified to use getDocs()
+ ---------------------------------------------------------------------
+
 // Script Number: 311
 // Script Name: PLN_DevelopmentUnitPlan.js
 // Script Developer: Vance Smith
@@ -23,7 +28,7 @@
 
 try
 {
-    var docList = getDocumentList();
+    var docList = getDocs(); //getDocumentList(); removed on 10/25/2016
     var isDevUnitPlanChecked = (AInfo["Development Unit Plan"] == "CHECKED");
     
     if ( isDevUnitPlanChecked )
