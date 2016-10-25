@@ -349,11 +349,11 @@ if(
 	//------------------------------------------------------------------------
 	recTypesCheck4 = [
 		'Planning/Admin Review/NA/NA',
-		'Planning/Annexation/NA/NA',
+		//'Planning/Annexation/NA/NA',
 		'Planning/Board of Adjustment/NA/NA',
 		'Planning/Design Review/NA/NA',
 		'Planning/General Plan Amendment - Major/NA/NA',
-		'Planning/Group Home/Application/NA',
+		//'Planning/Group Home/Application/NA',
 		'Planning/Planning and Zoning/NA/NA',
 		'Planning/Subdivision/NA/NA'
 	];
@@ -361,75 +361,71 @@ if(
 		(wfTask =='Completeness Review' && wfStatus=='Information Received')
 		&& exists(appTypeString,recTypesCheck4)
 	){
-		srDD = getAppSpecific("Completeness Review Due Date");
+		srDD = getAppSpecific("Substantive Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
 		};
-		aa.print("srDD: "+srDD);
-		srDD = convertDate2(srDD);
-		var rR; // Revisions required
-		wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
-		if(wf.getDisposition() == "Revisions Required" && wf.getStatusDate() != null){
-			rR = convertDate2(wf.getStatusDate());
-		}
-		else {
-			rR = Date();
-		}
-		var dR; // Distribution/Resubmitted
-		wf = aa.workflow.getTask(capId,"Completeness Review").getOutput();
-		if(
-			wf.getDisposition() == "Information Received"
-			&& wf.getStatusDate() != null
-		){
-			dR = convertDate2(wf.getStatusDate());
-		}
-		else {
-			dR = Date();
-		}
-		bTasks = workDaysBetween(rR,dR,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-		var nextDate = new Date();
-		if(bTasks > 0 ){
-			nextDate = convertDate2(workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']));
-		}
+		nextDateDays = wfDaysBetween(
+				"Completeness Review", "Returned to Applicant", "Completeness Review", "Revisions Submitted",
+				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
+		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
 	// Test 5 - 1.	 Update ASI “Completeness Review Due Date” to crdDate3.
 	//------------------------------------------------------------------------
 	recTypesCheck5 = [
-		'Planning/Admin Review/NA/NA',
-		'Planning/Annexation/NA/NA',
+		//'Planning/Admin Review/NA/NA',
+		'Planning/Annexation/NA/NA'
+		/*
 		'Planning/Board of Adjustment/NA/NA',
 		'Planning/Design Review/NA/NA',
 		'Planning/General Plan Amendment - Major/NA/NA',
 		'Planning/Group Home/Application/NA',
 		'Planning/Planning and Zoning/NA/NA',
 		'Planning/Subdivision/NA/NA'
+		//*/
 	];
 	if(
 		(wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
 		&& exists(appTypeString,recTypesCheck5)
 	){
-		
+		srDD = getAppSpecific("Substantive Review Due Date");
+		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
+			srDD = Date();
+		};
+		nextDateDays = wfDaysBetween(
+				"Completeness Review", "Returned to Applicant", "Completeness Review", "Revisions Submitted",
+				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
+		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
 	// Test 6 - 1.	 Update ASI “Completeness Review Due Date” to crdDate4.
 	//------------------------------------------------------------------------
 	recTypesCheck6 = [
-		'Planning/Admin Review/NA/NA',
-		'Planning/Annexation/NA/NA',
-		'Planning/Board of Adjustment/NA/NA',
-		'Planning/Design Review/NA/NA',
-		'Planning/General Plan Amendment - Major/NA/NA',
-		'Planning/Group Home/Application/NA',
-		'Planning/Planning and Zoning/NA/NA',
-		'Planning/Subdivision/NA/NA'
+		//'Planning/Admin Review/NA/NA',
+		//'Planning/Annexation/NA/NA',
+		//'Planning/Board of Adjustment/NA/NA',
+		//'Planning/Design Review/NA/NA',
+		//'Planning/General Plan Amendment - Major/NA/NA',
+		'Planning/Group Home/Application/NA'
+		//'Planning/Planning and Zoning/NA/NA',
+		//'Planning/Subdivision/NA/NA'
 	];
 	if (
 		(wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
 		&& exists(appTypeString,recTypesCheck6)
 	){
-		
+		srDD = getAppSpecific("Substantive Review Due Date");
+		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
+			srDD = Date();
+		};
+		nextDateDays = wfDaysBetween(
+				"Completeness Review", "Corrections Required", "Completeness Review", "Resubmittal Received",
+				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
+		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 	}
 }
 //================================================
@@ -439,6 +435,41 @@ if(
 //================================================
 function dayDiff(first, second) {
     return Math.round((second-first)/(1000*60*60*24));
+}
+function wfDaysBetween(
+		wfTaskFrom, wfTaskStatusFrom, wfTaskTo, wfTaskStatusTo,
+		aCal,aDayEx
+){
+	var iS = new Array(), iR = new Array();
+	var iSrec = '', iRrec = '';
+	var workflow = aa.workflow.getHistory(capId).getOutput();
+	for(x in workflow){  
+		logDebug(workflow[x].getTaskDescription());
+		logDebug(workflow[x].getDisposition());
+		//logDebug(workflow[x].getStatusDate());
+		if(
+			workflow[x].getTaskDescription() == wfTaskFrom
+			&& workflow[x].getDisposition() == wfTaskStatusFrom
+		){
+			logDebug(workflow[x].getStatusDate());
+			// iS.push(workflow[x].getProcessHistorySeq());
+			// iSrec = workflow[x].getProcessHistorySeq();
+			iSrec = convertDate2(workflow[x].getStatusDate());
+		}
+		if(
+			workflow[x].getTaskDescription() == wfTaskTo
+			&& workflow[x].getDisposition() == wfTaskStatusTo
+		){
+			logDebug(workflow[x].getStatusDate());
+			iS.push(iSrec);
+			iR.push(convertDate2(workflow[x].getStatusDate()));
+		}
+	}
+	iS = iS.sort().reverse();
+	iR = iR.sort().reverse();
+	logDebug(workDaysBetween(iS[0],iR[0],aCal,aDayEx));
+	return workDaysBetween(iS[0],iR[0],aCal,aDayEx);
+	//*/
 }
 function convertDate2(thisDate)
 {
