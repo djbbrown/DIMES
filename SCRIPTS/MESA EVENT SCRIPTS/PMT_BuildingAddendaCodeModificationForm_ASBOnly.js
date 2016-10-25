@@ -1,18 +1,17 @@
 /*===================================================================
 // Script Number: 310
-// Script Name: PMT_BuildingAddendaCodeModificationForm.js
+// Script Name: PMT_BuildingAddendaCodeModificationForm_ASBOnly.js
 // Script Developer: Michael Kniskern
 // Script Agency: Mesa
 // Script Description: 
 	
 When ASI field "Type of Work" = "Code Modification", require document "Code Modification Form".
 
-// Script Run Event: ASIUB
+// Script Run Event: ASB
 
 // Script Parents:
 
-//	ASIUB;Permits!Addenda or Deferred!NA!NA
-
+//	ASB;Permits!Addenda or Deferred!NA!NA
 //            
 /*==================================================================*/
 
@@ -29,30 +28,36 @@ try
     //MRK - 10.25.2016 - based on Jody Bearden suggestion, replaced getAppSpecific with AInfo[]
     if(AInfo["Type of Work"] == "Code Modification")
     {
+        var docListCount = 0;
         var passed = true;
 
+        //MRK - 10.25.2016 - Modified the script to use the suggested method for getting documents from a record that has not been
+        //submiited yet
+
         //get the document list for the record
-        var docList = getDocumentList();
+        var docList = aa.env.getValue("DocumentModeList");
+
+        if((docList == null) || (docList == "")) {
+            docList = aa.document.getDocumentListByEntity(capId.toString(), "TMP_CAP").getOutput();
+            docListCount = docList.size();
+        }
+        else
+            docListCount = docList.size();
 
         //if there are no documents attached to the record, failed validation
-        if(docList.length == 0)
-        {
+        if(docListCount > 0)
             passed = false;
-        }
         else
         {
             var isMatch = false;
 
             //loop through document list and check the document category to see if is a Code Modification Form
-            for(doc in docList)
-            {
-                var currentDoc = docList[doc];
-                var docCategory = currentDoc.getDocCategory();
-
-                //MRK - 9.27.2016 - removed "Code Modification Form" and replaced with "Construction Documents"
-                //MRK - 10.18.2016 - I guess i never changed to the correct required document "Code Modification Form" (facepalm) 
-                if(docCategory.equals("Code Modification Form"))
+            for(x = 0; x < docListCount; x++) {
+                if((docList.get(x) != null) && (docList.get(x).getDocCategory == "Code Modification Form"))
+                {
                     isMatch = true;
+                    break;
+                }
             }
 
             if(!isMatch) passed = false;
