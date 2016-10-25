@@ -3,7 +3,15 @@
 // Script Name: TRN_PermitExpirationDate.js
 // Script Developer: Jody Bearden
 // Script Agency: Mesa
-// Script Description: Transportation!Temporary Traffic Control!~!~
+//
+// (per change 88):
+// Change Description: The change is to populate the ASI field "Permit
+//                     Start Date" with the date entered in the ASIT
+//                     field "Restriction Start Date". If there is
+//                     more than one record, use the date earliest
+//                     (if dates are 10/1 and 11/5, use 10/1)
+//
+// Original Script Description: Transportation!Temporary Traffic Control!~!~
 //                     Populate the ASI field "Permit Expiration Date"
 //                     with the date entered in the ASIT field
 //                     "Restriction End Date. If there is more than
@@ -17,7 +25,7 @@
 /*==================================================================*/
 
 /* test with TTC16-00024 => no records */
-/* test with TTC16-00026 */
+/* test with TTC16-00026,  TTC16-00055 */
 
 try
 {
@@ -27,17 +35,17 @@ try
 
 	// if there is one (or more), get the value of the most current Restriction End Date field
 	if (tbl.length > 0) {
-		var resEndDate = tbl[0]["Restriction End Date"]; // init before loop
+		var resStartDate = tbl[0]["Restriction Start Date"]; // init before loop
 		for (row in tbl) {
-			tempEndDate = tbl[row]["Restriction End Date"];
-			logDebug("tempEndDate: " + tempEndDate);
-			if (tempEndDate > resEndDate) {  resEndDate = tempEndDate; } // get most current date
+			tempStartDate = tbl[row]["Restriction Start Date"];
+			logDebug("tempStartDate: " + tempStartDate);
+			if (tempStartDate < resStartDate) {  resStartDate = tempStartDate; } // get most current date
 		}
 
-		//logDebug("Current Permit Expiration Date: " + getAppSpecific("Permit Expiration Date"));
-		//logDebug("Updating Permit Expiration Date to: " + resEndDate);
-		editAppSpecific("Permit Expiration Date", resEndDate);
-		//logDebug("Permit Expiration Date updated to: " + getAppSpecific("Permit Expiration Date"));
+		//logDebug("Current Permit Start Date: " + getAppSpecific("Permit Start Date"));
+		//logDebug("Updating Permit Start Date to: " + resStartDate);
+		editAppSpecific("Permit Start Date", resStartDate);
+		//logDebug("Permit Start Date updated to: " + getAppSpecific("Permit Start Date"));
 	} // else no records in ASIT, so no restriction end date to pull, so nothing to calculate permit date from.
 }
 catch (err)
