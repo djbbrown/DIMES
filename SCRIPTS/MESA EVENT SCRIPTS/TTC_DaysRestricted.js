@@ -49,7 +49,7 @@ try
     }
     
     // Roadway/Alley
-    editAppSpecific("Roadway/Alley Restriction",parseInt(RoadAlley|0),capId);
+    editAppSpecific("Total Roadway/Alley Restriction",parseInt(RoadAlley|0),capId);
     logDebug("Updating 'Total Roadway/Alley Restriction' to "+parseInt(RoadAlley|0));
     // Sidewalk Closure
     editAppSpecific("Sidewalk Closure",parseInt(Sidewalk|0),capId);
