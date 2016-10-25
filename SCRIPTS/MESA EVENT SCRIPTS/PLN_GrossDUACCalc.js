@@ -64,7 +64,7 @@ try
     
     if (acres > 0)
     {
-      duac = ((newLots + newUnits) / acres).toFixed(2);
+      duac = (newUnits / acres).toFixed(2);
     }
 
     editAppSpecific("Gross DU/AC", duac);

@@ -44,6 +44,7 @@ function mainProcess()
     var capFilterDaysIdle = 0;
     var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
+    var capFilterNoAuditDate = 0;
 
     /***** END INITIALIZE COUNTERS *****/
 
@@ -118,26 +119,20 @@ function mainProcess()
             continue; // move to the next record
         }
 
-        /* EXAMPLE OF FILTERING BY FILE DATE 
-        // move to the next record if the file date is not "numDaysOut" days out
-        var fileDateObj = cap.getFileDate();
-        var fileDate =  fileDateObj.getMonth() + "/" + fileDateObj.getDayOfMonth() + "/" + fileDateObj.getYear();
-        var daysSinceSubmittal = daydiff(parseDate(fileDate), parseDate(getTodayAsString())); 
-        if (daysSinceSubmittal != numDaysOut) 
-        {
-            capFilterFileDate++;
-            logDebug(altId + ": File Date is not " + numDaysOut + " days out. Days Since Submittal: " + daysSinceSubmittal );
-            continue; // move to the next record
-        }*/
-
         /* EXAMPLE OF FILTERING BY AUDIT DATE */
         // move to the next record if the audit date is not "numDaysOut" days out
         var auditDate = getLastRecordDateInWorkflowHistory(capId);
+        if ( auditDate == false )
+        {
+            capFilterNoAuditDate++;
+            logDebug( altId + ": No Audit Date" );
+            continue; // move to the next record
+        }
         var daysIdle = daydiff(auditDate, parseDate(getTodayAsString()));
         if (daysIdle != numDaysOut )
         {
             capFilterDaysIdle++;
-            logDebug(altId + ": Audit Date is not " + numDaysOut + " days out. Days idle: " + daysIdle );
+            logDebug(altId + ": Audit Date is not " + numDaysOut + " days out. Audit Date: " + auditDate + ", Days idle: " + daysIdle );
             continue; // move to the next record
         }
 
@@ -259,6 +254,7 @@ function mainProcess()
     logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");	
     logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed")
     logDebugAndEmail("Skipped " + capFilterDaysIdle + " due to audit date not being " + numDaysOut + " days out");
+    logDebugAndEmail("Skipped " + capFilterNoAuditDate + " due to no Audit Date");
     logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
@@ -328,10 +324,10 @@ function getRecordBalanceDue(capId)
 }
 
 
-/*function parseDate(str) {
+function parseDate(str) {
     var mdy = str.split('/');
     return new Date(mdy[2], mdy[0]-1, mdy[1]);
-}*/
+}
 
 function getMasterScriptText(vScriptName)
 {

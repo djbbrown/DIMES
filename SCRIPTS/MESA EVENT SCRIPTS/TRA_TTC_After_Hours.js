@@ -9,6 +9,7 @@
 // Testing record: TTC2016-00845
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/07/16  |Steve Veloudos   |Initial Release 
+//  2.0      |10/24/16  |Steve Veloudos   |Added the doesCapConditionExist check
 /*==================================================================*/
 
 try {
@@ -37,7 +38,11 @@ try {
         //Set condition
         if(ConditionFlag == 1)
         {
+             //First check if the condition already exists
+             if (doesCapConditionExist("After Hours or Saturday/Sunday Restriction") == false)
+             {
             addAppCondition("Transportation","Applied(Applied)","After Hours or Saturday/Sunday Restriction","Permit cannot be issued until After Hours Work Permit is obtained.","Hold");
+             }
         }
     }
        

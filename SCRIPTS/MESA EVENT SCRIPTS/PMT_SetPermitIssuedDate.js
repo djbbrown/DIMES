@@ -16,27 +16,14 @@
 // Test Record: PMT16-00947
 // Version   |Date      |Engineer         |Details
 //  1.0      |10/12/16  |Steve Veloudos   |Initial Release
+//  1.1      |10/24/16  |Kevin Gurney     |Updated to utilize environment variables.
 /*==================================================================*/
 
 try {
-       var StatusDate;
-       
-       //Get WF Task
-       var tasks = aa.workflow.getTasks(capId).getOutput();
-       for (t in tasks) 
-        {
-            //Check for Planning Review Task
-            if(tasks[t].getTaskDescription().toUpperCase() == "PERMIT ISSUANCE")
-            {
-                //Check task status 
-                if (tasks[t].getDisposition().toUpperCase() == "ISSUED")
-                {
-                  //Get & assign status date
-                  StatusDate =  (tasks[t].getStatusDate().getMonth() + 1) + "/" + tasks[t].getStatusDate().getDate() + "/" + (tasks[t].getStatusDate().getYear() + 1900);
-                  editAppSpecific("Permit Issued Date", StatusDate);
-		        }              
-            }
-        }     
+       if (wfTask == "Permit Issuance" && wfStatus == "Issued"){       
+            //upate the custom field Permit Issued Date
+            editAppSpecific("Permit Issued Date", wfDateMMDDYYYY);
+		        }                
     }
 catch (err)
     {

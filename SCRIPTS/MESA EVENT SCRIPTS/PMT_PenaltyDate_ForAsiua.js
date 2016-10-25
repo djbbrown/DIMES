@@ -1,12 +1,6 @@
-//*===================================================================
-// Versions:
- // 9/?/2016	 Brian O'Dell			initial
- // 9/28/2016	 John Cheney			added include("PMT_CopyPenaltyDateToDueDate") 
-// 10/17/2016	 John Cheney			removed include("PMT_CopyPenaltyDateToDueDate")
-
  //---------------------------------------------------------------------
 // Script Number: 66, 169
-// Script Name: PMT_PenaltyDate.js 
+// Script Name: PMT_PenaltyDate_ForAsiua.js 
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
@@ -22,32 +16,23 @@
 //		"Plan Review Penalty Date" ASI field and Workflow task
 //		"Plans Distribution"
 //
+//		**NOTE: User changed spec to include ASIUA if workflow after "Application Submittal",
+//		so this various of script 66 was created.
+//
+//
 // Script Run Event: WTUA, ASIUA
 // Script Parents:
-//              WTUA;Permits!~!~!~ (this script is wired to this parent)
-//		ASIUA;Permits!~!~!~ (_ForAsiua is wired to this parent)
+//              WTUA;Permits!~!~!~  (see other script for specs)
+//		ASIUA;Permits!~!~!~ (this script is hooked to this parent)
 // 
 //==================================================================*/
-
-
-// leaving in case they want the record type testing back
-// (appMatch("Permits/Commercial/NA/NA")) ||
-// (appMatch("Permits/Document Retrieval/NA/NA")) ||
-// (appMatch("Permits/Residential/NA/NA"))
 
 try
 {
   
   var okayToUpdate = isTaskComplete("Application Submittal");
 
-
-  if ((
-      (wfTask == "Application Submittal") && 
-      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted"))
-     )||
-     (
-     (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
-     ))
+  if (okayToUpdate)
   {
 
     // the minus 1 is due to customer wanting today to be "day 1"
@@ -93,6 +78,3 @@ catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
-
-
-
