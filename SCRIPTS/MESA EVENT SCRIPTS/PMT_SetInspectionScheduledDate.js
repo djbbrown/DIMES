@@ -22,6 +22,8 @@
 /*
 info from Vance - in inspectionscriptmodel class there is a setScheduleDate method
  file://isrc01/ittechdocs/Applications/Dimes/EMSE-API-8_0_2-Doc/com/accela/aa/emse/dom/InspectionScriptModel.html 
+ 
+ Kevin Gurney (Accela) - Updated to use custom function
 
 */
 
@@ -32,7 +34,7 @@ try
 		appMatch("Permits/Residential/*/*") || appMatch("Permits/Sign/*/*")) {
 	
 		// on inspection scheduled, make the scheduled date the next working day (include Fridays, and exclude weekends and holidays)
-		var inspDate = dateAdd(null, 1, "Y"); // default to next working day.
+		var newSchedInspDate = dateAdd(null, 1, "Y"); // default to next working day.
 		
 		/*
 		var inspArr = aa.env.getValue("InspectionDateArray");
@@ -70,7 +72,7 @@ try
 				}
 			}
 		}
-		*/
+		
 		var inspResultObj = aa.inspection.getInspection(capId, inspId);
 		if (inspResultObj.getSuccess()) {
 			var inspObj = inspResultObj.getOutput();
@@ -80,6 +82,10 @@ try
 			//message("Script 343 setting inspection date to: " + inspDate);
 			//logDebug("inspDate: " + inspDate);
 		}
+		*/
+		if (inspSchedDate != null){
+			updateInspectionDate(inspId,newSchedInspDate);
+	}
 	/*
 		logDebug("INSPECTION INFO FROM SCRIPT 343");
 		logDebug("inspId: " + inspId);

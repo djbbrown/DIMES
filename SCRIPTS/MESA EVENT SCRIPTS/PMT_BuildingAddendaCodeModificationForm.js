@@ -27,7 +27,8 @@ try
 {
     //MRK - 9.27.2016 - removed all logDebug references
 
-    if(getAppSpecific("Type of Work") == "Code Modification")
+    //MRK - 10.25.2016 - based on Jody Bearden suggestion, replaced getAppSpecific with AInfo[]
+    if(AInfo["Type of Work"] == "Code Modification")
     {
         var passed = true;
 

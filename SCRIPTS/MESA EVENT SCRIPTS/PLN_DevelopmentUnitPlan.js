@@ -36,7 +36,8 @@ try
         else {
             for(doc in docList) {
                 var currentDoc = docList[doc];
-                var docCategory = currentDoc.getDocCategory();
+                var docCategory = "" + currentDoc.getDocCategory();
+                //logDebug(docCategory);
                 if (docCategory == "Development Unit Plan")
                 {
                     showComment = false;
