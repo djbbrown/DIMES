@@ -7,82 +7,92 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/25/16  |Steve Veloudos   |Initial Release
 //  1.1      |08/29/16  |Steve Veloudos   |Added Std Choice
+//  1.2      |10/26/16  |Steve Veloudos   |Added workflow and address per Mong
 /*==================================================================*/
 
 try {
       var FromEmail = "noreply@mesaaz.gov";
       var ToEmail = lookup("EMAIL_RECIPIENTS","Transit");
       var vEParams = aa.util.newHashtable();
-      var ProjectLocation;
       var RestrictionStart;
       var RestrictionEnd;
-      var DailyStartTime;
-      var DailyEndTime;
       var DetailedDesc;
       var BusStopDesc;
       var BusStopAffected;
+      var Address;
+      var PermitIssued = 0;
+      
+      //Iterate through workflows
+      var tasks = aa.workflow.getTasks(capId).getOutput();
+      for (t in tasks) 
+            {
+            //Look for Permit Issuance
+            if (tasks[t].getTaskDescription() == "Permit Issuance")
+                { 
+                    //Set flag if permit issued
+                    if(tasks[t].getDisposition() == "Issued")
+                    {
+                    PermitIssued = 1; 
+                    }
+                }
+            }
 
        BusStopAffected = AInfo["Bus Stop Affected"];
        if(BusStopAffected =="Yes")
        {
-            //Get the address
-            loadASITables();
-            var tInfo1 = PROJECTLOCATIONS;
-            var tInfo2 = DURATIONINFORMATION;
-            var rowCount = PROJECTLOCATIONS.length;
-            if(rowCount!=0)
+        //Get the address
+        var capAddResult = aa.address.getAddressByCapId(capId);
+        if (capAddResult.getSuccess())
+            {
+            var addrArray = new Array();
+            var addrArray = capAddResult.getOutput();
+            if (addrArray.length==0 || addrArray==undefined)
                 {
-
-                for (x in tInfo1) 
-                    {
-                    ProjectLocation = (tInfo1[x]["Starting Address"] + " " + tInfo1[x]["Street Direction"]+ " " + tInfo1[x]["Street Name"] + " " + tInfo1[x]["Street Type"]);
-                    } 
+                logDebug("The current CAP has no address.")
                 }
 
-                //Get Restriction Dates & Times
-                rowCount = DURATIONINFORMATION.length;
-                if(rowCount!=0)
-                {
-                    for (x in tInfo2) 
-                        {
-                        RestrictionStart = (tInfo2[x]["Restriction Start Date"]);
-                        RestrictionEnd = (tInfo2[x]["Restriction End Date"]);
-                        DailyStartTime = (tInfo2[x]["Daily Start Time"]);
-                        DailyEndTime = (tInfo2[x]["Daily End Time"]);
-                        }                      
-                }
+            //Break Out each element of the address
+            var hseNum = addrArray[0].getHouseNumberStart();
+            var streetDir = addrArray[0].getStreetDirection();
+            var streetName = addrArray[0].getStreetName();
+            var streetSuffix = addrArray[0].getStreetSuffix();
+            var zip = addrArray[0].getZip();
 
-                        //Get bus stop info
-                        BusStopDesc = AInfo["Bus Stop Accommodation"];
+            Address = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+            }
                         
-                        //Get record detailed desc
-                        DetailedDesc = workDescGet(capId); 
-                        if(DetailedDesc == null) 
-                        {
-                           DetailedDesc = ""; 
-                        }                              
+            RestrictionStart =  AInfo["Permit Start Date"];
+            RestrictionEnd =  AInfo["Permit Expiration Date"];
+
+            //Get bus stop info
+            BusStopDesc = AInfo["Bus Stop Accommodation"];
                         
-                //Convert to strings
-                var Plocation = String(ProjectLocation);
-                var RStart = String(RestrictionStart);
-                var REnd = String(RestrictionEnd);
-                var DStartTime = String(DailyStartTime);
-                var DEndTime = String(DailyEndTime);
-                var DDesc = String(DetailedDesc);
-                var BDesc = String(BusStopDesc);
+            //Get record detailed desc
+            DetailedDesc = workDescGet(capId); 
+            if(DetailedDesc == null) 
+            {
+                DetailedDesc = ""; 
+            }                              
+                        
+            //Convert to strings
+            var RStart = String(RestrictionStart);
+            var REnd = String(RestrictionEnd);
+            var DDesc = String(DetailedDesc);
+            var BDesc = String(BusStopDesc);
 
-               //Add Params
-                addParameter(vEParams,"$$RECORDID$$",capIDString);
-                addParameter(vEParams,"$$PROJECTLOCATION$$",Plocation);
-                addParameter(vEParams,"$$RESTRICTIONSTART$$",RStart);
-                addParameter(vEParams,"$$RESTRICTIONEND$$",REnd);
-                addParameter(vEParams,"$$DAILYSTARTTIME$$",DStartTime);
-                addParameter(vEParams,"$$DAILYENDTIME$$",DEndTime);
-                addParameter(vEParams,"$$DETAILEDDESCRIPTION$$",DDesc);          
-                addParameter(vEParams,"$$BUSSTOPACCOMODATIONDESC$$",BDesc); 
+            //Add Params
+            addParameter(vEParams,"$$ADDRESS$$",Address);
+            addParameter(vEParams,"$$RECORDID$$",capIDString);
+            addParameter(vEParams,"$$RESTRICTIONSTART$$",RStart);
+            addParameter(vEParams,"$$RESTRICTIONEND$$",REnd);
+            addParameter(vEParams,"$$DETAILEDDESCRIPTION$$",DDesc);
+            addParameter(vEParams,"$$BUSSTOPACCOMODATIONDESC$$",BDesc); 
 
-                //Send email
-                sendNotification(FromEmail, ToEmail, "", "TRA_TTC_BUS_STOP", vEParams, null, capId);
+            //Send email
+            if(PermitIssued == 1)
+            {
+            sendNotification(FromEmail, ToEmail, "", "TRA_TTC_BUS_STOP", vEParams, null, capId);
+            }
        }
     }
 catch (err)
