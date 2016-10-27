@@ -7,6 +7,7 @@
 // Record Testing:  TTC2016-00836
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/28/16  |Steve Veloudos   |Initial Release
+//  2.0      |10/26/16  |Steve Veloudos   |Added record status per Mong
 /*==================================================================*/
 
 try {
@@ -18,10 +19,17 @@ try {
       var tName = "Traffic Review";
       var RecievedDate;
       var BCompany;
-
+      var RecordStatusFlag = 0;
+      
       //Get date
       RecievedDate = fileDate;
       
+      //Check Record status
+      if(capStatus == "Revisions Required")
+      {
+       RecordStatusFlag = 1;
+      }
+       
        //Get WF Task
        var tasks = aa.workflow.getTasks(capId).getOutput();
        for (t in tasks) 
@@ -56,7 +64,11 @@ try {
                 addParameter(vEParams," $$RECEIVEDDATE$$",RecievedDate);
                 
                 //Send email
-                sendNotification(FromEmail, ToEmail, "", "TRA_TTC_REVISIONS_REQUIRED", vEParams, null, capId); 
+                if(RecordStatusFlag == 1)
+                {
+                sendNotification(FromEmail, ToEmail, "", "TRA_TTC_REVISIONS_REQUIRED", vEParams, null, capId);
+                break;
+                } 
             }
         }     
     }
