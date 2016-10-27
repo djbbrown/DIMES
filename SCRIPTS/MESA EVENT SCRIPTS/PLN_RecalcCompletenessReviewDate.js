@@ -8,7 +8,6 @@
 // Script Run Event: ASA
 
 // Script Parents:
-//	WTUA;Planning!~!~!~
 //	
 /*==================================================================*/
 recTypesCheck = [
@@ -311,7 +310,7 @@ if(
 	tBdDay.sort().reverse(); // this will order from highest to lowest, which we want the highest.
 	shiftDays = tBdDay[0];
 	//------------------------------------------------------------------------
-	// Test 1 - 1.	Update ASI “Start/Stop Indicator” to “Started”
+	// Test 1 - 1.	Update ASI "Start/Stop Indicator" to "Started"
 	//------------------------------------------------------------------------
 	if(
 		(wfTask =='Accepted' && wfStatus=='Application Acceptance')
@@ -322,7 +321,7 @@ if(
 		editAppSpecific("Start/Stop Indicator", 'Started');
 	}
 	//------------------------------------------------------------------------
-	// Test 2 - 1.	Update ASI “Start/Stop Indicator” to “Stopped”
+	// Test 2 - 1.	Update ASI "Start/Stop Indicator" to "Stopped"
 	//------------------------------------------------------------------------
 	if(
 		(wfTask =='Completeness Review' && wfStatus=='Incomplete Submittal')
@@ -333,7 +332,7 @@ if(
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
 	//------------------------------------------------------------------------
-	// Test 3 - 1.	Update ASI “Completeness Review Due Date” to crdDate1.
+	// Test 3 - 1.	Update ASI "Completeness Review Due Date" to crdDate1.
 	//------------------------------------------------------------------------
 	if(
 		(wfTask =='Accepted' && wfStatus=='Application Acceptance')
@@ -343,7 +342,7 @@ if(
 		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
 	//------------------------------------------------------------------------
-	// Test 4 - 1.	 Update ASI “Completeness Review Due Date” to crdDate2.
+	// Test 4 - 1.	 Update ASI "Completeness Review Due Date" to crdDate2.
 	// Since this is tracked in completeness review it is going to require that we look at the workflow
 	// history to get the information needed.
 	//------------------------------------------------------------------------
@@ -358,21 +357,21 @@ if(
 		'Planning/Subdivision/NA/NA'
 	];
 	if(
-		(wfTask =='Completeness Review' && wfStatus=='Information Received')
+		(wfTask =='Completeness Review' && (wfStatus=='Revisions Submitted' || wfStatus=='Information Received'))
 		&& exists(appTypeString,recTypesCheck4)
 	){
 		srDD = getAppSpecific("Substantive Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
 		};
-		nextDateDays = wfDaysBetween(
-				"Completeness Review", "Returned to Applicant", "Completeness Review", "Revisions Submitted",
+		bTasks = wfDaysBetween(
+				"Completeness Review", ["Incomplete Submittal", "Returned to Applicant"], "Completeness Review", ["Information Received","Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
-	// Test 5 - 1.	 Update ASI “Completeness Review Due Date” to crdDate3.
+	// Test 5 - 1.	 Update ASI "Completeness Review Due Date" to crdDate3.
 	//------------------------------------------------------------------------
 	recTypesCheck5 = [
 		//'Planning/Admin Review/NA/NA',
@@ -394,14 +393,14 @@ if(
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
 		};
-		nextDateDays = wfDaysBetween(
-				"Completeness Review", "Returned to Applicant", "Completeness Review", "Revisions Submitted",
+		bTasks = wfDaysBetween(
+				"Completeness Review", ["Returned to Applicant"], "Completeness Review", ["Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
-	// Test 6 - 1.	 Update ASI “Completeness Review Due Date” to crdDate4.
+	// Test 6 - 1.	 Update ASI "Completeness Review Due Date" to crdDate4.
 	//------------------------------------------------------------------------
 	recTypesCheck6 = [
 		//'Planning/Admin Review/NA/NA',
@@ -414,17 +413,18 @@ if(
 		//'Planning/Subdivision/NA/NA'
 	];
 	if (
-		(wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
+		(wfTask =='Planning Initial Review' && (wfStatus=='Resubmittal Received'))
 		&& exists(appTypeString,recTypesCheck6)
 	){
 		srDD = getAppSpecific("Substantive Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
 		};
-		nextDateDays = wfDaysBetween(
-				"Completeness Review", "Corrections Required", "Completeness Review", "Resubmittal Received",
+		bTasks = wfDaysBetween(
+				"Completeness Review", ["Corrections Required"], "Completeness Review", ["Resubmittal Received"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		logDebug("Test 6 is being used to update Substantive Review Due Date to " + nextDate);
 		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
 	}
 }
@@ -449,7 +449,7 @@ function wfDaysBetween(
 		//logDebug(workflow[x].getStatusDate());
 		if(
 			workflow[x].getTaskDescription() == wfTaskFrom
-			&& workflow[x].getDisposition() == wfTaskStatusFrom
+			&& exists(workflow[x].getDisposition(),wfTaskStatusFrom)
 		){
 			logDebug(workflow[x].getStatusDate());
 			// iS.push(workflow[x].getProcessHistorySeq());
@@ -458,7 +458,7 @@ function wfDaysBetween(
 		}
 		if(
 			workflow[x].getTaskDescription() == wfTaskTo
-			&& workflow[x].getDisposition() == wfTaskStatusTo
+			&& exists(workflow[x].getDisposition(),wfTaskStatusTo)
 		){
 			logDebug(workflow[x].getStatusDate());
 			iS.push(iSrec);
