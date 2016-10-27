@@ -5,7 +5,7 @@
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-// 		When value of “Gas Meter” is chosen in ASIT dropdown field “Service Type” 
+// 		When value of ï¿½Gas Meterï¿½ is chosen in ASIT dropdown field ï¿½Service Typeï¿½ 
 //              (in ASIT subgroup "Utility Service Info") assess the following fee item:
 //                Fee item Code: USF020
 //                Fee Name: Gas Meter
@@ -19,7 +19,7 @@
 // 
 //==================================================================*/
 
-
+/*
 try
 {
   loadASITable("UTILITY SERVICE INFO");
@@ -54,5 +54,4 @@ catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
-
-
+//*/
