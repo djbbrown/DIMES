@@ -10,7 +10,7 @@
 ===================================================================*/
 var sumWFHours = 0;
 sumWFHours = getWFHours(capId,"Civil Review","Planning Review","Building Review","Fire Review","DIS Review","Transportation","Water Resources Environment","Sustainability including Solid Waste","Engineering including Real Estate and Utilities","Energy Resources","Parks Department");
-logDebug("sumWFHours = " + sumWFHours);
+//logDebug("sumWFHours = " + sumWFHours);
 if ((wfTask == "Application Submittal" && wfStatus == "Accepted-Plan Review Not Reqd") || (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")){
 	if (matches(AInfo["Type of Work"],"Commercial - Addenda","Residential - Addenda","Sign - Commercial Addenda","Master Plan - Residential - Addenda","Master Plan - Commercial - Addenda")){
 		addFee("PMT060", "PMT_ADD", "FINAL", sumWFHours, "N");
