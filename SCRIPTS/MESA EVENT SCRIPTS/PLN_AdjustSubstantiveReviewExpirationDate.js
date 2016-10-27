@@ -20,6 +20,7 @@ try {
 		'Planning/Planning and Zoning/NA/NA',
 		'Planning/Subdivision/NA/NA'
 	];
+	logDebug("Script 234 Starting; appTypeString: "+appTypeString);
 	if(
 			exists(appTypeString,recTypesCheck)
 			&& (
@@ -53,6 +54,7 @@ try {
 		if (
 			appTypeString == 'Planning/Admin Review/NA/NA'
 		){
+			logDebug('Planning/Admin Review/NA/NA');
 			// Affidavit of Change array below
 			aOcSubProc = ['Affidavit of Change/Correction', 
 	              'Addition to or modification of amenity package',
@@ -369,6 +371,7 @@ try {
 		}
 		else if(appTypeString == "Planning/Planning and Zoning/NA/NA")
 		{
+			logDebug('Planning/Planning and Zoning/NA/NA');
 			// ---------------------------
 			// Council Use Permit
 			// Record Type:
@@ -435,6 +438,7 @@ try {
 		}
 		else if(appTypeString == "Planning/Board of Adjustment/NA/NA")
 		{
+			logDebug('Planning/Board of Adjustment/NA/NA');
 			// ---------------------------
 			// Substantial Conformance Improvement Permit
 			// Record Type:
@@ -495,7 +499,7 @@ try {
 		// Application Type = 'Re-Plat' or 'Map of Dedication (MOD)'
 		else if (appTypeString == "Planning/Subdivision/NA/NA")
 		{
-			
+			logDebug('Planning/Subdivision/NA/NA');
 			if (
 					AInfo['Application Type'] == 'Re-Plat'
 					|| AInfo['Application Type'] == 'Map of Dedication (MOD)'
@@ -652,7 +656,7 @@ try {
 			if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 				srDD = Date();
 			};
-			aa.print("srDD: "+srDD);
+			// aa.print("srDD: "+srDD);
 			srDD = convertDate2(srDD);
 			var rR; // Revisions required
 			wf = aa.workflow.getTask(capId,"Review Consolidation").getOutput();
@@ -679,8 +683,8 @@ try {
 			if(bTasks > 0 ){
 				nextDate = convertDate2(workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']));
 			}
+			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Substantive Review Due Date updated from "+jsDateToASIDate(convertDate2(srDD))+" to "+jsDateToASIDate(convertDate2(nextDate)));
 			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
-			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Substantive Review Due Date updated to "+jsDateToASIDate(convertDate2(nextDate)));
 			//
 		}
 		// ===========================
@@ -711,6 +715,7 @@ try {
 			editAppSpecific("Start/Stop Indicator", 'Stopped');
 		}
 	}
+	logDebug("End Test Run");
 }
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
