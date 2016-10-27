@@ -13,7 +13,7 @@ sumWFHours = getWFHours(capId,"Civil Review","Planning Review","Building Review"
 //logDebug("sumWFHours = " + sumWFHours);
 if ((wfTask == "Application Submittal" && wfStatus == "Accepted-Plan Review Not Reqd") || (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")){
 	if (matches(AInfo["Type of Work"],"Commercial - Addenda","Residential - Addenda","Sign - Commercial Addenda","Master Plan - Residential - Addenda","Master Plan - Commercial - Addenda")){
-		addFee("PMT060", "PMT_ADD", "FINAL", sumWFHours, "N");
+		updateFee("PMT060", "PMT_ADD", "FINAL", sumWFHours, "N");
 	}
 }
 
