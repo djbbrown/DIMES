@@ -11,7 +11,7 @@ include("PMT_Stop_Work_Order");
 include("PMT_TotalValuation");
 
 // add by Brian O'Dell (Mesa)
-include("PMT_MobileHomeUtilityServiceFeeGasMeter");
+// include("PMT_MobileHomeUtilityServiceFeeGasMeter"); // Turned off upon request on 20161027 vie email from Heather Basford
 include("PMT_MobileHomeUtilityServiceFeeGasServiceOther");
 include("PMT_RelateToPlanningRecord");
 //include("PMT_MobileHomeFireImpactFee");  //moved to WTUA event

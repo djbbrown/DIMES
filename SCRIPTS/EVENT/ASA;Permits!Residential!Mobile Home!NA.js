@@ -6,7 +6,7 @@ include("PMT_WaterMeterAdapterFee");
 //include("PMT_MobileHomeSolidWasteImpactFee");  //moved to WTUA;Permits!Residential!Mobile Home!NA
 
 // add by Brian O'Dell (Mesa)
-include("PMT_MobileHomeUtilityServiceFeeGasMeter");
+// include("PMT_MobileHomeUtilityServiceFeeGasMeter"); // Turned off upon request on 20161027 vie email from Heather Basford
 include("PMT_MobileHomeUtilityServiceFeeGasServiceOther");
 include("PMT_RelateToPlanningRecord");
 include("PMT_MobileHomeFireImpactFee");
