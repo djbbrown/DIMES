@@ -45,11 +45,13 @@ if (tmpTable) {
 		if (countGasServiceMeter == 0 && feeExists("USF010")) removeFee("USF010", "FINAL");
 		if (countGasServiceMeter > 0) updateFee("USF010","PMT_UTL_SERV", "FINAL",  countGasServiceMeter, "N");
 	//Gas Service and Meter - USF020
+	/*// Turned off upon request on 20161027 vie email from Heather Basford
 		if (countGasMeter == 0 && feeExists("USF020")) removeFee("USF020", "FINAL");
 		if (countGasMeter > 0) {
 			var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Gas Meter");
 			updateFee("USF020","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
 			}
+	//*/
 	//Gas Service and Meter - USF030
 		/*
 		if (countGasServMeterCommercial == 0 || countGasServMeterResLarge == 0 || countGasRelocationRetrofit == 0 ) {
