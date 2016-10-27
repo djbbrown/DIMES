@@ -21,7 +21,7 @@
 // ==================================================================
 var fromEmail = "noreply@MesaAz.gov";
 
-if (inspType == "Gas Pipe Final" && inspResult == "Approved - Utl Clearance Req"){
+if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult == "Approved - Utl Clearance Req"){
 
 	//Get the address
 	var capAddResult = aa.address.getAddressByCapId(capId);
