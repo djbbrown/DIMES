@@ -20,7 +20,7 @@ if (wfTask == "Issue License" && wfStatus == "Ready to Issue"){
 		if (!feeExists("L020")) addFee("L020","LIC_PARK_APP","FINAL",1,"N");
 	}
 	if (matches(""+appTypeArray[2], "AntiqueDealer", "Auction House", "Auctioneer", "MassageEstablishment", "PawnBroker", "ScrapMetal", "SecondHand")){
-		if (!feeExists("L030")) addFee("L030","LIC_PASS","FINAL",1,"N");
+		if (!feeExists("L030")) addFee("L030","LIC_PASS","FINAL",1,"Y");
 	}
 	if (matches(""+appTypeArray[2], "Peddler") && wfTask == "Issue License" && wfStatus == "Ready to Issue"){
 		if (!feeExists("LIC_04")) addFee("LIC_04","LIC_PEDDLER_APP","FINAL",1,"N");
