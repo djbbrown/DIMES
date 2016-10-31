@@ -16,7 +16,7 @@ try {
       var vEParams = aa.util.newHashtable();
       var RestrictionStart;
       var RestrictionEnd;
-      var TrafficRestriction;
+      var TrafficRestriction = "";
       var SIntersection;
       var Address;
       var PermitIssued = 0;
