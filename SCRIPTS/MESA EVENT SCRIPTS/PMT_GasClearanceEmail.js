@@ -21,6 +21,7 @@
 //  4.0      |11/01/16  |Steve Veloudos   |Only send email if Service Size = Gas
 // ==================================================================
 var fromEmail = "noreply@MesaAz.gov";
+var ServiceT;
 
 if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult == "Approved - Utl Clearance Req"){
 
@@ -69,6 +70,8 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 					addParameter(vEParams,"$$WARRANTY STATUS$$", "" + thisRow["Warranty Status"].fieldValue);
 					addParameter(vEParams,"$$COMMENTS$$", "" + thisRow["Comments"].fieldValue);
 					emailAddress = lookup("Email_Recipients", "PMT_Gas_Clearance_Mesa");
+					//Get first three letters of the service type
+					ServiceT = thisRow["Service Type"].fieldValue.substring(0, 3);
 					
 					conArr = getContactObjs(capId);
 					if (conArr && conArr.length > 0) {
@@ -80,7 +83,7 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 							}
 						}
 					}
-						if(thisRow["Service Size"].fieldValue == "Gas")
+						if(ServiceT == "Gas")
 						{
 						sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE", vEParams, null, capId);
 						break;
@@ -125,7 +128,9 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 					addParameter(vEParams,"$$WARRANTY STATUS$$", "" + thisRow["Warranty Status"].fieldValue);
 					addParameter(vEParams,"$$COMMENTS$$", "" + thisRow["Comments"].fieldValue);
 					emailAddress = lookup("Email_Recipients", "PMT_Gas_Clearance_SW");
-					
+					//Get first three letters of the service type
+					ServiceT = thisRow["Service Type"].fieldValue.substring(0, 3);
+
 					conArr = getContactObjs(capId);
 					if (conArr && conArr.length > 0) {
 						for (cIndex in conArr) {
@@ -136,7 +141,7 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 							}
 						}
 					}
-						if(thisRow["Service Size"].fieldValue == "Gas")
+						if(ServiceT == "Gas")
 						{
 						sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE_SW", vEParams, null, capId);
 						break;
