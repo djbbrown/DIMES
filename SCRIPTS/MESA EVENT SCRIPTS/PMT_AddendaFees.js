@@ -63,7 +63,7 @@ if (AInfo["Expedite"] == "Super Expedite"){
 ===================================================================*/
 
 if (AInfo["Type of Work"] == "Code Modification"){
-	updateFee("PMT110", "PMT_ADD", "FINAL", 1, "N");
+	updateFee("PMT110", "PMT_ADD", "FINAL", 1, "Y");
 }
 
 /*===================================================================
