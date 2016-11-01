@@ -22,6 +22,8 @@ if(
 		(wfTask == "License Application" && wfStatus == "Complete")
 		// Peddler/OffTrackBetting ("Substantive Review Due" field exists)
 		|| (wfTask == "License Application" && wfStatus == "Completed")
+		// Update for Extension of Premise - Permanent
+		|| (wfTask == "Administrative" && wfStatus == "Completed")
 		)
 		// The following must be checked.
 		// Bingo Hall - No Status (No "Substantive Review Due" field)
