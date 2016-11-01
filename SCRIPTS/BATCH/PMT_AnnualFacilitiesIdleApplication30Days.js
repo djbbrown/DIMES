@@ -16,6 +16,7 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/23/16  |Vance Smith      |Initial
+//  1.1      |10/31/16  |Vance Smith      |Adj so when no audit date it looks at file date
 /*==================================================================*/
 
 /* intellisense references */
@@ -39,7 +40,7 @@ function mainProcess()
     var capFilterType = 0;
     var capFilterStatus = 0;
     var capFilterFeesOrDocs = 0;
-    //var capFilterFileDate = 0;
+    var capFilterFileDate = 0;
     var capFilterDaysIdle = 0;
     var applicantEmailNotFound = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
@@ -116,17 +117,6 @@ function mainProcess()
             continue; // move to the next record
         }
 
-        /* EXAMPLE OF FILTERING BY AUDIT DATE */
-        // move to the next record if the audit date is not "numDaysOut" days out
-        var auditDate = getLastRecordDateInWorkflowHistory(capId);
-        var daysIdle = daydiff(auditDate, parseDate(getTodayAsString()));
-        if (daysIdle != numDaysOut )
-        {
-            capFilterDaysIdle++;
-            logDebug(altId + ": Audit Date is not " + numDaysOut + " days out. Days idle: " + daysIdle );
-            continue; // move to the next record
-        }
-
         /* EXAMPLE OF FILTERING BY FEES PAID AND REQUIRED DOCUMENTS */
         // move to the next record if this cap has paid all of its fees
         var missingDocs = new Array();
@@ -170,12 +160,43 @@ function mainProcess()
                 feesOrDocsNeeded = true;
             }
         }
-        if (!feesOrDocsNeeded ) 
+        if (feesOrDocsNeeded ) 
+        {
+            // fees or docs needed, now lets see if this is numdaysout past app creation
+
+            /* EXAMPLE OF FILTERING BY FILE DATE */
+            // move to the next record if the file date is not "numDaysOut" days out
+            var fileDateObj = cap.getFileDate();
+            var fileDate =  fileDateObj.getMonth() + "/" + fileDateObj.getDayOfMonth() + "/" + fileDateObj.getYear();
+            var daysSinceSubmittal = daydiff(parseDate(fileDate), parseDate(getTodayAsString())); 
+            if (daysSinceSubmittal != numDaysOut) 
+            {
+                capFilterFileDate++;
+                logDebug(altId + ": File Date is not " + numDaysOut + " days out. Days Since Submittal: " + daysSinceSubmittal );
+                logDebug("--------------moving to next record--------------");
+                continue; // move to the next record
+            }
+        }
+        else
         {
             capFilterFeesOrDocs++;
             logDebug(altId + ": no fees or docs needed.");
             logDebug("--------------moving to next record--------------");
             continue; // move to the next record
+        }
+
+        /* EXAMPLE OF FILTERING BY AUDIT DATE */
+        // move to the next record if the audit date is not "numDaysOut" days out
+        var auditDate = getLastRecordDateInWorkflowHistory(capId);
+        if ( auditDate != false ) // we do have an audit date so lets see when the last activity was 
+        {
+            var daysIdle = daydiff(auditDate, parseDate(getTodayAsString()));
+            if (daysIdle > 0 && daysIdle != numDaysOut )
+            {
+                capFilterDaysIdle++;
+                logDebug(altId + ": Audit Date is not " + numDaysOut + " days out. Audit Date: " + auditDate + ", Days idle: " + daysIdle );
+                continue; // move to the next record
+            }
         }
 
         /***** END FILTERS *****/
@@ -209,6 +230,7 @@ function mainProcess()
     logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");    
     logDebugAndEmail("Skipped " + capFilterStatus + " due to record status mismatch");	
     logDebugAndEmail("Skipped " + capFilterFeesOrDocs + " due to no fees or required docs needed")
+    logDebugAndEmail("Skipped " + capFilterFileDate + " due to file date not being " + numDaysOut + " days out");
     logDebugAndEmail("Skipped " + capFilterDaysIdle + " due to audit date not being " + numDaysOut + " days out");
     logDebugAndEmail("Unable to notify " + applicantEmailNotFound + " due to missing applicant email");    
     logDebugAndEmail(""); // empty line
@@ -519,7 +541,7 @@ try
         aa.env.setValue("appSubType","Annual Facilities"); 
         aa.env.setValue("appCategory","*"); 
         //aa.env.setValue("taskName", "Application Submittal");
-        aa.env.setValue("numDaysOut", "30");
+        aa.env.setValue("numDaysOut", "4");
         //aa.env.setValue("emailTemplate", "PMT_AnnualFacilitiesIdleApplication15Day");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
