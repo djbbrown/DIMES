@@ -115,7 +115,7 @@ function mainProcess()
             {
                 //var thisLic = new licenseObject(capId);            
                 expirationDate = convertDate(getAppSpecific("Permit Expiration Date"), capId); //thisLic.b1ExpDate;
-                logDebug(expirationDate);
+                //logDebug("Expiration Date: " + expirationDate);
                 if (expirationDate == null)
                 {
                     capFilterExpirationNull++;
@@ -132,8 +132,9 @@ function mainProcess()
 
             /* EXAMPLE OF FILTERING BY EXPIRATION DATE */
             // move to the next record if the expiration date is not "numDaysOut" days out
-            var dateOut = dateAdd(null, numDaysOut);
-            if (daydiff(new Date(dateOut), expirationDate) != 0) 
+            var daysTillExp = parseInt(daydiff(new Date(), expirationDate));
+            logDebug("Alt ID: " + altId + ", Days Till Exp: " + parseInt(daydiff(new Date(), expirationDate)) + ", Exp Date: " + expirationDate);
+            if ( daysTillExp != numDaysOut) 
             {
                 capFilterExpiration++;
                 //logDebug(altId + ": Expiration Date is not " + numDaysOut + " days out." + daydiff(new Date(dateOut),expirationDate) );
@@ -449,7 +450,7 @@ try
         aa.env.setValue("appTypeType","*"); 
         aa.env.setValue("appSubType","*"); 
         aa.env.setValue("appCategory","*"); 
-        aa.env.setValue("numDaysOut", "30");
+        aa.env.setValue("numDaysOut", "165");
         aa.env.setValue("emailTemplate", "PMT_EXPIRATION_NOTICE");
         aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
         aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
