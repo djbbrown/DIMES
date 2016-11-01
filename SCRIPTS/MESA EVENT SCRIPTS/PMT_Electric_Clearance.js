@@ -8,6 +8,7 @@
 // Permits/Sign/NA/NA
 // Permits/Residential/NA/NA
 // Permits/Commercial/NA/NA
+// Permits/Residential/Mobile Home/NA
 // PMT16-00392 For testing
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/26/16  |Steve Veloudos   |Initial Release
@@ -20,6 +21,7 @@
 //  1.7      |09/29/16  |Steve Veloudos   |Added Service Type starting with Electric only
 //  1.8      |10/06/16  |Steve Veloudos   |Added break on for loop for ASIT table. Per Taryn Martinez only one email needs to be sent
 //  1.9      |10/10/16  |Steve Veloudos   |Removed break on for loop for ASIT table. Per Taryn Martinez multipule emails need to be sent
+//  1.10     |11/01/16  |Steve Veloudos   |Added Temporary Electric inspection type & Added Permits/Residential/Mobile Home/NA
 /*==================================================================*/
 
 try {
@@ -51,7 +53,7 @@ try {
                 for (inspectionScriptModelIndex in inspectionScriptModels)
                 {
                     inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "ELECTRIC FINAL")
+                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "ELECTRIC FINAL" || inspectionScriptModel.getInspectionType().toUpperCase() =="TEMPORARY ELECTRIC")
                     {
                        //Check for APPROVED - UTL CLEARANCE REQ status
                        if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "APPROVED - UTL CLEARANCE REQ")
