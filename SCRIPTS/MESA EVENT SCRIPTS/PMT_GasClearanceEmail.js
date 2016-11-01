@@ -18,6 +18,7 @@
 //  1.0      |Unknown   |Accela   		  |Initial Release
 //  2.0      |09/27/16  |Steve Veloudos   |Added Address
 //  3.0      |10/19/16  |Steve Veloudos   |Corrected SW Gas std choice email and new email template for SW Gas
+//  4.0      |11/01/16  |Steve Veloudos   |Only send email if Service Size = Gas
 // ==================================================================
 var fromEmail = "noreply@MesaAz.gov";
 
@@ -79,7 +80,11 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 							}
 						}
 					}
-					sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE", vEParams, null, capId);
+						if(thisRow["Service Size"].fieldValue == "Gas")
+						{
+						sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE", vEParams, null, capId);
+						break;
+						}
 				}
 
 			} 
@@ -131,7 +136,11 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 							}
 						}
 					}
-					sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE_SW", vEParams, null, capId);
+						if(thisRow["Service Size"].fieldValue == "Gas")
+						{
+						sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE_SW", vEParams, null, capId);
+						break;
+						}
 				}
 			} 
 		}
