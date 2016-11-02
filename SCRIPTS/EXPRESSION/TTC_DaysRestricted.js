@@ -90,46 +90,6 @@ function monthDiff(d1, d2) {
     return months <= 0 ? 0 : months;
 }
 
-/*
-function addMonths(dateObj, num) {
-	if(num >0) {
-		var dateObj = new convertDate(dateObj);
-		var currentMonth = dateObj.getMonth();
-		dateObj.setMonth(dateObj.getMonth() + num)
-
-		if (dateObj.getMonth() != ((currentMonth + num) % 12)){
-			dateObj.setDate(0);
-		}
-	}
-    return dateObj;
-}
-//*/
-/*
-Date.isLeapYear = function (year) { 
-    return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)); 
-};
-
-Date.getDaysInMonth = function (year, month) {
-    return [31, (Date.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
-};
-
-Date.prototype.isLeapYear = function () { 
-    return Date.isLeapYear(this.getFullYear()); 
-};
-
-Date.prototype.getDaysInMonth = function () { 
-    return Date.getDaysInMonth(this.getFullYear(), this.getMonth());
-};
-
-Date.prototype.addMonths = function (value) {
-    var n = this.getDate();
-    this.setDate(1);
-    this.setMonth(this.getMonth() + value);
-    this.setDate(Math.min(n, this.getDaysInMonth()));
-    return this;
-};
-//*/
-
 function isHoliday(cDate,hString){
 	var isHoliday = false;
 	cDate = convertDate(cDate);
@@ -200,12 +160,12 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 		// Calculate Days between.
 		var daysBetween = 0;
 		var monthsBetween = 0;
-		daysBetween = diffDate(variable1.value.toString(),variable0.value.toString());
+		daysBetween = diffDate(variable1.value.toString(),variable0.value.toString())+1;
 		monthsBetween = monthDiff(variable1.value.toString(),variable0.value.toString()); // Confirmed working
 		var arrayLength;
 		var incEType = ['HOLIDAY'];
 		//var holidayArray = collectHolidays(variable1.value.toString(),variable0.value.toString(),incEType);
-		//variable0.message = arrayLength;
+		//variable2.message = daysBetween.toString();
 		//expression.setReturn(rowIndex,variable0);
 		// Parse a number of months for the items that fall in the expected 
 		//variable2.message = monthsBetween.toString();
@@ -219,8 +179,9 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 		// Now to implement something that will calculate the number of days based off of flags.
 		checkReturn = [];
 		var dayCount = 0; // This will end up being the number of days that we want to remove.
+		var checkingDate;
 		for(x = 0; x <= daysBetween; x++){
-			var checkingDate;
+			
 			checkingDate = addDate(sDate,x);
 			var checkingDateDate = convertDate(checkingDate);
 			var dHoliday = false;
@@ -235,7 +196,12 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 				dayCount++;
 			}
 			// Weekday Restrictions
-			else if (dOW > 0 && dOW < 6 && variable3.value.toString() == 'Yes'){
+			else if (
+					dOW > 0
+					&& dOW < 6 
+					&& variable3.value.toString() == 'Yes'
+					&& !isHoliday(checkingDateDate,incEType)
+			){
 				dayCount++;
 			}
 			// Holiday Restrictions
@@ -257,6 +223,7 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 				//*/
 			}
 		}
+		// variable3.message = checkingDate.toString();
 		variable2.value = dayCount;
 		expression.setReturn(rowIndex,variable2);
 	}}
