@@ -13,9 +13,9 @@
 //          WTUA;Permits!Residential!Mobile Home!NA
 //          WTUA;Permits!Addenda or Deferred!Mobile Home!NA
 ===================================================================*/
-/*if (appMatch("Permits/Online/NA/NA") && wfTask == "Application Submittal" && wfStatus == "Ready To Issue"){
+if (appMatch("Permits/Online/NA/NA") && (wfTask == "Application Submittal" && wfStatus == "Ready To Issue") && !(feeExists("ONL020","INVOICED"))){
 	updateFee("ONL020", "PMT_ONL", "FINAL", 1, "N");
-} else //*/
+}
 if (
 		appMatch("Permits/Sign/NA/NA")
 		&& (
