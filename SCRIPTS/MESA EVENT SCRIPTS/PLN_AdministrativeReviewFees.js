@@ -43,7 +43,7 @@ var adminAppFee = false;
 if (matches(AInfo["Type of Process"],"Board of Adjustment/Zoning Admin","Deser Uplands Development Standards","Design Review","Product Approval","Zoning/Site Plan")) {
 	adminAppFee = true;
 }
-if (AInfo["Type of Process"] == "Development Unit Plan" && matches(AInfo["Sub process type"],"Development Unit Plan","Amendment to Development Unit Plan","Other")) {
+if (AInfo["Type of Process"] == "Development Unit Plan" && matches(AInfo["Sub process type"],"Amendment to Development Unit Plan","Other")) {
 	adminAppFee = true;
 }
 if (AInfo["Type of Process"] == "Land Division" && matches(AInfo["Sub process type"],"Addition to or modification of amenity package","Amendment to Lot layout/street system","Change to Wall Design or Entry Feature","Other","Preliminary Plat Extension")) {
@@ -205,6 +205,29 @@ if (AInfo["Type of Process"] == "Subdivision"){
 
 if (AInfo["Type of Process"] == "Zoning/Site Plan"){
 	updateFee("ADM130","PLN_ADM","FINAL",1,"N");
+}
+
+/*===================================================================
+// Script Number: TBD
+// Script Name: PLN_AdministrativeReviewFees.js
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
+// Script Description: Assess the Development Unit Plans fee when ASI Type of Process = Development Unit Plan and Sub process type = Development Unit Plan
+// Script Run Event: ASA
+// Script Parents:
+//            ASA;Planning!Admin Review!NA!NA
+/*==================================================================*/
+var acres = 0;
+	areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
+	
+	for (i in areas) {
+		//logDebug("Area " + areas[i]["APN"] + ": " + (areas[i]["SHAPE_Area"] / 43560));
+		acres += (areas[i]["SHAPE_Area"] / 43560);
+	}
+	acres = Math.ceil(acres);
+	//logDebug("Total acres: " + acres);
+if (AInfo["Type of Process"] == "Development Unit Plan" && AInfo["Sub process type"] == "Development Unit Plan"){
+	updateFee("ADM140","PLN_ADM","FINAL",acres,"N");
 }
 
 /*===================================================================
