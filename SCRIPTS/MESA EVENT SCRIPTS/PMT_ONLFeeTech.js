@@ -9,7 +9,7 @@
 // Script Parents:
 //            ASA;Permit/Online/NA/NA
 ===================================================================*/
-if ((AInfo["Property Type"] == "Residential" && AInfo["Required Number of Inspections"] != null) || AInfo["Type of Work"] == "Construction Noise Permit") { 
+if (AInfo["Type of Work"] == "Construction Noise Permit") { 
 	//This is to assess the Technology Fee
 	updateFee("ONL020","PMT_ONL", "FINAL", 1, "Y");
 }
