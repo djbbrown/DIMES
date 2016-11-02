@@ -19,7 +19,7 @@ try {
       var DocCategory;
     
     //Retrieve documents
-    var docListResult = getDocumentList();
+    var docListResult = aa.document.getCapDocumentList(capId,currentUserID);
     
     //Get the last document uploaded
     if (docListResult.getSuccess()) 
