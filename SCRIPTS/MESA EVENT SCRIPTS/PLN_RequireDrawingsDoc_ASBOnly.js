@@ -97,7 +97,8 @@ try
 
     if (!(docSitePlan && docFloorPlan  && docLandscapePlan && docBuildingElevation))
     {
-      commentBlah = "A following document(s) are required for the selected Request Type(s): <br />" + docSitePlanMsg + docFloorPlanMsg + docLandscapePlanMsg +docBuildingElevationMsg;+ ;
+      commentBlah = "A following document(s) are required for the selected Request Type(s): <br />";
+      commentBlah += docSitePlanMsg + docFloorPlanMsg + docLandscapePlanMsg + docBuildingElevationMsg;
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
