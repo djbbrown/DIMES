@@ -22,6 +22,8 @@ function mesaWorkingDays(curDate, daysToAdd)
   var dayOfWeek = theDate.getDay();
   var fridayCount = 0;
   var x = 1;
+  var testHolidayDate = new Date(curDate);
+  var testHolidayDay = theDate.getDay();
 
   while (x < daysToAdd)
   {
@@ -30,10 +32,19 @@ function mesaWorkingDays(curDate, daysToAdd)
 
     if (dayOfWeek == 4)
     {
-      dayOfWeek = 0;
-      fridayCount += 1;
+      testHolidayDate = new Date(dateAdd(theDate, 1, 'Y'));
+      testHolidayDay = testHolidayDate.getDay();
 
-      theDate = dateAdd(theDate, 2, 'Y');
+      if (testHolidayDay == 5)
+      {
+        dayOfWeek = 0;
+        fridayCount += 1;
+        theDate = dateAdd(theDate, 2, 'Y');
+      }
+      else
+      {
+        theDate = dateAdd(theDate, 1, 'Y');
+      }
     }
     else
     {
