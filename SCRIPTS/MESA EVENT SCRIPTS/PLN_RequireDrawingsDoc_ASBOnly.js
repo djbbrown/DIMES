@@ -63,21 +63,21 @@ try
       { 
         if((docList.get(x) != null)
         {
-          //&& (docList.get(x).getDocCategory() == "Drawings")) 
+          //(docList.get(x).getDocCategory() == "Drawings"))
         
-          if (docCat == "Site Plan")
+          if (docList.get(x).getDocCategory() == "Site Plan")
           {
             docSitePlan=true;
           }
-          if (docCat == "Floor Plans")
+          if (docList.get(x).getDocCategory() == "Floor Plans")
           {
             docFloorPlan=true; 
           }
-          if (docCat == "Landscape Plan")
+          if (docList.get(x).getDocCategory() == "Landscape Plan")
           {
             docLandscapePlan=true;
           }
-          if (docCat == "Building Elevations")
+          if (docList.get(x).getDocCategory() == "Building Elevations")
           {
             docBuildingElevation=true; 
           }
