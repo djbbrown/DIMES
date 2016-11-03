@@ -54,7 +54,7 @@ try
       for(x=0;x<docListCount;x++)
       { 
         if((docList.get(x) != null)
-          && (docList.get(x).getDocCategory() == "Drawings")) 
+          && (docList.get(x).getDocCategory() == "Pre-Plat")) 
         {
           docNeeded = false;
           break; 
@@ -65,7 +65,7 @@ try
 
     if (docNeeded)
     {
-      commentBlah = "For request types with Pre-Plat a Drawings document is required";
+      commentBlah = "For request types with Pre-Plat a Pre-Plat document is required";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
