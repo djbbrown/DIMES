@@ -61,7 +61,7 @@ try
 
       for(x=0;x<docListCount;x++)
       { 
-        if((docList.get(x) != null)
+        if (docList.get(x) != null)
         {
           //(docList.get(x).getDocCategory() == "Drawings"))
         
