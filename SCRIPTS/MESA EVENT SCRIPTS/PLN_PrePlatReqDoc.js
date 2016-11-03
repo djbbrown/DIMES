@@ -41,7 +41,7 @@ try
       {
         docCat = docListArray[x].getDocCategory();
         
-        if (docCat == "Drawings")
+        if (docCat == "Pre-Plat")
         {
           docNeeded = false;
         }
@@ -50,7 +50,7 @@ try
 
     if (docNeeded)
     {
-      commentBlah = "The following document is required for Request Types of Pre-Plat: Drawings";
+      commentBlah = "For request types with Pre-Plat a Pre-Plat document is required";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
