@@ -31,6 +31,11 @@ try
   var docCat = "";
   var docNeeded = true;
 
+  var docSitePlan = false;
+  var docFloorPlan = false;
+  var docLandscapePlan = false;
+  var docBuildingElevation = false;
+
   if ((sitePlanReviewMod) || (combinedRezoneSitePlanReview) || (specialUsePermit))
   {
     // this was the original way (works on ASUIB but not ASB)
@@ -57,16 +62,32 @@ try
       for(x=0;x<docListCount;x++)
       { 
         if((docList.get(x) != null)
-          && (docList.get(x).getDocCategory() == "Drawings")) 
         {
-          docNeeded = false;
-          break; 
+          //&& (docList.get(x).getDocCategory() == "Drawings")) 
+        
+          if (docCat == "Site Plan")
+          {
+            docSitePlan=true;
+          }
+          if (docCat == "Floor Plans")
+          {
+            docFloorPlan=true; 
+          }
+          if (docCat == "Landscape Plan")
+          {
+            docLandscapePlan=true;
+          }
+          if (docCat == "Building Elevations")
+          {
+            docBuildingElevation=true; 
+          }
+
         }
       }
 
     }
 
-    if (docNeeded)
+    if (!(docSitePlan && docFloorPlan  && docLandscapePlan && docBuildingElevation))
     {
       commentBlah = "A Drawings document is required for the selected Request Type(s)";
       showMessage = true;

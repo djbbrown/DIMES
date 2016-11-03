@@ -31,6 +31,11 @@ try
   var docCat = "";
   var docNeeded = true;
 
+  var docSitePlan = false;
+  var docFloorPlan = false;
+  var docLandscapePlan = false;
+  var docBuildingElevation = false;
+
   if ((sitePlanReviewMod) || (combinedRezoneSitePlanReview) || (specialUsePermit))
   {
     var docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
@@ -44,14 +49,27 @@ try
       {
         docCat = docListArray[x].getDocCategory();
         
-        if (docCat == "Drawings")
+        if (docCat == "Site Plan")
         {
-          docNeeded = false;
+          docSitePlan=true;
         }
+        if (docCat == "Floor Plans")
+        {
+          docFloorPlan=true;
+        }
+        if (docCat == "Landscape Plan")
+        {
+          docLandscapePlan=true; 
+        }
+        if (docCat == "Building Elevations")
+        {
+          docBuildingElevation=true; 
+        }
+
       }
     }
 
-    if (docNeeded)
+    if (!(docSitePlan && docFloorPlan  && docLandscapePlan && docBuildingElevation))
     {
       commentBlah = "A Drawings document is required for the selected Request Type(s)";
       showMessage = true;
