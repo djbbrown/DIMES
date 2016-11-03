@@ -15,6 +15,12 @@ function addDate(iDate, nDays){
 	return expression.addDate(iDate,parseInt(nDays));
 }
 
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
 function diffDate(iDate1,iDate2){
 	return expression.diffDate(iDate1,iDate2);
 }
@@ -89,48 +95,65 @@ function monthDiff(d1, d2) {
     months += d2.getMonth();
     return months <= 0 ? 0 : months;
 }
-
-function isHoliday(cDate,hString){
-	var isHoliday = false;
-	cDate = convertDate(cDate);
-	var checkH = collectHolidays(cDate,cDate,hString);
-	if (checkH.length > 0){
-		isHoliday = true;
-	}
-	return isHoliday;
+function dayDiff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
 }
-//*/
-function collectHolidays(sDate,eDate,hString){
-	var hArray = [];
+function calendarDates(sDate,eDate,aCal,aDayEx){
+	// sDate == Start Date
+	// eDays == End Date
+	// aCal == Array of calendars to include.
+	// aDayEx == Array of day types that you wish to exclude.
+	
+	// Variables
+	var dArray = []; // to store the dates between the two dates.
 	var sDate2 = convertDate(sDate);
-	var eDate = convertDate(eDate);
-	var countElem = 0;
-	var monthsBetween = monthDiff(sDate2,eDate)+1;
-	// for each month in between we want to loop through and create a large array of
-	// resultes that match.
-	//hArray.push(sDate2);
-	for(a = 0; a <= monthsBetween; a++){
-		var calE = aa.calendar.getEventSeriesByCalendarID(42,sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
-		for(b in calE){
-			// Get the event details
-			var evtDateDate = convertDate(calE[b].getStartDate());
-			var evtType = calE[b].getEventType();
-			//hArray.push(evtDateDate);
-			// Now do the COMPARISON
-			if(
-				exists(evtType,hString)
-				&& evtDateDate >= convertDate(sDate)
-				&& evtDateDate <= eDate
-			)
-			{
-				// Append to the array
-				countElem ++;
-				hArray.push(evtDateDate);
+	var eDate2 = convertDate(eDate);
+	
+	aDays2 = dayDiff(sDate2,eDate2);
+
+	// Change everything in aCal to upper for comparison.
+	toUpper = function(x){ 
+		  return x.toUpperCase();
+	};
+	aCal = aCal.map(toUpper);
+	
+	// eDate2 needs to be sufficiently into the future for the rest of the function.
+	eDate2.setDate(eDate2.getDate() + aDays2);
+	
+	// will be used to pull sufficient days that are "off"
+	var monthsBetween = monthDiff(sDate2,eDate2);
+
+	// Now look up the calendars that are going to be excluded.
+	// expected return is the calendar ID's
+	calNames = aa.calendar.getCalendarNames().getOutput();
+	for(x in calNames){
+		// IF the name of the calendar is included in the list we need the
+		// events from that calendar
+		if(exists(calNames[x].getCalendarName().toUpperCase(),aCal)){
+			for(a = 0; a <= monthsBetween; a++){
+				calE = aa.calendar.getEventSeriesByCalendarID(calNames[x].getCalendarID(),sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
+				for(b in calE){
+					// Get the event details
+					var evtDateDate = new Date(convertDate(calE[b].getStartDate()));
+					var evtType = calE[b].getEventType();
+					// Now do the COMPARISON
+					if(
+						exists(evtType,aDayEx)
+					)
+					{
+						dArray.push(evtDateDate)
+					}
+				}
 			}
 		}
 	}
-	return hArray;
+	if(sDate2 == eDate2){
+		return 0;
+	} else {
+	return dArray // Return the Date that can be used as a working day.
+	}
 }
+
 
 var servProvCode=expression.getValue("$$servProvCode$$").value;
 var variable0=expression.getValue("ASIT::DURATION INFORMATION::Restriction End Date");
@@ -153,6 +176,8 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 		variable5=expression.getValue(rowIndex, "ASIT::DURATION INFORMATION::Sunday Restriction");
 		variable6=expression.getValue(rowIndex, "ASIT::DURATION INFORMATION::City Holiday Restriction");
 		if(variable0.value!=null && !formatDate(variable0.value,'yyyy/MM/dd').equals(formatDate(null,'yyyy/MM/dd')) && variable1.value!=null && !formatDate(variable1.value,'yyyy/MM/dd').equals(formatDate(null,'yyyy/MM/dd'))){
+			holidays = calendarDates(variable1.value.toString(),variable0.value.toString(),['WORKDAY CALENDAR'],['HOLIDAY']);
+			//variable2.message = holidays.toString();
 		//variable4.message=variable4.value;
 		//expression.setReturn(rowIndex,variable4);
 		//fromDate = convertDate(variable1);
@@ -160,36 +185,33 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 		// Calculate Days between.
 		var daysBetween = 0;
 		var monthsBetween = 0;
-		daysBetween = diffDate(variable1.value.toString(),variable0.value.toString())+1;
+		//variable1.message = variable1.value;
+		expression.setReturn(rowIndex,variable1);
+		//variable0.message = variable0.value;
+		expression.setReturn(rowIndex,variable0);
+		daysBetween = diffDate(variable1.value.toString(),variable0.value.toString());
+		//variable2.message = daysBetween;
 		monthsBetween = monthDiff(variable1.value.toString(),variable0.value.toString()); // Confirmed working
 		var arrayLength;
 		var incEType = ['HOLIDAY'];
-		//var holidayArray = collectHolidays(variable1.value.toString(),variable0.value.toString(),incEType);
-		//variable2.message = daysBetween.toString();
-		//expression.setReturn(rowIndex,variable0);
-		// Parse a number of months for the items that fall in the expected 
-		//variable2.message = monthsBetween.toString();
-		//expression.setReturn(rowIndex,variable2);
-		//monthsBetween = monthDiff(fDate,tDate);
-		//monthsBetween = monthDiff(new Date(variable1.value),new Date(variable0,value));
 		sDate = variable1.value.toString();
-		//dHoliday = isHoliday('07/04/2016',42,'HOLIDAY');
-		//variable1.message = dHoliday;
-		//expression.setReturn(rowIndex,variable1);
 		// Now to implement something that will calculate the number of days based off of flags.
 		checkReturn = [];
 		var dayCount = 0; // This will end up being the number of days that we want to remove.
 		var checkingDate;
+		var checkingDateDate;
+		var sundays = new Array();
 		for(x = 0; x <= daysBetween; x++){
-			
-			checkingDate = addDate(sDate,x);
-			var checkingDateDate = convertDate(checkingDate);
+			checkingDate = new Date(addDays(sDate,x));
+			checkingDateDate = new Date(convertDate(checkingDate));
 			var dHoliday = false;
 			//dHoliday = isHoliday('07/04/2016',42,'HOLIDAY');
+			sundays.push('<br>'+checkingDateDate+' '+x);
 			dOW = new Date(checkingDate).getDay();
-			// Suday Operations
+			// Sunday Operations
 			if (dOW == 0 && variable5.value.toString() == 'Yes'){
 				dayCount++;
+				// sundays.push('<br>'+checkingDateDate+' '+x);
 			}
 			// Saturday Operations
 			else if (dOW == 6 && variable4.value.toString()== 'Yes') {
@@ -200,30 +222,23 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 					dOW > 0
 					&& dOW < 6 
 					&& variable3.value.toString() == 'Yes'
-					&& !isHoliday(checkingDateDate,incEType)
+					&& !(exists(checkingDateDate.toString(),holidays))
 			){
 				dayCount++;
 			}
 			// Holiday Restrictions
 			else if(
 				1==1
-				&& isHoliday(checkingDateDate,incEType)
+				&& exists(checkingDateDate.toString(),holidays)
 				&& variable6.value.toString()=='Yes'
 			){
 				dayCount++;
-				/*
-				checkReturn.push(checkingDateDate);
-				checkReturn.push(isHoliday(checkingDateDate,incEType));
-				variable1.message = holidayArray;
-				expression.setReturn(rowIndex,variable1);
-				variable0.message = variable6.value.toString();
-				expression.setReturn(rowIndex,variable0);
-				variable2.message = checkReturn;
-				expression.setReturn(rowIndex,variable2);
-				//*/
 			}
 		}
-		// variable3.message = checkingDate.toString();
+		// holidays = calendarDates('11/01/2016','12/01/2016',['WORKDAY CALENDAR'],['HOLIDAY']);
+		// variable2.message = holidays.toString();
 		variable2.value = dayCount;
+		//variable3.message = sundays.toString();
 		expression.setReturn(rowIndex,variable2);
+		//expression.setReturn(rowIndex,variable3);
 	}}
