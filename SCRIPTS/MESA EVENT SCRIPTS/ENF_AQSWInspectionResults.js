@@ -8,6 +8,7 @@
 // Script Parents:ISRA;Enforcement/Environmental/Construction/NA
 // Version   |Date      |Engineer         |Details
 //  1.0      |10/18/16  |Steve Veloudos   |Initial Release 
+//  2.0      |11/02/16  |Steve Veloudos   |Adjusted to be 86 calendar days not Mesa working days
 /*==================================================================*/
 
 try {
@@ -27,8 +28,7 @@ try {
             var dt1  = parseInt(inspResultDate.substring(3,5));
             var yr1   = parseInt(inspResultDate.substring(6,10));
             var insResultsD = new Date(yr1, mon1-1, dt1);
-
-            futureDate = new Date(mesaWorkingDays(insResultsD, 86));
+            futureDate = addDays(insResultsD, 85);
             
             //Get date difference
             day = 1000*60*60*24;
@@ -57,4 +57,11 @@ try {
 catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
+    }
+
+    function addDays(date, days) 
+    {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
     }
