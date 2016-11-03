@@ -2,6 +2,7 @@
  Versions:
  9/14/2016-A	John Cheney			initial
  9/19/2016-A	John Cheney			changed fee conditions, cancel only NEW, avoid changing if INVOICED
+ 11/2/2016-A    John Cheney         removed RDIF050 
  ---------------------------------------------------------------------
  Script Number: 340
  Script Name: PMT_ImpactFeesMultiResidence.js
@@ -14,10 +15,18 @@
    Add the fees when workflow task Permit Issuance is activated AND/OR – 
    on ApplicationSpecificInfoUpdateAfter ONLY IF workflow task Permit Issuance is activated.
 
-   This script checks unit count and GIS coordinates, then removes / re-adds fees based on current values
+   This script checks unit count and GIS coordinates, then removes / re-adds fees based on current values.
+   The UI is also updated by script 109, which has potential to confuse testing of this script.
 
-Test records: BLD2015-06893, BLD2015-06384, BLD2015-05280, BLD2015-05278, BLD2015-05277
-	(none of these have a Permit Issuance task and some have null for unit count .. otherwise were good for testing )
+Some NON-exempt addresses:
+2909 E Quenton St
+8304 E Inca St
+10731 E Deawalter Ave
+
+Some Exempt addresses:
+3829 E Oasis Cir
+9456 E Natal Ave
+916 W Monte Ave
 
 specs: https://portal.accelaops.com/projects/Mesa/Scripts%20Specs/340%20PMT%20Impact%20Fees%20–%20Multi-Residence.docx?web=1
 
@@ -138,7 +147,7 @@ try {
 					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF080 not set (a fee with status INVOICED already exists)");
 				}
 
-				// water fee  = (RDIF030, PMT_RDIF)
+				// water impact fee  = (RDIF030, PMT_RDIF)
 				// remove existing fee with status NEW if found
 				if (feeExists("RDIF030", "NEW")) voidRemoveFee("RDIF030");
 				// add fee if no water tag, and no fee exists with status INVOICED
@@ -148,17 +157,7 @@ try {
 				} else {
 					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF030 not set - hasWaterTag = true or a fee with status INVOICED already exists");
 				}
-				
-				// water fee  = (RDIF030, PMT_RDIF)
-				// remove existing fee with status NEW if found
-				if (feeExists("RDIF050", "NEW")) voidRemoveFee("RDIF050");
-				// add fee if no water tag, and no fee exists with status INVOICED
-				if(hasWaterTag == false && !feeExists("RDIF050", "INVOICED")){
-					addFee("RDIF050", "PMT_RDIF", "FINAL", units, "N");
-					feeCount = feeCount + 1;
-				} else {
-					logDebug("PMT_ImpactFeesMultiResidence - Fee RDIF050 not set - hasWaterTag = true or a fee with status INVOICED already exists");
-				}
+
 
 				// stormWater fee = (RDIF280, PMT_RDIF) 
 				// remove existing fee with status NEW if found
