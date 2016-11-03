@@ -9,4 +9,4 @@ include("PLN_RequireDrawingsDoc_ASBOnly");
 include("PLN_DevelopmentUnitPlan"); // 311
 
 // added by John Cheney (Mesa) 9/26/2016
-include("PLN_PlanningAndZoningSitePlanReview");
+//include("PLN_PlanningAndZoningSitePlanReview");  combined wth 275 bodell
