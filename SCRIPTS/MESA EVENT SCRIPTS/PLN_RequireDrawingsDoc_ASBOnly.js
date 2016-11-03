@@ -32,9 +32,13 @@ try
   var docNeeded = true;
 
   var docSitePlan = false;
+  var docSitePlanMsg = "Site Plan<br />";
   var docFloorPlan = false;
+  var docFloorPlanMsg = "Floor Plans<br />";
   var docLandscapePlan = false;
+  var docLandscapePlanMsg = "Landscape Plan<br />";
   var docBuildingElevation = false;
+  var docBuildingElevationMsg = "Building Elevations<br />";
 
   if ((sitePlanReviewMod) || (combinedRezoneSitePlanReview) || (specialUsePermit))
   {
@@ -68,18 +72,22 @@ try
           if (docList.get(x).getDocCategory() == "Site Plan")
           {
             docSitePlan=true;
+            docSitePlanMsg = "";
           }
           if (docList.get(x).getDocCategory() == "Floor Plans")
           {
-            docFloorPlan=true; 
+            docFloorPlan=true;
+            docFloorPlanMsg = ""; 
           }
           if (docList.get(x).getDocCategory() == "Landscape Plan")
           {
             docLandscapePlan=true;
+            docLandscapePlanMsg = "";
           }
           if (docList.get(x).getDocCategory() == "Building Elevations")
           {
             docBuildingElevation=true; 
+            docBuildingElevationMsg = "";
           }
 
         }
@@ -89,7 +97,7 @@ try
 
     if (!(docSitePlan && docFloorPlan  && docLandscapePlan && docBuildingElevation))
     {
-      commentBlah = "A Drawings document is required for the selected Request Type(s)";
+      commentBlah = "A following document(s) are required for the selected Request Type(s): <br />" + docSitePlanMsg + docFloorPlanMsg + docLandscapePlanMsg +docBuildingElevationMsg;+ ;
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
