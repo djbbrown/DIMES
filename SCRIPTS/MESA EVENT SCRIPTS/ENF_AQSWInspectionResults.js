@@ -2,7 +2,7 @@
 // Script Number: 361
 // Script Name: ENF_AQSWInspectionResults.js
 // Script Description: When an air quality inspection and a storm water inspection is resulted as FAIL a new respective inspection should be created. 
-// When an AQ or SW inspection is resulted as PASS a new respective inspection should be created and scheduled for 85 days from the date of the last inspection. 
+// When an AQ or SW inspection is resulted as PASS a new respective inspection should be created and scheduled for 84 days from the date of the last inspection. 
 // Script Run Event: ISRA
 // Testing Cap: COB16-00010
 // Script Parents:ISRA;Enforcement/Environmental/Construction/NA
@@ -28,7 +28,7 @@ try {
             var dt1  = parseInt(inspResultDate.substring(3,5));
             var yr1   = parseInt(inspResultDate.substring(6,10));
             var insResultsD = new Date(yr1, mon1-1, dt1);
-            futureDate = addDays(insResultsD, 85);
+            futureDate = addDays(insResultsD, 84);
             
             //Get date difference
             day = 1000*60*60*24;
