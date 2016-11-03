@@ -128,7 +128,7 @@ function mainProcess()
         /* FILTERING BY EXPIRATION DATE - NULL EXPIRATION
          * THIS INCLUDES TRY/CATCH FOR NULL EXPIRATIONS -- WHICH IS NEEDED DUE TO INTERNAL BUG WHEN YOU ENCOUNTER A NULL EXPIRATION */
         // move to the next record if the expiration date is null
-        var expirationDate = getAppSpecific("Registration Expiration Date");//null;
+        var expirationDate = getAppSpecific("Registration Expiration Date", capId);//null;
         try 
         {
             //var thisLic = new licenseObject(capId);            
