@@ -40,7 +40,7 @@ if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == 
 
 var adminAppFee = false;
 
-if (matches(AInfo["Type of Process"],"Board of Adjustment/Zoning Admin","Deser Uplands Development Standards","Design Review","Product Approval","Zoning/Site Plan")) {
+if (matches(AInfo["Type of Process"],"Board of Adjustment/Zoning Admin","Deser Uplands Development Standards","Product Approval","Zoning/Site Plan")) {
 	adminAppFee = true;
 }
 if (AInfo["Type of Process"] == "Development Unit Plan" && matches(AInfo["Sub process type"],"Amendment to Development Unit Plan","Other")) {
