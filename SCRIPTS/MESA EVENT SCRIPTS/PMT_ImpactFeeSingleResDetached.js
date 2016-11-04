@@ -23,8 +23,9 @@ if (tagFieldArray && tagFieldArray.length > 0) {
    }
 }
 if(
-	AInfo["Classification"] == "Single Family-Detached (per dwelling unit)"
-	|| AInfo["Classification"] == "Manufactured Home (on platted lot)"
+	//AInfo["Classification"] == "Single Family-Detached (per dwelling unit)"
+	//|| 
+	AInfo["Classification"] == "Manufactured Home (on platted lot)"
 ){
 	// RDIF010
 	if(AInfo["Number of Units"] > 0 && wmqGisTag == false){

@@ -107,7 +107,8 @@ try {
 			}
 			// ==================================================================
 			// Update for removing RDIF040 if it's not Singled Family Detached or Manufactured home.
-			if (classification == "Single Family-Detached (per dwelling unit)"
+			if (1==2
+				// || classification == "Single Family-Detached (per dwelling unit)"
 				|| classification == "Manufactured Home (on platted lot)"
 			){
 				logDebug("Starting RDIF040 check");
