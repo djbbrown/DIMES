@@ -130,7 +130,7 @@ function calendarDates(sDate,eDate,aCal,aDayEx){
 		// IF the name of the calendar is included in the list we need the
 		// events from that calendar
 		if(exists(calNames[x].getCalendarName().toUpperCase(),aCal)){
-			for(a = 0; a <= monthsBetween; a++){
+			for(a = 0; a <= monthsBetween; a++){	
 				calE = aa.calendar.getEventSeriesByCalendarID(calNames[x].getCalendarID(),sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
 				for(b in calE){
 					// Get the event details
