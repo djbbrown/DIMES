@@ -130,7 +130,7 @@ try {
 			}
 			// ==================================================================
 			// Update for removing RDIF060 if it's not Singled Family Detached or Manufactured home.
-			if (classification == "Mfg. Home/Park Model/RV (per pad/space)"
+			if (classification == "Single Family-Detached (per dwelling unit)"
 			){
 				logDebug("Starting RDIF060 check");
 				if (feeExists("RDIF060", "NEW", "INVOICED") && (!wasteWaterQty || feeQty("RDIF060") != wasteWaterQty)) voidRemoveFee("RDIF060");
