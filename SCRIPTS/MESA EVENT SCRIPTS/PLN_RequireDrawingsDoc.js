@@ -1,23 +1,26 @@
 //*===================================================================
 //
-// Script Number: 275
+// Script Number: 275, 313
 // Script Name: PLN_RequireDrawingsDoc.js
 // Script Developer: Brian O'Dell
 // Script Agency: City of Mesa
 // Script Description: 
-//		Make Drawings required when Request Type (ASI) selection is one or more of the following: 
+//		When Request Type (ASI) selection is one or more of the following: 
 //		- Site Plan Review/Modification 
 //		- Combined Rezone and Site Plan Review /Modification 
 //		- Special Use Permit
+//
+//		Required the following documents:
+//		- Site Plan
+//		- Preliminary Grading Drainage and Utility Plan 
+//		- Floor Plans
+//		- Landscape Plan 
+//		- Building Elevations
 //
 // Script Run Event: ASB, ASIUB
 // Script Parents:
 //		ASB;Planning!Planning and Zoning!NA!NA.js
 //		ASIUB;Planning!Planning and Zoning!NA!NA.js
-// 
-//		NOTE: check 312 PMT_RequireDrawing and PMT_RequireDrawings_ASBOnly
-//		if criteria on this script change. Both scripts require Drawings
-//		document on Planing and Zoning record type
 //
 //==================================================================*/
 
@@ -39,6 +42,8 @@ try
   var docLandscapePlanMsg = "Landscape Plan<br />";
   var docBuildingElevation = false;
   var docBuildingElevationMsg = "Building Elevations<br />";
+  var docDrainageUtilPlan = false;
+  var docDrainageUtilPlanMsg = "Preliminary Grading Drainage and Utility Plan <br />";
 
   if ((sitePlanReviewMod) || (combinedRezoneSitePlanReview) || (specialUsePermit))
   {
@@ -73,6 +78,11 @@ try
           docBuildingElevation=true; 
           docBuildingElevationMsg = "";
         }
+        if (docCat == "Preliminary Grading Drainage and Utility Plan")
+        {
+          docDrainageUtilPlan=true; 
+          docDrainageUtilPlanMsg = "";
+        }
 
       }
     }
@@ -81,6 +91,7 @@ try
     {
       commentBlah = "A following document(s) are required for the selected Request Type(s): <br />";
       commentBlah += docSitePlanMsg + docFloorPlanMsg + docLandscapePlanMsg + docBuildingElevationMsg;
+      commentBlah += docDrainageUtilPlanMsg;
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
