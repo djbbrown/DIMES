@@ -24,4 +24,4 @@ if (countTempElec == 0 && feeExists("USF150")) removeFee("USF150", "FINAL");
 if (countTempElec > 0) {
 	var sumQtyMeters = sumASITColumn(tmpTable, "Qty of Meters", "INCLUDE", "Service Type", "Temporary Electric");
 	updateFee("USF150","PMT_UTL_SERV", "FINAL",  sumQtyMeters, "N");
-}	
+}
