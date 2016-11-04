@@ -11,4 +11,3 @@ if (wfTask.equals("License Administrator Review") && wfStatus.equals("Denied")) 
 	// set ASI field
 	editAppSpecific("Appeal Deadline", dateAdd(null, 10))
 }
-
