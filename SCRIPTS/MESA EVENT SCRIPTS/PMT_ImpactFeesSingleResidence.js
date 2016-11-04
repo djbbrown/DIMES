@@ -135,7 +135,7 @@ try {
 				logDebug("Starting RDIF060 check");
 				if (feeExists("RDIF060", "NEW", "INVOICED") && (!wasteWaterQty || feeQty("RDIF060") != wasteWaterQty)) voidRemoveFee("RDIF060");
 				if (!feeExists("RDIF060") && !!wasteWaterQty && wasteWaterQty > 0) addFee("RDIF060", "PMT_RDIF", "FINAL", wasteWaterQty, "N");
-				if (feeExists("RDIF060", "NEW", "INVOICED")) voidRemoveFee("RDIF060");
+				//if (feeExists("RDIF060", "NEW", "INVOICED")) voidRemoveFee("RDIF060");
 			}
 			// ==================================================================
 			if (classification == "Single Family-Attached (per dwelling unit)"){
