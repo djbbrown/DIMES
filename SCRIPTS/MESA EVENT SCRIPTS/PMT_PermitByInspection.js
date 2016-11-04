@@ -8,6 +8,7 @@
 // Script Parents:
 //            FAA;Permits/Residential/NA/NA
 ===================================================================*/
+// RES230 Permit-by-Inspection Fee
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES230", "NEW", "INVOICED")){
@@ -18,7 +19,7 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
-// RES150
+// RES150 Unauthorized Work within the Right of Way without – 200%
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES150", "NEW", "INVOICED")){
@@ -29,7 +30,7 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
-// RES140
+// RES140 Unauthorized Work - 100%
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES140", "NEW", "INVOICED")){
@@ -40,7 +41,7 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }h
-//RES130
+//RES130 Unauthorized Construction Fees – 50%
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES130", "NEW", "INVOICED")){
@@ -51,7 +52,7 @@ try {
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
-//RES120
+//RES120 Unauthorized Construction Fees – 25%
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("RES120", "NEW", "INVOICED")){
