@@ -176,7 +176,7 @@ try {
 	var tNumInsp = 0;
 	var valuationASI = 0;
 	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
-		tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
+		tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||AInfo["Estimated Number of Inspections"]||0);
 		// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
 		valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
 		if(valuationASI < 25000){
