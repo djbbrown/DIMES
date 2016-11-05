@@ -21,10 +21,10 @@ if (wfTask.equals("Issue License") && wfStatus.equals("Issued"))
 	// Create a child record of type License/*/*/License (where the record type and subtype are the same as the parent application record)
 	// Need to get the type and sub-type broken out, the following format can be used appTypeArray[1]
 	license = createParent(appTypeArray[0],appTypeArray[1],appTypeArray[2],"License","License");
-	var TempCap = capId;
-	capId = license;
-	updateAppStatus("Active",'Set via script');
-	capId = TempCap;
+	//var TempCap = capId;
+	//capId = license;
+	updateAppStatus("Active","Set via script",license);
+	//capId = TempCap;
 	// Convert the Contact of type "Applicant" (This should be "License Applicant")
 	// to "Licensee" ("Licensee" is in configuration and should be no issue.)
 	var capContactResult = aa.people.getCapContactByCapID(license);
