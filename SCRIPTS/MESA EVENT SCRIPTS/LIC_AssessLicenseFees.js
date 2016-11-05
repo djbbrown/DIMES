@@ -13,9 +13,11 @@ if (wfTask == "Issue License" && wfStatus == "Ready to Issue"){
 	if (matches(""+appTypeArray[2], "FortuneTeller")){
 		if (!feeExists("L030")) addFee("L030","LIC_FORTUNE","FINAL",1,"N");
 	}
-	if (matches(""+appTypeArray[2], "OffTrackBetting")){
+	//disabling based on scenario testing
+	/*if (matches(""+appTypeArray[2], "OffTrackBetting")){
 		if (!feeExists("L020")) addFee("L020","LIC_OTB","FINAL",1,"N");
 	}
+	*/
 	if (matches(""+appTypeArray[2], "ParkandSwap")){
 		if (!feeExists("L020")) addFee("L020","LIC_PARK_APP","FINAL",1,"N");
 	}
