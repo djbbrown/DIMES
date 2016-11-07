@@ -47,6 +47,7 @@ try
             docListCount = docList.size();
 
         //MRK 11.07.2016 - Fixed bug where it was not firing when there was no documents attached to record
+        //MRK 11.07.2016 - fixed another bug where the getDocCategory call was incorrect
 
         //if there are no documents attached to the record, failed validation
         if(docListCount > 0)
@@ -55,7 +56,7 @@ try
 
             //loop through document list and check the document category to see if is a Code Modification Form
             for(x = 0; x < docListCount; x++) {
-                if((docList.get(x) != null) && (docList.get(x).getDocCategory == "Code Modification Form"))
+                if((docList.get(x) != null) && (docList.get(x).getDocCategory() == "Code Modification Form"))
                 {
                     isMatch = true;
                     break;
