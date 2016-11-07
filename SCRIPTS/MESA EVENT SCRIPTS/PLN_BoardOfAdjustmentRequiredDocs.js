@@ -66,7 +66,8 @@ try
             applicationType = applicationType.toUpperCase();
 
             //grab the documents for the record and loop through to verify all the required documentation is attached
-            var documentList = getDocs();
+            //var documentList = getDocs();
+            var documentList = getDocsAsb();
 
             //if there are not any documents attached to record, set no documents to true so we do have to perform document check
             if(documentList.length == 0) hasDocuments = false;
