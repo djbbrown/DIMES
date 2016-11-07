@@ -36,6 +36,7 @@ try
     var seCapId = aa.cap.getCapID(specialEvent).getOutput();
 
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
+    comment("seCapTypeStr: " + seCapTypeStr);
     
     //var seCapTypeArray = seCapTypeStr.split("/");
     
