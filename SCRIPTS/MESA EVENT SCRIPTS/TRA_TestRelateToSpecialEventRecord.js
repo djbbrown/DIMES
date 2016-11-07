@@ -69,7 +69,7 @@ try
   }
   else
   { 
-    commentBlah += "The Special Event Application No is required.";
+    commentBlah = "Please enter a valid Special Event Application No.";
     showMessage = true;
     comment(commentBlah);
     cancel = true;  

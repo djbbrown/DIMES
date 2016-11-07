@@ -35,7 +35,7 @@ try
   var commentBlah = "";
 
   //mkyOutput += "specialEvent: "+specialEvent+" \r";
-  commentBlah += "specialEvent: "+specialEvent+"";
+  //commentBlah += "specialEvent: "+specialEvent+"";
   
   if (getCapResult.getSuccess())
   {
