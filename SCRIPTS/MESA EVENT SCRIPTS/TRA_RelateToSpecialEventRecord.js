@@ -32,7 +32,7 @@ try
   var commentBlah = "";
 
   //mkyOutput += "specialEvent: "+specialEvent+" \r";
-  commentBlah += "specialEvent: "+specialEvent+" \r";
+  commentBlah += "specialEvent: "+specialEvent+"";
   
   if (getCapResult.getSuccess())
   {
@@ -50,12 +50,13 @@ try
 
     if (seCapTypeArray[2] == "SpecialEvent")
     {
-      goodParent = true;
+      //goodParent = true;
     }    
 
     if (goodParent)
     {
-      addParent("" + specialEvent );
+      commentBlah += "addParent("+specialEvent+")";
+      //addParent("" + specialEvent);
       //mkyOutput += "Special Event record type confirmed and added as parent \r";
       //comment("Special Event record type confirmed and added as parent");
     }
