@@ -37,22 +37,30 @@ try
 
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
     
-    var seCapTypeArray = seCapTypeStr.split("/");
+    //var seCapTypeArray = seCapTypeStr.split("/");
     
-    if (seCapTypeArray[2] == "SpecialEvent")
+    //if (
+    //    ((seCapTypeArray[2] == "SpecialEvent") && (seCapTypeArray[4] == "Application")
+    //    ||
+    //    ((seCapTypeArray[2] == "Liquor") && (seCapTypeArray[3] == "SpecialEvent"))
+    //   )
+    //{
+
+    if ((seCapTypeStr = "Licenses/General/SpecialEvent/Application")
+        || (seCapTypeStr = "Licenses/Liquor/LiquorSpecialEvent/Application"))
     {
       goodParent = true;
-    }    
+    }
 
     if (goodParent)
     {
-      // do nothing, need to addParent on ASA event (need capID established before it can create relationship)
+      // do nothing, addParent on ASA event (need capID established before it can create relationship)
       //addParent("" + specialEvent);
     }
     else
     {
-      commentBlah += "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
-      commentBlah += "Please enter a valid Special Event Application No.";
+      //commentBlah = "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
+      commentBlah = "Please enter a valid Special Event Application No.";
       showMessage = true;
       comment(commentBlah);
       cancel = true;  
