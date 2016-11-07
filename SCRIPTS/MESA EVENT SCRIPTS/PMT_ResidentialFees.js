@@ -88,7 +88,7 @@ try {
 		resSheetDep = feeAmount("RES020","NEW","INVOICED");
 		
 		// Multiply Actual Number of sheets by the fee 390 and subtract the resSheetDep
-		feeLessDep = (totalSheets * 390) - resSheetDep
+		feeLessDep = (totalSheets * 390) - resSheetDep;
 		
 		if (feeExists("RES030", "NEW", "INVOICED")) {
 			voidRemoveFee("RES030");
@@ -157,13 +157,13 @@ try {
 			"Dual Public Utility Plan/Profiles and Details"
 			);
 		
-		if (feeExists("RES030", "NEW", "INVOICED")) {
-			voidRemoveFee("RES030");
+		if (feeExists("RES050", "NEW", "INVOICED")) {
+			voidRemoveFee("RES050");
 		}
-		addFee("RES030", "PMT_RES","FINAL", totalSheets, "N");
+		addFee("RES050", "PMT_RES","FINAL", totalSheets, "N");
 	
-		if(!totalSheets > 0 && feeExists("RES030", "NEW", "INVOICED")){
-			voidRemoveFee("RES030");
+		if(!totalSheets > 0 && feeExists("RES050", "NEW", "INVOICED")){
+			voidRemoveFee("RES050");
 		}
 	}
 }
