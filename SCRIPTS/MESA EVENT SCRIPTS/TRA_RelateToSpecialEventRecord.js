@@ -13,13 +13,16 @@
 //		Test if valid Special Event record type, if not
 //		block submission/save and display error message
 //
-//		due to change in spec, changing from ASA/ASIUA to ASB/ASIUB
+//		** this is the create relationship piece of the puzzle (ASA)
+//
+//		NOTE: need to test for Special Event record on ASB and block submission if applicable
+//		Need to create parent relationship on ASA, as the capID does not 
+//		exist at time of ASB.
 //
 //
-// Script Run Event: ASB / ASIUB
+// Script Run Event: ASA
 // Script Parents:
-//             ASB:Transporation/Temporary Traffic Control/NA/NA
-//             ASIUB:Transporation/Temporary Traffic Control/NA/NA
+//             ASA:Transporation/Temporary Traffic Control/NA/NA
 // 
 //==================================================================*/
 
@@ -36,49 +39,23 @@ try
   
   if (getCapResult.getSuccess())
   {
-    //mkyOutput += "Record found \r";
-
     var seCapId = aa.cap.getCapID(specialEvent).getOutput();
-    //mkyOutput += "seCapId: "+seCapId+" \r";
-
+    
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
-    //mkyOutput += "seCapTypeStr: "+seCapTypeStr+" \r";
-
+    
     var seCapTypeArray = seCapTypeStr.split("/");
-    //mkyOutput += "seCapTypeArray[2]: "+seCapTypeArray[2]+" \r";
-    commentBlah += "Record Type: " + seCapTypeArray[2] + " \r";
-
+    
     if (seCapTypeArray[2] == "SpecialEvent")
     {
-      //goodParent = true;
+      goodParent = true;
     }    
 
     if (goodParent)
     {
-      commentBlah += "addParent("+specialEvent+")";
-      //addParent("" + specialEvent);
-      //mkyOutput += "Special Event record type confirmed and added as parent \r";
-      //comment("Special Event record type confirmed and added as parent");
-    }
-    else
-    {
-      //mkyOutput += "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
-      //mkyOutput += Please enter a valid Special Event Application No. \r";
-      commentBlah += "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
-      commentBlah += "Please enter a valid Special Event Application No.";
-      showMessage = true;
-      comment(commentBlah);
-      cancel = true;  
+      addParent("" + specialEvent);
     }
 
   }
-  else
-  { 
-    commentBlah += "The Special Event Application No is required.";
-    showMessage = true;
-    comment(commentBlah);
-    cancel = true;  
-  }  
 
 }
 catch (err)
