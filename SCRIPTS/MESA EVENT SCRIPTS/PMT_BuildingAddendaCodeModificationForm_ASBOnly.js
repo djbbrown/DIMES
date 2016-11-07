@@ -34,8 +34,10 @@ try
         //MRK - 10.25.2016 - Modified the script to use the suggested method for getting documents from a record that has not been
         //submiited yet
 
+        //MRK - 11.07.2016 - fixed docList call by replacing "DocumentModeList" with "DocumentModelList" 
+
         //get the document list for the record
-        var docList = aa.env.getValue("DocumentModeList");
+        var docList = aa.env.getValue("DocumentModelList");
 
         if((docList == null) || (docList == "")) {
             docList = aa.document.getDocumentListByEntity(capId.toString(), "TMP_CAP").getOutput();
