@@ -44,10 +44,10 @@ try
         else
             docListCount = docList.size();
 
+        //MRK 11.07.2016 - Fixed bug where it was not firing when there was no documents attached to record
+
         //if there are no documents attached to the record, failed validation
         if(docListCount > 0)
-            passed = false;
-        else
         {
             var isMatch = false;
 
@@ -62,6 +62,8 @@ try
 
             if(!isMatch) passed = false;
         }
+        else 
+            passed = false;
 
         //if there are no documents attached or if code modification form not attached
         //display message to user that "Construction Documents" required.
