@@ -41,8 +41,8 @@ try
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
     comment("seCapTypeStr: " + seCapTypeStr);
     
-    if ((seCapTypeStr = "Licenses/General/SpecialEvent/Application")
-        || (seCapTypeStr = "Licenses/Liquor/LiquorSpecialEvent/Application"))
+    if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
+        || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
     {
       goodParent = true;
     }   

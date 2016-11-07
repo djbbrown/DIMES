@@ -47,8 +47,8 @@ try
     //   )
     //{
 
-    if ((seCapTypeStr = "Licenses/General/SpecialEvent/Application")
-        || (seCapTypeStr = "Licenses/Liquor/LiquorSpecialEvent/Application"))
+    if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
+        || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
     {
       goodParent = true;
     }
