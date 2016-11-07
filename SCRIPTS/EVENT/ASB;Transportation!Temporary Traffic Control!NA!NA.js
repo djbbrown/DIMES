@@ -4,4 +4,4 @@
 ==================================================================*/
 
 // Brian ODell (Mesa)
-include("TRA_RelateToSpecialEventRecord");
+include("TRA_TestRelateToSpecialEventRecord");
