@@ -79,7 +79,7 @@ try {
 		resSheetDep = feeAmount("COM020","NEW","INVOICED");
 		
 		// Multiply Actual Number of sheets by the fee 390 and subtract the resSheetDep
-		feeLessDep = (totalSheets * 390) - resSheetDep
+		feeLessDep = (totalSheets * 390) - resSheetDep;
 		
 		if (feeExists("COM030", "NEW", "INVOICED")) {
 			voidRemoveFee("COM030");
