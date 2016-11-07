@@ -39,7 +39,7 @@ try
     var seCapId = aa.cap.getCapID(specialEvent).getOutput();
     
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
-    comment("seCapTypeStr: " + seCapTypeStr);
+    //comment("seCapTypeStr: " + seCapTypeStr);
     
     if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
         || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
