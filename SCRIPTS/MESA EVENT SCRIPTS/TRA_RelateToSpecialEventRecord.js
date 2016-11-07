@@ -18,8 +18,8 @@
 //
 // Script Run Event: ASB / ASIUB
 // Script Parents:
-//             ASA:Transporation/Temporary Traffic Control/NA/NA
-//             ASIUA:Transporation/Temporary Traffic Control/NA/NA
+//             ASB:Transporation/Temporary Traffic Control/NA/NA
+//             ASIUB:Transporation/Temporary Traffic Control/NA/NA
 // 
 //==================================================================*/
 
@@ -32,6 +32,7 @@ try
   var commentBlah = "";
 
   //mkyOutput += "specialEvent: "+specialEvent+" \r";
+  commentBlah += "specialEvent: "+specialEvent+" \r";
   
   if (getCapResult.getSuccess())
   {
@@ -45,6 +46,7 @@ try
 
     var seCapTypeArray = seCapTypeStr.split("/");
     //mkyOutput += "seCapTypeArray[2]: "+seCapTypeArray[2]+" \r";
+    commentBlah += "Record Type: " + seCapTypeArray[2] + " \r";
 
     if (seCapTypeArray[2] == "SpecialEvent")
     {
@@ -61,7 +63,7 @@ try
     {
       //mkyOutput += "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
       //mkyOutput += Please enter a valid Special Event Application No. \r";
-      commentBlah = "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
+      commentBlah += "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
       commentBlah += "Please enter a valid Special Event Application No.";
       showMessage = true;
       comment(commentBlah);
@@ -71,16 +73,11 @@ try
   }
   else
   { 
-    commentBlah = "The Special Event Application No is required.";
+    commentBlah += "The Special Event Application No is required.";
     showMessage = true;
     comment(commentBlah);
     cancel = true;  
   }  
-
-
-
-
-
 
 }
 catch (err)
