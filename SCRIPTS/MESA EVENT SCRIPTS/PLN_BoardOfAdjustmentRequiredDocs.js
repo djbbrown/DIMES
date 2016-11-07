@@ -66,8 +66,7 @@ try
             applicationType = applicationType.toUpperCase();
 
             //grab the documents for the record and loop through to verify all the required documentation is attached
-            //var documentList = getDocs();
-            var documentList = getDocsAsb();
+            var documentList = getDocs();
 
             //if there are not any documents attached to record, set no documents to true so we do have to perform document check
             if(documentList.length == 0) hasDocuments = false;
@@ -300,21 +299,22 @@ function getDocs() {
 }
 
 //works before a record has been submitted.  To test, create a record and save without submitting
+//11.07.2016 - MRK - refactored method to mirror the getDocsAsb() method in the PLN_PlanningAndZoningSitePlanReview.js 
 function getDocsAsb() {
     var docArray = [];
     var getResult = aa.env.getValue("DocumentModelList");
 
-    if((getResult == null) || (getResult == "")) {
+    if(!getResult || getResult == "") {
         getResult = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP");
     }
 
-    if(getResult.getSuccess()) {
-        var objArray = getResult.getOutput();
-        var count = objArray.size();
+    //11.07.2016 - MRK - removed getSuccess() because this getResult object does not support getSuccess()
+    if(getResult) {
+        var count = getResult.size();
 
         for(i = 0; i < count; i++) {
-            if(objArray.get(i) != null) {
-                var xx = objArray.get(i).getDocCategory();
+            if(getResult.get(i) != null) {
+                var xx = getResult.get(i).getDocCategory();
                 docArray.push(XX);
             }
         }
