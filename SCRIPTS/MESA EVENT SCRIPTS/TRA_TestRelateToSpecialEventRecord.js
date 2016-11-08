@@ -35,7 +35,7 @@ try
 
   comment("isSpecialEvent: " + isSpecialEvent);
 
-  if (isSpecialEvent)
+  if (isSpecialEvent == "Yes")
   {
 
   if (getCapResult.getSuccess())
