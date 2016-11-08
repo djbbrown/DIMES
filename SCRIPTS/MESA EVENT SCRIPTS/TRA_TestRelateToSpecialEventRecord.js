@@ -33,6 +33,8 @@ try
   var goodParent = false;
   var commentBlah = "";
 
+  comment("isSpecialEvent: " + isSpecialEvent);
+
   if (isSpecialEvent)
   {
 
