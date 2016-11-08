@@ -38,7 +38,7 @@ try{
 					reqDocTypes.push("Maricopa County Dust Control Plan");
 				} 
 				else logDebug("Parcel is under 0.1 acres. No additional documents are required.");
-				if (acres > 1.0) reqDocTypes.push("Maricopa County Flood Control District Permit");
+				if (acres > 1.0) reqDocTypes.push("ADEQ");
 				
 				// get attached docs
 				if (reqDocTypes.length > 0){
