@@ -13,16 +13,13 @@
 //		Test if valid Special Event record type, if not
 //		block submission/save and display error message
 //
-//		** this is the create relationship piece of the puzzle (ASA)
-//
-//		NOTE: need to test for Special Event record on ASB and block submission if applicable
-//		Need to create parent relationship on ASA, as the capID does not 
-//		exist at time of ASB.
+//		due to change in spec, changing from ASA/ASIUA to ASB/ASIUB
 //
 //
-// Script Run Event: ASA
+// Script Run Event: ASB / ASIUB
 // Script Parents:
-//             ASA:Transporation/Temporary Traffic Control/NA/NA
+//             ASB:Transporation/Temporary Traffic Control/NA/NA
+//             ASIUB:Transporation/Temporary Traffic Control/NA/NA
 // 
 //==================================================================*/
 
@@ -38,28 +35,53 @@ try
 
   if (isSpecialEvent == "Yes")
   {
-  
+
   if (getCapResult.getSuccess())
   {
     var seCapId = aa.cap.getCapID(specialEvent).getOutput();
-    
+
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
     //comment("seCapTypeStr: " + seCapTypeStr);
     
+    //var seCapTypeArray = seCapTypeStr.split("/");
+    
+    //if (
+    //    ((seCapTypeArray[2] == "SpecialEvent") && (seCapTypeArray[4] == "Application")
+    //    ||
+    //    ((seCapTypeArray[2] == "Liquor") && (seCapTypeArray[3] == "SpecialEvent"))
+    //   )
+    //{
+
     if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
         || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
     {
       goodParent = true;
-    }   
+    }
 
     if (goodParent)
     {
-      addParent("" + specialEvent);
+      // do nothing, addParent on ASA event (need capID established before it can create relationship)
+      //addParent("" + specialEvent);
+    }
+    else
+    {
+      //commentBlah = "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
+      commentBlah = "Please enter a valid Special Event Application No.";
+      showMessage = true;
+      comment(commentBlah);
+      cancel = true;  
     }
 
   }
-
+  else
+  { 
+    commentBlah = "Please enter a valid Special Event Application No.";
+    showMessage = true;
+    comment(commentBlah);
+    cancel = true;  
   }
+
+  } 
 
 }
 catch (err)

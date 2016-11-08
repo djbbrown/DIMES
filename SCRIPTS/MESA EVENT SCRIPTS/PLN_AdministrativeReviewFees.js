@@ -40,7 +40,7 @@ if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == 
 
 var adminAppFee = false;
 
-if (matches(AInfo["Type of Process"],"Board of Adjustment/Zoning Admin","Deser Uplands Development Standards","Design Review","Product Approval","Zoning/Site Plan")) {
+if (matches(AInfo["Type of Process"],"Board of Adjustment/Zoning Admin","Deser Uplands Development Standards","Product Approval","Zoning/Site Plan")) {
 	adminAppFee = true;
 }
 if (AInfo["Type of Process"] == "Development Unit Plan" && matches(AInfo["Sub process type"],"Amendment to Development Unit Plan","Other")) {
@@ -67,7 +67,7 @@ if (adminAppFee) {
 //            ASA;Planning!Admin Review!NA!NA
 /*==================================================================*/
 
-if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == "Affidavit of Change/Correction"){
+if (AInfo["Type of Process"] == "Subdivision" && AInfo["Sub process type"] == "Affidavit of Change/Correction"){
 	updateFee("ADM030","PLN_ADM","FINAL",1,"N");
 }
 
@@ -188,7 +188,7 @@ if (AInfo["Type of Process"] == "Historic Preservation" && matches(AInfo["Sub pr
 //            ASA;Planning!Admin Review!NA!NA
 /*==================================================================*/
 
-if (AInfo["Type of Process"] == "Subdivision"){
+if (AInfo["Type of Process"] == "Subdivision" && AInfo["Sub process type"] != "Affidavit of Change/Correction"){
 	updateFee("ADM120","PLN_ADM","FINAL",1,"N");
 }
 
