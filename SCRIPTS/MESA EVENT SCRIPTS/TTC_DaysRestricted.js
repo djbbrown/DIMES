@@ -56,17 +56,30 @@ try
 		var uCapId = capId
 	}
     // Roadway/Alley
-    editAppSpecific("Total Roadway/Alley Restriction",parseInt(RoadAlley|0),uCapId);
-    logDebug("Updating 'Total Roadway/Alley Restriction' to "+parseInt(RoadAlley|0));
+    trar = getAppSpecific("Total Roadway/Alley Restriction",uCapId); // Get current value
+	logDebug("Total Roadway/Alley Restriction Current: "+trar);
+	trar = parseInt(trar) + parseInt(RoadAlley|0);
+    editAppSpecific("Total Roadway/Alley Restriction",trar,uCapId);
+    logDebug("Updating 'Total Roadway/Alley Restriction' to "+trar);
     // Sidewalk Closure
-    editAppSpecific("Sidewalk Closure",parseInt(Sidewalk|0),uCapId);
-    logDebug("Updating 'Sidewalk Closure' to "+parseInt(Sidewalk|0));
+    sc = getAppSpecific("Sidewalk Closure",uCapId); // Get current value
+	logDebug("Sidewalk Closure Current: "+sc);
+	sc = parseInt(sc) + parseInt(Sidewalk|0);
+    editAppSpecific("Sidewalk Closure",sc,uCapId);
+    logDebug("Updating 'Sidewalk Closure' to "+sc);
     // Left Turn Prohibition - Signalized Intersection
-    editAppSpecific("Left Turn Prohibition - Signalized Intersection",parseInt(LeftTurn|0),uCapId);
-    logDebug("Updating 'Left Turn Prohibition - Signalized Intersection' to "+parseInt(LeftTurn|0));
+    ltpsi = getAppSpecific("Left Turn Prohibition - Signalized Intersection",uCapId); // Get current value
+	logDebug("Left Turn Prohibition - Signalized Intersection Current: "+ltpsi);
+	ltpsi = parseInt(ltpsi) + parseInt(LeftTurn|0);
+    editAppSpecific("Left Turn Prohibition - Signalized Intersection",ltpsi,uCapId);
+    logDebug("Updating 'Left Turn Prohibition - Signalized Intersection' to "+ltpsi);
     // Arterial Road Closure
-    editAppSpecific("Arterial Road Closure",parseInt(Arterial|0),uCapId);
-    logDebug("Updating 'Arterial Road Closure' to "+parseInt(Arterial|0));
+    arc = getAppSpecific("Arterial Road Closure",uCapId); // Get current value
+	logDebug("Arterial Road Closure Current: "+arc);
+	arc = parseInt(arc) + parseInt(Arterial|0);
+    editAppSpecific("Arterial Road Closure",arc ,uCapId);
+    logDebug("Updating 'Arterial Road Closure' to "+arc);
+	//*/
     // No Restrictions
     // editAppSpecific("No Restrictions",parseInt(NoRestriction|0),capId);
     // Block Party
