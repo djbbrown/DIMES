@@ -304,8 +304,9 @@ function getDocsAsb() {
     var docArray = [];
     var getResult = aa.env.getValue("DocumentModelList");
 
+    //11.08.2016 - MRK - added getOutput method to the getDocumentListByEntity call
     if(!getResult || getResult == "") {
-        getResult = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP");
+        getResult = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
     }
 
     //11.07.2016 - MRK - removed getSuccess() because this getResult object does not support getSuccess()
