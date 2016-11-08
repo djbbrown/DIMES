@@ -49,13 +49,11 @@ if(
 		editAppSpecific("Substantive Review Due", dateAdd(null,90));
 	}
 	if(appTypeArray[2]=="LiquorSpecialEvent"
-		|| appTypeArray[2]=="BingoHall"
 		|| appTypeArray[2]=="TeenDance"
 		|| appTypeArray[2]=="Liquor"
 		|| appTypeArray[2]=="ParkandSwap"
 	) {
 		editAppSpecific("Substantive Review Due", dateAdd(null,45));
-		logDebug("did this happen");
 	}
 	//*/
 	else {
