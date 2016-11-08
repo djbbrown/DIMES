@@ -350,7 +350,6 @@ if(
 	//------------------------------------------------------------------------
 	recTypesCheck4 = [
 		'Planning/Admin Review/NA/NA',
-		//'Planning/Annexation/NA/NA',
 		'Planning/Board of Adjustment/NA/NA',
 		'Planning/Design Review/NA/NA',
 		'Planning/General Plan Amendment - Major/NA/NA',
