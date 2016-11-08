@@ -249,7 +249,7 @@ if (
 		updateFee("COM040","PMT_COM", "FINAL",feeAmt, "N");
 	}
 }
-// COM050
+// COM050 - Commercial Inspection Fee
 try {
 	var tNumInsp = 0;
 	var valuationASI = 0;
@@ -262,6 +262,7 @@ try {
 				voidRemoveFee("COM050");
 			}
 			if (tNumInsp > 0){
+				tNumInsp = 90+(tNumInsp*90);
 				addFee("COM050", "PMT_COM","FINAL", tNumInsp, "N");
 			}
 			if(!tNumInsp > 0 && feeExists("COM050", "NEW", "INVOICED")){

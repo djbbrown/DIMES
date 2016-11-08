@@ -184,6 +184,7 @@ try {
 				voidRemoveFee("RES070");
 			}
 			if (tNumInsp > 0){
+				tNumInsp = 90+(tNumInsp*90);
 				addFee("RES070", "PMT_RES","FINAL", tNumInsp, "N");
 			}
 			if(!tNumInsp > 0 && feeExists("RES070", "NEW", "INVOICED")){
