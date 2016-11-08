@@ -36,7 +36,7 @@ try
   var goodParent = false;
   var commentBlah = "";
 
-  if (isSpecialEvent)
+  if (isSpecialEvent == "Yes")
   {
   
   if (getCapResult.getSuccess())
