@@ -14,6 +14,7 @@
 try
 {
   loadASITables();
+  logDebug(AInfo['Parent TTC Permit #'].toUpperCase());
   var tInfo = DURATIONINFORMATION;
   var rowCount = DURATIONINFORMATION.length;
   var durationDays = 0;
@@ -47,18 +48,24 @@ try
     	  Block += parseInt(tInfo[x]["Days Restricted"]);
       }
     }
-    
+    if(appTypeString == 'Transportation/Temporary Traffic Control/Modification/NA'){
+		// get that record's capId so that the parent can be updated.
+		var uCapId = aa.cap.getCapID(AInfo['Parent TTC Permit #'].toUpperCase()).getOutput();
+	}
+	else {
+		var uCapId = capId
+	}
     // Roadway/Alley
-    editAppSpecific("Total Roadway/Alley Restriction",parseInt(RoadAlley|0),capId);
+    editAppSpecific("Total Roadway/Alley Restriction",parseInt(RoadAlley|0),uCapId);
     logDebug("Updating 'Total Roadway/Alley Restriction' to "+parseInt(RoadAlley|0));
     // Sidewalk Closure
-    editAppSpecific("Sidewalk Closure",parseInt(Sidewalk|0),capId);
+    editAppSpecific("Sidewalk Closure",parseInt(Sidewalk|0),uCapId);
     logDebug("Updating 'Sidewalk Closure' to "+parseInt(Sidewalk|0));
     // Left Turn Prohibition - Signalized Intersection
-    editAppSpecific("Left Turn Prohibition - Signalized Intersection",parseInt(LeftTurn|0),capId);
+    editAppSpecific("Left Turn Prohibition - Signalized Intersection",parseInt(LeftTurn|0),uCapId);
     logDebug("Updating 'Left Turn Prohibition - Signalized Intersection' to "+parseInt(LeftTurn|0));
     // Arterial Road Closure
-    editAppSpecific("Arterial Road Closure",parseInt(Arterial|0),capId);
+    editAppSpecific("Arterial Road Closure",parseInt(Arterial|0),uCapId);
     logDebug("Updating 'Arterial Road Closure' to "+parseInt(Arterial|0));
     // No Restrictions
     // editAppSpecific("No Restrictions",parseInt(NoRestriction|0),capId);
