@@ -53,7 +53,7 @@ if(
 		if(
 			(
 				AInfo["Type of Process"] == 'Board of Adjustment/Zoning Admin'
-					&& exists(AInfo["Sub process type"],['Addition to or modification of cell towers','Addition to or modification of sign plan'])
+				&& exists(AInfo["Sub process type"],['Addition to or modification of cell towers','Addition to or modification of sign plan'])
 			)
 			|| AInfo["Type of Process"] == 'Wireless Communications Facilities'
 		) {
