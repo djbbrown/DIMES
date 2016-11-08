@@ -26,18 +26,22 @@ var subType = getAppSpecific ("Sub-Type",capId);
 if (subType == "Class A" && !feeExists("LIC_010", "NEW", "INVOICED")){
 	if(feeExists("LIC_020","NEW","Invoiced")) {voidRemoveFee("LIC_020")} // Remove LIC_020
 	if(feeExists("LIC_030","NEW","Invoiced")) {voidRemoveFee("LIC_030")} // Remove LIC_030
-	addFee("LIC_010","LIC_BINGO_APP","FINAL",1,"N");
+	addFee("LIC_010","LIC_BINGO_APP","FINAL",1,"Y");
 }
 if (subType == "Class B" && !feeExists("LIC_020", "NEW", "INVOICED")){
 	if(feeExists("LIC_010","NEW","Invoiced")) {voidRemoveFee("LIC_010")} // Remove LIC_010
 	if(feeExists("LIC_030","NEW","Invoiced")) {voidRemoveFee("LIC_030")} // Remove LIC_030
-	addFee("LIC_020","LIC_BINGO_APP","FINAL",1,"N");
+	addFee("LIC_020","LIC_BINGO_APP","FINAL",1,"Y");
 }
 if (subType == "Class C" && !feeExists("LIC_030", "NEW", "INVOICED")){
 	if(feeExists("LIC_010","NEW","Invoiced")) {voidRemoveFee("LIC_010")} // Remove LIC_010
 	if(feeExists("LIC_020","NEW","Invoiced")) {voidRemoveFee("LIC_020")} // Remove LIC_020
-	addFee("LIC_030","LIC_BINGO_APP","FINAL",1,"N");
+	addFee("LIC_030","LIC_BINGO_APP","FINAL",1,"Y");
 }
+
+//Adding Tech fee
+addFee("TECH","LIC_BINGO_APP","FINAL",1,"Y");
+
 
 /*
 if (use == "Multi-Residence" || use == "Non-Residential"){
