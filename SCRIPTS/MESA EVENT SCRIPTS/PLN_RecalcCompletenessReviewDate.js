@@ -99,7 +99,7 @@ if(
 				tBd.push('Substantial Conformance Improvement Permit Modification');
 			}
 		} // End board of adjustment
-		// Development Unit Plan Modification – Staff
+		// Development Unit Plan Modification - Staff
 		else if(
 			AInfo["Type of Process"] == 'Development Unit Plan'
 			&& AInfo["Sub process type"] == 'Amendment to Development Unit Plan'
@@ -203,7 +203,7 @@ if(
 		if (AInfo["Interpretation"] == 'CHECKED'){
 			tBd.push('Interpretation');
 		}
-		// PAD Modification – BOA
+		// PAD Modification - BOA
 		if (AInfo["Modification of Planned Area Development"] == 'CHECKED'
 		){
 			tBd.push('PAD Modification - BOA');
@@ -581,7 +581,6 @@ function workDaysBetween(sDate,eDate,aCal,aDayEx){
 					// Now do the COMPARISON
 					if(
 						exists(evtType,aDayEx)
-						//&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
 						removeA(dArray,jsDateToASIDate(evtDateDate));
@@ -646,7 +645,6 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 					if(
 						1==1
 						&& exists(evtType,aDayEx)
-						//&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
 						removeA(dArray,jsDateToASIDate(evtDateDate));
