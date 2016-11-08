@@ -329,6 +329,7 @@ if(
 		|| (wfTask =='Planning Initial Review' && wfStatus=='Corrections Required')
 		|| (wfTask =='Review Consolidation' && wfStatus=='Revisions Required')
 	){
+		logDebug("Check1");
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
 	//------------------------------------------------------------------------
@@ -338,6 +339,7 @@ if(
 		(wfTask =='Accepted' && wfStatus=='Application Acceptance')
 		|| (wfTask =='Completeness Review' && wfStatus=='Information Received')
 	){
+		logDebug("Check3");
 		nextDate = workDaysAdd(Date(),shiftDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
@@ -360,6 +362,7 @@ if(
 		(wfTask =='Completeness Review' && (wfStatus=='Revisions Submitted' || wfStatus=='Information Received'))
 		&& exists(appTypeString,recTypesCheck4)
 	){
+		logDebug("Check4");
 		srDD = getAppSpecific("Substantive Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
@@ -389,6 +392,7 @@ if(
 		(wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
 		&& exists(appTypeString,recTypesCheck5)
 	){
+		logDebug("Check5");
 		srDD = getAppSpecific("Substantive Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
@@ -416,6 +420,7 @@ if(
 		(wfTask =='Planning Initial Review' && (wfStatus=='Resubmittal Received'))
 		&& exists(appTypeString,recTypesCheck6)
 	){
+		logDebug("Check6");
 		srDD = getAppSpecific("Substantive Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
