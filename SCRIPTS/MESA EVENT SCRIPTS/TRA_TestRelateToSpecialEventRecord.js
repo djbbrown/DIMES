@@ -26,10 +26,14 @@
 
 try
 {
+  var isSpecialEvent = AInfo["Is this a Special Event"];
   var specialEvent = AInfo["Special Event Application No."];
   var getCapResult = aa.cap.getCapID(specialEvent);
   var goodParent = false;
   var commentBlah = "";
+
+  if (isSpecialEvent)
+  {
 
   if (getCapResult.getSuccess())
   {
@@ -74,7 +78,9 @@ try
     showMessage = true;
     comment(commentBlah);
     cancel = true;  
-  }  
+  }
+
+  } 
 
 }
 catch (err)
