@@ -30,9 +30,14 @@ try
     //Finaled, Finaled -- C of C Required or Finaled -- C of O Required 
     var currentStatus = taskStatus("Inspections");
 
+    //11.08.2017 - MRK - Fixed issue where if the currentStatus variable is null it would threw
+    //an Cannot call method "replace" of null 
+
     //this code will replace extra long dash and replace with normal dash
-    currentStatus = currentStatus.replace("\u2013", "-");
-    currentStatus = currentStatus.replace("\u2014", "-");
+    if(currentStatus != null) {
+        currentStatus = currentStatus.replace("\u2013", "-");
+        currentStatus = currentStatus.replace("\u2014", "-");
+    }
 
     if(matches(currentStatus, "Finaled", "Finaled - C of C Required", "Finaled - C of O Required")) {
         logDebug("Inspection Workflow Status: " + currentStatus);
