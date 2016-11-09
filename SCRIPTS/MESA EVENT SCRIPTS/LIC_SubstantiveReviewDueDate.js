@@ -26,6 +26,8 @@ if(
 		|| (wfTask == "Administrative" && wfStatus == "Completed")
 		// BingoHall workflow
 		|| (wfTask == "Administrative Review" && wfStatus == "Complete")
+		// ParkandSwap workflow
+		|| (wfTask == "Application Intake" && wfStatus == "Received")
 		)
 		// The following must be checked.
 		// Bingo Hall - No Status (No "Substantive Review Due" field)
