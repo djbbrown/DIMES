@@ -89,9 +89,7 @@ try {
                                 if(ServiceType2 == "Electric")
                                 {
                                             //Compare dates 
-                                            var date2 = convertDate(ClearanceDate);
-			                                var date1 = convertDate(currentDate);
-                                            if(date1 == date2)
+                                            if(ClearanceDate == currentDate)
                                             {
                                             
                                             //Get the address
