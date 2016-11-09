@@ -22,6 +22,7 @@
 //  1.8      |10/06/16  |Steve Veloudos   |Added break on for loop for ASIT table. Per Taryn Martinez only one email needs to be sent
 //  1.9      |10/10/16  |Steve Veloudos   |Removed break on for loop for ASIT table. Per Taryn Martinez multipule emails need to be sent
 //  1.10     |11/01/16  |Steve Veloudos   |Added Temporary Electric inspection type & Added Permits/Residential/Mobile Home/NA
+//  1.11     |11/08/16  |Steve Veloudos   |Added Unit Info & adjusted date compare
 /*==================================================================*/
 
 try {
@@ -87,19 +88,10 @@ try {
                                 //Check for Electric if not go onto the next record
                                 if(ServiceType2 == "Electric")
                                 {
-                                        var Clearance = (tInfo[x]["Clearance To"]);
-                                            //Set to Email
-                                            if (Clearance == "City of Mesa")
-                                            {
-                                                ToEmail =lookup("EMAIL_RECIPIENTS","Billing_Info");
-                                            }
-                                            if (Clearance == "Salt River Project")
-                                            {
-                                                ToEmail =lookup("EMAIL_RECIPIENTS","SRP");
-                                            }
-                                    
                                             //Compare dates 
-                                            if( currentDate == ClearanceDate )
+                                            var dateCompare = 0;
+		                                    dateCompare = diffDate(ClearanceDate,currentDate);
+                                            if(dateCompare == 0)
                                             {
                                             
                                             //Get the address
@@ -119,11 +111,13 @@ try {
                                                     var streetDir = addrArray[0].getStreetDirection();
                                                     var streetName = addrArray[0].getStreetName();
                                                     var streetSuffix = addrArray[0].getStreetSuffix();
+                                                    var unitType = addrArray[0].getUnitType();
+                                                    var unitNumber = addrArray[0].getUnitStart(); 
                                                     var city = addrArray[0].getCity();
                                                     var state = addrArray[0].getState();
                                                     var zip = addrArray[0].getZip();
                                                 
-                                                    var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix + " " + city + ", " + state + " " + zip;
+                                                    var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix + " " + unitType + " " + unitNumber + " "  + city + ", " + state + " " + zip;
                                                     }
                                                 }
 
@@ -139,6 +133,17 @@ try {
                                             addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
                                             addParameter(vEParams,"$$Comments$$",Comments);
                                             
+                                             var Clearance = (tInfo[x]["Clearance To"]);
+                                            //Set to Email
+                                            if (Clearance == "City of Mesa")
+                                            {
+                                                ToEmail =lookup("EMAIL_RECIPIENTS","Billing_Info");
+                                            }
+                                            if (Clearance == "Salt River Project")
+                                            {
+                                                ToEmail =lookup("EMAIL_RECIPIENTS","SRP");
+                                            }
+
                                             //Send the email
                                             sendNotification(FromEmail, ToEmail, "", "PMT_ELECTRIC_CLEARANCE", vEParams, null, capId);    
                                             }
