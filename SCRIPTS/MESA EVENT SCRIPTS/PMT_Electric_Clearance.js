@@ -89,9 +89,9 @@ try {
                                 if(ServiceType2 == "Electric")
                                 {
                                             //Compare dates 
-                                            var dateCompare = 0;
-		                                    dateCompare = diffDate(ClearanceDate,currentDate);
-                                            if(dateCompare == 0)
+                                            var date2 = convertDate(ClearanceDate);
+			                                var date1 = convertDate(currentDate);
+                                            if(date1 == date2)
                                             {
                                             
                                             //Get the address
@@ -161,7 +161,3 @@ catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
     }
-
-function diffDate(iDate1,iDate2){
-	return expression.diffDate(iDate1,iDate2);
-}
