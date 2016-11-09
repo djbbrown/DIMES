@@ -161,3 +161,7 @@ catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
     }
+
+function diffDate(iDate1,iDate2){
+	return expression.diffDate(iDate1,iDate2);
+}
