@@ -9,7 +9,7 @@
 //            WTUA;Licensing!General!~!Application
 /*==================================================================*/
 
-if (wfTask == "Issue License" && wfStatus == "Ready to Issue"){
+if (matches(wfTask,"Issue License","License Issuance") && wfStatus == "Ready to Issue"){
 	if (matches(""+appTypeArray[2], "FortuneTeller")){
 		if (!feeExists("L030")) addFee("L030","LIC_FORTUNE","FINAL",1,"N");
 	}
