@@ -24,6 +24,10 @@ if(
 		|| (wfTask == "License Application" && wfStatus == "Completed")
 		// Update for Extension of Premise - Permanent
 		|| (wfTask == "Administrative" && wfStatus == "Completed")
+		// BingoHall workflow
+		|| (wfTask == "Administrative Review" && wfStatus == "Complete")
+		// ParkandSwap workflow
+		|| (wfTask == "Application Intake" && wfStatus == "Completed")
 		)
 		// The following must be checked.
 		// Bingo Hall - No Status (No "Substantive Review Due" field)
@@ -47,7 +51,6 @@ if(
 		editAppSpecific("Substantive Review Due", dateAdd(null,90));
 	}
 	if(appTypeArray[2]=="LiquorSpecialEvent"
-		|| appTypeArray[2]=="BingoHall"
 		|| appTypeArray[2]=="TeenDance"
 		|| appTypeArray[2]=="Liquor"
 		|| appTypeArray[2]=="ParkandSwap"

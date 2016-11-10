@@ -313,10 +313,11 @@ function getDocsAsb() {
     if(getResult) {
         var count = getResult.size();
 
+        //11.08.2016 - MRK - fixed bug in looping through documents
         for(i = 0; i < count; i++) {
             if(getResult.get(i) != null) {
                 var xx = getResult.get(i).getDocCategory();
-                docArray.push(XX);
+                docArray.push(xx);
             }
         }
     }

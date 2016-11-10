@@ -20,6 +20,7 @@
 //  3.0      |10/19/16  |Steve Veloudos   |Corrected SW Gas std choice email and new email template for SW Gas
 //  4.0      |11/01/16  |Steve Veloudos   |Only send email if Service Type = Gas
 //  5.0      |11/07/16  |Steve Veloudos   |Allow for multipule emails for matching ASIT rows
+//  6.0      |11/09/16  |Steve Veloudos   |Added Unit Info removed applicants email
 // ==================================================================
 var fromEmail = "noreply@MesaAz.gov";
 var ServiceT;
@@ -49,16 +50,21 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 	var vEParams = aa.util.newHashtable();
 	var tmpTable = loadASITable("UTILITY SERVICE INFORMATION");
 	if (!tmpTable) tmpTable = loadASITable("UTILITY SERVICE INFO");
-	if (tmpTable && tmpTable!=null && tmpTable.length > 0) {
-		for (rowIndex in tmpTable) {
+	if (tmpTable && tmpTable!=null && tmpTable.length > 0) 
+	{
+		for (rowIndex in tmpTable) 
+		{
 			thisRow = tmpTable[rowIndex];
 			cl = "" + thisRow["Clearance To"].fieldValue;
 			clDate = "" + thisRow["Clearance Date"].fieldValue;
 			
 			//Clearance To City of Mesa
-			if (cl == "City of Mesa" && clDate != "" && clDate != "null" && clDate != "undefined") {
+			if (cl == "City of Mesa" && clDate != "" && clDate != "null" && clDate != "undefined") 
+			{
 				cDateJS = new Date(clDate);
-				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
+				//Compare clearance date to current date
+				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) 
+				{
 					addParameter(vEParams,"$$RECORD ID$$",capIDString);
 					addParameter(vEParams,"$$ADDRESS$$",theAddress);
 					addParameter(vEParams,"$$CLEARANCE TO$$","City of Mesa");
@@ -74,20 +80,9 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 					//Get first three letters of the service type
 					ServiceT = thisRow["Service Type"].fieldValue.substring(0, 3);
 					
-					conArr = getContactObjs(capId);
-					if (conArr && conArr.length > 0) {
-						for (cIndex in conArr) {
-							thisContact = conArr[cIndex];
-							if (thisContact.type == "Applicant") {
-								cEmail = thisContact.people.getEmail();
-								if (cEmail && cEmail != "") ccAddress = cEmail;
-							}
-						}
-					}
 						if(ServiceT == "Gas")
 						{
-						sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE", vEParams, null, capId);
-					
+							sendNotification(fromEmail, emailAddress, "", "GAS CLEARANCE", vEParams, null, capId);
 						}
 				}
 
@@ -95,7 +90,9 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 			//Clearance To Southwest Gas
 			if (cl == "Southwest Gas" && clDate != "" && clDate != "null" && clDate != "undefined") {
 				cDateJS = new Date(clDate);
-				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) {
+				//Compare clearance date to current date
+				if (cDateJS.getTime() == new Date(sysDateMMDDYYYY).getTime()) 
+				{
 
 					//Get the address
 					var capAddResult = aa.address.getAddressByCapId(capId);
@@ -113,9 +110,11 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 					var streetDir = addrArray[0].getStreetDirection();
 					var streetName = addrArray[0].getStreetName();
 					var streetSuffix = addrArray[0].getStreetSuffix();
+					var unitType = addrArray[0].getUnitType();
+                    var unitNumber = addrArray[0].getUnitStart(); 
 					var zip = addrArray[0].getZip();
 
-					var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+					var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix + " " + unitType + " " + unitNumber;
 					}
 					addParameter(vEParams,"$$RECORD ID$$",capIDString);
 					addParameter(vEParams,"$$ADDRESS$$",theAddress);
@@ -132,19 +131,9 @@ if ((inspType == "Gas Pipe Final" || inspType == "Temporary Gas") && inspResult 
 					//Get first three letters of the service type
 					ServiceT = thisRow["Service Type"].fieldValue.substring(0, 3);
 
-					conArr = getContactObjs(capId);
-					if (conArr && conArr.length > 0) {
-						for (cIndex in conArr) {
-							thisContact = conArr[cIndex];
-							if (thisContact.type == "Applicant") {
-								cEmail = thisContact.people.getEmail();
-								if (cEmail && cEmail != "") ccAddress = cEmail;
-							}
-						}
-					}
 						if(ServiceT == "Gas")
 						{
-						sendNotification(fromEmail, emailAddress, ccAddress, "GAS CLEARANCE_SW", vEParams, null, capId);
+						sendNotification(fromEmail, emailAddress, "", "GAS CLEARANCE_SW", vEParams, null, capId);
 				
 						}
 				}

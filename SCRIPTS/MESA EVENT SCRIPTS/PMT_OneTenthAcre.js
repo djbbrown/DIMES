@@ -20,8 +20,13 @@ try{
 		var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
 		var classificationType = AInfo["Classification Type"];
 		if (recordAppType == "Demolition" || 
-			(recordAppType == "Residential" && matches(typeOfWork,"Single Family (Detached)","Single Family (Attached)","Two-Family Duplex","Guesthouse","Remodeling With Addition","Additions","Garage/Carport")) ||
-			(recordAppType == "Commercial" && ((matches(typeOfWork,"At Risk Grading","Commercial/Industrial Projects")) || (typeOfWork == "Other Commercial" && matches(classificationType,"Additions","Carport","Park/Stadium/Outdoor Theatre/Marinas","Parking Garage (Enclosed/Open)","Public Works/Utilities","Remodeling with Addition","Storage Shed/Barn","Swimming Pool","Foundation Permits"))))
+			(recordAppType == "Residential" 
+			&& matches(typeOfWork,"Single Family (Detached)","Single Family (Attached)","Two-Family Duplex","Guesthouse","Remodeling With Addition","Additions","Garage/Carport")) 
+		||
+			(recordAppType == "Commercial" 
+			&& ((matches(typeOfWork,"At Risk Grading","Commercial/Industrial Projects")) 
+		|| (typeOfWork == "Other Commercial" 
+			&& matches(classificationType,"Additions","Carport","Park/Stadium/Outdoor Theatre/Marinas","Parking Garage (Enclosed/Open)","Public Works/Utilities","Remodeling with Addition","Storage Shed/Barn","Swimming Pool","Foundation Permits"))))
 			){
 			if (!acres) logDebug("ERROR: Unable to get acreage.");
 			else{
@@ -33,7 +38,7 @@ try{
 					reqDocTypes.push("Maricopa County Dust Control Plan");
 				} 
 				else logDebug("Parcel is under 0.1 acres. No additional documents are required.");
-				if (acres > 1.0) reqDocTypes.push("Maricopa County Flood Control District Permit");
+				if (acres > 1.0) reqDocTypes.push("ADEQ");
 				
 				// get attached docs
 				if (reqDocTypes.length > 0){
@@ -84,7 +89,7 @@ try{
 				}
 			}
 		} 
-		else if (!classificationCode) logDebug("WARNING: No code classification entered. Cannot determine if additional documents are required.");
+		else if (!classificationType) logDebug("WARNING: No code classification entered. Cannot determine if additional documents are required.");
 		else logDebug("No additional documents required for this code classification.");
 	}
 } catch (err){
