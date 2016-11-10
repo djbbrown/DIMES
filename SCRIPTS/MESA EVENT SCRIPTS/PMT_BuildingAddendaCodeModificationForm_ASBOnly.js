@@ -7,6 +7,9 @@
 	
 When ASI field "Type of Work" = "Code Modification", require document "Code Modification Form".
 
+** user mod **
+When ASI field "Type of Work" is anything besides "Code Modification", require "Construction Documents" 
+
 // Script Run Event: ASB
 
 // Script Parents:
@@ -76,6 +79,57 @@ try
             comment("Code Modification Form Required!") 
             cancel = true;
         }
+    }
+    else
+    {
+        // (bodell) Heather requested the requirement of "Construction Documents" on all other "Type of Work" selections
+        // cut/paste (dup'ed) the code from above. not the cleanest, but wanted to get complete. refactor later
+
+        var docListCount = 0;
+        var passed = true;
+
+        //get the document list for the record
+        var docList = aa.env.getValue("DocumentModelList");
+
+        if((docList == null) || (docList == "")) 
+        {
+            docList = aa.document.getDocumentListByEntity(capId.toString(), "TMP_CAP").getOutput();
+            docListCount = docList.size();
+        }
+        else
+        {
+            docListCount = docList.size();
+
+            //if there are no documents attached to the record, failed validation
+            if(docListCount > 0)
+            {
+                var isMatch = false;
+    
+                //loop through document list and check the document category to see if it is a Construction Documents
+                for(x = 0; x < docListCount; x++) {
+                    if((docList.get(x) != null) && (docList.get(x).getDocCategory() == "Construction Documents"))
+                    {
+                        isMatch = true;
+                        break;
+                    }
+                }
+
+                if(!isMatch) passed = false;
+            }
+            else 
+                passed = false;
+
+            //if there are no documents attached or if code modification form not attached
+            //display message to user that "Construction Documents" required.
+            if(!passed)
+            {
+                showMessage = true;
+                comment("Construction Documents is required for this record type") 
+                cancel = true;
+            }
+
+        }
+
     }
 }
 catch (err)

@@ -7,6 +7,9 @@
 	
 When ASI field "Type of Work" = "Code Modification", require document "Code Modification Form".
 
+** user mod **
+When ASI field "Type of Work" is anything besides "Code Modification", require "Construction Documents" 
+
 // Script Run Event: ASIUB
 
 // Script Parents:
@@ -64,6 +67,48 @@ try
         {
             showMessage = true;
             comment("Code Modification Form Required!") 
+            cancel = true;
+        }
+    }
+    else  
+    {
+
+      // (bodell) Heather requested the requirement of "Construction Documents" on all other "Type of Work" selections
+      // cut/paste (dup'ed) the code from above. not the cleanest, but wanted to get complete. refactor later
+
+        var passed = true;
+
+        //get the document list for the record
+        var docList = getDocumentList();
+
+        //if there are no documents attached to the record, failed validation
+        if(docList.length == 0)
+        {
+            passed = false;
+        }
+        else
+        {
+            var isMatch = false;
+
+            //loop through document list and check the document category to see if it is a "Construction Documents"
+            for(doc in docList)
+            {
+                var currentDoc = docList[doc];
+                var docCategory = currentDoc.getDocCategory();
+
+                if(docCategory.equals("Construction Documents"))
+                    isMatch = true;
+            }
+
+            if(!isMatch) passed = false;
+        }
+
+        //if there are no documents attached or if code modification form not attached
+        //display message to user that "Construction Documents" required.
+        if(!passed)
+        {
+            showMessage = true;
+            comment("Construction Documents are required for this record type") 
             cancel = true;
         }
     }
