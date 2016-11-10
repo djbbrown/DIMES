@@ -76,6 +76,8 @@ try
       // (bodell) Heather requested the requirement of "Construction Documents" on all other "Type of Work" selections
       // cut/paste (dup'ed) the code from above. not the cleanest, but wanted to get complete. refactor later
 
+        comment("checking for Construction Documents");
+
         var passed = true;
 
         //get the document list for the record
@@ -90,7 +92,7 @@ try
         {
             var isMatch = false;
 
-            //loop through document list and check the document category to see if it is a "Construction Documents"
+            //loop through document list and check the document category to see if is a Construction Documents
             for(doc in docList)
             {
                 var currentDoc = docList[doc];
@@ -108,9 +110,10 @@ try
         if(!passed)
         {
             showMessage = true;
-            comment("Construction Documents are required for this record type") 
+            comment("Construction Documents are required for ths record type") 
             cancel = true;
         }
+
     }
 }
 catch (err)
