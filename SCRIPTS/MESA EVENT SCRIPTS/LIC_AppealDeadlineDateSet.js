@@ -7,7 +7,7 @@
 // Script Run Event: WTUA
 /*==================================================================*/
 
-if (wfTask.equals("License Administrator Review") && wfStatus.equals("Denied")) {
+if (wfTask == "License Administrator Review" && wfStatus == "Denied") {
 	// set ASI field
-	editAppSpecific("Appeal Deadline", dateAdd(null, 10))
+	editAppSpecific("Appeal Deadline", dateAdd(null, 10));
 }
