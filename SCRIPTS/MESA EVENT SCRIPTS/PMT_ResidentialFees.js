@@ -185,7 +185,7 @@ try {
 			}
 			if (tNumInsp > 0){
 				// Get the amount that had previously been charged.
-				resDep = feeAmount("COM010","NEW","INVOICED");
+				resDep = feeAmount("RES010","NEW","INVOICED");
 				tNumInsp = 90+(tNumInsp*90) - resDep;
 				addFee("RES070", "PMT_RES","FINAL", tNumInsp, "N");
 			}

@@ -258,6 +258,10 @@ try {
 		// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
 		logDebug(tNumInsp);
 		valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
+		// handle the Tenant Improvement
+		if (AInfo['Property Type'] == 'Tenant Improvement'){
+			valuationASI = estValue|calcValue;
+		}
 		if(valuationASI < 25000){
 			if (feeExists("COM050", "NEW", "INVOICED")) {
 				voidRemoveFee("COM050");
