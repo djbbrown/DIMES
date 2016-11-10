@@ -249,20 +249,23 @@ if (
 		updateFee("COM040","PMT_COM", "FINAL",feeAmt, "N");
 	}
 }
-// COM050 - Commercial Inspection Fee
+//COM050 - Commercial Inspection Fee
 try {
 	var tNumInsp = 0;
 	var valuationASI = 0;
 	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 		tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
 		// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
+		logDebug(tNumInsp);
 		valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
 		if(valuationASI < 25000){
 			if (feeExists("COM050", "NEW", "INVOICED")) {
 				voidRemoveFee("COM050");
 			}
 			if (tNumInsp > 0){
-				tNumInsp = 90+(tNumInsp*90);
+				// Get the amount that had previously been charged.
+				commDep = feeAmount("COM010","NEW","INVOICED");
+				tNumInsp = 90+(tNumInsp*90) - commDep;
 				addFee("COM050", "PMT_COM","FINAL", tNumInsp, "N");
 			}
 			if(!tNumInsp > 0 && feeExists("COM050", "NEW", "INVOICED")){
