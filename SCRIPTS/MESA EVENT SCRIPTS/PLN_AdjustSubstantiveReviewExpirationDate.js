@@ -8,7 +8,6 @@
 // Script Parents:
 //		WTUA;Planning!~!~!~
 ===================================================================*/
-
 try {
 	recTypesCheck = [
 		'Planning/Admin Review/NA/NA',
@@ -666,6 +665,7 @@ try {
 			else {
 				rR = Date();
 			}
+			logDebug('rR: '+rR);
 			var dR; // Distribution/Resubmitted
 			wf = aa.workflow.getTask(capId,"Distribution").getOutput();
 			if(
@@ -678,6 +678,7 @@ try {
 			else {
 				dR = Date();
 			}
+			logDebug('dR: '+dR);
 			bTasks = workDaysBetween(rR,dR,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 			var nextDate = new Date();
 			if(bTasks > 0 ){
@@ -858,6 +859,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	
 	// Any weekend could be a three day weekend
 	// 3 days are added for every weekend to make sure that we cover enough for the jump.
+	aDays = parseInt(aDays);
 	aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
 	
 	// Variables
