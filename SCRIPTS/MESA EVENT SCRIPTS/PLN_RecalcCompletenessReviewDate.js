@@ -642,7 +642,6 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	// Now look up the calendars that are going to be excluded.
 	// expected return is the calendar ID's
 	calNames = aa.calendar.getCalendarNames().getOutput();
-	/*
 	for(x in calNames){
 		// IF the name of the calendar is included in the list we need the
 		// events from that calendar
@@ -666,6 +665,5 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 		}
 	}
 	//*/
-	logDebug(dArray);
 	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
