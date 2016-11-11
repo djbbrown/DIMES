@@ -598,6 +598,7 @@ function workDaysBetween(sDate,eDate,aCal,aDayEx){
 			}
 		}
 	}
+	logDebug("dArray: "+dArray);
 	if(sDate2 == eDate2){
 		return 0;
 	} else {
