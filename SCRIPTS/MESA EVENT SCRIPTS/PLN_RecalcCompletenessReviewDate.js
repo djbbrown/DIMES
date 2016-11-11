@@ -613,8 +613,9 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	
 	// Any weekend could be a three day weekend
 	// 3 days are added for every weekend to make sure that we cover enough for the jump.
+	aDays = parseInt(aDays);
 	aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
-	
+	logDebug("aDays: "+aDays);
 	// Variables
 	var dArray = []; // to store the dates between the two days.
 	var sDate2 = convertDate2(sDate);
@@ -631,7 +632,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	
 	// will be used to pull sufficient days that are "off"
 	var monthsBetween = monthDiff(sDate2,eDate2)+1;
-
+	logDebug(aDays2);
 	// Now create an array of dates adding one day to each date.
 	for(a = 1; a<= aDays2; a++){
 		calcDate = new Date(sDate);
@@ -641,6 +642,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	// Now look up the calendars that are going to be excluded.
 	// expected return is the calendar ID's
 	calNames = aa.calendar.getCalendarNames().getOutput();
+	/*
 	for(x in calNames){
 		// IF the name of the calendar is included in the list we need the
 		// events from that calendar
@@ -663,5 +665,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 			}
 		}
 	}
+	//*/
+	logDebug(dArray);
 	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
