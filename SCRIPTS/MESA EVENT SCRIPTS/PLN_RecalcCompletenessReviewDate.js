@@ -472,8 +472,9 @@ function wfDaysBetween(
 	}
 	iS = iS.sort().reverse();
 	iR = iR.sort().reverse();
-	logDebug(workDaysBetween(iS[0],iR[0],aCal,aDayEx));
-	return workDaysBetween(iS[0],iR[0],aCal,aDayEx);
+	bTaskDays = workDaysBetween(iS[0],iR[0],aCal,aDayEx)
+	logDebug(bTaskDays);
+	return bTaskDays;
 	//*/
 }
 function convertDate2(thisDate)
