@@ -342,6 +342,7 @@ if(
 	){
 		logDebug("Check3");
 		nextDate = workDaysAdd(Date(),shiftDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(convertDate2(nextDate)));
 		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
 	//------------------------------------------------------------------------
@@ -371,6 +372,7 @@ if(
 				"Completeness Review", ["Incomplete Submittal", "Returned to Applicant"], "Completeness Review", ["Information Received","Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(nextDate));
 		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
@@ -401,6 +403,7 @@ if(
 				"Completeness Review", ["Returned to Applicant"], "Completeness Review", ["Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(nextDate));
 		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
