@@ -615,7 +615,6 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	// 3 days are added for every weekend to make sure that we cover enough for the jump.
 	aDays = parseInt(aDays);
 	aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
-	logDebug("aDays: "+aDays);
 	// Variables
 	var dArray = []; // to store the dates between the two days.
 	var sDate2 = convertDate2(sDate);
