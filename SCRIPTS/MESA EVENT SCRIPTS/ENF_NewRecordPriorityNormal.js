@@ -25,7 +25,7 @@ try
 {    
     var priority = getRecordPriority();
     logDebug("Priority: " + priority);
-    if ( priority != false && priority == "Normal" && matcheENFCase > 1)
+    if (priority != false && priority == "Normal")
     {
         // see if the initial inspection has already been Scheduled
         var inspExist = doesInspectionExist("Initial Inspection");
