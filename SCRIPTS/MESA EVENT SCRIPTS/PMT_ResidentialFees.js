@@ -184,7 +184,9 @@ try {
 				voidRemoveFee("RES070");
 			}
 			if (tNumInsp > 0){
-				tNumInsp = 90+(tNumInsp*90);
+				// Get the amount that had previously been charged.
+				resDep = feeAmount("RES010","NEW","INVOICED");
+				tNumInsp = 90+(tNumInsp*90) - resDep;
 				addFee("RES070", "PMT_RES","FINAL", tNumInsp, "N");
 			}
 			if(!tNumInsp > 0 && feeExists("RES070", "NEW", "INVOICED")){

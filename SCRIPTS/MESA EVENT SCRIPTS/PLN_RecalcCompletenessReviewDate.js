@@ -318,6 +318,7 @@ if(
 		|| (wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
 		|| (wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
 	){
+		logDebug("Check1");
 		editAppSpecific("Start/Stop Indicator", 'Started');
 	}
 	//------------------------------------------------------------------------
@@ -329,7 +330,7 @@ if(
 		|| (wfTask =='Planning Initial Review' && wfStatus=='Corrections Required')
 		|| (wfTask =='Review Consolidation' && wfStatus=='Revisions Required')
 	){
-		logDebug("Check1");
+		logDebug("Check2");
 		editAppSpecific("Start/Stop Indicator", 'Stopped');
 	}
 	//------------------------------------------------------------------------
@@ -341,7 +342,8 @@ if(
 	){
 		logDebug("Check3");
 		nextDate = workDaysAdd(Date(),shiftDays,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(convertDate2(nextDate)));
+		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
 	//------------------------------------------------------------------------
 	// Test 4 - 1.	 Update ASI "Completeness Review Due Date" to crdDate2.
@@ -362,7 +364,7 @@ if(
 		&& exists(appTypeString,recTypesCheck4)
 	){
 		logDebug("Check4");
-		srDD = getAppSpecific("Substantive Review Due Date");
+		srDD = getAppSpecific("Completeness Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
 		};
@@ -370,7 +372,8 @@ if(
 				"Completeness Review", ["Incomplete Submittal", "Returned to Applicant"], "Completeness Review", ["Information Received","Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(nextDate));
+		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
 	// Test 5 - 1.	 Update ASI "Completeness Review Due Date" to crdDate3.
@@ -392,7 +395,7 @@ if(
 		&& exists(appTypeString,recTypesCheck5)
 	){
 		logDebug("Check5");
-		srDD = getAppSpecific("Substantive Review Due Date");
+		srDD = getAppSpecific("Completeness Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
 		};
@@ -400,7 +403,8 @@ if(
 				"Completeness Review", ["Returned to Applicant"], "Completeness Review", ["Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(nextDate));
+		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
 	}
 	//------------------------------------------------------------------------
 	// Test 6 - 1.	 Update ASI "Completeness Review Due Date" to crdDate4.
@@ -420,7 +424,7 @@ if(
 		&& exists(appTypeString,recTypesCheck6)
 	){
 		logDebug("Check6");
-		srDD = getAppSpecific("Substantive Review Due Date");
+		srDD = getAppSpecific("Completeness Review Due Date");
 		if(srDD == null || srDD == 'undefined' || srDD == 'NULL PARAMETER VALUE'){
 			srDD = Date();
 		};
@@ -429,7 +433,7 @@ if(
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 		logDebug("Test 6 is being used to update Substantive Review Due Date to " + nextDate);
-		editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
+		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
 	}
 }
 //================================================
@@ -471,8 +475,9 @@ function wfDaysBetween(
 	}
 	iS = iS.sort().reverse();
 	iR = iR.sort().reverse();
-	logDebug(workDaysBetween(iS[0],iR[0],aCal,aDayEx));
-	return workDaysBetween(iS[0],iR[0],aCal,aDayEx);
+	bTaskDays = workDaysBetween(iS[0],iR[0],aCal,aDayEx)
+	logDebug(bTaskDays);
+	return bTaskDays;
 	//*/
 }
 function convertDate2(thisDate)
@@ -593,6 +598,7 @@ function workDaysBetween(sDate,eDate,aCal,aDayEx){
 			}
 		}
 	}
+	logDebug("dArray: "+dArray);
 	if(sDate2 == eDate2){
 		return 0;
 	} else {
@@ -607,8 +613,8 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	
 	// Any weekend could be a three day weekend
 	// 3 days are added for every weekend to make sure that we cover enough for the jump.
+	aDays = parseInt(aDays);
 	aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
-	
 	// Variables
 	var dArray = []; // to store the dates between the two days.
 	var sDate2 = convertDate2(sDate);
@@ -625,7 +631,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	
 	// will be used to pull sufficient days that are "off"
 	var monthsBetween = monthDiff(sDate2,eDate2)+1;
-
+	logDebug(aDays2);
 	// Now create an array of dates adding one day to each date.
 	for(a = 1; a<= aDays2; a++){
 		calcDate = new Date(sDate);
@@ -657,5 +663,6 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 			}
 		}
 	}
+	//*/
 	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
