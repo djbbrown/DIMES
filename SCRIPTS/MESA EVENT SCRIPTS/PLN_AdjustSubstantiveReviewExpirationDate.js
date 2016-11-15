@@ -836,7 +836,6 @@ function workDaysBetween(sDate,eDate,aCal,aDayEx){
 					// Now do the COMPARISON
 					if(
 						exists(evtType,aDayEx)
-						//&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
 						removeA(dArray,jsDateToASIDate(evtDateDate));
@@ -861,7 +860,6 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	// 3 days are added for every weekend to make sure that we cover enough for the jump.
 	aDays = parseInt(aDays);
 	aDays2 = aDays + ((aDays / 7)*3) + 7 // this should sufficiently protect the day jumps
-	
 	// Variables
 	var dArray = []; // to store the dates between the two days.
 	var sDate2 = convertDate2(sDate);
@@ -878,7 +876,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 	
 	// will be used to pull sufficient days that are "off"
 	var monthsBetween = monthDiff(sDate2,eDate2)+1;
-
+	logDebug(aDays2);
 	// Now create an array of dates adding one day to each date.
 	for(a = 1; a<= aDays2; a++){
 		calcDate = new Date(sDate);
@@ -902,7 +900,6 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 					if(
 						1==1
 						&& exists(evtType,aDayEx)
-						//&& exists(jsDateToASIDate(evtDateDate),dArray)
 					)
 					{
 						removeA(dArray,jsDateToASIDate(evtDateDate));
@@ -911,8 +908,8 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 			}
 		}
 	}
-	if(aDays > 0 ){
-		return dArray[aDays-1]; // Return the Date that can be used as a working day.
-	}
-	else {return convertDate2(sDate)};
+	//*/
+	// logDebug(dArray+"::"+aDays);
+	logDebug(dArray[aDays-1]);
+	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
