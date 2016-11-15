@@ -315,6 +315,7 @@ if(
 	//------------------------------------------------------------------------
 	if(
 		(wfTask =='Accepted' && wfStatus=='Application Acceptance')
+		||(wfTask =='Application Acceptance' && wfStatus=='Accepted') // Added on 20161115 during meeting looking at workflow.
 		|| (wfTask =='Completeness Review' && wfStatus=='Information Received')
 		|| (wfTask =='Completeness Review' && wfStatus=='Revisions Submittal')
 		|| (wfTask =='Planning Initial Review' && wfStatus=='Resubmittal Received')
