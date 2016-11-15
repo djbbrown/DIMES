@@ -26,6 +26,7 @@ if(
 	// Check that it has the correct workflow task/status
 	&& (
 			(wfTask =='Accepted' && wfStatus=='Application Acceptance')
+			|| (wfTask =='Application Acceptance' && wfStatus=='Accepted')
 			|| (wfTask =='Completeness Review' && wfStatus=='Incomplete Submittal')
 			|| (wfTask =='Completeness Review' && wfStatus=='Information Received')
 			|| (wfTask =='Completeness Review' && wfStatus=='Returned to Applicant')
