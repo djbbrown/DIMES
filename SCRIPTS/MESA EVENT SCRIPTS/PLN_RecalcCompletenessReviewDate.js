@@ -374,9 +374,10 @@ if(
 		bTasks = wfDaysBetween(
 				"Completeness Review", ["Incomplete Submittal", "Returned to Applicant"], "Completeness Review", ["Information Received","Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
+		logDebug("bTasks: "+bTasks);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-		logDebug("Completeness Review Due Date: "+jsDateToASIDate(nextDate));
-		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(convertDate2(nextDate)));
+		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
 	//------------------------------------------------------------------------
 	// Test 5 - 1.	 Update ASI "Completeness Review Due Date" to crdDate3.
@@ -406,8 +407,8 @@ if(
 				"Completeness Review", ["Returned to Applicant"], "Completeness Review", ["Revisions Submitted"],
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
-		logDebug("Completeness Review Due Date: "+jsDateToASIDate(nextDate));
-		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
+		logDebug("Completeness Review Due Date: "+jsDateToASIDate(convertDate2(nextDate)));
+		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
 	//------------------------------------------------------------------------
 	// Test 6 - 1.	 Update ASI "Completeness Review Due Date" to crdDate4.
@@ -436,7 +437,7 @@ if(
 				['WORKDAY CALENDAR'], ['WEEKEND','HOLIDAY']);
 		nextDate = workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']);
 		logDebug("Test 6 is being used to update Substantive Review Due Date to " + nextDate);
-		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(nextDate));
+		editAppSpecific("Completeness Review Due Date", jsDateToASIDate(convertDate2(nextDate)));
 	}
 }
 //================================================
@@ -455,14 +456,14 @@ function wfDaysBetween(
 	var iSrec = '', iRrec = '';
 	var workflow = aa.workflow.getHistory(capId).getOutput();
 	for(x in workflow){  
-		logDebug(workflow[x].getTaskDescription());
-		logDebug(workflow[x].getDisposition());
-		//logDebug(workflow[x].getStatusDate());
+		// logDebug(workflow[x].getTaskDescription());
+		// logDebug(workflow[x].getDisposition());
+		// logDebug(workflow[x].getStatusDate());
 		if(
 			workflow[x].getTaskDescription() == wfTaskFrom
 			&& exists(workflow[x].getDisposition(),wfTaskStatusFrom)
 		){
-			logDebug(workflow[x].getStatusDate());
+			// logDebug(workflow[x].getStatusDate());
 			// iS.push(workflow[x].getProcessHistorySeq());
 			// iSrec = workflow[x].getProcessHistorySeq();
 			iSrec = convertDate2(workflow[x].getStatusDate());
@@ -471,13 +472,13 @@ function wfDaysBetween(
 			workflow[x].getTaskDescription() == wfTaskTo
 			&& exists(workflow[x].getDisposition(),wfTaskStatusTo)
 		){
-			logDebug(workflow[x].getStatusDate());
-			iS.push(iSrec);
+			// logDebug(workflow[x].getStatusDate());
+			if (iSrec != ''){iS.push(iSrec);};
 			iR.push(convertDate2(workflow[x].getStatusDate()));
 		}
 	}
-	iS = iS.sort().reverse();
-	iR = iR.sort().reverse();
+	iS = iS.sort(); // .reverse();
+	iR = iR.sort(); // .reverse();
 	bTaskDays = workDaysBetween(iS[0],iR[0],aCal,aDayEx)
 	logDebug(bTaskDays);
 	return bTaskDays;
@@ -601,7 +602,6 @@ function workDaysBetween(sDate,eDate,aCal,aDayEx){
 			}
 		}
 	}
-	logDebug("dArray: "+dArray);
 	if(sDate2 == eDate2){
 		return 0;
 	} else {
@@ -667,5 +667,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 		}
 	}
 	//*/
+	logDebug(dArray+"::"+aDays);
+	logDebug(dArray[aDays-1]);
 	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
