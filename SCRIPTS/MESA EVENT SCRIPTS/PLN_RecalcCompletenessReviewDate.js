@@ -667,7 +667,7 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 		}
 	}
 	//*/
-	logDebug(dArray+"::"+aDays);
+	// logDebug(dArray+"::"+aDays);
 	logDebug(dArray[aDays-1]);
 	return dArray[aDays-1]; // Return the Date that can be used as a working day.
 }
