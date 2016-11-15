@@ -911,5 +911,8 @@ function workDaysAdd(sDate,aDays,aCal,aDayEx){
 			}
 		}
 	}
-	return dArray[aDays-1]; // Return the Date that can be used as a working day.
+	if(aDays > 0 ){
+		return dArray[aDays-1]; // Return the Date that can be used as a working day.
+	}
+	else {return convertDate2(sDate)};
 }
