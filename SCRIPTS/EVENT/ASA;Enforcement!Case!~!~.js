@@ -7,7 +7,7 @@ include("ENF_AutopopulateZoningDistrict");
 include("ENF_CountyIslandEmail");
 
 // added by Vance Smith (Mesa)
-logDebug("matchesENFCase = " + matchesENFCase");
+logDebug("matchesENFCase = " + matchesENFCase);
 include("ENF_NewRecordPriorityNormal"); // 26
 
 //added by Michael Kniskern (Mesa)
