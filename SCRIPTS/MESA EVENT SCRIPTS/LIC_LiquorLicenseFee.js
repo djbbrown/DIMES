@@ -23,10 +23,6 @@ if (appTypeArray[3] == "Application") {
 	if (matches(valSeries, "1", "2", "3", "4", "6", "7", "8", "9", "10", "11", "12", "13", "14") && !feeExists("L020")) {
 		addFee("L020","LIC_LIQUOR", "FINAL",  1, "N");
 	}
-	// Application Fee
-	if (matches(valSeries, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14") && !feeExists("L010")) {
-		addFee("L010","LIC_LIQUOR", "FINAL",  1, "N");
-	}
 	//Annual Fee Series 1-4,8 and 13
 	if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "8" || valSeries== "11" || valSeries== "12" || valSeries== "13") && !feeExists("L030")) 
 	{
