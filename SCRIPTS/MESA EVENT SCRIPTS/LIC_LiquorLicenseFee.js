@@ -17,36 +17,38 @@
 
 var valSeries = getAppSpecific("Series Type");
 
-
-if (appTypeArray[3] == "Application") {
-	//Issuance Fee
-	if (matches(valSeries, "1", "2", "3", "4", "6", "7", "8", "9", "10", "11", "12", "13", "14") && !feeExists("L020")) {
-		addFee("L020","LIC_LIQUOR", "FINAL",  1, "N");
-	}
-	//Annual Fee Series 1-4,8 and 13
-	if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "8" || valSeries== "11" || valSeries== "12" || valSeries== "13") && !feeExists("L030")) 
-	{
-		addFee("L030","LIC_LIQUOR", "FINAL",  1, "N");
-	}
-	// Annual Fee Series 6,7,8,10,14
-	if ((valSeries== "6" ||  valSeries== "7" || valSeries== "9" || valSeries== "10" || valSeries== "14") && !feeExists("L040")) 
-	{
-		addFee("L040","LIC_LIQUOR", "FINAL",  1, "N");
+if (wfTask == "Issue License" && wfStatus == "Ready to Issue"){
+	if (appTypeArray[3] == "Application") {
+		//Issuance Fee
+		if (matches(valSeries, "1", "2", "3", "4", "6", "7", "8", "9", "10", "11", "12", "13", "14") && !feeExists("L020")) {
+			addFee("L020","LIC_LIQUOR", "FINAL",  1, "Y");
+		}
+		//Annual Fee Series 1-4,8 and 13
+		if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "8" || valSeries== "11" || valSeries== "12" || valSeries== "13") && !feeExists("L030")) 
+		{
+			addFee("L030","LIC_LIQUOR", "FINAL",  1, "Y");
+		}
+		// Annual Fee Series 6,7,8,10,14
+		if ((valSeries== "6" ||  valSeries== "7" || valSeries== "9" || valSeries== "10" || valSeries== "14") && !feeExists("L040")) 
+		{
+			addFee("L040","LIC_LIQUOR", "FINAL",  1, "Y");
+		}
 	}
 }
-if (appTypeArray[3] == "Renewal") {
+if (wfTask == "Renewal Intake" && wfStatus == "Submitted"){
+	if (appTypeArray[3] == "Renewal") {
 	
-	//Annual Fee Series 1-4,8 and 13
-	if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "8" || valSeries== "11" || valSeries== "12" || valSeries== "13") && !feeExists("L010")) 
-	{
-		addFee("L010","LIC_LIQ_RNWL", "FINAL",  1, "N");
-	}
-	// Annual Fee Series 6,7,8,10,14
-	if ((valSeries== "6" ||  valSeries== "7" || valSeries== "9" || valSeries== "10" || valSeries== "14") && !feeExists("L020")) 
-	{
-		addFee("L020","LIC_LIQ_RNWL", "FINAL",  1, "N");
+		//Annual Fee Series 1-4,8 and 13
+		if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "8" || valSeries== "11" || valSeries== "12" || valSeries== "13") && !feeExists("L010")) 
+		{
+			addFee("L010","LIC_LIQ_RNWL", "FINAL",  1, "Y");
+		}
+		// Annual Fee Series 6,7,8,10,14
+		if ((valSeries== "6" ||  valSeries== "7" || valSeries== "9" || valSeries== "10" || valSeries== "14") && !feeExists("L020")) 
+		{
+			addFee("L020","LIC_LIQ_RNWL", "FINAL",  1, "Y");
+		}
 	}
 }
-
 
 
