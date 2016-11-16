@@ -12,7 +12,7 @@
 try {
 
 	var capIds = capIdsGetByAddr();
-	var matches=0;
+	var matchesENFCase=0;
 	if (capIds && capIds.length > 1){
 		logDebug(capIds.length);
 		for (i in capIds){
@@ -22,14 +22,14 @@ try {
 				for (row in table){
 					if (table[row]["Status"] == "Open"){
 						logDebug("Violation " + table[row]["Violation Description"] + " is open");
-						matches++;
+						matchesENFCase++;
 					}
 				}
 			}
 		}
 	}
 	
-	if (matches > 0) {
+	if (matchesENFCase > 0) {
 		// deactivate entire workflow
 		var tasksResult = aa.workflow.getTasks(capId);
 		if (tasksResult.getSuccess()){

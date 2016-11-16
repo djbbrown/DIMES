@@ -25,7 +25,7 @@ try
 {    
     var priority = getRecordPriority();
     logDebug("Priority: " + priority);
-    if ( priority != false && priority == "Normal")
+    if (priority != false && priority == "Normal")
     {
         // see if the initial inspection has already been Scheduled
         var inspExist = doesInspectionExist("Initial Inspection");
@@ -40,7 +40,7 @@ try
             if (inspector != false) 
             {
                 // schedule initial inspection for next working day 
-                scheduleInspectionDateWithInspectorObject("Initial Inspection", nextWorkingDay, inspector);
+                scheduleInspectionDateWithInspector("Initial Inspection", nextWorkingDay, inspector);
                 logDebug("Scheduled inspection for Inspector " + inspector + ".");
             }
             else
