@@ -14,7 +14,7 @@
 if (matches(wfTask,"License Application","Application Intake","Administrative Review") && wfStatus == "Additional Info Received"){
 	var revDate = ""+getAppSpecific("Administrative Review Due",capId);
 	var newAdminRevDate = (matches(revDate,"","null","undefined")) ? new Date() : new Date(revDate);
-	var statList = ["Additional Info Requested","Additional Info Needed"];
+	var statList = ["Additional Info Requested","Additional Info Needed","Additional Information Needed"];
 	var nDays = getDaysSinceWorkflowSetTo(wfTask,statList);
 	newAdminRevDate.setDate(newAdminRevDate.getDate() + nDays);
 	
