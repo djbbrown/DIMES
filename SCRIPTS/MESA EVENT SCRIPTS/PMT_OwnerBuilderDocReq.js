@@ -24,7 +24,7 @@ try
   var docCat = "";
   var docNeeded = true;
 
-  if (isOwnerBuilder)
+  if (isOwnerBuilder == "Yes")
   {
     var docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
 

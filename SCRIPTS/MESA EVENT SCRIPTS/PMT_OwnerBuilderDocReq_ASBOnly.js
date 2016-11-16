@@ -24,7 +24,7 @@ try
   var docCat = "";
   var docNeeded = true;
 
-  if (isOwnerBuilder)
+  if (isOwnerBuilder == "Yes")
   {
     // this was the original way (works on ASUIB but not ASB)
     //var docList = aa.document.getCapDocumentList(capId ,currentUserID);
