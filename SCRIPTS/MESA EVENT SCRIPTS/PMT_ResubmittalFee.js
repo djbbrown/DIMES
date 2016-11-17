@@ -47,4 +47,3 @@ if (wfTask == "Plans Distribution" && wfStatus == "Revisions Received" && submit
 	}
 	//========== END NEW 2016/11/10 ==========
 }
-	

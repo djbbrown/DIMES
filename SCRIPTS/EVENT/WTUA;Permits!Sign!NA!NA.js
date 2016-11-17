@@ -16,3 +16,5 @@ if ((wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review No
 
 	include("PMT_AssessTechFee"); // must be run last
 }
+
+include ("PMT_ResubmittalFee");

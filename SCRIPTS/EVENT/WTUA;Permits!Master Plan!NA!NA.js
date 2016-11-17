@@ -9,3 +9,5 @@ include("PMT_SubmittalCycle");
 
 // added by Kevin Gurney (Accela)
 include("PMT_AssessTechFee");
+
+include("PMT_ResubmittalFee");
