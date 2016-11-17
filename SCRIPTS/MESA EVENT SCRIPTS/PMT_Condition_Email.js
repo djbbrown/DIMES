@@ -7,6 +7,7 @@
 // Testing record:  PMT16-00427
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/29/16  |Steve Veloudos   |Initial Release
+//  2.0      |11/17/16  |Steve Veloudos   |Changes App Condition to Building Permit
 /*==================================================================*/
 
 try {
@@ -28,7 +29,7 @@ try {
     if(GreaseTrapFlag == 1)
         {
         sendNotification(FromEmail, ToEmail, "", "PMT_GREASE_TRAP_CONDITION", vEParams, null, capId); 
-        addAppCondition("Planning COA","Planning","Pretreat Final Required","","Required");
+        addAppCondition("Building Permit","Planning","Pretreat Final Required","","Required");
         }   
     }
     catch (err)

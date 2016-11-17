@@ -76,8 +76,6 @@ try
       // (bodell) Heather requested the requirement of "Construction Documents" on all other "Type of Work" selections
       // cut/paste (dup'ed) the code from above. not the cleanest, but wanted to get complete. refactor later
 
-        comment("checking for Construction Documents");
-
         var passed = true;
 
         //get the document list for the record
