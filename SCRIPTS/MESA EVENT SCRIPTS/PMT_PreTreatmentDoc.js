@@ -27,7 +27,7 @@ try {
             for (doc in docListArray)
             {
                 DocCat =  docListArray[doc].getDocCategory();
-                var DocCatUC = DocCategory.toUpperCase();
+                var DocCatUC = DocCat.toUpperCase();
                 
                 //Check doc category
                 if (DocCatUC == "INDUSTRIAL PRETREATMENT FORM")
