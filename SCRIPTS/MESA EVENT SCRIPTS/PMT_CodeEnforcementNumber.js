@@ -26,6 +26,12 @@
 //	ASIUA;Permits!Residential!Mobile Home!NA
 //	ASIUA;Permits!Demolition!NA!NA
 //	ASIUA;Permits!Sign!NA!NA
+
+//	ASA;Permits!Commercial!NA!NA
+//	ASA;Permits!Residential!NA!NA
+//	ASA;Permits!Residential!Mobile Home!NA
+//	ASA;Permits!Demolition!NA!NA
+//	ASA;Permits!Sign!NA!NA
 //            
 /*==================================================================*/
 
