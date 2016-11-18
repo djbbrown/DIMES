@@ -29,4 +29,7 @@ if ((wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review No
 
 	//added by Kevin Gurney (Accela) 10/11/2016
 	include("PMT_AssessTechFee");
+	
+	// Solid Waste
+	include("PMT_MobileHomeSolidWasteImpactFee");
 }
