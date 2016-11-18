@@ -27,7 +27,7 @@ try {
 		//logDebug("ConditionFlag = " + ConditionFlag);
 	
 		if (!ConditionFlag){
-			closeTask("Permit Issuance","Issued","Closed via Script","Closed via Script");
+			closeTask("Permit Issuance","Issued","Closed via Script Approved - No Fees","Closed via Script");
 		}
 	
 		if (ConditionFlag){
