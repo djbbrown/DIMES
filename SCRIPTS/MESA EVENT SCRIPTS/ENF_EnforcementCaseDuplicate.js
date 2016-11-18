@@ -80,6 +80,7 @@ try {
 			newLogEntry["Summary of Communication"] = new asiTableValObj("Summary of Communication", workDesc.getDescription(), "N");
 		}
 		addToASITable("COMMUNICATION LOG", newLogEntry); 
+		matchDupENFCase = true;
 	}
 }
 catch (err) {
