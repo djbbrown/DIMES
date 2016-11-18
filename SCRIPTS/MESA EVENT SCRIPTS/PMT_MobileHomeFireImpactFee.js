@@ -8,8 +8,8 @@
 // 		
 //		=== update specs ===
 //		
-//		When “Y” is chosen for ASI field “Fire” in ASI subgroup “Impact Fees” then
-//		  if value of “Manufactured Home (on platted lot)” is chosen for ASI dropdown field “Classification” 
+//		When ï¿½Yï¿½ is chosen for ASI field ï¿½Fireï¿½ in ASI subgroup ï¿½Impact Feesï¿½ then
+//		  if value of ï¿½Manufactured Home (on platted lot)ï¿½ is chosen for ASI dropdown field ï¿½Classificationï¿½ 
 //		  then 
 //		    assess Fire - Mobile Home (on plotted land) Impact Fee using # entered into 
 //		    ASI field "Number of Units" in GENERAL ASI Section.
@@ -17,8 +17,8 @@
 //		      Fee Schedule: PMT_RDIF
 //		      Fee Period = Final
 //
-//		  if value of “Mfg. Home/Park Model/RV (per space or lot)” is chosen for 
-//		  ASI dropdown field “Classification” 
+//		  if value of ï¿½Mfg. Home/Park Model/RV (per space or lot)ï¿½ is chosen for 
+//		  ASI dropdown field ï¿½Classificationï¿½ 
 //		  then 
 //		    assess Fire - Manufactured Home or Recreational Vehicle Impact Fee using # entered into ASI field 
 //		    "Number of Units" in GENERAL ASI Section.  
@@ -42,7 +42,7 @@
 try
 {
 
-  if ((wfTask == "Plans Coordination") && (wfStatus == "Ready to Issue"))
+  if ((wfTask == "Plans Coordination") && (wfStatus == "Ready to Issue")||(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req"))
   {
 
     var isFire = Boolean(AInfo["Fire"]);
