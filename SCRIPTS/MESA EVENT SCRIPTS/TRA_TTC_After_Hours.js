@@ -26,21 +26,21 @@ try {
 				break;
 			}
 		}
-	}
-	logDebug("ConditionFlag = " + ConditionFlag);
+		logDebug("ConditionFlag = " + ConditionFlag);
+		
+		if (!ConditionFlag){
+			closeTask("Permit Issuance","Issued","Closed via Script","Closed via Script");
+			}
 	
-	if (!ConditionFlag){
-		closeTask("Permit Issuance","Issued","Closed via Script","Closed via Script");
-	}
-	
-    if (ConditionFlag){
-		var afterHrsCond = doesCapConditionExist("After Hours or Saturday/Sunday Restriction");
-		logDebug("afterHrsCond = " + afterHrsCond);
-		if (!afterHrsCond){
-			addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
+		if (ConditionFlag){
+			var afterHrsCond = doesCapConditionExist("After Hours or Saturday/Sunday Restriction");
+			logDebug("afterHrsCond = " + afterHrsCond);
+			if (!afterHrsCond){
+				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
+			}
 		}
 	}
-
+	
     }
 catch (err)
     {
