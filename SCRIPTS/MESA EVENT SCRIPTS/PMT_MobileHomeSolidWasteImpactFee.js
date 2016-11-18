@@ -14,6 +14,7 @@ try {
 	var resDevTax = AInfo["Solid Waste"] || "";
 	var typeOfWork = AInfo["Type of Work"] || "";
 	var numOfUnits = AInfo["Number of Units"] || 0;
+	var classification = AInfo["Classification"];
 	if (resDevTax == "CHECKED"){
 		if (numOfUnits == 0)
 			logDebug("WARNING: 'Number of Units' is empty or 0.");
@@ -55,6 +56,27 @@ try {
 		// remove any fee in this script
 		if (feeExists("RDIF350", "NEW", "INVOICED")) voidRemoveFee("RDIF350");
 		if (feeExists("RDIF340", "NEW", "INVOICED")) voidRemoveFee("RDIF340");
+	}
+	
+	// RDIF340 - Solid Wase Resifential Development Manufactured Home according to fee schedule.
+	if (classification=="Manufactured Home (on platted lot)"){
+		if (feeExists("RDIF340", "NEW", "INVOICED")) voidRemoveFee("RDIF340");
+		if (!feeExists("RDIF340", "NEW", "INVOICED") && numOfUnits > 0) {
+			addFee("RDIF340", "PMT_RDIF", "FINAL", numOfUnits, "N");
+		}
+	}
+	else if (classification != "Manufactured Home (on platted lot)"){
+		if (feeExists("RDIF340", "NEW", "INVOICED")) voidRemoveFee("RDIF340");
+	}
+	// RDIF350 - Solid Waste Residential Development Manufactured Home or Recreational Development
+	if (classification=="Mfg. Home/Park Model/RV (per space or lot)"){
+		if (feeExists("RDIF350", "NEW", "INVOICED")) voidRemoveFee("RDIF350");
+		if (!feeExists("RDIF350", "NEW", "INVOICED") && numOfUnits > 0) {
+			addFee("RDIF350", "PMT_RDIF", "FINAL", numOfUnits, "N");
+		}
+	}
+	else if (classification != "Mfg. Home/Park Model/RV (per space or lot)"){
+		if (feeExists("RDIF350", "NEW", "INVOICED")) voidRemoveFee("RDIF350");
 	}
 } catch (error){
 	logDebug("A JavaScript Error occured: " + err.message);
