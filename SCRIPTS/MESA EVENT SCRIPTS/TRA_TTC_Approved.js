@@ -8,67 +8,37 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/19/16  |Steve Veloudos   |Initial Release
 //  2.0      |11/02/16  |Steve Veloudos   |Added Restriction set
+//  3.0      |11/02/16  |Kevin Gurney     |Updated to use environment variables
 /*==================================================================*/
 
 try {
-      var tName = "TRAFFIC REVIEW"
-      var tStatus = "APPROVED - NO FEES";
-      var ConditionFlag = 0;
+    var ConditionFlag = false;
 
-       //Get WF Task
-       var tasks = aa.workflow.getTasks(capId).getOutput();
-       for (t in tasks) 
-        {
-            //Check for Traffic review task
-            if(tasks[t].getTaskDescription().toUpperCase() == tName)
-            {
-                //Check task status Approved No Fees
-                if (tasks[t].getDisposition().toUpperCase() == tStatus)
-                {
-                    //Load Data
-                    loadASITables();
-                    var tInfo = DURATIONINFORMATION;
-                    var rowCount = DURATIONINFORMATION.length;
-                    var x = 0;
-
-                    //Iterate and check restrictions
-                    for (x=0;x<=(rowCount-1);x++)
-                    {
-                        SatRestrict = tInfo[x]["Saturday Restriction"];
-                        SunRestrict = tInfo[x]["Sunday Restriction"];
-
-                        if(SatRestrict == "Yes" || SunRestrict == "Yes")
-                        {
-                        ConditionFlag = 1;
-                        break; 
-                        }    
-                    }
-                    
-                        //Check Condition flag
-                        if(ConditionFlag == 1)
-                        {
-                            //Set Permit Issuance task to issued
-                            updateTask("Permit Issuance","Hold","","");
-                            setTask("Permit Issuance","Y","N");
-                            
-                            //First check if the condition already exists
-                            if (doesCapConditionExist("After Hours or Saturday/Sunday Restriction") == false)
-                            {
-                            addAppCondition("Transportation","Applied(Applied)","After Hours or Saturday/Sunday Restriction","Permit cannot be issued until After Hours Work Permit is obtained.","Hold");
-                            }
-                        }
-                        else
-                        {
-                            //Set Permit Issuance task to issued
-                            updateTask("Permit Issuance","Issued","","");
-                            setTask("Permit Issuance","N","Y");
-                            
-                            //Set the next task Inspection to open
-                            setTask("Inspections","Y","N");
-                        }
-                }
-            }
-        }     
+    if (wfTask == "Traffic Review" && wfStatus == "Approved - No Fees"){
+        //Load Data
+        tblDurInfo = loadASITable("DURATION INFORMATION");
+		if (tblDurInfo != "undefined"){
+			for (x in tblDurInfo)
+			if (tblDurInfo[x]["Saturday Restriction"] == "Yes" || tblDurInfo[x]["Sunday Restriction"] == "Yes"){
+				ConditionFlag = true;
+				break;
+			}
+		}
+		//logDebug("ConditionFlag = " + ConditionFlag);
+	
+		if (!ConditionFlag){
+			closeTask("Permit Issuance","Issued","Closed via Script","Closed via Script");
+		}
+	
+		if (ConditionFlag){
+			var afterHrsCond = doesCapConditionExist("After Hours or Saturday/Sunday Restriction");
+			//logDebug("afterHrsCond = " + afterHrsCond);
+			if (!afterHrsCond){
+				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
+			}
+		}
+	}
+	
     }
 catch (err)
     {
