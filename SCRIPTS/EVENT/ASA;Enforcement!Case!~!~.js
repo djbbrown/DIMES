@@ -1,4 +1,4 @@
-var matchesENFCase=0;
+var matchDupENFCase=false;
 include("ENF_EnforcementCaseDuplicate");
 // add by Brian O'Dell (Mesa)
 include("ENF_EnforcementNotificationEmail");
@@ -7,7 +7,7 @@ include("ENF_AutopopulateZoningDistrict");
 include("ENF_CountyIslandEmail");
 
 // added by Vance Smith (Mesa)
-logDebug("matchesENFCase = " + matchesENFCase);
+logDebug("matchDupENFCase = " + matchDupENFCase);
 include("ENF_NewRecordPriorityNormal"); // 26
 
 //added by Michael Kniskern (Mesa)
