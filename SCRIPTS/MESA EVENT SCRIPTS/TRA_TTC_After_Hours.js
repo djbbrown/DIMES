@@ -1,9 +1,8 @@
 /*===================================================================
 // Script Number: 289
 // Script Name: TRA_TTC_After_Hours.js
-// Script Description: When Saturday Restriction or Sunday Restriction is selected as Y,  Add condition to hold issuance of 
-// Permit until After Hours work permit is obtained. Execute from workflow task Traffic Review and task status Approved - No Fees
-// Script Run Event: WTUA
+// Script Description: When Saturday Restriction or Sunday Restriction is selected as Y,  Cancel transaction
+// Script Run Event: WTUB
 // Script Parents: Transportation!~!~!~.js
 // Removed ASA & ASIUA
 // Version   |Date      |Engineer         |Details
