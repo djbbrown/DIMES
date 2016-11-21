@@ -55,7 +55,7 @@ try {
 		voidRemoveFee("COM020");
 	}
 	if(totalSheets > 0 ){
-		addFee("COM020", "PMT_COM","FINAL", totalSheets, "N");
+		addFee("COM020", "PMT_COM","FINAL", totalSheets, "Y");
 	}
 	if(!totalSheets > 0 && feeExists("COM020", "NEW", "INVOICED")){
 		logDebug("")
