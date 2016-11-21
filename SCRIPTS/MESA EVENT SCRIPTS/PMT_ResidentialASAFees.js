@@ -19,7 +19,7 @@ try {
 	if (feeExists("RES020", "NEW", "INVOICED")) {
 		voidRemoveFee("RES020");
 	}
-	addFee("RES020", "PMT_RES","FINAL", totalSheets, "N");
+	addFee("RES020", "PMT_RES","FINAL", totalSheets, "Y");
 	if(!totalSheets > 0 && feeExists("RES020", "NEW", "INVOICED")){
 		voidRemoveFee("RES020");
 	}
