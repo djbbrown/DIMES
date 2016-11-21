@@ -10,6 +10,9 @@ include("PMT_CopyPenaltyDateToDueDate");
 
 
 // added by Kevin Gurney (Accela)
-if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
+if (
+		(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+		|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+){
 	include("PMT_UtilityServiceFees");
 }

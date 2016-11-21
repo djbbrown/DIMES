@@ -9,7 +9,9 @@
 //    ASA;Permits!Residential!~!~   
 //	  ASA;Permits!Commercial!~!~      
 //    ASIUA;Permits!Residential!~!~   
-//	  ASIUA;Permits!Commercial!~!~          
+//	  ASIUA;Permits!Commercial!~!~
+// Issue tracker 97/98
+// Should assess at permit issuance being activated, plan review not required.
 /*==================================================================*/
 
 var tmpTable;
