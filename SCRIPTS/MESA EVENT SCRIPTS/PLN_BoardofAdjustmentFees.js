@@ -8,7 +8,7 @@
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Variance"] == "CHECKED" && AInfo["Application Type"] == "Single Residence"){
+if (AInfo["Variance"] == "CHECKED" && !(AInfo["Special Use Permit"] == "CHECKED" || AInfo["Modification of Planned Area Development"] == "CHECKED" || AInfo["Interpretation"] == "CHECKED" || AInfo["Development Incentive Permit"] == "CHECKED" || AInfo["Substantial Conformance Improvement Permit"] == "CHECKED") && AInfo["Application Type"] == "Single Residence"){
 	updateFee("BOA010","PLN_BOA","FINAL",1,"N");
 }
 
@@ -24,7 +24,7 @@ if (AInfo["Variance"] == "CHECKED" && AInfo["Application Type"] == "Single Resid
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Variance"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility")){
+if (AInfo["Variance"] == "CHECKED" && !(AInfo["Special Use Permit"] == "CHECKED" || AInfo["Modification of Planned Area Development"] == "CHECKED") && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility")){
 	updateFee("BOA020","PLN_BOA","FINAL",1,"N");
 }
 
@@ -39,7 +39,7 @@ if (AInfo["Variance"] == "CHECKED" && matches(AInfo["Application Type"],"Commerc
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Special Use Permit"] == "CHECKED" && AInfo["Application Type"] == "Single Residence"){
+if (AInfo["Special Use Permit"] == "CHECKED" && !(AInfo["Modification of Planned Area Development"] == "CHECKED" || AInfo["Interpretation"] == "CHECKED" || AInfo["Development Incentive Permit"] == "CHECKED" || AInfo["Substantial Conformance Improvement Permit"] == "CHECKED") && AInfo["Application Type"] == "Single Residence"){
 	updateFee("BOA050","PLN_BOA","FINAL",1,"N");
 }
 
@@ -55,7 +55,7 @@ if (AInfo["Special Use Permit"] == "CHECKED" && AInfo["Application Type"] == "Si
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Special Use Permit"] == "CHECKED" && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility")){
+if (AInfo["Special Use Permit"] == "CHECKED" && !(AInfo["Modification of Planned Area Development"] == "CHECKED") && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility")){
 	updateFee("BOA060","PLN_BOA","FINAL",1,"N");
 }
 
@@ -70,7 +70,7 @@ if (AInfo["Special Use Permit"] == "CHECKED" && matches(AInfo["Application Type"
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Interpretation"] == "CHECKED"){
+if (AInfo["Interpretation"] == "CHECKED" && !((AInfo["Variance"] == "CHECKED" || AInfo["Special Use Permit"] == "CHECKED" || AInfo["Modification of Planned Area Development"] == "CHECKED") && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility") || (AInfo["Development Incentive Permit"] == "CHECKED" || AInfo["Substantial Conformance Improvement Permit"] == "CHECKED"))){
 	updateFee("BOA090","PLN_BOA","FINAL",1,"N");
 }
 
@@ -85,7 +85,7 @@ if (AInfo["Interpretation"] == "CHECKED"){
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Modification of Planned Area Development"] == "CHECKED" && AInfo["Application Type"] == "Single Residence"){
+if (AInfo["Modification of Planned Area Development"] == "CHECKED" && (AInfo["Development Incentive Permit"] != "CHECKED" || AInfo["Substantial Conformance Improvement Permit"] != "CHECKED") && AInfo["Application Type"] == "Single Residence"){
 	updateFee("BOA100","PLN_BOA","FINAL",1,"N");
 }
 
@@ -116,7 +116,7 @@ if (AInfo["Modification of Planned Area Development"] == "CHECKED" && matches(AI
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Development Incentive Permit"] == "CHECKED"){
+if (AInfo["Development Incentive Permit"] == "CHECKED" && !((AInfo["Special Use Permit"] == "CHECKED" || AInfo["Modification of Planned Area Development"] == "CHECKED") && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility") || (AInfo["Substantial Conformance Improvement Permit"] == "CHECKED"))){
 	updateFee("BOA120","PLN_BOA","FINAL",1,"N");
 }
 
@@ -131,7 +131,7 @@ if (AInfo["Development Incentive Permit"] == "CHECKED"){
 //            ASA;Planning!Board of Adjustment!NA!NA
 /*==================================================================*/
 
-if (AInfo["Substantial Conformance Improvement Permit"] == "CHECKED"){
+if (AInfo["Substantial Conformance Improvement Permit"] == "CHECKED" && !((AInfo["Special Use Permit"] == "CHECKED" || AInfo["Modification of Planned Area Development"] == "CHECKED") && matches(AInfo["Application Type"],"Commercial/Industrial","Comprehensive Sign Plan","Multiple Residence","Wireless Communications Facility"))){
 	updateFee("BOA130","PLN_BOA","FINAL",1,"N");
 }
 
