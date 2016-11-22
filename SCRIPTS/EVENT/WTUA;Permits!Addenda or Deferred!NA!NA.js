@@ -1,3 +1,4 @@
+include("PMT_Email_Workflow_Status_Change");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 

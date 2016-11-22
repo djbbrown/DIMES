@@ -2,6 +2,7 @@
 // Script Number: 131(CANCELLED), 214, 336, 335, 146
 // Script Name: WTUA;Permits!Residential!Mobile Home!NA.js
 ==================================================================*/
+include("PMT_Email_Workflow_Status_Change");
 include("PMT_Water_Clearance_Email");
 
 include("PMT_SetPermitIssuedDate");
