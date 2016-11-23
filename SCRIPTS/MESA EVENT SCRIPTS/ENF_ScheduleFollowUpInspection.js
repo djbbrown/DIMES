@@ -9,12 +9,12 @@
 // Script Parents:
 //	IRSA;Enforcement!Case!~!~ 
 //	IRSA;Enforcement!Environmental!~!~ 
-//	 
+//	11/23/2016 - possible fix included - nalbert
 //      
 //            
 /*==================================================================*/
 
-if (inspType == "Initial Inspection" && inspResult == "In Violation") {
+if (inspType == "Initial Inspection" && matches(inspResult, "In Violation", "3rd Party Abatement")) {
 		
 	var inspInterval = AInfo["Inspection Interval"];
 	var daysOut = 14;
@@ -24,7 +24,7 @@ if (inspType == "Initial Inspection" && inspResult == "In Violation") {
 		daysOut = 7;
 	if (inspInterval == "3 Days")
 		daysOut = 5;
-	
-	scheduleInspection("Follow-Up Inspection", daysOut, "ADMIN", null, "ADMIN");
+
+	scheduleInspection("Follow-Up Inspection", daysOut);
 }
 
