@@ -7,6 +7,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/15/16  |Steve Veloudos   |Initial Release
 //  2.0      |10/25/16  |Steve Veloudos   |Added unpaid non invoiced balance due
+//  3.0      |11/22/16  |Steve Veloudos   |Adj made to fix submission not being stopped
 /*==================================================================*/
 
 try {
@@ -14,7 +15,6 @@ try {
       var balance;
       var CondFlag = 0;
       var BalanceDueFlag = 0;
-      var FinalInspectionFlag = 0;
       var UnpaidBalance;
 
       //Get balance due not invoiced fees
@@ -45,37 +45,11 @@ try {
                             CondFlag = 1;
                             break;
                         }
-
                     }
                 }
             }
-      //Get the Inspection results
-      var getInspectionsResult = aa.inspection.getInspections(capId);
-
-      //Test if script can get an inspection
-      if (getInspectionsResult.getSuccess()) 
-      {
-	    var inspectionScriptModels = getInspectionsResult.getOutput();
-	    var inspectionScriptModel = null;
-
-            //Check if Inspection is Final Inspection
-            for (inspectionScriptModelIndex in inspectionScriptModels)
-                {
-                    inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                    if (inspectionScriptModel.getInspectionType().toUpperCase() == "FINAL INSPECTION")
-                    {
-                       //Check for OK
-                       if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "OK")
-                       {
-                           FinalInspectionFlag = 1;
-                           break;
-                       }
-                    }
-                }
-      }
-      //Check final inspection flag
-      if(FinalInspectionFlag == 1)
-      {
+        if (inspType == "Final Inspection" && inspResult == "OK")
+        {
          //If there is a balance due or the Condition flag not true stop submission
           if(BalanceDueFlag == 1 || CondFlag != 1)
           {
@@ -85,8 +59,10 @@ try {
             //Stop the submission
             cancel = true;
           }
-      }
+      
+        }
     }
+    
 catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);

@@ -39,8 +39,6 @@ if (subType == "Class C" && !feeExists("LIC_030", "NEW", "INVOICED")){
 	addFee("LIC_030","LIC_BINGO_APP","FINAL",1,"Y");
 }
 
-//Adding Tech fee
-addFee("TECH","LIC_BINGO_APP","FINAL",1,"Y");
 
 
 /*
