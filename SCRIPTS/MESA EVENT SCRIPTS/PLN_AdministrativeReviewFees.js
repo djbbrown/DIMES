@@ -188,7 +188,7 @@ if (AInfo["Type of Process"] == "Historic Preservation" && matches(AInfo["Sub pr
 //            ASA;Planning!Admin Review!NA!NA
 /*==================================================================*/
 
-if (AInfo["Type of Process"] == "Subdivision" && AInfo["Sub process type"] != "Affidavit of Change/Correction"){
+if (AInfo["Type of Process"] == "Desert Uplands Development Standards" || (AInfo["Type of Process"] == "Subdivision" && AInfo["Sub process type"] != "Affidavit of Change/Correction")){
 	updateFee("ADM120","PLN_ADM","FINAL",1,"N");
 }
 
