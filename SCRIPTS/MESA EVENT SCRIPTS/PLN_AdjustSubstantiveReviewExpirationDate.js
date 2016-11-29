@@ -683,10 +683,10 @@ try {
 			var nextDate = new Date();
 			if(bTasks > 0 ){
 				nextDate = convertDate2(workDaysAdd(srDD, bTasks,['WORKDAY CALENDAR'],['WEEKEND','HOLIDAY']));
+				logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Substantive Review Due Date updated from "+jsDateToASIDate(convertDate2(srDD))+" to "+jsDateToASIDate(convertDate2(nextDate)));
+				editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
+				//
 			}
-			logDebug("PLN_AdjustSubstantiveReviewExpirationDate: Substantive Review Due Date updated from "+jsDateToASIDate(convertDate2(srDD))+" to "+jsDateToASIDate(convertDate2(nextDate)));
-			editAppSpecific("Substantive Review Due Date", jsDateToASIDate(nextDate));
-			//
 		}
 		// ===========================
 		// Check 5 COMPLETE
