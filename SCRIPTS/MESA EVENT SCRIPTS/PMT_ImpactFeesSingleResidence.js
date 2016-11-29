@@ -4,14 +4,14 @@
 // Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
 // Script Description: Updating of ASI dropdown value:
-// When value of "Single Residence Attached" chosen for ASI dropdown field "Classification"  
-// Assess Single Residence  Detached Fees listed below:
-// Water Impact Fee - Single Residence  Attached
-// Waste Water Impact Fee  - Single Residence  Attached
-// Parks Impact Fee  - Single Residence  Attached
-// Fire Impact Fee  - Single Residence  Attached
-// Public Safety Impact Fee  - Single Residence  Attached Storm Water Impact Fee  - Single Residence  Attached 
-// Residential Development Impact Fee - Single Residence  Attached
+// 		When value of "Single Residence Attached" chosen for ASI dropdown field "Classification"  
+// 		Assess Single Residence  Detached Fees listed below:
+// 		Water Impact Fee - Single Residence  Attached
+// 		Waste Water Impact Fee  - Single Residence  Attached
+// 		Parks Impact Fee  - Single Residence  Attached
+// 		Fire Impact Fee  - Single Residence  Attached
+// 		Public Safety Impact Fee  - Single Residence  Attached Storm Water Impact Fee  - Single Residence  Attached 
+// 		Residential Development Impact Fee - Single Residence  Attached
 // Script Run Event: ASA, WTUA
 // Script Parents:
 //            ASA;Permits!Residential!NA!NA
@@ -34,6 +34,7 @@ try {
 				if(matches(thisTag, "STOR")) swGisTag = true;
 		   }
 		}
+		// Remove fees if classififaction doesn't exist at all..
 		if (!classification) {
 			logDebug("Classification not found. No impact fees assessed.");
 			// remove any fees from previous classification
