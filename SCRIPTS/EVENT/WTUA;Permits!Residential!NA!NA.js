@@ -3,10 +3,11 @@
 // Script Name: WTUA;Permits!Residential!NA!NA.js
 ==================================================================*/
 //include("PMT_ImpactFeeSingleResDetached");//disabled script and added GIS validation to 221
-include("PMT_ImpactFeesSingleResidence");
 include("PMT_Email_Workflow_Status_Change");
 include("PMT_Water_Clearance_Email");
-if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
+if ((wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	) {
 	include("PMT_ImpactFeesSingleResidence");
 }
 include("PMT_SetPermitIssuedDate");
