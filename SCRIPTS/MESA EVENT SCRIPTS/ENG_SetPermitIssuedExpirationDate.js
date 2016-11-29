@@ -16,7 +16,7 @@ try {
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
 		        }
 			if (appMatch("Engineering/Right of Way/*/*")){
-				editAppSpecific("Permit Expiration Date", dateAddMonths(wfDateMMDDYYYY,3));
+				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,90));
 		        }
 	   }                
     }
