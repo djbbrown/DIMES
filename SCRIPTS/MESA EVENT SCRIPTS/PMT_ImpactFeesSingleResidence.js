@@ -106,6 +106,10 @@ try {
 				if (feeExists("RDIF020", "NEW", "INVOICED") && (!numberUnits || feeQty("RDIF020") != numberUnits || wmqGisTag)) voidRemoveFee("RDIF020");
 				if (!feeExists("RDIF020") && !!numberUnits && numberUnits > 0 && !wmqGisTag) addFee("RDIF020", "PMT_RDIF", "FINAL", numberUnits, "N");
 			}
+			if(!classification == "Single Family-Attached (per dwelling unit)"
+				|| !classification == "Multiple-Family Residential (per dwelling unit)"){
+				if (feeExists("RDIF020", "NEW", "INVOICED")) voidRemoveFee("RDIF020");
+			}
 			// ==================================================================
 			// Update for removing RDIF040 if it's not Singled Family Detached or Manufactured home.
 			if (1==2
