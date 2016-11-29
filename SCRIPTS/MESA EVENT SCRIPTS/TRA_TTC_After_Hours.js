@@ -15,7 +15,7 @@
 try {
     var ConditionFlag = false;
 
-    if (wfTask == "Permit Issuance" && wfStatus == "Issued"){
+    if (wfTask == "Traffic Review" && matches(wfStatus,"Approved - Fees Due","Approved - No Fees")){
         //Load Data
         tblDurInfo = loadASITable("DURATION INFORMATION");
 		if (tblDurInfo != "undefined"){
