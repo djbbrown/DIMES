@@ -34,6 +34,7 @@ try {
 				cancel = true;
 				showMessage = true;
 				comment("Workflow task update canceled because of After Hours restriction");
+				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
 			}
 		}
 	}
