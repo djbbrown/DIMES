@@ -31,11 +31,11 @@ try {
 			var afterHrsCond = doesCapConditionExist("After Hours or Saturday/Sunday Restriction");
 			//logDebug("afterHrsCond = " + afterHrsCond);
 			if (!afterHrsCond){
+				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
 				cancel = true;
 				showMessage = true;
 				comment("Workflow task update canceled because of After Hours restriction");
-				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
-			}
+				}
 		}
 	}
 	
