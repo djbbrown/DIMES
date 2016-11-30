@@ -12,6 +12,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/23/16  |Steve Veloudos   |Initial Release
 //  1.1      |08/29/16  |Steve Veloudos   |Adj Std Choices
+//  1.2      |11/30/16  |Steve Veloudos   |Adj for Mobile & Business phone numbers
 /*==================================================================*/
 
 try {
@@ -52,23 +53,36 @@ try {
       var rowCount = tInfo.length;
       var x = 0;
 
-      //Get Email of Complainant
+      //Get Applicant info
       for (x=0;x<=(rowCount-1);x++)
           {
           Type = tInfo[x]["contactType"];
           if(Type == "Applicant" )
              {
-                if(tInfo[x]["phone1"] != null)
-                {
-                 Phone = "Home: " + tInfo[x]["phone1"] +" ";
-                }
                 if(tInfo[x]["phone2"] != null)
                 {
-                  Phone = Phone + "Mobile: " + tInfo[x]["phone2"];  
+                 Phone = "Mobile: " + tInfo[x]["phone2"] +" ";
                 }
+               
              ContactName = tInfo[x]["firstName"] + " " + tInfo[x]["lastName"];
              }
           }
+        //Get Business Phone
+		var capContactResult = aa.people.getCapContactByCapID(capId);
+		if (capContactResult.getSuccess())
+        {
+			{
+			var capContactArray = capContactResult.getOutput();
+			}
+		}
+        if (capContactArray)
+		{
+		for (yy in capContactArray)
+			{
+                Phone = Phone + "Business: " + capContactArray[yy].getPeople().phone3;
+            }
+        }
+
 
      //Get Description
      Description = workDescGet(capId);
