@@ -41,14 +41,10 @@ try
         if(originalViolationInfoTable != null && originalViolationInfoTable.length > 0) {
             //create new table that will stored the updated rows with violation ordiance
             var newViolationInfoTable = new Array();
-            var standardChoicesItem = "";
+            var standardChoicesItem = "ENF_VIOLATION_ORDINANCE_LONG_DESC";
 
-            if(isEnforcementCase) {
-                standardChoicesItem = "ENF_VIOLATION_ORDINANCE_LONG_DESC";
-            } 
-            else if(isEnforcementEnv) {
-                standardChoicesItem = "";
-            }
+            //MRK 11.30.2016 - removed the record type check if statement because both type of records are going to use the same 
+            //standard choice item
 
             //loop through the violation information table
             for(count in originalViolationInfoTable) {
@@ -60,14 +56,12 @@ try
                 //get the violation ordiance/detail by violation code using the lookup function
                 var violationOrdiance = "" + lookup(standardChoicesItem, violationCode);
 
+                //MRK - 11.30.2016 - ASI field "Violation Detail" for Enforcement/Environmental/*/* record has be replaced by
+                //"Violation Ordinance", the same as Enforcement/Case/*/* records.  Modified code to remove the record check
+
                 //if a violation ordiance exists, update the appropriate column in the current row
                 if(violationOrdiance != null && violationOrdiance != "undefined") {
-                    if(isEnforcementCase) {
-                        currentRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", violationOrdiance, "N");
-                    }
-                    else if (isEnforcementEnv) {
-                        currentRow["Violation Detail"] = new asiTableValObj("Violation Detail", violationOrdiance, "N");
-                    }
+                    currentRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", violationOrdiance, "N");
                 }
                 
                 //add updated row to new violation table
