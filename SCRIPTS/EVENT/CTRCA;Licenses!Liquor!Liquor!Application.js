@@ -1,1 +1,4 @@
-include("LIC_LiquorLicenseFee"); 
+//set to only run for internal users
+if (!publicUser){
+	include("LIC_LiquorLicenseFee"); 
+}
