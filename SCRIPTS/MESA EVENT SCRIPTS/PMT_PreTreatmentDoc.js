@@ -43,7 +43,6 @@ try {
                 //Pop up message to user
                 showMessage = true;
                 comment("A Pretreatment Document is Required");
-				comment("What is the PreTreatDocFlag = " + PreTreatDocFlag);
                 //Stop the submission
                 cancel = true;
             } 
