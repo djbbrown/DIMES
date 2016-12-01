@@ -1,4 +1,5 @@
-//set to only run for internal users
+/*Not required for Liquor License Application
 if (!publicUser){
 	include("LIC_LiquorLicenseFee"); 
 }
+*/
