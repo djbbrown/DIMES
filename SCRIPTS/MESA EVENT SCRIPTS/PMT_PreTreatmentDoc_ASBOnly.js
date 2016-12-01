@@ -23,7 +23,7 @@ try {
             GreaseTrapFlag = 1;
 
             //Get documents
-            docListArray = = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
+            docListArray = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
             for (doc in docListArray)
             {
                 DocCat =  docListArray[doc].getDocCategory();
