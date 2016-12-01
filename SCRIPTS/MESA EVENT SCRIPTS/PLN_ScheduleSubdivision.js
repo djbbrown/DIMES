@@ -16,6 +16,7 @@ if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 			editTaskDueDate("Planning Review", dateAdd(appAcceptanceDate, 30));
 		}
 		editTaskDueDate("Engineering Review", dateAdd(fileDate, 28));
+		editTaskDueDate("Development Planning Review", dateAdd(fileDate, 28));
 		editTaskDueDate("Parks and Rec Review", dateAdd(fileDate, 28));
 		editTaskDueDate("Transportation Review", dateAdd(fileDate, 28));
 		editTaskDueDate("Bldg Safety-Fire Review", dateAdd(fileDate, 28));
