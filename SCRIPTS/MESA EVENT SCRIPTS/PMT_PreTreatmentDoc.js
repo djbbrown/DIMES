@@ -36,13 +36,14 @@ try {
                     break; 
                 }
             }
-			comment("What is the PreTreatDocFlag = " + PreTreatDocFlag);
+			
             //Check flag
             if(GreaseTrapFlag == 1 && PreTreatDocFlag  == 0)
             {
                 //Pop up message to user
                 showMessage = true;
                 comment("A Pretreatment Document is Required");
+				comment("What is the PreTreatDocFlag = " + PreTreatDocFlag);
                 //Stop the submission
                 cancel = true;
             } 
