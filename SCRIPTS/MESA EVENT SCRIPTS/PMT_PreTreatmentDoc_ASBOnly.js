@@ -8,47 +8,63 @@
 // Testing record:  PMT16-00427
 // Version   |Date      |Engineer         |Details
 //  1.0      |11/17/16  |Steve Veloudos   |Initial Release
+//  2.0      |12/2/16   |Kevin Gurney     |Changed to match other similar ASB document requirement scripts
 /*==================================================================*/
 
 try {
-
-    var GreaseTrapFlag = 0;
+	var GreaseTrapFlag = 0;
     var PreTreatDocFlag = 0;
-    var DocCat;
+	var GTrapSoil = AInfo["Is your project an Industrial, Commercial, Manufacturing, Automotive or Restaurant?"];
+	var docCat = "";
+	var docNeeded = true;
 
-        //Get ASIT value
-        var GTrapSoil = AInfo["Is your project an Industrial, Commercial, Manufacturing, Automotive or Restaurant?"];
-        if(GTrapSoil == "Yes")
-            {
-            GreaseTrapFlag = 1;
+	if (GTrapSoil == "Yes")
+  {
+    // this was the original way (works on ASUIB but not ASB)
+    //var docList = aa.document.getCapDocumentList(capId ,currentUserID);
 
-            //Get documents
-            docListArray = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
-            for (doc in docListArray)
-            {
-                DocCat =  docListArray[doc].getDocCategory();
-                var DocCatUC = DocCat.toUpperCase();
-                
-                //Check doc category
-                if (DocCatUC == "INDUSTRIAL PRETREATMENT FORM")
-                {
-                    PreTreatDocFlag  = 1;
-                    break; 
-                }
-            }
-			
-            //Check flag
-            if(GreaseTrapFlag == 1 && PreTreatDocFlag  == 0)
-            {
-                //Pop up message to user
-                showMessage = true;
-                comment("A Pretreatment Document is Required");
-                //Stop the submission
-                cancel = true;
-            } 
-        }
-    }
-    catch (err)
+    // this is the new way (used on PMT_ZoningVerificationLetter_ASBonly script also)
+    var docList = aa.env.getValue("DocumentModelList");
+    var docListCount = 0;
+
+    if((docList == null) 
+        || (docList == ""))
     {
-      logDebug("A JavaScript Error occured: " + err.message);
-    } 
+      docList = aa.document.getDocumentListByEntity(capId.toString(),"TMP_CAP").getOutput();
+      docListCount = docList.size();
+    }
+    else
+    {
+      docListCount = docList.size();
+    }
+
+    if (docListCount > 0)
+    {
+
+      for(x=0;x<docListCount;x++)
+      { 
+        if((docList.get(x) != null)
+          && (docList.get(x).getDocCategory() == "Industrial Pretreatment Form")) 
+        {
+          docNeeded = false;
+          break; 
+        }
+      }
+
+    }
+
+    if (docNeeded)
+    {
+      commentBlah = "For a project that is Industrial, Commercial, Manufacturing, Automotive or Restaurant a Industrical Pretreatment Form document is required";
+      showMessage = true;
+      comment(commentBlah);
+      cancel = true;    
+    }
+
+  }
+
+}
+catch (err)
+{
+  logDebug("A JavaScript Error occured: " + err.message);
+}
