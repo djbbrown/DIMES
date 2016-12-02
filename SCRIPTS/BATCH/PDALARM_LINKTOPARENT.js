@@ -20,6 +20,14 @@ var showMessage = false;
 var message = "";
 var maxSeconds = 4.5 * 60;
 var br = "<br>";
+var startDate = new Date();
+var startJSDate = new Date();
+startJSDate.setHours(0,0,0,0);
+var timeExpired = false;
+var useAppSpecificGroupName = false;
+var startTime = startDate.getTime();			// Start timer
+var currentUserID = "ADMIN";
+var systemUserObj = aa.person.getUser("ADMIN").getOutput();
 
 /*-------------------------------------------------------------------------------------------------------/
 |
@@ -33,9 +41,9 @@ batchJobName = "" + aa.env.getValue("BatchJobName");
 wfObjArray = null;
 var SCRIPT_VERSION = 3.0;
 
-eval(getScriptText("INCLUDES_ACCELA_FUNCTIONS"));
+eval(getMasterScriptText("INCLUDES_ACCELA_FUNCTIONS"));
 eval(getScriptText("INCLUDES_BATCH"));
-eval(getScriptText("INCLUDES_CUSTOM"));
+eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_CUSTOM_GLOBALS"));
 
 override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
@@ -73,7 +81,7 @@ else
 HH15-00035
 
 /------------------------------------------------------------------------------------------------------------------------------------------*/
-/* test parameters 
+/* test parameters */
 aa.env.setValue("appGroup", "Permits");
 aa.env.setValue("appTypeType", "Police Department");
 aa.env.setValue("appSubtype", "Alarms");
@@ -85,7 +93,7 @@ aa.env.setValue("parentAppType", "Permits/Police Department/Alarms/Commercial");
 aa.env.setValue("emailLog", "Y");
 aa.env.setValue("emailAddress", "lwacht@accela.com");
 aa.env.setValue("sysFromEmail", "noreply@mesa.gov");
-*/
+
 //var lookAheadDays = aa.env.getValue("lookAheadDays"); 
 //var daySpan = getParam("daySpan");
 var appGroup = getParam("appGroup");
@@ -111,15 +119,7 @@ var sendEmailToContactTypes = getParam("sendEmailToContactTypes");
 |
 /------------------------------------------------------------------------------------------------*/
 
-var startDate = new Date();
-var startJSDate = new Date();
-startJSDate.setHours(0,0,0,0);
-var timeExpired = false;
-var useAppSpecificGroupName = false;
 
-var startTime = startDate.getTime();			// Start timer
-var currentUserID = "ADMIN";
-var systemUserObj = aa.person.getUser("ADMIN").getOutput();
 //var fromDate =  dateAdd(null,(parseInt(lookAheadDays))) + " 00:00:00";
 //logDebug("fromDate: " + fromDate);
 //var toDate = dateAdd(null,parseInt(lookAheadDays)+parseInt(daySpan-1)) + " 23:59:59";
