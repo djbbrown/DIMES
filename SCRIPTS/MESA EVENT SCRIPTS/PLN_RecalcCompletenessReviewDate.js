@@ -456,33 +456,37 @@ function wfDaysBetween(
 	var iSrec = '', iRrec = '';
 	var workflow = aa.workflow.getHistory(capId).getOutput();
 	for(x in workflow){  
-		// logDebug(workflow[x].getTaskDescription());
-		// logDebug(workflow[x].getDisposition());
-		// logDebug(workflow[x].getStatusDate());
+		//logDebug(workflow[x].getTaskDescription());
+		//logDebug(workflow[x].getDisposition());
+		//logDebug(workflow[x].getStatusDate());
 		if(
 			workflow[x].getTaskDescription() == wfTaskFrom
 			&& exists(workflow[x].getDisposition(),wfTaskStatusFrom)
 		){
-			// logDebug(workflow[x].getStatusDate());
+			logDebug("wfTaskFrom = " + workflow[x].getStatusDate());
 			// iS.push(workflow[x].getProcessHistorySeq());
 			// iSrec = workflow[x].getProcessHistorySeq();
 			iSrec = convertDate2(workflow[x].getStatusDate());
+			if (iSrec != ''){iS.push(iSrec);}
 		}
 		if(
 			workflow[x].getTaskDescription() == wfTaskTo
 			&& exists(workflow[x].getDisposition(),wfTaskStatusTo)
 		){
-			// logDebug(workflow[x].getStatusDate());
-			if (iSrec != ''){iS.push(iSrec);};
-			iR.push(convertDate2(workflow[x].getStatusDate()));
+			logDebug("wfTaskTo = " + workflow[x].getStatusDate());
+			//iR.push(convertDate2(workflow[x].getStatusDate()));
+			iRrec = convertDate2(workflow[x].getStatusDate());
+			if (iRrec != ''){iR.push(iRrec);}
 		}
 	}
 	iS = iS.sort(); // .reverse();
 	iR = iR.sort(); // .reverse();
+	//logDebug("iS[0] = " + iS[0]);
+	//logDebug("iR[0] = " + iR[0]);
 	bTaskDays = workDaysBetween(iS[0],iR[0],aCal,aDayEx)
 	logDebug(bTaskDays);
 	return bTaskDays;
-	//*/
+
 }
 function convertDate2(thisDate)
 {
