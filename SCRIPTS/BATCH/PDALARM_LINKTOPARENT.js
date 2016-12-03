@@ -46,8 +46,8 @@ eval(getScriptText("INCLUDES_BATCH"));
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_CUSTOM_GLOBALS"));
 
-override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
-eval(override);
+//override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
+//eval(override);
 
 function getScriptText(vScriptName){
 	vScriptName = vScriptName.toUpperCase();
@@ -198,7 +198,7 @@ try{
 			appTypeArray = appGroup+"/"+appTypeType+"/"+appSubtype+"/"+appCategory;
 			//var parRecord = getCapByAddress_SansZip(parentAppType);
 			if(getParent()){
-				logDebug("Record has already been processed (parent "+ getParent().getCustomID + "). Skipping.");
+				logDebug("Record has already been processed (parent "+ getParent().getCustomID() + "). Skipping.");
 				continue;
 			}
 			var parRecord = capIdsGetByAddr_sansZip();
@@ -212,6 +212,7 @@ try{
 					if (capAddressResult.getSuccess()) {
 						Address = capAddressResult.getOutput();
 						var addr = Address[0];
+						var unitNbr = ""+addr.getUnitStart();
 						logDebug("unitNbr:" + unitNbr);
 						logDebug("addr.getUnitStart():" + addr.getUnitStart());
 						if(unitNbr==""+addr.getUnitStart()){
@@ -360,7 +361,6 @@ try{
 	var hseNum = addrArray[0].getHouseNumberStart();
 	var streetSuffix = addrArray[0].getStreetSuffix();
 	var zip = addrArray[0].getZip();
-	var unitNbr = ""+addrArray[0].getUnitStart();
 	var streetDir = addrArray[0].getStreetDirection();
 	if (streetDir == "")
 		streetDir = null;
