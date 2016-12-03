@@ -46,8 +46,8 @@ eval(getScriptText("INCLUDES_BATCH"));
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_CUSTOM_GLOBALS"));
 
-//override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
-//eval(override);
+override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
+eval(override);
 
 function getScriptText(vScriptName){
 	vScriptName = vScriptName.toUpperCase();
@@ -212,22 +212,17 @@ try{
 					if (capAddressResult.getSuccess()) {
 						Address = capAddressResult.getOutput();
 						var addr = Address[0];
-						var unitNbr = ""+addr.getUnitStart();
-						logDebug("unitNbr:" + unitNbr);
-						logDebug("addr.getUnitStart():" + addr.getUnitStart());
-						if(unitNbr==""+addr.getUnitStart()){
-							parCap = aa.cap.getCap(parRecord[x]).getOutput();
-							parAppStatus = parCap.getCapStatus();
-							if(parCap.getCapType()=="Permits/Police Department/Alarms/Commercial"){
-								var parAltId = parRecord[x].getCustomID();
-								if(parAppStatus!="Issued"){
-									logDebug("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
-									addToExceptionRpt("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
-									var parentFound = true;
-								}
-								addParent(parRecord[x]);
-								logDebug("Parent " + parAltId + " added successfully to " + altId);
+						parCap = aa.cap.getCap(parRecord[x]).getOutput();
+						parAppStatus = parCap.getCapStatus();
+						if(parCap.getCapType()=="Permits/Police Department/Alarms/Commercial"){
+							var parAltId = parRecord[x].getCustomID();
+							if(parAppStatus!="Issued"){
+								logDebug("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
+								addToExceptionRpt("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
+								var parentFound = true;
 							}
+							addParent(parRecord[x]);
+							logDebug("Parent " + parAltId + " added successfully to " + altId);
 						}
 					}
 				}
@@ -361,6 +356,7 @@ try{
 	var hseNum = addrArray[0].getHouseNumberStart();
 	var streetSuffix = addrArray[0].getStreetSuffix();
 	var zip = addrArray[0].getZip();
+	var unitNbr = ""+addrArray[0].getUnitStart();
 	var streetDir = addrArray[0].getStreetDirection();
 	if (streetDir == "")
 		streetDir = null;
@@ -378,8 +374,17 @@ try{
 	}
 	var capIdArray = new Array();
 	//convert CapIDScriptModel objects to CapIDModel objects
-	for (i in capArray)
-		capIdArray.push(capArray[i].getCapID());
+	for (i in capArray){
+		//go through again to match unit number
+		var chkCap = capArray[i].getCapID();
+		var capAddrResult = aa.address.getAddressByCapId(chkCap);
+		if (capAddrResult.getSuccess()) {
+			capAddr = capAddrResult.getOutput();
+			if(capAddr[0].getUnitStart()==unitNbr){
+				capIdArray.push(capArray[i].getCapID());
+			}
+		}
+	}
 	if (capIdArray)
 		return (capIdArray);
 	else
