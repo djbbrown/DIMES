@@ -16,6 +16,7 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/28/16  |Vance Smith      |Initial Release
+//  1.1      |12/05/16  |Vance Smith      |Revised to accumulate into 1 email (temp)
 /*==================================================================*/
 
 /* intellisense references */
@@ -43,6 +44,7 @@ function mainProcess()
     var capFailedUpdateParcelAndFailedGetRefAddress = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
     var myCaps = null;
+    var emailBody = "<ol>";
 
     /***** END INITIALIZE COUNTERS *****/
 
@@ -142,19 +144,22 @@ function mainProcess()
                         capFailedUpdateParcelAndFailedGetAddress++;
                         // if no addresses returned then notify permit supervisor                    
                         var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to get the address information to do a search for the parcel. (addresses.length = 0)";
-                        aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
+                        // TEMP REMOVED aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
+                        emailBody = emailBody + "<li>" + etext + "</li>"; // TEMP ADDED
                     }
                     for (i in addresses)
                     {                            
                         if (addresses[i].getRefAddressId())
                         {
-                            var addParcelResult = addParcelAndOwnerFromRefAddress(addresses[i].getRefAddressId());
+                            var refAddressId = addresses[i].getRefAddressId();
+                            var addParcelResult = addParcelAndOwnerFromRefAddressWithEmailBody(refAddressId, emailBody); // TEMP REMOVED addParcelAndOwnerFromRefAddress(refAddressId);
                             if (!addParcelResult)
                             {
                                 capFailedUpdateParcelAndFailedAddParcel++;
                                 // if failed then notify permit supervisor                    
-                                var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to add the parcel using the address information.";
-                                aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
+                                var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to add the parcel using the address information. RefAddressId: " + refAddressId;
+                                // TEMP REMOVED aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
+                                emailBody = emailBody + "<li>" + etext + "</li>"; // TEMP ADDED
                             }
                         }
                         else 
@@ -162,7 +167,8 @@ function mainProcess()
                             capFailedUpdateParcelAndFailedGetRefAddress++;
                             // if not found by address then notify permit supervisor                    
                             var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to get the address information to do a search for the parcel. (refAddressId = null)";
-                            aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
+                            // TEMP REMOVED aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
+                            emailBody = emailBody + "<li>" + etext + "</li>"; // TEMP ADDED
                         }
                     }
                 }
@@ -196,9 +202,73 @@ function mainProcess()
     logDebugAndEmail(""); // empty line
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
-    aa.sendMail("NoReply@MesaAz.gov", emailAdminTo, emailAdminCc, "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText);
+    aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText + emailBody); // TEMP ADDED emailBody, changed to email vfs onlyemailAdminTo, emailAdminCc,
 
     /***** END ADMIN NOTIFICATION *****/
+}
+
+function addParcelAndOwnerFromRefAddressWithEmailBody(refAddress, emailBody) // optional capID
+{
+
+	var itemCap = capId
+		if (arguments.length > 2)
+			itemCap = arguments[2]; // use cap ID specified in args
+
+		// first add the primary parcel
+		//
+		var primaryParcelResult = aa.parcel.getPrimaryParcelByRefAddressID(refAddress, "Y");
+	if (primaryParcelResult.getSuccess())
+		var primaryParcel = primaryParcelResult.getOutput();
+	else {
+		logDebug("**ERROR: Failed to get primary parcel for ref Address " + refAddress + " , " + primaryParcelResult.getErrorMessage());
+        emailBody = emailBody + "<br>**ERROR: Failed to get primary parcel for ref Address " + refAddress + " , " + primaryParcelResult.getErrorMessage();
+		return false;
+	}
+
+	var capParModel = aa.parcel.warpCapIdParcelModel2CapParcelModel(itemCap, primaryParcel).getOutput()
+
+		var createPMResult = aa.parcel.createCapParcel(capParModel);
+	if (createPMResult.getSuccess())
+		logDebug("created CAP Parcel");
+	else {
+		logDebug("**WARNING: Failed to create the cap Parcel " + createPMResult.getErrorMessage());
+        emailBody = emailBody + "<br>**WARNING: Failed to create the cap Parcel " + createPMResult.getErrorMessage();
+	}
+
+	// Now the owners
+	//
+
+	var parcelListResult = aa.parcel.getParcelDailyByCapID(itemCap, null);
+	if (parcelListResult.getSuccess())
+		var parcelList = parcelListResult.getOutput();
+	else {
+		logDebug("**ERROR: Failed to get Parcel List " + parcelListResult.getErrorMessage());
+        emailBody = emailBody + "<br>**ERROR: Failed to get Parcel List " + parcelListResult.getErrorMessage();
+		return false;
+	}
+
+	for (var thisP in parcelList) {
+		var ownerListResult = aa.owner.getOwnersByParcel(parcelList[thisP]);
+		if (ownerListResult.getSuccess())
+			var ownerList = ownerListResult.getOutput();
+		else {
+			logDebug("**ERROR: Failed to get Owner List " + ownerListResult.getErrorMessage());
+            emailBody = emailBody + "<br>**ERROR: Failed to get Owner List " + ownerListResult.getErrorMessage();
+			return false;
+		}
+
+		for (var thisO in ownerList) {
+			ownerList[thisO].setCapID(itemCap);
+			createOResult = aa.owner.createCapOwnerWithAPOAttribute(ownerList[thisO]);
+
+			if (createOResult.getSuccess())
+				logDebug("Created CAP Owner");
+			else {
+				logDebug("**WARNING: Failed to create CAP Owner " + createOResult.getErrorMessage());
+                emailBody = emailBody + "<br>**WARNING: Failed to create CAP Owner " + createOResult.getErrorMessage();
+			}
+		}
+	}
 }
 
 function updateRefParcelToCapReturnStatus(capId)
