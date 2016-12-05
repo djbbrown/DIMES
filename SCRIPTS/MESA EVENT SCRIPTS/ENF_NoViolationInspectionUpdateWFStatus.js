@@ -1,17 +1,44 @@
 /*===================================================================
+Versions:
+ 8/29/2016		Vance Smith			initial
+ 12/05/2016		Vance Smith			reworked due to changes in requirements
+ ---------------------------------------------------------------------
+
 // Script Number: 020
 // Script Name: ENF_NoViolationInspectionUpdateWFStatus.js
 // Script Developer: Vance Smith
 // Script Agency: Mesa
-// Script Description: When an inspection of type "Initial Inspection" 
-// is resulted with a status of "No Violation", Apply wf task status of 
-// "No Violation" to workflow task "Initial Inspection" and deactivate 
-// all workflow tasks and set record status to "Case Closed".
+// Script Description: 
+
+// OLD REQUIREMENTS
+// When an inspection of type "Initial Inspection" is resulted with a status of "No Violation":
+// 1) Apply wf task status of "No Violation" to workflow task "Initial Inspection"
+// 2) deactivate all workflow tasks
+// 3) set record status to "Case Closed".
+
+// NEW REQUIREMENTS - 11/16/2016
+// When an inspection of type "Initial Inspection" is resulted with a status of "No Violation": 
+// 1) set status of workflow task “Initial Inspection” to “No Violation”
+// 2) deactivate all active tasks in the workflow
+// 3) set record status to “No Violation”.
+
+// When an inspection of type "Follow-Up Inspection" is resulted with a status of "Voluntary Compliance":
+// 1) set status of workflow task “Follow-Up Inspection” to "Voluntary Compliance"
+// 2) deactivate all active tasks in the workflow
+// 3) set record status to "Voluntary Compliance"
+ 
+// When an inspection of type "Citation Inspection" is resulted with a status of “Forced Compliance – Fees Paid”:
+// 1) set status of workflow task “Citation Inspections” to “Forced Compliance – Fees Paid”
+// 2) deactivate all active tasks in the workflow
+// 3) set record status to “Forced Compliance – Fees Paid”
+
+// When an inspection of type "Follow-Up Inspection" is resulted with a status of “Forced Compliance – Lien”:
+// 1) set status of workflow task “Follow-Up Inspection” to “Forced Compliance – Lien
+// 2) set record status to “Forced Compliance – Lien”.
 
 // Script Run Event: IRSA
 
 // Script Parents:
-//	IRSA;Enforcement!Case!~!~ 
 //	IRSA;Enforcement!Environmental!Complaint!~
 //            
 /*==================================================================*/
@@ -23,24 +50,11 @@
 
 try
 {
-	var getInspectionsResult = aa.inspection.getInspections(capId);
-
-	if (getInspectionsResult.getSuccess()) 
+	switch( inspType )
 	{
-		logDebug("got inspection results");
-		var inspectionScriptModels = getInspectionsResult.getOutput();
-		var inspectionScriptModel = null;
-		logDebug("inspectionScriptModels length: " + inspectionScriptModels.length);
-		for (i in inspectionScriptModels)
-		{
-			inspectionScriptModel = inspectionScriptModels[i];
-			if (
-				inspectionScriptModel.getInspectionType().toUpperCase() == "INITIAL INSPECTION"
-				&& (inspectionScriptModel.getInspectionStatus().toUpperCase() == "NO VIOLATION")
-			)
+		case "Initial Inpspection":
+			if ( inspResult == "No Violation")
 			{
-				/* found the one we want, now process per specifications */
-				logDebug("found inspection");
 				if( isTaskActive("Initial Inspection") ) 
 				{
 					updateTask("Initial Inspection", "No Violation", "Updated by Script", "Updated by Script");
@@ -57,25 +71,70 @@ try
 					}
 				}
 				logDebug("deactivated workflow");
-			}
 
-			// set app status to 'Case Closed'
-			updateAppStatus("Case Closed", "Updated by Script");
-			logDebug("changed app status to case closed");
-		}
-		/*
-		psuedocode
-		DONE 1) check inspection type, want "Initial Inspection"
-		DONE 2) check inspection status, want "No Violation"
-		DONE 3) get wf task "Initial Inspection"
-		DONE 4) apply wf task status of "No Violation"
-		DONE 5) deactivate workflow
-		DONE 6) set record status to "Case Closed"
-		*/	
-	}
-	else 
-	{
-		logDebug("no inspections");
+				updateAppStatus("No Violation", "Updated by Script");
+				logDebug("changed app status to No Violation");
+			}
+			break;
+		case "Follow-Up Inspection":
+			if ( inspResult == "Voluntary Compliance")
+			{
+				if( isTaskActive("Follow-Up Inspection") ) 
+				{
+					updateTask("Follow-Up Inspection", "Voluntary Compliance", "Updated by Script", "Updated by Script");
+					logDebug("updated task");
+				}
+
+				// deactivate entire workflow
+				var tasksResult = aa.workflow.getTasks(capId);
+				if (tasksResult.getSuccess())
+				{
+					var tasks = tasksResult.getOutput();
+					for (task in tasks){
+						deactivateTask(tasks[task].getTaskDescription());
+					}
+				}
+				logDebug("deactivated workflow");
+
+				updateAppStatus("Voluntary Compliance", "Updated by Script");
+				logDebug("changed app status to Voluntary Compliance");
+			}
+			if ( inspResult == "Forced Compliance - Lien")
+			{
+				if( isTaskActive("Follow-Up Inspection") ) 
+				{
+					updateTask("Follow-Up Inspection", "Forced Compliance - Lien", "Updated by Script", "Updated by Script");
+					logDebug("updated task");
+				}
+
+				updateAppStatus("Forced Compliance - Lien", "Updated by Script");
+				logDebug("changed app status to Forced Compliance - Lien");
+			}
+			break;
+		case "Citation Inspection":
+			if ( inspResult == "Forced Compliance - Fees Paid")
+			{
+				if( isTaskActive("Citation Inspection") ) 
+				{
+					updateTask("Citation Inspection", "Forced Compliance - Fees Paid", "Updated by Script", "Updated by Script");
+					logDebug("updated task");
+				}
+
+				// deactivate entire workflow
+				var tasksResult = aa.workflow.getTasks(capId);
+				if (tasksResult.getSuccess())
+				{
+					var tasks = tasksResult.getOutput();
+					for (task in tasks){
+						deactivateTask(tasks[task].getTaskDescription());
+					}
+				}
+				logDebug("deactivated workflow");
+
+				updateAppStatus("Forced Compliance - Fees Paid", "Updated by Script");
+				logDebug("changed app status to Forced Compliance - Fees Paid");
+			}
+			break;
 	}
 }
 catch (err)
