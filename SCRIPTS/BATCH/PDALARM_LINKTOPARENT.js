@@ -47,7 +47,7 @@ eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_CUSTOM_GLOBALS"));
 
 override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
-eval(override);
+//eval(override);
 
 function getScriptText(vScriptName){
 	vScriptName = vScriptName.toUpperCase();
