@@ -42,6 +42,7 @@ function mainProcess()
     var capFailedUpdateParcelAndFailedGetAddress = 0;
     var capFailedUpdateParcelAndFailedAddParcel = 0;
     var capFailedUpdateParcelAndFailedGetRefAddress = 0;
+    var capUpdateSuccess = 0;
     var queryResultsCount = 0; // note: sometimes we need to do more than one query...
     var myCaps = null;
     var emailBody = "<ol>";
@@ -173,6 +174,11 @@ function mainProcess()
                     }
                 }
             }
+            else
+            {
+                capUpdateSuccess++;
+                emailBody = emailBody + "<li>Successfully updated referenced parcel for " + altId + "!</li>"; // TEMP ADDED
+            }
             
             logDebug("--------------moving to next record--------------");
 
@@ -193,6 +199,7 @@ function mainProcess()
     logDebugAndEmail("Processed count:" + capCount);
 
     /* UNCOMMENT THE APPROPRIATE LINES BELOW TO BUILD THE ADMIN EMAIL SECTION FOR "COUNTS" */
+    logDebugAndEmail( "Successfully updated " + capUpdateSuccess + " records.")
     logDebugAndEmail("Skipped " + capFilterType + " due to record type mismatch - filter on key4");
     logDebugAndEmail("Skipped " + capFilterParcelExists + " due to no parcels existing on the record")
     logDebugAndEmail("Skipped " + capFailedUpdateParcelAndFailedGetAddress + " due to failure to get address information. (addresses.length = 0)");
