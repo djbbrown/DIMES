@@ -30,7 +30,7 @@ if(
 		|| (wfTask == "Application Intake" && wfStatus == "Completed")
 		)
 		// The following must be checked.
-		// Bingo Hall - No Status (No "Substantive Review Due" field)
+		// Bingo Hall - No Status (No "Substantive Review Due" field) - update 12/5/2016 - due date should be 45 days, not 60 including rec type below
 		// Livestock - No Status (No "Substantive Review Due" field)
 		// Special Event - No Status (No "Substantive Review Due" field)
 )
@@ -54,6 +54,7 @@ if(
 		|| appTypeArray[2]=="TeenDance"
 		|| appTypeArray[2]=="Liquor"
 		|| appTypeArray[2]=="ParkandSwap"
+		|| appTypeArray[2]=="BingoHall"
 	) {
 		editAppSpecific("Substantive Review Due", dateAdd(null,45));
 	}
