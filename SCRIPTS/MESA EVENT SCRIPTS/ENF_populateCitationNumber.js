@@ -63,6 +63,7 @@ if(matches(""+appTypeArray[1], "Environmental") && matches(""+appTypeArray[2], "
 		newRow["Violation Description"] = new asiTableValObj("Violation Description", thisRow["Violation Description"].fieldValue, "Y");
 		newRow["Violation Code"] = new asiTableValObj("Violation Code", thisRow["Violation Code"].fieldValue, "Y");
 		newRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", thisRow["Violation Ordinance"].fieldValue, "N");
+		newRow["Violation Detail"] = new asiTableValObj("Violation Detail", thisRow["Violation Detail"].fieldValue, "N");
 		newRow["Status"] = new asiTableValObj("Status", thisRow["Status"].fieldValue, "N");
 		newRow["Date Opened"] = new asiTableValObj("Date Opened", thisRow["Date Opened"].fieldValue, "N");
 		newRow["Date Closed"] = new asiTableValObj("Date Closed", thisRow["Date Closed"].fieldValue, "N");
