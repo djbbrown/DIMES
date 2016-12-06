@@ -12,7 +12,7 @@
 /*==================================================================*/
 
 if (
-	matches(wfTask,"License Application","Application Intake","Administrative Review","Administrative") && wfStatus == "Additional Info Received"
+	matches(wfTask,"License Application","Application Intake","Administrative Review") && wfStatus == "Additional Info Received"
 ){
 	var revDate = ""+getAppSpecific("Administrative Review Due",capId);
 	var newAdminRevDate = (matches(revDate,"","null","undefined")) ? new Date() : new Date(revDate);
