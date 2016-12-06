@@ -10,11 +10,12 @@
 *number of days between the current date (the date the info was received) and the date the info was first requested
 * by any of the reviewers (the earliest date the status was set to "Additional Info Requested" on any of the review tasks).
 // Script Run Event: WTUA: 	Licenses!General!*!Application
+// 12/6/2016 nalbert - removed task "Administrative Review" which was incorrectly applying date to field for Bingo Hall app on Addtl Info Received
 /*==================================================================*/
 
 
     	var subRevDate = getAppSpecific ("Substantive Review Due",capId);
-        possibleTasks = ["Administrative Review", "Building Safety Review", "Building Services Review", "Business Services Review",
+        possibleTasks = ["Building Safety Review", "Building Services Review", "Business Services Review",
                       "Collections Review", "Department of Sustainability Review", "Downtown Light Rail Review", "Fire Prevention Review",
                       "Fire Review", "Initial Supervisor Review", "License Administrator Review", "License Adminstrator Review", "License Review", 
                       "Parks and Recreation Review", "Planning-Zoning Review", "Police Department Alarm Review", "Police Investigator Review",
