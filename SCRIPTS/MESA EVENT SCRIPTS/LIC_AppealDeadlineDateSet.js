@@ -11,3 +11,9 @@ if (wfTask == "License Administrator Review" && wfStatus == "Denied") {
 	// set ASI field
 	editAppSpecific("Appeal Deadline", dateAdd(null, 10));
 }
+
+if (appMatch("Licenses/Liquor/Liquor/Application")){
+	if (wfTask == "City Clerk" && wfStatus == "Applicant Notified Denied"){
+		editAppSpecific("Appeal Deadline", dateAdd(null, 5));
+	}
+}
