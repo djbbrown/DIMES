@@ -11,7 +11,7 @@
 // Script Run Event: WTUA: 	Licenses!General!*!Application
 /*==================================================================*/
 
-if (matches(wfTask,"License Application","Application Intake","Administrative Review") && wfStatus == "Additional Info Received"){
+if (matches(wfTask,"License Application","Application Intake","Administrative Review","Administrative") && wfStatus == "Additional Info Received"){
 	var revDate = ""+getAppSpecific("Administrative Review Due",capId);
 	var newAdminRevDate = (matches(revDate,"","null","undefined")) ? new Date() : new Date(revDate);
 	var statList = ["Additional Info Requested","Additional Info Needed","Additional Information Needed"];
