@@ -3,10 +3,10 @@
 // Script Name: PLN_Applicant_Status_Change.js
 // Script Description: Send email to Applicant for record status changes   
 // Script Run Event: WTUA;Planning!Pre-Submittal!~!~
-// Testing Record: PMT16-00498, PRS16-00193, PMT16-00402
 // Version   |Date      |Engineer         |Details
 //  1.0      |08/31/16  |Steve Veloudos   |Initial Release  
 //  1.1      |09/15/16  |Steve Veloudos   |Adjusted Phone Incomplete Status  
+//  1.2      |12/06/16  |Steve Veloudos   |Added the workflow comments when app status is Incomplete 
 /*==================================================================*/
 
 try {
@@ -91,14 +91,19 @@ try {
             //Get the employee that put the record in Incomplete
             var taskActBy = getTaskActionBy("Application Acceptance");
             var iNameResult = aa.person.getUser(taskActBy);
+            
             //Get phone number
             if (iNameResult.getSuccess())
             {
             var iUserObj = iNameResult.getOutput();
             PlanningPhone = iUserObj.getPhoneNumber();
             }
+
+            //Get workflow comments
+            var comments = wfComment;
             
             addParameter(vEParams,"$$PLANNINGPHONE$$",PlanningPhone);
+            addParameter(vEParams,"$$COMMENTS$$",comments);
             
             //Email Applicant
             if(AppToEmail !="")
