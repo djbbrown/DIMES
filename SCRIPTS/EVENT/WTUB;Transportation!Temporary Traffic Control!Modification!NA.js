@@ -1,1 +1,1 @@
-include("TRA_TTC_After_Hours");
+//include("TRA_TTC_After_Hours");  With modified workflow this is no longer needed TRA_TTC_Approved will work in both record types.
