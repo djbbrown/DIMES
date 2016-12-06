@@ -1,5 +1,13 @@
 /*===================================================================
 // Script Number: TBD
+// Script Name:Remove Fees ACA
+//==================================================================*/
+if(publicUser){
+	removeAllFees(capId);
+}
+
+/*===================================================================
+// Script Number: TBD
 // Script Name: PLN_SubdivisionFees
 // Script Developer: Kevin Gurney
 // Script Agency: Accela
