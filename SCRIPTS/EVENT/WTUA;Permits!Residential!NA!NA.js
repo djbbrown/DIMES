@@ -14,5 +14,9 @@ include("PMT_SetPermitIssuedDate");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
 
+// workflow branch because first task already has a branch.
+if (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req"){
+	include("PMT_ResidentialBranchNoReview");
+}
 
 include("PMT_AssessTechFee"); // must be run last
