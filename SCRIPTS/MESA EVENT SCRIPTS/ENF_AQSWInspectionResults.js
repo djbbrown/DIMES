@@ -46,15 +46,10 @@ try {
                             var yr1   = parseInt(InspectionDate.substring(6,10));
                             var insResultsD = new Date(yr1, mon1-1, dt1);
                             futureDate = addDays(insResultsD, 83);
-                            
-                            //Get day of week
-                            var dayofweek = futureDate.getDay();
 
-                            //if day of week is Sunday, Friday or Saturday Set to next Mesa Working day
-                            if (dayofweek == 0 || dayofweek == 5 || dayofweek == 6)
-                            {
-                                futureDate = new Date(mesaWorkingDays(futureDate, 1));
-                            }
+                            //Add to next Mesa Working day
+                            futureDate = new Date(mesaWorkingDays(futureDate, 1));
+
                             //Get date difference
                             day = 1000*60*60*24;
                             diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
