@@ -5,11 +5,6 @@
 //include("PMT_ImpactFeeSingleResDetached");//disabled script and added GIS validation to 221
 include("PMT_Email_Workflow_Status_Change");
 include("PMT_Water_Clearance_Email");
-if ((wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
-	|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
-	) {
-	include("PMT_ImpactFeesSingleResidence");
-}
 include("PMT_SetPermitIssuedDate");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
@@ -18,5 +13,12 @@ include("PMT_SubmittalCycle");
 if (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req"){
 	include("PMT_ResidentialBranchNoReview");
 }
-
+// ---------------------------
+// This section of code must run after the above that taks care of moving the workflow forward.
+if ((wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+		|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		) {
+		include("PMT_ImpactFeesSingleResidence");
+	}
+//----------------------------
 include("PMT_AssessTechFee"); // must be run last

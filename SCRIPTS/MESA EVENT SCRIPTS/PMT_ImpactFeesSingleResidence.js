@@ -20,7 +20,7 @@
 // Notes: Added requirements from script 220 to check GIS on RDIF Detached Fees
 /*==================================================================*/
 try {
-	if (isTaskActive("Permit Issuance")) {
+	if (isTaskActive("Plans Coordination")) {
 		logDebug("Executing PMT_ImpactFeesSingleResidence.");
 		var classification = AInfo["Classification"];
 		var wmqGisTag = false;
@@ -74,8 +74,7 @@ try {
 				if (feeExists("RDIF210", "NEW", "INVOICED") && (!publicSafetyQty || feeQty("RDIF210") != publicSafetyQty)) voidRemoveFee("RDIF210");
 				if (feeExists("RDIF260", "NEW", "INVOICED") && (!stormWaterQty || feeQty("RDIF260") != stormWaterQty)) voidRemoveFee("RDIF260");
 				if (feeExists("RDIF310", "NEW", "INVOICED") && (!resDevQty || feeQty("RDIF310") != resDevQty)) voidRemoveFee("RDIF310");
-				
-				
+								
 				// assess the fee
 				if (!feeExists("RDIF160") && !!fireQty && fireQty > 0) addFee("RDIF160", "PMT_RDIF", "FINAL", fireQty, "N");
 				if (!feeExists("RDIF210") && !!publicSafetyQty && publicSafetyQty > 0) addFee("RDIF210", "PMT_RDIF", "FINAL", publicSafetyQty, "N");
