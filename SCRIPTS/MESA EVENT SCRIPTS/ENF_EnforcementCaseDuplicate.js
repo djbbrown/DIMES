@@ -13,6 +13,7 @@ try {
 
 	var capIds = capIdsGetByAddr();
 	var matchesENFCase=0;
+	var capIdOpen;
 	if (capIds && capIds.length > 1){
 		logDebug(capIds.length);
 		for (i in capIds){
@@ -23,12 +24,13 @@ try {
 					if (table[row]["Status"] == "Open"){
 						logDebug("Violation " + table[row]["Violation Description"] + " is open");
 						matchesENFCase++;
+						capIdOpen = capIds[i].getCustomID();
 					}
 				}
 			}
 		}
 	}
-	
+	//logDebug("capIdOpen = " + capIdOpen.getCustomID());
 	if (matchesENFCase > 0) {
 		// deactivate entire workflow
 		var tasksResult = aa.workflow.getTasks(capId);
@@ -58,7 +60,7 @@ try {
 				var address = addressResult.getOutput();
 				addParameter(vEParams,"$$Address$$",getAddressInALine(capId));
 			}
-			var searchUrl = "https://aca.supp.accela.com/mesa/Cap/GlobalSearchResults.aspx?QueryText=" + capId.getCustomID();
+			var searchUrl = "https://aca.supp.accela.com/mesa/Cap/GlobalSearchResults.aspx?QueryText=" + capIdOpen;
 			addParameter(vEParams, "$$URL of the active case$$", searchUrl);
 			sendNotification("", emailAddress, "", "Duplicate records", vEParams, null, capId);
 		}
