@@ -20,7 +20,7 @@
 // Notes: Added requirements from script 220 to check GIS on RDIF Detached Fees
 /*==================================================================*/
 try {
-	if (isTaskActive("Plans Coordination")) {
+	if (isTaskActive("Permit Issuance") || isTaskActive("Plans Coordination")) {
 		logDebug("Executing PMT_ImpactFeesSingleResidence.");
 		var classification = AInfo["Classification"];
 		var wmqGisTag = false;
