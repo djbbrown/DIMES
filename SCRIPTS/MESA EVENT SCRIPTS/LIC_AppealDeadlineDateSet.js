@@ -5,9 +5,10 @@
 // Script Agency: Accela
 // Script Description: See ASI field "Appeal Deadline"
 // Script Run Event: WTUA
+// nalbert 12/7/2016 - added task and status to capture OTB applications
 /*==================================================================*/
 
-if (wfTask == "License Administrator Review" && wfStatus == "Denied") {
+if (matches(wfTask, "License Administrator Review", "Licensing Supervisor") && matches(wfStatus, "Denied", "Recommend Denial")) {
 	// set ASI field
 	editAppSpecific("Appeal Deadline", dateAdd(null, 10));
 }
