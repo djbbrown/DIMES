@@ -9,7 +9,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |10/18/16  |Steve Veloudos   |Initial Release 
 //  2.0      |11/02/16  |Steve Veloudos   |Adjusted to be 86 calendar days not Mesa working days
-//  3.0      |12/07/16  |Steve Veloudos   |Changed to 83 days + next business day also get the Inspection date
+//  3.0      |12/07/16  |Steve Veloudos   |Changed to 83 days + next business day also get the Inspection date 
 /*==================================================================*/
 
 try {
@@ -45,7 +45,7 @@ try {
                             var dt1  = parseInt(InspectionDate.substring(3,5));
                             var yr1   = parseInt(InspectionDate.substring(6,10));
                             var insResultsD = new Date(yr1, mon1-1, dt1);
-                            futureDate = addDays(insResultsD, 83);
+                            futureDate = addDays(insResultsD, 84);
 
                             //Add to next Mesa Working day
                             futureDate = new Date(mesaWorkingDays(futureDate, 1));
