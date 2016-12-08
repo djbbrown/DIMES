@@ -12,6 +12,10 @@
 //			ASIUA;Permits!Residential!NA!NA
 //			ASA;Permits!Residential!Mobile Home!NA
 //			ASIUA;Permits!Residential!Mobile Home!NA
+// 
+// Update to fire on workflow:
+// Permit Issuance/Ready to Issue tracker 93/97/98
+// Exclude Master Plan
 /*==================================================================*/
 // showDebug = true;
 try {
