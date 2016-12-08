@@ -71,24 +71,7 @@ try {
              ContactName = tInfo[x]["firstName"] + " " + tInfo[x]["lastName"];
              }
           }
-        //Get Business Phone
-		/*var capContactResult = aa.people.getCapContactByCapID(capId);
-		if (capContactResult.getSuccess())
-        {
-			{
-			var capContactArray = capContactResult.getOutput();
-			}
-		}
-        if (capContactArray)
-		{
-		for (yy in capContactArray)
-			{
-                Phone = Phone + "Business: " + capContactArray[yy].getPeople().phone3;
-            }
-        }
-        */
-
-
+          
      //Get Description
      Description = workDescGet(capId);
      
