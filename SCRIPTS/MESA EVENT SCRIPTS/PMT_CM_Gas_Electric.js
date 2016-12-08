@@ -13,6 +13,7 @@
 //  1.0      |08/23/16  |Steve Veloudos   |Initial Release
 //  1.1      |08/29/16  |Steve Veloudos   |Adj Std Choices
 //  1.2      |11/30/16  |Steve Veloudos   |Adj for Mobile & Business phone numbers
+//  1.3      |12/08/16  |Steve Veloudos   |Added getMesaContactArray()
 /*==================================================================*/
 
 try {
@@ -49,7 +50,7 @@ try {
       }
 
       //Get the contact info
-      var tInfo = getContactArray();
+      var tInfo = getMesaContactArray();
       var rowCount = tInfo.length;
       var x = 0;
 
@@ -63,12 +64,15 @@ try {
                 {
                  Phone = "Mobile: " + tInfo[x]["phone2"] +" ";
                 }
-               
+                if(tInfo[x]["phone3"] != null)
+                {
+                 Phone = Phone + "Business: " + tInfo[x]["phone3"];
+                }
              ContactName = tInfo[x]["firstName"] + " " + tInfo[x]["lastName"];
              }
           }
         //Get Business Phone
-		var capContactResult = aa.people.getCapContactByCapID(capId);
+		/*var capContactResult = aa.people.getCapContactByCapID(capId);
 		if (capContactResult.getSuccess())
         {
 			{
@@ -82,6 +86,7 @@ try {
                 Phone = Phone + "Business: " + capContactArray[yy].getPeople().phone3;
             }
         }
+        */
 
 
      //Get Description
@@ -135,3 +140,72 @@ catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
     }
+
+    function getMesaContactArray()
+	{
+	// Returns an array of associative arrays with contact attributes.  Attributes are UPPER CASE
+	// optional capid
+	// added check for ApplicationSubmitAfter event since the contactsgroup array is only on pageflow,
+	// on ASA it should still be pulled normal way even though still partial cap
+	var thisCap = capId;
+	if (arguments.length == 1) thisCap = arguments[0];
+
+	var cArray = new Array();
+
+	if (arguments.length == 0 && !cap.isCompleteCap() && controlString != "ApplicationSubmitAfter") // we are in a page flow script so use the capModel to get contacts
+		{
+		capContactArray = cap.getContactsGroup().toArray() ;
+		}
+	else
+		{
+		var capContactResult = aa.people.getCapContactByCapID(thisCap);
+		if (capContactResult.getSuccess())
+			{
+			var capContactArray = capContactResult.getOutput();
+			}
+		}
+
+	if (capContactArray)
+		{
+		for (yy in capContactArray)
+			{
+			var aArray = new Array();
+			aArray["lastName"] = capContactArray[yy].getPeople().lastName;
+			aArray["refSeqNumber"] = capContactArray[yy].getCapContactModel().getRefContactNumber();
+			aArray["firstName"] = capContactArray[yy].getPeople().firstName;
+			aArray["middleName"] = capContactArray[yy].getPeople().middleName;
+			aArray["businessName"] = capContactArray[yy].getPeople().businessName;
+			aArray["contactSeqNumber"] =capContactArray[yy].getPeople().contactSeqNumber;
+			aArray["contactType"] =capContactArray[yy].getPeople().contactType;
+			aArray["relation"] = capContactArray[yy].getPeople().relation;
+			aArray["phone1"] = capContactArray[yy].getPeople().phone1;
+			aArray["phone2"] = capContactArray[yy].getPeople().phone2;
+            aArray["phone3"] = capContactArray[yy].getPeople().phone3;
+			aArray["email"] = capContactArray[yy].getPeople().email;
+			aArray["addressLine1"] = capContactArray[yy].getPeople().getCompactAddress().getAddressLine1();
+			aArray["addressLine2"] = capContactArray[yy].getPeople().getCompactAddress().getAddressLine2();
+			aArray["city"] = capContactArray[yy].getPeople().getCompactAddress().getCity();
+			aArray["state"] = capContactArray[yy].getPeople().getCompactAddress().getState();
+			aArray["zip"] = capContactArray[yy].getPeople().getCompactAddress().getZip();
+			aArray["fax"] = capContactArray[yy].getPeople().fax;
+			aArray["notes"] = capContactArray[yy].getPeople().notes;
+			aArray["country"] = capContactArray[yy].getPeople().getCompactAddress().getCountry();
+			aArray["fullName"] = capContactArray[yy].getPeople().fullName;
+			aArray["peopleModel"] = capContactArray[yy].getPeople();
+
+			var pa = new Array();
+
+			if (arguments.length == 0 && !cap.isCompleteCap()) {
+				var paR = capContactArray[yy].getPeople().getAttributes();
+				if (paR) pa = paR.toArray();
+				}
+			else
+				var pa = capContactArray[yy].getCapContactModel().getPeople().getAttributes().toArray();
+	                for (xx1 in pa)
+                   		aArray[pa[xx1].attributeName] = pa[xx1].attributeValue;
+
+        	cArray.push(aArray);
+			}
+		}
+	return cArray;
+	}
