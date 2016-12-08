@@ -14,7 +14,10 @@ var classOfWork = (AInfo["Classification Type"] != undefined) ? AInfo["Classific
 // Get the total number of inspections on the record.
 
 //Walls/Fences
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+) {
 	if (classOfWork && classOfWork =='Walls/Fences') {
 		if (feeExists("COM320", "NEW", "INVOICED")){voidRemoveFee("COM320");}
 		addFee("COM320", "PMT_COM","FINAL", 1, "N");
@@ -27,7 +30,10 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 // Construction Storage Unit
 // Get the Type of Work
 //type of work ASI different naming between Online and Residential records 
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+) {
 	if (classOfWork && classOfWork =='Portable Storage Containers') {
 		if (feeExists("COM570", "NEW", "INVOICED")){voidRemoveFee("COM570");}
 		addFee("COM570", "PMT_COM","FINAL", 1, "N");
@@ -54,7 +60,10 @@ if(
 
 //Script for pages fee COM030
 try {
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	) {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
@@ -96,7 +105,10 @@ catch (err) {
 }
 // Script for pages fees COM033
 try {
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	) {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
@@ -129,7 +141,10 @@ catch (err) {
 }
 // Script for pages fees COM036
 try {
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	) {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
@@ -253,7 +268,10 @@ if (
 try {
 	var tNumInsp = 0;
 	var valuationASI = 0;
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	) {
 		tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
 		// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
 		logDebug(tNumInsp);
@@ -283,7 +301,10 @@ catch (err) {
 }
 	
 // COM120
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+) {
 		if (feeExists("COM120", "NEW", "INVOICED")) voidRemoveFee("RES310");
 		updateFee("COM120", "PMT_COM","FINAL", 1, "N");
 }
