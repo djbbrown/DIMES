@@ -52,7 +52,12 @@ if (
 {
 	updateFee("PMT070", "PMT_ADD", "FINAL", 1, "N");
 } else if (
-		appMatch("Permits/Residential/Mobile Home/NA"))
+		appMatch("Permits/Residential/Mobile Home/NA")
+		&& (
+				(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+				|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+			)
+	)
 {
 	updateFee("MH210", "PMT_MOBILE HOME", "FINAL", 1, "N");
 }
