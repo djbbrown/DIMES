@@ -13,7 +13,9 @@
 var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
 
 //RES380 -- Charged at Stauts
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 	if (typeOfWork && typeOfWork =='Model Home Complex') {
 		if (feeExists("RES380", "NEW", "INVOICED")) voidRemoveFee("RES380");
 		addFee("RES380", "PMT_RES","FINAL", 1, "N");
@@ -23,7 +25,9 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 }
 // Pool
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"))
 	if (typeOfWork && typeOfWork =='Swimming Pool') {
 		if (feeExists("RES270", "NEW", "INVOICED")) voidRemoveFee("RES270");
 		addFee("RES270", "PMT_RES","FINAL", 1, "N");
@@ -33,7 +37,9 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 }
 // Spa
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 	if (typeOfWork && typeOfWork =='SPA') {
 		if (feeExists("RES280", "NEW", "INVOICED")) voidRemoveFee("RES280");
 		addFee("RES280", "PMT_RES","FINAL", 1, "N");
@@ -43,7 +49,9 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 }
 // Moving/Relocating
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 	if (typeOfWork && typeOfWork =='Moving/Relocating') {
 		if (feeExists("RES290", "NEW", "INVOICED")) voidRemoveFee("RES290");
 		addFee("RES290", "PMT_RES","FINAL", 1, "N");
@@ -53,7 +61,9 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 	}
 }
 // Walls/Fences
-if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 	if (typeOfWork && typeOfWork =='Walls/Fences') {
 		if (feeExists("RES310", "NEW", "INVOICED")) voidRemoveFee("RES310");
 		addFee("RES310", "PMT_RES","FINAL", 1, "N");
@@ -64,7 +74,9 @@ if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
 }
 // Script for pages fee RES030
 try {
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		if(
+			(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+			|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
@@ -105,7 +117,9 @@ catch (err) {
 }
 // Script for pages fees RES040
 try {
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		if(
+			(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+			|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
@@ -138,7 +152,9 @@ catch (err) {
 }
 // Script for pages fees RES050
 try {
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+		if(
+			(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+			|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 		// Count up the sheets from the ASIT
 		pRInfoTable = loadASITable("PLAN REVIEW INFORMATION");
 		var totalSheets = 0;
@@ -175,7 +191,9 @@ catch (err) {
 try {
 	var tNumInsp = 0;
 	var valuationASI = 0;
-	if(wfTask == "Plans Coordination" && wfStatus=="Ready to Issue") {
+	if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")) {
 		tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||AInfo["Estimated Number of Inspections"]||0);
 		// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
 		valuationASI += parseFloat(AInfo["Total Valuation"]||0); // This is on "Mobile Home" and "Residential/NA/NA"
