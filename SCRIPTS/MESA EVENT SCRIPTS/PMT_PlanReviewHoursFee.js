@@ -13,7 +13,10 @@
 /*==================================================================*/
 //if (matches(wfTask, "Planning Review","Building Review","Fire Review","Civil Engineering Review")) {
 	//if (matches(wfStatus, "Approved","Approved w/Comments","Revisions Required")) {
-if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") {
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+) {
 			// sum hours across tasks
 		totHours  = getWFHours(capId,"Planning Review","Building Review","Fire Review","Civil Engineering Review");
 		if (totHours > 0) {
