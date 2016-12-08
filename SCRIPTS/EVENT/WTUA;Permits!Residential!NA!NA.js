@@ -15,10 +15,11 @@ if (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not
 }
 // ---------------------------
 // This section of code must run after the above that taks care of moving the workflow forward.
-if ((wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
-		|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
-		) {
+if (
+	(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+) {
 		include("PMT_ImpactFeesSingleResidence");
-	}
+}
 //----------------------------
 include("PMT_AssessTechFee"); // must be run last
