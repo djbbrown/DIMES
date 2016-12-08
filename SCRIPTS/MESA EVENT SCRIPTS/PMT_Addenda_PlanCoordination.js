@@ -28,7 +28,10 @@ if ((wfTask == "Application Submittal" && wfStatus == "Accepted-Plan Review Not 
 //         	ASA;Permits!Addenda or Deferred!NA!NA
 ===================================================================*/
 
-if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+) {
 	if (AInfo["Expedite"] == "Expedite"){
 		updateFee("PMT010", "PMT_ADD", "FINAL", 1, "N");
 	}
@@ -45,7 +48,10 @@ if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 //         	ASA;Permits!Addenda or Deferred!NA!NA
 ===================================================================*/
 
-if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
+if(
+	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+) {
 	if (AInfo["Expedite"] == "Super Expedite"){
 		updateFee("PMT020", "PMT_ADD", "FINAL", 1, "N");
 	}
