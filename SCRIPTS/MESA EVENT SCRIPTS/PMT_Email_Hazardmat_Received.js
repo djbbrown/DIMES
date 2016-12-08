@@ -1,7 +1,8 @@
 /*===================================================================*/
 // Script Number: 227
 // Script Name: PMT_Email_Hazardmat_Received.js
-// Script Description: Send email when a document with a category of "Industrial PreTreatment Form" or "Hazardous Material Inventory Statement" is uploaded    
+// Script Description: Send email when a document with a category of "Industrial PreTreatment Form" or "Hazardous Material Inventory Statement" is uploaded. 
+// Possible all record status and along with other document types.   
 // Script Run Event: DUA
 // Script Parents:DUA;Permits/Commercial/NA/NA
 // Testing Record: PMT16-00498
@@ -9,6 +10,7 @@
 //  1.0      |08/31/16  |Steve Veloudos   |Initial Release 
 //  2.0      |09/28/16  |Steve Veloudos   |Adj to iterate through all docs
 //  3.0      |11/02/16  |Steve Veloudos   |Adj to get last doc uploaded only
+//  4.0      |12/08/16  |Steve Veloudos   |Adj for all documents and only get docs that match current date
 /*==================================================================*/
 
 try {
@@ -16,29 +18,50 @@ try {
       var ToEmail;
       var vEParams = aa.util.newHashtable();
       var DocFlag = 0;
-      var DocCategory;
+      var DocCatUC;
+      var DocUploadDate;
+      var d;
+      var d2;
+      var CurrentDate;
+      var StringUploadDate;
+
+      //Get current date
+      d = new Date();
+      d2 = jsDateToASIDate(d);
+      CurrentDate = String(d2);
+
+        //Retrieve documents
+        var docListResult = aa.document.getCapDocumentList(capId,currentUserID);
     
-    //Retrieve documents
-    var docListResult = aa.document.getCapDocumentList(capId,currentUserID);
-    
-    //Get the last document uploaded
-    if (docListResult.getSuccess()) 
+        //Iterate through the document list
+        if (docListResult.getSuccess()) 
         { 
-        docListArray = docListResult.getOutput()
-        var DocLast = docListArray.length;
-        var LastPos = DocLast -1
-        DocCategory = docListArray[LastPos].getDocCategory();
-        var DocLastCatUC = DocCategory.toUpperCase();
+            docListArray = docListResult.getOutput()
+            for(x in docListArray)
+            {
+            //get doc category and date uploaded
+            DocCatUC = docListArray[x].getDocCategory().toUpperCase();
+            DocUploadDate =  docListArray[x].getFileUpLoadDate();
         
-        //Test for Doc category
-        if (DocLastCatUC == "INDUSTRIAL PRETREATMENT FORM")
-            {
-                DocFlag = 1;
-            }
-            else if (DocLastCatUC == "HAZARDOUS MATERIALS INVENTORY STATEMENT")
-            {
-                DocFlag = 1;
-            }
+            //Convert to string date
+            StringUploadDate = String(DocUploadDate);
+
+            //Compare dates
+            if (CurrentDate == StringUploadDate)
+                {
+                //Test for Doc category
+                if (DocCatUC == "INDUSTRIAL PRETREATMENT FORM")
+                    {
+                        DocFlag = 1;
+                        break;
+                    }
+                    else if (DocCatUC == "HAZARDOUS MATERIALS INVENTORY STATEMENT")
+                    {
+                        DocFlag = 1;
+                        break;
+                    }
+                }
+            }  
         }
    
     //Add parms
