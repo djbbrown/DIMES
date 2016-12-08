@@ -25,6 +25,9 @@ try {
       var CurrentDate;
       var StringUploadDate;
       var DocCategory;
+      var tempDate;
+      var datePieces;
+      var theDate;
 
       //Get current date
       d = new Date();
@@ -45,11 +48,14 @@ try {
             DocCatUC = DocCategory.toUpperCase();
             DocUploadDate =  docListArray[x].getFileUpLoadDate();
         
-            //Convert to string date
+            //Convert to string date in correct format
             StringUploadDate = String(DocUploadDate);
+            tempDate = StringUploadDate.substring(0,10);
+            datePieces = tempDate.split('-');
+            theDate = datePieces[1] + "/" + datePieces[2] + "/" + datePieces[0];
 
             //Compare dates
-            if (CurrentDate == StringUploadDate)
+            if (CurrentDate == theDate)
                 {
                 //Test for Doc category
                 if (DocCatUC == "INDUSTRIAL PRETREATMENT FORM")
