@@ -19,8 +19,10 @@
 
 try
 {
-
-	if (wfTask == "Application Submittal" && wfStatus == "Ready To Issue") {
+	if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	) {
 		if (matches(getAppSpecific("Same Day Turn On - Gas"), "Y", "CHECKED")) {
 			if (feeExists("ONL080", "NEW")) { voidRemoveFee("ONL080"); }
 			addFee("ONL080", "PMT_ONL", "FINAL", 1, "N");
