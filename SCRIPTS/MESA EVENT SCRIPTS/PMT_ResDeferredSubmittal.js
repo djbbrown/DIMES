@@ -9,7 +9,10 @@
 //		WTUA;Permits!Residential!~!~         
 /*==================================================================*/
 try{
-	if(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
+	if(
+		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
+		|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	) {
 		// Going to add an ASIT column across an entire ASIT table.
 		var tmpTable;
 		tmpTable = loadASITable("DEFERRED SUBMITTAL INFORMATION");
@@ -20,7 +23,6 @@ try{
 			if (!isNaN(parseFloat(thisRow["Number of Deferred Submittals"].fieldValue)))
 				tempSum = tempSum + parseFloat(thisRow["Number of Deferred Submittals"].fieldValue);	
 		}
-	
 		// Now that the number of Deferred items has been established I can now
 		// go through the action of charging the fee.
 		if(tempSum == 0){
