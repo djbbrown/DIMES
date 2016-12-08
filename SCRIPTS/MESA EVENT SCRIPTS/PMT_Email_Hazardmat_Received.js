@@ -24,6 +24,7 @@ try {
       var d2;
       var CurrentDate;
       var StringUploadDate;
+      var DocCategory;
 
       //Get current date
       d = new Date();
@@ -39,8 +40,9 @@ try {
             docListArray = docListResult.getOutput()
             for(x in docListArray)
             {
-            //get doc category and date uploaded
-            DocCatUC = docListArray[x].getDocCategory().toUpperCase();
+            //Get doc category and date uploaded
+            DocCategory = docListArray[x].getDocCategory();
+            DocCatUC = DocCategory.toUpperCase();
             DocUploadDate =  docListArray[x].getFileUpLoadDate();
         
             //Convert to string date
