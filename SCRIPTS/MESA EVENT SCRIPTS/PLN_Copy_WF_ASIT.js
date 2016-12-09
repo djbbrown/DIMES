@@ -20,7 +20,7 @@
 
 try {
 	if (matches(wfTask, "Hearing(s)", "Hearing", "Hearings")) {
-		if (!matches(wfStatus, "Note", "Hearing Scheduled", "Hearing Complete") {
+		if (!matches(wfStatus, "Note", "Hearing Scheduled", "Hearing Complete")) {
 			var asitRow = new Array();
 			asitRow["Date"] = wfDateMMDDYYYY;
 			asitRow["Decision"] = wfStatus;
