@@ -14,7 +14,7 @@
 //
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/21/16  |Steve Veloudos   |Initial Release
-//  1.1      |12/08/1   |Jody Bearden     |Redid to current specs - used environment variables, removed Java API calls
+//  1.1      |12/08/16  |Jody Bearden     |Redid to current specs - used environment variables, removed Java API calls
 ==================================================================*/
 /* Test Record: ZON16-00249 */
 
