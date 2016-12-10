@@ -11,7 +11,7 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 		
 		// Update workflow task for document to be reviewed
 
-		if (documentModelArray.get(index).getDocCategory()=="Construction Plans") 
+		if (documentModelArray.get(index).getDocCategory()=="Construction Documents") 
 		{
 			updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
 			//potentially send email
