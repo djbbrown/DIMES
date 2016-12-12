@@ -16,15 +16,15 @@ Versions:
 
 // Script Parents:
 
-// ASA;Permits!Demolition!NA!NA :  Zoning, Land Use
+// ASA;Permits!Demolition!NA!NA : Zoning, Land Use, Flood Zone
 // ASA;Permits!Residential!Mobile Home!NA : Flood Zone
 // ASA;Permits!Sign!NA!NA : Flood Zone
 // ASA;Permits!Commercial!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 // ASA;Permits!Residential!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 // ASA;Permits!Online!NA!NA : Flood Zone
 
-// ASIUA;Permits!Demolition!NA!NA
-// ASIUA;Permits!Residential!Mobile Home!NA :  Flood Zone, Base Flood Elevation
+// ASIUA;Permits!Demolition!NA!NA: Zoning, Land Use, Flood Zone
+// ASIUA;Permits!Residential!Mobile Home!NA : Flood Zone
 // ASIUA;Permits!Sign!NA!NA : Flood Zone
 // ASIUA;Permits!Commercial!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
 // ASIUA;Permits!Residential!NA!NA : Flood Zone, also make read-only; Zoning; Land Use; AZ Water; Storm Water Exempt
@@ -96,6 +96,7 @@ try
 
     /* SET VALUES */
 
+    // Zoning
     if ( zoning != false ) { 
         if ( 
             appMatch("Permits/Demolition/NA/NA") ||
@@ -107,6 +108,8 @@ try
             editAppSpecific("Zoning", zoning); 
         }
     }
+
+    // Land Use
     if ( landUse != false ) { 
         if ( 
             appMatch("Permits/Demolition/NA/NA") ||
@@ -118,7 +121,9 @@ try
             editAppSpecific("Land Use", landUse); 
         }
     }
-    if ( // Flood Zone
+
+    // Flood Zone
+    if ( 
         appMatch("Permits/Residential/Mobile Home/NA") ||
         appMatch("Permits/Sign/NA/NA") || 
         appMatch("Permits/Commercial/NA/NA") ||
@@ -130,7 +135,9 @@ try
         logDebug("Updating Flood Zone to '" + floodZone + "'");
         editAppSpecific("Flood Zone", floodZone);
     }
-    if ( // AZ Water
+
+    // AZ Water
+    if ( 
         appMatch("Permits/Commercial/NA/NA") ||
         appMatch("Permits/Residential/NA/NA")
     )
@@ -141,8 +148,10 @@ try
         }
         logDebug("Updating AZ Water to '" + azValue + "'");
         editAppSpecific("AZ Water", azValue);
-    }    
-    if ( // Storm Water Exempt
+    }
+
+    // Storm Water Exempt
+    if ( 
         appMatch("Permits/Commercial/NA/NA") ||
         appMatch("Permits/Residential/NA/NA")
     )
