@@ -53,7 +53,7 @@ try {
            //scheduleInspection(inspType, diff);
            	var inspUserId = inspObj.getInspector();
 	          logDebug("inspector: " + inspUserId);
-           scheduleInspectDate(inspType,futureDate,inspUserId);
+           scheduleInspectDate(inspType,futureDate);
           }
           //Inspection Failed
           else
