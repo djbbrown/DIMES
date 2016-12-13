@@ -14,7 +14,6 @@
 try
 {
   loadASITables();
-  logDebug(AInfo['Parent TTC Permit #'].toUpperCase());
   var tInfo = DURATIONINFORMATION;
   var rowCount = DURATIONINFORMATION.length;
   var durationDays = 0;
@@ -51,6 +50,7 @@ try
     if(appTypeString == 'Transportation/Temporary Traffic Control/Modification/NA'){
 		// get that record's capId so that the parent can be updated.
 		var uCapId = aa.cap.getCapID(AInfo['Parent TTC Permit #'].toUpperCase()).getOutput();
+		//logDebug(AInfo['Parent TTC Permit #'].toUpperCase());
 	}
 	else {
 		var uCapId = capId
