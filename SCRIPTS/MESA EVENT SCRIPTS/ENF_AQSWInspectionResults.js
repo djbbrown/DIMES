@@ -31,11 +31,7 @@ try {
           if(inspResult  == "Pass")
           {
             //Get the futureDate
-            var mdy =  inspResultKDate.split('/');
-           // var mon1   = parseInt(InspectionDate.substring(0,2));
-           // var dt1  = parseInt(InspectionDate.substring(3,5));
-           // var yr1   = parseInt(InspectionDate.substring(6,10));
-            
+            var mdy =  inspResultKDate.split('/');            
             var mon1 = parseInt(mdy[0]);
             var dt1 = parseInt(mdy[1]);
             var yr1 = parseInt(mdy[2]);
@@ -48,11 +44,9 @@ try {
             //Get date difference
             day = 1000*60*60*24;
             diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
-            var inspId = getLastInspector(inspType);
-
-           scheduleInspectDate(inspType, diff, inspId);
            
-           //scheduleInspection(inspType, diff);
+           //Schedule Inspection
+           scheduleInspection(inspType, diff);
           }
           //Inspection Failed
           else
@@ -67,12 +61,7 @@ try {
             day = 1000*60*60*24;
             diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
             
-            //Get Inspector Object & Schedule Inspection
-            //var inspectorObject = getInspectorObject();
-                //if (inspectorObject != false)
-               // {
-                   // scheduleInspectionDateWithInspectorObject(inspType, diff, inspectorObject);
-                //}
+            //Schedule Inspection
             scheduleInspection(inspType, diff);
           }
       }
