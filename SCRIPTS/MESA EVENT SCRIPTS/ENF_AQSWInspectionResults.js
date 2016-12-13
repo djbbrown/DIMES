@@ -38,7 +38,7 @@ try {
             var insResultsD = new Date(yr1, mon1-1, dt1);
             logDebug("insResultsD = " + insResultsD);
             
-            futureDate = addDays(insResultsD, 84);
+            futureDate = addDays(insResultsD, 83);
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
@@ -46,11 +46,14 @@ try {
             logDebug("futureDate2 = " + futureDate);
             
             //Get date difference
-            day = 1000*60*60*24;
-            diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
-           logDebug("diff = " + diff);
+            //day = 1000*60*60*24;
+            //diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
+           //logDebug("diff = " + diff);
            //Schedule Inspection
-           scheduleInspection(inspType, diff);
+           //scheduleInspection(inspType, diff);
+           	var inspUserId = inspObj.getInspector();
+	          logDebug("inspector: " + inspUserId);
+           scheduleInspectDate(inspType,futureDate,inspUserId);
           }
           //Inspection Failed
           else
