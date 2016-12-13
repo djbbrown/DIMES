@@ -1,7 +1,7 @@
 /*===================================================================
 // Script Number: 361
 // Script Name: ENF_AQSWInspectionResults.js
-// Script Description: When an air quality inspection and a storm water inspection is resulted as FAIL a new respective inspection should be created. 
+// Script Description: When an air quality inspection and a storm water inspection is resulted as FAIL a new respective inspection should be created 3 business days in the future. 
 // When an AQ or SW inspection is resulted as PASS a new respective inspection should be created and scheduled for 84 days from the date of the last inspection. 
 // Script Run Event: ISRA
 // Testing Cap: COB16-00010
@@ -10,6 +10,7 @@
 //  1.0      |10/18/16  |Steve Veloudos   |Initial Release 
 //  2.0      |11/02/16  |Steve Veloudos   |Adjusted to be 86 calendar days not Mesa working days
 //  3.0      |12/07/16  |Steve Veloudos   |Changed to 83 days + next business day also get the Inspection date 
+//  4.0      |12/13/16  |Steve Veloudos   |Adj to get the correct Inspection date & pass the Inspector Object when scheduling new inspection
 /*==================================================================*/
 
 try {
@@ -18,64 +19,61 @@ try {
      var day
      var diff
 
-      //Get the Inspection results
-      var getInspectionsResult = aa.inspection.getInspections(capId);
-
-      //Test if script can get an inspection
-      if (getInspectionsResult.getSuccess()) 
+     //Check the Inspection Type
+      if(inspType == "Storm Water Inspection" || inspType == "Air Quality Inspection")
       {
-	    var inspectionScriptModels = getInspectionsResult.getOutput();
-	    var inspectionScriptModel = null;
-        
-        //Iterate through the inspections & look for Pass
-	    for (inspectionScriptModelIndex in inspectionScriptModels)
-           {
-                inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                if(inspectionScriptModel.getInspectionType() == "Storm Water Inspection" || inspectionScriptModel.getInspectionType() == "Air Quality Inspection")
-                    {
-                        if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "PASS")
-                        {
-                        //Get the Inspection Date
-                            var thedate = inspectionScriptModel.getInspectionStatusDate();
-                            var InDate =   new Date(thedate.getMonth() + "/" + thedate.getDayOfMonth() + "/" + thedate.getYear());
-                            InspectionDate = jsDateToASIDate(InDate);
+          //Get current inspection object
+          var inspObj = aa.inspection.getInspection(capId,inspId).getOutput(); 
+          var inspResultKDate = inspObj.getInspectionDate().getMonth() + "/" + inspObj.getInspectionDate().getDayOfMonth() + "/" + inspObj.getInspectionDate().getYear();
+          logDebug("inspResultKDate = " + inspResultKDate);
+          
+          //Check if Inspection passed
+          if(inspResult  == "Pass")
+          {
+            InspectionDate = jsDateToASIDate(inspResultKDate);
 
-                            //Get the futureDate
-                            var mon1   = parseInt(InspectionDate.substring(0,2));
-                            var dt1  = parseInt(InspectionDate.substring(3,5));
-                            var yr1   = parseInt(InspectionDate.substring(6,10));
-                            var insResultsD = new Date(yr1, mon1-1, dt1);
-                            futureDate = addDays(insResultsD, 84);
+            //Get the futureDate
+            var mon1   = parseInt(InspectionDate.substring(0,2));
+            var dt1  = parseInt(InspectionDate.substring(3,5));
+            var yr1   = parseInt(InspectionDate.substring(6,10));
+            var insResultsD = new Date(yr1, mon1-1, dt1);
+            futureDate = addDays(insResultsD, 84);
 
-                            //Add to next Mesa Working day
-                            futureDate = new Date(mesaWorkingDays(futureDate, 1));
+            //Add to next Mesa Working day
+            futureDate = new Date(mesaWorkingDays(futureDate, 1));
 
-                            //Get date difference
-                            day = 1000*60*60*24;
-                            diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
-                         
-                            //Schedule Inspection
-                            scheduleInspection(inspType, diff);
-                            break;
-                        }
-                        else if(inspectionScriptModel.getInspectionStatus().toUpperCase() == "Fail")
-                        {
-                        todayDate = new Date();
-
-                        //get the futureDate
-                        futureDate = new Date(mesaWorkingDays(todayDate, 4));
-                        
-                        //Get date difference
-                        day = 1000*60*60*24;
-                        diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
-                        
-                        //Schedule Air Quality Inspection
-                        scheduleInspection(inspType, diff); 
-                         break;
-                        }
-                    }
+            //Get date difference
+            day = 1000*60*60*24;
+            diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
+            
+            //Get Inspector Object & Schedule Inspection
+            var inspectorObject = getInspectorObject();
+                if (inspectorObject != false)
+                {
+                    scheduleInspectionDateWithInspectorObject(inspType, diff, inspectorObject);
                 }
-            }
+          }
+          //Inspection Failed
+          else
+          {
+            //Get todays date
+            todayDate = new Date();
+
+            //Get the futureDate
+            futureDate = new Date(mesaWorkingDays(todayDate, 4));
+            
+            //Get date difference
+            day = 1000*60*60*24;
+            diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
+            
+            //Get Inspector Object & Schedule Inspection
+            var inspectorObject = getInspectorObject();
+                if (inspectorObject != false)
+                {
+                    scheduleInspectionDateWithInspectorObject(inspType, diff, inspectorObject);
+                }
+          }
+      }
     }
 catch (err)
     {
