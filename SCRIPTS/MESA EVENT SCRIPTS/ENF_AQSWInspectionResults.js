@@ -43,7 +43,8 @@ try {
             
             //Add to next Mesa Working day
             futureDate = new Date(mesaWorkingDays(futureDate, 1));
-            logDebug("futureDate2 = " + futureDate);
+            var futureDate2 = jsDateToMMDDYYYY(futureDate);
+            logDebug("futureDate2 = " + futureDate2);
             
             //Get date difference
             //day = 1000*60*60*24;
@@ -51,9 +52,12 @@ try {
            //logDebug("diff = " + diff);
            //Schedule Inspection
            //scheduleInspection(inspType, diff);
-           	var inspUserId = inspObj.getInspector();
-	          logDebug("inspector: " + inspUserId);
-           scheduleInspectDate(inspType,futureDate);
+           var CoObject = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
+           var CoEmail = CoObject.getEmail();
+
+	          logDebug("inspector: " + CoEmail);
+            scheduleInspectionDateWithInspector(inspType,futureDate2,"Sveloud");
+           //scheduleInspectDate(inspType,futureDate2);
           }
           //Inspection Failed
           else
