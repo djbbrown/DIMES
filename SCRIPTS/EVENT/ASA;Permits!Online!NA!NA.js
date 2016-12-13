@@ -1,8 +1,15 @@
+
 include("PMT_FloodControlPermit");
 include("PMT_Parcel_51");
 include("PMT_CM_Gas_Electric");
 include("PMT_OnlineCommercialPropertyType"); // Script 326
 include("PMT_PopulateGasServiceAndElectricService"); // Script 347
+
+//if online user remove all fees first so not to duplicate fees
+if(publicUser){
+	removeAllFees(capId);
+}
+
 include("PMT_ONLFee030"); // Fee scripting 030
 include("PMT_ONLFee060"); // Fee scripting 060
 include("PMT_ONLFee010"); // Fee scripting 010
