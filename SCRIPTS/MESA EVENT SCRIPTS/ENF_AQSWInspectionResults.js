@@ -38,7 +38,7 @@ try {
             var insResultsD = new Date(yr1, mon1-1, dt1);
             logDebug("insResultsD = " + insResultsD);
             
-            futureDate = addDays(insResultsD, 83);
+            futureDate = addDays(insResultsD, 84);
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
@@ -46,18 +46,12 @@ try {
             var futureDate2 = jsDateToMMDDYYYY(futureDate);
             logDebug("futureDate2 = " + futureDate2);
             
-            //Get date difference
-            //day = 1000*60*60*24;
-            //diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
-           //logDebug("diff = " + diff);
-           //Schedule Inspection
-           //scheduleInspection(inspType, diff);
-           var CoObject = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
-           var CoEmail = CoObject.getEmail();
+            //Get Inspector
+            var inspectorObject = getInspectorObject();
 
 	          logDebug("inspector: " + CoEmail);
-            scheduleInspectionDateWithInspector(inspType,futureDate2,"Sveloud");
-           //scheduleInspectDate(inspType,futureDate2);
+            scheduleInspectionDateWithInspector(inspType,futureDate2,inspectorObject);
+
           }
           //Inspection Failed
           else
@@ -69,11 +63,16 @@ try {
             futureDate = new Date(mesaWorkingDays(todayDate, 4));
             
             //Get date difference
-            day = 1000*60*60*24;
-            diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
+            //day = 1000*60*60*24;
+            //diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
             
             //Schedule Inspection
-            scheduleInspection(inspType, diff);
+            //scheduleInspection(inspType, diff);
+            //Get Inspector
+            var inspectorObject = getInspectorObject();
+
+	          logDebug("inspector: " + CoEmail);
+            scheduleInspectionDateWithInspector(inspType,ffutureDate,inspectorObject);
           }
       }
     }
