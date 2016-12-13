@@ -36,15 +36,19 @@ try {
             var dt1 = parseInt(mdy[1]);
             var yr1 = parseInt(mdy[2]);
             var insResultsD = new Date(yr1, mon1-1, dt1);
+            logDebug("insResultsD = " + insResultsD);
+            
             futureDate = addDays(insResultsD, 84);
-
+            logDebug("futureDate1 = " + futureDate);
+            
             //Add to next Mesa Working day
             futureDate = new Date(mesaWorkingDays(futureDate, 1));
-
+            logDebug("futureDate2 = " + futureDate);
+            
             //Get date difference
             day = 1000*60*60*24;
             diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
-           
+           logDebug("diff = " + diff);
            //Schedule Inspection
            scheduleInspection(inspType, diff);
           }
