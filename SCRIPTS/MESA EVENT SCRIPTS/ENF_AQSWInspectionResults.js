@@ -30,12 +30,15 @@ try {
           //Check if Inspection passed
           if(inspResult  == "Pass")
           {
-            InspectionDate = inspResultKDate;
-
             //Get the futureDate
-            var mon1   = parseInt(InspectionDate.substring(0,2));
-            var dt1  = parseInt(InspectionDate.substring(3,5));
-            var yr1   = parseInt(InspectionDate.substring(6,10));
+            var mdy =  inspResultKDate.split('/');
+           // var mon1   = parseInt(InspectionDate.substring(0,2));
+           // var dt1  = parseInt(InspectionDate.substring(3,5));
+           // var yr1   = parseInt(InspectionDate.substring(6,10));
+            
+            var mon1 = parseInt(mdy[0]);
+            var dt1 = parseInt(mdy[1]);
+            var yr1 = parseInt(mdy[2]);
             var insResultsD = new Date(yr1, mon1-1, dt1);
             futureDate = addDays(insResultsD, 84);
 
