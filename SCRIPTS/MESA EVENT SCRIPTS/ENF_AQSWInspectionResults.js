@@ -48,13 +48,11 @@ try {
             //Get date difference
             day = 1000*60*60*24;
             diff = Math.ceil((futureDate.getTime() - insResultsD.getTime())/(day));
-            
-            //Get Inspector Object & Schedule Inspection
-            var inspectorObject = getInspectorObject();
-                if (inspectorObject != false)
-                {
-                    scheduleInspectionDateWithInspectorObject(inspType, diff, inspectorObject);
-                }
+            var inspId = getLastInspector(inspType);
+
+           scheduleInspectDate(inspType, diff, inspId);
+           
+           //scheduleInspection(inspType, diff);
           }
           //Inspection Failed
           else
@@ -70,11 +68,12 @@ try {
             diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
             
             //Get Inspector Object & Schedule Inspection
-            var inspectorObject = getInspectorObject();
-                if (inspectorObject != false)
-                {
-                    scheduleInspectionDateWithInspectorObject(inspType, diff, inspectorObject);
-                }
+            //var inspectorObject = getInspectorObject();
+                //if (inspectorObject != false)
+               // {
+                   // scheduleInspectionDateWithInspectorObject(inspType, diff, inspectorObject);
+                //}
+            scheduleInspection(inspType, diff);
           }
       }
     }
