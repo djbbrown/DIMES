@@ -30,7 +30,7 @@ try {
           //Check if Inspection passed
           if(inspResult  == "Pass")
           {
-            InspectionDate = jsDateToASIDate(inspResultKDate);
+            InspectionDate = inspResultKDate;
 
             //Get the futureDate
             var mon1   = parseInt(InspectionDate.substring(0,2));
