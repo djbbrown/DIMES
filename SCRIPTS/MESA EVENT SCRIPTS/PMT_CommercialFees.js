@@ -93,7 +93,9 @@ try {
 		if (feeExists("COM030", "NEW", "INVOICED")) {
 			voidRemoveFee("COM030");
 		}
-		addFee("COM030", "PMT_COM","FINAL", feeLessDep, "N");
+		if(feeLessDep > 0) {
+			addFee("COM030", "PMT_COM","FINAL", feeLessDep, "N");
+		}
 		
 		if(!totalSheets > 0 && feeExists("COM030", "NEW", "INVOICED")){
 			voidRemoveFee("COM030");
