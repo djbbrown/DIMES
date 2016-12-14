@@ -43,7 +43,7 @@ try {
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
-            MesaDate = new Date(mesaWorkingDays(futureDate, 1));
+            MesaDate = new Date(mesaWorkingDays(futureDate, 2));
             var futureDate2 = jsDateToMMDDYYYY(MesaDate);
             logDebug("futureDate2 = " + futureDate2);
             
@@ -61,7 +61,7 @@ try {
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
-            MesaDate = new Date(mesaWorkingDays(futureDate, 1));
+            MesaDate = new Date(mesaWorkingDays(futureDate, 2));
             var futureDate2 = jsDateToMMDDYYYY(MesaDate);
             logDebug("futureDate2 = " + futureDate2);
             
