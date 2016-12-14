@@ -15,7 +15,7 @@
 
 try {
      var futureDate
-     var todayDate
+     var MesaDate
      var day
      var diff
 
@@ -43,8 +43,8 @@ try {
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
-            futureDate = new Date(mesaWorkingDays(futureDate, 1));
-            var futureDate2 = jsDateToMMDDYYYY(futureDate);
+            MesaDate = new Date(mesaWorkingDays(futureDate, 1));
+            var futureDate2 = jsDateToMMDDYYYY(MesaDate);
             logDebug("futureDate2 = " + futureDate2);
             
             //Get Inspector & schedule new inspection
@@ -61,8 +61,8 @@ try {
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
-            futureDate = new Date(mesaWorkingDays(futureDate, 1));
-            var futureDate2 = jsDateToMMDDYYYY(futureDate);
+            MesaDate = new Date(mesaWorkingDays(futureDate, 1));
+            var futureDate2 = jsDateToMMDDYYYY(MesaDate);
             logDebug("futureDate2 = " + futureDate2);
             
             //Get Inspector & schedule new inspection
