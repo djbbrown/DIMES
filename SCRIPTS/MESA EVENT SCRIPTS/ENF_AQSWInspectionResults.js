@@ -10,7 +10,7 @@
 //  1.0      |10/18/16  |Steve Veloudos   |Initial Release 
 //  2.0      |11/02/16  |Steve Veloudos   |Adjusted to be 86 calendar days not Mesa working days
 //  3.0      |12/07/16  |Steve Veloudos   |Changed to 83 days + next business day also get the Inspection date 
-//  4.0      |12/13/16  |Steve Veloudos   |Adj to get the correct Inspection date & pass the Inspector Object when scheduling new inspection
+//  4.0      |12/14/16  |Steve Veloudos   |Adj to get the correct Inspection date & pass the Inspector when scheduling new inspection
 /*==================================================================*/
 
 try {
@@ -27,17 +27,18 @@ try {
           var inspResultKDate = inspObj.getInspectionDate().getMonth() + "/" + inspObj.getInspectionDate().getDayOfMonth() + "/" + inspObj.getInspectionDate().getYear();
           logDebug("inspResultKDate = " + inspResultKDate);
           
+          //Split date & create new date variable
+          var mdy =  inspResultKDate.split('/');            
+          var mon1 = parseInt(mdy[0]);
+          var dt1 = parseInt(mdy[1]);
+          var yr1 = parseInt(mdy[2]);
+          var insResultsD = new Date(yr1, mon1-1, dt1);
+          logDebug("insResultsD = " + insResultsD);
+
           //Check if Inspection passed
           if(inspResult  == "Pass")
           {
-            //Get the futureDate
-            var mdy =  inspResultKDate.split('/');            
-            var mon1 = parseInt(mdy[0]);
-            var dt1 = parseInt(mdy[1]);
-            var yr1 = parseInt(mdy[2]);
-            var insResultsD = new Date(yr1, mon1-1, dt1);
-            logDebug("insResultsD = " + insResultsD);
-            
+            //Get the futureDate  
             futureDate = addDays(insResultsD, 84);
             logDebug("futureDate1 = " + futureDate);
             
@@ -46,33 +47,28 @@ try {
             var futureDate2 = jsDateToMMDDYYYY(futureDate);
             logDebug("futureDate2 = " + futureDate2);
             
-            //Get Inspector
-            var inspectorObject = getInspectorObject();
-
-	          logDebug("inspector: " + CoEmail);
-            scheduleInspectionDateWithInspector(inspType,futureDate2,inspectorObject);
+            //Get Inspector & schedule new inspection
+            var inspector = getLastInspector(inspType);
+	          logDebug("inspector: " + inspector);
+            scheduleInspectionDateWithInspector(inspType,futureDate2,inspector);
 
           }
           //Inspection Failed
           else
           {
-            //Get todays date
-            todayDate = new Date();
-
-            //Get the futureDate
-            futureDate = new Date(mesaWorkingDays(todayDate, 4));
+            //Get the futureDate  
+            futureDate = addDays(insResultsD, 4);
+            logDebug("futureDate1 = " + futureDate);
             
-            //Get date difference
-            //day = 1000*60*60*24;
-            //diff = Math.ceil((futureDate.getTime() - todayDate.getTime())/(day));
+            //Add to next Mesa Working day
+            futureDate = new Date(mesaWorkingDays(futureDate, 1));
+            var futureDate2 = jsDateToMMDDYYYY(futureDate);
+            logDebug("futureDate2 = " + futureDate2);
             
-            //Schedule Inspection
-            //scheduleInspection(inspType, diff);
-            //Get Inspector
-            var inspectorObject = getInspectorObject();
-
-	          logDebug("inspector: " + CoEmail);
-            scheduleInspectionDateWithInspector(inspType,ffutureDate,inspectorObject);
+            //Get Inspector & schedule new inspection
+            var inspector = getLastInspector(inspType);
+	          logDebug("inspector: " + inspector);
+            scheduleInspectionDateWithInspector(inspType,futureDate2,inspector);
           }
       }
     }
