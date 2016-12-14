@@ -39,7 +39,7 @@ try {
           if(inspResult  == "Pass")
           {
             //Get the futureDate  
-            futureDate = addDays(insResultsD, 84);
+            futureDate = addDays(insResultsD, 83);
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
@@ -57,7 +57,7 @@ try {
           else
           {
             //Get the futureDate  
-            futureDate = addDays(insResultsD, 4);
+            futureDate = addDays(insResultsD, 3);
             logDebug("futureDate1 = " + futureDate);
             
             //Add to next Mesa Working day
