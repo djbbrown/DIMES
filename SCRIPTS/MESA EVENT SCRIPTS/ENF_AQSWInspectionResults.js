@@ -56,12 +56,8 @@ try {
           //Inspection Failed
           else
           {
-            //Get the futureDate  
-            futureDate = addDays(insResultsD, 3);
-            logDebug("futureDate1 = " + futureDate);
-            
-            //Add to next Mesa Working day
-            MesaDate = new Date(mesaWorkingDays(futureDate, 2));
+            //Add 3 Mesa Working day
+            MesaDate = new Date(mesaWorkingDays(insResultsD, 4));
             var futureDate2 = jsDateToMMDDYYYY(MesaDate);
             logDebug("futureDate2 = " + futureDate2);
             
