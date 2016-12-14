@@ -11,6 +11,7 @@
 //  2.0      |09/28/16  |Steve Veloudos   |Adj to iterate through all docs
 //  3.0      |11/02/16  |Steve Veloudos   |Adj to get last doc uploaded only
 //  4.0      |12/08/16  |Steve Veloudos   |Adj for all documents and only get docs that match current date
+//  5.0      |12/14/16  |Steve Veloudos   |Adj to allow multipule emails for each document
 /*==================================================================*/
 
 try {
@@ -60,28 +61,30 @@ try {
                 //Test for Doc category
                 if (DocCatUC == "INDUSTRIAL PRETREATMENT FORM")
                     {
-                        DocFlag = 1;
-                        break;
+                        //Add parms
+                        addParameter(vEParams,"$$RECORDID$$",capIDString);
+                        addParameter(vEParams,"$$DocCategory$$",DocCategory);
+                        
+                        //Send Email if correct doc category
+                        ToEmail = lookup("EMAIL_RECIPIENTS","Industrial_Pretreatment_Supervisor");
+                        sendNotification(FromEmail, ToEmail, "", "PMT_DOC_UPLOAD", vEParams, null, capId);                    
                     }
                     else if (DocCatUC == "HAZARDOUS MATERIALS INVENTORY STATEMENT")
                     {
-                        DocFlag = 1;
-                        break;
+                        //Add parms
+                        addParameter(vEParams,"$$RECORDID$$",capIDString);
+                        addParameter(vEParams,"$$DocCategory$$",DocCategory);
+                        
+                        //Send Email if correct doc category
+                        ToEmail = lookup("EMAIL_RECIPIENTS","Industrial_Pretreatment_Supervisor");
+                        sendNotification(FromEmail, ToEmail, "", "PMT_DOC_UPLOAD", vEParams, null, capId);
+                        
                     }
                 }
             }  
         }
    
-    //Add parms
-    addParameter(vEParams,"$$RECORDID$$",capIDString);
-    addParameter(vEParams,"$$DocCategory$$",DocCategory);
-      
-    //Send Email if correct doc category
-    if(DocFlag == 1)
-      {
-      ToEmail = lookup("EMAIL_RECIPIENTS","Industrial_Pretreatment_Supervisor");
-      sendNotification(FromEmail, ToEmail, "", "PMT_DOC_UPLOAD", vEParams, null, capId);
-      }
+
     }
 catch (err)
     {
