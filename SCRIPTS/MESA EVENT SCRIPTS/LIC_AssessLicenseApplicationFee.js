@@ -18,6 +18,7 @@
 //		** My Question is what happens if they forgot or need to choose another Class?
 //		** I think that this may be a good thing to look into.
 //		ASIUA:Licenses!General!BingoHall!Application
+// 12/15/2016 nalbert - adding to ASA:Licenses/General/SpecialEvent/Application
 /*==================================================================*/
 
 // Get the ASI Field Value
@@ -47,3 +48,19 @@ if (use == "Multi-Residence" || use == "Non-Residential"){
 	//if (!feeExists("PA020", "NEW", "INVOICED")) addFee("PA020","PLN_PREAPP","FINAL",1,"N");
 }
 //*/
+
+if (appTypeArray[2] == "SpecialEvent"){
+	var qty;
+	var nbrDays = AInfo["Number of Event Days"];
+	
+	if (!feeExists("L010")) {
+		if (matches(nbrDays,1,2,3)) {
+			qty = nbrDays;
+		}else{
+			qty = 3;   // max = $300
+		}
+	}
+	
+	addFee("L010","LIC_SE","FINAL",qty,"Y");
+
+}
