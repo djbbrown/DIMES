@@ -52,15 +52,16 @@ if (use == "Multi-Residence" || use == "Non-Residential"){
 if (appTypeArray[2] == "SpecialEvent"){
 	var qty;
 	var nbrDays = AInfo["Number of Event Days"];
-	
-	if (!feeExists("L010")) {
-		if (matches(nbrDays,1,2,3)) {
-			qty = nbrDays;
-		}else{
-			qty = 3;   // max = $300
-		}
+	if (matches(nbrDays,1,2,3)) {
+		qty = nbrDays;
+	}else{
+		qty = 3;   // max = $300
 	}
+	logDebug("nbrDays: " + nbrDays);
 	
-	addFee("L010","LIC_SE","FINAL",qty,"Y");
+	if (!feeExists("L010", "NEW", "Invoiced")) {
+		addFee("L010","LIC_SE","FINAL",qty,"Y");
+		logDebug("assessed fee");
+	}
 
 }
