@@ -9,4 +9,6 @@ include("PLN_ExistingZoning");
 // Script Number: TBD
 // Script Desc: To schedule Pre-Submittal Meeting
 ==================================================================*/
-include("PLN_SchedulePreSubmittal");
+if(!publicUser){
+	include("PLN_SchedulePreSubmittal");
+}
