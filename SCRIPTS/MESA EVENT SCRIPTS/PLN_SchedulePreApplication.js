@@ -22,7 +22,7 @@ try {
 	//vDateFrom = new Date(dateAdd(vToday, parseInt(vTotalTimeTillHearing)));
 	//vDateTo = new Date(dateAdd(vToday, parseInt(vTotalTimeTillHearing + 31)));
 
-	vDateFrom = new Date(dateAdd(vToday, 1));
+	vDateFrom = new Date(dateAdd(vToday, 0));
 	vDateTo = new Date(dateAdd(vToday, 30));
 	logDebug("FromDate: " + vDateFrom);
 	logDebug("ToDate: " + vDateTo);
