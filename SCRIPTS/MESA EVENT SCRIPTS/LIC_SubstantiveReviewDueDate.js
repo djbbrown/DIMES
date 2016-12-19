@@ -39,7 +39,7 @@ if(
 	if(appTypeArray[2]=="SpecialEvent"
 		|| appTypeArray[2]=="ExtensionOfPremise-Temporary"
 		|| appTypeArray[2]=="ExtensionOfPremise-Permanent"
-		|| appTypeArray[2]=="Firework"
+		|| appTypeArray[2]=="Fireworks"
 		) {
 		// Special Event + 30 needs to be set
 		editAppSpecific("Substantive Review Due", dateAdd(null,30));
