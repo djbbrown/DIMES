@@ -3,18 +3,18 @@
 // Script Name: Assign Due Date by Meeting Calendar
 // Script Developer: Emmett Wylam
 // Script Agency: Accela
-// Script Description: Script to assign workflow tasks due date by meetings scheduled on calendar.
-// Script Run Event: WUTA
+// Script Description: Script to assign meeting calendar.
+// Script Run Event: ASA
 // Script Parents:
-//            WTUA;Planning!Planning and Zoning!NA!NA
+//            ASA;Planning!Pre-Application!NA!NA
 ===================================================================*/
-if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
+try {
 	var vMeetingBody = lookup('SetDueDates:Planning/Pre-Application/NA/NA', 'Meeting Body');
 	var vToday = new Date();
 	var vDateFrom;
 	var vDateTo;
 	var vSubmittalBuffer = lookup('SetDueDates:Planning/Pre-Application/NA/NA', 'Submittal Buffer (Days)');
-	var vTotalTimeTillHearing = vSubmittalBuffer + lookup('SetDueDates:Planning/Board of Adjustment/NA/NA', 'Time Till Hearing (Days)'); ;
+	var vTotalTimeTillHearing = vSubmittalBuffer + lookup('SetDueDates:Planning/Pre-Application/NA/NA', 'Time Till Hearing (Days)'); ;
 
 	//aa.print("vSubmittalBuffer " + vSubmittalBuffer);
 	//aa.print("vTotalTimeTillHearing" + vTotalTimeTillHearing);
@@ -34,7 +34,8 @@ if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 	vScheduledDate = vScheduledDate.toLocaleString();
 
 	logDebug("Scheduled Date: " + vScheduledDate);
+	}
+catch (err) {
+	logDebug("A JavaScript Error occured: " + err.message);
+	}
 	
-	//Set Due Dates
-	setWFDueDate_Mesa('SetDueDates:Planning/Board of Adjustment/NA/NA', vScheduledDate);
-}
