@@ -8,4 +8,6 @@ include("PLN_PreApplicationFees");
 // Script Number: TBD
 // Script Desc: To schedule Pre-Application Meeting
 ==================================================================*/
-include("PLN_SchedulePreApplication");
+if(!publicUser){
+	include("PLN_SchedulePreApplication");
+}
