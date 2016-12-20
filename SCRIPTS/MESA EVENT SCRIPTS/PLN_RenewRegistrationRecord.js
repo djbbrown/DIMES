@@ -53,7 +53,7 @@ try
 		thisReg.setStatus("Active");
 	
 	//6. Updated complete status
-	renewalCapProject = getRenewals(parentCapId,"Incomplete"); //complete renewal record status
+	renewalCapProject = getRenewalCapByParentCapIDForIncomplete(parentCapId); //complete renewal record status
 	if (renewalCapProject != null)
 	{
 		renewalCapProject.setStatus("Complete"); //Set renewal CAP status to "Complete"
