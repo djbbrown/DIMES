@@ -1,4 +1,4 @@
-if(publicUser){
+if(cap.isCreatedByACA()){
 	if (isTaskActive("License Application")){
 		updateTask("License Application","Submitted","Updated by Script","");
 	}
