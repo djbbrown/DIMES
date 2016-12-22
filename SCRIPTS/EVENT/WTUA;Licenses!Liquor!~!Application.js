@@ -2,8 +2,11 @@
 // Script Name: WTUA;Licenses!Liquor!~!Application.js
 ==================================================================*/
 include("LIC_AppealDeadlineDateSet");
-if(appTypeString != "Licenses/Liquor/Liquor/Application")
+
+if (matches(appTypeArray[2], "ExtensionOfPremise-Permanent", "ExtensionOfPremise-Temporary", "LiquorSpecialEvent"))
 {
-include("LIC_AdministrativeReviewDueDateSet"); // Added by Raminder Gill=======
+include("LIC_AdministrativeReviewDueDateSet"); // sets date to +10 days
 }
+
+
 // include("LIC_AdjustAdministrativeReviewDueDate"); // Fix for 161
