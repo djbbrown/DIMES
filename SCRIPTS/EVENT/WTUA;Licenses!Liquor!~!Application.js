@@ -10,3 +10,4 @@ include("LIC_AdministrativeReviewDueDateSet"); // sets date to +10 days
 
 
 // include("LIC_AdjustAdministrativeReviewDueDate"); // Fix for 161
+include("LIC_CreateLicenseRecord"); // Added by Kevin Gurney
