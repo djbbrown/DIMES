@@ -58,14 +58,14 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 	lic.setStatus("Active");
 	// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
-	if(appTypeArray[2] != "Liquor" || appTypeArray[2] != "Fireworks" || appTypeArray[2] != "SpecialEventLiquor"){
+	if(appTypeArray[2] != "Liquor" || appTypeArray[2] != "Fireworks" || appTypeArray[2] != "LiquorSpecialEvent"){
 		lic.setExpiration(dateAdd(null,365));
 	}
 	if(appTypeArray[2] == "Fireworks"){
 		var eventFWExpDt = getAppSpecific("Event End Date",capId);
 		lic.setExpiration(dateAdd(eventFWExpDt,1));
 	}
-	if(appTypeArray[2] == "SpecialEventLiquor"){
+	if(appTypeArray[2] == "LiquorSpecialEvent"){
 		var eventSELExpDt = getAppSpecific("Event End Date",capId);
 		lic.setExpiration(dateAdd(eventSELExpDt,1));
 	}
