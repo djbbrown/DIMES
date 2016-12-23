@@ -40,7 +40,7 @@ try {
 }
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
-}h
+}
 //RES130 Unauthorized Construction Fees – 50%
 try {
 	// If the fee item exists then we need to re-calc every time.
