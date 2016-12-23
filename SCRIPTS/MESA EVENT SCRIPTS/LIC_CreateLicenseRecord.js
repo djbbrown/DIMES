@@ -52,17 +52,24 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	newLicIdString = license.getCustomID(); 
 	aa.print("newLicIdString" + newLicIdString);
 	
-	if (appTypeArray[2] != "LiquorSpecialEvent") {
-		lic = new licenseObject(null,license) ; 	
+	lic = new licenseObject(null,license) ; 	
 	
-		// Set the expiration status to Active and the expiration date according to the expiration code. 
-		// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
-		lic.setStatus("Active");
-		// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
-		if(appTypeArray[2] != "Liquor"){
-			lic.setExpiration(dateAdd(null,365));
-		}
+	// Set the expiration status to Active and the expiration date according to the expiration code. 
+	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
+	lic.setStatus("Active");
+	// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
+	if(appTypeArray[2] != "Liquor" || appTypeArray[2] != "Fireworks" || appTypeArray[2] != "SpecialEventLiquor"){
+		lic.setExpiration(dateAdd(null,365));
 	}
+	if(appTypeArray[2] == "Fireworks"){
+		var eventFWExpDt = getAppSpecific("Event End Date",capId);
+		lic.setExpiration(dateAdd(eventFWExpDt,1));
+	}
+	if(appTypeArray[2] == "SpecialEventLiquor"){
+		var eventSELExpDt = getAppSpecific("Event End Date",capId);
+		lic.setExpiration(dateAdd(eventSELExpDt,1));
+	}
+	
 	
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
 	// EMSE:ASI Copy Exceptions - contains the record type (in the "Standard Choices Value" field)
