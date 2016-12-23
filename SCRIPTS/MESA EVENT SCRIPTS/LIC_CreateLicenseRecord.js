@@ -51,14 +51,17 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	
 	newLicIdString = license.getCustomID(); 
 	aa.print("newLicIdString" + newLicIdString);
-	lic = new licenseObject(null,license) ; 	
 	
-	// Set the expiration status to Active and the expiration date according to the expiration code. 
-	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
-	lic.setStatus("Active");
-	// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
-	if(appTypeArray[2] != "Liquor"){
-	lic.setExpiration(dateAdd(null,365));
+	if (appTypeArray[2] != "LiquorSpecialEvent") {
+		lic = new licenseObject(null,license) ; 	
+	
+		// Set the expiration status to Active and the expiration date according to the expiration code. 
+		// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
+		lic.setStatus("Active");
+		// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
+		if(appTypeArray[2] != "Liquor"){
+			lic.setExpiration(dateAdd(null,365));
+		}
 	}
 	
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
