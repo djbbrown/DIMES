@@ -31,13 +31,6 @@ try{
 		// && currentUserGroup == ''
 		&& publicUser
 	){
-		
-// sending debug email since PRA in ACA won't display debugs
-	var message = "Writing from inside script LIC_IssueLicenseOnFeePaymentACA";
-	var vEParams = aa.util.newHashtable(); 
-	addParameter(vEParams,"$$capId$$",capId);
-	addParameter(vEParams, "$$error$$", message);
-	sendNotification("", "nalbert@accela.com", "", "ERROR TRAPPING", vEParams, null);		
 
 		// get the workflow and set the status
 		wfTaskModel = aa.workflow.getTask(capId, 'Issue License').getOutput();	
@@ -122,10 +115,5 @@ try{
 		}
 	}
 }catch(err){
-	// sending debug email since PRA in ACA won't display debugs
-	var vEParams = aa.util.newHashtable(); 
-	addParameter(vEParams,"$$capId$$",capId);
-	addParameter(vEParams, "$$error$$", err.message);
-	sendNotification("", "nalbert@accela.com", "", "ERROR TRAPPING", vEParams, null);
 	logDebug("A JavaScript Error occurred:  LIC_IssueLicenseOnFeePaymentACA: " + err.message);
 }
