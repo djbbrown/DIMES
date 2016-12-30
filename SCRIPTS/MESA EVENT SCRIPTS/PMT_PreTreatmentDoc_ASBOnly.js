@@ -55,7 +55,10 @@ try {
 
     if (docNeeded)
     {
-      commentBlah = "For a project that is Industrial, Commercial, Manufacturing, Automotive or Restaurant a Industrical Pretreatment Form document is required";
+      if (publicUser) {
+		  showDebug=false;
+	  }
+	  commentBlah = "For a project that is Industrial, Commercial, Manufacturing, Automotive or Restaurant a Industrical Pretreatment Form document is required";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
