@@ -26,8 +26,12 @@ try {
 		}
 		//logDebug("ConditionFlag = " + ConditionFlag);
 	
-		if (!ConditionFlag){
+		if (!ConditionFlag && appMatch("Transportation/Temporary Traffic Control/NA/NA"){
 			branchTask("Permit Issuance","Issued","Closed via Script Approved - No Fees","Closed via Script");
+		}
+		
+		if (!ConditionFlag && appMatch("Transportation/Temporary Traffic Control/Modification/NA"){
+			closeTask("Final Decision","Approved","Closed via Script Approved - No Fees","Closed via Script");
 		}
 	
 		if (ConditionFlag){
