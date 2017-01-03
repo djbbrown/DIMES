@@ -29,7 +29,7 @@ try{
 		// check the current user/usergroup 
 		// && currentUserID == ''
 		// && currentUserGroup == ''
-		// && publicUser            commenting out to test in back office
+		&& publicUser            
 	){
 
 		// get the workflow and set the status
