@@ -18,7 +18,6 @@ Execute Script Actions
 
 // Script Parents:
 //            PRA:Licenses!General!~!Application
-// 1/3/2017 nalbert - debugging as script seems to not be firing
 ===================================================================*/
 // Get the record type and check
 try{
@@ -44,7 +43,8 @@ try{
 			// Create a child record of type License/*/*/License (where the record type and subtype are the same as the parent application record)
 			// Need to get the type and sub-type broken out, the following format can be used appTypeArray[1]
 			
-			license = createChild(appTypeArray[0],appTypeArray[1],appTypeArray[2],"License","License");
+			license = createParent(appTypeArray[0],appTypeArray[1],appTypeArray[2],"License","License");
+			updateAppStatus("Active","Set via script",license);
 			// Convert the Contact of type "Applicant" (This should be "License Applicant")
 			// to "Licensee" ("Licensee" is in configuration and should be no issue.)
 			var capContactResult = aa.people.getCapContactByCapID(license);
