@@ -18,7 +18,7 @@ Execute Script Actions
 
 // Script Parents:
 //            PRA:Licenses!General!~!Application
-// 12/29/2016 nalbert - debugging as script seems to not be firing
+// 1/3/2017 nalbert - debugging as script seems to not be firing
 ===================================================================*/
 // Get the record type and check
 try{
@@ -29,7 +29,7 @@ try{
 		// check the current user/usergroup 
 		// && currentUserID == ''
 		// && currentUserGroup == ''
-		&& publicUser
+		// && publicUser            commenting out to test in back office
 	){
 
 		// get the workflow and set the status
