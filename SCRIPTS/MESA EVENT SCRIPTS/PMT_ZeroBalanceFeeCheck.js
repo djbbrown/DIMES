@@ -7,6 +7,7 @@
 // WTUB;Permits/Residential/NA/NA
 // Permits/Commercial/NA/NA
 // Permits/Master Plan/NA/NA
+// Permits/Addenda or Deferred/NA
 // Test Record: PMT16-00947
 // Version   |Date      |Engineer         |Details
 //  1.0      |10/12/16  |Steve Veloudos   |Initial Release
