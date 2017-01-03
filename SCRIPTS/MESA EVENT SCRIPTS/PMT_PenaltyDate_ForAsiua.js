@@ -49,12 +49,12 @@ try
     // assign to Penalty Date ASI field if exists
     if (typeof penaltyDate == "undefined")
     {
-      //comment("The ASI field 'Penalty Date' does not exist, skipping date assignment");
+      comment("The ASI field 'Penalty Date' does not exist, skipping date assignment");
     }
     else
     {
-      //comment("The ASI field 'Penalty Date' exists, setting date");     
-      //comment("futureDate: " + futureDate );
+      comment("The ASI field 'Penalty Date' exists, setting date");     
+      comment("futureDate: " + futureDate );
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
       setDate = true;
     }
@@ -62,12 +62,12 @@ try
     // assign to Plan Review Penalty Date ASI field if exists
     if (typeof planReviewPenaltyDate == "undefined")
     {
-      //comment("The ASI field 'Plan Review Penalty Date' does not exist, skipping date assignment");
+      comment("The ASI field 'Plan Review Penalty Date' does not exist, skipping date assignment");
     }
     else
     {
-      //comment("The ASI field 'Plan Review Penalty Date' exists, setting date");      
-      //comment("futureDate: " + futureDate );
+      comment("The ASI field 'Plan Review Penalty Date' exists, setting date");      
+      comment("futureDate: " + futureDate );
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
       setDate = true;
     }
