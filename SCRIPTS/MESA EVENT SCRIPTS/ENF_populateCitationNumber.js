@@ -112,8 +112,8 @@ if(matches(""+appTypeArray[0], "AnimalControl") && matches(""+appTypeArray[1], "
 			newRow["Citation Number"] = new asiTableValObj("Citation Number", thisRow["Citation Number"].fieldValue, "N");
 		}
 		newRow["Disposition"] = new asiTableValObj("Disposition", thisRow["Disposition"].fieldValue, "N");
-		newRow["Inspection Notes"] = new asiTableValObj("Required Corrective Actions", thisRow["Required Corrective Actions"].fieldValue, "N");
-		newRow["Date of Violation"] = new asiTableValObj("Date of Corrective Actions", thisRow["Date of Corrective Actions"].fieldValue, "N");
+		newRow["Inspection Notes"] = new asiTableValObj("Inspection Notes", thisRow["Inspection Notes"].fieldValue, "N");
+		newRow["Date of Violation"] = new asiTableValObj("Date of Violation", thisRow["Date of Violation"].fieldValue, "N");
 		newRow["Citation Issued To"] = new asiTableValObj("Citation Issued To", thisRow["Citation Issued To"].fieldValue, "N");
 		newTable.push(newRow);
 	}
