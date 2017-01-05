@@ -18,9 +18,8 @@
 var valSeries = getAppSpecific("Series Type");
 
 if (appTypeArray[3] == "Application"){
-	logDebug("Is City Council Task active = " + isTaskActive("City Council Preparation"));
-	logDebug("City Council current status = " + isTaskStatus("City Council Preparation","Note"));
-	if (isTaskActive("City Council Preparation") && (!isTaskStatus("City Council Preparation","Note"))) { 
+	if (isTaskActive("City Council Preparation")
+		&& (!feeExists("L020") || !feeExists("L030") || !feeExists("L040"))) { 
 		//Issuance Fee
 		if (matches(valSeries, "1", "2", "3", "4", "6", "7", "8", "9", "10", "11", "12", "13", "14") && !feeExists("L020")) {
 			addFee("L020","LIC_LIQUOR", "FINAL",  1, "Y");
