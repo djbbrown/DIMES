@@ -12,12 +12,13 @@
 // Script Parents:
 // WTUA: Licenses/Liquor/Liquor/Application 
 // WTUA: Licenses/Liquor/Liquor/Renewal 
+// 01/05/2017 nalbert - need to apply fee earlier in the worklow, so changing task to City Council Preparation with a blank status
 // 
 /*==================================================================*/
 
 var valSeries = getAppSpecific("Series Type");
 
-if (wfTask == "Issue License" && wfStatus == "Ready to Issue"){
+if (isTaskActive("City Council Preparation") && matches(wfStatus, " ", null)){
 	if (appTypeArray[3] == "Application") {
 		//Issuance Fee
 		if (matches(valSeries, "1", "2", "3", "4", "6", "7", "8", "9", "10", "11", "12", "13", "14") && !feeExists("L020")) {
