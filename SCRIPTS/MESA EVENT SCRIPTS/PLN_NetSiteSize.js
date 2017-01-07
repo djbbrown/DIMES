@@ -29,8 +29,8 @@ try
 	)
   {    
     
-    //var acres = AInfo["Net Site Size (acres)"];  // old way
-    var acres = parcelArea;
+    var acres = AInfo["Net Site Size (acres)"];  // old way
+    var pAcres = parcelArea;
     var sqft = AInfo["Net Site Size (sqft)"];
     
     if (acres == null)
@@ -38,6 +38,10 @@ try
       if (sqft != null)
       {
         acres = sqft/43560;
+      }
+      else
+      {
+        acres = pAcres;
       }
       editAppSpecific("Net Site Size (acres)", acres);
     }
@@ -47,6 +51,10 @@ try
       if (acres != null)
       {
         sqft = acres*43560;
+      }
+      else
+      {
+        sqft = pAcres*43560;
       }
       editAppSpecific("Net Site Size (sqft)", sqft);
     }
