@@ -8,6 +8,9 @@
 // 		Calculate "Gross DU/AC" ASI field. 
 //		Calculation =  ((“Total New Lots” + “Total New Units”) / “Gross Site Size (acres)”)
 //
+//              Version 2: updated the way the acres value is grabbed
+//              due to a change in system configuration. (bodell)
+//
 // Script Run Event: ASA, ASIUA
 // Script Parents:
 //              ASA;Planning/~/~/~
@@ -58,7 +61,8 @@ try
     }
     else
     {
-      acres = parseFloat(AInfo["Gross Site Size (acres)"]);
+      //acres = parseFloat(AInfo["Gross Site Size (acres)"]);  // old way
+      acres = parcelArea;
     }
 
     
