@@ -6,7 +6,10 @@
 // Script Agency: City of Mesa
 // Script Description: 
 // 		Calculate "Net DU/AC" ASI field. 
-//		Calculation =  ((“Total Existing Lots” + “Existing Units”) / ""Net Site Size (acres)”) 
+//		Calculation =  ((“Total Existing Lots” + “Existing Units”) / ""Net Site Size (acres)”)
+//
+//              Version 2: updated the way the acres value is grabbed
+//              due to a change in system configuration. (bodell)
 //
 // Script Run Event: ASA, ASIUA
 // Script Parents:
@@ -42,7 +45,7 @@ try
 
     if (AInfo["Net Site Size (acres)"] == null)
     {
-      acres = 0.0;
+      acres = parcelArea;
     }
     else
     {

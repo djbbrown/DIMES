@@ -57,12 +57,11 @@ try
   
     if (AInfo["Gross Site Size (acres)"] == null)
     {
-      acres = 0.0;
+      acres = parcelArea;
     }
     else
     {
-      //acres = parseFloat(AInfo["Gross Site Size (acres)"]);  // old way
-      acres = parcelArea;
+      acres = parseFloat(AInfo["Gross Site Size (acres)"]);
     }
 
     
