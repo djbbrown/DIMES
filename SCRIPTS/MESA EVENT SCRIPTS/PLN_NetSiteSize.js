@@ -9,6 +9,9 @@
 //		Net Site Size (sqft) = Net Site Size (acres) * 43560)
 //		Net Site Size (acres) = Net Site Size (sqft) / 43560)
 //
+//              Version 2: updated the way the acres value is grabbed
+//              due to a change in system configuration. (bodell)
+//
 // Script Run Event: ASA, ASIUA
 // Script Parents:
 //              ASA;Planning/~/~/~
@@ -26,7 +29,8 @@ try
 	)
   {    
     
-    var acres = AInfo["Net Site Size (acres)"];
+    //var acres = AInfo["Net Site Size (acres)"];  // old way
+    var acres = parcelArea;
     var sqft = AInfo["Net Site Size (sqft)"];
     
     if (acres == null)
