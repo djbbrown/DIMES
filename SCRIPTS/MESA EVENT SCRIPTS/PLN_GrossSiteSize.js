@@ -43,6 +43,9 @@ try
     var acres = parcelArea;
     var sqft = parseFloat(acres*43560).toFixed(2);
     
+    comment("acres: "+ acres);
+    comment("sqft: "+sqft);
+
     editAppSpecific("Gross Site Size (acres)", acres);
     editAppSpecific("Gross Site Size (sqft)", sqft);
 
