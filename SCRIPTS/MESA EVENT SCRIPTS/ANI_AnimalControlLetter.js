@@ -9,6 +9,7 @@
 // Script Parents:WTUA;​Animal Control!~!~!~
 // Version   |Date      |Engineer         |Details
 //  1.0      |10/18/16  |Steve Veloudos   |Initial Release  
+//  2.0      |01/09/17  |Steve Veloudos   |Reversed Civil & Criminal reports
 /*==================================================================*/
 
 try {
@@ -45,12 +46,12 @@ try {
         if(CivilFlag == 1)
             {
             //Display Civil report
-            runReportAttach(capId,"113-ANI Courtesy Notice","CaseNbr", capId.getCustomID());
+            runReportAttach(capId,"114-ANI Courtesy Notice","CaseNbr", capId.getCustomID());
             }
         if(CriminalFlag == 1)
             {
             //Display Criminal report
-            runReportAttach(capId,"114-ANI Courtesy Notice","Alt_ID", capId.getCustomID());
+            runReportAttach(capId,"113-ANI Courtesy Notice","Alt_ID", capId.getCustomID());
             }
        }
     }
