@@ -3,6 +3,6 @@ if(cap.isCreatedByACA()){
 		updateTask("License Application","Submitted","Updated by Script","");
 	}
 	if (isTaskActive("Application Intake")){
-		updateTask("Application Intake","Accepted","Updated by Script","");
+		updateTask("Application Intake","Submitted","Updated by Script","");
 	}
 }
