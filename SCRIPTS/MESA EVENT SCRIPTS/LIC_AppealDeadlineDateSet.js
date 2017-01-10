@@ -9,7 +9,7 @@
 // nalbert 1/4/2017 - updated Special Events to 5 days
 /*==================================================================*/
 
-if (matches(wfTask, "License Administrator Review", "Licensing Supervisor") && matches(wfStatus, "Denied", "Recommend Denial")) {
+if ((wfTask == "License Administrator Review" && wfStatus == "Denied") || (wfTask == "Licensing Supervisor" && wfStatus == "Recommend Denial") || (wfTask == "City Clerk" && wfStatus == "Applicant Notified Denied")) {
 	// set ASI field
 	editAppSpecific("Appeal Deadline", dateAdd(null, 10));
 }
