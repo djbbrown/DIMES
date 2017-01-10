@@ -10,6 +10,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |10/18/16  |Steve Veloudos   |Initial Release  
 //  2.0      |01/09/17  |Steve Veloudos   |Reversed Civil & Criminal reports
+//  3.0      |01/10/17  |Steve Veloudos   |Look at Violation Code Added new criteria for criminal else civil
 /*==================================================================*/
 
 try {
@@ -26,20 +27,20 @@ try {
             var rowCount = VIOLATIONINFORMATION.length;
             var x = 0;
             
-            //Iterate and check Citation Category
+            //Iterate and check Violation Code
             for (x=0;x<=(rowCount-1);x++)
             {
-               CCategory = tInfo[x]["Citation Category"];
+               CCategory = tInfo[x]["Violation Code"];
                
-               //Check civil
-               if (CCategory == "Title 6 Civil" || CCategory == "Title 8")
-               {
-                  CivilFlag = 1; 
-               }
-               //Check criminal
-               if (CCategory == "Title 6 Criminal")
+                //Check criminal
+               if (CCategory == "6-4-3" || CCategory == "6-4-7(C)" || CCategory == "6-4-7(D)" || CCategory == "6-4-9" || CCategory == "ARS 13-2910")
                {
                   CriminalFlag = 1; 
+               }
+               //Else Civil
+               else
+               {
+                  CivilFlag = 1; 
                }
 
             }
