@@ -1,4 +1,5 @@
 //set to only run for internal users
-if (!publicUser){
+/*if (!publicUser){
 	include("LIC_LiquorLicenseFee"); 
 }
+*/
