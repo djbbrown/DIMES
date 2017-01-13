@@ -12,6 +12,6 @@
 if (AInfo["Fireworks"] == "Yes"){
 	var childId = childGetByCapType("Licenses/General/Fireworks/Application");
 	if (!childId){
-		childId = createChild("Licenses", "General", "Fireworks", "Application", "Fireworks Application for " + capIDString());
+		childId = createChild("Licenses", "General", "Fireworks", "Application", "Fireworks Application for " + capIDString);
 	}
 } 
