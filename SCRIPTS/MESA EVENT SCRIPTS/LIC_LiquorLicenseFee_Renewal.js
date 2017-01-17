@@ -14,10 +14,6 @@
 
 var valSeries = getAppSpecific("Series Type");
 
-
-if (wfTask == "Renewal Intake" && wfStatus == "Submitted"){
-
-	
 //Annual Fee Series 1-4,8 and 13
 if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "8" || valSeries== "11" || valSeries== "12" || valSeries== "13") && !feeExists("L010")) 
 	{
