@@ -21,11 +21,14 @@
 include("ENF_EnforcementCaseDuplicate");
 // add by Brian O'Dell (Mesa)
 include("ENF_EnforcementNotificationEmail");
+
+//Created criteria for records submitted internally vs ACA
 if (!publicUser){
 	include("ENF_Record_Opened");
+	include("ENF_AutopopulateZoningDistrict");
+	include("ENF_CountyIslandEmail");
 }
-include("ENF_AutopopulateZoningDistrict");
-include("ENF_CountyIslandEmail");
+
 
 // added by Vance Smith (Mesa)
 // adding if duplicate case found then no need to run this script which schedules inspection since case will be closed.
