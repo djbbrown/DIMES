@@ -2,7 +2,7 @@
 // Script Number: 001
 // Script Name: CTRCA;Permits!Residential!NA!NA.js
 ==================================================================*/
-//Adding for differences in AA and ACA execution
+//adding publicUser criteria check to execute scripts based on AA or ACA
 if(publicUser){
 	include("PMT_FloodControlPermit");
 	include("PMT_StapleyTag");
