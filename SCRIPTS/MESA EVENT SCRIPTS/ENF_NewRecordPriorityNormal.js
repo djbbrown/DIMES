@@ -36,7 +36,7 @@ try
             var nextWorkingDay = dateAdd(null, 1, "Y");
 
             // get the inspector for this boundary          
-            var inspector = getInspectorObject();
+            var inspector = getEnforcementInspectorId();
             if (inspector != false) 
             {
                 // schedule initial inspection for next working day 
@@ -65,5 +65,7 @@ catch (err)
   logDebug("A JavaScript error occurred: " + err.message);
 }
 
-/* Test Record: COD16-00145
+
+/* Test Record: COD17-00043
+
 */

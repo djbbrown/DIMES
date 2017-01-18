@@ -2160,12 +2160,15 @@ function getEnforcementInspectorObject() // optional altId
         {
             case 1:
                 inspRes = aa.person.getUser(inspector);
+				logDebug("1");
                 break;
             case 2:
                 inspRes = aa.person.getUser(nameArray[0], "", nameArray[1]);
+				logDebug("2");
                 break;
             case 3:
                 inspRes = aa.person.getUser(nameArray[0], nameArray[1], nameArray[2]);
+				logDebug("3");
                 break;
         }
         
@@ -2505,4 +2508,56 @@ function getLastRecordDateInWorkflowHistory()
 		logDebug("getLastRecordDateInWorkflowHistory() could not get a workflow history")
 	}
 	return retDate;
+}
+
+function getEnforcementInspectorId() // optional altId
+{
+    // code officer aka inspector
+
+    if ( arguments.length == 1 )
+    {
+        capId = aa.cap.getCapID(arguments[0]).getOutput(); // this is expected in getGisInfo
+    }
+
+    var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");  //Code
+    
+    if (inspector) 
+    {
+        logDebug("Inspector: " + inspector);
+        var nameArray = inspector.split(" ");
+        if (inspector != "undefined" || inspector != null) {
+			// have to re-grab the user since the id won't show up in this object.
+			inspUserObj = aa.person.getUser(nameArray[0],"",nameArray[1]).getOutput();
+			if (inspUserObj != null){
+			return inspUserObj.getUserID();
+				}
+			}
+		return null;
+	}
+}
+
+function getBuildingInspectorId() // optional altId
+{
+    // code officer aka inspector
+
+    if ( arguments.length == 1 )
+    {
+        capId = aa.cap.getCapID(arguments[0]).getOutput(); // this is expected in getGisInfo
+    }
+
+    var inspector = getGISInfo("Accela/AccelaBoundaries", "Building_Inspection_Areas", "NAME");  //Building
+
+    if (inspector) 
+    {
+        logDebug("Inspector: " + inspector);
+        var nameArray = inspector.split(" ");
+        if (inspector != "undefined" || inspector != null) {
+			// have to re-grab the user since the id won't show up in this object.
+			inspUserObj = aa.person.getUser(nameArray[0],"",nameArray[1]).getOutput();
+			if (inspUserObj != null){
+			return inspUserObj.getUserID();
+				}
+			}
+		return null;
+	}
 }

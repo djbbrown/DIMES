@@ -30,7 +30,7 @@ include("ENF_CountyIslandEmail");
 // added by Vance Smith (Mesa)
 // adding if duplicate case found then no need to run this script which schedules inspection since case will be closed.
 if (matchesENFCase == 0) { 
-	//include("ENF_NewRecordPriorityNormal"); // 26 - TEMPORARILY DISABLED BY VANCE 1/10/2017
+	include("ENF_NewRecordPriorityNormal"); // 26
 }
 //added by Michael Kniskern (Mesa)
 include("ENF_AddViolationOrdinanceOnViolationCode");
