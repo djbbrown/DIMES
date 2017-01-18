@@ -35,8 +35,6 @@ try
     var inspectorObj = getBuildingInspectorId(); // getBuildingInspectorObject();
     if (inspectorObj != false) 
     {
-        /* commented out per suggestion from Kevin Gurney 01/11/2017
-
         // get all inspections, assign inspector (if not already assigned)
         var inspResultObj = aa.inspection.getInspections(capId);
         if (inspResultObj.getSuccess()) {
@@ -66,11 +64,9 @@ try
         else 
         {
             logDebug("Failed to get inspections...")
-        }
-        
-        */
+        }        
 
-        assignInspection(inspId,inspectorObj); // per suggestion from Kevin Gurney 01/11/2017
+        //assignInspection(inspId,inspectorObj); // per suggestion from Kevin Gurney 01/11/2017, did not work
     }
     else
     {
