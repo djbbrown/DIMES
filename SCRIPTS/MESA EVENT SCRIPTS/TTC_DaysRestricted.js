@@ -56,25 +56,45 @@ try
 		var uCapId = capId
 	}
     // Roadway/Alley
-    trar = getAppSpecific("Total Roadway/Alley Restriction",uCapId); // Get current value
+    if(appTypeString == 'Transportation/Temporary Traffic Control/NA/NA') {
+		trar = 0;
+	}
+	else {
+		trar = getAppSpecific("Total Roadway/Alley Restriction",uCapId); // Get current value
+	}
 	logDebug("Total Roadway/Alley Restriction Current: "+trar);
 	trar = parseInt(trar) + parseInt(RoadAlley|0);
     editAppSpecific("Total Roadway/Alley Restriction",trar,uCapId);
     logDebug("Updating 'Total Roadway/Alley Restriction' to "+trar);
     // Sidewalk Closure
-    sc = getAppSpecific("Sidewalk Closure",uCapId); // Get current value
+    if(appTypeString == 'Transportation/Temporary Traffic Control/NA/NA') {
+		sc = 0;
+	}
+	else {
+		sc = getAppSpecific("Sidewalk Closure",uCapId); // Get current value
+	}
 	logDebug("Sidewalk Closure Current: "+sc);
 	sc = parseInt(sc) + parseInt(Sidewalk|0);
     editAppSpecific("Sidewalk Closure",sc,uCapId);
     logDebug("Updating 'Sidewalk Closure' to "+sc);
     // Left Turn Prohibition - Signalized Intersection
-    ltpsi = getAppSpecific("Left Turn Prohibition - Signalized Intersection",uCapId); // Get current value
+	if(appTypeString == 'Transportation/Temporary Traffic Control/NA/NA') {
+		ltpsi = 0;
+	}
+	else {
+		ltpsi = getAppSpecific("Left Turn Prohibition - Signalized Intersection",uCapId); // Get current value
+	}
 	logDebug("Left Turn Prohibition - Signalized Intersection Current: "+ltpsi);
 	ltpsi = parseInt(ltpsi) + parseInt(LeftTurn|0);
     editAppSpecific("Left Turn Prohibition - Signalized Intersection",ltpsi,uCapId);
     logDebug("Updating 'Left Turn Prohibition - Signalized Intersection' to "+ltpsi);
     // Arterial Road Closure
-    arc = getAppSpecific("Arterial Road Closure",uCapId); // Get current value
+	if(appTypeString == 'Transportation/Temporary Traffic Control/NA/NA') {
+		arc = 0;
+	}
+	else {
+		arc = getAppSpecific("Arterial Road Closure",uCapId); // Get current value
+	}
 	logDebug("Arterial Road Closure Current: "+arc);
 	arc = parseInt(arc) + parseInt(Arterial|0);
     editAppSpecific("Arterial Road Closure",arc ,uCapId);
