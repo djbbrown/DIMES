@@ -1,5 +1,5 @@
-//Adding for differences in AA and ACA execution
-if(!publicUser){
+//adding publicUser criteria check to execute scripts based on AA or ACA
+if(publicUser){
 	include("PMT_FloodControlPermit");
 	include("PMT_SignalButteTag");
 	include("PMT_StapleyTag");
@@ -10,10 +10,5 @@ if(!publicUser){
 	include("PMT_AutopopulateASIFieldsFromGISAttributes");
 	include("PMT_CodeEnforcementNumber");
 }
-//include("PMT_ElectricalFeeforSigns");
-//include("PMT_SignFees");  This is to be assessed at workflow task Plans Coordination
 
-include("PMT_NoAddressAddAdHoc");
-include("PMT_RelateToPlanningRecord");
-include("PMT_SignPermitDepositFee");
 

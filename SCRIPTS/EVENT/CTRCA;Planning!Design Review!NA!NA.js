@@ -1,8 +1,8 @@
 /*===================================================================
-// Script Number: TBD
-// Script Desc: To schedule Pre-Submittal Meeting
+// Script Number: 001, 151
+// Script Name: CTRCA;Planning!Design Review!NA!NA.js
 ==================================================================*/
 //adding publicUser criteria check to execute scripts based on AA or ACA
 if(publicUser){
-	include("PLN_SchedulePreSubmittal");
+	include("PLN_ExistingCharacterArea");
 }
