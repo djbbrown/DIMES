@@ -3,8 +3,8 @@
 ==================================================================*/
 if (!publicUser){
 	include("PLN_ParcelNoAddress");
+	include("PLN_AutopopulateZoningClassification");
 }
-include("PLN_AutopopulateZoningClassification");
 
 include("PLN_NetSiteSize");
 include("PLN_GrossSiteSize");
