@@ -18,6 +18,9 @@
 //	ISA;Permits!Residential!Mobile Home!NA
 //	ISA;Permits!Online!NA!NA
 
+// Version   |Date      |Engineer         |Details
+//  1.0      |2016      |Vance Smith      |Initial Release
+//  1.1      |01/11/17  |Vance Smith      |Revised per recommendations by Kevin Gurney
 //            
 /*==================================================================*/
 
@@ -29,9 +32,11 @@
 try
 {
     // get the inspector for this boundary          
-    var inspectorObj = getBuildingInspectorObject();
+    var inspectorObj = getBuildingInspectorId(); // getBuildingInspectorObject();
     if (inspectorObj != false) 
     {
+        /* commented out per suggestion from Kevin Gurney 01/11/2017
+
         // get all inspections, assign inspector (if not already assigned)
         var inspResultObj = aa.inspection.getInspections(capId);
         if (inspResultObj.getSuccess()) {
@@ -62,19 +67,17 @@ try
         {
             logDebug("Failed to get inspections...")
         }
+        
+        */
+
+        assignInspection(inspId,inspectorObj); // per suggestion from Kevin Gurney 01/11/2017
     }
     else
     {
         logDebug("Failed to create building inspector object!");
     }
-
-    //aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Test Script: 110", "ISA event fired! " + test);
 }
 catch (err)
 {
   logDebug("A JavaScript error occurred: " + err.message);
 }
-
-/* Test Record: PMT16-00874
-
-*/
