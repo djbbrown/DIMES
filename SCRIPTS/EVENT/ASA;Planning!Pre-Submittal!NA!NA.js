@@ -1,9 +1,6 @@
 //
 // include("PLN_ParcelNoAddress"); // Moved to all Planning Records
-include("PLN_AutopopulateZoningClassification"); // Script 73
-
-// added by John Cheney (Mesa) 9/22/2016
-include("PLN_ExistingZoning");
+//include("PLN_AutopopulateZoningClassification"); // Script 73  moved to all planning records
 
 /*===================================================================
 // Script Number: TBD
@@ -11,4 +8,6 @@ include("PLN_ExistingZoning");
 ==================================================================*/
 if(!publicUser){
 	include("PLN_SchedulePreSubmittal");
+	// added by John Cheney (Mesa) 9/22/2016
+	include("PLN_ExistingZoning");
 }
