@@ -23,3 +23,9 @@ if (
 }
 //----------------------------
 include("PMT_AssessTechFee"); // must be run last
+
+// Script: PMT363
+// Creates Env Enforcement if criteria is met
+// Shared with WTUA:Permits/Commercial/NA/NA
+if(wfTask == "Permit Issuance" && wfStatus == "Issued")
+	cloneToEnvironmental(capId,wfDateMMDDYYYY);

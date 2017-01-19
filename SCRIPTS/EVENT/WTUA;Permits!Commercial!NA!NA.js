@@ -16,3 +16,9 @@ include("PMT_CommercialImpactFees"); // Script 337
 include("PMT_ComDeferredSubmittal");
 include("PMT_CommercialFees");
 include("PMT_AssessTechFee"); // must be run last
+
+//Script: PMT363
+//Creates Env Enforcement if criteria is met
+//Shared with WTUA:Permits/Commercial/NA/NA
+if(wfTask == "Permit Issuance" && wfStatus == "Issued")
+	cloneToEnvironmental(capId,wfDateMMDDYYYY);
