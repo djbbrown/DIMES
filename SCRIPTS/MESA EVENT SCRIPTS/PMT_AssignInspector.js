@@ -67,7 +67,7 @@ try
             logDebug("Failed to get inspections...")
         }        
 		*/
-        assignInspection(inspId,inspectorObj); // per suggestion from Kevin Gurney 01/11/2017, did not work
+        assignInspection(inspId,inspectorObj); 
     }
     else
     {
