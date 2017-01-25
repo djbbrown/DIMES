@@ -49,7 +49,7 @@ try
                 setTask("Follow-Up Inspection", "Y", "N"); // ?
 
                 // create new "Follow-Up" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Follow-Up", futureDate, inspectorId);
+                scheduleInspectionDateWithInspector("Follow-Up Inspection", futureDate, inspectorId);
                 break;
             case "Citation":
                 // change wf task status to "Citation Issued"
@@ -59,7 +59,7 @@ try
                 setTask("Citation Inspection", "Y", "N"); // ?
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation", futureDate, inspectorId);
+                scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId);
                 break;
             case "3rd Party Abatement":
                 // dont do anything
@@ -84,14 +84,14 @@ try
                 updateTask(inspType, "Extension", "Updated By Script (#354)", "");
 
                 // create new "Follow-Up" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Follow-Up", futureDate, inspectorId);
+                scheduleInspectionDateWithInspector("Follow-Up Inspection", futureDate, inspectorId);
                 break;
             case "In Violation":
                 // change wf task status to "In Violation"
                 updateTask(inspType, "In Violation", "Updated By Script (#354)", "");
 
                 // create new "Follow-Up" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Follow-Up", futureDate, inspectorId);
+                scheduleInspectionDateWithInspector("Follow-Up Inspection", futureDate, inspectorId);
                 break;
             case "Citation Issued":
                 // change wf task status to "Citation Issued"
@@ -101,7 +101,7 @@ try
                 setTask("Citation Inspection", "Y", "N"); // ?
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation", futureDate, inspectorId);
+                scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId);
                 break;
             case "3rd Party Abatement":
                 // dont do anything
@@ -126,14 +126,14 @@ try
                 updateTask(inspType, "In Violation", "Updated By Script (#354)", "");
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation", futureDate, inspectorId);
+                scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId);
                 break;
-            case "In Violation-Expedite":
+            case "In Violation - Expedite":
                 // change wf task status to "In Violation-Expedite"
-                updateTask(inspType, "In Violation-Expedite", "Updated By Script (#354)", "");
+                updateTask(inspType, "In Violation - Expedite", "Updated By Script (#354)", "");
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation", futureDate, inspectorId);
+                scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId);
                 break;
             case "Forced Compliance":
                 // dont do anything
