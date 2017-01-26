@@ -15,25 +15,29 @@
 try
 {
   
+
+loadASITables();
+var tInfo = OCCUPANCYINFORMATION;
+var rowCount = OCCUPANCYINFORMATION.length;
+
+var typeOfConstruction = "";
+var totalSqFt = 0;
+
+
+  for (x=0;x<=(rowCount-1);x++)
+  {
+    typeOfConstruction = tInfo[x]["Type of Construction"];
+    //mkyOutput += "typeOfConstruction = "+typeOfConstruction+" \r";
+    comment("typeOfConstruction = "+typeOfConstruction);
+
+    totalSqFt += parseInt(tInfo[x]["Sq Ft"]);
+    //mkyOutput += "totalSqFt = "+totalSqFt+" \r";    
+    comment("totalSqFt = "+totalSqFt);
+  }
+
+comment("totalSqFt = "+totalSqFt);
+editAppSpecific("Submittal Cycle", totalSqFt);
   
-  var modelNumber = AInfo["Model Number"];
-  //mkyOutput += "modelNumber: "+modelNumber+" \r";
-  comment("modelNumber: "+modelNumber);
-
-  if (modelNumber == "1600")
-  {
-    editAppSpecific("Builder Name", "JPL")
-    //mkyOutput += "Builder Name = JPL \r";
-    comment("Builder Name = JPL");
-  }
-
-  if (modelNumber == "1500")
-  {
-    editAppSpecific("Builder Name", "PULTE")
-    //mkyOutput += "Builder Name = PULTE \r";
-    comment("Builder Name = PULTE");
-  }
-
 }
 catch (err)
 {
