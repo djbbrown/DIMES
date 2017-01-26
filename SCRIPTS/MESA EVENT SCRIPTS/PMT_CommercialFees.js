@@ -183,7 +183,7 @@ catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
 
-
+// COM040
 var valuationASI = 0;
 if (
 	appTypeArray[1] == 'Commercial' 
