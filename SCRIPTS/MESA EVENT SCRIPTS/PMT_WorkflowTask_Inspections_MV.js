@@ -14,45 +14,70 @@
 //
 //	WTUB;Permits!~!~!~
 /*==================================================================*/
-//test : PMT16-01604
+
 try
 {
-	//Limit check to just saving of Inspections Task
 	if(wfTask == "Inspections")
 	{
-		//Get Inspections
+		//Check if Inspections exist
 		var getInspResult = aa.inspection.getInspections(capId);
 		var cnt = 0;
 		
 		if(getInspResult.getSuccess())
 		{
-			//Inspections to array
+			//Get Inspections
 			inspArr = getInspResult.getOutput();
+			var unresultedStr = "";
+			var unresultedList = new Array();
 
-			for(idx in inspArr)
+			//For each Inspection type check for an "Approved" entry
+			for(r in inspArr) 
 			{
-				var inspObj = inspArr[idx];
-				var inspStatus = inspObj.getInspectionStatus();
-				if(inspStatus == "Scheduled" || inspStatus == "Rescheduled")
+				var Otype = inspArr[r].getInspectionType();
+				var approved = 0;
+					
+				//If we find an "Approved" entry count it
+				for(ir in inspArr)
 				{
-					cnt++;
-					var inspType = inspObj.getInspectionType();
-					logDebug("InspStatus: " + inspStatus);
-					logDebug("InspType: " + inspType);
-					logDebug("Insp Scheduled: " + convertDate(inspObj.getScheduledDate()));
-					logDebug(" ---------------------------------------------");
+					iStatus = inspArr[ir].getInspectionStatus();
+					iType = inspArr[ir].getInspectionType();
+					
+					if(Otype == iType && iStatus == "Approved")
+							approved++;
+				}
+				//If "Approved" counter is 0 Add Inspection type to list
+				if(approved == 0)
+				{
+					if(unresultedList.indexOf(""+Otype+"") == -1)
+                    {
+						unresultedList.push(""+Otype+"");
+                        unresultedStr += Otype + ", ";
+                    }
 				}
 			}
-			if(cnt > 0)
+
+			//If any inspections dont have a corrispoding "Approved" entry cancel updating Inspections workflow task.
+			if(unresultedList.length  > 0)
 			{
+				//Humanize responce
+				var pluralize = "";
+				if(unresultedList.length  == 1) 
+					unresultedStr = unresultedStr.substring(0,unresultedStr.length - 2);
+				else
+				{
+					unresultedStr = unresultedStr.substring(0,unresultedStr.length - 2);
+                    var pos = unresultedStr.lastIndexOf(",");
+					unresultedStr = unresultedStr.substring(0, pos) + " and " + unresultedStr.substring(pos + 1, unresultedStr.length + 4);
+					pluralize = "s";
+				}
 				showMessage = true;
-				comment("All inspections must be completed before finisalizing Inspections workflow task.");
+				comment("The " + unresultedStr + " inspection" + pluralize + " need to be resulted before the Inspections workflow task can be completed.");
 				cancel = true;
 			}
 		}
-	}
+    }
 }
 catch(err)
 {
-		logDebug("Error:" + err.message)
+		comment("Error:" + err.message)
 }
