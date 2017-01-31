@@ -32,26 +32,26 @@ try
 			//For each Inspection type check for an "Approved" entry
 			for(r in inspArr) 
 			{
-				var Otype = inspArr[r].getInspectionType();
-				var approved = 0;
+				var outerType = inspArr[r].getInspectionType();
+				var approvedCount = 0;
 
 				//If we find an "Approved" entry count it
 				for(ir in inspArr)
 				{
-					iStatus = inspArr[ir].getInspectionStatus();
-					iType = inspArr[ir].getInspectionType();
+					innerStatus = inspArr[ir].getInspectionStatus();
+					innerType = inspArr[ir].getInspectionType();
 
-					if(Otype == iType && iStatus == "Approved")
-						approved++;
+					if(outerType == innerType && innerStatus == "Approved")
+						approvedCount++;
 				}
 
 				//If "Approved" counter is 0 Add Inspection type to list
-				if(approved == 0)
+				if(approvedCount == 0)
 				{
-					if(unresultedList.indexOf(""+Otype+"") == -1)
+					if(unresultedList.indexOf(""+outerType+"") == -1)
 					{
-						unresultedList.push(""+Otype+"");
-						unresultedStr += Otype + ", ";
+						unresultedList.push(""+outerType+"");
+						unresultedStr += outerType + ", ";
 					}
 				}
 			}
@@ -59,7 +59,7 @@ try
 			//If any inspections dont have a corrispoding "Approved" entry cancel updating Inspections workflow task.
 			if(unresultedList.length  > 0)
 			{
-				//Humanize responce
+				//Humanize response
 				var pluralize = "";
 				if(unresultedList.length  == 1) 
 					unresultedStr = unresultedStr.substring(0,unresultedStr.length - 2);
@@ -71,7 +71,7 @@ try
 					pluralize = "s";
 				}
 					showMessage = true;
-					comment("The " + unresultedStr + " inspection" + pluralize + " need to be resulted before the Inspections workflow task can be completed.");
+					comment("The " + unresultedStr + " inspection" + pluralize + " must be resulted before the Inspections workflow task can be completed.");
 					cancel = true;
 			}
 		}
@@ -79,5 +79,5 @@ try
 }
 catch(err)
 {
-	comment("Error:" + err.message)
+	logDebug("A JavaScript Error occured: " + err.message);
 }
