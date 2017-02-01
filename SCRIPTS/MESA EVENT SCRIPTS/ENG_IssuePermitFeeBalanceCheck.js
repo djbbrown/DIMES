@@ -14,7 +14,7 @@
 // Under this line create the function that will need to run at script runtime.
 // the function will be called in the event ("WorkflowTaskUpdateBefore") major event.
 
-Try 
+try 
 {
 	if(
 		(
@@ -34,7 +34,7 @@ Try
 	}
 }
 
-catch (err) 
+ catch (err) 
  { 
    logDebug("A JavaScript error occurred: " + err.message); 
  } 
