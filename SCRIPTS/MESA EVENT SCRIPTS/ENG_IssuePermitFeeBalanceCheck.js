@@ -14,28 +14,27 @@
 // Under this line create the function that will need to run at script runtime.
 // the function will be called in the event ("WorkflowTaskUpdateBefore") major event.
 
-try 
-{
-	var balance = 0;
-	
-	if(
-		(
-					(wfTask == "Permit Issuance" && wfStatus == "Issued")
+try {
+       var balance = 0;
 
+       //Get balance due not invoiced fees
+       feeAmtNotInv = feeTotalByStatus("NEW");
+	   comment("feeAmtNotInv = " + feeAmtNotInv);
 
-		)
-		
-		&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
-	
-	){
-	showMessage = true;
-	message = "";
-	comment("All invoice fees must be paid before selecting this status.");
-	cancel = true;
-	}
-}
-
- catch (err) 
- { 
-   logDebug("A JavaScript error occurred: " + err.message); 
- } 
+       if(wfTask == "Permit Issuance" && wfStatus == "Issued")
+       {
+            //Stop processing if Balance is not 0
+            if(feeAmtNotInv > 0 || balanceDue > 0)
+            {
+                //Pop up message to user
+                showMessage = true;
+                comment("Fees must be paid before issuing this permit.");
+                //Stop the submission
+                cancel = true;
+            }
+       }
+    }
+catch (err)
+    {
+      logDebug("A JavaScript Error occured: " + err.message);
+    }
