@@ -15,25 +15,23 @@
 // the function will be called in the event ("WorkflowTaskUpdateBefore") major event.
 
 try {
-       var balance = 0;
+	if(
+		(
+					(wfTask == "Permit Issuance" && wfStatus == "Issued")
+					|| (wfTask == "License Issuance" && wfStatus == "Issued")
+					|| (wfTask == "LOA" && wfStatus == "Letter Sent")
+					|| (wfTask == "Inspection" && wfStatus == "Final Inspection Complete")
+					|| (wfTask == "Inspection" && wfStatus == "Final Inspections Complete")
+		)
+		&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
+	)
 
-       //Get balance due not invoiced fees
-       feeAmtNotInv = feeTotalByStatus("NEW");
-	   comment("feeAmtNotInv = " + feeAmtNotInv);
-
-       if(wfTask == "Permit Issuance" && wfStatus == "Issued")
-       {
-            //Stop processing if Balance is not 0
-            if(feeAmtNotInv > 0 || balanceDue > 0)
-            {
-                //Pop up message to user
-                showMessage = true;
-                comment("Fees must be paid before issuing this permit.");
-                //Stop the submission
-                cancel = true;
-            }
-       }
-    }
+	{
+	showMessage = true;
+	message = "";
+	comment("All fees must be paid before selecting this status.");
+	cancel = true;
+	}
 catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
