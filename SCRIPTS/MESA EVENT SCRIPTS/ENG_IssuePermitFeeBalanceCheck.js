@@ -16,17 +16,17 @@
 
 try 
 {
+	var balance = 0;
+	
 	if(
 		(
 					(wfTask == "Permit Issuance" && wfStatus == "Issued")
-					|| (wfTask == "LOA" && wfStatus == "Letter Sent")
-					|| (wfTask == "Inspection" && wfStatus == "Final Inspection Complete")
-					|| (wfTask == "Inspection" && wfStatus == "Final Inspections Complete")
+
 
 		)
 		
-		//&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
-		&& (feeAmtNotInv > 0 || balanceDue > 0)
+		&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
+	
 	){
 	showMessage = true;
 	message = "";
