@@ -26,7 +26,7 @@ try
  { 
      if ( wfTask == "Traffic Review" && wfStatus == "Revisions Required" )  
      { 
-         comment("Criteria met for script."); 
+     //    comment("Criteria met for script."); 
  
  
          var revisions = getAppSpecific("Submittal Cycle"); 
@@ -38,16 +38,16 @@ try
          { 
              revisions = parseInt(revisions); 
          } 
-         comment("Revisions: " + revisions); 
+         //comment("Revisions: " + revisions); 
  
  
          revisions++; // increment by one 
  
  
-         editAppSpecific_Mesa("Submittal Cycle", revisions ); 
+         editAppSpecific("Submittal Cycle", revisions ); 
  
  
-         comment("Updated Revisions to " + revisions ); 
+      //  comment("Updated Revisions to " + revisions )
      } 
      else 
      { 
