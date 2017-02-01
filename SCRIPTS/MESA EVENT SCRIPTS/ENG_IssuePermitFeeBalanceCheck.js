@@ -25,7 +25,8 @@ try
 
 		)
 		
-		&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
+		//&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
+		&& (feeAmtNotInv > 0 || balanceDue > 0)
 	){
 	showMessage = true;
 	message = "";
