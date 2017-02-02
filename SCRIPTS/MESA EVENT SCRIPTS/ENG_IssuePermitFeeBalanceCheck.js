@@ -22,8 +22,8 @@ try
 		(
 					(wfTask == "Permit Issuance" && wfStatus == "Issued")
 					|| (wfTask == "LOA" && wfStatus == "Letter Sent")
-					|| (wfTask == "Inspection" && wfStatus == "Final Inspection Complete")
-					|| (wfTask == "Inspection" && wfStatus == "Final Inspections Complete")
+					|| (wfTask == "Inspection" && wfStatus == "Final Inspection Complete" || wfStatus == "Final Inspections Complete")
+
 
 		)
 		
