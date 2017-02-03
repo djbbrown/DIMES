@@ -110,7 +110,7 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 	}
 	// Assess the Expedited Premium
 	// Expedite Fee
-	if(AInfo["Expedite"]=="Expedite"){
+	if(AInfo["Expedite"]=="Expedite" && appTypeArray[2]=='NA'){
 		// Get the amount that was on the deposit and then reduce the fee.
 		prePay = feeAmount("RES180","NEW","INVOICED");
 		fTotal = getSubGrpFeeAmt("EXP","","RES190") - prePay;
@@ -119,7 +119,7 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		updateFee("RES190", "PMT_RES", "FINAL", fTotal, "N");
 	}
 	// Super Expedite Fee
-	if(AInfo["Expedite"]=="Super Expedite"){
+	if(AInfo["Expedite"]=="Super Expedite" && appTypeArray[2]=='NA'){
 		// Get the amount that was on the deposit and then reduce the fee.
 		prePay = feeAmount("RES200","NEW","INVOICED");
 		fTotal = getSubGrpFeeAmt("SEXP","","RES210") - prePay;
