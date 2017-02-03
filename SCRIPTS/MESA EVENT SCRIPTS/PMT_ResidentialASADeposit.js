@@ -12,18 +12,33 @@
 // RES020 - Civil Engineering Deposit
 try {
 	// Expedite Fee
-	if(AInfo["Expedite"]=="Expedite"){
+	if(AInfo["Expedite"]=="Expedite" && appTypeArray[2]=='NA'){
 		fTotal = getSubGrpFeeAmt("EDEP","","RES180");
-		removeFee("RES180", "FINAL");
+		// removeFee("RES180", "FINAL"); Not needed
 		// Add the extra fee for expedite
 		updateFee("RES180", "PMT_RES", "FINAL", fTotal, "Y");
 	}
+	
+	if(AInfo["Expedite"]=="Expedite" && appTypeArray[2]=='Mobile Home'){
+		fTotal = getSubGrpFeeAmt("EDEP","","MH185");
+		// removeFee("RES180", "FINAL"); Not needed
+		// Add the extra fee for expedite
+		updateFee("MH190", "PMT_MOBILE HOME", "FINAL", fTotal, "Y");
+	}
+	
 	// Super Expedite Fee
-	if(AInfo["Expedite"]=="Super Expedite"){
+	if(AInfo["Expedite"]=="Super Expedite" && appTypeArray[2]=='NA'){
 		fTotal = getSubGrpFeeAmt("SDEP","","RES200");
-		removeFee("RES200", "FINAL");
+		//removeFee("RES200", "FINAL");
 		// Add the extra fee for expedite
 		updateFee("RES200", "PMT_RES", "FINAL", fTotal, "Y");
+	}
+	
+	if(AInfo["Expedite"]=="Super Expedite" && appTypeArray[2]=='Mobile Home'){
+		fTotal = getSubGrpFeeAmt("SDEP","","MH185");
+		//removeFee("RES200", "FINAL");
+		// Add the extra fee for expedite
+		updateFee("MH200", "PMT_MOBILE HOME", "FINAL", fTotal, "Y");
 	}
 }
 catch (err) {
