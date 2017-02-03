@@ -16,7 +16,7 @@ try {
 	var totalSheets = 0;
 	totalSheets += sumASITColumn(pRInfoTable, "Number of Civil Engineering Sheets");
 	
-	if(totalSheets > ){
+	if(totalSheets > 0){
 		addFee("RES020", "PMT_RES","FINAL", totalSheets, "Y");
 	}
 }
@@ -28,7 +28,7 @@ catch (err) {
 try {
 	valuation = estValue|calcValue;
 	
-	if(valuation > 0 ){
+	if(valuation > 0){
 		addFee("RES010", "PMT_RES","FINAL", valuation, "Y");
 	}
 }
