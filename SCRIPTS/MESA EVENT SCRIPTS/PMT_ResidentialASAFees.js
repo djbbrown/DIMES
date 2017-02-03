@@ -28,8 +28,11 @@ catch (err) {
 try {
 	valuation = estValue|calcValue;
 	
-	if(valuation > 0){
+	if(valuation > 0 && appTypeArray[2]=='NA'){
 		addFee("RES010", "PMT_RES","FINAL", valuation, "Y");
+	}
+	if(valuation > 0 && appTypeArray[2]=='Mobile Home'){
+		addFee("MH185", "PMT_MOBILE HOME","FINAL", valuation, "Y");
 	}
 }
 catch (err) {
