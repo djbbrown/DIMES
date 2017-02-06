@@ -12,11 +12,14 @@ try {
        if (wfTask == "Permit Issuance" && wfStatus == "Issued"){       
             //upate the custom field Permit Issued Date
             editAppSpecific("Permit Issued Date", wfDateMMDDYYYY);
-			if (appMatch("Engineering/Utilities/*/*")){
+			if (appMatch("Engineering/Utilities/Non-City/Annual")){
+				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,365));
+		        }
+			if (appMatch("Engineering/Utilities/Non-City/Standard")){
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
 		        }
 			if (appMatch("Engineering/Right Of Way/*/*")){
-				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,90));
+				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,180));
 		        }
 	   }                
     }
