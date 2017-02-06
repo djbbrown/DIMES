@@ -46,7 +46,7 @@ eval(getScriptText("INCLUDES_BATCH"));
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_CUSTOM_GLOBALS"));
 
-override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
+//override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
 //eval(override);
 
 function getScriptText(vScriptName){
@@ -81,7 +81,7 @@ else
 HH15-00035
 
 /------------------------------------------------------------------------------------------------------------------------------------------*/
-/* test parameters 
+/* test parameters */
 aa.env.setValue("appGroup", "Permits");
 aa.env.setValue("appTypeType", "Police Department");
 aa.env.setValue("appSubtype", "Alarms");
@@ -93,7 +93,7 @@ aa.env.setValue("parentAppType", "Permits/Police Department/Alarms/Commercial");
 aa.env.setValue("emailLog", "Y");
 aa.env.setValue("emailAddress", "lwacht@accela.com");
 aa.env.setValue("sysFromEmail", "noreply@mesa.gov");
-*/
+
 //var lookAheadDays = aa.env.getValue("lookAheadDays"); 
 //var daySpan = getParam("daySpan");
 var appGroup = getParam("appGroup");
@@ -219,16 +219,16 @@ try{
 							if(parAppStatus!="Issued"){
 								logDebug("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
 								addToExceptionRpt("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
-								var parentFound = true;
 							}
 							addParent(parRecord[x]);
 							logDebug("Parent " + parAltId + " added successfully to " + altId);
+							var parentFound = true;
 						}
 					}
 				}
 				if(!parentFound){
 					addToExceptionRpt("No permit found for the record: " + altId);
-					logDebug("No permit found for  the record: " + altId);
+					logDebug("No permit found for this record: " + altId);
 				}
 			}
 			capsToInclude.push(capId);
@@ -380,7 +380,8 @@ try{
 		var capAddrResult = aa.address.getAddressByCapId(chkCap);
 		if (capAddrResult.getSuccess()) {
 			capAddr = capAddrResult.getOutput();
-			if(capAddr[0].getUnitStart()==unitNbr){
+			if((matches(capAddr[0].getUnitStart(), "", "undefined", null) && matches(unitNbr, "", "undefined", null, "null")) ||
+			 (capAddr[0].getUnitStart()==unitNbr)){
 				capIdArray.push(capArray[i].getCapID());
 			}
 		}
