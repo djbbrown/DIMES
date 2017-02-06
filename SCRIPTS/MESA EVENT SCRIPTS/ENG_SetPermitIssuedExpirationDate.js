@@ -15,7 +15,7 @@ try {
 			if (appMatch("Engineering/Utilities/*/*")){
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
 		        }
-			if (appMatch("Engineering/Right of Way/*/*")){
+			if (appMatch("Engineering/Right Of Way/*/*")){
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,90));
 		        }
 	   }                
