@@ -81,7 +81,7 @@ else
 HH15-00035
 
 /------------------------------------------------------------------------------------------------------------------------------------------*/
-/* test parameters */
+/* test parameters 
 aa.env.setValue("appGroup", "Permits");
 aa.env.setValue("appTypeType", "Police Department");
 aa.env.setValue("appSubtype", "Alarms");
@@ -93,7 +93,7 @@ aa.env.setValue("parentAppType", "Permits/Police Department/Alarms/Commercial");
 aa.env.setValue("emailLog", "Y");
 aa.env.setValue("emailAddress", "lwacht@accela.com");
 aa.env.setValue("sysFromEmail", "noreply@mesa.gov");
-
+*/
 //var lookAheadDays = aa.env.getValue("lookAheadDays"); 
 //var daySpan = getParam("daySpan");
 var appGroup = getParam("appGroup");
