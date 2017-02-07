@@ -14,14 +14,14 @@ try {
 	// Expedite Fee
 	if(AInfo["Expedite"]=="Expedite" && appTypeArray[2]=='NA'){
 		fTotal = getSubGrpFeeAmt("EDEP","","RES180");
-		// removeFee("RES180", "FINAL"); Not needed
+		// removeFee("RES180", "FINAL"); //Not needed
 		// Add the extra fee for expedite
 		updateFee("RES180", "PMT_RES", "FINAL", fTotal, "Y");
 	}
 	
 	if(AInfo["Expedite"]=="Expedite" && appTypeArray[2]=='Mobile Home'){
 		fTotal = getSubGrpFeeAmt("EDEP","","MH190");
-		// removeFee("RES180", "FINAL"); Not needed
+		// removeFee("MH190", "FINAL"); //Not needed
 		// Add the extra fee for expedite
 		updateFee("MH190", "PMT_MOBILE HOME", "FINAL", fTotal, "Y");
 	}
@@ -29,14 +29,14 @@ try {
 	// Super Expedite Fee
 	if(AInfo["Expedite"]=="Super Expedite" && appTypeArray[2]=='NA'){
 		fTotal = getSubGrpFeeAmt("SDEP","","RES200");
-		//removeFee("RES200", "FINAL");
+		//removeFee("RES200", "FINAL"); //Not needed
 		// Add the extra fee for expedite
 		updateFee("RES200", "PMT_RES", "FINAL", fTotal, "Y");
 	}
 	
 	if(AInfo["Expedite"]=="Super Expedite" && appTypeArray[2]=='Mobile Home'){
 		fTotal = getSubGrpFeeAmt("SDEP","","MH200");
-		//removeFee("RES200", "FINAL");
+		//removeFee("MH200", "FINAL"); //Not needed
 		// Add the extra fee for expedite
 		updateFee("MH200", "PMT_MOBILE HOME", "FINAL", fTotal, "Y");
 	}
