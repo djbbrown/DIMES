@@ -29,3 +29,5 @@ include("PMT_AssessTechFee"); // must be run last
 // Shared with WTUA:Permits/Commercial/NA/NA
 if(wfTask == "Permit Issuance" && wfStatus == "Issued")
 	cloneToEnvironmental(capId,wfDateMMDDYYYY);
+
+include("PMT_OneTenthAcre_Conditions");
