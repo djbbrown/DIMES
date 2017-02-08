@@ -113,8 +113,9 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 	if(AInfo["Expedite"]=="Expedite" && appTypeArray[2]=='NA'){
 		// Get the amount that was on the deposit and then reduce the fee.
 		prePay = feeAmount("RES180","NEW","INVOICED");
-		fTotal = getSubGrpFeeAmt("EXP","","RES190") - prePay;
-		removeFee("RES190", "FINAL");
+		//fTotal = getSubGrpFeeAmt("EXP","","RES190") - prePay;
+		fTotal = getSubGrpFeeAmt("EXP","","RES190");
+		//removeFee("RES190", "FINAL");
 		// Add the extra fee for expedite
 		updateFee("RES190", "PMT_RES", "FINAL", fTotal, "N");
 	}
@@ -122,8 +123,9 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 	if(AInfo["Expedite"]=="Super Expedite" && appTypeArray[2]=='NA'){
 		// Get the amount that was on the deposit and then reduce the fee.
 		prePay = feeAmount("RES200","NEW","INVOICED");
-		fTotal = getSubGrpFeeAmt("SEXP","","RES210") - prePay;
-		removeFee("RES210", "FINAL");
+		//fTotal = getSubGrpFeeAmt("SEXP","","RES210") - prePay;
+		fTotal = getSubGrpFeeAmt("SEXP","","RES210");
+		//removeFee("RES210", "FINAL");
 		// Add the extra fee for expedite
 		updateFee("RES210", "PMT_RES", "FINAL", fTotal, "N");
 	}
