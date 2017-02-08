@@ -3,3 +3,5 @@
 //=============================
 include("PMT_Email_Workflow_Status_Change");
 include("PMT_SetPermitIssuedDate");
+
+include("PMT_OneTenthAcre_Conditions");
