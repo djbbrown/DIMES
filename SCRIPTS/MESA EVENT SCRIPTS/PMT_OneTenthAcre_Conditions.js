@@ -37,7 +37,7 @@ try{
 					//reqDocTypes.push("Maricopa County Dust Control Permit");  //feedback is that these should be conditions
 					//reqDocTypes.push("Maricopa County Dust Control Plan");  //feedback is that these should be conditions
 					addStdCondition("Building Permit","Maricopa County Dust Control Permit");
-					addStdCondition("Building Permit","Maricopa County Dust Control Plan);
+					addStdCondition("Building Permit","Maricopa County Dust Control Plan");
 				} 
 				
 			}
