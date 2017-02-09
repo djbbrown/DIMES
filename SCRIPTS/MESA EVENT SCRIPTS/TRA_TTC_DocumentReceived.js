@@ -22,7 +22,7 @@
 		if (capStatus == "Revisions Required" && isTaskActive("Plans Distribution")) {
 	var wfTaskStatusCheck = true;
 		}
-			//logDebug("wfTaskStatusCheck = " + wfTaskStatusCheck);
+			comment("wfTaskStatusCheck = " + wfTaskStatusCheck);
 
 			if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 						for(var index = 0; index < documentModelArray.size(); index++){
@@ -32,7 +32,7 @@
 			if (documentModelArray.get(index).getDocCategory()=="Construction Documents") 
 		{
 			updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
-			//potentially send email
+			//Send email using Mesa Event Script TRA_Revisions_Required_New_Doc
 		}	
   		
 	}
