@@ -1,2 +1,2 @@
-include("TRA_DocumentReceived");
+include("TRA__TTC_DocumentReceived");
 include("TRA_Revisions_Required_New_Doc");
