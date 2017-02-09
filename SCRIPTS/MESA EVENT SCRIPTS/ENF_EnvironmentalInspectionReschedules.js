@@ -26,6 +26,7 @@ updateAppStatus w 2, f 0
 
 */
 
+
 try
 {
     // get current inspection object
