@@ -8,20 +8,17 @@
 //            DUA;Transportation!~!~!~
 //
 ===================================================================*/
-/* intellisense references */ 
-/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" /> 
-/// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" /> 
-/// <reference path="../../INCLUDES_CUSTOM.js" /> 
+
  
 
 //Start Script 
- try 
+try 
  { 
 var wfTaskStatusCheck = false;
 if (capStatus == "Revisions Required" && isTaskActive("Plans Distribution")) {
 	var wfTaskStatusCheck = true;
 }
-comment("wfTaskStatusCheck = " + wfTaskStatusCheck);
+//logDebug("wfTaskStatusCheck = " + wfTaskStatusCheck);
 
 if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 	for(var index = 0; index < documentModelArray.size(); index++){
@@ -31,13 +28,11 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 		if (documentModelArray.get(index).getDocCategory()=="Traffic Control Plans") 
 		{
 			updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
-			//Send email with Mesa Even Script TRA_Revisions_Required_New_Doc.js
+			//potentially send email
 		}	
   		
 	}
 }
- 
- }
  catch (err) 
  { 
    logDebug("A JavaScript error occurred: " + err.message); 
