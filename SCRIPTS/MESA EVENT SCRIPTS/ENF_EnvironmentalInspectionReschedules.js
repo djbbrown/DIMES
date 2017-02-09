@@ -26,6 +26,8 @@ updateAppStatus w 2, f 0
 
 */
 
+showDebug = true;
+showMessage = true;
 
 try
 {
