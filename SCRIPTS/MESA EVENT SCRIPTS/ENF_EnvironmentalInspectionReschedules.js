@@ -45,8 +45,9 @@ try
     var futureDate = jsDateToMMDDYYYY(futureDateObj);
 
     // get the last inspector's ID
-    var inspUserObj = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
-    var inspectorId = inspUserObj.getUserID();
+    //var inspUserObj = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
+    //var inspectorId = inspUserObj.getUserID();
+    var inspectorId = getLastInspector(inspType);
 
     comment("FutureDate: " + futureDate);
     comment("Insp First Name: " + inspObj.getInspector().getFirstName());
