@@ -5,12 +5,6 @@
 // Script Agency: Mesa
 // Script Description: see script tracker attached spreadsheet
 
-Questions: 
-1) Does a script need to be created that creates the initial inspection?
-2) When you say "Move Workflow to Workflow Task", does that mean make the specified task active?
-3) Is "inspId" available?
-4) "Close record" - Is this setting the record status to "Closed"?
-
 // Script Run Event: IRSA
 
 // Script Parents:
@@ -53,9 +47,9 @@ try
     var inspUserObj = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
     var inspectorId = inspUserObj.getUserID();
 
-    aa.print("FutureDate: " + futureDate);
-    aa.print("Insp First Name: " + inspObj.getInspector().getFirstName());
-    aa.print("Insp ID: " + inspectorId);
+    comment("FutureDate: " + futureDate);
+    comment("Insp First Name: " + inspObj.getInspector().getFirstName());
+    comment("Insp ID: " + inspectorId);
 
     if ( inspType == "Initial Inspection")
     {
