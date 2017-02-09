@@ -53,7 +53,8 @@ try
     var dt1 = parseInt(inspObj.getInspectionDate().getDayOfMonth());
     var yr1 = parseInt(inspObj.getInspectionDate().getYear());
     var inspResultDate = new Date(yr1, mon1-1, dt1);
-    var futureDate = addDays(inspResultDate, 14); // 14 calendar days // adjusted 2/9/2017
+    var futureDateObj = addDays(inspResultDate, 14); // 14 calendar days // adjusted 2/9/2017
+    var futureDate = jsDateToMMDDYYYY(futureDateObj);
 
     // get the last inspector's ID
     var inspUserObj = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
