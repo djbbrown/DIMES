@@ -8,7 +8,10 @@
 //            DUA;Transportation!~!~!~
 //
 ===================================================================*/
-
+/* intellisense references */ 
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" /> 
+/// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" /> 
+/// <reference path="../../INCLUDES_CUSTOM.js" /> 
  
 
 //Start Script 
@@ -25,7 +28,7 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 		
 		// Update workflow task for document to be reviewed
 
-		if (documentModelArray.get(index).getDocCategory()=="Construction Documents") 
+		if (documentModelArray.get(index).getDocCategory()=="Traffic Control Plans") 
 		{
 			updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
 			//Send email with Mesa Even Script TRA_Revisions_Required_New_Doc.js
