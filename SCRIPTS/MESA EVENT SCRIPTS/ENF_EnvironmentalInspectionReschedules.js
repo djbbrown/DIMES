@@ -16,7 +16,7 @@
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
-/* function scorecard
+/* function scorecards
 
 updateTask w 2, f 7
 setTask w 1, f 2
