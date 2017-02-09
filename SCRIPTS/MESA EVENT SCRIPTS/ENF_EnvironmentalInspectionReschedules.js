@@ -32,13 +32,6 @@ updateAppStatus w 2, f 0
 
 */
 
-function addDays(date, days) 
-{
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-}
-
 try
 {
     // get current inspection object
