@@ -18,14 +18,14 @@ var wfTaskStatusCheck = false;
 if (capStatus == "Revisions Required" && isTaskActive("Plans Distribution")) {
 	var wfTaskStatusCheck = true;
 }
-//logDebug("wfTaskStatusCheck = " + wfTaskStatusCheck);
+	comment("wfTaskStatusCheck = " + wfTaskStatusCheck);
 
 if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 	for(var index = 0; index < documentModelArray.size(); index++){
 		
 		// Update workflow task for document to be reviewed
 
-		if (documentModelArray.get(index).getDocCategory()=="Construction Documents") 
+		if (documentModelArray.get(index).getDocCategory()=="Traffic Control Plans") 
 		{
 			updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
 			//potentially send email
