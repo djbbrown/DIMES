@@ -34,8 +34,8 @@ try{
 				// determine required doc types
 				var reqDocTypes = [];
 				if (acres > 0.1) {
-					reqDocTypes.push("Maricopa County Dust Control Permit");
-					reqDocTypes.push("Maricopa County Dust Control Plan");
+					//reqDocTypes.push("Maricopa County Dust Control Permit");  //feedback is that these should be conditions
+					//reqDocTypes.push("Maricopa County Dust Control Plan");  //feedback is that these should be conditions
 				} 
 				else logDebug("Parcel is under 0.1 acres. No additional documents are required.");
 				if (acres > 1.0) reqDocTypes.push("ADEQ");

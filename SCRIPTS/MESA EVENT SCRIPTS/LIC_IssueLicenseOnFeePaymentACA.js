@@ -32,9 +32,11 @@ try{
 	){
 
 		// get the workflow and set the status
-		wfTaskModel = aa.workflow.getTask(capId, 'Issue License').getOutput();	
-		tStatus = wfTaskModel.getDisposition();
-		if(tStatus == 'Ready to Issue' && balanceDue == 0){
+		//wfTaskModel = aa.workflow.getTask(capId, 'Issue License').getOutput();	//changed due to multiple workflow task names on record types
+		//tStatus = wfTaskModel.getDisposition();     //changed due to multiple workflow task names on record types
+		var wfIssLicTask = isTaskStatus("Issue License","Ready to Issue");
+		var wfLicIssTask = isTaskStatus("License Issuance","Ready to Issue");
+		if((wfIssLicTask || wfLicIssTask) && balanceDue == 0){
 			// Create the license record
 			//wfTask = "Issue License";
 			//wfStatus = "Issued";
@@ -106,7 +108,12 @@ try{
 				{ logDebug("**WARNING: error setting cap name : " + setNameResult.getErrorMessage()) ;}
 			// Set the workflow task "Issue License" to a status of "Issued"
 			//*/
-			closeTask("Issue License", "Issued", "Fee's paid online and permit issued", null);
+			if (isTaskActive("Issue License")){
+				closeTask("Issue License", "Issued", "Fee's paid online and permit issued", null);
+			}
+			if (isTaskActive("License Issuance")){
+				closeTask("License Issuance", "Issued", "Fee's paid online and permit issued", null);
+			}
 			// Generate license report PDF and attach it to the license record
 			var aaReportName = 'License';
 			var itemCapId = capId;

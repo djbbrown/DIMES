@@ -14,3 +14,7 @@ include("PMT_AutopopulateASIFieldsFromGISAttributes");
 include("PMT_CodeEnforcementNumber");
 include("PMT_Stop_Work_Order");
 include("PMT_CommercialImpactFees"); // Script 337
+
+if(matches(AInfo["Expedite"],"Expedite","Super Expedite") && (!feeExists("COM150","NEW","INVOICED") || !feeExists("COM160","NEW","INVOICED"))) {
+	include("PMT_CommercialASAFeesDeposit");
+}

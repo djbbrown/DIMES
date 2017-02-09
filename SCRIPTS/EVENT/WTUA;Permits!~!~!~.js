@@ -10,9 +10,12 @@ include("PMT_CopyPenaltyDateToDueDate");
 
 
 // added by Kevin Gurney (Accela)
+// added !match for Master Plan record type - nalbert 1/31/2017
 if (
 		(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
 		|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
 ){
-	include("PMT_UtilityServiceFees");
+	if(!matches(appTypeArray[1], "Master Plan")){
+		include("PMT_UtilityServiceFees");
+	}
 }

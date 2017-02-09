@@ -26,3 +26,7 @@ include("PMT_CodeEnforcementNumber");
 
 //added by Michael Kniskern (City of Mesa)
 //include("PMT_MobileHomePublicSafetyImpactFee"); //removed by Michaek Kniskern (City of Mesa) 9.27.2016
+
+if(matches(AInfo["Expedite"],"Expedite","Super Expedite") && (!feeExists("MH190","NEW","INVOICED") || !feeExists("MH200","NEW","INVOICED"))) {
+	include("PMT_ResidentialASADeposit");
+}

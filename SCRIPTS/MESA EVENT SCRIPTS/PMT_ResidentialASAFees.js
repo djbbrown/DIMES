@@ -16,12 +16,8 @@ try {
 	var totalSheets = 0;
 	totalSheets += sumASITColumn(pRInfoTable, "Number of Civil Engineering Sheets");
 	
-	if (feeExists("RES020", "NEW", "INVOICED")) {
-		voidRemoveFee("RES020");
-	}
-	addFee("RES020", "PMT_RES","FINAL", totalSheets, "Y");
-	if(!totalSheets > 0 && feeExists("RES020", "NEW", "INVOICED")){
-		voidRemoveFee("RES020");
+	if(totalSheets > 0){
+		addFee("RES020", "PMT_RES","FINAL", totalSheets, "Y");
 	}
 }
 catch (err) {
@@ -31,13 +27,11 @@ catch (err) {
 //RES010
 try {
 	valuation = estValue|calcValue;
-	if (feeExists("RES010", "NEW", "INVOICED")) {
-		voidRemoveFee("RES010");
+	
+	if(valuation > 0 && appTypeArray[2]=='NA'){
+		addFee("RES010", "PMT_RES","FINAL", valuation, "Y");
 	}
-	addFee("RES010", "PMT_RES","FINAL", valuation, "Y");
-	if(!valuation > 0 && feeExists("RES010", "NEW", "INVOICED")){
-		voidRemoveFee("RES010");
-	}
+	
 }
 catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);

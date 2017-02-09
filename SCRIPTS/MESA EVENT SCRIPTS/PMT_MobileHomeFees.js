@@ -38,16 +38,16 @@ if((wfTask == 'Plans Coordination' && wfStatus == 'Ready to Issue') || (wfTask =
 	var totalFeeExp = getSubGrpFeeAmt("EXP");
 	var totalFeeSupExp = (getSubGrpFeeAmt("SUPEXP") * 2);
 	
-	logDebug("totalFeeExp = " + totalFeeExp);
-	logDebug("totalFeeSupExp = " + totalFeeSupExp);
+	//logDebug("totalFeeExp = " + totalFeeExp);
+	//logDebug("totalFeeSupExp = " + totalFeeSupExp);
 			
 	// Expedite Fee
-	if(AInfo["Expedite"]=="Expedite"){
+	if(AInfo["Expedite"]=="Expedite" && !feeExists("MH190","INVOICED")){
 		// Add the extra fee for expedite
 		updateFee("MH190", "PMT_MOBILE HOME", "FINAL", totalFeeExp, "N");
 	}
 	// Super Expedite Fee
-	if(AInfo["Expedite"]=="Super Expedite"){
+	if(AInfo["Expedite"]=="Super Expedite" && !feeExists("MH200","INVOICED")){
 		// Add the extra fee for expedite
 		updateFee("MH200", "PMT_MOBILE HOME", "FINAL", totalFeeSupExp, "N");
 	}

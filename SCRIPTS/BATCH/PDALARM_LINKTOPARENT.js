@@ -46,7 +46,7 @@ eval(getScriptText("INCLUDES_BATCH"));
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_CUSTOM_GLOBALS"));
 
-override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
+//override = "function logDebug(dstr){ if(showDebug) { logDebug(dstr); emailText+= dstr + \"<br>\"; } }";
 //eval(override);
 
 function getScriptText(vScriptName){
@@ -219,16 +219,16 @@ try{
 							if(parAppStatus!="Issued"){
 								logDebug("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
 								addToExceptionRpt("The permit linked to activity  " + altId + " is not in an 'Issued' status: " + parAltId + "(" + parAppStatus + ")");
-								var parentFound = true;
 							}
 							addParent(parRecord[x]);
 							logDebug("Parent " + parAltId + " added successfully to " + altId);
+							var parentFound = true;
 						}
 					}
 				}
 				if(!parentFound){
 					addToExceptionRpt("No permit found for the record: " + altId);
-					logDebug("No permit found for  the record: " + altId);
+					logDebug("No permit found for this record: " + altId);
 				}
 			}
 			capsToInclude.push(capId);
@@ -380,7 +380,8 @@ try{
 		var capAddrResult = aa.address.getAddressByCapId(chkCap);
 		if (capAddrResult.getSuccess()) {
 			capAddr = capAddrResult.getOutput();
-			if(capAddr[0].getUnitStart()==unitNbr){
+			if((matches(capAddr[0].getUnitStart(), "", "undefined", null) && matches(unitNbr, "", "undefined", null, "null")) ||
+			 (capAddr[0].getUnitStart()==unitNbr)){
 				capIdArray.push(capArray[i].getCapID());
 			}
 		}

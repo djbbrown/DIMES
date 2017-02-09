@@ -1,13 +1,13 @@
 /*===================================================================
 // Script Number: 096
-// Script Name: PMT_AssessResidentialBuildingPermitFee
+// Script Name: PMT_MobileHomeDeposit
 // Script Developer: Kevin Ford
 // Script Agency: Accela
 // Script Description: 
-// Script Run Event: WTUA
+// Script Run Event: ASA
 // Script Parents:
-// 	WUTA:Permits!Residential!~!~
-// 	WTUA:Permits!Online!~!~
+// 	ASA:Permits!Residential!Mobile Home!~
+// 
 //
 ===================================================================*/
 try {
@@ -25,7 +25,8 @@ try {
 	var mobileHome = ["Mobile Home Other Addition"];
 	// Online Type of Work Check.
 
-	feeAmount = parseFloat(AInfo["Total Valuation"]||0);
+	//feeAmount = parseFloat(AInfo["Total Valuation"]||0);  //this is not updated during App submittal
+	feeAmount = estValue;
 
 	//==========================
 	// Process Fees
