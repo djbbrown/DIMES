@@ -52,7 +52,7 @@ function mainProcess()
 
     /***** BEGIN LOOP DATA *****/
 
-    var includeAppGroups = "Licenses,Permits,Planning,Transportation,Animal Control,Enforcement,Engineering"; 
+    var includeAppGroups = "Permits,Licenses,Planning,Transportation,Animal Control,Enforcement,Engineering"; 
     var includeAppGroupsArray = includeAppGroups.split(","); // include records in this app group 
 
     for (i = 0; i < includeAppGroupsArray.length; i++)
@@ -131,8 +131,7 @@ function mainProcess()
             logDebug("Processing " + altId);
 
             // this is a customization of updateRefParcelToCap that I made to return a status I can pivot logic on
-            var updateStatusMessage = "";
-            var updateStatus = updateRefParcelToCapReturnStatus(capId, updateStatusMessage); 
+            var updateStatus = updateRefParcelToCapReturnStatus(capId); 
 
             if ( updateStatus != "SUCCESS")
             {
@@ -145,7 +144,7 @@ function mainProcess()
                     {
                         capFailedUpdateParcelAndFailedGetAddress++;
                         // if no addresses returned then notify permit supervisor                    
-                        var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to get the address information to do a search for the parcel." + updateStatusMessage + " (addresses.length = 0)";
+                        var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to get the address information to do a search for the parcel. " + updateStatus + ", addresses.length = 0";
                         // TEMP REMOVED aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
                         emailBody = emailBody + "<li>" + etext + "</li>"; // TEMP ADDED
                     }
@@ -159,7 +158,7 @@ function mainProcess()
                             {
                                 capFailedUpdateParcelAndFailedAddParcel++;
                                 // if failed then notify permit supervisor                    
-                                var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to add the parcel using the address information. " + updateStatusMessage + " RefAddressId: " + refAddressId;
+                                var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to add the parcel using the address information. " + updateStatus + ", RefAddressId: " + refAddressId;
                                 // TEMP REMOVED aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
                                 emailBody = emailBody + "<li>" + etext + "</li>"; // TEMP ADDED
                             }
@@ -168,9 +167,9 @@ function mainProcess()
                         {
                             capFailedUpdateParcelAndFailedGetRefAddress++;
                             // if not found by address then notify permit supervisor                    
-                            var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to get the address information to do a search for the parcel." + updateStatusMessage + " (refAddressId = null)";
+                            var etext = "Failed to automatically update the referenced parcel for " + altId + ". Also failed to get the address information to do a search for the parcel. " + updateStatus + ", refAddressId = null";
                             // TEMP REMOVED aa.sendMail("NoReply@MesaAz.gov", lookup("EMAIL_RECIPIENTS", "Permits_Supervisor"), "", "Accela Parcel Update Failed: " + altId, etext);
-                            emailBody = emailBody + "<li>" + etext + "</li>"; // TEMP ADDED
+                            emailBody = emailBody + "<li>" + etext + " [" + addresses[i].getRefAddressId() + "] [" + updateStatus + "]</li>"; // TEMP ADDED
                         }
                     }
                 }
@@ -211,6 +210,7 @@ function mainProcess()
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
     aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText + emailBody); // TEMP ADDED emailBody, changed to email vfs onlyemailAdminTo, emailAdminCc,
+    logDebug(emailBody); // TEMP ADDED
 
     /***** END ADMIN NOTIFICATION *****/
 }
@@ -279,7 +279,7 @@ function addParcelAndOwnerFromRefAddressWithEmailBody(refAddress, emailBody) // 
 	}
 }
 
-function updateRefParcelToCapReturnStatus(capId, updateStatusMessage)
+function updateRefParcelToCapReturnStatus(capId)
 {
     var capPrclArr = aa.parcel.getParcelDailyByCapID(capId, null).getOutput();
     if (capPrclArr != null) 
@@ -301,34 +301,25 @@ function updateRefParcelToCapReturnStatus(capId, updateStatusMessage)
                         var capPrcl = capPrclObj.getOutput();
                         capPrcl.setL1ParcelNo(refParcelNumber);
                         aa.parcel.updateDailyParcelWithAPOAttribute(capPrcl);
-                        updateStatusMessage = "Updated Parcel " + capPrclArr[x].getParcelNumber() + " with Reference Data.";
-                        logDebug(updateStatusMessage);
                         return "SUCCESS";
                     }
                     else 
                     {
-                        updateStatusMessage = "Failed to Wrap Parcel Model for " + capPrclArr[x].getParcelNumber() + ".";
-                        logDebug(updateStatusMessage);
                         return "FAILED_TO_WRAP_PARCEL_MODEL";
                     }
                 }
                 else 
                 {
-                    updateStatusMessage = "No matching reference Parcels found for " + capPrclArr[x].getParcelNumber() + "."; 
-                    logDebug(updateStatusMessage);
                     return "FAILED_NO_MATCHING_REF_PARCELS";
                 }
             }
             else {
-                updateStatusMessage = "Failed to get reference Parcel for " + capPrclArr[x].getParcelNumber() + ".";
-                logDebug(updateStatusMessage);
                 return "FAILED_GET_REF_PARCEL";
             }
         }
     }
     else
     {
-        updateStatusMessage = "Failed to get parcel."
         return "FAILED_GET_PARCEL_DAILY";
     }
 }
