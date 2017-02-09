@@ -53,9 +53,9 @@ try
     var inspUserObj = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
     var inspectorId = inspUserObj.getUserID();
 
-    logDebug("FutureDate: " + futureDate);
-    logDebug("Insp First Name: " + inspObj.getInspector().getFirstName());
-    logDebug("Insp ID: " + inspectorId);
+    aa.print("FutureDate: " + futureDate);
+    aa.print("Insp First Name: " + inspObj.getInspector().getFirstName());
+    aa.print("Insp ID: " + inspectorId);
 
     if ( inspType == "Initial Inspection")
     {
@@ -81,7 +81,7 @@ try
                 updateTask(inspType, "Citation Issued", "Updated By Script (#354)", ""); // didnt work
 
                 // move wf to wf task "Citation Inspection" (make active)
-                setTask("Citation Inspection", "Y", "N"); // didnt work
+                setTask("Citation Inspections", "Y", "N"); // didnt work
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
                 scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId); // didnt work
@@ -142,7 +142,7 @@ try
                 updateTask(inspType, "Citation Issued", "Updated By Script (#354)", ""); // didnt work
 
                 // move wf to wf task "Citation Inspection" (make active)
-                setTask("Citation Inspection", "Y", "N"); // didnt work
+                setTask("Citation Inspections", "Y", "N"); // didnt work
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
                 scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId); // didnt work bc of futureDate
@@ -192,7 +192,7 @@ try
                 updateTask(inspType, "In Violation - Expedite", "Updated By Script (#354)", ""); // didnt work
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId); // didnt work bc of futureDate
+                scheduleInspectionDateWithInspector("Citation Inspections", futureDate, inspectorId); // didnt work bc of futureDate
 
                 /* From Derek:
                 Created Citation Inspection but did not schedule 14 calendar days out from the Insp Date, 
