@@ -13,7 +13,7 @@
 
 //Start Script 
 try 
- { 
+ {
 var wfTaskStatusCheck = false;
 if (capStatus == "Revisions Required" && isTaskActive("Plans Distribution")) {
 	var wfTaskStatusCheck = true;
@@ -25,7 +25,7 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 		
 		// Update workflow task for document to be reviewed
 
-		if (documentModelArray.get(index).getDocCategory()=="Traffic Control Plans") 
+		if (documentModelArray.get(index).getDocCategory()=="Construction Documents") 
 		{
 			updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
 			//potentially send email
@@ -33,6 +33,8 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
   		
 	}
 }
+ 
+ }
  catch (err) 
  { 
    logDebug("A JavaScript error occurred: " + err.message); 
