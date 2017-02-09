@@ -45,9 +45,14 @@ try
     var inspObj = aa.inspection.getInspection(capId,inspId).getOutput();
 
     // get the inspection date
-    var inspResultDate = inspObj.getInspectionDate().getMonth() + "/" + inspObj.getInspectionDate().getDayOfMonth() + "/" + inspObj.getInspectionDate().getYear();
+    //var inspResultDate = inspObj.getInspectionDate().getMonth() + "/" + inspObj.getInspectionDate().getDayOfMonth() + "/" + inspObj.getInspectionDate().getYear();
 
     // set the inspection schedule date (if needed)
+    var mdy =  inspResultDate.split('/');            
+    var mon1 = parseInt(inspObj.getInspectionDate().getMonth());
+    var dt1 = parseInt(inspObj.getInspectionDate().getDayOfMonth());
+    var yr1 = parseInt(inspObj.getInspectionDate().getYear());
+    var inspResultDate = new Date(yr1, mon1-1, dt1);
     var futureDate = addDays(inspResultDate, 14); // 14 calendar days // adjusted 2/9/2017
 
     // get the last inspector's ID
