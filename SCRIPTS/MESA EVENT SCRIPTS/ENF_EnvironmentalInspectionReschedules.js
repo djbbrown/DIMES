@@ -53,6 +53,10 @@ try
     var inspUserObj = aa.person.getUser(inspObj.getInspector().getFirstName(), inspObj.getInspector().getMiddleName(), inspObj.getInspector().getLastName()).getOutput();
     var inspectorId = inspUserObj.getUserID();
 
+    logDebug("FutureDate: " + futureDate);
+    logDebug("Insp First Name: " + inspObj.getInspector().getFirstName());
+    logDebug("Insp ID: " + inspectorId);
+
     if ( inspType == "Initial Inspection")
     {
         switch (inspResult)
