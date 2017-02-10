@@ -13,14 +13,33 @@
 /*==================================================================*/
 
 //Get the tag
-tagField = "" + getGISInfo("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
-logDebug("tag attribute = " + tagField);
+tagFieldDC = "" + getGISInfoArray2("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", 600, "feet");
+tagFieldHC = "" + getGISInfoArray2("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", 1200, "feet");
+//logDebug("tag attribute DayCare = " + tagFieldDC);
+//logDebug("tag attribute Handicap = " + tagFieldHC);
+
 
 //get ASI for "Type of Application"
-//var typeApp = getAppSpecific("Type of Application",capId);
+var tagValDC = "GHDC";
+var tagValHC = "GHHF";
 var typeApp = AInfo["Type of Application"];
-logDebug(tagField);
-logDebug(typeApp);
+//logDebug(typeApp);
+
+// DayCare application check
+if ((tagFieldDC.indexOf(tagValDC) != -1) && (typeApp == "DayCare")) {
+	showMessage = true;
+	cancel = true;
+	comment("This address is ineligible to register as a DayCare/Group Home, Please contact Planning Staff for any additional information at PlanningGroupHome@mesaaz.gov");
+}
+
+// Handicap application check
+if ((tagFieldHC.indexOf(tagValHC) != -1) && (typeApp == "Handicap")) {
+	showMessage = true;
+	cancel = true;
+	comment("This address is ineligible to register as a DayCare/Group Home, Please contact Planning Staff for any additional information at PlanningGroupHome@mesaaz.gov");	
+}
+
+/*  //remarking out since this code did not technically work
 if(tagField == "GHDC" && typeApp == "DayCare") {
 	showMessage = true;
 	cancel = true;
@@ -31,3 +50,4 @@ if(tagField == "GHHF" && typeApp == "Handicap") {
 	cancel = true;
 	comment("This address is ineligible to register as a DayCare/Group Home, Please contact Planning Staff for any additional information at PlanningGroupHome@mesaaz.gov");	
 }
+*/
