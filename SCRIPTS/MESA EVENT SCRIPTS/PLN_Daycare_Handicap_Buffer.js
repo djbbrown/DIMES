@@ -13,8 +13,8 @@
 /*==================================================================*/
 
 //Get the tag
-tagFieldDC = "" + getGISInfoArray2("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", 600, "feet");
-tagFieldHC = "" + getGISInfoArray2("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", 1200, "feet");
+tagFieldDC = "" + getGISInfoArray2ASB("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", 600, "feet");
+tagFieldHC = "" + getGISInfoArray2ASB("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", 1200, "feet");
 //logDebug("tag attribute DayCare = " + tagFieldDC);
 //logDebug("tag attribute Handicap = " + tagFieldHC);
 
