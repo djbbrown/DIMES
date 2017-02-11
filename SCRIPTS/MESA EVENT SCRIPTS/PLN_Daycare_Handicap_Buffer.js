@@ -27,6 +27,9 @@ var typeApp = AInfo["Type of Application"];
 
 // DayCare application check
 if ((tagFieldDC.indexOf(tagValDC) != -1) && (typeApp == "DayCare")) {
+	if (publicUser) {
+		  showDebug=false;
+	  }
 	showMessage = true;
 	cancel = true;
 	comment("This address is ineligible to register as a DayCare/Group Home, Please contact Planning Staff for any additional information at PlanningGroupHome@mesaaz.gov");
@@ -34,6 +37,9 @@ if ((tagFieldDC.indexOf(tagValDC) != -1) && (typeApp == "DayCare")) {
 
 // Handicap application check
 if ((tagFieldHC.indexOf(tagValHC) != -1) && (typeApp == "Handicap")) {
+	if (publicUser) {
+		  showDebug=false;
+	  }
 	showMessage = true;
 	cancel = true;
 	comment("This address is ineligible to register as a DayCare/Group Home, Please contact Planning Staff for any additional information at PlanningGroupHome@mesaaz.gov");	
