@@ -33,7 +33,7 @@ try
 {
     // get the inspector for this boundary          
     var inspectorObj = getBuildingInspectorId(); // getBuildingInspectorObject();
-    if (inspectorObj != false) 
+    if (inspectorObj != false && InspectorFirstName == null && InspectorMiddleName == null && InspectorLastName == null) 
     {
         /*
 		// get all inspections, assign inspector (if not already assigned)
