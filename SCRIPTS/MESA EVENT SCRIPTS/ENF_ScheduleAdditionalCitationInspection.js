@@ -9,10 +9,12 @@
 //	IRSA;Enforcement/Case/Code Compliance/NA
 //	IRSA;Enforcement/Case/Code Rental Issue/NA
 //	IRSA;Enforcement/Case/Code Sign Issue/NA
-//	IRSA;Enforcement/Environmental/NA/NA 
+//	IRSA;Enforcement/Environmental/NA/NA -- removed by vsmith
 // 11/29/2016 nalbert - Adding from defect #103: 
 //						follow-up insp status = Citation Issued -> create citation insp
 //						initial inspection status = Citation -> create citation insp
+// 02/13/2017 vsmith - removed script execution from IRSA;Enforcement/Environmental/NA/NA
+// 						this script was colliding with #354
 //            
 /*==================================================================*/
 

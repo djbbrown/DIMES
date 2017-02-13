@@ -38,7 +38,6 @@ try
     //var inspResultDate = inspObj.getInspectionDate().getMonth() + "/" + inspObj.getInspectionDate().getDayOfMonth() + "/" + inspObj.getInspectionDate().getYear();
 
     // set the inspection schedule date (if needed)
-    //var mdy =  inspResultDate.split('/');            
     var mon1 = parseInt(inspObj.getInspectionDate().getMonth());
     var dt1 = parseInt(inspObj.getInspectionDate().getDayOfMonth());
     var yr1 = parseInt(inspObj.getInspectionDate().getYear());
