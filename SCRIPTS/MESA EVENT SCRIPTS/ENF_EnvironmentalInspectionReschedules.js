@@ -53,6 +53,8 @@ try
     comment("FutureDate: " + futureDate);
     comment("Insp First Name: " + inspObj.getInspector().getFirstName());
     comment("Insp ID: " + inspectorId);
+    comment("inpType: " + inspType + ".");
+    comment("inspResult: " + ".");
 
     if ( inspType == "Initial Inspection")
     {
