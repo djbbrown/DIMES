@@ -74,15 +74,16 @@ try
                 */
                 break;
             case "Citation":
+                comment("1");
                 // change wf task status to "Citation Issued"
                 updateTask(inspType, "Citation Issued", "Updated By Script (#354)", ""); // didnt work
-
+                comment("2");
                 // move wf to wf task "Citation Inspection" (make active)
                 setTask("Citation Inspections", "Y", "N"); // didnt work
-
+                comment("3");
                 // create new "Citation" inspection (14 calendar days out from inspection date)
                 scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId); // didnt work
-
+                comment("4");
                 /* From Derek:
                 Created Citation Inspection but needs to be scheduled for 14 calendar days from Insp Date 
                 and did not assign to previous ACO and Department, 
@@ -201,7 +202,7 @@ try
                 break;
         }
     }
-
+    comment("5");
     /* // OLD CODE BELOW
 
     // check inspection result, if "In Violation"
