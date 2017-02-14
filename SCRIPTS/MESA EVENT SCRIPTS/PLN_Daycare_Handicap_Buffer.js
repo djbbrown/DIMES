@@ -42,7 +42,7 @@ if ((tagFieldHC.indexOf(tagValHC) != -1) && (typeApp == "Handicap")) {
 	  }
 	showMessage = true;
 	cancel = true;
-	comment("This address is ineligible to register as a DayCare/Group Home, Please contact Planning Staff for any additional information at PlanningGroupHome@mesaaz.gov");	
+	comment("This address is ineligible to register as a Handicap/Group Home, Please contact Planning Staff for any additional information at PlanningGroupHome@mesaaz.gov");	
 }
 
 /*  //remarking out since this code did not technically work
