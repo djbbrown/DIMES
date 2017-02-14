@@ -54,7 +54,7 @@ try
     comment("Insp First Name: " + inspObj.getInspector().getFirstName());
     comment("Insp ID: " + inspectorId);
     comment("inpType: " + inspType + ".");
-    comment("inspResult: " + ".");
+    comment("inspResult: " + inspResult + ".");
 
     if ( inspType == "Initial Inspection")
     {
