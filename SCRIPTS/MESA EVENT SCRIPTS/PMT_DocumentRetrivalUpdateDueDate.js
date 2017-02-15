@@ -22,9 +22,10 @@ try
         if(taskResult.getSuccess())
         {
             var task = taskResult.getOutput();
-            var penDate = AInfo["Penalty Date"];
-            
-            task.setDueDateString(penDate);
+            var penDate = aa.util.parseDate(AInfo["Penalty Date"]);
+            var taskItem = task.getTaskItem()
+
+            taskItem.setDueDate(penDate);
         }
     }
 }
