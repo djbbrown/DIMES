@@ -5,4 +5,4 @@ include("PMT_Email_Workflow_Status_Change");
 include("PMT_SetPermitIssuedDate");
 
 //Included by Michael Vanwie for Issue 63
-Include("PMT_DocumentRetrivalUpdateDueDate")
+include("PMT_DocumentRetrivalUpdateDueDate")
