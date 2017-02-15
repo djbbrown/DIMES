@@ -25,7 +25,12 @@ try
             var penDate = aa.util.parseDate(AInfo["Penalty Date"]);
             var taskItem = task.getTaskItem()
 
+            logDebug("Task Due Date Before: " + convertDate(taskItem.getDueDate()));
+            logDebug("Updating Due Date for " + taskItem.getTaskDescription());
+
             taskItem.setDueDate(penDate);
+
+            logDebug("Task Due Date After: " + taskItem.getDueDate());
         }
     }
 }
