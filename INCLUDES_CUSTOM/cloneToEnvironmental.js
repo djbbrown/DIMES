@@ -16,7 +16,7 @@ function cloneToEnvironmental(pCapId, dateVal){
 			//if at risk grading ASI doesn't matter just create the child
 			create=true;
 		}
-		else if( typeOfWork == "Commercial/Industrial Projects" || 
+		else if( matches(typeOfWork,"Commercial/Industrial Projects","Multi-Family Residential","Subdivision Improvements") || 
 			( typeOfWork == "Other Commercial" && 
 					matches(classificationType,"Additions","Carport","Park/Stadium/Outdoor Theatre/Marinas",
 							"Parking Garage (Enclosed/Opened)","Public Works/Utilities","Remodeling with Addition",
@@ -55,6 +55,8 @@ function cloneToEnvironmental(pCapId, dateVal){
 		var envbCapId = createChild("Enforcement","Environmental","Construction","NA","",pCapId);
 		//Copy Owners
 		copyOwner(pCapId, envbCapId);
+		//copyOwners
+		copyParcels(pCapId, envbCapId)
 		//Copy LPs
 		copyLicensedProf(pCapId, envbCapId);
 		//edit ASI.Date of Project
