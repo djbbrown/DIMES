@@ -32,9 +32,9 @@ function cloneToEnvironmental(pCapId, dateVal){
 			checkASIT = true;
 		}
 	}
-	else if(appMatch("Permits/Demolition/NA/NA",pCapId)){
-		checkASIT = true;
-	}
+	//else if(appMatch("Permits/Demolition/NA/NA",pCapId)){
+	//	checkASIT = true;
+	//}
 	
 	//If we need to check ASIT then check it
 	if(checkASIT){
