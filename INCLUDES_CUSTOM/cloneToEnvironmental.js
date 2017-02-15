@@ -6,8 +6,10 @@
 function cloneToEnvironmental(pCapId, dateVal){
 	var create = false;
 	var checkASIT = false;
-	var typeOfWork = getAppSpecific("Type of work",pCapId); 
-	var classificationType = getAppSpecific("Classification Type",pCapId); 
+	var typeOfWork = String(getAppSpecific("Type of work",pCapId)); 
+	logDebug("Type of work=" + typeOfWork);
+	var classificationType = String(getAppSpecific("Classification Type",pCapId)); 
+	logDebug("Classification Type=" + classificationType);
 	
 	if(appMatch("Permits/Commercial/NA/NA",pCapId)){
 		if(typeOfWork == "At Risk Grading"){
@@ -16,15 +18,17 @@ function cloneToEnvironmental(pCapId, dateVal){
 		}
 		else if( typeOfWork == "Commercial/Industrial Projects" || 
 			( typeOfWork == "Other Commercial" && 
-					exists(classificationType,"Additions","Carport","Park/Stadium/Outdoor Theatre/Marinas",
+					matches(classificationType,"Additions","Carport","Park/Stadium/Outdoor Theatre/Marinas",
 							"Parking Garage (Enclosed/Opened)","Public Works/Utilities","Remodeling with Addition",
 							"Storage Shed/Barn","Swimming Pool","Foundation Permits"))){
+			logDebug("Checking Plan Review Information table");
 			checkASIT = true;	
 		} 
 	}
 	else if(appMatch("Permits/Residential/NA/NA",pCapId)){
-		if( exists(typeOfWork,"Single Family (Detached)","Single Family (Attached)","Two-Family Duplex","Guesthouse",
+		if( matches(typeOfWork,"Single Family (Detached)","Single Family (Attached)","Two-Family Duplex","Guesthouse",
 				"Remodeling With Addition","Addition","Garage/Carport") ){
+			logDebug("Checking Plan Review Information table");
 			checkASIT = true;
 		}
 	}
@@ -37,7 +41,7 @@ function cloneToEnvironmental(pCapId, dateVal){
 		var prInfoTable = loadASITable("PLAN REVIEW INFORMATION",pCapId);
 		for(var r in prInfoTable){
 			logDebug("ASIT:" + prInfoTable[r]["Type of Civil Engineering Sheets"])
-			if(matches(prInfoTable[r]["Type of Civil Engineering Sheets"],"Cover Sheets","Grading/Site Plans and Details")){
+			if(matches(prInfoTable[r]["Type of Civil Engineering Sheets"],"Civil Cover Sheet","Cover Sheets","Grading/Site Plans and Details")){
 				create=true;
 				break; //only care if we find one the break out
 			}
