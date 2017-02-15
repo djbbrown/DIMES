@@ -58,7 +58,8 @@ try
 
     if ( inspType == "Initial Inspection")
     {
-        switch (inspResult)
+
+        switch ("" + inspResult)
         {
             case "In Violation":
                 // change wf task status to "In Violation"
