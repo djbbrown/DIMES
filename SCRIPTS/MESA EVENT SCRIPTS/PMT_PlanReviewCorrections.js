@@ -33,7 +33,7 @@ try
             {
                 var taskStatus = String(tasks[task].status);
                 var arrReviews = ["Planning Review", "Building Review", "Fire Review", "Civil Engineering Review", "DIS Review"];
-                var arrStatus = ["Approved", "Approved W/Comments", "Not Required"];
+                var arrStatus = ["Approved", "Approved w/Comments", "Not Required"];
 
                 //If task is in the list of checked reviews continue evaluation
                 if(IsStrInArry(task, arrReviews))
