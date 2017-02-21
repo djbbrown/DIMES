@@ -19,19 +19,19 @@ try {
 	) 	{
 			if (typeOfWork && typeOfWork =='Annual UTL Permit Only') {
 				if (feeExists("UTL030", "NEW", "INVOICED")){voidRemoveFee("UTL030");}
-				addFee("UTL030", "ENG_NON-CITY UTILITES","FINAL", 1, "N");
+				addFee("UTL030", "ENG_NON-CITY UTILITIES","FINAL", 1, "N");
 			
 				if (feeExists("UTL040", "NEW", "INVOICED")){voidRemoveFee("UTL040");}
-				addFee("UTL040", "ENG_NON-CITY UTILITES","FINAL", 1, "N");
+				addFee("UTL040", "ENG_NON-CITY UTILITIES","FINAL", 1, "N");
 			
 				if (feeExists("UTL050", "NEW", "INVOICED")){voidRemoveFee("UTL050");}
-				addFee("UTL050", "ENG_NON-CITY UTILITES","FINAL", 1, "N");
+				addFee("UTL050", "ENG_NON-CITY UTILITIES","FINAL", 1, "N");
 			
 				if (feeExists("UTL0140", "NEW", "INVOICED")){voidRemoveFee("UTL0140");}
-				addFee("UTL0140", "ENG_NON-CITY UTILITES","FINAL", 1, "N");
+				addFee("UTL0140", "ENG_NON-CITY UTILITIES","FINAL", 1, "N");
 			
 				if (feeExists("UTL0150", "NEW", "INVOICED")){voidRemoveFee("UTL0150");}
-				addFee("UTL0150", "ENG_NON-CITY UTILITES","FINAL", 1, "N");
+				addFee("UTL0150", "ENG_NON-CITY UTILITIES","FINAL", 1, "N");
 			}
 
 
