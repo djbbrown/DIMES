@@ -11,7 +11,7 @@
 /*==================================================================*/
 // Get the Type of Work
 var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : "Type of work";
-
+comment("typeOfWork = " + typeOfWork);
 try {
 	if(
 		(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
