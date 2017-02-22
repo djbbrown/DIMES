@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: ---
-// Script Name: PMT_AddRefContactForBillingContact.js
+// Script Name: PMT_AddRefBillingContact.js
 // Script Developer: Michael VanWie
 // Script Agency: Mesa
 // Script Description:
@@ -21,11 +21,7 @@
 try
 {
     var contactTypesToLink = ["Billing Contact"];
-
-    if(contactType === "Billing Contact")
-    {
-        createRefContactsFromCapContactsAndLink(capId, contactTypesToLink, null, false, true, comparePeopleStandard);
-    }
+    createRefContactsFromCapContactsAndLink(capId, contactTypesToLink, null, false, true, comparePeopleStandard);
 }
 catch(err)
 {
