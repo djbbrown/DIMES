@@ -60,7 +60,6 @@ if(applicant)
                         var ccm = aa.people.getCapContactByPK(cap, ccmSeq).getOutput().getCapContactModel();
 
                         ccm.setRefContactNumber(refContactNum);
-                        ccm.getPeople().setContactType(ccmType);
 
                         r = aa.people.editCapContact(ccm);
 
