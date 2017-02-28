@@ -20,27 +20,28 @@
 
 //get people on Association Record - Typically just an applicant
 var appContacts = aa.people.getCapContactByCapID(capId).getOutput();
-var overwriteAttributes = false;
 
-//Check entered Records
-for(ids in CONVERTEDRECORDASSOCIATION)
+//Get Applicant
+for(c in appContacts)
+    var applicant = appContacts[c].getCapContactModel().getContactType() == "Applicant" ? appContacts[c] : null;
+
+if(applicant)
 {
-    //check if CAP is valid
-    var capAltId = String(CONVERTEDRECORDASSOCIATION[ids]["Permit/License Number"]).trim();
-    capResult = aa.cap.getCapID(capAltId);
+    //Applicants Ref Number
+    var refContactNum = applicant.getCapContactModel().getRefContactNumber();
 
-    if(capResult.getSuccess())
+    //Check entered Records
+    for(ids in CONVERTEDRECORDASSOCIATION)
     {
-        cap = capResult.getOutput();
-        logDebug("Checking: " + capAltId);
-        capContacts = aa.people.getCapContactByCapID(cap).getOutput();
-        capContacts2 = aa.people.getCapContactByCapID(cap).getOutput();
+        //check if CAP is valid
+        var capAltId = String(CONVERTEDRECORDASSOCIATION[ids]["Permit/License Number"]).trim();
+        capResult = aa.cap.getCapID(capAltId);
 
-        //For each contact on the application 
-        for(appContact in appContacts)
+        if(capResult.getSuccess())
         {
-            //Application Contact
-            var aContact = appContacts[appContact];
+            cap = capResult.getOutput();
+            capContacts = aa.people.getCapContactByCapID(cap).getOutput();
+            logDebug("Checking: " + capAltId);
 
             //Check against contact on CAP
             for(capContact in capContacts)
@@ -49,53 +50,31 @@ for(ids in CONVERTEDRECORDASSOCIATION)
                 var cContact = capContacts[capContact];
                 
                 //If Application Contact's Name and Email Match link them to CAP
-                if(aContact.getEmail() == cContact.getEmail() &&
-                aContact.getFirstName() == cContact.getFirstName() &&
-                aContact.getLastName() == cContact.getLastName())
+                if(applicant.getEmail() == cContact.getEmail() &&
+                    applicant.getFirstName() == cContact.getFirstName() &&
+                    applicant.getLastName() == cContact.getLastName())
                 {
-                    //Get Applications Ref Number
-                    var refContactNum = aContact.getCapContactModel().getRefContactNumber();
-                    //Get Cap PeopleObject
-                    var cPeople = cContact.getPeople();
-
                     if(refContactNum)
                     {
-                        cPeople.setContactSeqNumber(refContactNum);
-                        cPeople.setContactType(cContact.getPeople().getContactType());
+                        var ccmSeq = cContact.getPeople().getContactSeqNumber();
+                        var ccm = aa.people.getCapContactByPK(cap, ccmSeq).getOutput().getCapContactModel();
 
-                        if(overwriteAttributes)
-                        {
-                            var a = cPeople.getAttributes();
-                            if(a)
-                            {
-                                var ai = a.iterator();
-                                while(ai.hasNext())
-                                {
-                                    var xx = ai.next();
-                                    xx.setContactNo(refContactNum);
-                                }
-                            }
-                            var r = aa.people.editPeopleWithAttribute(cPeople, cPeople.getAttributes());
-                            if(!r.getSuccess())
-                                logDebug("WARNING: Couldn't refresh reference people : " + r.getErrorMessage());
-                            else
-                                logDebug("Successfully Refreshed ref contact # " + refContactNum + " with CAP contact data");
-                        }
+                        ccm.setRefContactNumber(refContactNum);
+                        ccm.getPeople().setContactType(ccmType);
+
+                        r = aa.people.editCapContact(ccm);
+
+                        if(r.getSuccess())
+                            logDebug("Successfully linked ref contact " + refContactNum + " to cap contact " + ccmSeq);
                         else
-                        {
-                            var r = aa.people.editPeople(cPeople);
-                            if(!r.getSuccess())
-                                logDebug("WARNING: Couldn't refresh reference people : " + r.getErrorMessage());
-                            else
-                                logDebug("Successfully linked " + refContactNum + " with " + cap + " as " + cContact.getPeople().getContactType());
-                        }
+                            logDebug("WARNING: error updating cap contact model : " + r.getErrorMessage());
                     }
                 }
-            } //loop Cap Contacts
-        } //loop association contacts
-    }
-    else
-    {
-        logDebug("Invalid Record ID entered by user: " + capAltId);
+            }
+        }
+        else
+        {
+            logDebug("Invalid Record ID entered by user: " + capAltId);
+        }
     }
 }
