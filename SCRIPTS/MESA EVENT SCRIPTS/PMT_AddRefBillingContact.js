@@ -11,6 +11,8 @@
 // Script Parents:
 //
 //          CAA;Permits!Police Department!Alarms!~
+//          CAA;Permits!Fire!~!~
+//          CAA;Enforcement!~!~!~
 /*==================================================================*/
 
 /* intellisense references */
