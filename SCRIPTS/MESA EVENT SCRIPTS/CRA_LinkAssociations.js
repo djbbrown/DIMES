@@ -1,7 +1,7 @@
 /*===================================================================
 // Script Number: ---
 // Script Name:CRA_LinkAssociations
-// Script Developer: Raminder Gill
+// Script Developer: Michael VanWie
 // Script Agency: MESA
 // Script Description: Link Association record contacts with reference contacts
 // Script Run Event: ASA
