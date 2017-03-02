@@ -7,7 +7,7 @@ if(publicUser){
 	include("PMT_FloodControlPermit");
 	include("PMT_StapleyTag");
 	// added by Vance Smith (Mesa)
-	nclude("PMT_AutopopulateASIFieldsFromGISAttributes");
+	include("PMT_AutopopulateASIFieldsFromGISAttributes");
 	include("PMT_CodeEnforcementNumber");
 }
 
