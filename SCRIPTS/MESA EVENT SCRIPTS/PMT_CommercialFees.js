@@ -321,8 +321,9 @@ if (
 	if(AInfo["Expedite"]=="Expedite"){
 		// Get the amount that was on the deposit and then reduce the fee.
 		prePay = feeAmount("COM150","NEW","INVOICED");
-		fTotal = getSubGrpFeeAmt("EXP","","COM155") - prePay;
-		removeFee("COM155", "FINAL");
+		//fTotal = getSubGrpFeeAmt("EXP","","COM155") - prePay;
+		fTotal = getSubGrpFeeAmt("EXP","","COM155");
+		//removeFee("COM155", "FINAL"); //not needed since we are using updateFee function
 		// Add the extra fee for expedite
 		updateFee("COM155", "PMT_COM", "FINAL", fTotal, "N");
 	}
@@ -330,8 +331,9 @@ if (
 	if(AInfo["Expedite"]=="Super Expedite"){
 		// Get the amount that was on the deposit and then reduce the fee.
 		prePay = feeAmount("COM160","NEW","INVOICED");
-		fTotal = getSubGrpFeeAmt("SEXP","","COM165") - prePay;
-		removeFee("COM165", "FINAL");
+		//fTotal = getSubGrpFeeAmt("SEXP","","COM165") - prePay;
+		fTotal = getSubGrpFeeAmt("SEXP","","COM165");
+		//removeFee("COM165", "FINAL");  //not needed since we are using updateFee function
 		// Add the extra fee for expedite
 		updateFee("COM165", "PMT_COM", "FINAL", fTotal, "N");
 	}
