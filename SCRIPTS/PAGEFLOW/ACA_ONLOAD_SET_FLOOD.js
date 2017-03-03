@@ -1,5 +1,5 @@
 var showMessage = false;						// Set to true to see results in popup window
-var showDebug = false;
+var showDebug = true;
 var useAppSpecificGroupName = false;	
 var message = " ";							// Message String
 var debug = "";								// Debug String
