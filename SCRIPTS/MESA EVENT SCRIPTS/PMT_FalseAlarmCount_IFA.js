@@ -21,6 +21,9 @@
 	}
 	
 }*/
+/* ID-305: When the Alarm Permit record has a fee invoiced on it and the script will increment the 
+respective "False Alarm Count" field by one (1).
+*/
 
 feesDescInvArry = new Array();
 feesDescInvArry = FeeObjs;
@@ -34,7 +37,7 @@ var cntAlarmPanic = parseInt(AInfo["False Alarm Count Panic/Robbery/Hold-Up"]) +
 for (x in feesDescInvArry) 
 if(feesDescInvArry[x].getFeeDescription().indexOf("Burglary") > 0) {
 	feeDescBurg=true; 
-	logDebug("what is value of feeDescBurg = " + feeDescBurg);
+	//logDebug("what is value of feeDescBurg = " + feeDescBurg);
 	if (feeDescBurg) {
 		editAppSpecific("False Alarm Count", cntAlarm);
 	}
@@ -43,7 +46,7 @@ if(feesDescInvArry[x].getFeeDescription().indexOf("Burglary") > 0) {
 for (y in feesDescInvArry) 
 if((feesDescInvArry[y].getFeeDescription().indexOf("Panic") > 0) || (feesDescInvArry[y].getFeeDescription().indexOf("Hold") > 0)) {
 	feeDescPanic=true; 
-	logDebug("what is value of feeDescPanic = " + feeDescPanic);
+	//logDebug("what is value of feeDescPanic = " + feeDescPanic);
 	if (feeDescPanic) {
 		editAppSpecific("False Alarm Count Panic/Robbery/Hold-Up", cntAlarmPanic);
 	}
