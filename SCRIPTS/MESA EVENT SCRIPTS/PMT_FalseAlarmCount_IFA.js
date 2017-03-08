@@ -1,8 +1,8 @@
-/* ID-305: When the Alarm Activity record has a fee invoiced on it and the 
+/* ID-305: When the Alarm Permit record has a fee invoiced on it and the 
 "False Alarm Fees Charged" checkbox is checked, the script will increment the 
 "False Alarm Count" field up on the Alarm Permit Record by one (1).
 */
-if (AInfo["False Alarm Fees Charged"]=="CHECKED"){
+/*if (AInfo["False Alarm Fees Charged"]=="CHECKED"){
 	var arrCapId = getParents("Permits/Police Department/Alarms/Commercial");
 	if(arrCapId) {
 		//should only be one parent
@@ -20,4 +20,17 @@ if (AInfo["False Alarm Fees Charged"]=="CHECKED"){
 		comment("NOTE this record does NOT have a parent Alarm record.");
 	}
 	
+}*/
+
+feesDescInvArry = new Array();
+feesDescInvArry = FeeObjs;
+var feeDescBurg=false;
+var feeDescPanic=false;
+var x;
+var y;
+
+for (x in feesDescInvArry) 
+if(feesDescInvArry[x].getFeeDescription().indexOf("Burglary") > 0) {
+	feeDescBurg=true; 
+	comment("what is value of feeDescBurg = " + feeDescBurg);
 }
