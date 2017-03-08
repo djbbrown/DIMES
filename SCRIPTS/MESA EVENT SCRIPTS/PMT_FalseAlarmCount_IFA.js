@@ -28,9 +28,23 @@ var feeDescBurg=false;
 var feeDescPanic=false;
 var x;
 var y;
+var cntAlarm = parseInt(AInfo["False Alarm Count"]) + 1;
+var cntAlarmPanic = parseInt(AInfo["False Alarm Count Panic/Robbery/Hold-Up"]) + 1;
 
 for (x in feesDescInvArry) 
 if(feesDescInvArry[x].getFeeDescription().indexOf("Burglary") > 0) {
 	feeDescBurg=true; 
-	comment("what is value of feeDescBurg = " + feeDescBurg);
+	logDebug("what is value of feeDescBurg = " + feeDescBurg);
+	if (feeDescBurg) {
+		editAppSpecific("False Alarm Count", cntAlarm);
+	}
+}
+
+for (y in feesDescInvArry) 
+if(feesDescInvArry[y].getFeeDescription().indexOf("Panic") > 0) {
+	feeDescPanic=true; 
+	logDebug("what is value of feeDescPanic = " + feeDescPanic);
+	if (feeDescBurg) {
+		editAppSpecific("False Alarm Count Panic/Robbery/Hold-Up", cntAlarmPanic);
+	}
 }
