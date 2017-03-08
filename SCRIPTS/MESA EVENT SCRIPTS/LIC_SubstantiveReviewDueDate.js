@@ -55,6 +55,5 @@ if(
 	}else{
 		// Update the Substantive Review Due + 60 for all other record types.
 		editAppSpecific("Substantive Review Due", dateAdd(null,60));
-		logDebug("Did this happen");
 	}
 }
