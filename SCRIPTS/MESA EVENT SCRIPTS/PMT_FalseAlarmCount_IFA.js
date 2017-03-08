@@ -41,7 +41,7 @@ if(feesDescInvArry[x].getFeeDescription().indexOf("Burglary") > 0) {
 }
 
 for (y in feesDescInvArry) 
-if((feesDescInvArry[y].getFeeDescription().indexOf("Panic") > 0) || (feesDescInvArry[y].getFeeDescription().indexOf("Panic") > 0)) {
+if((feesDescInvArry[y].getFeeDescription().indexOf("Panic") > 0) || (feesDescInvArry[y].getFeeDescription().indexOf("Hold") > 0)) {
 	feeDescPanic=true; 
 	logDebug("what is value of feeDescPanic = " + feeDescPanic);
 	if (feeDescPanic) {
