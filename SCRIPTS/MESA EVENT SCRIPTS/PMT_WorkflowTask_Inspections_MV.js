@@ -17,16 +17,14 @@
 try
 {
 	if(wfTask == "Inspections")
-		{
+	{
 		//Check if Inspections exist
 		var getInspResult = aa.inspection.getInspections(capId);
-		var cnt = 0;
 
 		if(getInspResult.getSuccess())
 		{
 			//Get Inspections
 			inspArr = getInspResult.getOutput();
-			var unresultedStr = "";
 			var unresultedList = new Array();
 
 			//For each Inspection type check for an "Approved" entry
@@ -46,33 +44,17 @@ try
 				}
 
 				//If "Approved" counter is 0 Add Inspection type to list
-				if(approvedCount == 0)
-				{
-					if(unresultedList.indexOf(""+outerType+"") == -1)
-					{
+				if(approvedCount == 0 && unresultedList.indexOf(""+outerType+"") == -1)
 						unresultedList.push(""+outerType+"");
-						unresultedStr += outerType + ", ";
-					}
-				}
 			}
 
 			//If any inspections dont have a corrispoding "Approved" entry cancel updating Inspections workflow task.
 			if(unresultedList.length  > 0)
 			{
-				//Humanize response
-				var pluralize = "";
-				if(unresultedList.length  == 1) 
-					unresultedStr = unresultedStr.substring(0,unresultedStr.length - 2);
-				else
-				{
-					unresultedStr = unresultedStr.substring(0,unresultedStr.length - 2);
-					var pos = unresultedStr.lastIndexOf(",");
-					unresultedStr = unresultedStr.substring(0, pos) + " and " + unresultedStr.substring(pos + 1, unresultedStr.length + 4);
-					pluralize = "s";
-				}
-					showMessage = true;
-					comment("The " + unresultedStr + " inspection" + pluralize + " must be resulted before the Inspections workflow task can be completed.");
-					cancel = true;
+				var pluralize = unresultedList.length > 1 ? "s" : "";
+				showMessage = true;
+				comment("The " + unresultedList.join(", ") + " inspection" + pluralize + " must be resulted before the Inspections workflow task can be completed.");
+				cancel = true;
 			}
 		}
 	}
