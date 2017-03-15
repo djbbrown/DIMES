@@ -5,6 +5,7 @@ if (publicUser){
 	include("PMT_CM_Gas_Electric");
 	// added by Vance Smith (Mesa)
 	include("PMT_AutopopulateASIFieldsFromGISAttributes"); // 109
+	include("PMT_IssueOnlinePermitACA"); //Added Script 393 by Michael VanWie
 }
 
 

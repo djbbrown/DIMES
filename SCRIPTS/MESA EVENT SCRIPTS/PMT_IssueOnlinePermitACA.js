@@ -20,15 +20,13 @@
 
 try
 {
-    if(appMatch("Permits/Online/NA/NA") && publicUser)
+    if(appMatch("Permits/Online/NA/NA"))
     {
         //Update Application Submittal to "Ready to Issue"
-        //branchTask("Application Submittal", "Ready To Issue", "Closed by Script 393", "Closed via Script 393");
-        updateTask("Application Submittal", "Ready To Issue", "Updated by Script 393", "");
+        branchTask("Application Submittal", "Ready To Issue", "Closed by Script 393", "Closed via Script 393");
         
         //Update Permit Issuance to "Issued"
-        //branchTask("Permit Issuance", "Issued", "Issued by Script 393", "Issued via Script 393");
-        updateTask("Permit Issuance", "Issued", "Updated by Script 393", "");
+        branchTask("Permit Issuance", "Issued", "Issued by Script 393", "Issued via Script 393");
         
         //Update App Status to "Issued"
         updateAppStatus("Issued", "Issued by Script 393");
