@@ -12,6 +12,7 @@ include("PMT_OnlineCommercialPropertyType"); // Script 326
 //if online user remove all fees first so not to duplicate fees
 if(publicUser){
 	removeAllFees(capId);
+	include("PMT_IssueOnlinePermitACA"); //Added Script 393 by Michael VanWie
 }
 
 include("PMT_ONLFee030"); // Fee scripting 030
