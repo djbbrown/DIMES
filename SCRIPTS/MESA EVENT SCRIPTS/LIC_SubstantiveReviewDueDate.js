@@ -42,18 +42,18 @@ if(
 		|| appTypeArray[2]=="Fireworks"
 		) {
 		// Special Event + 30 needs to be set
-		editAppSpecific("Substantive Review Due", dateAdd(AInfo["Administrative Review Due"],30));
+		editAppSpecific("Substantive Review Due", dateAdd(null,30));
 	}else if(appTypeArray[2]=="MassageEstablishment") {
-		editAppSpecific("Substantive Review Due", dateAdd(AInfo["Administrative Review Due"],90));
+		editAppSpecific("Substantive Review Due", dateAdd(null,90));
 	}else if(appTypeArray[2]=="LiquorSpecialEvent"
 		|| appTypeArray[2]=="TeenDance"
 		|| appTypeArray[2]=="Liquor"
 		|| appTypeArray[2]=="ParkandSwap"
 		|| appTypeArray[2]=="BingoHall"
 	) {
-		editAppSpecific("Substantive Review Due", dateAdd(AInfo["Administrative Review Due"],45));
+		editAppSpecific("Substantive Review Due", dateAdd(null,45));
 	}else{
 		// Update the Substantive Review Due + 60 for all other record types.
-		editAppSpecific("Substantive Review Due", dateAdd(AInfo["Administrative Review Due"],60));
+		editAppSpecific("Substantive Review Due", dateAdd(null,60));
 	}
 }
