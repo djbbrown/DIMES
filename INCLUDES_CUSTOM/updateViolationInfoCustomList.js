@@ -17,7 +17,7 @@ try{
 					rowFound=true;
 				}
 			}
-			if(!rowFound && ""+VIOLATIONINFORMATION[row]["Citation Number"].trim().length >0){
+			if(!rowFound && (""+VIOLATIONINFORMATION[row]["Citation Number"]).trim().length >0){
 				var rowCiteCheck=new Array(); 
 				rowCiteCheck["Citation Number"]=VIOLATIONINFORMATION[row]["Citation Number"]; 
 				rowCiteCheck["Citation Issued Date"]=""; 
