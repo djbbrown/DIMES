@@ -10,7 +10,7 @@
 /*===================================================================*/
 //Start Script
 
-if ((documentModelArray.size() > 0) 	{
+if (documentModelArray.size() > 0) 	{
 	for(var index = 0; index < documentModelArray.size(); index++){
 		
 		// Create a Fire CD Activity
@@ -40,4 +40,4 @@ if ((documentModelArray.size() > 0) 	{
   		
 	}
 }
-//End Script Permits DUA
+//End Script 
