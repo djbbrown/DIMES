@@ -22,7 +22,7 @@ if (documentModelArray.size() > 0) 	{
 			act.setServiceProviderCode(aa.getServiceProviderCode());
 			act.setCapID(capId);
 			act.setActivityType("Correspondence");
-			act.setDueDate(dt);  
+			//act.setDueDate(dt);  
 			act.setStatusDate(dt);
 			act.setActDate(dt);
 			//act.setAuditDate(dt);
