@@ -20,7 +20,7 @@ if (documentModelArray.size() > 0) 	{
 			var act = aa.activity.getNewActivityModel().getOutput();
 			var dt = mesaWorkingDays(aa.util.now(), 3);  //today + 3 days based on 4-day work-week
 			act.setServiceProviderCode(aa.getServiceProviderCode());
-			act.setCapID(parentId);
+			act.setCapID(capId);
 			act.setActivityType("Correspondence");
 			act.setDueDate(dt);  
 			act.setStatusDate(dt);
