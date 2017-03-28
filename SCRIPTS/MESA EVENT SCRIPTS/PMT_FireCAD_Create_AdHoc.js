@@ -20,8 +20,13 @@ if (documentModelArray.size() > 0) 	{
 			var thisCap = capId;
 			var thisUser = "RPEREZ3";
 			var dt = mesaWorkingDays(aa.util.now(), 3);  //today + 3 days based on 4-day work-week
-			var userObj = aa.person.getUser(thisUser);
+			//var userObj = aa.person.getUser(thisUser);
 			var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem();
+			
+			logDebug("thisCap:" + thisCap);
+			logDebug("thisUser:" + thisUser);
+			logDebug("dt:" + dt);
+			logDebug("aa.util.now():" + aa.util.now());
 			
 			taskObj.setProcessCode("WFADHOC_PROCESS");
 			taskObj.setTaskDescription("Fire CAD Review");
