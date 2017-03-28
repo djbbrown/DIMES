@@ -22,6 +22,7 @@ if (documentModelArray.size() > 0) 	{
 			var adt = dateFormatted(sysDate.getMonth(),sysDate.getDayOfMonth(),sysDate.getYear(),"MM/DD/YYYY");  //Assigned Date: today 
 			var ddt = mesaWorkingDays(aa.util.now(), 4);  //Due Date: today + 3 days based on 4-day work-week
 			var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem();
+			var userObj = aa.person.getUser(thisUser);
 			
 			logDebug("thisCap:" + thisCap);
 			logDebug("thisUser:" + thisUser);
