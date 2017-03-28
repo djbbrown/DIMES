@@ -15,6 +15,7 @@ try {
     var vEParams = aa.util.newHashtable();
     var ToEmail = lookup("EMAIL_RECIPIENTS","Industrial_Pretreatment_Supervisor");
     var GreaseTrapFlag = 0;
+	var preTreatCond = false;
     
     //Get ASIT value
     var GTrapSoil = AInfo["Is your project an Industrial, Commercial, Manufacturing, Automotive or Restaurant?"];
@@ -22,14 +23,19 @@ try {
         {
         GreaseTrapFlag = 1;
         }
+		
+	//Check for existing "Applied" Pretreat condition
+	if (appHasCondition("Building Permit","Applied","Pretreat Final Required",null)){
+		preTreatCond = true;
+	}
     //Add parameters
     addParameter(vEParams,"$$RECORDID$$",capIDString);
       
     //Check and send email
-    if(GreaseTrapFlag == 1)
+    if(GreaseTrapFlag == 1 && !preTreatCond)
         {
-        sendNotification(FromEmail, ToEmail, "", "PMT_GREASE_TRAP_CONDITION", vEParams, null, capId); 
-        addAppCondition("Building Permit","Planning","Pretreat Final Required","","Required");
+        sendNotification(FromEmail, ToEmail, "", "PMT_GREASE_TRAP_CONDITION", vEParams, null, capId);
+        addAppCondition("Building Permit","Applied","Pretreat Final Required","","Required");
         }   
     }
     catch (err)

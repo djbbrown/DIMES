@@ -9,8 +9,14 @@
 //            ASIUA;Permits!Residential!Mobile Home!NA
 //            ASIUA;Permits!Residential!NA!NA
 //            ASIUA;Permits!Commercial!NA!NA
+//
+// Script Mods:  3/21/2017 Steve Allred Added rounding
 ===================================================================*/
 //showDebug=true;
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
 
 try {
 	var occupancyTable=null;
@@ -57,7 +63,7 @@ try {
 				}
 			}
 		}
-		if (totalValuation > 0) editAppSpecific('Total Valuation', totalValuation);
+		if (totalValuation > 0) editAppSpecific('Total Valuation', round(totalValuation,2));
 	}	
 } catch (error){
 	logDebug("Javascript Error: " + error.message);
