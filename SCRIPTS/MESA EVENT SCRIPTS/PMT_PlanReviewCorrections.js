@@ -41,7 +41,8 @@ try
                     //If the status IS NOT in the list of 'OK' statuses
                     if(!IsStrInArry(taskStatus, arrStatus))
                     {
-                        logDebug("Canceled due to " + task + " being in " + taskStatus + " status.");
+                        showMessage = true;
+                        comment("Canceled due to " + task + " being in " + taskStatus + " status.");
                         cancel = true;
                     }
                 }
