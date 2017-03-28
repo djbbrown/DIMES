@@ -32,8 +32,8 @@ if (documentModelArray.size() > 0) 	{
 			taskObj.setTaskDescription("Fire CAD Review");
 			taskObj.setDispositionNote("Fire CAD Document Uploaded");
 			taskObj.setProcessID(0);
-			taskObj.setAssignmentDate(adt);
-			taskObj.setDueDate(ddt);
+			taskObj.setAssignmentDate(new Date(adt));
+			taskObj.setDueDate(new Date(ddt));
 			taskObj.setAssignedUser(userObj.getOutput());
 
 			wf = aa.proxyInvoker.newInstance("com.accela.aa.workflow.workflow.WorkflowBusiness").getOutput();
