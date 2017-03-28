@@ -19,10 +19,10 @@ if (documentModelArray.size() > 0) 	{
 			//Create Ad Hoc Task
 			var thisCap = capId;
 			var thisUser = "RPEREZ3";
-			var adt = mesaWorkingDays(aa.util.now(), 4) - 3;  //Assigned Date: today 
+			var adt = mesaWorkingDays(aa.util.now(), 1);  //Assigned Date: today 
 			var ddt = mesaWorkingDays(aa.util.now(), 4);  //Due Date: today + 3 days based on 4-day work-week
 			var xdt = new Date();
-			var zdt = convertDate(xdt);
+			var zdt = convertDate(new Date());
 			var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem();
 			
 			logDebug("thisCap:" + thisCap);
