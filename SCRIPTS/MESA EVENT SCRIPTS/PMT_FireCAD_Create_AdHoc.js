@@ -6,7 +6,7 @@
 // Script Parents: DUA;Permits/Commercial/NA/NA
 //
 // Version   |Date      |Engineer         |Details
-//  1.0      |03/28/17  |Steve Allred     |Initial Release
+//  1.0      |03/28/17  |Steve Allred     |Initial Release 
 /*===================================================================*/
 //Start Script
 
