@@ -19,21 +19,21 @@ if (documentModelArray.size() > 0) 	{
 			//Create Ad Hoc Task
 			var thisCap = capId;
 			var thisUser = "RPEREZ3";
-			var dt = mesaWorkingDays(aa.util.now(), 3);  //today + 3 days based on 4-day work-week
-			//var userObj = aa.person.getUser(thisUser);
+			var adt = mesaWorkingDays(aa.util.now(), 0);  //Assigned Date: today 
+			var ddt = mesaWorkingDays(aa.util.now(), 4);  //Due Date: today + 3 days based on 4-day work-week
 			var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem();
 			
 			logDebug("thisCap:" + thisCap);
 			logDebug("thisUser:" + thisUser);
-			logDebug("dt:" + dt);
-			logDebug("aa.util.now():" + aa.util.now());
+			logDebug("adt:" + adt);
+			logDebug("ddt:" + ddt);
 			
 			taskObj.setProcessCode("WFADHOC_PROCESS");
 			taskObj.setTaskDescription("Fire CAD Review");
 			taskObj.setDispositionNote("Fire CAD Document Uploaded");
 			taskObj.setProcessID(0);
-			taskObj.setAssignmentDate(aa.util.now());
-			taskObj.setDueDate(dt);
+			taskObj.setAssignmentDate(adt);
+			taskObj.setDueDate(ddt);
 			taskObj.setAssignedUser(userObj.getOutput());
 
 			wf = aa.proxyInvoker.newInstance("com.accela.aa.workflow.workflow.WorkflowBusiness").getOutput();
