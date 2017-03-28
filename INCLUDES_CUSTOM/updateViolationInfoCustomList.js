@@ -31,7 +31,7 @@ try{
 				rowCiteCheck["Affidavit of Service Complete Date"]=""; 
 				rowCiteCheck["Defaulted Date"]=""; 
 				rowCiteCheck["Hearing Scheduled Date"]=""; 
-				rowCiteCheck["Hearing Scheduled Date"]=""; 
+				rowCiteCheck["Hearing Decision"]=""; 
 				rowCiteCheck["Compliance Hearing Date"]=""; 
 				rowCiteCheck["Fee Monitor Date"]=""; 
 				rowCiteCheck["Is this a payment plan?"]=""; 
