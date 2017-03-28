@@ -19,10 +19,8 @@ if (documentModelArray.size() > 0) 	{
 			//Create Ad Hoc Task
 			var thisCap = capId;
 			var thisUser = "RPEREZ3";
-			//var thisDept = "FIRE";
 			var dt = mesaWorkingDays(aa.util.now(), 3);  //today + 3 days based on 4-day work-week
 			var userObj = aa.person.getUser(thisUser);
-			//var deptObj = aa.people.getDepartmentName(thisDept);
 			var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem();
 			
 			taskObj.setProcessCode("WFADHOC_PROCESS");
@@ -32,7 +30,7 @@ if (documentModelArray.size() > 0) 	{
 			taskObj.setAssignmentDate(aa.util.now());
 			taskObj.setDueDate(dt);
 			taskObj.setAssignedUser(userObj.getOutput());
-			//taskObj.setAssignedDept(deptObj.getOutput());
+
 			wf = aa.proxyInvoker.newInstance("com.accela.aa.workflow.workflow.WorkflowBusiness").getOutput();
 			wf.createAdHocTaskItem(taskObj);
 	
