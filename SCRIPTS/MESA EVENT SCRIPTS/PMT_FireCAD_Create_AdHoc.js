@@ -19,7 +19,7 @@ if (documentModelArray.size() > 0) 	{
 			//Create Ad Hoc Task
 			var thisCap = capId;
 			var thisUser = "RPEREZ3";
-			var adt = mesaWorkingDays(aa.util.now(), 4) - 4;  //Assigned Date: today 
+			var adt = mesaWorkingDays(aa.util.now(), 4) - 3;  //Assigned Date: today 
 			var ddt = mesaWorkingDays(aa.util.now(), 4);  //Due Date: today + 3 days based on 4-day work-week
 			var xdt = new Date();
 			var zdt = convertDate(xdt);
