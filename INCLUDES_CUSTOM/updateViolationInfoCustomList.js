@@ -36,7 +36,7 @@ try{
 				rowCiteCheck["Fee Monitor Date"]=""; 
 				rowCiteCheck["Is this a payment plan?"]=""; 
 				rowCiteCheck["Amount Due Payment"]=""; 
-				rowCiteCheck[" Lien Applied Date"]=""; 
+				rowCiteCheck["Lien Applied Date"]=""; 
 				rowCiteCheck["Collections Date"]=""; 
 				rowCiteCheck["Citation Comments"]=""; 
 				addToASITable("CITATION CHECKLIST",rowCiteCheck);
