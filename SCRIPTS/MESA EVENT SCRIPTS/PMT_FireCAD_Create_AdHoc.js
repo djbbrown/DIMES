@@ -24,11 +24,11 @@ if (documentModelArray.size() > 0) 	{
 			var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem();
 			var userObj = aa.person.getUser(thisUser);
 			
-			logDebug("thisCap:" + thisCap);
+/*			logDebug("thisCap:" + thisCap);
 			logDebug("thisUser:" + thisUser);
-			logDebug("adt:" + adt);
-			logDebug("ddt:" + ddt);
-			
+			logDebug("adt:" + new Date(adt));
+			logDebug("ddt:" + new Date(ddt));
+*/			
 			taskObj.setProcessCode("WFADHOC_PROCESS");
 			taskObj.setTaskDescription("Fire CAD Review");
 			taskObj.setDispositionNote("Fire CAD Document Uploaded");
