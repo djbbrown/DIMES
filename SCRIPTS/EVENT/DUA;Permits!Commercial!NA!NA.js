@@ -7,4 +7,4 @@ include("PMT_Email_Hazardmat_Received");
 
 include("PMT_DocumentReceived");
 
-//include("PMT_FireCAD_Create_AdHoc");  //added on 3/28/17 by Steve Allred
+include("PMT_FireCAD_Create_AdHoc");  //added on 3/28/17 by Steve Allred
