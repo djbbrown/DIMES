@@ -18,7 +18,7 @@ if((wfTask == 'Plans Coordination' && wfStatus == 'Ready to Issue') || (wfTask =
 		}
 	}
 // MH020
-	if(AInfo["Type of Work"] == "New Mobile Home"){
+	if(matches(AInfo["Type of Work"],"New Mobile Home","New Park Model")){
 		if (feeExists("MH020", "NEW")) voidRemoveFee("MH020");
 		// add fee unless one exists with status INVOICED
 		if (!feeExists("MH020","INVOICED")){
