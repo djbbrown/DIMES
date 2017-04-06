@@ -39,6 +39,10 @@ try {
 	{
 		logDebug("PMT_Fire_InitiateActivePermit - No Action - current task and status out of scope.");
 	}
+} catch (err) {
+	logDebug("A JavaScript Error occured in PLN_InitiateActivePermit: " + err.message);
+	logDebug(err.stack);
+}
 logDebug("---------- end  PMT_Fire_InitiateActivePermit ----------");
 
 //////////////////// functions /////////////////////////////////////
