@@ -23,14 +23,22 @@ try {
         copyASIFields(capId,newId); 
 
         // set expiration date of new record to 365 days in future and status to active
-        var exp = aa.expiration.getLicensesByCapID(newId).getOutput();
-        exp.setExpDate(aa.date.parseDate(dateAddMonths(null,12)));
-        exp.setExpStatus('Active');
+    	if (newId)
+		{
+    		thisReg = new licenseObject(newId.getCustomID(), newId);
+
+    		if (new Date(sysDateMMDDYYYY) > new Date(thisReg.b1ExpDate))
+    			thisReg.setExpiration(dateAddMonths(null, 12));
+    		else
+    			thisReg.setExpiration(dateAddMonths(thisReg.b1ExpDate, 12));
+				
+    		thisReg.setStatus("Active");
+		}
         
         // set task "FSOP Status" status = active
         activateTaskInRecord('FSOP Status', newId);
         aa.workflow.adjustTask(newId, 'FSOP Status', 'Active', 'ADMIN');
-        
+        aa.workflow.adjustTask(newId, 'FSOP Status', 'Y', 'Y', null, null);
         // get the id that humans use
         var newCustomId = newId.getCustomID();
         logDebug("PMT_Fire_InitiateActivePermit - Created Permit with ID = " + newCustomId);
