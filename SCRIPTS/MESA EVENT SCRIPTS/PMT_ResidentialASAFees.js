@@ -26,9 +26,11 @@ catch (err) {
 
 //RES010
 try {
+	var typeOfWork = AInfo["Type of work"];
+	
 	valuation = estValue|calcValue;
 	
-	if(valuation > 0 && appTypeArray[2]=='NA'){
+	if(valuation > 0 && appTypeArray[2]=='NA' && !matches(typeOfWork,'Swimming Pool','Spa','Moving/Relocating','Walls/Fences','Model Home Complex'){
 		addFee("RES010", "PMT_RES","FINAL", valuation, "Y");
 	}
 	
