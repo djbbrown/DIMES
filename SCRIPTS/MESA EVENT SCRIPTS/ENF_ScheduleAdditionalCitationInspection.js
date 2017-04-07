@@ -13,27 +13,31 @@
 // 11/29/2016 nalbert - Adding from defect #103: 
 //						follow-up insp status = Citation Issued -> create citation insp
 //						initial inspection status = Citation -> create citation insp
-// 02/13/2017 vsmith - removed script execution from IRSA;Enforcement/Environmental/NA/NA
-// 						this script was colliding with #354
+// 04/06/2017 vsmith - added code so this script does not fire for ENVC records
+// this script was colliding with #354
 //            
 /*==================================================================*/
 
-if (inspType == "Citation Inspection" && inspResult == "In Violation") {
-	// The following will assign to a specific person, this was not a requirement in the spec.
-	// scheduleInspection("Citation Inspection", 7, "ADMIN", null, "ADMIN");
-	scheduleInspection("Citation Inspection", 7);
-}
+// dont execute this script on Environmental/Complaint (ENVC) record types
+if (!appMatch("Enforcement/Environmental/Complaint/*")) { 
+	
+	if (inspType == "Citation Inspection" && inspResult == "In Violation") {
+		// The following will assign to a specific person, this was not a requirement in the spec.
+		// scheduleInspection("Citation Inspection", 7, "ADMIN", null, "ADMIN");
+		scheduleInspection("Citation Inspection", 7);
+	}
 
-if (inspType == "Citation Inspection" && inspResult == "In Violation - Expedite") {
-	// The following will assign to a specific person, this was not a requirement in the spec.
-	// scheduleInspection("Citation Inspection", 3, "ADMIN", null, "ADMIN");
-	scheduleInspection("Citation Inspection", 3);
-}
+	if (inspType == "Citation Inspection" && inspResult == "In Violation - Expedite") {
+		// The following will assign to a specific person, this was not a requirement in the spec.
+		// scheduleInspection("Citation Inspection", 3, "ADMIN", null, "ADMIN");
+		scheduleInspection("Citation Inspection", 3);
+	}
 
-if (inspType == "Follow-Up Inspection" && inspResult == "Citation Issued") {
-	scheduleInspection("Citation Inspection", 7);
-}
+	if (inspType == "Follow-Up Inspection" && inspResult == "Citation Issued") {
+		scheduleInspection("Citation Inspection", 7);
+	}
 
-if (inspType == "Initial Inspection" && inspResult == "Citation") {
-	scheduleInspection("Citation Inspection", 7);
+	if (inspType == "Initial Inspection" && inspResult == "Citation") {
+		scheduleInspection("Citation Inspection", 7);
+	}
 }

@@ -8,11 +8,13 @@
 // Script Run Event: IRSA
 // Script Parents:
 //	IRSA;Enforcement!Case!~!~ 
-//	IRSA;Enforcement!Environmental!~!~ 
+//	IRSA;Enforcement!Environmental!~!~  -- removed by vsmith
 //	11/29/2016 nalbert - Added assignment to inspector of Initial inspection or to Environmental Department
 //               		Also added from defect #103 - 
 //						follow-up insp status = extension -> create follow-up
 // 						follow-up insp status = in violation -> create follow-up
+// 02/15/2017 vsmith - removed script execution from IRSA;Enforcement/Environmental/NA/NA
+// 						this script was colliding with #354
 //				
 /*=================================================================================================*/
 

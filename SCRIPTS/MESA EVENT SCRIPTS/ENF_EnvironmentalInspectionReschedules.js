@@ -12,7 +12,7 @@
 /*==================================================================*/
 
 /* intellisense references */
-/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
+/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />   
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
@@ -59,7 +59,7 @@ try
                 break;
             case "Citation":                
                 // change wf task status to "Citation Issued"
-                updateTask(inspType, "Citation Issued", "Updated By Script (#354)", ""); // didnt work                
+                closeTask(inspType, "Citation Issued", "Updated By Script (#354)", ""); // didnt work                
 
                 // move wf to wf task "Citation Inspection" (make active)
                 setTask("Citation Inspections", "Y", "N"); // didnt work
