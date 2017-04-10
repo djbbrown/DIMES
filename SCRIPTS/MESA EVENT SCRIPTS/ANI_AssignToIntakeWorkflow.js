@@ -16,10 +16,6 @@ on ASA, update the record and workflow task "Case Intake" to the person entered 
 //	ASA;Animal Control!~!~!~
 //            
 /*==================================================================*/
-//
-// Version   |Date      |Engineer         |Details
-//  1.1      |04/10/17  |Steve Allred     |Included Animal Control Officer task 
-
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
@@ -31,9 +27,8 @@ try
     if(appMatch("AnimalControl/*/*/*")) {
         //verify the Case Intake or Animal Control Officer workflow task
         var isCaseIntakeActive = isTaskActive("Case Intake");
-        var isACOActive = isTaskActive("Animal Control Officer");
 
-        if(isCaseIntakeActive || isACOActive) {
+        if(isCaseIntakeActive) {
             var capDetailObjResult = aa.cap.getCapDetail(capId);
 
             //get the "Record Summary" portion of record to get the "Assigned Staff" value
@@ -54,10 +49,6 @@ try
 
                             if(currentTaskName == "CASE INTAKE") {
                                 assignTask("Case Intake", assignedTo);
-                                break;
-                            }
-                            if(currentTaskName == "ANIMAL CONTROL OFFICER") {
-                                assignTask("Animal Control Officer", assignedTo);
                                 break;
                             }
                         }
