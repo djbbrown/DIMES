@@ -48,6 +48,9 @@ try
      )||
      (
      (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
+     )||
+     (
+     (wfTask == "Plans Coordination") && (wfStatus == "Revisions Required
      ))
   {
 
