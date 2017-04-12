@@ -17,7 +17,7 @@ try
 	parentAltId = getParentLicenseCustomID(parentCapId);
 
 	//Begin Renewal functions
-	if ((parentCapId != "undefined" || parentCapId != null) && (wfTask == "Renewal FSOP" && wfStatus == "Accepted")) 
+	if ((parentCapId != "undefined" || parentCapId != null) && (wfTask == "Renewal FSOP" && wfStatus == "Issued")) 
 	{
 		//Copy ASI from renewal to Permit
 		copyASIInfo(capId,parentCapId);
