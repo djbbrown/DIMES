@@ -29,6 +29,8 @@ try
      )
   { 
 
+    // this is a temp Accela fix for the parcelArea global variable bug
+    loadParcelArea();
 
     var acres = 0.0;
     var newDwellingUnits = 0.0;

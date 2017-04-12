@@ -36,6 +36,9 @@ try
 	)
   {    
     
+    // this is a temp Accela fix for the parcelArea global variable bug
+    loadParcelArea();
+
     //var acres = AInfo["Gross Site Size (acres)"];  // used in original spec
     //var sqft = AInfo["Gross Site Size (sqft)"];  // used in original spec
 

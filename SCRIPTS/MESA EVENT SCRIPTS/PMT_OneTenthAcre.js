@@ -1,8 +1,8 @@
 /*===================================================================
 // Script Number: 114
 // Script Name: PMT_OneTenthAcre.js
-// Script Developer: 
-// Script Agency: 
+// Script Developer: Kevin Gurney
+// Script Agency: Accela
 // Script Description:  If parcel size is greater than 1/10 of an acre make Maricopa County Flood Control District Permit and Dust Control document required. 
 // Script Run Event: WTUB
 // Script Parents:
@@ -12,6 +12,10 @@
 ===================================================================*/
 //showDebug = true;
 try{
+    
+    // this is a temp Accela fix for the parcelArea global variable bug
+    loadParcelArea();
+
 	if (wfTask == "Permit Issuance" && wfStatus == "Issued"){
 		var acres = parcelArea;
 		var docArr = getDocumentList();

@@ -29,6 +29,9 @@ try
 	)
   {    
     
+    // this is a temp Accela fix for the parcelArea global variable bug
+    loadParcelArea();
+
     var acres = AInfo["Net Site Size (acres)"];  // old way
     var pAcres = parcelArea;
     var sqft = AInfo["Net Site Size (sqft)"];
