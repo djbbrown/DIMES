@@ -32,10 +32,10 @@ try
     //MRK - 9.27.2016 - added "Enforcement/Environmental/*/*" to the record type check 
     var isEnforcementCase = appMatch("Enforcement/Case/*/*");
     var isEnforcementEnv = appMatch("Enforcement/Environmental/*/*");
-    var recordType = matchCap.getCapType().toString();
-	logDebug("Record Type: " + recordType);
+
     
 	if(isEnforcementCase || isEnforcementEnv) {
+	logDebug("Record Type OK");
 
         //get the ASIT Violation Information table for the Record
         var originalViolationInfoTable = loadASITable("VIOLATION INFORMATION"); 
