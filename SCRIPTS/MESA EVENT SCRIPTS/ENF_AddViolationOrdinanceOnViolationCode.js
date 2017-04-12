@@ -32,14 +32,17 @@ try
     //MRK - 9.27.2016 - added "Enforcement/Environmental/*/*" to the record type check 
     var isEnforcementCase = appMatch("Enforcement/Case/*/*");
     var isEnforcementEnv = appMatch("Enforcement/Environmental/*/*");
-
-    if(isEnforcementCase || isEnforcementEnv) {
+    var recordType = matchCap.getCapType().toString();
+	logDebug("Record Type: " + recordType);
+    
+	if(isEnforcementCase || isEnforcementEnv) {
 
         //get the ASIT Violation Information table for the Record
         var originalViolationInfoTable = loadASITable("VIOLATION INFORMATION"); 
 
         if(originalViolationInfoTable != null && originalViolationInfoTable.length > 0) {
-            //create new table that will stored the updated rows with violation ordiance
+            logDebug("loaded ASIT");
+			//create new table that will stored the updated rows with violation ordiance
             var newViolationInfoTable = new Array();
             var standardChoicesItem = "ENF_VIOLATION_ORDINANCE_LONG_DESC";
 
@@ -54,14 +57,14 @@ try
                 var violationCode = "" + currentRow["Violation Code"];
 
                 //get the violation ordiance/detail by violation code using the lookup function
-                var violationOrdiance = "" + lookup(standardChoicesItem, violationCode);
-
+                var violationOrdinance = "" + lookup(standardChoicesItem, violationCode);
+				logDebug("Ordinance:" + violationOrdinance);
                 //MRK - 11.30.2016 - ASI field "Violation Detail" for Enforcement/Environmental/*/* record has be replaced by
                 //"Violation Ordinance", the same as Enforcement/Case/*/* records.  Modified code to remove the record check
 
                 //if a violation ordiance exists, update the appropriate column in the current row
-                if(violationOrdiance != null && violationOrdiance != "undefined") {
-                    currentRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", violationOrdiance, "N");
+                if(violationOrdinance != null && violationOrdinance != "undefined") {
+                    currentRow["Violation Ordinance"] = new asiTableValObj("Violation Ordinance", violationOrdinance, "N");
                 }
                 
                 //add updated row to new violation table
