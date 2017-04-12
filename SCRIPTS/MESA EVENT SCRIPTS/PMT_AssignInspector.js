@@ -7,7 +7,7 @@
 // retrieve the inspector from GIS and assign the inspection to that 
 // inspector.
 
-// Script Run Event: ISA
+// Script Run Event: ISA, IMSA
 
 // Script Parents:
 
@@ -18,9 +18,17 @@
 //	ISA;Permits!Residential!Mobile Home!NA
 //	ISA;Permits!Online!NA!NA
 
+//	IMSA;Permits!Demolition!NA!NA
+//	IMSA;Permits!Sign!NA!NA
+//	IMSA;Permits!Residential!NA!NA
+//	IMSA;Permits!Commercial!NA!NA
+//	IMSA;Permits!Residential!Mobile Home!NA
+//	IMSA;Permits!Online!NA!NA
+
 // Version   |Date      |Engineer         |Details
 //  1.0      |2016      |Vance Smith      |Initial Release
 //  1.1      |01/11/17  |Vance Smith      |Revised per recommendations by Kevin Gurney
+//  1.2      |04/12/17  |Vance Smith      |Added this script to IMSA events so this script will be executed from IVR interactions.
 //            
 /*==================================================================*/
 
