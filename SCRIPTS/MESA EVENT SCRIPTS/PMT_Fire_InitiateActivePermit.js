@@ -8,7 +8,7 @@
 //						- Copy all ASI data from the Application record type to the new Permit record (like for like). 
 //						- Set new record's "Expiration Date" 365 days in the future.
 //						- set new record's workflow task "FSOP Status" to active
-//						This creates a new Permit that is a child of the original Application.
+//						- This creates a new Permit that is a child of the original Application.
 // Script run events: WTUA
 // Script Parents:  WTUA;Permits!Fire!FSOP!Application
 /*==================================================================*/
@@ -18,6 +18,7 @@ try {
         // create child record that is a Permit, then copy data over
         // createChild() copies the following data from the current record to the new child record: parcels, contacts, property addresses
         var newId = createChild("Permits","Fire", "FSOP", "Permit", capName);
+		var newCustomId = newId.getCustomID();
 
         // copy asi fields (which also copies their values in contradiction to documentation .. go figure..)
         copyASIFields(capId,newId); 
@@ -25,7 +26,7 @@ try {
         // set expiration date of new record to 365 days in future and status to active
     	if (newId)
 		{
-    		thisReg = new licenseObject(newId.getCustomID(), newId);
+    		thisReg = new licenseObject(newCustomId, newId);
 
     		if (new Date(sysDateMMDDYYYY) > new Date(thisReg.b1ExpDate))
     			thisReg.setExpiration(dateAddMonths(null, 12));
@@ -39,22 +40,19 @@ try {
         activateTaskInRecord('FSOP Status', newId);
         aa.workflow.adjustTask(newId, 'FSOP Status', 'Active', 'ADMIN');
         aa.workflow.adjustTask(newId, 'FSOP Status', 'Y', 'Y', null, null);
-        // get the id that humans use
-        var newCustomId = newId.getCustomID();
+
         logDebug("PMT_Fire_InitiateActivePermit - Created Permit with ID = " + newCustomId);
     } 
 	else 
 	{
-		logDebug("PMT_Fire_InitiateActivePermit - No Action - current task and status out of scope.");
+		//logDebug("PMT_Fire_InitiateActivePermit - No Action - current task and status out of scope.");
 	}
 } catch (err) {
 	logDebug("A JavaScript Error occured in PLN_InitiateActivePermit: " + err.message);
 	logDebug(err.stack);
 }
-logDebug("---------- end  PMT_Fire_InitiateActivePermit ----------");
 
 //////////////////// functions /////////////////////////////////////
-
 function activateTaskInRecord(wfstr, recId) 
 {
 	var useProcess = false;

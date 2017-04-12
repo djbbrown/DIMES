@@ -4,6 +4,7 @@
  9/26/2016-A	John Cheney			wfStatus.equals changed to "Approved - Finalize Marking"
  11/1/2016-A	John Cheney			in new record: set Registration task = active
  4/12/2017      Michael VanWie		Added coping owner to registration record
+ 									Added updating Renewal Tab Expiration Date
  ---------------------------------------------------------------------
  Script Number: 250
  Script Name: PLN_InitiateActiveRegistration.js
@@ -34,6 +35,7 @@ try {
         // create child record that is a registration, then copy data over
         // createChild() copies the following data from the current record to the new child record: parcels, contacts, property addresses
         var newId = createChild("Planning","Group Home", "Registration", "NA", capName);
+		var newCustomId = newId.getCustomID();
 
         // copy asi fields (which also copies their values in contradiction to documentation .. go figure..)
         copyASIFields(capId,newId); 
@@ -41,16 +43,29 @@ try {
 		//Copy Owners
 		copyOwner(capId, newId);
 
-        // set expiration date of new record to 365 days in future
+        // set ASI expiration date of new record to 365 days in future
         var expireDate = new Date(dateAdd(null,365));
         editAppSpecific("Application Expiration Date", jsDateToASIDate(expireDate),newId);
+
+        // set Renewal Tab expiration date of new record to 365 days in future and status to active
+    	if (newId)
+		{
+    		thisReg = new licenseObject(newCustomId, newId);
+
+    		if (new Date(sysDateMMDDYYYY) > new Date(thisReg.b1ExpDate))
+    			thisReg.setExpiration(dateAddMonths(null, 12));
+    		else
+    			thisReg.setExpiration(dateAddMonths(thisReg.b1ExpDate, 12));
+				
+    		thisReg.setStatus("Active");
+		}
+
 
         // set task "Registration" status = active
         activateTaskInRecord("Registration", newId);
 
 
         // get the id that humans use
-        var newCustomId = newId.getCustomID();
         logDebug("PLN_InitiateActiveRegistration - Created Registration with ID = " + newCustomId);
 
     } else {
