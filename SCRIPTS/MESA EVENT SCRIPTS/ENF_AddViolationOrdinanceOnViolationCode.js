@@ -35,13 +35,10 @@ try
 
     
 	if(isEnforcementCase || isEnforcementEnv) {
-	logDebug("Record Type OK");
-
         //get the ASIT Violation Information table for the Record
         var originalViolationInfoTable = loadASITable("VIOLATION INFORMATION"); 
 
         if(originalViolationInfoTable != null && originalViolationInfoTable.length > 0) {
-            logDebug("loaded ASIT");
 			//create new table that will stored the updated rows with violation ordiance
             var newViolationInfoTable = new Array();
             var standardChoicesItem = "ENF_VIOLATION_ORDINANCE_LONG_DESC";
@@ -58,7 +55,7 @@ try
 
                 //get the violation ordiance/detail by violation code using the lookup function
                 var violationOrdinance = "" + lookup(standardChoicesItem, violationCode);
-				logDebug("Ordinance:" + violationOrdinance);
+
                 //MRK - 11.30.2016 - ASI field "Violation Detail" for Enforcement/Environmental/*/* record has be replaced by
                 //"Violation Ordinance", the same as Enforcement/Case/*/* records.  Modified code to remove the record check
 
