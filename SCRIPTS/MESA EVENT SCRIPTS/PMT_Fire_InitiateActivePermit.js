@@ -23,6 +23,9 @@ try {
         // copy asi fields (which also copies their values in contradiction to documentation .. go figure..)
         copyASIFields(capId,newId); 
 
+		//Copy Owners
+		copyOwner(capId, newId);
+		
         // set expiration date of new record to 365 days in future and status to active
     	if (newId)
 		{

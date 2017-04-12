@@ -13,6 +13,9 @@
 
 try
 {
+	parentCapId = getParentLicenseCapID(capId);
+	parentAltId = getParentLicenseCustomID(parentCapId);
+
 	//Begin Renewal functions
 	if ((parentCapId != "undefined" || parentCapId != null) && (wfTask == "Renewal FSOP" && wfStatus == "Accepted")) 
 	{
@@ -52,6 +55,10 @@ try
 			renewalCapProject.setStatus("Complete"); //Set renewal CAP status to "Complete"
 			aa.cap.updateProject(renewalCapProject); //Save updates
 		}
+	}
+	else
+	{
+		logDebug("Parent Cap ID not found.")
 	}
 }
 catch (err)
