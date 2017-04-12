@@ -3,6 +3,7 @@
  9/20/2016-A	John Cheney			initial
  9/26/2016-A	John Cheney			wfStatus.equals changed to "Approved - Finalize Marking"
  11/1/2016-A	John Cheney			in new record: set Registration task = active
+ 4/12/2017      Michael VanWie		Added coping owner to registration record
  ---------------------------------------------------------------------
  Script Number: 250
  Script Name: PLN_InitiateActiveRegistration.js
@@ -36,6 +37,9 @@ try {
 
         // copy asi fields (which also copies their values in contradiction to documentation .. go figure..)
         copyASIFields(capId,newId); 
+
+		//Copy Owners
+		copyOwner(capId, newId);
 
         // set expiration date of new record to 365 days in future
         var expireDate = new Date(dateAdd(null,365));
