@@ -44,6 +44,7 @@ try
         revisions++; // increment by one
 
         editAppSpecific_Mesa("Submittal Cycle", revisions );
+		updateShortNotes(revisions);
 
         logDebug("Updated Revisions to " + revisions );
     }
