@@ -15,15 +15,15 @@
 //Get the tag
 tagFieldDC = "" + getGISInfoArray2ASB("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", -1, "feet");
 tagFieldHC = "" + getGISInfoArray2ASB("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG", -1, "feet");
-//logDebug("tag attribute DayCare = " + tagFieldDC);
-//logDebug("tag attribute Handicap = " + tagFieldHC);
+logDebug("tag attribute DayCare = " + tagFieldDC);
+logDebug("tag attribute Handicap = " + tagFieldHC);
 
 
 //get ASI for "Type of Application"
 var tagValDC = "GHDC";
 var tagValHC = "GHHF";
 var typeApp = AInfo["Type of Application"];
-//logDebug(typeApp);
+logDebug(typeApp);
 
 // DayCare application check
 if ((tagFieldDC.indexOf(tagValDC) != -1) && (typeApp == "DayCare")) {
