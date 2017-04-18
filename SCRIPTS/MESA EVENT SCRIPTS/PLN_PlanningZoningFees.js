@@ -14,15 +14,15 @@
 /*==================================================================*/
 try{
 	var acres = 0;
-	areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
-	
+	//areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");  //Do not want to use MesaParcels anymore
+	areas = getGISBufferInfo("Accela/Accela_Base", "Parcel Areas", -1, "APN", "SHAPE_Area");  //new usage.
 	for (i in areas) {
 		//logDebug("Area " + areas[i]["APN"] + ": " + (areas[i]["SHAPE_Area"] / 43560));
 		acres += (areas[i]["SHAPE_Area"] / 43560);
 	}
 	acres = Math.ceil(acres);
 	logDebug("Total acres: " + acres);
-	var zoning = getGISInfo("Accela/Accela_Base", "Zoning Districts", "DSCR");
+	var zoning = getGISInfo("", "Zoning Districts", "DSCR");
 	if (!zoning) logDebug("Zoning data not found for parcel.");
 	else {
 		isDowntown = (zoning == "DC - Downtown Core")
