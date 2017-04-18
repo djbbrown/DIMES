@@ -5,7 +5,7 @@
 // Script Agency: Mesa
 // Script Description: When the workflow task "LOA" is set to a status
 //                     of "Letter Sent" set the ASI field "Warranty
-//                     Expiration Date" to 100 days from the status date.
+//                     Expiration Date" to 365 days from the status date.
 // Script Run Event: WTUA
 // Script Parents:
 //		WTUA;Engineering!Right of Way!~!~
@@ -23,8 +23,8 @@ try
 
 	if (wfTask.equals("LOA") && wfStatus.equals("Letter Sent")) {
 		var tsDate = taskStatusDate("LOA");
-		// set ASI field for Warranty Expiration Date to 100 days from the status date
-		var expDate = dateAdd(tsDate, 100);	
+		// set ASI field for Warranty Expiration Date to 365 days from the status date
+		var expDate = dateAdd(tsDate, 365);	
 		logDebug("Task Status Date: " + tsDate);
 		logDebug("Warranty Expiration Date: " + expDate);
 		editAppSpecific("Warranty Expiration Date", expDate);
