@@ -62,19 +62,19 @@ try {
 			if (nonRes) {
 				if (fire && fire > 0) {
 					// assess Fire fee.
-					if (feeExists("RDIF207", "NEW")) voidRemoveFee("RDIF207");
+					if (feeExists("RDIF207", "NEW", "INVOICED")) voidRemoveFee("RDIF207");
 					addFee("RDIF207", "PMT_RDIF", "FINAL", fire, "N");
 				}
 				
 				if (pubSaf && pubSaf > 0) {
 					// assess Public Safety fee.
-					if (feeExists("RDIF257", "NEW")) voidRemoveFee("RDIF257");
+					if (feeExists("RDIF257", "NEW", "INVOICED")) voidRemoveFee("RDIF257");
 					addFee("RDIF257", "PMT_RDIF", "FINAL",  pubSaf, "N");
 				}
 				
 				if (hasStormTag && (storm && storm > 0)) {
 					// assess Stormwater fee.
-					if (feeExists("RDIF307", "NEW")) voidRemoveFee("RDIF307");
+					if (feeExists("RDIF307", "NEW", "INVOICED")) voidRemoveFee("RDIF307");
 					addFee("RDIF307", "PMT_RDIF", "FINAL",  storm, "N");
 				}
 			}
@@ -83,19 +83,19 @@ try {
 			if (hotMot) {
 				if (fire && fire > 0) {
 					// assess Fire fee.
-					if (feeExists("RDIF205", "NEW")) voidRemoveFee("RDIF205");
+					if (feeExists("RDIF205", "NEW", "INVOICED")) voidRemoveFee("RDIF205");
 					addFee("RDIF205", "PMT_RDIF", "FINAL",  fire, "N");
 				}
 				
 				if (pubSaf && pubSaf > 0) {
 					// assess Public Safety fee.
-					if (feeExists("RDIF255", "NEW")) voidRemoveFee("RDIF255");
+					if (feeExists("RDIF255", "NEW", "INVOICED")) voidRemoveFee("RDIF255");
 					addFee("RDIF255", "PMT_RDIF", "FINAL",  pubSaf, "N");
 				}
 				
 				if (hasStormTag && (storm && storm > 0)) {
 					// assess Stormwater fee.
-					if (feeExists("RDIF305", "NEW")) voidRemoveFee("RDIF305");
+					if (feeExists("RDIF305", "NEW", "INVOICED")) voidRemoveFee("RDIF305");
 					addFee("RDIF305", "PMT_RDIF", "FINAL",  storm, "N");
 				}
 			}
@@ -527,12 +527,12 @@ try {
 			if (nonRes && !inAsuOrWaterArea) {			
 				// Water - Non-Residential
 				if (waterNonResTotal && waterNonResTotal > 0) {
-					if (feeExists("RDIF057", "NEW")) voidRemoveFee("RDIF057");
+					if (feeExists("RDIF057", "NEW", "INVOICED")) voidRemoveFee("RDIF057");
 					addFee("RDIF057", "PMT_RDIF", "FINAL",  waterNonResTotal, "N");
 				}
 				// Waste Water - Non-Residential
 				if (wasteWaterNonResTotal && wasteWaterNonResTotal > 0) {
-					if (feeExists("RDIF107", "NEW")) voidRemoveFee("RDIF107");
+					if (feeExists("RDIF107", "NEW", "INVOICED")) voidRemoveFee("RDIF107");
 					addFee("RDIF107", "PMT_RDIF", "FINAL",  wasteWaterNonResTotal, "N");
 				}
 			}
@@ -540,12 +540,12 @@ try {
 			if (hotMot && !inAsuOrWaterArea) {
 				// Water - Hotel/Motel
 				if (waterHotMotTotal && waterHotMotTotal > 0) {
-					if (feeExists("RDIF055", "NEW")) voidRemoveFee("RDIF055");
+					if (feeExists("RDIF055", "NEW", "INVOICED")) voidRemoveFee("RDIF055");
 					addFee("RDIF055", "PMT_RDIF", "FINAL",  waterHotMotTotal, "N");
 				}
 				// Waste Water - Hotel/Motel
 				if (wasteWaterHotMotTotal && wasteWaterHotMotTotal) {
-					if (feeExists("RDIF105", "NEW")) voidRemoveFee("RDIF105");
+					if (feeExists("RDIF105", "NEW", "INVOICED")) voidRemoveFee("RDIF105");
 					addFee("RDIF105", "PMT_RDIF", "FINAL",  wasteWaterHotMotTotal, "N");
 				}
 			}
