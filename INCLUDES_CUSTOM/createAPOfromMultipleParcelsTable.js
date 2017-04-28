@@ -13,16 +13,16 @@ function createAPOfromMultipleParcelsTable()
 		var addrFound = false;
 
 		loadASITables();
-		if (typeof(MULTIPLEPARCELS) == "object")
+		if (typeof(ADDITIONALPARCELNUMBERS) == "object")
 		{
 			var primeParcel = getPrimaryParcel();
 
-			for (xxx in MULTIPLEPARCELS)
+			for (xxx in ADDITIONALPARCELNUMBERS)
 			{
-				var myParcelId = MULTIPLEPARCELS[xxx]["Parcel"];
+				var myParcelId = ADDITIONALPARCELNUMBERS[xxx]["Parcel"];
 				myParcelId = String(myParcelId).trim();
 				logDebug("Adding from MULTIPLE PARCELS #" + myParcelId);
-				//aa.print("Adding from MULTIPLE PARCELS #" + myParcelId);
+				//aa.print("Adding from ADDITIONAL PARCEL NUMBERS #" + myParcelId);
 
 				if (String(myParcelId) != String(primeParcel))
 				{
