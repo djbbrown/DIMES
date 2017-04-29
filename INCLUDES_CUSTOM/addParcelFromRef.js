@@ -13,8 +13,8 @@ function addParcelFromRef(parParcel)  // optional capID
 
 			var prclArr = prclObj.getOutput();
 			logDebug("what is prclArr = " + prclArr);
-			var ktest = true;
-			if (ktest)
+			
+			if (!prclArr)
 			{
 				aa.print("Got past prclArr in addParcelFromRef()");
 				logDebug("start to add individual parcel numbers");
