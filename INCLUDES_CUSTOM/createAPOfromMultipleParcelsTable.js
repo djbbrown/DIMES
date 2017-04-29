@@ -19,7 +19,7 @@ function createAPOfromMultipleParcelsTable()
 
 			for (xxx in ADDITIONALPARCELNUMBERS)
 			{
-				var myParcelId = ADDITIONALPARCELNUMBERS[xxx]["Parcel"];
+				var myParcelId = ADDITIONALPARCELNUMBERS[xxx]["Parcel Number"];
 				myParcelId = String(myParcelId).trim();
 				logDebug("Adding from MULTIPLE PARCELS #" + myParcelId);
 				//aa.print("Adding from ADDITIONAL PARCEL NUMBERS #" + myParcelId);
