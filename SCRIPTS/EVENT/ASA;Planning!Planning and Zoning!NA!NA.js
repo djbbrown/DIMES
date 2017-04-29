@@ -4,9 +4,3 @@ include("PLN_PlanningZoningFees"); // added by Bryan de Jesus
 // added by Vance Smith
 include("PLN_AutopopulateGeneralPlanDesignation");
 
-/*
-// adding addtl parcel from additional parcels ASIT
-if(publicUser){
-	createAPOfromMultipleParcelsTable();
-}
-*/
