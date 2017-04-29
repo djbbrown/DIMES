@@ -9,15 +9,15 @@ function addParcelFromRef(parParcel)  // optional capID
 		var prclObj = aa.parcel.getParceListForAdmin(parParcel, null, null, null, null, null, null, null, null, null);
 		if (prclObj.getSuccess() )
 		{
-			comment("Got past prclObj...");
+			//comment("Got past prclObj...");
 
 			var prclArr = prclObj.getOutput();
-			logDebug("what is prclArr = " + prclArr);
+			//logDebug("what is prclArr = " + prclArr);
 			
 			if (prclArr != null)
 			{
-				aa.print("Got past prclArr in addParcelFromRef()");
-				logDebug("start to add individual parcel numbers");
+				//aa.print("Got past prclArr in addParcelFromRef()");
+				//logDebug("start to add individual parcel numbers");
 
 				var prcl = prclArr[0].getParcelModel();
 				var refParcelNumber = prcl.getParcelNumber();
