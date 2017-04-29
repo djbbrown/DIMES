@@ -9,12 +9,12 @@ function addParcelFromRef(parParcel)  // optional capID
 		var prclObj = aa.parcel.getParceListForAdmin(parParcel, null, null, null, null, null, null, null, null, null);
 		if (prclObj.getSuccess() )
 		{
-			//comment("Got past prclObj...");
+			comment("Got past prclObj...");
 
 			var prclArr = prclObj.getOutput();
 			if (prclArr.length==1)
 			{
-				//aa.print("Got past prclArr in addParcelFromRef()");
+				aa.print("Got past prclArr in addParcelFromRef()");
 
 				var prcl = prclArr[0].getParcelModel();
 				var refParcelNumber = prcl.getParcelNumber();
