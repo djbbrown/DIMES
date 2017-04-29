@@ -1,7 +1,6 @@
 function createAPOfromMultipleParcelsTable()
 {
-//Clark County Script PZ-66
-//Apply to Planning and Public Works
+//Apply to Planning
 //Get parcels from ASIT and add to record APO
 //Adds associated addresses and owner(s), sets all to Primary="No"
 //Call from CTRCA for ACA
@@ -23,9 +22,14 @@ function createAPOfromMultipleParcelsTable()
 				myParcelId = String(myParcelId).trim();
 				logDebug("Adding from ADDITIONAL PARCEL NUMBERS #" + myParcelId);
 				//aa.print("Adding from ADDITIONAL PARCEL NUMBERS #" + myParcelId);
+				
+				logDebug("myParcelId = " + myParcelId);
+				logDebug("primeParcel = " + primeParcel);
 
 				if (String(myParcelId) != String(primeParcel))
 				{
+					
+					logDebug("start adding parcels");
 					// Add Parcel from reference
 					addParcelFromRef(myParcelId);
 					boolFound = true;
