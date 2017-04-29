@@ -12,6 +12,7 @@ function addParcelFromRef(parParcel)  // optional capID
 			comment("Got past prclObj...");
 
 			var prclArr = prclObj.getOutput();
+			logDebug("what is prclArr = " + prclArr);
 			if (prclArr.length==1)
 			{
 				aa.print("Got past prclArr in addParcelFromRef()");
