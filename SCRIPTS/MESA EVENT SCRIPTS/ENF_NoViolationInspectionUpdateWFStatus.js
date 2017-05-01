@@ -1,7 +1,8 @@
 /*===================================================================
 Versions:
- 8/29/2016		Vance Smith			initial
+ 08/29/2016		Vance Smith			initial
  12/05/2016		Vance Smith			reworked due to changes in requirements
+ 05/01/2016		Michael VanWie		case check had spelling mistake
  ---------------------------------------------------------------------
 
 // Script Number: 020
@@ -52,7 +53,7 @@ try
 {
 	switch( inspType )
 	{
-		case "Initial Inpspection":
+		case "Initial Inspection":
 			if ( inspResult == "No Violation")
 			{
 				if( isTaskActive("Initial Inspection") ) 
