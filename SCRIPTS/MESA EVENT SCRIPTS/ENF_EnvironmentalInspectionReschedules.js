@@ -79,7 +79,8 @@ try
             case "No Violation":
                 // change wf task status to "No Violation"
                 updateTask(inspType, "No Violation", "Updated By Script (#354)", ""); // didnt work
-
+                setTask(inspType, 'N', 'Y');
+                
                 // close record
                 closeWorkflow();
                 updateAppStatus("Closed", "Set by Script (#354)");
