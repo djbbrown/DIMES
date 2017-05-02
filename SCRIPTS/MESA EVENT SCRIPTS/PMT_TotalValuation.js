@@ -98,6 +98,7 @@ try {
 			else {	
 				if(maskCurrency.length > 0) {
 					editAppSpecific('Total Valuation Text', "$" + maskCurrency + ".00"); 
+				}
 				else {
 					editAppSpecific('Total Valuation Text', "$0.00"); 
 				}
