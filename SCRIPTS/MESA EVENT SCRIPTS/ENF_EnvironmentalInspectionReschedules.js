@@ -65,6 +65,7 @@ try
             case "3rd Party Abatement":
                 //Change wf task status to "3rd Party Abatement"
                 updateTask(inspType, "3rd Party Abatement", "Updated by Script (#354)", "");
+                setTask(inspType, 'N', 'Y');
                 
                 //Move wf to wf task "Follow-Up Inspection" and make active
                 setTask("Follow-Up Inspection", "Y", "N");
