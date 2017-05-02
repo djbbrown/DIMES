@@ -51,11 +51,6 @@ try
 
                 // create new "Follow-Up" inspection (14 calendar days out from inspection date)
                 scheduleInspectionDateWithInspector("Follow-Up Inspection", futureDate, inspectorId); // didnt work bc of futureDate
-                
-                /* From Derek:
-                Created Follow-Up Inspection but needs to be scheduled for 14 calendar days from 
-                Insp Date instead of Request Date
-                */
                 break;
             case "Citation":                
                 // change wf task status to "Citation Issued"
@@ -66,28 +61,26 @@ try
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
                 scheduleInspectionDateWithInspector("Citation Inspection", futureDate, inspectorId); // didnt work
-
-                /* From Derek:
-                Created Citation Inspection but needs to be scheduled for 14 calendar days from Insp Date 
-                and did not assign to previous ACO and Department, 
-                Did not make WF status for Initial Inspection = Citation Issued and move WF to Citation Inspections
-                */
                 break;
             case "3rd Party Abatement":
-                // dont do anything
+                //Change wf task status to "3rd Party Abatement"
+                updateTask(inspType, "3rd Party Abatement", "Updated by Script (#354)", "");
+                
+                //Move wf to wf task "Follow-Up Inspection" and make active
+                setTask("Follow-Up Inspection", "Y", "N");
+
+                //Create new "Follow-Up" inspection (14 calendar days out)
+                scheduleInspectionDateWithInspector("Follow-Up Inspection", futureDate, inspectorId);
                 break;
             case "No Violation":
-                // change wf task status to "No Violation"
-                updateTask(inspType, "No Violation", "Updated By Script (#354)", ""); // didnt work
+                //Set task to Close / Complete
                 setTask(inspType, 'N', 'Y');
-                
-                // close record
-                closeWorkflow();
-                updateAppStatus("Closed", "Set by Script (#354)");
 
-                /* From Derek:
-                Did not set WF Initial Inspection status as No Violation
-                */
+                //Close all WF Tasks
+                closeWorkflow();
+
+                //Close Complaint
+                updateAppStatus("Closed", "Set by Script (#354)");
                 break;
         }
     } 
