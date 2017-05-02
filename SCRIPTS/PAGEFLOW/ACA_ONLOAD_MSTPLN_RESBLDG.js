@@ -47,7 +47,7 @@ if (parentCapId) {
 	
 	//Copy Owner
 	refOwner = parentCap.getCapOwnerModel();
-	cap.setCapOwnerModel(owner);
+	cap.setCapOwnerModel(refOwner);
 	
 	//Copy Contacts
 	contactList = parentCap.getContactsGroup();
@@ -105,10 +105,10 @@ if (parentCapId) {
 	}
 	
 	//copy appName
-    //copyAppName(parentCapId,cap);
+    copyAppName(parentCapId,cap);
 	
 	//Copy additional info.
-	//copyAdditionalInfo(parentCapId, capId);
+	copyAdditionalInfo(parentCapId, capId);
 	
 	aa.env.setValue("CapModel",cap);
 }
