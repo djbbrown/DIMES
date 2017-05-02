@@ -16,19 +16,29 @@
 //
 /*==================================================================*/
 
-/* test with: ADM16-00215, ADM15-00223 */
+/* test with: ADM17-00163 */
 
 try
 {
-	var zoning = getGISInfo("Planning/Zoning", "Zoning Districts", "ZONING");  // use "ZONING" field for zoning info only (e.g. "RS-6") or "DSCR" (i.e. description) field for soning info plus a brief description (e.g. "RS-6 Single Residence 6")
-	var overlay = getGISInfo("Planning/Zoning", "Overlay Districts", "OVERLAY"); // get overlay value (e.g. "PAD")
+	var zoning_districts = getGISInfoArray("Planning/Zoning", "Zoning Districts", "ZONING");
+	var overlay_districts = getGISInfoArray("Planning/Zoning", "Overlay Districts", "OVERLAY");
 	
-	if (zoning == null || zoning == false) { zoning = ""; }
-	if (overlay == null || overlay == false) { overlay = ""; }
+	if(zoning_districts == undefined)
+	{
+		zoning_districts = [];
+	}
 	
-	var zoning_overlay = zoning + " " + overlay;
-	zoning_overlay = zoning_overlay.trim();
+	// same as above, but for overlays
+	if(overlay_districts == undefined)
+	{
+		overlay_districts = [];
+	}
 	
+	// combine arrays into a single one, and convert to a comma(plus space)-separated string
+	var zoning_overlay = zoning_districts.concat(overlay_districts);
+	zoning_overlay = zoning_overlay.join(", ");
+
+/*	
 	if(zoning_overlay != "")
 	{
 		logDebug("Existing Zoning being updated to: " + zoning_overlay);
@@ -40,6 +50,7 @@ try
 	} else {
 		logDebug("No zoning returned from GIS ... Existing Zoning not being updated.");
 	}
+*/
 }
 catch (err)
 {
