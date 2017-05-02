@@ -105,7 +105,7 @@ if (parentCapId) {
 	}
 	
 	//copy appName
-    copyAppName(parentCapId,cap);
+    //copyAppName(parentCapId,cap);
 	
 	//Copy additional info.
 	//copyAdditionalInfo(parentCapId, capId);
