@@ -2,7 +2,7 @@
 // Permits Residential Building
 
 
-var showMessage = true;						// Set to true to see results in popup window
+var showMessage = false;						// Set to true to see results in popup window
 var showDebug = true;							// Set to true to see debug messages in popup window
 var message =	"";								// Message String
 var debug = "";									// Debug String
@@ -108,7 +108,7 @@ if (parentCapId) {
     copyAppName(parentCapId,cap);
 	
 	//Copy additional info.
-	copyAdditionalInfo(parentCapId, capId);
+	//copyAdditionalInfo(parentCapId, capId);
 	
 	aa.env.setValue("CapModel",cap);
 }
