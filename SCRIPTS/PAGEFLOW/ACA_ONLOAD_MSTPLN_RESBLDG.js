@@ -26,6 +26,7 @@ if (parentCapIdString) {
 
 var refAddress;
 var refParcel;
+var refOwner
 var refGIS;
 var contactList;
 var applicantModel;
@@ -43,6 +44,10 @@ if (parentCapId) {
 	//Copy Parcel
 	refParcel = parentCap.getParcelModel();
 	cap.setParcelModel(refParcel);
+	
+	//Copy Owner
+	refOwner = parentCap.getCapOwnerModel();
+	cap.setCapOwnerModel(owner);
 	
 	//Copy Contacts
 	contactList = parentCap.getContactsGroup();
@@ -98,6 +103,12 @@ if (parentCapId) {
 			aa.env.setValue("CapModel", cap);			
 		}
 	}
+	
+	//copy appName
+    copyAppName(parentCapId,cap);
+	
+	//Copy additional info.
+	copyAdditionalInfo(parentCapId, capId);
 	
 	aa.env.setValue("CapModel",cap);
 }
@@ -327,3 +338,33 @@ function appMatch(ats) // optional capId or CapID string
 				isMatch = false;
 	return isMatch;
 	}	
+	
+function copyAppName(srcCapId, capModel) {
+    var appName = aa.cap.getCap(srcCapId).getOutput().specialText;
+    capModel.setSpecialText(appName);
+
+    var result = aa.cap.editCapByPK(capModel);
+    if (!result.getSuccess()) {
+        logError("Failed to update app name");
+    }
+}
+
+function copyAdditionalInfo(srcCapId, targetCapId)
+{
+	//1. Get Additional Information with source CAPID.  (BValuatnScriptModel)
+	var  additionalInfo = getAdditionalInfo(srcCapId);
+	if (additionalInfo == null)
+	{
+		return;
+	}
+	//2. Get CAP detail with source CAPID.
+	var  capDetail = getCapDetailByID(srcCapId);
+	//3. Set target CAP ID to additional info.
+	additionalInfo.setCapID(targetCapId);
+	if (capDetail != null)
+	{
+		capDetail.setCapID(targetCapId);
+	}
+	//4. Edit or create additional infor for target CAP.
+	aa.cap.editAddtInfo(capDetail, additionalInfo);
+}
