@@ -35,10 +35,10 @@ try
     var mon1 = parseInt(inspObj.getInspectionDate().getMonth());
     var dt1 = parseInt(inspObj.getInspectionDate().getDayOfMonth());
     var yr1 = parseInt(inspObj.getInspectionDate().getYear());
-    var inspResultDate = new Date(yr1, mon1-1, dt1);
+    var inspResultDate = new Date(yr1, mon1-1, dt1); //JS uses a zero-base month but one-base year/day
     var futureDate14 = jsDateToMMDDYYYY(addDays(inspResultDate, 14)); // 14 calendar days // adjusted 2/9/2017
     var futureDAte7 = jsDateToMMDDYYYY(addDays(inspResultDate, 7));   // 7 calendar days
-    var futureDate3 = jsDateToMMDDYYYY(addDays(inspResultDate, 3));   // 3 calendar days
+    var futureDate3 = mesaWorkingDays(inspResultDate, 4);   // 3 working days (function counts today as 1)
 
     // get the last inspector's ID
     var inspectorId = getLastInspector(inspType);
