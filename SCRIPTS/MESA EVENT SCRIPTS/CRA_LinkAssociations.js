@@ -41,9 +41,6 @@ try
     //Get Applicant
     for(c in appContacts)
         appApplicant = appContacts[c].getCapContactModel().getContactType() == "Applicant" ? appContacts[c] : null;
-
-
-    l(appApplicant.class);
     
     if(appApplicant)
     {
