@@ -1,7 +1,9 @@
 /*===================================================================
 Versions:
- 8/29/2016		Vance Smith			initial
+ 08/29/2016		Vance Smith			initial
  12/05/2016		Vance Smith			reworked due to changes in requirements
+ 05/01/2017		Michael VanWie		case check had spelling mistake
+ 05/01/2017		Michael VanWie		Per tracker - Script canceled - duplicates #354
  ---------------------------------------------------------------------
 
 // Script Number: 020
@@ -48,96 +50,96 @@ Versions:
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
 /// <reference path="../../INCLUDES_CUSTOM.js" />
 
-try
-{
-	switch( inspType )
-	{
-		case "Initial Inpspection":
-			if ( inspResult == "No Violation")
-			{
-				if( isTaskActive("Initial Inspection") ) 
-				{
-					updateTask("Initial Inspection", "No Violation", "Updated by Script", "Updated by Script");
-					logDebug("updated task");
-				}
+// try
+// {
+// 	switch( inspType )
+// 	{
+// 		case "Initial Inspection":
+// 			if ( inspResult == "No Violation")
+// 			{
+// 				if( isTaskActive("Initial Inspection") ) 
+// 				{
+// 					updateTask("Initial Inspection", "No Violation", "Updated by Script", "Updated by Script");
+// 					logDebug("updated task");
+// 				}
 
-				// deactivate entire workflow
-				var tasksResult = aa.workflow.getTasks(capId);
-				if (tasksResult.getSuccess())
-				{
-					var tasks = tasksResult.getOutput();
-					for (task in tasks){
-						deactivateTask(tasks[task].getTaskDescription());
-					}
-				}
-				logDebug("deactivated workflow");
+// 				// deactivate entire workflow
+// 				var tasksResult = aa.workflow.getTasks(capId);
+// 				if (tasksResult.getSuccess())
+// 				{
+// 					var tasks = tasksResult.getOutput();
+// 					for (task in tasks){
+// 						deactivateTask(tasks[task].getTaskDescription());
+// 					}
+// 				}
+// 				logDebug("deactivated workflow");
 
-				updateAppStatus("No Violation", "Updated by Script");
-				logDebug("changed app status to No Violation");
-			}
-			break;
-		case "Follow-Up Inspection":
-			if ( inspResult == "Voluntary Compliance")
-			{
-				if( isTaskActive("Follow-Up Inspection") ) 
-				{
-					updateTask("Follow-Up Inspection", "Voluntary Compliance", "Updated by Script", "Updated by Script");
-					logDebug("updated task");
-				}
+// 				updateAppStatus("No Violation", "Updated by Script");
+// 				logDebug("changed app status to No Violation");
+// 			}
+// 			break;
+// 		case "Follow-Up Inspection":
+// 			if ( inspResult == "Voluntary Compliance")
+// 			{
+// 				if( isTaskActive("Follow-Up Inspection") ) 
+// 				{
+// 					updateTask("Follow-Up Inspection", "Voluntary Compliance", "Updated by Script", "Updated by Script");
+// 					logDebug("updated task");
+// 				}
 
-				// deactivate entire workflow
-				var tasksResult = aa.workflow.getTasks(capId);
-				if (tasksResult.getSuccess())
-				{
-					var tasks = tasksResult.getOutput();
-					for (task in tasks){
-						deactivateTask(tasks[task].getTaskDescription());
-					}
-				}
-				logDebug("deactivated workflow");
+// 				// deactivate entire workflow
+// 				var tasksResult = aa.workflow.getTasks(capId);
+// 				if (tasksResult.getSuccess())
+// 				{
+// 					var tasks = tasksResult.getOutput();
+// 					for (task in tasks){
+// 						deactivateTask(tasks[task].getTaskDescription());
+// 					}
+// 				}
+// 				logDebug("deactivated workflow");
 
-				updateAppStatus("Voluntary Compliance", "Updated by Script");
-				logDebug("changed app status to Voluntary Compliance");
-			}
-			if ( inspResult == "Forced Compliance - Lien")
-			{
-				if( isTaskActive("Follow-Up Inspection") ) 
-				{
-					updateTask("Follow-Up Inspection", "Forced Compliance - Lien", "Updated by Script", "Updated by Script");
-					logDebug("updated task");
-				}
+// 				updateAppStatus("Voluntary Compliance", "Updated by Script");
+// 				logDebug("changed app status to Voluntary Compliance");
+// 			}
+// 			if ( inspResult == "Forced Compliance - Lien")
+// 			{
+// 				if( isTaskActive("Follow-Up Inspection") ) 
+// 				{
+// 					updateTask("Follow-Up Inspection", "Forced Compliance - Lien", "Updated by Script", "Updated by Script");
+// 					logDebug("updated task");
+// 				}
 
-				updateAppStatus("Forced Compliance - Lien", "Updated by Script");
-				logDebug("changed app status to Forced Compliance - Lien");
-			}
-			break;
-		case "Citation Inspection":
-			if ( inspResult == "Forced Compliance - Fees Paid")
-			{
-				if( isTaskActive("Citation Inspection") ) 
-				{
-					updateTask("Citation Inspection", "Forced Compliance - Fees Paid", "Updated by Script", "Updated by Script");
-					logDebug("updated task");
-				}
+// 				updateAppStatus("Forced Compliance - Lien", "Updated by Script");
+// 				logDebug("changed app status to Forced Compliance - Lien");
+// 			}
+// 			break;
+// 		case "Citation Inspection":
+// 			if ( inspResult == "Forced Compliance - Fees Paid")
+// 			{
+// 				if( isTaskActive("Citation Inspection") ) 
+// 				{
+// 					updateTask("Citation Inspection", "Forced Compliance - Fees Paid", "Updated by Script", "Updated by Script");
+// 					logDebug("updated task");
+// 				}
 
-				// deactivate entire workflow
-				var tasksResult = aa.workflow.getTasks(capId);
-				if (tasksResult.getSuccess())
-				{
-					var tasks = tasksResult.getOutput();
-					for (task in tasks){
-						deactivateTask(tasks[task].getTaskDescription());
-					}
-				}
-				logDebug("deactivated workflow");
+// 				// deactivate entire workflow
+// 				var tasksResult = aa.workflow.getTasks(capId);
+// 				if (tasksResult.getSuccess())
+// 				{
+// 					var tasks = tasksResult.getOutput();
+// 					for (task in tasks){
+// 						deactivateTask(tasks[task].getTaskDescription());
+// 					}
+// 				}
+// 				logDebug("deactivated workflow");
 
-				updateAppStatus("Forced Compliance - Fees Paid", "Updated by Script");
-				logDebug("changed app status to Forced Compliance - Fees Paid");
-			}
-			break;
-	}
-}
-catch (err)
-{
-  logDebug("A JavaScript error occurred: " + err.message);
-}
+// 				updateAppStatus("Forced Compliance - Fees Paid", "Updated by Script");
+// 				logDebug("changed app status to Forced Compliance - Fees Paid");
+// 			}
+// 			break;
+// 	}
+// }
+// catch (err)
+// {
+//   logDebug("A JavaScript error occurred: " + err.message);
+// }

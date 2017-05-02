@@ -6,14 +6,14 @@
 // Script Description: 
 // Script Run Event: ASIUA, WTUA
 // Script Parents:
-//		ASIUA;Permits!Commercial!NA!NA (but only when wfTask "Permit Issuance" is active).
-//		WTUA;Permits!Commercial!NA!NA (only when wfTask "Permit Issuance" is active
+//		//ASIUA;Permits!Commercial!NA!NA (but only when wfTask "Permit Issuance" is active). -- Removed by Steve Allred on 4/24/2017
+//		WTUA;Permits!Commercial!NA!NA (only when wfTask "Permit Issuance" is initially activated
 //             
 /*==================================================================*/
 
 /* test with PMT16-01042, PMT16-01084, PMT16-01128 */
 
-/* Run when workflow task Permit Issuance is activated AND/OR – on
+/* Run when workflow task Permit Issuance is initially activated AND/OR – on
  * ApplicationSpecificInfoUpdateAfter ONLY IF workflow task Permit
  * Issuance is activated.
  */
@@ -29,7 +29,8 @@
 try {
 	var isActive = isTaskActive_Mesa("Permit Issuance");
 
-	if(isActive && isActive == true ){
+	// When Plans Coordination task is resulted in Ready to Issue, add the impact fees.
+	if (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue"){
 
 		// permit issuance task exists and is active, so ok to continue
 

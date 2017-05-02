@@ -10,12 +10,30 @@
 //            ASIUA;Permits!Residential!NA!NA
 //            ASIUA;Permits!Commercial!NA!NA
 //
-// Script Mods:  3/21/2017 Steve Allred Added rounding
+// Script Mods:  03/21/2017 Steve Allred Added rounding
+//               05/02/2017 Steve Allred Added function formatNumberWithCommas and logic for Total Valuation Text
 ===================================================================*/
 //showDebug=true;
 
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+
+function formatNumberWithCommas(val) {
+
+	//set regex pattern for mask
+	var pattern;
+	pattern = /\B(?=(\d{3})+(?!\d))/g; //add commas to number
+
+	if(val==null||val==''){
+		return '';
+	}
+
+	var strVal = new String(val.toString());
+	var cleanVal = strVal.replace(/,/g,""); //remove commas before masking
+	var maskedVal = cleanVal.replace(pattern, ",")
+
+	return maskedVal;
 }
 
 try {
@@ -63,7 +81,33 @@ try {
 				}
 			}
 		}
-		if (totalValuation > 0) editAppSpecific('Total Valuation', round(totalValuation,2));
+		if (totalValuation > 0) {
+			editAppSpecific('Total Valuation', round(totalValuation,2));  //this is the numeric field
+			
+			var modulusTotVal = totalValuation % 1;
+			var maskCurrency = formatNumberWithCommas(totalValuation);
+			
+			if (modulusTotVal > 0) {
+				if(maskCurrency.length > 0) {
+					editAppSpecific('Total Valuation Text', "$" + maskCurrency);  // this is the text field
+				}
+				else {
+					editAppSpecific('Total Valuation Text', "$0.00"); 
+				}
+			}
+			else {	
+				if(maskCurrency.length > 0) {
+					editAppSpecific('Total Valuation Text', "$" + maskCurrency + ".00"); 
+				}
+				else {
+					editAppSpecific('Total Valuation Text', "$0.00"); 
+				}
+			}
+		}
+		else {
+			editAppSpecific('Total Valuation', totalValuation);
+			editAppSpecific('Total Valuation Text', "$0.00");
+		}
 	}	
 } catch (error){
 	logDebug("Javascript Error: " + error.message);

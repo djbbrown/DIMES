@@ -15,3 +15,4 @@ if (publicUser) {
 }
 
 include("PMT_ClearanceTo");
+include("PMT_Initialize_Submittal_Cycle");  /* updates the Short Notes field, not the ASI field */
