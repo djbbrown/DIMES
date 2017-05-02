@@ -87,7 +87,7 @@ try {
 			var modulusTotVal = totalValuation % 1;
 			var maskCurrency = formatNumberWithCommas(totalValuation);
 			
-			if (modulusTotVal > 0 {
+			if (modulusTotVal > 0) {
 				if(maskCurrency.length > 0) {
 					editAppSpecific('Total Valuation Text', "$" + maskCurrency);  // this is the text field
 				}
