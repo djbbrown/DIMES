@@ -81,16 +81,16 @@ try {
 				}
 			}
 		}
-		logDebug("totalValuation = " + totalValuation); 
+		//logDebug("totalValuation = " + totalValuation); 
 		if (totalValuation > 0) {
 			editAppSpecific('Total Valuation', round(totalValuation,2));  //this is the numeric field
 			
 			var modulusTotVal = totalValuation % 1;
-			logDebug("modulusTotVal = " + modulusTotVal);
+			//logDebug("modulusTotVal = " + modulusTotVal);
 			var maskCurrency = formatNumberWithCommas(totalValuation);
-			logDebug("maskCurrency = " + maskCurrency);
+			//logDebug("maskCurrency = " + maskCurrency);
 			if (matches(modulusTotVal,"0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9")) maskCurrency = maskCurrency + "0";
-			logDebug("maskCurrency = " + maskCurrency);
+			//logDebug("maskCurrency = " + maskCurrency);
 			
 			if (modulusTotVal > 0) {
 				if(maskCurrency.length > 0) {
