@@ -81,11 +81,14 @@ try {
 				}
 			}
 		}
+		logDebug("totalValuation = " + totalValuation); 
 		if (totalValuation > 0) {
 			editAppSpecific('Total Valuation', round(totalValuation,2));  //this is the numeric field
 			
 			var modulusTotVal = totalValuation % 1;
+			logDebug("modulusTotVal = " + modulusTotVal);
 			var maskCurrency = formatNumberWithCommas(totalValuation);
+			logDebug("maskCurrency = " + maskCurrency);
 			
 			if (modulusTotVal > 0) {
 				if(maskCurrency.length > 0) {
