@@ -11,7 +11,7 @@
 //            ASIUA;Permits!Commercial!NA!NA
 //
 // Script Mods:  03/21/2017 Steve Allred Added rounding
-//               05/02/2017 Steve Allred Added function formatNumberWithCommas and logic for Total Valuation Text
+//               05/02/2017 Steve Allred Added function formatNumberWithCommas and logic for Total Project Valuation
 ===================================================================*/
 //showDebug=true;
 
@@ -89,24 +89,24 @@ try {
 			
 			if (modulusTotVal > 0) {
 				if(maskCurrency.length > 0) {
-					editAppSpecific('Total Valuation Text', "$" + maskCurrency);  // this is the text field
+					editAppSpecific('Total Project Valuation', "$" + maskCurrency);  // this is the text field
 				}
 				else {
-					editAppSpecific('Total Valuation Text', "$0.00"); 
+					editAppSpecific('Total Project Valuation', "$0.00"); 
 				}
 			}
 			else {	
 				if(maskCurrency.length > 0) {
-					editAppSpecific('Total Valuation Text', "$" + maskCurrency + ".00"); 
+					editAppSpecific('Total Project Valuation', "$" + maskCurrency + ".00"); 
 				}
 				else {
-					editAppSpecific('Total Valuation Text', "$0.00"); 
+					editAppSpecific('Total Project Valuation', "$0.00"); 
 				}
 			}
 		}
 		else {
 			editAppSpecific('Total Valuation', totalValuation);
-			editAppSpecific('Total Valuation Text', "$0.00");
+			editAppSpecific('Total Project Valuation', "$0.00");
 		}
 	}	
 } catch (error){
