@@ -86,7 +86,7 @@ try {
 		if (totalValuation > 0) {
 			editAppSpecific('Total Valuation', totalValuation);  //this is the numeric field
 			
-			var modulusTotVal = totalValuation % 1;
+			var modulusTotVal = round(totalValuation % 1,2);
 			logDebug("modulusTotVal = " + modulusTotVal);
 			var maskCurrency = formatNumberWithCommas(totalValuation);
 			logDebug("maskCurrency = " + maskCurrency);
