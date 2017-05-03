@@ -89,7 +89,7 @@ try {
 			logDebug("modulusTotVal = " + modulusTotVal);
 			var maskCurrency = formatNumberWithCommas(totalValuation);
 			logDebug("maskCurrency = " + maskCurrency);
-			if (modulusTotVal.length == 3) maskCurrency = maskCurrency + "0";
+			if (matches(modulusTotVal,"0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9")) maskCurrency = maskCurrency + "0";
 			logDebug("maskCurrency = " + maskCurrency);
 			
 			if (modulusTotVal > 0) {
