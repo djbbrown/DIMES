@@ -24,3 +24,4 @@ if(wfTask == "Permit Issuance" && wfStatus == "Issued")
 	cloneToEnvironmental(capId,wfDateMMDDYYYY);
 
 include("PMT_OneTenthAcre_Conditions");
+include("PMT_Fire_CD_Condition");
