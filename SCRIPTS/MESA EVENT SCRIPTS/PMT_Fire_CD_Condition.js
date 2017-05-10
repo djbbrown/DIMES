@@ -14,6 +14,6 @@ try{
 	
 	if  (recordAppType == "Commercial")	addStdCondition("Building Permit","Fire CD Required to Issue Permit");
 }
-} catch (err){
+catch (err){
 	logDebug("A JavaScript Error occured: " + err.message);
 }
