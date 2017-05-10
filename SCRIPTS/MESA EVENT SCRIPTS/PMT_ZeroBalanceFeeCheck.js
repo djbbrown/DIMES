@@ -13,6 +13,7 @@
 //  1.0      |10/12/16  |Steve Veloudos   |Initial Release
 //  2.0      |10/17/16  |Steve Veloudos   |Fixed Javascript error: Cannot call method "toUpperCase" of null
 //  3.0      |12/05/16  |Kevin Gurney     |Change to use function to find amounts with fee status of NEW
+//  4.0      |05/10/17  |Steve Allred     |Included Certificate of Occupancy wfTask
 /*==================================================================*/
 
 try {
@@ -22,7 +23,8 @@ try {
        feeAmtNotInv = feeTotalByStatus("NEW");
 	   //logDebug("feeAmtNotInv = " + feeAmtNotInv);
 
-       if(wfTask == "Plans Distribution" && wfStatus == "Routed for Review")
+       if((wfTask == "Plans Distribution" && wfStatus == "Routed for Review") || 
+	      (wfTask == "Certificate of Occupancy" && wfStatus == "C of C Issued"))
        {
             //Stop processing if Balance is not 0
             if(feeAmtNotInv > 0 || balanceDue > 0)
