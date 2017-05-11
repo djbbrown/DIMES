@@ -10,13 +10,13 @@
 /*==================================================================*/
 
 try {
-		logDebug("parentCapId.customID = " + parentCapId.customID);
+		//logDebug("parentCapId.customID = " + parentCapId.customID);
 
 		if (parentCapId.customID != "undefined" && parentCapId.customID != null) { 
 
 			var FromEmail = "noreply@mesaaz.gov";
-			//var ToEmail = "AFPInspectors@mesaaz.gov";
-			var ToEmail = "steve.allred@mesaaz.gov";
+			var ToEmail = "AFPInspectors@mesaaz.gov";
+			//var ToEmail = "steve.allred@mesaaz.gov";
 			var vEParams = aa.util.newHashtable();
 
 			//Add Params
