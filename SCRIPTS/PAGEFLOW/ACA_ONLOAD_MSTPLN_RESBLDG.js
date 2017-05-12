@@ -108,7 +108,7 @@ if (parentCapId) {
     copyAppName(parentCapId,cap);
 	
 	//Copy Work Description.
-	updateWorkDesc("Work Description");
+	aa.cap.copyCapWorkDesInfo(parentCapId,capId);
 	
 	aa.env.setValue("CapModel",cap);
 }
