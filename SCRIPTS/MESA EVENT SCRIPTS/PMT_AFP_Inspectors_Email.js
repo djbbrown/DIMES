@@ -12,7 +12,9 @@
 try {
 		//logDebug("parentCapId.customID = " + parentCapId.customID);
 
-		if (parentCapId.customID != "undefined" && parentCapId.customID != null) { 
+		if (parentCapId.customID != "undefined" && 
+			parentCapId.customID != null &&
+			parentCapId.customID.substring(0,3) == "AFP") { 
 
 			var FromEmail = "noreply@mesaaz.gov";
 			var ToEmail = "AFPInspectors@mesaaz.gov";
@@ -24,10 +26,7 @@ try {
 
 			//Send email
 			if (wfTask == "Permit Issuance" && wfStatus == "Issued") {
-				//check for AFP Parent
-				if (parentCapId.customID.substring(0,3) == "AFP") {
-					sendNotification(FromEmail, ToEmail, "", "PMT_AFP_INSPECTORS", vEParams, null, capId);    
-				}
+				sendNotification(FromEmail, ToEmail, "", "PMT_AFP_INSPECTORS", vEParams, null, capId);    
 			}
 		}
 	}
