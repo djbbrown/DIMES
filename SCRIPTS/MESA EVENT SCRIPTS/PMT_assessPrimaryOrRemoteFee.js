@@ -5,7 +5,7 @@
 // Script Agency: Woolpert
 // Script Description: Assess Primary or Remote Site fee at App Submittal and when ASI is updated. If ASI field changes and assess the other fee script removes existing fee or voids and credits if the fee is invoiced.
 // Script Run Event: ASIUA
-// Script Parents:
+// Script Parents: 
 //            ASIUA;Permits!Commercial!Annual Facilities!NA
 //            ASA;Permits!Commercial!Annual Facilities!NA
 /*==================================================================*/
