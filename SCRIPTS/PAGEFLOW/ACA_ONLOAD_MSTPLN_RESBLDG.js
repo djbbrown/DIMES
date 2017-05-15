@@ -26,7 +26,7 @@ if (parentCapIdString) {
 
 var refAddress;
 var refParcel;
-var refOwner
+var refOwner;
 var refGIS;
 var contactList;
 var applicantModel;
@@ -107,8 +107,8 @@ if (parentCapId) {
 	//copy appName
     copyAppName(parentCapId,cap);
 	
-	//Copy additional info.
-	copyAdditionalInfo(parentCapId, capId);
+	//Copy Work Description.
+	aa.cap.copyCapWorkDesInfo(parentCapId,capId);
 	
 	aa.env.setValue("CapModel",cap);
 }
@@ -367,4 +367,8 @@ function copyAdditionalInfo(srcCapId, targetCapId)
 	}
 	//4. Edit or create additional infor for target CAP.
 	aa.cap.editAddtInfo(capDetail, additionalInfo);
+}
+
+function copyCapWorkDesInfo(srcCapId, targetCapId) {
+    aa.cap.copyCapWorkDesInfo(srcCapId, targetCapId);
 }
