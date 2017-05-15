@@ -4,10 +4,14 @@
 // Script Developer: Kevin Ford
 // Script Agency: Accela
 // Script Description: 
-// Script Run Event: Application Submit After
+// Script Run Event: Workflow Task Update After
 // Script Parents:
-//		ASA;Permits!Commercial!~!~
-//             
+//		WTUA;Permits!Commercial!NA!NA.js 
+//      //WTUA;Permits!Commercial!Annual Facilities!NA.js  Removed on 5/11/2017 by Steve Allred       
+//********************************************************************
+//Version  Date      Engineer          Description
+// 1.0               Kevin Ford        Initial Release
+// 1.1     05/11/17  Steve Allred      Modified criteria for Annual Facilities child permit
 /*==================================================================*/
 // Get the Classification
 var classOfWork = (AInfo["Classification Type"] != undefined) ? AInfo["Classification Type"] : AInfo["Classification Type"];
@@ -43,18 +47,24 @@ if(
 	}
 }
 
-// Annual record
-if(
-	appTypeString == "Permits/Commercial/Annual Facilities/NA"
-	&& wfTask == "Application Submittal" 
-	&& wfStatus=="Ready to Issue"
-){
-	// get inspection hours
-	inspHours = totalInspHours();
-	if (feeExists("COM270", "NEW", "INVOICED")){voidRemoveFee("COM270");}
-	if (inspHours > 0){addFee("COM270", "PMT_COM","FINAL", inspHours, "N");}
-	if(!inspHours && feeExists("COM270", "NEW", "INVOICED")){
-		voidRemoveFee("COM270");
+// Annual Facilities permit child record which is a Permits/Commercial/NA/NA
+if (parentCapId.customID != "undefined" && parentCapId.customID != null) { 
+
+	if (parentCapId.customID.substring(0,3) == "AFP") {
+
+		if (wfTask == "Inspections" && wfStatus == "Finaled - C of C Required") {
+
+			// get inspection hours
+			inspHours = totalInspHours();
+			logDebug("Inpsection hours: "+inspHours);
+			// add hourly fee 
+			if (feeExists("COM270", "NEW", "INVOICED")) {voidRemoveFee("COM270");}
+
+			if (inspHours > 0) {addFee("COM270", "PMT_COM","FINAL", inspHours, "N");}
+
+			if (!inspHours && feeExists("COM270", "NEW", "INVOICED")) {voidRemoveFee("COM270");}
+
+		}
 	}
 }
 
@@ -307,8 +317,11 @@ catch (err) {
 if(
 	(wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")
 	|| (wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
+	|| (parentCapId.customID != "undefined" && parentCapId.customID != null && 
+	    parentCapId.customID.substring(0,3) == "AFP" && wfTask == "Inspections" && 
+		wfStatus == "Finaled - C of C Required")
 ) {
-		if (feeExists("COM120", "NEW", "INVOICED")) voidRemoveFee("RES310");
+		if (feeExists("COM120", "NEW", "INVOICED")) voidRemoveFee("COM120");
 		updateFee("COM120", "PMT_COM","FINAL", 1, "N");
 }
 
