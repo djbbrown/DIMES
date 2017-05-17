@@ -161,7 +161,6 @@ try
                 // change wf task status to "In Violation-Expedite"
                 // 05/17/2017 - Added 's' as WFTask is spelt differently then Inspection Name
                 updateTask(inspType + 's', "In Violation - Expedite", "Updated By Script (#354)", "");
-                setTask(inspType + 's', 'N', 'Y');
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
                 scheduleInspectionDateWithInspector("Citation Inspection", futureDate3, inspectorId);
