@@ -13,6 +13,7 @@
 // ------------------------------------------------------------------
 // - 01/01/1900 | Vance Smith           | Initial Version 
 // - 05/02/2017 | Michael VanWie		| Updated
+// - 05/17/2017 | Michael VanWie        | Updated based on User Testing
 /*==================================================================*/      
 
 
@@ -37,7 +38,7 @@ try
     var yr1 = parseInt(inspObj.getInspectionDate().getYear());
     var inspResultDate = new Date(yr1, mon1-1, dt1); //JS uses a zero-base month but one-base year/day
     var futureDate14 = jsDateToMMDDYYYY(addDays(inspResultDate, 14)); // 14 calendar days // adjusted 2/9/2017
-    var futureDAte7 = jsDateToMMDDYYYY(addDays(inspResultDate, 7));   // 7 calendar days
+    var futureDate7 = jsDateToMMDDYYYY(addDays(inspResultDate, 7));   // 7 calendar days
     var futureDate3 = mesaWorkingDays(inspResultDate, 4);   // 3 working days (function counts today as 1)
 
     // get the last inspector's ID
@@ -66,8 +67,8 @@ try
                 // move wf to wf task "Citation Inspection" (make active)
                 setTask("Citation Inspections", "Y", "N");
 
-                // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation Inspection", futureDate14, inspectorId);
+                // create new "Citation" inspection (7 calendar days out from inspection date)
+                scheduleInspectionDateWithInspector("Citation Inspection", futureDate7, inspectorId);
                 break;
 
             case "3rd Party Abatement":
@@ -78,8 +79,6 @@ try
                 //Move wf to wf task "Follow-Up Inspection" and make active
                 setTask("Follow-Up Inspection", "Y", "N");
 
-                //Create new "Follow-Up" inspection (14 calendar days out)
-                scheduleInspectionDateWithInspector("Follow-Up Inspection", futureDate14, inspectorId);
                 break;
 
             case "No Violation":
@@ -124,16 +123,14 @@ try
                 // move wf to wf task "Citation Inspection" (make active)
                 setTask("Citation Inspections", "Y", "N");
 
-                // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation Inspection", futureDate14, inspectorId);
+                // create new "Citation" inspection (7 calendar days out from inspection date)
+                scheduleInspectionDateWithInspector("Citation Inspection", futureDate7, inspectorId);
                 break;
 
             case "3rd Party Abatement":
             //Change wf task status to "3rd Party Abatement"
                 updateTask(inspType, "3rd Party Abatement", "Updated by Script (#354)", "");
 
-                // create new "Follow-Up" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Follow-Up Inspection", futureDate14, inspectorId);
                 break;
 
             case "Voluntary Compliance":
@@ -162,11 +159,12 @@ try
 
             case "In Violation - Expedite":
                 // change wf task status to "In Violation-Expedite"
-                updateTask(inspType, "In Violation - Expedite", "Updated By Script (#354)", "");
-                setTask(inspType, 'N', 'Y');
+                // 05/17/2017 - Added 's' as WFTask is spelt differently then Inspection Name
+                updateTask(inspType + 's', "In Violation - Expedite", "Updated By Script (#354)", "");
+                setTask(inspType + 's', 'N', 'Y');
 
                 // create new "Citation" inspection (14 calendar days out from inspection date)
-                scheduleInspectionDateWithInspector("Citation Inspections", futureDate3, inspectorId);
+                scheduleInspectionDateWithInspector("Citation Inspection", futureDate3, inspectorId);
                 break;
 
             case "Forced Compliance":
