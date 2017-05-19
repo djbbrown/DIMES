@@ -65,6 +65,9 @@ try
 
     if (docNeeded)
     {
+	  if (publicUser) {
+		  showDebug=false;
+	  }
       commentBlah = "For request types with Pre-Plat a Pre-Plat document is required";
       showMessage = true;
       comment(commentBlah);
