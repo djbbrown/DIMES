@@ -15,12 +15,30 @@
 try{
 	var acres = 0;
 	//areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");  //Do not want to use MesaParcels anymore
-	areas = getGISBufferInfo("Accela/Accela_Base", "Parcel Areas", -1, "APN", "SHAPE_Area");  //new usage.
+	//areas = getGISBufferInfo("Accela/Accela_Base", "Parcel Areas", -1, "APN", "SHAPE_Area");  //new usage.
+	/*
 	for (i in areas) {
 		//logDebug("Area " + areas[i]["APN"] + ": " + (areas[i]["SHAPE_Area"] / 43560));
-		acres += (areas[i]["SHAPE_Area"] / 43560);
+		//acres += (areas[i]["SHAPE_Area"] / 43560);
 	}
-	acres = Math.ceil(acres);
+	*/
+	//Note:  switching to use parcel area from parcel ref table due to ACA.
+	// this is a temp Accela fix for the parcelArea global variable bug
+    loadParcelArea();
+	// ACA retriev addtl parcel numbers area 
+	var rAddtlPrcNmbrArea = 0;
+	if(publicUser){
+		var addtlParNmbrs = loadASITable("ADDITIONAL PARCEL NUMBERS");
+		if(addtlParNmbrs.length > 0){
+		for(xxx in addtlParNmbrs) { 
+			rAddtlPrcNmbrArea+=parseFloat(getParcelAreaFromRefParcel(addtlParNmbrs[xxx]["Parcel Number"]));
+			//logDebug("rAddtlPrcNmbrArea = " + rAddtlPrcNmbrArea);
+		}
+	}
+	logDebug("rAddtlPrcNmbrArea = " + rAddtlPrcNmbrArea);
+	}
+	acres = Math.ceil(parcelArea) + Math.ceil(rAddtlPrcNmbrArea);
+	//acres = Math.ceil(acres);
 	logDebug("Total acres: " + acres);
 	var zoning = getGISInfo("", "Zoning Districts", "DSCR");
 	if (!zoning) logDebug("Zoning data not found for parcel.");
