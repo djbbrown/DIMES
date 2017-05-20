@@ -40,7 +40,12 @@ try{
 	acres = Math.ceil(parcelArea) + Math.ceil(rAddtlPrcNmbrArea);
 	//acres = Math.ceil(acres);
 	logDebug("Total acres: " + acres);
-	var zoning = getGISInfo("", "Zoning Districts", "DSCR");
+	var zoning;
+	if(publicUser){
+		zoning = getGISInfo2ASB("MESA", "Zoning Districts", "DSCR");
+	}
+	else {zoning = getGISInfo("MESA", "Zoning Districts", "DSCR");
+	}
 	if (!zoning) logDebug("Zoning data not found for parcel.");
 	else {
 		isDowntown = (zoning == "DC - Downtown Core")
