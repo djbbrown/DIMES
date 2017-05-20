@@ -42,7 +42,8 @@ try{
 	logDebug("Total acres: " + acres);
 	var zoning;
 	if(publicUser){
-		zoning = getGISInfo2ASB("MESA", "Zoning Districts", "DSCR");
+		priParcelNbr = getPrimaryParcel();
+		zoning = getGISInfoByParcel(priParcelNbr,"MESA", "Zoning Districts", "DSCR");
 	}
 	else {zoning = getGISInfo("MESA", "Zoning Districts", "DSCR");
 	}
