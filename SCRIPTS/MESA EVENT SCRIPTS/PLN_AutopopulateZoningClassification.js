@@ -16,41 +16,32 @@
 //
 /*==================================================================*/
 
-/* test with: ADM17-00163 */
+/* test with: ZON17-00305  */
 
 try
 {
 	var zoning_districts = getGISInfoArray("Planning/Zoning", "Zoning Districts", "ZONING");
-	var overlay_districts = getGISInfoArray("Planning/Zoning", "Overlay Districts", "OVERLAY");
 	
 	if(zoning_districts == undefined)
 	{
 		zoning_districts = [];
 	}
-	
-	// same as above, but for overlays
-	if(overlay_districts == undefined)
-	{
-		overlay_districts = [];
-	}
-	
-	// combine arrays into a single one, and convert to a comma(plus space)-separated string
-	var zoning_overlay = zoning_districts.concat(overlay_districts);
-	zoning_overlay = zoning_overlay.join(", ");
 
-/*	
-	if(zoning_overlay != "")
+	// convert to a comma(plus space)-separated string
+	zoning_districts = zoning_districts.join(", ");
+
+	if(zoning_districts != "")
 	{
-		logDebug("Existing Zoning being updated to: " + zoning_overlay);
+		logDebug("Existing Zoning being updated to: " + zoning_districts);
 		ezb = getAppSpecific("Existing Zoning"); // existing zoning before setting
 		logDebug("Existing Zoning (before setting): " + ezb);
-		editAppSpecific("Existing Zoning", zoning_overlay);
+		editAppSpecific("Existing Zoning", zoning_districts);
 		eza = getAppSpecific("Existing Zoning"); // existing zoning after setting
 		logDebug("Existing Zoning (after setting): " + eza);
 	} else {
 		logDebug("No zoning returned from GIS ... Existing Zoning not being updated.");
 	}
-*/
+
 }
 catch (err)
 {
