@@ -26,6 +26,7 @@
 /-----------------------------------------------------------------------------------------------------*/
 function mainProcess() 
 {
+    logDebug('Starting...');
     /***** BEGIN INITIALIZE COUNTERS *****/
     /* UNCOMMENT NEEDED COUNTER VARIABLES THESE ARE INCREMENTED BY THE FILTERS 
      * AND THEN USED TO GENERATE THE ADMIN SUMMARY EMAIL */
@@ -206,6 +207,7 @@ function mainProcess()
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
     //aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText + emailBody); // TEMP ADDED emailBody, changed to email vfs onlyemailAdminTo, emailAdminCc,
     aa.sendMail("michael.vanwie@mesaaz.gov", "", "", "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText + emailBody);
+
     /***** END ADMIN NOTIFICATION *****/
 }
 
@@ -243,7 +245,6 @@ function getRecordsToCheck()
                     AND A.B1_ALT_ID NOT LIKE '%TMP-%' \
                     AND A.REC_STATUS = 'A' \
                     AND SUBSTR(B.B1_PARCEL_NBR, 1, 1) IN ('0','1','2','3','4','5','6','7','8','9') \
-                    AND A.B1_ALT_ID = 'BLD2003-00101'\
                 GROUP BY A.B1_ALT_ID) \
                 SELECT B1_ALT_ID FROM INIT WHERE PAR_CNT = 0 AND ADD_CNT > 0";
     
@@ -450,6 +451,7 @@ try
 
     var vScriptName = aa.env.getValue("ScriptCode");
     var vEventName = aa.env.getValue("EventName");
+    var emailTemplate = getJobParam("emailTemplate");
 
     var startDate = new Date();
     var startTime = startDate.getTime();
