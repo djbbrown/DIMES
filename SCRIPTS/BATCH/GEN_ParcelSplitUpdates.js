@@ -115,6 +115,7 @@ function mainProcess()
                         var zip = capAddress[i].getZip();
 
                         var foundParcels = aa.parcel.getParceListForAdmin(null, hseNum, null, streetDir, streetName, streetSuffix, null, null, city, null, null, null, null, null, null);
+                        var addr = hseNum + ' ' + streetDir + ' ' + streetName;
 
                         if(foundParcels.getSuccess())
                         {
@@ -136,13 +137,13 @@ function mainProcess()
                                     {
                                         //nothing work - notify permit supervisor
                                         capFailedUpdateParcelAndFailedGetAddress++;
-                                        logDebugAndEmail("AltID: " + altId + " Parcel: " + parcel.parcelModel.getParcelNumber() + " Error: " + addParcelResult.getErrorMessage());
+                                        logDebugAndEmail(altId + " Parcel: " + parcel.parcelModel.getParcelNumber() + " Error: " + addParcelResult.getErrorMessage());
                                     }
                                 }
                                 else
                                 {
                                     //Add parcel by Record Address was successful
-                                    logDebugAndEmail(altId + ' - Parcel Added parcel via : Address Search');
+                                    logDebugAndEmail(altId + " Parcel: " + parcel.parcelModel.getParcelNumber() +' - Added via : Address Search - ' + addr);
                                     capUpdateSuccess++;
                                     continue;
                                 }
@@ -164,7 +165,7 @@ function mainProcess()
                     else
                     {
                         //addParcelAndOwnerFromRefAddressWithEmailBody was successful
-                        logDebugAndEmail(altId + ' - Parcel added via : addParcelAndOwnerFromRefAddress()')
+                        logDebugAndEmail(altId + " Parcel: " + parcel.parcelModel.getParcelNumber() + ' - Added via : addParcelAndOwnerFromRefAddress()');
                         capUpdateSuccess++;
                         continue;
                     }
@@ -180,7 +181,7 @@ function mainProcess()
         else
         {
             //updateRefParcelToCapReturnStatus was successful
-            logDebugAndEmail(altId + ' - Parcel added via : updateRefParcelToCapReturnStatus')
+            logDebugAndEmail(altId + " Parcel: " + parcel.parcelModel.getParcelNumber() + ' - Added via : updateRefParcelToCapReturnStatus');
             capUpdateSuccess++;
         }
         /***** END CUSTOM PROCESSING *****/
@@ -242,6 +243,7 @@ function getRecordsToCheck()
                     AND A.B1_ALT_ID NOT LIKE '%TMP-%' \
                     AND A.REC_STATUS = 'A' \
                     AND SUBSTR(B.B1_PARCEL_NBR, 1, 1) IN ('0','1','2','3','4','5','6','7','8','9') \
+                    AND A.B1_ALT_ID = 'BLD2003-00101'\
                 GROUP BY A.B1_ALT_ID) \
                 SELECT B1_ALT_ID FROM INIT WHERE PAR_CNT = 0 AND ADD_CNT > 0";
     
@@ -428,7 +430,7 @@ try
     /*------------------------------------------------------------------------------------------------------/
     | START: USER CONFIGURABLE PARAMETERS
     /------------------------------------------------------------------------------------------------------*/
-    var showMessage = true;		    // Set to true to see results in popup window
+    var showMessage = false;		    // Set to true to see results in popup window
     var disableTokens = false;	
     var showDebug = true;			// Set to true to see debug messages in email confirmation
     
@@ -497,31 +499,27 @@ try
     //      var overrideElapsed = "function elapsed() { return 0; }"; 
     //      eval(overrideElapsed);
 
-    function logDebug(dstr) 
-    {
-        if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
-        {
-            aa.print(dstr)
-            aa.debug(aa.getServiceProviderCode() + " : " + aa.env.getValue("CurrentUserID"), dstr);
-            aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID);
-        }        
-    }
-    function logEmail(dstr)
-    {
-        emailText += dstr + "<br>";
-    }
-    function logDebugAndEmail(dstr)
-    {
-        logDebug(dstr);
-        logEmail(dstr);
-    }
-    function getParam(pParamName) // overridden from INCLUDES_BATCH
-    {
-        var ret = "" + aa.env.getValue(pParamName);
-        logDebugAndEmail("Parameter : " + pParamName + " = " + ret);
-        return ret;
-    }
-
+    var logDebugOR = 'function logDebug(dstr) \
+    { \
+        if ( batchJobName == "" ) \
+        { \
+            aa.print(dstr); \
+            aa.debug(aa.getServiceProviderCode() + " : " + aa.env.getValue("CurrentUserID"), dstr); \
+            aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID); \
+        } \
+    } '
+    var logEmailOR = 'function logEmail(dstr) { emailText += dstr + "<br>"; }'
+    var logDebugAndEmailOR = 'function logDebugAndEmail(dstr) { logDebug(dstr); logEmail(dstr); }'
+    var getParamOR = 'function getParam(pParamName) \
+    { \
+        var ret = "" + aa.env.getValue(pParamName); \
+        logDebugAndEmail("Parameter : " + pParamName + " = " + ret); \
+        return ret; \
+    }'
+    eval(logDebugOR);
+    eval(logEmailOR);
+    eval(logDebugAndEmailOR);
+    eval(getParamOR);
     /*------------------------------------------------------------------------------------------------------/
     | END: USER CONFIGURABLE PARAMETERS
     /------------------------------------------------------------------------------------------------------*/
