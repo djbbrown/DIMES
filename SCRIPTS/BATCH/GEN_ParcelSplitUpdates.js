@@ -166,7 +166,7 @@ function mainProcess()
                     else
                     {
                         //addParcelAndOwnerFromRefAddressWithEmailBody was successful
-                        logDebugAndEmail(altId + " Parcel: " + parcel.parcelModel.getParcelNumber() + ' - Added via : addParcelAndOwnerFromRefAddress()');
+                        logDebugAndEmail(altId + ' - Added via : addParcelAndOwnerFromRefAddress()');
                         capUpdateSuccess++;
                         continue;
                     }
@@ -182,7 +182,7 @@ function mainProcess()
         else
         {
             //updateRefParcelToCapReturnStatus was successful
-            logDebugAndEmail(altId + " Parcel: " + parcel.parcelModel.getParcelNumber() + ' - Added via : updateRefParcelToCapReturnStatus');
+            logDebugAndEmail(altId + ' - Added via : updateRefParcelToCapReturnStatus');
             capUpdateSuccess++;
         }
         /***** END CUSTOM PROCESSING *****/
