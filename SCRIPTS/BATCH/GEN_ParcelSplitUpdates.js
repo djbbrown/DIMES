@@ -142,7 +142,7 @@ function mainProcess()
                                 else
                                 {
                                     //Add parcel by Record Address was successful
-                                    //logDebug(altId + ' - Parcel Added parcel via : Address Search');
+                                    logDebugAndEmail(altId + ' - Parcel Added parcel via : Address Search');
                                     capUpdateSuccess++;
                                     continue;
                                 }
@@ -164,7 +164,7 @@ function mainProcess()
                     else
                     {
                         //addParcelAndOwnerFromRefAddressWithEmailBody was successful
-                        //logDebug(altId + ' - Parcel added via : addParcelAndOwnerFromRefAddress()')
+                        logDebugAndEmail(altId + ' - Parcel added via : addParcelAndOwnerFromRefAddress()')
                         capUpdateSuccess++;
                         continue;
                     }
@@ -180,7 +180,7 @@ function mainProcess()
         else
         {
             //updateRefParcelToCapReturnStatus was successful
-           //logDebug(altId + ' - Parcel added via : updateRefParcelToCapReturnStatus')
+            logDebugAndEmail(altId + ' - Parcel added via : updateRefParcelToCapReturnStatus')
             capUpdateSuccess++;
         }
         /***** END CUSTOM PROCESSING *****/
@@ -204,7 +204,7 @@ function mainProcess()
     logDebugAndEmail("-------------------------");
     logDebugAndEmail("End of Job: Elapsed Time : " + elapsed() + " Seconds");
     //aa.sendMail("NoReply@MesaAz.gov", "vance.smith@mesaaz.gov", "vance.smith@mesaaz.gov", "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText + emailBody); // TEMP ADDED emailBody, changed to email vfs onlyemailAdminTo, emailAdminCc,
-    //aa.sendMail("michael.vanwie@mesaaz.gov", "", "", "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText + emailBody);
+    aa.sendMail("michael.vanwie@mesaaz.gov", "", "", "Batch Script: GEN_ParcelSplitUpdates Completion Summary", emailText + emailBody);
     /***** END ADMIN NOTIFICATION *****/
 }
 
