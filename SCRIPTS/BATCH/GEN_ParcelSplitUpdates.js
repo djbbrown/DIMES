@@ -451,7 +451,7 @@ try
 
     var vScriptName = aa.env.getValue("ScriptCode");
     var vEventName = aa.env.getValue("EventName");
-    var emailTemplate = getJobParam("emailTemplate");
+    var emailTemplate = aa.env.getValue("emailTemplate");
 
     var startDate = new Date();
     var startTime = startDate.getTime();
@@ -501,24 +501,22 @@ try
     //      var overrideElapsed = "function elapsed() { return 0; }"; 
     //      eval(overrideElapsed);
 
-    function logDebug(dstr) 
-    { 
-        if ( batchJobName == "" ) 
-        { 
-            aa.print(dstr); 
-            aa.debug(aa.getServiceProviderCode() + " : " + aa.env.getValue("CurrentUserID"), dstr); 
-            aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID); 
-        } 
-    } 
-    function logEmail(dstr) { emailText += dstr + "<br>"; }
-    function logDebugAndEmail(dstr) { logDebug(dstr); logEmail(dstr); }
-    function getParam(pParamName) 
-    { 
-        var ret = "" + aa.env.getValue(pParamName); 
-        logDebugAndEmail("Parameter : " + pParamName + " = " + ret); 
-        return ret; 
-    }
-
+    var logDebugOverride = 'function logDebug(dstr) { \
+        if ( batchJobName == "" ) { \
+            aa.print(dstr); \
+            aa.debug(aa.getServiceProviderCode() + " : " + aa.env.getValue("CurrentUserID"), dstr); \
+            aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID); } } '
+    var logEmailOverride = 'function logEmail(dstr) { emailText += dstr + "<br>"; } '
+    var logDebugAndEmailOverride = 'function logDebugAndEmail(dstr) { logDebug(dstr); logEmail(dstr); }'
+    var getParamOverride = 'function getParam(pParamName) { \
+        var ret = "" + aa.env.getValue(pParamName); \
+        logDebugAndEmail("Parameter : " + pParamName + " = " + ret); \
+        return ret;} '
+    
+    eval(logDebugOverride);
+    eval(logEmailOverride);
+    eval(logDebugAndEmailOverride);
+    eval(getParamOverride);
     /*------------------------------------------------------------------------------------------------------/
     | END: USER CONFIGURABLE PARAMETERS
     /------------------------------------------------------------------------------------------------------*/
@@ -625,5 +623,5 @@ try
 }
 catch (err) 
 {
-    logDebugAndEmail("A JavaScript Error occurred: " + err.message);
+    aa.print("A JavaScript Error occurred: " + err.message);
 }
