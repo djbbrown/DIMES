@@ -501,27 +501,24 @@ try
     //      var overrideElapsed = "function elapsed() { return 0; }"; 
     //      eval(overrideElapsed);
 
-    var logDebugOR = 'function logDebug(dstr) \
-    { \
-        if ( batchJobName == "" ) \
-        { \
-            aa.print(dstr); \
-            aa.debug(aa.getServiceProviderCode() + " : " + aa.env.getValue("CurrentUserID"), dstr); \
-            aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID); \
-        } \
-    } '
-    var logEmailOR = 'function logEmail(dstr) { emailText += dstr + "<br>"; }'
-    var logDebugAndEmailOR = 'function logDebugAndEmail(dstr) { logDebug(dstr); logEmail(dstr); }'
-    var getParamOR = 'function getParam(pParamName) \
-    { \
-        var ret = "" + aa.env.getValue(pParamName); \
-        logDebugAndEmail("Parameter : " + pParamName + " = " + ret); \
-        return ret; \
-    }'
-    eval(logDebugOR);
-    eval(logEmailOR);
-    eval(logDebugAndEmailOR);
-    eval(getParamOR);
+    function logDebug(dstr) 
+    { 
+        if ( batchJobName == "" ) 
+        { 
+            aa.print(dstr); 
+            aa.debug(aa.getServiceProviderCode() + " : " + aa.env.getValue("CurrentUserID"), dstr); 
+            aa.eventLog.createEventLog("DEBUG", "Batch Process", batchJobName, aa.date.getCurrentDate(), aa.date.getCurrentDate(), "", dstr, batchJobID); 
+        } 
+    } 
+    function logEmail(dstr) { emailText += dstr + "<br>"; }
+    function logDebugAndEmail(dstr) { logDebug(dstr); logEmail(dstr); }
+    function getParam(pParamName) 
+    { 
+        var ret = "" + aa.env.getValue(pParamName); 
+        logDebugAndEmail("Parameter : " + pParamName + " = " + ret); 
+        return ret; 
+    }
+
     /*------------------------------------------------------------------------------------------------------/
     | END: USER CONFIGURABLE PARAMETERS
     /------------------------------------------------------------------------------------------------------*/
