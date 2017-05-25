@@ -29,11 +29,7 @@
 
 try
 {
-  if (
-	(appMatch("Planning/Design Review/NA/NA")) ||
-	(appMatch("Planning/Board of Adjustment/NA/NA")) ||
-	(appMatch("Planning/Planning and Zoning/NA/NA"))
-	)
+  if (appTypeArray[0] == "Planning")
   {    
     
     // this is a temp Accela fix for the parcelArea global variable bug
