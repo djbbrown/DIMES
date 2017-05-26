@@ -63,6 +63,13 @@ if (parentCapId) {
 	applicantModel.setComponentName(null);
 	cap.setApplicantModel(applicantModel);
 	
+	//copy appName
+    copyAppName(parentCapId,cap);
+	
+	//Copy Work Description.
+	aa.cap.copyCapWorkDesInfo(parentCapId,capId);
+	aa.cap.copyCapDetailInfo(parentCapId,capId);
+	
 	//Copy ASI
 	copyAppSpecific4ACA(parentCap);
 	
@@ -104,11 +111,6 @@ if (parentCapId) {
 		}
 	}
 	
-	//copy appName
-    copyAppName(parentCapId,cap);
-	
-	//Copy Work Description.
-	aa.cap.copyCapWorkDesInfo(parentCapId,capId);
 	
 	aa.env.setValue("CapModel",cap);
 }
