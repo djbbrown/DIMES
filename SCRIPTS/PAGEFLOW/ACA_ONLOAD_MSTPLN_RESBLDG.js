@@ -67,8 +67,8 @@ if (parentCapId) {
     copyAppName(parentCapId,cap);
 	
 	//Copy Work Description.
-	aa.cap.copyCapWorkDesInfo(parentCapId,capId);
-	aa.cap.copyCapDetailInfo(parentCapId,capId);
+	aa.cap.copyCapWorkDesInfo(parentCapId,cap);
+	aa.cap.copyCapDetailInfo(parentCapId,cap);
 	
 	//Copy ASI
 	copyAppSpecific4ACA(parentCap);
