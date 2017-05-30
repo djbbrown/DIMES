@@ -10,15 +10,9 @@
 //			CTRCA;Permits!Commercial!NA!NA
 /*==================================================================*/
 try {
-	var parentMstPlnId = getParent();
-	logDebug("parentMstPlanId = " + parentMstPlnId);
-	//parentMstPlnIdAlt = parentMstPln[0].getCustomID();
-	//parentMstPlnId = getApplication(parentMstPlnIdAlt);
-	//mstPlnWrkDes = workDescGet(parentMstPlnId);
-	//logDebug("mstPlnWrkDes = " + mstPlnWrkDes);
-	//logDebug("parentMstPlnIdAlt = " + parentMstPlnIdAlt);
-	if(parentMstPlnId != null){
-		copyCapWorkDesInfo(parentMstPlnId,capId);
+	logDebug("parentCapId = " + parentCapId);
+	if(parentCapId != null){
+		copyCapWorkDesInfo(parentCapId,capId);
 		}
 	}
 catch (err) {
