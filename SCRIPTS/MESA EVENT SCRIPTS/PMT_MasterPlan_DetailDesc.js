@@ -10,14 +10,14 @@
 //			CTRCA;Permits!Commercial!NA!NA
 /*==================================================================*/
 try {
-	var parentMstPln = getParents("Permits/Master Plan/NA/NA");
-	logDebug("parentMstPlan = " + parentMstPln);
-	parentMstPlnIdAlt = parentMstPln[0].getCustomID();
-	parentMstPlnId = getApplication(parentMstPlnIdAlt);
+	var parentMstPlnId = getParent();
+	logDebug("parentMstPlanId = " + parentMstPlnId);
+	//parentMstPlnIdAlt = parentMstPln[0].getCustomID();
+	//parentMstPlnId = getApplication(parentMstPlnIdAlt);
 	//mstPlnWrkDes = workDescGet(parentMstPlnId);
 	//logDebug("mstPlnWrkDes = " + mstPlnWrkDes);
-	logDebug("parentMstPlnIdAlt = " + parentMstPlnIdAlt);
-	if(parentMstPln != null){
+	//logDebug("parentMstPlnIdAlt = " + parentMstPlnIdAlt);
+	if(parentMstPlnId != null){
 		copyCapWorkDesInfo(parentMstPlnId,capId);
 		}
 	}
