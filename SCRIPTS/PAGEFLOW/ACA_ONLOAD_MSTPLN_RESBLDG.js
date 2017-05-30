@@ -68,9 +68,7 @@ if (parentCapId) {
 	
 	//Copy Work Description.
 	copyCapWorkDesInfo(parentCapId,capId);
-	//updateWorkDesc("New Model Home",capId);
-	aa.cap.copyCapDetailInfo(parentCapId,capId);
-	
+		
 	//Copy ASI
 	copyAppSpecific4ACA(parentCap);
 	
