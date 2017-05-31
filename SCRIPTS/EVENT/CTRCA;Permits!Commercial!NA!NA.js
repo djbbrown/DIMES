@@ -10,5 +10,6 @@ if (publicUser) {
 	// added by Vance Smith (Mesa)
 	include("PMT_AutopopulateASIFieldsFromGISAttributes");
 	include("PMT_CodeEnforcementNumber");
-	include("PMT_Email_Hazardmat_Received");	
+	include("PMT_Email_Hazardmat_Received");
+	include("PMT_MasterPlan_DetailDesc");
 }
