@@ -41,25 +41,25 @@ Versions:
 
 try
 {
-    logDebug("appTypeString: " + appTypeString);
+    comment("appTypeString: " + appTypeString);
 
     /* GET NEEDED GIS VALUES */
 
-    logDebug("Getting 'Zoning'");
+    comment("Getting 'Zoning'");
     var zoning = getGISInfo("Planning/Zoning", "Zoning Districts", "ZONING");
     if ( zoning == undefined ) { 
-        logDebug("Zoning was undefined, setting to false");
+        comment("Zoning was undefined, setting to false");
         zoning = false; 
     }
-    logDebug("zoning: " + zoning);
+    comment("zoning: " + zoning);
 
-    logDebug("Getting 'Land Use'");
-    var landUse = getGISInfo("Accela/Accela_Base", "GeneralPlan Labels", "CharacterArea");
+    comment("Getting 'Land Use'");
+    var landUse = getGISInfo("Accela/Accela_Base", "GeneralPlan2040", "CharacterArea");
     if ( landUse == undefined ) { 
-        logDebug("Land Use was undefined, setting to false");
+        comment("Land Use was undefined, setting to false");
         landUse = false; 
     }
-    logDebug("landUse: " + landUse);
+    comment("landUse: " + landUse);
     
     var azWater = false;
     var stormWaterExempt = true;
@@ -71,23 +71,23 @@ try
     {            
         for (x in tagFieldArray)
         {
-            //logDebug("gis tag: " + tagFieldArray[x]);
+            //comment("gis tag: " + tagFieldArray[x]);
 
             if (IsStrInArry("AWCP", tagFieldArray)) 
             {
-                logDebug("Getting 'AZ Water'");
+                comment("Getting 'AZ Water'");
                 azWater = tagFieldArray[x];
                 if ( azWater == undefined ) { 
-                    logDebug("AZ Water was undefined, setting to false");
+                    comment("AZ Water was undefined, setting to false");
                     azWater = false; 
                 }
-                logDebug("azWater: " + azWater);
+                comment("azWater: " + azWater);
             }
 
             // storm water Exempt - jcheney 10/18/2016
             var thisTag = tagFieldArray[x];
             if(matches(thisTag, "STOR")) {
-                logDebug("Found GIS tag STOR - setting stormWaterExempt = false");
+                comment("Found GIS tag STOR - setting stormWaterExempt = false");
                 stormWaterExempt = false;
             }
 
@@ -95,6 +95,8 @@ try
     }
 
     /* SET VALUES */
+
+     /* SET VALUES */
 
     // Zoning
     if ( zoning != false ) { 
@@ -104,8 +106,9 @@ try
             appMatch("Permits/Residential/NA/NA")
         )
         {
-            logDebug("Updating Zoning to '" + zoning + "'");
-            editAppSpecific("Zoning", zoning); 
+            comment("Updating Zoning to '" + zoning + "'");
+            //editAppSpecific("Zoning", zoning); 
+            AInfo["Zoning"] = zoning;
         }
     }
 
@@ -117,8 +120,9 @@ try
             appMatch("Permits/Residential/NA/NA")
         )
         {
-            logDebug("Updating Land Use to '" + landUse + "'");
-            editAppSpecific("Land Use", landUse); 
+            comment("Updating Land Use to '" + landUse + "'");
+            //editAppSpecific("Land Use", landUse); 
+            AInfo["Land Use"] = landUse;
         }
     }
 
@@ -132,8 +136,9 @@ try
         appMatch("Permits/Demolition/NA/NA")
     )
     {
-        logDebug("Updating Flood Zone to '" + floodZone + "'");
-        editAppSpecific("Flood Zone", floodZone);
+        comment("Updating Flood Zone to '" + floodZone + "'");
+        //editAppSpecific("Flood Zone", floodZone);
+        AInfo["Flood Zone"] = floodZone;
     }
 
     // AZ Water
@@ -146,8 +151,9 @@ try
         if ( azWater != null && azWater){
             azValue = "Yes";
         }
-        logDebug("Updating AZ Water to '" + azValue + "'");
-        editAppSpecific("AZ Water", azValue);
+        comment("Updating AZ Water to '" + azValue + "'");
+        //editAppSpecific("AZ Water", azValue);
+        AInfo["AZ Water"] = azValue;
     }
 
     // Storm Water Exempt
@@ -160,13 +166,14 @@ try
         if ( stormWaterExempt != null && stormWaterExempt ) {
             sweValue = "Yes";
         }
-        logDebug("Updating Storm Water Exempt to '" + sweValue + "'"); 
-        editAppSpecific("Storm Water Exempt", sweValue);
+        comment("Updating Storm Water Exempt to '" + sweValue + "'"); 
+        //editAppSpecific("Storm Water Exempt", sweValue);
+        AInfo["Storm Water Exempt"] = sweValue;
     }
 }
 catch (err)
 {
-  logDebug("A JavaScript error occurred: " + err.message);
+  comment("A JavaScript error occurred: " + err.message);
 }
 
 /* Test Record: PMT16-00413
