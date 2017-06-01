@@ -51,6 +51,10 @@ try
         comment("Zoning was undefined, setting to false");
         zoning = false; 
     }
+    else
+    {
+        zoning = zoning + "";
+    }
     comment("zoning: " + zoning);
 
     comment("Getting 'Land Use'");
@@ -58,6 +62,10 @@ try
     if ( landUse == undefined ) { 
         comment("Land Use was undefined, setting to false");
         landUse = false; 
+    }
+    else
+    {
+        landUse = landuse + "";
     }
     comment("landUse: " + landUse);
     
@@ -94,7 +102,6 @@ try
         }
     }
 
-    /* SET VALUES */
 
      /* SET VALUES */
 
@@ -107,8 +114,7 @@ try
         )
         {
             comment("Updating Zoning to '" + zoning + "'");
-            //editAppSpecific("Zoning", zoning); 
-            AInfo["Zoning"] = zoning;
+            editAppSpecific("Zoning", zoning); 
         }
     }
 
@@ -121,8 +127,7 @@ try
         )
         {
             comment("Updating Land Use to '" + landUse + "'");
-            //editAppSpecific("Land Use", landUse); 
-            AInfo["Land Use"] = landUse;
+            editAppSpecific("Land Use", landUse); 
         }
     }
 
@@ -137,8 +142,7 @@ try
     )
     {
         comment("Updating Flood Zone to '" + floodZone + "'");
-        //editAppSpecific("Flood Zone", floodZone);
-        AInfo["Flood Zone"] = floodZone;
+        editAppSpecific("Flood Zone", floodZone);
     }
 
     // AZ Water
@@ -152,8 +156,7 @@ try
             azValue = "Yes";
         }
         comment("Updating AZ Water to '" + azValue + "'");
-        //editAppSpecific("AZ Water", azValue);
-        AInfo["AZ Water"] = azValue;
+        editAppSpecific("AZ Water", azValue);
     }
 
     // Storm Water Exempt
@@ -167,8 +170,7 @@ try
             sweValue = "Yes";
         }
         comment("Updating Storm Water Exempt to '" + sweValue + "'"); 
-        //editAppSpecific("Storm Water Exempt", sweValue);
-        AInfo["Storm Water Exempt"] = sweValue;
+        editAppSpecific("Storm Water Exempt", sweValue);
     }
 }
 catch (err)
