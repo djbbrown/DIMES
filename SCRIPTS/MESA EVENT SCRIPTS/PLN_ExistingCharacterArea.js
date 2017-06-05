@@ -3,7 +3,7 @@
 // Script Name: PLN_ExistingCharacterArea.js
 // Script Developer: Bryan de Jesus
 // Script Agency: Woolpert
-// Script Description: Script – Populated by GIS Character Area layer.
+// Script Description: Script to Populated by GIS Character Area layer.
 // The current valid values are:
 // Downtown
 // Employment District
@@ -21,4 +21,13 @@
 showDebug = false;
 var charArea = getGISInfo("Planning/GeneralPlan", "GeneralPlan2040", "CharacterArea");
 logDebug("Existing character area: " + charArea);
-editAppSpecific("Existing Character Area", charArea);
+if(matches(appTypeArray[1],"Board of Adjustment","General Plan Amendment - Major","Planning and Zoning")){
+	editAppSpecific("Exist. GP Designation", charArea);
+}
+if(appTypeArray[1] == "Design Review"){
+	editAppSpecific("Existing Character Area", charArea);
+}
+if(matches(appTypeArray[1],"Pre-Submittal","Subdivision")){
+	editAppSpecific("GP Character Area", charArea);
+}
+
