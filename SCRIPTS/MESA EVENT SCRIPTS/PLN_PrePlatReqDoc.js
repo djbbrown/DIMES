@@ -28,7 +28,7 @@ try
   var docCat = "";
   var docNeeded = true;
 
-  if (prePlat)
+  if (prePlat == "CHECKED")
   {
     var docListResult = aa.document.getCapDocumentList(capId ,currentUserID);
 
