@@ -313,8 +313,8 @@ function mainProcess() {
 			//add renewal fee
 			var burglaryAlarm = getAppSpecific("Burglary Function",capId);
 			var panicRobbHoldup = getAppSpecific("Panic/Robbery/Hold-Up Function");
-			logDebug("burglaryAlarm = " + burglaryAlarm);
-			logDebug("panicRobbHoldup = " + panicRobbHoldup);
+			//logDebug("burglaryAlarm = " + burglaryAlarm);
+			//logDebug("panicRobbHoldup = " + panicRobbHoldup);
 			if (burglaryAlarm == "Yes"){
 				addFee("PD_ALARM_01","PMT_PD_ALARM_010","FINAL",1,"Y",capId);
 				}
