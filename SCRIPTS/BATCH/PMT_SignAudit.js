@@ -226,7 +226,10 @@ function mainProcess() {
 
 		if (!doesScheduledInspExist(newInsp) && !doesScheduledInspExist("Sign Final") && !doesScheduledInspExist("Zoning Final")){
 			logDebug(altId + ": Scheduling inspection " + newInsp);
-			scheduleInspection(newInsp, 0);
+
+			scheduleInspection(newInsp, 0, "twood");
+			
+			//scheduleInspection(newInsp, 0);
 			// auto assign inspection based on inspection area - will be done via config
 		} else {
 			logDebug(altId + ": Inspection already scheduled.");
