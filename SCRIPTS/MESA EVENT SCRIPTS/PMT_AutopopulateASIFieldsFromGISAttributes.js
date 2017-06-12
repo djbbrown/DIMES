@@ -177,7 +177,3 @@ catch (err)
 {
   comment("A JavaScript error occurred: " + err.message);
 }
-
-/* Test Record: PMT16-00413
-
-*/
