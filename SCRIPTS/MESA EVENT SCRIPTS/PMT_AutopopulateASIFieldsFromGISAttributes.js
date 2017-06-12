@@ -65,7 +65,7 @@ try
     }
     else
     {
-        landUse = landuse + "";
+        landUse = landUse + "";
     }
     comment("landUse: " + landUse);
     
