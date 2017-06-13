@@ -1,8 +1,9 @@
 /*===================================================================
 Versions:
- 9/?/2016-A	    Vance Smith			initial
- 10/18/2016-A	John Cheney			fixed bug related to Storm Water Exempt setting  
- ---------------------------------------------------------------------
+9/?/2016-A            Vance Smith                                   initial
+10/18/2016-A    John Cheney                                      fixed bug related to Storm Water Exempt setting
+6/13/2016      Jim White                                               fixed a bug where a string was incorrectly cast
+---------------------------------------------------------------------
 // Script Number: 109
 // Script Name: PMT_AutopopulateASIFieldsFromGISAttributes.js
 // Script Developer: Vance Smith
@@ -53,7 +54,7 @@ try
     }
     else
     {
-        zoning = zoning + "";
+        zoning = zoning.toString();
     }
     comment("zoning: " + zoning);
 
@@ -65,8 +66,7 @@ try
     }
     else
     {
-        //landUse = landUse + "";  remarked out
-		landUse = landUse.toString();
+                                landUse = landUse.toString();
     }
     comment("landUse: " + landUse);
     
