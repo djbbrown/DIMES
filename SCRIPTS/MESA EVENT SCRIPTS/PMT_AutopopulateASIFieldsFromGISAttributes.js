@@ -65,7 +65,7 @@ try
     }
     else
     {
-        landUse = landUse + "";
+        //landUse = landUse + "";  remarked out
 		landUse = landUse.toString();
     }
     comment("landUse: " + landUse);
