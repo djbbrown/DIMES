@@ -66,7 +66,7 @@ try
     }
     else
     {
-                                landUse = landUse.toString();
+      landUse = landUse.toString();
     }
     comment("landUse: " + landUse);
     
