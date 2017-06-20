@@ -39,7 +39,7 @@ try
   comment("theDate: " + theDate);
   comment("planReviewDays: " + planReviewDays);
 
-  planReviewDays -= 1;
+  //planReviewDays -= 1;  //This looks to be the offending line of code that was subtracting a day feedback based on GoLiveIssueTracker 100
 
   //theDate = new Date(dateAdd(theDate,planReviewDays,'Y'));
   comment("theDate (after calc): " + theDate);
