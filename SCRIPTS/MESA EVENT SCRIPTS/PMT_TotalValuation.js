@@ -81,7 +81,8 @@ try {
 				}
 			}
 		}
-		totalValuation = round(totalValuation,2);
+		totalValuation = round(totalValuation,2) + parseInt(estValue);
+		//totalValuation = round(totalValuation,2);
 		//logDebug("totalValuation = " + totalValuation); 
 		if (totalValuation > 0) {
 			editAppSpecific('Total Valuation', totalValuation);  //this is the numeric field
