@@ -32,7 +32,9 @@ try
         updateAppStatus("Issued", "Issued by Script 393");
 
         //Run and Attach report 39 Building Permit
-        runReportAttach(capId, "Building Permit", "RecordNumber", capId.getCustomID());
+        var rParams = aa.util.newHashMap();
+		rParams.put("RecordNumber", capIDString);
+        generateReportForEmail_Mesa(capId, "Building Permit", "Permits", rParams);
     }
 }
 catch(ex)
