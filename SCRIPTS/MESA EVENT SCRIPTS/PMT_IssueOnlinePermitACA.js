@@ -31,8 +31,8 @@ try
         //Update App Status to "Issued"
         updateAppStatus("Issued", "Issued by Script 393");
 
-        //Run and Attach report 219
-        runReportAttach(capId, "219 - Online Permit", "RecordNumber", capId.getCustomID());
+        //Run and Attach report 39 Building Permit
+        runReportAttach(capId, "Building Permit", "RecordNumber", capId.getCustomID());
     }
 }
 catch(ex)
