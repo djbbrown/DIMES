@@ -12,9 +12,9 @@
 //  IRSA;Enforcement!Environmental!Complaint!~
 /*==================================================================*/
 
-if(matches(currentUserID,"ADMIN","CGODWIN","BDEJESUS","VSTAGGS")){//user names need to be added in ALL CAPS!
-	showDebug = 3;
-}
+// if(matches(currentUserID,"ADMIN","CGODWIN","BDEJESUS","VSTAGGS")){//user names need to be added in ALL CAPS!
+// 	showDebug = 3;
+// }
 
 try {
     logDebug("inspType:" + inspType);

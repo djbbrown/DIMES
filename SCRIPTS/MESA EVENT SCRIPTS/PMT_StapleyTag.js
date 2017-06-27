@@ -23,7 +23,7 @@
 //    ASA: Permits/Sign/NA/NA - has master script
 
 /*==================================================================*/
-showDebug = true;
+//showDebug = true;
 //  ASA: Permits/Commercial/NA/NA
 //  ASA: Permits/Demolition/NA/NA
 //  ASA: Permits/Residential/NA/NA
