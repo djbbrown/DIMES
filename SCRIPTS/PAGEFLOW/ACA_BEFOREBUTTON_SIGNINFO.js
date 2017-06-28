@@ -13,14 +13,14 @@ loadAppSpecific4ACA(AInfo); 						// Add AppSpecific Information
 var totSignVal = AInfo["TOTAL SIGN VALUATION"];
 
 
-if(totSignVal != null && loadASIT())
+if(totSignVal => 0 && loadASIT())
 {
 	//count the rows in the SIGN INFO table
 	var countSignInfoRows = TotalASITRows("SIGN INFO",capId);
 		
 	if(countSignInfoRows != "false" && countSignInfoRows < 1) 
 	{
-		logMessage("**ERROR Must have at least 1 Sign Info row");
+		logMessage("**ERROR Must have at least 1 Sign Info row " + totSignVal);
 	}				
 }
 
