@@ -10,7 +10,7 @@ var capIDString = capId.getCustomID();
 var appTypeResult = cap.getCapType();		
 var AInfo = new Array();						// Create array for tokenized variables
 loadAppSpecific4ACA(AInfo); 						// Add AppSpecific Information
-var totSignVal = AInfo["TOTAL SIGN VALUATION"];
+var totSignVal = parseInt(AInfo["TOTAL SIGN VALUATION"]);
 
 
 if(totSignVal => 0 && loadASIT())
