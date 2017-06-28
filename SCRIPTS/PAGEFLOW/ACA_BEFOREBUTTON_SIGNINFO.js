@@ -13,7 +13,7 @@ loadAppSpecific4ACA(AInfo); 						// Add AppSpecific Information
 var totSignVal = parseInt(AInfo["TOTAL SIGN VALUATION"]);
 
 
-if(totSignVal => 0 && loadASIT())
+if(totSignVal > -1 && loadASIT())
 {
 	//count the rows in the SIGN INFO table
 	var countSignInfoRows = TotalASITRows("SIGN INFO",capId);
