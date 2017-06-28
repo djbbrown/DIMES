@@ -20,7 +20,7 @@ if(totSignVal > -1 && loadASIT())
 		
 	if(countSignInfoRows != "false" && countSignInfoRows < 1) 
 	{
-		logMessage("**ERROR Must have at least 1 Sign Info row " + totSignVal);
+		logMessage("**ERROR Must have at least 1 Sign Info row");
 	}				
 }
 
