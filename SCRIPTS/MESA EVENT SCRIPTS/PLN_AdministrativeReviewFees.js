@@ -217,7 +217,7 @@ if (AInfo["Type of Process"] == "Zoning/Site Plan"){
 // Script Parents:
 //            ASA;Planning!Admin Review!NA!NA
 /*==================================================================*/
-var acres = 0;
+/* var acres = 0;
 	areas = getGISBufferInfo("Accela/MesaParcels", "Mesa Parcels", -1, "APN", "SHAPE_Area");
 	
 	for (i in areas) {
@@ -226,8 +226,10 @@ var acres = 0;
 	}
 	acres = Math.ceil(acres);
 	//logDebug("Total acres: " + acres);
+*/
+//new fee schedule is flat fee of 648
 if (AInfo["Type of Process"] == "Development Unit Plan" && AInfo["Sub process type"] == "Development Unit Plan"){
-	updateFee("ADM140","PLN_ADM","FINAL",acres,"N");
+	updateFee("ADM140","PLN_ADM","FINAL",1,"N");
 }
 
 /*===================================================================
