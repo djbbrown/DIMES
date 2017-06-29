@@ -3,4 +3,4 @@
 // Script Name: DUA;Permits!~!~!~.js
 //
 ==================================================================*/
-//
+include("PMT_DocumentReceived");
