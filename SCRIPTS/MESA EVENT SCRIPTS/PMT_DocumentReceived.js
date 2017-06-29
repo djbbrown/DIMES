@@ -4,7 +4,7 @@ var wfTaskStatusCheck = false;
 if (!matches(appTypeArray[1],"Fire","Police Department") && capStatus == "Revisions Required" && isTaskActive("Plans Distribution")) {
 	var wfTaskStatusCheck = true;
 }
-logDebug("wfTaskStatusCheck = " + wfTaskStatusCheck);
+//logDebug("wfTaskStatusCheck = " + wfTaskStatusCheck);
 
 if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
 		// Update workflow task for document to be reviewed
@@ -20,7 +20,7 @@ var wfTaskStatusCheckAppSubmit = false;
 if (!matches(appTypeArray[1],"Fire","Police Department") && capStatus == "Incomplete" && isTaskActive("Application Submittal")) {
 	var wfTaskStatusCheckAppSubmit = true;
 }
-logDebug("wfTaskStatusCheckAppSubmit = " + wfTaskStatusCheckAppSubmit);
+//logDebug("wfTaskStatusCheckAppSubmit = " + wfTaskStatusCheckAppSubmit);
 
 if ((documentModelArray.size() > 0) && (wfTaskStatusCheckAppSubmit)) 	{
 	// Update workflow task for document to be reviewed
