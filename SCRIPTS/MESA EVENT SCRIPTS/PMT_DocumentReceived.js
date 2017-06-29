@@ -25,7 +25,7 @@ var wfTaskStatusCheckAppSubmit = false;
 if (capStatus == "Incomplete" && isTaskActive("Application Submittal")) {
 	var wfTaskStatusCheckAppSubmit = true;
 }
-//logDebug("wfTaskStatusCheckAppSubmit = " + wfTaskStatusCheckAppSubmit);
+logDebug("wfTaskStatusCheckAppSubmit = " + wfTaskStatusCheckAppSubmit);
 
 if ((documentModelArray.size() > 0) && (wfTaskStatusCheckAppSubmit)) 	{
 	// Update workflow task for document to be reviewed
