@@ -28,17 +28,11 @@ if (capStatus == "Incomplete" && isTaskActive("Application Submittal")) {
 //logDebug("wfTaskStatusCheckAppSubmit = " + wfTaskStatusCheckAppSubmit);
 
 if ((documentModelArray.size() > 0) && (wfTaskStatusCheckAppSubmit)) 	{
-	for(var index = 0; index < documentModelArray.size(); index++){
-		
-		// Update workflow task for document to be reviewed
+	// Update workflow task for document to be reviewed
 
-		if (documentModelArray.get(index).getDocCategory()=="Construction Documents") 
-		{
-			updateTask("Application Submittal", "Note", "Document Received - Updated by DUA event", "Document Received - Updated by DUA event");
-			updateAppStatus("Submitted","Document Received");
-			//potentially send email
-		}	
-  		
-	}
+	updateTask("Application Submittal", "Note", "Document Received - Updated by DUA event", "Document Received - Updated by DUA event");
+	updateAppStatus("Submitted","Document Received");
+	//potentially send email
+
 }
 //End Script Permits DUA
