@@ -9,8 +9,8 @@
 //            ASA;Planning!Admin Review!NA!NA
 /*==================================================================*/
 
-if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == "Land Split" && AInfo["Number of Lots Proposed"] != null){
-	updateFee("ADM010","PLN_ADM","FINAL",AInfo["Number of Lots Proposed"],"N");
+if (AInfo["Type of Process"] == "Land Division" && AInfo["Sub process type"] == "Land Split"){
+	updateFee("ADM010","PLN_ADM","FINAL",1,"N");
 }
 
 /*===================================================================
