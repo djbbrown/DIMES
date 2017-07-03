@@ -19,7 +19,7 @@ var elecService = (AInfo["Electric Service"] != undefined) ? AInfo["Electric Ser
 //var Online = ["Construction Noise Permit"];
 //if(appTypeArray[1]=='Online' && (sameDayGas == 'CHECKED' || sameDayElec == 'CHECKED'))
 	
-if(appTypeArray[1]=='Online' && (sameDayElec == 'CHECKED') && (elecService == 'City of Mesa Electric')
+if(appTypeArray[1]=='Online' && sameDayElec == 'CHECKED' && elecService == 'City of Mesa Electric')
 {
 	addFee("ONL060","PMT_ONL", "FINAL",  1, "Y");
 }
