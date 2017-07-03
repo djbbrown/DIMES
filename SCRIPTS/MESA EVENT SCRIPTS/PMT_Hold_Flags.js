@@ -17,10 +17,10 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 		thisTag = tagFieldArray[tIndex];
 		logDebug(thisTag);
 		switch ("" + thisTag) {
-			case "LGAC": addStdCondition("Building Permit", "Large Acreage - NOI"); addStdCondition("Building Permit", "Large Acreage - Dust Control"); 
-				break;
-			case "SMAC":  addStdCondition("Building Permit", "Small Acreage - Dust Control");
-				break;
+			//case "LGAC": addStdCondition("Building Permit", "Large Acreage - NOI"); addStdCondition("Building Permit", "Large Acreage - Dust Control");   //this should be at Permit Issuance or Prior
+				//break;
+			//case "SMAC":  addStdCondition("Building Permit", "Small Acreage - Dust Control");  //this should be at Permit Issuance or Prior
+				//break;
 			case "CITR":  addStdCondition("Building Permit", "Citrus Grove Sub Area");
 				break;
 			case "SCAL":  addStdCondition("Building Permit", "Scalloped Street Assessment");

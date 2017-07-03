@@ -108,7 +108,10 @@ try
 
     if (!(docSitePlan && docFloorPlan  && docLandscapePlan && docBuildingElevation))
     {
-      commentBlah = "A following document(s) are required for the selected Request Type(s): <br />";
+      if (publicUser) {
+		  showDebug=false;
+	  }
+	  commentBlah = "A following document(s) are required for the selected Request Type(s): <br />";
       commentBlah += docSitePlanMsg + docFloorPlanMsg + docLandscapePlanMsg + docBuildingElevationMsg;
       commentBlah += docDrainageUtilPlanMsg;
       showMessage = true;

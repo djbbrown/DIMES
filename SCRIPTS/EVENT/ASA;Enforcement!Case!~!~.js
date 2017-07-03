@@ -20,7 +20,7 @@
 	
 include("ENF_EnforcementCaseDuplicate");
 // add by Brian O'Dell (Mesa)
-include("ENF_EnforcementNotificationEmail");
+//include("ENF_EnforcementNotificationEmail");  Looks to have been replaced with ENF_Record_Opened
 
 //Created criteria for records submitted internally vs ACA
 if (!publicUser){

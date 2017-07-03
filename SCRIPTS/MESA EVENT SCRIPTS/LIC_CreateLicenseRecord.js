@@ -12,6 +12,13 @@
 // Script Run Event: Workflow Task Update After
 // Script Parents:
 //            WTUA;Licenses!General!~!Application.js
+//
+// Updates:
+// -----------------------------------------------------------------------------
+// | BY         |    DATE      |  NOTES
+// -----------------------------------------------------------------------------
+// | M VanWie   |  06/19/2017  | - Added BingoHall to types of records NOT to set an expiration date to
+//
 /*==================================================================*/
 
 // When WFTask "Issue License" is set to "Issued"
@@ -58,7 +65,7 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 	lic.setStatus("Active");
 	// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
-	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent")){
+	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent", "BingoHall")){
 		lic.setExpiration(dateAdd(null,365));
 	}
 	if(appTypeArray[2] == "Fireworks"){

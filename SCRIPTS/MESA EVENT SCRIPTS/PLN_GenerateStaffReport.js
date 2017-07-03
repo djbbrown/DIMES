@@ -63,7 +63,7 @@ function sendNotification(emailFrom, emailTo, emailCC, templateName, params, rep
 }
 
 try {
-	showDebug = true;
+	//showDebug = true;
 	var planningReviewTaskResult = aa.workflow.getTask(capId, "Planning Review");
 	var devPlanningReviewTaskResult = aa.workflow.getTask(capId, "Development Planning Review");
 	if (planningReviewTaskResult.getSuccess() && devPlanningReviewTaskResult.getSuccess()){

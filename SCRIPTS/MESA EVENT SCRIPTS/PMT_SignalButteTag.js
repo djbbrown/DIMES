@@ -15,6 +15,7 @@
 /*==================================================================*/
 
 var vEParams = aa.util.newHashtable(); 
+var emailAddress;
 
 tagFieldArray = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
 if (tagFieldArray && tagFieldArray.length > 0) {
@@ -25,8 +26,7 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 		{
 				logDebug("Parcel found to be within "+thisTag+" sending email");
 				addParameter(vEParams,"$$RECORD ID$$",capIDString);
-				// emailAddress = "Joel.Watson@mesaaz.gov";
-				emailAddress = "Lauren.Lupica@mesaaz.gov";
+				emailAddress = lookup("EMAIL_RECIPIENTS","Signal_Butte");
 				fromAddress = "noreply@mesaaz.com";
 				sendNotification(fromAddress, emailAddress, "", "SIGNAL BUTTE", vEParams, null);
 				addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer");

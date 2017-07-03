@@ -10,3 +10,4 @@ include("PLN_NetSiteSize");
 include("PLN_GrossSiteSize");
 include("PLN_GrossDUACCalc");
 include("PLN_NetDUACCalc");
+include("PLN_ExistingCharacterArea");

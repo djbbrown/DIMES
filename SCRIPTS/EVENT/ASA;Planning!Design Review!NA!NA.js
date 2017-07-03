@@ -2,9 +2,11 @@
 // Script Number: 001, 151
 // Script Name: ASA;Planning!Design Review!NA!NA.js
 ==================================================================*/
-if(!publicUser){
+//remarking out PLN_ExistingCharacterArea since moved to ASA;Planning/*/*/*
+/*if(!publicUser){
 	include("PLN_ExistingCharacterArea");
 }
+*/
 
 include("PLN_RelatePreSubmittalNumber");
 

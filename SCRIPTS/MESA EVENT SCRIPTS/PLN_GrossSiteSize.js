@@ -39,14 +39,35 @@ try
     //var sqft = AInfo["Gross Site Size (sqft)"];  // used in original spec
 
     //var acres = AInfo["ParcelAttribute.SIZE(ACRES)"];  // version 2 acres value grab
+	var totAcres = 0;
+	var totSqft = 0;
     var acres = parcelArea;
     var sqft = parseFloat(acres*43560).toFixed(2);
     
     comment("acres: "+ acres);
     comment("sqft: "+sqft);
+	
+	// ACA retrieve addtl parcel numbers area 
+	var rAddtlPrcNmbrArea = 0;
+	if(publicUser){
+		var addtlParNmbrs = loadASITable("ADDITIONAL PARCEL NUMBERS");
+		if(addtlParNmbrs.length > 0){
+		for(xxx in addtlParNmbrs) { 
+			rAddtlPrcNmbrArea+=parseFloat(getParcelAreaFromRefParcel(addtlParNmbrs[xxx]["Parcel Number"]));
+			//logDebug("rAddtlPrcNmbrArea = " + rAddtlPrcNmbrArea);
+		}
+	}
+	//logDebug("rAddtlPrcNmbrArea = " + rAddtlPrcNmbrArea);
+	}
 
-    editAppSpecific("Gross Site Size (acres)", acres);
-    editAppSpecific("Gross Site Size (sqft)", sqft);
+	totAcres = Math.ceil(acres) + Math.ceil(rAddtlPrcNmbrArea);
+	totSqft = Math.ceil(sqft) + Math.ceil((rAddtlPrcNmbrArea*43560).toFixed(2));
+	
+	//logDebug("totAcres = " + totAcres);
+	//logDebug("totSqft = " + totSqft);
+	
+    editAppSpecific("Gross Site Size (acres)", totAcres);
+    editAppSpecific("Gross Site Size (sqft)", totSqft);
 
   }
 }
@@ -54,6 +75,3 @@ catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
-
-
-

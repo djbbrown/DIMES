@@ -42,7 +42,7 @@ try {
 			// get new number of adapters and store non-adapter rows
 			for (var entry in t){
 				//if (t[entry]["Service Type"] == "Water Service"){ 	//Changed 9/14/16 due to Lauren's SharePoint comment on item 178
-				if (matches(""+t[entry]["Service Type"], "Water Meter: Domestic", "Water Meter: Landscaping")){
+				if ((matches(""+t[entry]["Service Type"], "Water Meter: Domestic", "Water Meter: Landscaping") && !appMatch("Permits/Residential/NA/NA"))) {	//Updated to not include res record based on Go Live Issue 189
 					serviceSize = t[entry]["Service Size"];
 					meterSize = t[entry]["Meter Size"];
 					qtyOfMeters = t[entry]["Qty of Meters"];

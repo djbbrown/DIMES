@@ -8,7 +8,7 @@
 // Script Parents:
 //            WTUA;Permits!Sign!NA!NA
 /*==================================================================*/
-showDebug = true;
+//showDebug = true;
 if	(
 		(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue")
 		|| (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req")

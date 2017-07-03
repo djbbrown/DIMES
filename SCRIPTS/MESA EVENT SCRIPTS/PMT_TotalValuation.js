@@ -38,13 +38,43 @@ function formatNumberWithCommas(val) {
 
 try {
 	var occupancyTable=null;
+	var totalValuation = 0.0;
 	if (typeof(OCCUPANCYINFORMATION) == "object") occupancyTable = OCCUPANCYINFORMATION;
 	else if (typeof(OCCUPANCYINFO) == "object") occupancyTable = OCCUPANCYINFO;
 	//var occupancyTable = loadASITable("OCCUPANCY INFORMATION");
 	//if (!occupancyTable) occupancyTable = loadASITable("OCCUPANCY INFO");
-	if (!occupancyTable || occupancyTable.length == 0) logDebug("Unable to load occupancy information table or table is empty.");
+	if (!occupancyTable || occupancyTable.length == 0) {
+		logDebug("Unable to load occupancy information table or table is empty.");
+		totalValuation = estValue;  //valuation from the contractor
+		editAppSpecific('Total Valuation', totalValuation);  //this is the numeric field
+			
+		var modulusTotVal = round(totalValuation % 1,2);
+		var maskCurrency = formatNumberWithCommas(totalValuation);
+		//logDebug("modulusTotVal = " + modulusTotVal);
+		//logDebug("maskCurrency = " + maskCurrency);
+			
+		if (matches(modulusTotVal,"0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9")) maskCurrency = maskCurrency + "0";
+		//logDebug("maskCurrency = " + maskCurrency);
+			
+		if (modulusTotVal > 0) {
+			if(maskCurrency.length > 0) {
+				editAppSpecific('Total Project Valuation', "$" + maskCurrency);  // this is the text field
+			}
+			else {
+				editAppSpecific('Total Project Valuation', "$0.00"); 
+			}
+		}
+		else {	
+			if(maskCurrency.length > 0) {
+				editAppSpecific('Total Project Valuation', "$" + maskCurrency + ".00"); 
+			}
+			else {
+				editAppSpecific('Total Project Valuation', "$0.00"); 
+			}
+		}
+	}
 	else {
-		var totalValuation = 0.0;
+		//var totalValuation = 0.0;
 		for (var rowIndex in occupancyTable){
 			var row = occupancyTable[rowIndex];
 			var occupancyClassification = row['Occupancy Classification'];
@@ -81,7 +111,8 @@ try {
 				}
 			}
 		}
-		totalValuation = round(totalValuation,2);
+		totalValuation = round(totalValuation,2) + parseInt(estValue);
+		//totalValuation = round(totalValuation,2);
 		//logDebug("totalValuation = " + totalValuation); 
 		if (totalValuation > 0) {
 			editAppSpecific('Total Valuation', totalValuation);  //this is the numeric field

@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: TBD
-// Script Name: DUA;Permits!Residential!NA!NA.js
+// Script Name: DUA;Permits!~!~!~.js
 //
 ==================================================================*/
-//
+include("PMT_DocumentReceived");

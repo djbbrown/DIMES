@@ -502,13 +502,17 @@ try
     // TODO: have all of these passed in as variables to this batch script
     if ( batchJobName == "" ) // batchJobName will be empty string when using the script tester
     {
+		var emailTo;
+		var emailCc;
+		emailTo = lookup("EMAIL_RECIPIENTS","Email_Admin_To");
+		emailCc = lookup("EMAIL_RECIPIENTS","Email_Admin_CC");
         // set testing values
         aa.env.setValue("appGroup", "Planning"); 
         aa.env.setValue("appTypeType","Group Home"); 
         aa.env.setValue("appSubType","Registration"); 
         aa.env.setValue("appCategory","*");
-        aa.env.setValue("emailAdminTo", "lauren.lupica@mesaaz.gov")
-        aa.env.setValue("emailAdminCc", "vance.smith@mesaaz.gov")
+        aa.env.setValue("emailAdminTo", emailTo);
+        aa.env.setValue("emailAdminCc", emailCc);
     }    
     
     // this is the start of the body of the summary email

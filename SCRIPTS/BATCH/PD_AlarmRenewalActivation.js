@@ -206,17 +206,19 @@ function mainProcess() {
 	
 	//var recResult = aa.cap.getByAppType(appGroup,appTypeType,appSubtype,appCategory);
 	var recResult1 = aa.expiration.getLicensesByDate(expStatus1, fromDate, toDate);
-	var recResult2 = aa.expiration.getLicensesByDate(expStatus2, fromDate, toDate);
+	//var recResult2 = aa.expiration.getLicensesByDate(expStatus2, fromDate, toDate);
 
 	if (recResult1.getSuccess()) {
-		myRec1 = recResult1.getOutput();
-		logDebug("Processing " + myRec1.length + " active expiration records");
+		myRec = recResult1.getOutput();
+		logDebug("Processing " + myRec.length + " active expiration records");
 	}
+	/*
 	if (recResult2.getSuccess()) {
 		myRec2 = recResult2.getOutput();
 		logDebug("Processing " + myRec2.length + " about to expire expiration records");
 	}
-	myRec = myRec1.concat(myRec2);
+	*/
+	//myRec = myRec1.concat(myRec2);
 	//logDebug("Processing " + myRec.length + " all records");
 	
 	/*
@@ -244,7 +246,7 @@ function mainProcess() {
 
 		altId = capId.getCustomID();
 
-		//logDebug("==========: " + altId + " :==========");
+		logDebug("==========: " + altId + " :==========");
 		
 		var capResult = aa.cap.getCap(capId);
 
@@ -305,20 +307,32 @@ function mainProcess() {
 		// Update Alarm Permit records status and expiration status
 		
 		if (leDaysDiff == "60" && newExpStatus60.length > 0) {
-			licEditExpInfo(newExpStatus60,null);
+			//licEditExpInfo(newExpStatus60,null);  //Modifying to not allow renewal link or renewal button to be activated
+			//update the record status
 			updateAppStatus(newRecStatus60);
-			if (balanceDue > 0){
-				conArr = new Array();
-				conArr = getContactArray(capId);
-				for (c in conArr) {
-					if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
-					params = aa.util.newHashtable();
-					addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
-					addParameter(params, "$$altid$$", altId);
-					addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
-					addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
-					sendNotification(efromPD60,conArr[c]["email"],"",emailTemplatePD60,params,null);
-					}
+			//add renewal fee
+			var burglaryAlarm = getAppSpecific("Burglary Function",capId);
+			var panicRobbHoldup = getAppSpecific("Panic/Robbery/Hold-Up Function");
+			//logDebug("burglaryAlarm = " + burglaryAlarm);
+			//logDebug("panicRobbHoldup = " + panicRobbHoldup);
+			if (burglaryAlarm == "Yes"){
+				addFee("PD_ALARM_01","PMT_PD_ALARM_010","FINAL",1,"Y",capId);
+				}
+			if (panicRobbHoldup == "Yes"){
+				addFee("PD_ALARM_02","PMT_PD_ALARM_010","FINAL",1,"Y",capId);
+				}
+			
+			//send email notification to Billing Contact if email address associated to contact
+			conArr = new Array();
+			conArr = getContactArray(capId);
+			for (c in conArr) {
+				if (conArr[c]["contactType"] == "Billing Contact" && !matches(conArr[c]["email"], null, "", undefined)){
+				params = aa.util.newHashtable();
+				addParameter(params,"$$BillingContactName$$",conArr[c]["firstName"] + " " + conArr[c]["lastName"]);
+				addParameter(params, "$$altid$$", altId);
+				addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
+				addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
+				sendNotification(efromPD60,conArr[c]["email"],"",emailTemplatePD60,params,null);
 				}
 			}
 		}
