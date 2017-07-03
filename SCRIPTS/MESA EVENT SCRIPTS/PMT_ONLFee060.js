@@ -4,7 +4,7 @@
 // Script Developer: Kevin Ford
 // Script Agency: Accela
 // Script Description: Auto Assess and auto invoice at application submittal
-// Script Run Event: ASA 
+// Script Run Event: ASA
 // Script Parents:
 //            ASA;Permit/Online/NA/NA
 // =========================================================================================================== 
