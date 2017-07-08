@@ -58,3 +58,8 @@ try {
 			sendNotification(efrom, ToEmail, "", "PMT_WORKFLOW_STATUS_CHANGE", vEParams, null, capId);  
 			}
 		}
+	}
+catch (err)
+    {
+      logDebug("A JavaScript Error occured: " + err.message);
+    }
