@@ -15,18 +15,21 @@
 // WTUA;Permits!Sign!NA!NA.js
 // Version   |Date      |Engineer         |Details
 //  1.0      |11/22/16  |Steve Veloudos   |Initial Release
+//  2.0      |07/07/17  |Kevin Gurney	  |Updated to retrieve info notification template info and only send email when app status changes
 /*==================================================================*/
 
 try {
-        var FromEmail = "noreply@mesaaz.gov";
+        var wfStatusChngResult;
+		wfStatusChngResult = getWorkflowTaskAppStatus(wfTask,wfStatus);
+		if(wfStatusChngResult !=null) {
         var ToEmail = "";
         var vEParams = aa.util.newHashtable();
-        var status;
-        var description;
-
-        //Get workflow status & description
-        status = wfStatus;
-        description = wfTask;
+      
+		//retrieve template information
+		var tmpl = aa.communication.getNotificationTemplate("PMT_WORKFLOW_STATUS_CHANGE").getOutput();
+	    var ebody = tmpl.getEmailTemplateModel().getContentText();
+	    var esub = tmpl.getEmailTemplateModel().getTitle();
+	    var efrom = tmpl.getEmailTemplateModel().getFrom();
 
         //Get the contact info
         var tInfo = getContactArray();
@@ -41,17 +44,17 @@ try {
                 ToEmail = tInfo[x]["email"];
             }
         }
-
+		
+		logDebug("ToEmail = " + ToEmail);
+		
         //Add Params
         addParameter(vEParams,"$$RECORDID$$",capIDString);
-        addParameter(vEParams,"$$WORKFLOWSTEP$$",description);
-        addParameter(vEParams,"$$WORKFLOWSTATUS$$",status);
+        addParameter(vEParams,"$$WORKFLOWSTEP$$",wfTask);
+        addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
+		addParameter(vEParams,"$$WORKFLOWCOMMENT$$",wfComment);
 
         //Send email
-        sendNotification(FromEmail, ToEmail, "", "PMT_WORKFLOW_STATUS_CHANGE", vEParams, null, capId);    
-          
-    }
-catch (err)
-    {
-      logDebug("A JavaScript Error occured: " + err.message);
-    }
+        if(ToEmail){
+			sendNotification(efrom, ToEmail, "", "PMT_WORKFLOW_STATUS_CHANGE", vEParams, null, capId);  
+			}
+		}
