@@ -9,6 +9,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |11/17/16  |Steve Veloudos   |Initial Release
 //  2.0      |12/2/16   |Kevin Gurney     |Changed to match other similar ASB document requirement scripts
+//  3.0      |7/10/17   |Steve Allred     |Corrected spelling error in commentBlah
 /*==================================================================*/
 
 try {
@@ -58,7 +59,7 @@ try {
       if (publicUser) {
 		  showDebug=false;
 	  }
-	  commentBlah = "For a project that is Industrial, Commercial, Manufacturing, Automotive or Restaurant a Industrical Pretreatment Form document is required";
+	  commentBlah = "For a project that is Industrial, Commercial, Manufacturing, Automotive or Restaurant a Industrial Pretreatment Form document is required";
       showMessage = true;
       comment(commentBlah);
       cancel = true;    
