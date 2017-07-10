@@ -41,9 +41,10 @@ try
     var penaltyDate = AInfo["Penalty Date"];
     var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
     var todayDate = new Date();
+	var recFileDateJS = new Date(fileDate);
 
     // set the futureDate
-    var futureDate = new Date(mesaWorkingDays(todayDate, turnAroundTime));
+    var futureDate = new Date(mesaWorkingDays(recFileDateJS, turnAroundTime));
     var setDate = false;
 
     // assign to Penalty Date ASI field if exists
