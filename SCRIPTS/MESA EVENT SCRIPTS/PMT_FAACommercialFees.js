@@ -91,3 +91,17 @@ catch (err) {
 	logDebug("Error assessing fee COM140")
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
+//==============================================
+//COM300
+//==============================================
+try {
+	// If the fee item exists then we need to re-calc every time.
+	if(feeExists("COM300", "NEW")){
+		fTotalPBI = getSubGrpFeeAmt("PBI","","COM115");
+		updateFee("COM300", "PMT_COM", "FINAL", fTotalPBI, "N");
+	}
+}
+catch (err) {
+	logDebug("Error assessing fee COM300")
+	aa.print("A JavaScript Error occurred: " + err.message);
+}
