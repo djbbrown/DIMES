@@ -3,6 +3,7 @@ Versions:
 9/?/2016-A            Vance Smith                                   initial
 10/18/2016-A    John Cheney                                      fixed bug related to Storm Water Exempt setting
 6/13/2016      Jim White                                               fixed a bug where a string was incorrectly cast
+7/11/2017      Steve Allred                                      translate floodZone (which is boolean) to Yes or No
 ---------------------------------------------------------------------
 // Script Number: 109
 // Script Name: PMT_AutopopulateASIFieldsFromGISAttributes.js
@@ -142,8 +143,12 @@ try
         appMatch("Permits/Demolition/NA/NA")
     )
     {
-        comment("Updating Flood Zone to '" + floodZone + "'");
-        editAppSpecific("Flood Zone", floodZone);
+		var floodValue = "No";
+		if ( floodZone != null && floodZone) {
+			floodValue = "Yes";
+		}
+        comment("Updating Flood Zone to '" + floodValue + "'");
+        editAppSpecific("Flood Zone", floodValue);
     }
 
     // AZ Water
