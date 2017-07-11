@@ -97,8 +97,8 @@ catch (err) {
 try {
 	// If the fee item exists then we need to re-calc every time.
 	if(feeExists("COM300", "NEW")){
-		fTotalPBI = getSubGrpFeeAmt("PBI","","COM115");
-		updateFee("COM300", "PMT_COM", "FINAL", fTotalPBI, "N");
+		fTotalPBI = getSubGrpFeeAmt("PBI","","COM300");
+		updateFee("COM300", "PMT_COM", "FINAL", fTotalPBI * .2, "N");
 	}
 }
 catch (err) {
