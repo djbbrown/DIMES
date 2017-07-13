@@ -45,7 +45,7 @@ try {
             }
         }
 		
-		logDebug("ToEmail = " + ToEmail);
+		//logDebug("ToEmail = " + ToEmail);
 		
         //Add Params
         addParameter(vEParams,"$$RECORDID$$",capIDString);
