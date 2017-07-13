@@ -265,6 +265,9 @@ try
             }
 
             if(!passedCriteria) {
+				if (publicUser) {
+					showDebug=false;
+				}
                 showMessage = true;
                 comment(validationMsg);
                 cancel = true;
