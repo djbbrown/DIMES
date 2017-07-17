@@ -41,6 +41,12 @@ Building Elevations
     ASIUB;Planning/Board of Adjustment/NA/NA
 //            
 /*==================================================================*/
+/*MODIFICATIONS
+  DATE             ANALYST           DESCRIPTION
+  
+  07/17/2017       Steve Allred      Modify Comprehensive Sign section to use variable buildingElevDoc and changed variable buildingEvalDoc to buildingElevDoc
+
+/*==================================================================*/
 
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
@@ -224,7 +230,7 @@ try
                     var sitePlanDoc = false;
                     var signPlanDoc = false;
                     var signInventoryDoc = false;
-                    var buildingElevationsDoc = false;
+                    var buildingElevDoc = false;
 
                     if(hasDocuments) {
                         for(x in hasDocuments) {
@@ -241,12 +247,12 @@ try
                                     signInventoryDoc = true;
                                     break;
                                 case "BUILDING ELEVATIONS":
-                                    buildingEvalDoc = true;
+                                    buildingElevDoc = true;
                                     break;
                             }
                         }
 
-                        if(!sitePlanDoc || !signPlanDoc || !signInventoryDoc || !buildingElevationsDoc)
+                        if(!sitePlanDoc || !signPlanDoc || !signInventoryDoc || !buildingElevDoc)
                             passedCriteria = false;
                     }
                     else
@@ -258,7 +264,7 @@ try
                         if(!sitePlanDoc) validationMsg += "Site Plan \n";
                         if(!signPlanDoc) validationMsg += "Sign Plan \n";
                         if(!signInventoryDoc) validationMsg += "Sign Inventory \n";
-                        if(!buildingElevationsDoc) validationMsg += "Building Elevations";
+                        if(!buildingElevDoc) validationMsg += "Building Elevations";
                     }
 
                     break;
