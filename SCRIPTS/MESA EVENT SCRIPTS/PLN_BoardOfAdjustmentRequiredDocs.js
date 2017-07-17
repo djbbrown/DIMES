@@ -233,7 +233,7 @@ try
                     var buildingElevDoc = false;
 
                     if(hasDocuments) {
-                        for(x in hasDocuments) {
+                        for(x in documentList) {
                             documentCategory = "" + documentList[x].toUpperCase();
 
                             switch(documentCategory) {
