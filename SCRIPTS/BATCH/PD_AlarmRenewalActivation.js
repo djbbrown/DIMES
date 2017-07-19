@@ -316,11 +316,14 @@ function mainProcess() {
 			//logDebug("burglaryAlarm = " + burglaryAlarm);
 			//logDebug("panicRobbHoldup = " + panicRobbHoldup);
 			if (burglaryAlarm == "Yes"){
-				addFee("PD_ALARM_01","PMT_PD_ALARM_010","FINAL",1,"Y",capId);
+				addFee("PD_ALARM_01","PMT_PD_ALARM_010","FINAL",1,"N",capId);
 				}
 			if (panicRobbHoldup == "Yes"){
-				addFee("PD_ALARM_02","PMT_PD_ALARM_010","FINAL",1,"Y",capId);
+				addFee("PD_ALARM_02","PMT_PD_ALARM_010","FINAL",1,"N",capId);
 				}
+				
+			//Invoice the fees
+			invoiceFeeAllNew(capId);
 			
 			//send email notification to Billing Contact if email address associated to contact
 			conArr = new Array();
