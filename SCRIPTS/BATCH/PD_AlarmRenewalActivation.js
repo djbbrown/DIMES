@@ -321,7 +321,7 @@ function mainProcess() {
 			if (panicRobbHoldup == "Yes"){
 				addFee("PD_ALARM_02","PMT_PD_ALARM_010","FINAL",1,"N",capId);
 				}
-				
+			addFee("PD_ALARM_07","PMT_PD_ALARM_010","FINAL",1,"N",capId);
 			//Invoice the fees
 			invoiceFeeAllNew(capId);
 			
