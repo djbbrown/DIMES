@@ -6,7 +6,7 @@ if (!matches(appTypeArray[1],"Fire","Police Department") && capStatus == "Revisi
 }
 //logDebug("wfTaskStatusCheck = " + wfTaskStatusCheck);
 
-if ((documentModelArray.size() > 0) && (wfTaskStatusCheck)) 	{
+if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	{
 		// Update workflow task for document to be reviewed
 
 		updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
@@ -22,7 +22,7 @@ if (!matches(appTypeArray[1],"Fire","Police Department") && capStatus == "Incomp
 }
 //logDebug("wfTaskStatusCheckAppSubmit = " + wfTaskStatusCheckAppSubmit);
 
-if ((documentModelArray.size() > 0) && (wfTaskStatusCheckAppSubmit)) 	{
+if ((documentModelArray.size() > 0) && (wfTaskStatusCheckAppSubmit) && (publicUser)) 	{
 	// Update workflow task for document to be reviewed
 
 	updateTask("Application Submittal", "Note", "Document Received - Updated by DUA event", "Document Received - Updated by DUA event");
