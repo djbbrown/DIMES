@@ -40,7 +40,7 @@ try {
                     {
                         //Get condition status
                         var CondStatus = thisCond.getConditionStatus().toUpperCase();
-                        if(CondStatus == "CONDITION MET")
+                        if(CondStatus != "CONDITION MET")
                         {
                             CondFlag = 1;
                             break;
@@ -51,7 +51,7 @@ try {
         if (inspType == "Final Inspection" && inspResult == "OK")
         {
          //If there is a balance due or the Condition flag not true stop submission
-          if(BalanceDueFlag == 1 || CondFlag != 1)
+          if(BalanceDueFlag == 1 || CondFlag == 1)
           {
             //Pop up message to user
             showMessage = true;
