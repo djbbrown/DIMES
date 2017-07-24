@@ -8,11 +8,11 @@ include("PMT_Water_Clearance_Email");
 include("PMT_SetPermitIssuedDate");
 // added by Vance Smith (Mesa)
 include("PMT_SubmittalCycle");
-// added by Steve Allred
+// added by Steve Allred  
 include("PMT_AFP_Inspectors_Email");
 // added by John Cheney  (Mesa)
 include("PMT_ImpactFeesMultiResidence");
-// added by Steve Allred (Mesa)
+// added by Steve Allred (Mesa)  
 include("PMT_BlueCard");
 
 include("PMT_CommercialImpactFees"); // Script 337

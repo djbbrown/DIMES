@@ -4,7 +4,7 @@
 // Script Description: 	When the workflow task Permit Issuance is set to a status of Issued, print the PMT_BlueCard report
 // Script Run Event: WTUA
 // Script Parents:WTUA;​Permits!~!~!~
-// Version   |Date      |Engineer         |Details
+// Version   |Date      |Engineer         |Details  
 //  1.0      |07/24/17  |Steve Allred     |Initial Release  
 /*==================================================================*/
 
