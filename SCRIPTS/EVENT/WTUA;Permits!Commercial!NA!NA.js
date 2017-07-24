@@ -12,6 +12,8 @@ include("PMT_SubmittalCycle");
 include("PMT_AFP_Inspectors_Email");
 // added by John Cheney  (Mesa)
 include("PMT_ImpactFeesMultiResidence");
+// added by Steve Allred (Mesa)
+include("PMT_BlueCard");
 
 include("PMT_CommercialImpactFees"); // Script 337
 include("PMT_ComDeferredSubmittal");
