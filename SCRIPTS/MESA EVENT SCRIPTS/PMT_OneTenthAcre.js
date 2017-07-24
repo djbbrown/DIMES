@@ -55,6 +55,7 @@ try{
 							if (l == reqDocTypes.length-1) msg1 += reqDocTypes[l];
 							else msg1 += reqDocTypes[l] + ", ";
 						}
+						if (publicUser) { showDebug=false; }
 						comment(msg1);
 						cancel = true;
 					} else {

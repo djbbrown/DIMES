@@ -122,6 +122,9 @@ try
 
                 // chop off last comma and space
                 msg = msg.substring(0, msg.length -2);
+
+                if (publicUser) { showDebug=false; }
+
                 showMessage = true;
                 comment(msg);
                 cancel = true;    

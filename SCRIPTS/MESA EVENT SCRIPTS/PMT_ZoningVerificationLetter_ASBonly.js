@@ -78,6 +78,7 @@ try
    
   if ((!(docFound == true)) && (docNeeded == true))
   {
+    if (publicUser) { showDebug=false; }
     showMessage = true;         
     //logMessage("Zoning Verification Request must be attached.");
     //logDebug("Zoning Verification Request must be attached.");

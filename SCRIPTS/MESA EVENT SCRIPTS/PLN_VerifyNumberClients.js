@@ -41,6 +41,8 @@ try
             logDebug(parNumClients);          
             if (parNumClients == "1 - 5")
             {
+                if (publicUser) { showDebug=false; }
+
                 logDebug("showed message");
                 showMessage = true;
                 comment("You have requested a change to the Number of Clients. Please contact the City of Mesa Planning Division Staff at 480-644-2385 to make changes to your Group Home Registration.");

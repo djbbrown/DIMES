@@ -61,6 +61,7 @@ try
 
     if (docNeeded)
     {
+      if (publicUser) { showDebug=false; }
       commentBlah = "For request types where Owner/Builder is Yes a Declaration of Intent document is required";
       showMessage = true;
       comment(commentBlah);

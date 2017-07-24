@@ -69,6 +69,8 @@ try {
         //If not the same name and doc was not uploaded stop the submission
         if(SameNameFlag == 0 && DocFlag == 0)
         {
+          if (publicUser) { showDebug=false; }
+
            //Pop up message to user
             showMessage = true;
             comment("You must upload a Lease Agreement for Application document");
