@@ -21,7 +21,7 @@
 
 try
 {
-
+  if (publicUser) { showDebug=false; }
   
   //showMessage = true;  
   //comment("Testing Submission Blocking on Master Plan (ASB Only)");

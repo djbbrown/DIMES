@@ -57,6 +57,8 @@ try
 
         if ( showComment )
         {
+            if (publicUser) { showDebug=false; }
+
             logDebug("Document not found!");
             showMessage = true;
             comment("The 'Development Unit Plan' document type is required.")

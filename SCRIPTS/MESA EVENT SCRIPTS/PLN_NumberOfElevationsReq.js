@@ -36,6 +36,7 @@ try
         
         if (numOfElevations == null)
         {
+          if (publicUser) { showDebug=false; }
           showMessage = true;
           comment("The table PRODUCT PLAN DATA must have a 'Number of Elevations' entry when the Type Of Process field is set to 'Product Approval'. Please add the table entry and try submitting again.");
           cancel = true;
@@ -44,6 +45,7 @@ try
     }
     else
     {
+      if (publicUser) { showDebug=false; }
       showMessage = true;
       comment("The table PRODUCT PLAN DATA must have a 'Number of Elevations' entry when the Type Of Process field is set to 'Product Approval'. Please add the table entry and try submitting again.");
       cancel = true;

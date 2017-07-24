@@ -61,6 +61,8 @@ try
 */
 	
 	if (!(preAppExists && preAppNewerThan2YearsAgo)) {
+		if (publicUser) { showDebug=false; }
+
 		showMessage = true;
 		comment("Pre-App Record must exist, and be less than 2 years old.");
 		cancel = true;

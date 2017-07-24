@@ -14,6 +14,7 @@
 var structureAttached = AInfo["Is the structure attached in any way to another structure?"];
 
 if (structureAttached == "Yes") {
+	if (publicUser) { showDebug=false; }
 	showMessage = true; 
 	comment("The applicant must apply for a Remodel permit when demolishing a structure that is attached to another structure."); 
 	cancel = true;

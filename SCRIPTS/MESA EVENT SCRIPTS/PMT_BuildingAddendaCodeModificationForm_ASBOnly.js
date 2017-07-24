@@ -75,6 +75,7 @@ try
         //display message to user that "Construction Documents" required.
         if(!passed)
         {
+            if (publicUser) { showDebug=false; }
             showMessage = true;
             comment("Code Modification Form Required!") 
             cancel = true;
@@ -123,6 +124,7 @@ try
             //display message to user that "Construction Documents" required.
             if(!passed)
             {
+                if (publicUser) { showDebug=false; }
                 showMessage = true;
                 comment("Construction Documents is required for this record type") 
                 cancel = true;

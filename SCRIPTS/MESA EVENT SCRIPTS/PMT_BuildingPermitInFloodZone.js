@@ -36,6 +36,7 @@ try
                 var docCategory = currentDoc.getDocCategory();
 
                 if(docCategory.toUpperCase() == "ADEQ AUTHORIZATION CERTIFICATE - STORMWATER") {
+                    if (publicUser) { showDebug=false; }
                     showMessage = true;
                     comment("The 'ADEQ AUTHORIZATION CERTIFICATE - STORMWATER' document type is required.")
                     cancel = true;

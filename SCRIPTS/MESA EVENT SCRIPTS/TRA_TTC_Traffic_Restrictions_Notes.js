@@ -44,6 +44,7 @@ try {
         //Set condition
         if(ConditionFlag == 1 && ConditionFlag2 == 1)
         {
+            if (publicUser) { showDebug=false; }
             //Pop up message to user
             showMessage = true;
             comment("When Left Turn Lane (Exclusive) is selected, describe if there are any left turn prohibitions.");

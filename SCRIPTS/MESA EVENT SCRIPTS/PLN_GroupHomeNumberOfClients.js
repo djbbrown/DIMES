@@ -89,6 +89,8 @@ try
         }
 
         if(!passedCriteria) {
+            if (publicUser) { showDebug=false; }
+
             showMessage = true;
             comment(validationErrMsg);
             cancel = true;
