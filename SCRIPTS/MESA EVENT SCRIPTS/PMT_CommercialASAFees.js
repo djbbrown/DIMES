@@ -8,11 +8,16 @@
 // Script Parents:
 //		ASA;Permits!Commercial!~!~
 //             
-/*==================================================================*/
+// ====================================================================================================== 
+// MODIFICATION HISTORY
+// Date          Analyst              Description
+// 07/26/2017    Steve Allred         Removed calcValue from valuation per Kevin Gurney's recommendation.
+/*======================================================================================================*/
 
 // COM010 Commercial Permit Deposit
 // var valuation = parseFloat(AInfo["Total Valuation"])|0;
-var valuation = estValue|calcValue;
+//var valuation = estValue|calcValue;  
+var valuation = estValue;
 if (feeExists("COM010", "NEW", "INVOICED")) voidRemoveFee("COM010");
 if(valuation>0){addFee("COM010", "PMT_COM", "FINAL", valuation, "Y")};
 //*/
