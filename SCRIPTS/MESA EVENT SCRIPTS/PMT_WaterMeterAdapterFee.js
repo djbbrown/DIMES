@@ -121,8 +121,9 @@ try {
 					else addToASITable("UTILITY SERVICE INFORMATION", newRow);				
 				}
 				numAdapters = allNumAdapters;
-				logDebug("Number of adapters: " + numAdapters);
-				if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
+				//logDebug("Number of adapters: " + numAdapters);
+				//turning the fee assessment part off since this fee is disabled.
+				/*if (numAdapters === 0 && feeExists("USF040", "NEW", "INVOICED")) voidRemoveFee("USF040"); 
 				else {
 					if (!feeExists("USF040", "NEW", "INVOICED") && numAdapters > 0)
 						addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
@@ -131,6 +132,7 @@ try {
 						addFee("USF040", "PMT_UTL_SERV", "FINAL", numAdapters, "N");
 					}
 				}
+				*/
 			} else logDebug("Number of adapters required has not changed.");
 		}
 	}	
