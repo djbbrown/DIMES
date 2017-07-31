@@ -19,7 +19,7 @@ var UtlPermit = AInfo["UTL Permit No."];
 var associatedPermitType = AInfo["Associated Work Permit Type"];
 var getCapROW = aa.cap.getCapID(rowPermit);
 var getCapUTL = aa.cap.getCapID(UtlPermit);
-var goodParent = false;
+//var goodParent = false;
 
 
 if (associatedPermitType == "None") {
@@ -41,11 +41,11 @@ if (associatedPermitType == "ROW - Right-of-Way")
     
     if (seCapTypeStr == "Enginnering/Right of Way/*/*")
         
-    {
+    //{
       goodParent = true;
-    }   
+    //}   
 
-    if (goodParent)
+    //if (goodParent)
     {
       addParent("" + rowPermit);
     }
@@ -70,11 +70,11 @@ if (associatedPermitType == "UTL - Utility")
     
     if (seCapTypeStr == "Enginnering/Utilities/*/*")
         
-    {
+    //{
       goodParent = true;
-    }   
+    //}   
 
-    if (goodParent)
+    //if (goodParent)
     {
       addParent("" + UtlPermit);
     }
