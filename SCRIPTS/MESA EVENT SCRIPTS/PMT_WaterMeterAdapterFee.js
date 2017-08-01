@@ -94,7 +94,7 @@ try {
 			}
 			logDebug("allNumAdapters:"+allNumAdapters);
 			logDebug("countExAdapters:"+countExAdapters);
-			logDebug()
+			//logDebug()
 			//if (numExistingAdapters != numAdapters) { // Removed for an actual count of adapters
 			if (allNumAdapters != countExAdapters) {
 				// reload table without adapter entries
