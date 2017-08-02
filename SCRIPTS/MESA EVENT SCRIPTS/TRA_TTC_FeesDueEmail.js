@@ -81,7 +81,7 @@ try {
                     var TypeContact = tInfo[x]["contactType"];
                     if( TypeContact == "Applicant" )
                     {
-                        AppToEmaill = tInfo[x]["email"];
+                        AppToEmail = tInfo[x]["email"];
                     }
                     if( TypeContact == "Barricade Company Contact" )
                     {
