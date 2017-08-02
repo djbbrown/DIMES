@@ -16,26 +16,24 @@ try {
 	  var AppToEmail = "";
       var vEParams = aa.util.newHashtable();
       var Url = lookup("Agency_URL","ACA");
+	  var tStatus = "Approved - Fees Due";
+      var tName = "Traffic Review";
       var Address;
 	  var BCompany;
 	  var OtherContact;
 	  var FeesDue = 0;
       
-       
-      //Iterate through workflows
-      var tasks = aa.workflow.getTasks(capId).getOutput();
-      for (t in tasks) 
-            {
-            //Look for Fees Due
-            if (tasks[t].getTaskDescription() == "Traffic Review")
-                { 
-                    //Set flag if Fees Due
-                    if(tasks[t].getDisposition() == "Approved - Fees Due")
-                    {
-                    FeesDue = 1; 
-                    }
-                }
-            }
+       if(capStatus == "Fees Due")
+      {
+       FeesDue = 1;
+      }      
+      //Get WF Task
+       var tasks = aa.workflow.getTasks(capId).getOutput();
+       for (t in tasks) 
+        {
+            //Check task name and status
+            if (tasks[t].getDisposition() == tStatus && tasks[t].getTaskDescription() == tName)
+            {       
 	  
 	  //Get the address
         var capAddResult = aa.address.getAddressByCapId(capId);
@@ -100,7 +98,8 @@ try {
 					sendNotification(FromEmail, ToEmail, "", "TRA_TTC_FEES_DUE", vEParams, null, capId);									
 				}
 	
-					
+			}
+		}			
 	}
 		
         
