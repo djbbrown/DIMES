@@ -88,11 +88,8 @@ try {
 
    
 		//Get record detailed desc
-				DetailedDesc = workDescGet(capId); 
-				if(DetailedDesc == null) 
-				{
-                DetailedDesc = ""; 
-				}                              
+			DetailedDesc = AInfo["AInfo["Permit Expiration Date"];
+				                           
         
 		
 		//Convert to strings
