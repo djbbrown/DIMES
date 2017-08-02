@@ -62,6 +62,7 @@ try {
 		
 		//Add Params
 				addParameter(vEParams,"$$ADDRESS$$",Address);
+				addParameter(vEParams,"$$URLOFRECORDID$$",Url);
 				addParameter(vEParams,"$$RECORDID$$",capIDString);
 
 		//Get other contact Info
