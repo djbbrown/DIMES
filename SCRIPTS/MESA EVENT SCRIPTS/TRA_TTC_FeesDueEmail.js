@@ -72,22 +72,23 @@ try {
 			var rowCount = tInfo.length;
 			var x = 0;
 
-		//Get Email of Contacts
-			for (x=0;x<=(rowCount-1);x++)
-			{
-					ConType = tInfo[x]["contactType"];
-					//Applicant
-					if(ConType == "Applicant" )
-					{
-					var AppToEmail = tInfo[x]["email"];
-					}
-					//Barricade Company
-					if(ConType == "Barricade Company" )
-					{
-					var BCompany = tInfo[x]["email"];
-					}
-									
-			}     
+		var tInfo = getContactArray();
+               var rowCount = tInfo.length;
+               var x = 0;
+               //Get Email of Applicant
+                for (x=0;x<=(rowCount-1);x++)
+                {
+                    var TypeContact = tInfo[x]["contactType"];
+                    if( TypeContact == "Applicant" )
+                    {
+                        AppToEmaill = tInfo[x]["email"];
+                    }
+                    if( TypeContact == "Barricade Company Contact" )
+                    {
+                         BCompany = tInfo[x]["email"];
+                    }
+
+                }
 		
 		//Add Contacts
                  ToEmail =  ToEmail + "," + AppToEmail + "," + BCompany + "," + OtherContact;		
@@ -95,7 +96,7 @@ try {
         //Send email
                 if(FeesDue == 1)
                 {	
-					sendNotification(FromEmail, ToEmail, "", "TRA_TTC_PermitIssuedEmail", vEParams, null, capId);									
+					sendNotification(FromEmail, ToEmail, "", "TRA_TTC_FEES_DUE", vEParams, null, capId);									
 				}
 	
 					
