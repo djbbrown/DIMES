@@ -110,6 +110,7 @@ try {
 				addParameter(vEParams,"$$RESTRICTIONEND$$",REnd);
 				addParameter(vEParams,"$$DETAILEDDESCRIPTION$$",DDesc);
 				addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);
+				addParameter(vEParams,"$$URLOFRECORDID$$",Url);
 		
 		//Get other contact Info
 		OtherContact = AInfo["Department/Company Contact Email Address"]
