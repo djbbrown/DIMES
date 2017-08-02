@@ -88,7 +88,7 @@ try {
 
    
 		//Get record detailed desc
-			DetailedDesc = AInfo["AInfo["Permit Expiration Date"];
+			DetailedDesc = AInfo["Permit Expiration Date"];
 				                           
         
 		
