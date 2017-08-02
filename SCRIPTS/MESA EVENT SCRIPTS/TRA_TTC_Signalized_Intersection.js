@@ -17,7 +17,8 @@ try {
       var RestrictionStart;
       var RestrictionEnd;
       var TrafficRestriction = "";
-      var SIntersection;
+      var SigIntersection;
+	  var Intersection = AInfo["Intersection"];
       var Address;
       var PermitIssued = 0;
 
@@ -36,8 +37,8 @@ try {
                 }
             }
            
-       SIntersection = AInfo["Signalized Intersection"];
-       if(SIntersection =="Yes")
+       SigIntersection = AInfo["Signalized Intersection"];
+       if(SigIntersection =="Yes")
        {
         //Get the address
         var capAddResult = aa.address.getAddressByCapId(capId);
@@ -80,13 +81,16 @@ try {
             var RStart = String(RestrictionStart);
             var REnd = String(RestrictionEnd);
             var TRestriction = String(TrafficRestriction);
+			var IntersectionFld = String(Intersection);
             
             //Add Params
             addParameter(vEParams,"$$RECORDID$$",capIDString);
             addParameter(vEParams,"$$RESTRICTIONSTART$$",RStart);
             addParameter(vEParams,"$$RESTRICTIONEND$$",REnd);
             addParameter(vEParams,"$$ADDRESS$$",Address);
-            addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);          
+			addParameter(vEParams,"$$INTERSECTION$$",IntersectionFld);
+            addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);
+			
             
             //Send email
             if(PermitIssued == 1)
