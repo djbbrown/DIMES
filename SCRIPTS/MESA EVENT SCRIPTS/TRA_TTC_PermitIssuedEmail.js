@@ -156,13 +156,13 @@ try {
         //Send email
                 if(PermitIssued == 1)
                 {
-					sendNotification(FromEmail, ToEmail, "", "TRA_TTC_PermitIssuedEmail", vEParams, null, capId);
+					sendNotification(FromEmail, ToEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
 												
 				}
 				
 				if(PermitIssued == 1 && associatedPermitType == "UTL - Utility")
                 {
-					sendNotification(FromEmail, ToUTLEmail, "", "TRA_TTC_PermitIssuedEmail", vEParams, null, capId);
+					sendNotification(FromEmail, ToUTLEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
 												
 				}
 				
