@@ -32,9 +32,17 @@ try
         updateAppStatus("Issued", "Issued by Script 393");
 
         //Run and Attach report 39 Building Permit
+		//adding retrieval of notification template that could be used to send email
+		var tmpl = aa.communication.getNotificationTemplate("PMT_ONLINEPERMIT").getOutput();
+		var ebody = tmpl.getEmailTemplateModel().getContentText();
+		var esub = tmpl.getEmailTemplateModel().getTitle();
+		var efrom = tmpl.getEmailTemplateModel().getFrom();
+	
         var rParams = aa.util.newHashMap();
 		rParams.put("RecordNumber", capIDString);
-        generateReportForEmail_Mesa(capId, "Building Permit", "Permits", rParams);
+		//saving the report but the code below could be used to also send the email notification with the report by changing last param to true
+		sendReportInThread(capId,capIDString,"Building Permit",rParams,"PERMITS","ADMIN",efrom,"","",esub,ebody,true,false);
+       
     }
 }
 catch(ex)
