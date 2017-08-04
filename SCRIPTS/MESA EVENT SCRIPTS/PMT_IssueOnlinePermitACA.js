@@ -36,11 +36,11 @@ try
 		var typeOfWork = "" + getAppSpecific("Type of Work");
 		if (typeOfWork == "Construction Noise Permit")
             {
-				editAppSpecific("Permit Expiration Date", dateAdd(null,30);
+				editAppSpecific("Permit Expiration Date", dateAdd(null,30));
 			}
 		else
 			{
-				editAppSpecific("Permit Expiration Date", dateAdd(null,180);
+				editAppSpecific("Permit Expiration Date", dateAdd(null,180));
 			}
 
         //Run and Attach report 39 Building Permit
