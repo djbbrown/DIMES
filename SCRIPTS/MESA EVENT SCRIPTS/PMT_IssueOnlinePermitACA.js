@@ -32,7 +32,7 @@ try
         updateAppStatus("Issued", "Issued by Script 393");
 		
 		//upate the custom field Permit Issued Date
-        editAppSpecific("Permit Issued Date", dateAdd(null,0);
+        editAppSpecific("Permit Issued Date", dateAdd(null,0));
 		var typeOfWork = "" + getAppSpecific("Type of Work");
 		if (typeOfWork == "Construction Noise Permit")
             {
