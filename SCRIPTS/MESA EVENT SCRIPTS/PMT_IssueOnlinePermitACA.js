@@ -30,6 +30,18 @@ try
         
         //Update App Status to "Issued"
         updateAppStatus("Issued", "Issued by Script 393");
+		
+		//upate the custom field Permit Issued Date
+        editAppSpecific("Permit Issued Date", dateAdd(null,0);
+		var typeOfWork = "" + getAppSpecific("Type of Work");
+		if (typeOfWork == "Construction Noise Permit")
+            {
+				editAppSpecific("Permit Expiration Date", dateAdd(null,30);
+			}
+		else
+			{
+				editAppSpecific("Permit Expiration Date", dateAdd(null,180);
+			}
 
         //Run and Attach report 39 Building Permit
 		//adding retrieval of notification template that could be used to send email
