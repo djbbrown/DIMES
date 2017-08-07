@@ -4,4 +4,4 @@
 ==================================================================*/
 
 // Brian ODell (Mesa)
-include("TRA_TestRelateToSpecialEventRecord");
+//include("TRA_TestRelateToSpecialEventRecord"); //Comment out until conversion occurs.

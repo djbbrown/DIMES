@@ -23,6 +23,7 @@
 // Script Run Event: ASA
 // Script Parents:
 //             ASA:Transporation/Temporary Traffic Control/NA/NA
+//			   ASIUA:Transporation/Temporary Traffic Control/NA/NA
 // 
 //==================================================================*/
 
@@ -48,11 +49,12 @@ try
     
     if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
         || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
-    {
-      goodParent = true;
-    }   
+    //comment this section out until data conversion of Licensing occurs
+	//{
+    //  goodParent = true;
+    //}   
 
-    if (goodParent)
+    //if (goodParent)
     {
       addParent("" + specialEvent);
     }
