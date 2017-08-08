@@ -15,6 +15,9 @@
 ===================================================================*/
 //showDebug=true;
 
+//get the commerical property type
+var propertyType = AInfo["Property Type"];
+
 function round(value, decimals) {
   return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
@@ -114,7 +117,11 @@ try {
 		totalValuation = round(totalValuation,2) + parseInt(estValue);
 		//totalValuation = round(totalValuation,2);
 		//logDebug("totalValuation = " + totalValuation); 
-		if (totalValuation > 0) {
+		if (totalValuation > 0) 
+		
+		{
+			if ((appTypeArray[1] == 'Commercial' && (propertyType =="Commerical")) || appTypeArray[1] == 'Residential')
+				
 			editAppSpecific('Total Valuation', totalValuation);  //this is the numeric field
 			
 			var modulusTotVal = round(totalValuation % 1,2);
