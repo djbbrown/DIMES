@@ -12,12 +12,16 @@
 
 try {
       var FromEmail = "noreply@mesaaz.gov";
+	  var ToGenEmail;
+	  var ToROWEmail = lookup("EMAIL_RECIPIENTS","ENG_ChiefInspectors");
       var ToEmail = lookup("EMAIL_RECIPIENTS","Traffic_Engineer");
 	  var ToUTLEmail = lookup("EMAIL_RECIPIENTS","ENG_UTL_Email");
 	  var AppToEmail = "";
       var vEParams = aa.util.newHashtable();
       var Url = lookup("Agency_URL","ACA");
 	  var associatedPermitType = AInfo["Associated Work Permit Type"];
+	  var tStatus = "Issued";
+      var tName = "Permit Issuance";
 	  var TrafficRestriction = "";
 	  var RestrictionStart;
       var RestrictionEnd;
@@ -30,45 +34,43 @@ try {
 	  var OtherContact;
 	  var PermitIssued = 0;
       
+	  
+	  if(capStatus == "Issued")
+      {
+      PermitIssued = 1;
+      }      
+      //Get WF Task
+       var tasks = aa.workflow.getTasks(capId).getOutput();
+       for (t in tasks) 
+        {
+            //Check task name and status
+            if (tasks[t].getDisposition() == tStatus && tasks[t].getTaskDescription() == tName)
+            {
        
-      //Iterate through workflows
-      var tasks = aa.workflow.getTasks(capId).getOutput();
-      for (t in tasks) 
+       
+			//Get the address
+			var capAddResult = aa.address.getAddressByCapId(capId);
+			if (capAddResult.getSuccess())
             {
-            //Look for Permit Issuance
-            if (tasks[t].getTaskDescription() == "Permit Issuance")
-                { 
-                    //Set flag if permit issued
-                    if(tasks[t].getDisposition() == "Issued")
-                    {
-                    PermitIssued = 1; 
-                    }
-                }
-            }
-	  
-	  //Get the address
-        var capAddResult = aa.address.getAddressByCapId(capId);
-        if (capAddResult.getSuccess())
-            {
-            var addrArray = new Array();
-            var addrArray = capAddResult.getOutput();
-            if (addrArray.length==0 || addrArray==undefined)
-                {
-                logDebug("The current CAP has no address.")
-                }
+				var addrArray = new Array();
+				var addrArray = capAddResult.getOutput();
+				if (addrArray.length==0 || addrArray==undefined)
+					{
+					logDebug("The current CAP has no address.")
+					}
 
-            //Break Out each element of the address
-            var hseNum = addrArray[0].getHouseNumberStart();
-            var streetDir = addrArray[0].getStreetDirection();
-            var streetName = addrArray[0].getStreetName();
-            var streetSuffix = addrArray[0].getStreetSuffix();
-            var zip = addrArray[0].getZip();
+				//Break Out each element of the address
+				var hseNum = addrArray[0].getHouseNumberStart();
+				var streetDir = addrArray[0].getStreetDirection();
+				var streetName = addrArray[0].getStreetName();
+				var streetSuffix = addrArray[0].getStreetSuffix();
+				var zip = addrArray[0].getZip();
 
-            Address = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+				Address = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
             }
 	  
 
-        //Get Traffic Restrictions
+			//Get Traffic Restrictions
             loadASITables();
             tInfo = ROADWAYRESTRICTIONINFO;
             rowCount = ROADWAYRESTRICTIONINFO.length;
@@ -81,18 +83,18 @@ try {
                     }
             }    
 
-        //get the restriction dates
+			//get the restriction dates
                                  
             RestrictionStart =  AInfo["Permit Start Date"];
             RestrictionEnd =  AInfo["Permit Expiration Date"];			
 
    
-		//Get record detailed desc
+			//Get record detailed desc
 			DetailedDesc = AInfo["Description of Work"];
 				                           
         
 		
-		//Convert to strings
+			//Convert to strings
 			var RStart = String(RestrictionStart);
 			var REnd = String(RestrictionEnd);
 			var DDesc = String(DetailedDesc);
@@ -100,7 +102,7 @@ try {
 						
 		
 
-		//Add Params
+			//Add Params
 				addParameter(vEParams,"$$ADDRESS$$",Address);
 				addParameter(vEParams,"$$RECORDID$$",capIDString);
 				addParameter(vEParams,"$$RESTRICTIONSTART$$",RStart);
@@ -109,15 +111,15 @@ try {
 				addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);
 				addParameter(vEParams,"$$URLOFRECORDID$$",Url);
 		
-		//Get other contact Info
-		OtherContact = AInfo["Department/Company Contact Email Address"]
+			//Get other contact Info
+			OtherContact = AInfo["Department/Company Contact Email Address"]
 
-        //Get the contact info
+			//Get the contact info
 			var tInfo = getContactArray();
 			var rowCount = tInfo.length;
 			var x = 0;
 
-		//Get Email of Contacts
+			//Get Email of Contacts
 			for (x=0;x<=(rowCount-1);x++)
 			{
 					ConType = tInfo[x]["contactType"];
@@ -148,24 +150,36 @@ try {
 					}
 				
 			}     
-		//Add Contacts
-                 ToEmail =  ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ChiefEngInsp;	  
 			
-        //Send email
+			//Add Contacts
+                 ToGenEmail =  ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
+
+				 ToUTLEmail = ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ToUTLEMail;
+				 
+				 ToROWEmail = ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ToROWEmail;
+			
+			//Send email
                 if(PermitIssued == 1)
                 {
-					sendNotification(FromEmail, ToEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+					sendNotification(FromEmail, ToGenEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
 												
 				}
 				
-				if(PermitIssued == 1 && associatedPermitType == "UTL - Utility")
+				else if(PermitIssued == 1 && associatedPermitType == "UTL - Utility")
                 {
 					sendNotification(FromEmail, ToUTLEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
 												
 				}
 				
+				else if(PermitIssued == 1 && associatedPermitType == "ROW - Right-of-Way")
+                {
+					sendNotification(FromEmail, ToROWEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+												
+				}
+				
+			}	
 
-						
+		}				
 	}
 		
         
