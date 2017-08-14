@@ -15,7 +15,11 @@
 //  ASIUA;Enforcement!Case!~!~  
 //            
 /*==================================================================*/
-
+/*
+// Date         Analyst            Description
+// 08/14/2017   Steve Allred       Removed check for priority == "Normal"
+//
+//
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
@@ -25,7 +29,7 @@ try
 {    
     var priority = getRecordPriority();
     logDebug("Priority: " + priority);
-    if (priority != false && priority == "Normal")
+    if (priority != false)  //&& priority == "Normal")
     {
         // see if the initial inspection has already been Scheduled
         var inspExist = doesInspectionExist("Initial Inspection");
