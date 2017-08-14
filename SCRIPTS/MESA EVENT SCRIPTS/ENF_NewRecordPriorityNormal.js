@@ -17,8 +17,9 @@
 /*==================================================================*/
 /*
 // Date         Analyst            Description
-// 08/14/2017   Steve Allred       Removed check for priority == "Normal"
+// 08/14/2017   Steve Allred       Removed check for priority
 //
+//====================================================================
 //
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
@@ -27,42 +28,43 @@
 
 try
 {    
-    var priority = getRecordPriority();
-    logDebug("Priority: " + priority);
-    if (priority != false)  //&& priority == "Normal")
-    {
-        // see if the initial inspection has already been Scheduled
-        var inspExist = doesInspectionExist("Initial Inspection");
+//    var priority = getRecordPriority();
+//    logDebug("Priority: " + priority);
+//    if (priority != false && priority == "Normal")
+//    {
 
-        if ( inspExist == false )
-        {
-            // schedule initial inspection on the next working day (5 day cal)
-            var nextWorkingDay = dateAdd(null, 1, "Y");
+	// see if the initial inspection has already been Scheduled
+	var inspExist = doesInspectionExist("Initial Inspection");
 
-            // get the inspector for this boundary          
-            var inspector = getEnforcementInspectorId();
-            if (inspector != false) 
-            {
-                // schedule initial inspection for next working day 
-                scheduleInspectionDateWithInspector("Initial Inspection", nextWorkingDay, inspector);
-                logDebug("Scheduled inspection for Inspector " + inspector + ".");
-            }
-            else
-            {
-                // schedule initial inspection for next working day 
-                scheduleInspectDate("Initial Inspection", nextWorkingDay);
-                logDebug("Inspector was not found, so was not assigned.");
-            }
-        }
-        else
-        {
-            logDebug("Initial Inspection has already been scheduled.")
-        }
-    }
-    else 
-    {
-        logDebug("Criteria not met.")
-    }
+	if ( inspExist == false )
+	{
+		// schedule initial inspection on the next working day (5 day cal)
+		var nextWorkingDay = dateAdd(null, 1, "Y");
+
+		// get the inspector for this boundary          
+		var inspector = getEnforcementInspectorId();
+		if (inspector != false) 
+		{
+			// schedule initial inspection for next working day 
+			scheduleInspectionDateWithInspector("Initial Inspection", nextWorkingDay, inspector);
+			logDebug("Scheduled inspection for Inspector " + inspector + ".");
+		}
+		else
+		{
+			// schedule initial inspection for next working day 
+			scheduleInspectDate("Initial Inspection", nextWorkingDay);
+			logDebug("Inspector was not found, so was not assigned.");
+		}
+	}
+	else
+	{
+		logDebug("Initial Inspection has already been scheduled.")
+	}
+//    }
+//    else 
+//    {
+//        logDebug("Criteria not met.")
+//    }
 }
 catch (err)
 {
