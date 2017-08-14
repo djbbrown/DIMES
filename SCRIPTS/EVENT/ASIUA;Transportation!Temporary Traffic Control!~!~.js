@@ -4,6 +4,6 @@
 ==================================================================*/
 //include("TRN_MaintainRelatedRecords"); 
 include("TRA_TTC_TestMaintainRelatedRecords");
-include("TRN_ExpeditedPlanReview");
+//include("TRN_ExpeditedPlanReview");
 include("TTC_DaysRestricted");
 include("TRN_PermitExpirationDate"); // Script 55
