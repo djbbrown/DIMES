@@ -1,6 +1,6 @@
 /*===================================================================
 // Script Number: 054
-// Script Name:TRA_TTC_TestMaintainRelatedRecords.js
+// Script Name:TRA_TTC_MaintainRelatedRecords.js
 // Script Developer: Mong Ward
 // Script Agency: Accela
 // Script Description: Maintain related records - ROW and UTL Permit numbers - Non-conversion script
