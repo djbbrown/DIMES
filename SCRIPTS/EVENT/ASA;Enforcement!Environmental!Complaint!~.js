@@ -1,6 +1,6 @@
 //====================================================
 // Script ASA;Enforcement!Environmental!Complaint!~.js
 //====================================================
-if (!publicUser) {
-	include("ENF_AutopopulateTypeOfSite"); // Script 18
-}
+//if (!publicUser) {
+//	include("ENF_AutopopulateTypeOfSite"); // Script 18
+//}
