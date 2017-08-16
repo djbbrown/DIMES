@@ -15,7 +15,7 @@ try {
 	  var ToGenEmail;
 	  var ToROWEmail = lookup("EMAIL_RECIPIENTS","ENG_ChiefInspectors");
       var ToEmail = lookup("EMAIL_RECIPIENTS","Traffic_Engineer");
-	  var ToUTLEmail = lookup("EMAIL_RECIPIENTS","ENG_UTL_Email");
+	  //var ToUTLEmail = lookup("EMAIL_RECIPIENTS","ENG_UTL_Email");
 	  var AppToEmail = "";
       var vEParams = aa.util.newHashtable();
       var Url = lookup("Agency_URL","ACA");
@@ -154,7 +154,7 @@ try {
 			//Add Contacts
                  ToGenEmail =  ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
 
-				 ToUTLEmail =  ToUTLEMail + "," + ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact;
+				 //ToUTLEmail =  ToUTLEMail + "," + ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact;
 				 
 				 ToROWEmail = ToROWEmail + "," + ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact;
 			
