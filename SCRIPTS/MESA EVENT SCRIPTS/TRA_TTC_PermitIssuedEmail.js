@@ -165,11 +165,11 @@ try {
 												
 				}
 				
-				else if(PermitIssued == 1 && associatedPermitType == "UTL - Utility")
-                {
-					sendNotification(FromEmail, ToUTLEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
-												
-				}
+				//else if(PermitIssued == 1 && associatedPermitType == "UTL - Utility")
+               //{
+				//	sendNotification(FromEmail, ToUTLEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+				//								
+				//}
 				
 				else if(PermitIssued == 1 && associatedPermitType == "ROW - Right-of-Way")
                 {
