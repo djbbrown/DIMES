@@ -2,7 +2,7 @@
 // Script Number: 226b
 // Script Name: PLN_Communications_Towers.js
 // Script Description: Send an email if parcel is in Communications Towers GIS layer.   
-// Script Run Event: ASA
+// Script Run Event: ASA 
 // Script Parents: ASA;Planning/Admin Review/NA/NA
 //                 ASA;Planning/Board of Adjustment/NA/NA
 //                 ASA;Planning/Design Review/NA/NA
