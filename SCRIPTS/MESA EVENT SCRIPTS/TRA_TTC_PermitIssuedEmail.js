@@ -154,9 +154,9 @@ try {
 			//Add Contacts
                  ToGenEmail =  ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
 
-				 ToUTLEmail = ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ToUTLEMail;
+				 ToUTLEmail =  ToUTLEMail + "," + ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact;
 				 
-				 ToROWEmail = ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ToROWEmail;
+				 ToROWEmail = ToROWEmail + "," + ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact;
 			
 			//Send email
                 if(PermitIssued == 1)
