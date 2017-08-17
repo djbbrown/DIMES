@@ -19,7 +19,7 @@
 /*==================================================================*/
 /*
 // Version       Engineer            Description
-// 08/17/2017    Steve Allred        Added Engineering Review
+// 08/17/2017    Steve Allred        Added Engineering Review 
 //
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />

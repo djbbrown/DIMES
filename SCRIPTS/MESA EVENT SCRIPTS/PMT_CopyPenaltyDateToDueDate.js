@@ -3,7 +3,7 @@
  9/19/2016-A	John Cheney			initial
  10/3/2016-E	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active)
  10/20/2016-A	John Cheney			adjusted wire up events and improved logDebug messages 
- 08/17/2017     Steve Allred        added task "Engineering Review"
+ 08/17/2017     Steve Allred        added task "Engineering Review" 
  ---------------------------------------------------------------------
  Script Number: 334
  Script Name: PMT_CopyPenaltyDateToDueDate.js
