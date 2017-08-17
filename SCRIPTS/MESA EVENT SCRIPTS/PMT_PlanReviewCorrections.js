@@ -17,6 +17,10 @@
 //          WTUB;Permits!Residential!~!~
 //          WTUB;Permits!Sign!~!~
 /*==================================================================*/
+/*
+// Version       Engineer            Description
+// 08/17/2017    Steve Allred        Added Engineering Review
+//
 /* intellisense references */
 /// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
 /// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
@@ -32,7 +36,7 @@ try
             if(tasks[task].status != null)
             {
                 var taskStatus = String(tasks[task].status);
-                var arrReviews = ["Planning Review", "Building Review", "Fire Review", "Civil Engineering Review", "DIS Review"];
+                var arrReviews = ["Planning Review", "Building Review", "Fire Review", "Civil Engineering Review", "DIS Review", "Engineering Review"];
                 var arrStatus = ["Approved", "Approved w/Comments", "Not Required"];
 
                 //If task is in the list of checked reviews continue evaluation

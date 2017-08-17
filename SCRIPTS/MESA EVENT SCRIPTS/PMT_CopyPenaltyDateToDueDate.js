@@ -3,6 +3,7 @@
  9/19/2016-A	John Cheney			initial
  10/3/2016-E	John Cheney			adjusted to newly found limitations (cannot set dueDate of a task unless already active)
  10/20/2016-A	John Cheney			adjusted wire up events and improved logDebug messages 
+ 08/17/2017     Steve Allred        added task "Engineering Review"
  ---------------------------------------------------------------------
  Script Number: 334
  Script Name: PMT_CopyPenaltyDateToDueDate.js
@@ -77,7 +78,7 @@ try {
             {
                 var changeCount = 0;
                 var taskCount = 0;
-                var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination"];
+                var tasksToUpdate = ["Building Review", "Fire Review", "Planning Review", "Public Works Review", "Utilities Review", "Arborist Review", "Civil Review", "Civil Engineering Review", "DIS Review", "Plans Coordination", "Engineering Review"];
                 
                 for (t in tasks) {
                     taskCount = taskCount + 1;
