@@ -3,4 +3,6 @@ include("PLN_PlanningZoningFees"); // added by Bryan de Jesus
 
 // added by Vance Smith
 include("PLN_AutopopulateGeneralPlanDesignation");
+// added by Steve Allred
+include("PLN_Communications_Towers");
 

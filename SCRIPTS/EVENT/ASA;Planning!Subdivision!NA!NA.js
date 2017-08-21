@@ -8,3 +8,5 @@ if(!publicUser){
 
 //Final Plat and Subdivision Technical Review Fees
 include("PLN_SubdivisionFees");
+// added by Steve Allred
+include("PLN_Communications_Towers");

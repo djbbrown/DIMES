@@ -8,3 +8,5 @@ if (!publicUser){
 
 // added by Kevin Gurney (Accela)
 include("PLN_BoardofAdjustmentFees");
+// added by Steve Allred
+include("PLN_Communications_Towers");

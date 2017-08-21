@@ -12,3 +12,5 @@ include("PLN_RelatePreSubmittalNumber");
 
 // added by Kevin Gurney (Accela)
 include("PLN_DesignReviewFees");
+// added by Steve Allred
+include("PLN_Communications_Towers");

@@ -10,3 +10,5 @@ if (!publicUser){
 
 // added by Kevin Gurney (Accela)
 include("PLN_AdministrativeReviewFees");
+// added by Steve Allred
+include("PLN_Communications_Towers");
