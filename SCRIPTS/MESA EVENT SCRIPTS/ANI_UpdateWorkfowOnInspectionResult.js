@@ -10,6 +10,11 @@
 // Script Parents:
 //            ISA;Animal Control!~!~!~
 ===================================================================*/
+/* MODIFICATIONS
+// DATE         ENGINEER            DESCRIPTION
+// 08/23/2017   Steve Allred        Removed the setTask code per Shannon Gross.
+//
+//
 /* test with  ANI16-00033 */
 
 try
@@ -18,7 +23,7 @@ try
 	var status = inspResult;
 	if (status) {
 		// update WF task
-		setTask("Animal Control Officer", "Y", "N");
+		//setTask("Animal Control Officer", "Y", "N");
 		updateTask("Animal Control Officer", status, "Updated by script.", "Updated by script.");
 	}
 }
