@@ -13,6 +13,7 @@ include("PMT_AFP_Inspectors_Email");
 // added by John Cheney  (Mesa)
 include("PMT_ImpactFeesMultiResidence");
 // added by Steve Allred (Mesa)  
+include("PMT_ImpactFeesSingleResidence"); //added to commercial because sometimes a group of SFRs are commercial.
 include("PMT_BlueCard");
 
 include("PMT_CommercialImpactFees"); // Script 337
