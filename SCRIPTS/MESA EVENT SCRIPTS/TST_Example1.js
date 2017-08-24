@@ -16,26 +16,9 @@ try
 {
   
 
-loadASITables();
-var tInfo = OCCUPANCYINFORMATION;
-var rowCount = OCCUPANCYINFORMATION.length;
-
-var typeOfConstruction = "";
-var totalSqFt = 0;
+var totalSqFt = 1;
 
 
-  for (x=0;x<=(rowCount-1);x++)
-  {
-    typeOfConstruction = tInfo[x]["Type of Construction"];
-    //mkyOutput += "typeOfConstruction = "+typeOfConstruction+" \r";
-    comment("typeOfConstruction = "+typeOfConstruction);
-
-    totalSqFt += parseInt(tInfo[x]["Sq Ft"]);
-    //mkyOutput += "totalSqFt = "+totalSqFt+" \r";    
-    comment("totalSqFt = "+totalSqFt);
-  }
-
-comment("totalSqFt = "+totalSqFt);
 editAppSpecific("Submittal Cycle", totalSqFt);
   
 }
