@@ -16,6 +16,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |11/22/16  |Steve Veloudos   |Initial Release
 //  2.0      |07/07/17  |Kevin Gurney	  |Updated to retrieve info notification template info and only send email when app status changes
+//  3.0      |08/25/17  |Steve Allred     |Removed wfStatus parm and added addr parm (address)
 /*==================================================================*/
 
 try {
@@ -50,9 +51,10 @@ try {
         //Add Params
         addParameter(vEParams,"$$RECORDID$$",capIDString);
         addParameter(vEParams,"$$WORKFLOWSTEP$$",wfTask);
-        addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
+        //addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
 		addParameter(vEParams,"$$WORKFLOWCOMMENT$$",wfComment);
-
+		addParameter(vEParams,"$$ADDRESS$$",getAddress(capId));
+		
         //Send email
         if(ToEmail){
 			sendNotification(efrom, ToEmail, "", "PMT_WORKFLOW_STATUS_CHANGE", vEParams, null, capId);  
