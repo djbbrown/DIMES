@@ -28,7 +28,7 @@ function getEnforcementInspectorId() // optional altId
         var nameArray = inspector.split(" ");
         if (inspector != "undefined" || inspector != null) {
 			// have to re-grab the user since the id won't show up in this object.
-			inspUserObj = aa.person.getUser(nameArray[0],"",nameArray[1]).getOutput();
+			inspUserObj = aa.person.getUser(inspector).getOutput();
 			if (inspUserObj != null){
 			return inspUserObj.getUserID();
 				}
