@@ -1,17 +1,18 @@
 /*===================================================================*/
-// Script Number: 135
+/* Script Number: 135
 // Script Name: PMT_Water_Clearance_Email.js
 // Script Description: Send email if ASIT field Utility Service Info comtains values Permit Issuance is Issued & Fees have been paid  
 // Script Run Event: WTUA
-// Script Parents:WTUA;Permits/Commercial/NA/NA
-// WTUA;Permits/Residential/NA/NA
-// WTUA;Permits/Residential/Mobile Home/NA
-// Test Record: PMT16-00507
+// Script Parents:	WTUA;Permits/Commercial/NA/NA
+// 					WTUA;Permits/Residential/NA/NA
+// 					WTUA;Permits/Residential/Mobile Home/NA
+// 
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/01/16  |Steve Veloudos   |Initial Release
 //  2.0      |09/29/16  |Steve Veloudos   |Fixed Inconsistant UTILITY SERVICE INFO ASIT
 //  3.0      |09/29/16  |Steve Veloudos   |Fixed to look for Permit Issuance that Issued workflow
-/*==================================================================*/
+//  4.0      |08/28/17  |Steve Allred     |Added Subdivision, Unit and Invoice number
+//==================================================================*/
 
 try {
     var FromEmail = "noreply@mesaaz.gov";
@@ -33,6 +34,9 @@ try {
     var Comments; 
     var tStatus = "Issued";
     var tName = "Permit Issuance";  
+	var AddrUnit;
+	var Subdivision;
+
     
    //Get WF Task
    var tasks = aa.workflow.getTasks(capId).getOutput();
@@ -114,10 +118,34 @@ try {
                 var streetName = addrArray[0].getStreetName();
                 var streetSuffix = addrArray[0].getStreetSuffix();
                 var zip = addrArray[0].getZip();
+				AddrUnit = addrArray[0].getUnitStart();
+				
+				//Get Subdivision
+				Subdivision = aa.parcel.getParcelDailyByCapID(capId,null).output[0].parcelModel.subdivision; 
             
                 Address = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
                 }
 
+				//Get Invoice Number
+				var invoices = aa.finance.getInvoiceByCapID(capId, null).getOutput();
+				var feecodes = ['USF050','USF060','USF070','USF080','USF090','USF100','USF110']
+				var foundInvoices = '';
+    
+				for(i in invoices) {
+					var thefees = aa.invoice.getFeeItemInvoiceByInvoiceNbr(invoices[i].invNbr);
+					if(thefees.getSuccess()) {
+						var fees = thefees.output;
+						for(f in fees) {
+							if(fees[f].feeitemStatus == 'INVOICED' && IsStrInArry(fees[f].feeCode, feecodes))
+							{
+								if(foundInvoices.indexOf(invoices[i].invNbr) == -1)
+									foundInvoices = foundInvoices + invoices[i].invNbr + ', ';
+							} 
+						} 
+					} 
+				}
+				foundInvoices = foundInvoices.substring(0, foundInvoices.length - 2); 
+				
                 //Get balance due
                 var BalanceDue = balanceDue;
                     if (BalanceDue > 0) 
@@ -136,7 +164,10 @@ try {
                     addParameter(vEParams,"$$QtyofMeters$$",QtyofMeters);
                     addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
                     addParameter(vEParams,"$$Comments$$",Comments);
-
+                    addParameter(vEParams,"$$Unit$$",addrUnit);
+                    addParameter(vEParams,"$$Subdivision$$",subDivision);
+                    addParameter(vEParams,"$$InvoiceNbr$$",foundInvoices);
+					
                 //Send Email if conditions are correct
                 if(ServiceTypeFlag == 1 && BalanceDueFlag != 1)
                 {
