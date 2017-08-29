@@ -68,8 +68,9 @@ try {
                         if(ClearanceDate == CurrentDate)
                         {
                         ServiceType = (tInfo[x]["Service Type"]);
-                        if(ServiceType == "Water Meter: Domestic" || ServiceType == "Water Meter: Landscaping"|| ServiceType == "Water Meter: Landscaping" || ServiceType == "Water Service")
+                        if(ServiceType == "Water Meter: Domestic" || ServiceType == "Water Meter: Landscaping" || ServiceType == "Water Service")
                             {
+								logDebug("Service Type = " + ServiceType);
                             ServiceTypeFlag = 1;
                             i = i + 1;
                                 if(i == 1)
@@ -122,8 +123,10 @@ try {
 				
 				//Get Subdivision
 				Subdivision = aa.parcel.getParcelDailyByCapID(capId,null).output[0].parcelModel.subdivision; 
+				logDebug("Subdivision = " + Subdivision);
             
                 Address = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+				logDebug("Address = " + Address);
                 }
 
 				//Get Invoice Number
@@ -145,6 +148,7 @@ try {
 					} 
 				}
 				foundInvoices = foundInvoices.substring(0, foundInvoices.length - 2); 
+				logDebug("Invoices = " + foundInvoices);
 				
                 //Get balance due
                 var BalanceDue = balanceDue;
@@ -172,6 +176,7 @@ try {
                 if(ServiceTypeFlag == 1 && BalanceDueFlag != 1)
                 {
                 ToEmail = lookup("EMAIL_RECIPIENTS","City_of_Mesa_Utility");
+				logDebug("ToEmail = " + ToEmail);
                 sendNotification(FromEmail, ToEmail, "", "PMT_WATER_CLEARANCE2", vEParams, null, capId);
                 }  
 
