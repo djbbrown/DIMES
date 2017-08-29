@@ -123,10 +123,10 @@ try {
 				
 				//Get Subdivision
 				Subdivision = aa.parcel.getParcelDailyByCapID(capId,null).output[0].parcelModel.subdivision; 
-				logDebug("Subdivision = " + Subdivision);
+				//logDebug("Subdivision = " + Subdivision);
             
                 Address = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
-				logDebug("Address = " + Address);
+				//logDebug("Address = " + Address);
                 }
 
 				//Get Invoice Number
@@ -148,7 +148,7 @@ try {
 					} 
 				}
 				foundInvoices = foundInvoices.substring(0, foundInvoices.length - 2); 
-				logDebug("Invoices = " + foundInvoices);
+				//logDebug("Invoices = " + foundInvoices);
 				
                 //Get balance due
                 var BalanceDue = balanceDue;
@@ -169,14 +169,14 @@ try {
                     addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
                     addParameter(vEParams,"$$Comments$$",Comments);
                     addParameter(vEParams,"$$Unit$$",AddrUnit);
-                    addParameter(vEParams,"$$Subdivision$$",subDivision);
+                    addParameter(vEParams,"$$Subdivision$$",Subdivision);
                     addParameter(vEParams,"$$InvoiceNbr$$",foundInvoices);
 					
                 //Send Email if conditions are correct
                 if(ServiceTypeFlag == 1 && BalanceDueFlag != 1)
                 {
                 ToEmail = lookup("EMAIL_RECIPIENTS","City_of_Mesa_Utility");
-				logDebug("ToEmail = " + ToEmail);
+				//logDebug("ToEmail = " + ToEmail);
                 sendNotification(FromEmail, ToEmail, "", "PMT_WATER_CLEARANCE2", vEParams, null, capId);
                 }  
 
