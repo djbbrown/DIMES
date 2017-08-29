@@ -70,7 +70,7 @@ try {
                         ServiceType = (tInfo[x]["Service Type"]);
                         if(ServiceType == "Water Meter: Domestic" || ServiceType == "Water Meter: Landscaping" || ServiceType == "Water Service")
                             {
-								logDebug("Service Type = " + ServiceType);
+							//logDebug("Service Type = " + ServiceType);
                             ServiceTypeFlag = 1;
                             i = i + 1;
                                 if(i == 1)
