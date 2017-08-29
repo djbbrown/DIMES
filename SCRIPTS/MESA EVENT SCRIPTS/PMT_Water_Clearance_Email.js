@@ -168,7 +168,7 @@ try {
                     addParameter(vEParams,"$$QtyofMeters$$",QtyofMeters);
                     addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
                     addParameter(vEParams,"$$Comments$$",Comments);
-                    addParameter(vEParams,"$$Unit$$",addrUnit);
+                    addParameter(vEParams,"$$Unit$$",AddrUnit);
                     addParameter(vEParams,"$$Subdivision$$",subDivision);
                     addParameter(vEParams,"$$InvoiceNbr$$",foundInvoices);
 					
