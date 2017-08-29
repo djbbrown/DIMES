@@ -23,6 +23,8 @@
 //		ASIUA;Transportation!Temporary Traffic Control!~!~
 //             
 /*==================================================================*/
+// Date      |Engineer         |Details
+// 08/29/17  |Suzanna Majchrzak|Fix Issue 586 with Comparing Dates
 
 /* test with TTC16-00024 => no records */
 /* test with TTC16-00026,  TTC16-00055 */
@@ -35,18 +37,26 @@ try
 
 	// if there is one (or more), get the value of the most current Restriction End Date field
 	if (tbl.length > 0) {
-		var resStartDate = tbl[0]["Restriction Start Date"]; // init before loop
+		var resStartASIDate = tbl[0]["Restriction Start Date"]; // init before loop
+
 		for (row in tbl) {
-			tempStartDate = tbl[row]["Restriction Start Date"];
-			logDebug("tempStartDate: " + tempStartDate);
-			if (tempStartDate < resStartDate) {  resStartDate = tempStartDate; } // get most current date
+			var tempStartASIDate = tbl[row]["Restriction Start Date"];
+			var dTaskDate = new Date(tempStartASIDate);
+			var resStartDate = new Date(resStartASIDate);
+
+			if (dTaskDate < resStartDate) {  
+				resStartASIDate = tempStartASIDate; 
+				logDebug("tempStartDate: " + resStartASIDate);
+			//	logDebug("tempStartDate: 2" + resStartDate);
+			} // get most current date
 		}
 
 		//logDebug("Current Permit Start Date: " + getAppSpecific("Permit Start Date"));
-		//logDebug("Updating Permit Start Date to: " + resStartDate);
-		editAppSpecific("Permit Start Date", resStartDate);
+		//logDebug("Updating Permit Start Date to: " + resStartASIDate);
+		editAppSpecific("Permit Start Date", resStartASIDate);
 		//logDebug("Permit Start Date updated to: " + getAppSpecific("Permit Start Date"));
 	} // else no records in ASIT, so no restriction end date to pull, so nothing to calculate permit date from.
+	
 }
 catch (err)
 {
