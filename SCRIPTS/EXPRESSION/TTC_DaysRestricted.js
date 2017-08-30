@@ -130,7 +130,7 @@ function calendarDates(sDate,eDate,aCal,aDayEx){
 		// IF the name of the calendar is included in the list we need the
 		// events from that calendar
 		if(exists(calNames[x].getCalendarName().toUpperCase(),aCal)){
-			for(a = 0; a <= monthsBetween; a++){	
+			for(a = 0; a <= monthsBetween; a++){
 				calE = aa.calendar.getEventSeriesByCalendarID(calNames[x].getCalendarID(),sDate2.getFullYear(),sDate2.getMonth()+a).getOutput();
 				for(b in calE){
 					// Get the event details
@@ -148,7 +148,7 @@ function calendarDates(sDate,eDate,aCal,aDayEx){
 		}
 	}
 	if(sDate2 == eDate2){
-		return 0;
+		return 1;
 	} else {
 	return dArray // Return the Date that can be used as a working day.
 	}
@@ -175,9 +175,27 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 		variable4=expression.getValue(rowIndex, "ASIT::DURATION INFORMATION::Saturday Restriction");
 		variable5=expression.getValue(rowIndex, "ASIT::DURATION INFORMATION::Sunday Restriction");
 		variable6=expression.getValue(rowIndex, "ASIT::DURATION INFORMATION::City Holiday Restriction");
-		if(variable0.value!=null && !formatDate(variable0.value,'yyyy/MM/dd').equals(formatDate(null,'yyyy/MM/dd')) && variable1.value!=null && !formatDate(variable1.value,'yyyy/MM/dd').equals(formatDate(null,'yyyy/MM/dd'))){
-			holidays = calendarDates(variable1.value.toString(),variable0.value.toString(),['WORKDAY CALENDAR'],['HOLIDAY']);
-			//variable2.message = holidays.toString();
+		if(
+			variable0.value!=null &&
+			!formatDate(variable0.value,'yyyy/MM/dd').equals(formatDate(null,'yyyy/MM/dd')) &&
+			variable1.value!=null &&
+			!formatDate(variable1.value,'yyyy/MM/dd').equals(formatDate(null,'yyyy/MM/dd'))
+		)
+		{
+			holidays = calendarDates(variable1.value.toString(),variable0.value.toString(),['WORKDAY CALENDAR'
+				//,'AGENCY WORKDAY','AGENCY HOLIDAY'
+			],['HOLIDAY']);
+			// Check for Calendars
+			/*
+			calCheck = aa.calendar.getCalendarNames().getOutput()
+			a = 'x';
+			for(d in calCheck){
+				a = a+', '+d+': '+calCheck[d].getCalendarName();
+			}
+			//variable2.message = 'a: '+holidays.toString();
+			variable2.message = 'a: '+a;
+			expression.setReturn(rowIndex,variable2);
+			//*/
 		//variable4.message=variable4.value;
 		//expression.setReturn(rowIndex,variable4);
 		//fromDate = convertDate(variable1);
@@ -190,6 +208,12 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 		//variable0.message = variable0.value;
 		expression.setReturn(rowIndex,variable0);
 		daysBetween = diffDate(variable1.value.toString(),variable0.value.toString());
+		if(variable1.value.toString() != variable0.value.toString()){
+			daysBetween +=1;
+		}
+                else if(variable1.value.toString() == variable0.value.toString()){
+			daysBetween =1;
+		}
 		//variable2.message = daysBetween;
 		monthsBetween = monthDiff(variable1.value.toString(),variable0.value.toString()); // Confirmed working
 		var arrayLength;
@@ -201,7 +225,7 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 		var checkingDate;
 		var checkingDateDate;
 		var sundays = new Array();
-		for(x = 0; x <= daysBetween; x++){
+		for(x =0 ; x < daysBetween; x++){
 			checkingDate = new Date(addDays(sDate,x));
 			checkingDateDate = new Date(convertDate(checkingDate));
 			var dHoliday = false;
@@ -227,18 +251,28 @@ for(var rowIndex=0; rowIndex<totalRowCount; rowIndex++){
 				dayCount++;
 			}
 			// Holiday Restrictions
+			/*
+				Please note that to use the "Holiday Restrictions" you must use the "Calander Admin" in "Classic" adding the Holidays to "WORKDAY CALENDAR"
+				- Go to Classic Admin
+				- Hover over "Calendar"
+				- Select "Calendar" from the dropdown list
+				- Select "Submit" to show all calendars
+				- "Select" "WORKDAY CALENDAR"
+				- "Add Event" as needed to add all "Holidays"
+			//*/
 			else if(
-				1==1
-				&& exists(checkingDateDate.toString(),holidays)
+				1==1			
+                                && exists(checkingDateDate.toString(),holidays)
 				&& variable6.value.toString()=='Yes'
 			){
 				dayCount++;
 			}
+                           
 		}
 		// holidays = calendarDates('11/01/2016','12/01/2016',['WORKDAY CALENDAR'],['HOLIDAY']);
 		// variable2.message = holidays.toString();
 		variable2.value = dayCount;
-		//variable3.message = sundays.toString();
+		//variable2.message = sundays;
 		expression.setReturn(rowIndex,variable2);
 		//expression.setReturn(rowIndex,variable3);
 	}}
