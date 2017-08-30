@@ -48,12 +48,16 @@ try {
 		
 		//logDebug("ToEmail = " + ToEmail);
 		
+		//Get Address
+		var addr = getAddress(capId);
+		logDebug("Address = " + addr);
+		
         //Add Params
         addParameter(vEParams,"$$RECORDID$$",capIDString);
-        addParameter(vEParams,"$$WORKFLOWSTEP$$",wfTask);
-        //addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
+        //addParameter(vEParams,"$$WORKFLOWSTEP$$",wfTask);
+        addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
 		addParameter(vEParams,"$$WORKFLOWCOMMENT$$",wfComment);
-		addParameter(vEParams,"$$ADDRESS$$",getAddress(capId));
+		addParameter(vEParams,"$$ADDRESS$$",addr);
 		
         //Send email
         if(ToEmail){
