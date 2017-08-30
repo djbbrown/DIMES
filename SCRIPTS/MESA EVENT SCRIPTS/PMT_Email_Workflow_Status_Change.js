@@ -48,16 +48,32 @@ try {
 		
 		//logDebug("ToEmail = " + ToEmail);
 		
-		//Get Address
-		var addr = getAddress(capId);
-		logDebug("Address = " + addr);
+		//Get the address
+		var capAddResult = aa.address.getAddressByCapId(capId);
+		if (capAddResult.getSuccess())
+		{
+			var addrArray = new Array();
+			var addrArray = capAddResult.getOutput();
+			if (addrArray.length==0 || addrArray==undefined)
+			{
+				logDebug("The current CAP has no address.")
+			}
+      
+			//Break Out each element of the address
+			var hseNum = addrArray[0].getHouseNumberStart();
+			var streetDir = addrArray[0].getStreetDirection();
+			var streetName = addrArray[0].getStreetName();
+			var streetSuffix = addrArray[0].getStreetSuffix();
+		}
+ 
+		var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
 		
         //Add Params
         addParameter(vEParams,"$$RECORDID$$",capIDString);
         //addParameter(vEParams,"$$WORKFLOWSTEP$$",wfTask);
         addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
 		addParameter(vEParams,"$$WORKFLOWCOMMENT$$",wfComment);
-		addParameter(vEParams,"$$ADDRESS$$",addr);
+		addParameter(vEParams,"$$ADDRESS$$",theAddress);
 		
         //Send email
         if(ToEmail){
