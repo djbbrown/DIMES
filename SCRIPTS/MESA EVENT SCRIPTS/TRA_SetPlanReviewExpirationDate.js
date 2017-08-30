@@ -19,11 +19,11 @@
 
 try
 {
-  var theDate = new Date(AInfo["Application Date"]);
+  var theDate = AInfo["Application Date"];
   var planReviewDays = parseInt(AInfo["Plan Review Days"]);
 
   // fix for when no date is in system
-  if (theDate.getYear() <= 2016)
+  if (theDate == null)
   {
     var today = new Date();
     var currentTime = new Date().getHours();
