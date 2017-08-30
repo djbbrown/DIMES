@@ -16,7 +16,7 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |11/22/16  |Steve Veloudos   |Initial Release
 //  2.0      |07/07/17  |Kevin Gurney	  |Updated to retrieve info notification template info and only send email when app status changes
-//  3.0      |08/25/17  |Steve Allred     |Removed wfStatus parm and added addr parm (address)
+//  3.0      |08/25/17  |Steve Allred     |Removed workflowstep parm and added addr parm (address)
 /*==================================================================*/
 
 try {
@@ -49,6 +49,7 @@ try {
 		//logDebug("ToEmail = " + ToEmail);
 		
 		//Get the address
+		var theAddress = "";
 		var capAddResult = aa.address.getAddressByCapId(capId);
 		if (capAddResult.getSuccess())
 		{
@@ -64,10 +65,9 @@ try {
 			var streetDir = addrArray[0].getStreetDirection();
 			var streetName = addrArray[0].getStreetName();
 			var streetSuffix = addrArray[0].getStreetSuffix();
+			theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
 		}
- 
-		var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
-		
+ 		
         //Add Params
         addParameter(vEParams,"$$RECORDID$$",capIDString);
         //addParameter(vEParams,"$$WORKFLOWSTEP$$",wfTask);
