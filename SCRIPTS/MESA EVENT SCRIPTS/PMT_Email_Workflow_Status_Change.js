@@ -65,7 +65,14 @@ try {
 			var streetDir = addrArray[0].getStreetDirection();
 			var streetName = addrArray[0].getStreetName();
 			var streetSuffix = addrArray[0].getStreetSuffix();
-			theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+			if (streetSuffix != "" && streetSuffix != null)
+			{
+				theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
+			}
+			else
+			{
+				theAddress = hseNum + " " + streetDir + " " + streetName;
+			}
 		}
  		
         //Add Params
