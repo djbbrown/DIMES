@@ -18,11 +18,12 @@ try {
       var UnpaidBalance;
 
       //Get balance due not invoiced fees
-      UnpaidBalance = getUnpaidFeeBalance();
+      //UnpaidBalance = getUnpaidFeeBalance();
       
       //Get balance due 
-       balance = balanceDue;
-       if(balance > 0 || UnpaidBalance > 0)
+       //balance = balanceDue;
+       //if(balance > 0 || UnpaidBalance > 0)
+		if(balanceDue > 0 || feeTotalByStatus('NEW') > 0)
        {
          BalanceDueFlag = 1;  
        }
