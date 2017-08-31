@@ -24,7 +24,15 @@ try {
 		wfStatusChngResult = getWorkflowTaskAppStatus(wfTask,wfStatus);
 		if(wfStatusChngResult !=null) {
         var ToEmail = "";
-        var vEParams = aa.util.newHashtable();
+		var vEParams = aa.util.newHashtable();
+		
+		var vFeesDuesTxt = "Please log into your account and review any conditions required prior to permit issuance. \
+		Once you have paid all fees and met conditions please email: ";
+
+		emailAddress = lookup("EMAIL_RECIPIENTS", "PERMIT_SERVICES");
+
+		vFeesDuesTxt = vFeesDuesTxt + emailAddress + ' to have permit issued.';
+
       
 		//retrieve template information
 		var tmpl = aa.communication.getNotificationTemplate("PMT_WORKFLOW_STATUS_CHANGE").getOutput();
@@ -81,6 +89,17 @@ try {
         addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
 		addParameter(vEParams,"$$WORKFLOWCOMMENT$$",wfComment);
 		addParameter(vEParams,"$$ADDRESS$$",theAddress);
+
+		if ( wfStatus == "Fees Due"){
+            addParameter(vEParams, "$$FEESDUE$$", vFeesDuesTxt);
+        }
+        else {
+            //if no fees due default to empty text
+            addParameter(vEParams, "$$FEESDUE$$", "");
+        }
+
+        logDebug('paramater: '+vEParams);
+		
 		
         //Send email
         if(ToEmail){
