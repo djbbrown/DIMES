@@ -14,25 +14,20 @@
 // 
 //==================================================================*/
 /* intellisense references */
-/
+//
 
 //Start Script 
 try 
  {
-var capStatusCheck = false;
-if (capStatus == "Fees Due") {
-	var capStatusCheck = true;
-}
-	comment("capStatusCheck = " + capStatusCheck);
 
-if ((capStatusCheck) && balanceDue == 0) 
+if (capStatus == "Fees Due" && balanceDue == 0) 
 	{
-		updateTask("Permit Issuance", "Fees Paid", "Updated by PRA event", "Updated by PRA event");
-		updateTask("Final Decision", "Fees Paid", "Updated by PRA event", "Updated by PRA event");
+		updateAppStatus("Fees Paid","Set via script")
 		comment("All fees have been paid.  Balance is $0.00");
         
     }
 
+ 
  
  }
  catch (err) 
