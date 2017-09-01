@@ -17,11 +17,15 @@
 /
 
 //Start Script 
+try 
+ {
+var capStatusCheck = false;
+if (capStatus == "Fees Due") {
+	var capStatusCheck = true;
+}
+	comment("capStatusCheck = " + capStatusCheck);
 
-try
-{
-
-if (capStatus == "Fees Due" && balanceDue == 0) 
+if ((capStatusCheck) && balanceDue == 0) 
 	{
 		updateTask("Permit Issuance", "Fees Paid", "Updated by PRA event", "Updated by PRA event");
 		updateTask("Final Decision", "Fees Paid", "Updated by PRA event", "Updated by PRA event");
