@@ -21,12 +21,12 @@
 try
 {
 var wfTaskStatusCheck = false;
-if (capStatus == "Fees Due" && (isTaskActive("Permit Issuance") || isTaskActive("Final Decision")) && balanceDue == 0) 
+if (capStatus == "Fees Due" && isTaskActive("Final Decision") && balanceDue == 0) 
 	{
 	var wfTaskStatusCheck = true;
 	}        
     {
-        updateTask("Permit Issuance", "Fees Paid", "Updated by PRA event", "Updated by PRA event");
+        //updateTask("Permit Issuance", "Fees Paid", "Updated by PRA event", "Updated by PRA event");
 		updateTask("Final Decision", "Fees Paid", "Updated by PRA event", "Updated by PRA event");
 		comment("All fees have been paid.  Balance is $0.00");
         
