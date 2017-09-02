@@ -14,7 +14,7 @@ try {
       var FromEmail = "noreply@mesaaz.gov";
 	  var ToGenEmail;
 	  var ToROWEmail = lookup("EMAIL_RECIPIENTS","ENG_ChiefInspectors");
-      var ToEmail = lookup("EMAIL_RECIPIENTS","Traffic_Engineer");
+      var ToTrafficEngEmail = lookup("EMAIL_RECIPIENTS","Traffic_Engineer");
 	  var toUTL = lookup("EMAIL_RECIPIENTS","ENG_UTL_Email");
 	  var AppToEmail = "";
       var vEParams = aa.util.newHashtable();
@@ -99,6 +99,7 @@ try {
 			var REnd = String(RestrictionEnd);
 			var DDesc = String(DetailedDesc);
 			var TRestriction = String(TrafficRestriction);
+			var TrafficEng = String(ToTrafficEngEmail)
 						
 		
 
@@ -110,6 +111,7 @@ try {
 				addParameter(vEParams,"$$DETAILEDDESCRIPTION$$",DDesc);
 				addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);
 				addParameter(vEParams,"$$URLOFRECORDID$$",Url);
+				addParameter(vEParams,"$$TRAFFICENGINEER$$",TrafficEng);
 		
 			//Get other contact Info
 			OtherContact = AInfo["Department/Company Contact Email Address"]
@@ -152,11 +154,11 @@ try {
 			}     
 			
 			//Add Contacts
-                 ToGenEmail =  ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
+                 ToGenEmail =  AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
 
-				 //toUTL =  toUTL + "," + ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact;
+				 toUTL =  toUTL + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
 				 
-				 ToROWEmail = ToROWEmail + "," + ToEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + EngInsp + "," + OtherContact;
+				 ToROWEmail = ToROWEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
 			
 			//Send email
                 if(PermitIssued == 1)
