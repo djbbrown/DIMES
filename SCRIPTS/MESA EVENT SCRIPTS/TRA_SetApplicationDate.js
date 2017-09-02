@@ -18,16 +18,26 @@
 
 try
 {
-  var today = new Date();
-  var currentTime = new Date().getHours();
+  var today = new Date(mesaWorkingDays);
+  var currentTime = new Date().getHours
+  
+      //get the NextBusDate
+  var nextBusDate = new Date(mesaWorkingDays(today, 1));
 
   if (currentTime >= 11)
   {
-    today.setDate(today.getDate() + 1);
+    nextBusDate.setDate(nextBusDate.getDate());
+	
+	editAppSpecific("Application Date",jsDateToASIDate(nextBusDate),capId)
+	comment("Application Date set to: " + jsDateToASIDate(nextBusDate));
+	
   }
-
-  editAppSpecific("Application Date",jsDateToASIDate(today),capId)
-  comment("Application Date set to: " + jsDateToASIDate(today));
+	else 
+	{
+		today.setDate(today.getDate() + 1);	
+		editAppSpecific("Application Date",jsDateToASIDate(today),capId)
+		comment("Application Date set to: " + jsDateToASIDate(today));
+	}
 }
 catch (err)
 {
