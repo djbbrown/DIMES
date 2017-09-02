@@ -26,7 +26,7 @@ try
 
   if (currentTime >= 11)
   {
-    nextBusDate.setDate(nextBusDate.getDate());
+    nextBusDate.setDate(nextBusDate.getDate()+ 0);
 	
 	editAppSpecific("Application Date",jsDateToASIDate(nextBusDate),capId)
 	comment("Application Date set to: " + jsDateToASIDate(nextBusDate));
