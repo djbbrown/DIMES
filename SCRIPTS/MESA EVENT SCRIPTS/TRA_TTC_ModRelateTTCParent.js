@@ -39,6 +39,16 @@ try
     {
       addParent("" + ttcParent);
     }
+	
+	 else
+    {
+      { showDebug=false; }
+      
+      commentBlah = "Please enter a valid Temporary Traffic Control parent permit number";
+      showMessage = true;
+      comment(commentBlah);
+      cancel = true;  
+    }
 
   }
 
