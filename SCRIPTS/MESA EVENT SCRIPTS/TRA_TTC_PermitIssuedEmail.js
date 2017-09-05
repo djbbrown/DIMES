@@ -34,18 +34,21 @@ try {
 	  var OtherContact;
 	  var PermitIssued = 0;
       
-	  
-	  if(capStatus == "Issued")
-      {
-      PermitIssued = 1;
-      }      
-      //Get WF Task
-       var tasks = aa.workflow.getTasks(capId).getOutput();
-       for (t in tasks) 
-        {
-            //Check task name and status
-            if (tasks[t].getDisposition() == tStatus && tasks[t].getTaskDescription() == tName)
+	   //Iterate through workflows
+      var tasks = aa.workflow.getTasks(capId).getOutput();
+      for (t in tasks) 
             {
+            //Look for Permit Issuance
+            if (tasks[t].getTaskDescription() == "Permit Issuance")
+                { 
+                    //Set flag if permit issued
+                    if(tasks[t].getDisposition() == "Issued")
+                    {
+                    PermitIssued = 1; 
+                    }
+                }
+            }
+	  
        
        
 			//Get the address
@@ -179,9 +182,9 @@ try {
 												
 				}
 				
-			}	
+				
 
-		}				
+						
 	}
 		
         
