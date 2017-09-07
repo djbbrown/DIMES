@@ -20,7 +20,7 @@ function getEnforcementInspectorId() // optional altId
         capId = aa.cap.getCapID(arguments[0]).getOutput(); // this is expected in getGisInfo
     }
 
-    var inspector = getGISInfo("Accela/AccelaBoundaries", "Code_Officer_Boundary", "CODE_OFFICER");  //Code
+    var inspector = getGISInfo("Accela/Accela_Base", "Code_Officer_Boundary", "CODE_OFFICER");  //Code
     
     if (inspector) 
     {
