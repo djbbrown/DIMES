@@ -3,4 +3,5 @@ if (publicUser){
 	include("ENF_Record_Opened");
 	include("ENF_AutopopulateZoningDistrict");
 	include("ENF_CountyIslandEmail");
+	include("ENF_NewRecordPriorityNormal"); // 26	
 }
