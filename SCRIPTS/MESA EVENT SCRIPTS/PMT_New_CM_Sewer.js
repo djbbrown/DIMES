@@ -47,8 +47,11 @@ try {
             if (codeOfficer != false) 
                 {
                 InsName  = codeOfficer.getFullName();
+				logDebug("Inspector = " + InsName);
                 }
-            
+			InsName = inspInspector;
+            logDebug("Inspector = " + InsName);
+			
             //Get the inspection date         
             InsDate = inspResultDate;
                         
