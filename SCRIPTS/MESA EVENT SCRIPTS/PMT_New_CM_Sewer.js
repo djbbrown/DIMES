@@ -52,7 +52,7 @@ try {
 				var InspectorLastName = inspInspectorObj.getLastName();
 			} 
 
-			insName = InspectorFirstName + " " + InspectorLastName;
+			InsName = InspectorFirstName + " " + InspectorLastName;
             logDebug("InspectorName = " + InspectorFirstName + " " + InspectorLastName);
 			
             //Get the inspection date         
