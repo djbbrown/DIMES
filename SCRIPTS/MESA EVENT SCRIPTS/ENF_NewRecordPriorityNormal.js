@@ -30,8 +30,8 @@ try
 {    
 //    var priority = getRecordPriority();
 //    logDebug("Priority: " + priority);
-    if (priority != false && priority == "Normal")
-    {
+  //  if (priority != false && priority == "Normal")
+  //{
 
 	// see if the initial inspection has already been Scheduled
 	var inspExist = doesInspectionExist("Initial Inspection");
@@ -60,11 +60,11 @@ try
 	{
 		logDebug("Initial Inspection has already been scheduled.")
 	}
-    }
-    else 
-    {
-        logDebug("Criteria not met.")
-    }
+  //  }
+  //  else 
+  //  {
+  //      logDebug("Criteria not met.")
+// }
 }
 catch (err)
 {
