@@ -39,18 +39,21 @@ try {
         }
 
         //Check the inspection & results
-        if (inspType.toUpperCase() == "SEWER TO BUILDING"  && inspResult.toUpperCase() == "APPROVED")
+        if (InComSewer == 1 && inspType.toUpperCase() == "SEWER TO BUILDING"  && inspResult.toUpperCase() == "APPROVED")
         {
             
-            //Get the inspectors info
-            var codeOfficer = getInspectorObject();
-            if (codeOfficer != false) 
-                {
-                InsName  = codeOfficer.getFullName();
-				logDebug("Inspector = " + InsName);
-                }
-			InsName = inspInspector;
-            logDebug("Inspector = " + InsName);
+            //Get the inspector's name
+			var inspID = getLastInspector(inspType);
+			logDebug("InspectorID = " + inspID);
+			
+            inspInspectorObj = aa.person.getUser(inspID).getOutput();
+			if (inspInspectorObj) {
+				var InspectorFirstName = inspInspectorObj.getFirstName();
+				var InspectorLastName = inspInspectorObj.getLastName();
+			} 
+
+			insName = InspectorFirstName + " " + InspectorLastName;
+            logDebug("InspectorName = " + InspectorFirstName + " " + InspectorLastName);
 			
             //Get the inspection date         
             InsDate = inspResultDate;
