@@ -13,10 +13,10 @@ try {
 	   var ServType;
 
        //Check Workflow
-       if(wfTask == "Permit Issuance" && wfStatus == "Issued")
+       if (wfTask == "Permit Issuance" && wfStatus == "Issued")
        {
 		   //Commercial and Residential
-		   If (appMatch("Permits/Commercial/NA/NA") || appMatch("Permits/Residential/NA/NA")) 
+		   if (appMatch("Permits/Commercial/NA/NA") || appMatch("Permits/Residential/NA/NA")) 
 		   {
 			   //Check for Water Meters in Utility Service Information ASIT
 				loadASITables();
@@ -38,7 +38,7 @@ try {
 		   }
 
 		   //Mobile Home
-		   If (appMatch("Permits/Residential/Mobile Home/NA")) 
+		   if (appMatch("Permits/Residential/Mobile Home/NA")) 
 		   {
 			   //Check for Water Meters in Utility Service Information ASIT
 				loadASITables();
