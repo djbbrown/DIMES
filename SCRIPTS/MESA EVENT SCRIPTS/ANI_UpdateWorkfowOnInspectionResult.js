@@ -25,6 +25,7 @@ try
 		// update WF task
 		//setTask("Animal Control Officer", "Y", "N");
 		updateTask("Animal Control Officer", status, "Updated by script.", "Updated by script.");
+		setTask("Animal Control Officer", "N", "Y");
 	}
 }
 catch (err)
