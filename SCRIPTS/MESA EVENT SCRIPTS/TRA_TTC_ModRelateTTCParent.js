@@ -21,7 +21,7 @@ try
   var goodParent = false;
   var commentBlah = "";
 
-  if (ttcParent != null){
+  
   
   if (getCapResult.getSuccess())
   {
@@ -30,7 +30,7 @@ try
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
     //comment("seCapTypeStr: " + seCapTypeStr);
     
-    if ((seCapTypeStr == "Transportation/Temporary Traffic Control/NA/NA") && capStatus == "Issued")
+    if ((seCapTypeStr == "Transportation/Temporary Traffic Control/NA/NA"))
     {
       goodParent = true;
     }   
@@ -51,26 +51,9 @@ try
     }
 
   }
-	else 
-	{
-      { showDebug=false; }
-      
-      commentBlah = "Please enter a valid Temporary Traffic Control parent permit number";
-      showMessage = true;
-      comment(commentBlah);
-      cancel = true;  
-    }	
-  }
-  else
-	  {
-      { showDebug=false; }
-      
-      commentBlah = "Please enter a valid Temporary Traffic Control parent permit number";
-      showMessage = true;
-      comment(commentBlah);
-      cancel = true;  
-    }
-	
+
+ 
+
 }
 catch (err)
 {
