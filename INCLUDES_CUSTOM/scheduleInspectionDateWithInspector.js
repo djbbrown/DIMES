@@ -31,7 +31,7 @@ function scheduleInspectionDateWithInspector(iType, dateToSched, inspectorID )
 	}
 	else
 	{
-		logDebug( "**ERROR: adding scheduling inspection (" + iType + "): " + schedRes.getErrorMessage());
-
+		logDebug( "**ERROR: adding scheduling inspection (" + iType + "): " + " Inspector ID: " + inspectorID + " Date to Schedule: " + dateToSched + " " + schedRes.getErrorMessage());
+		
 	}
 }
