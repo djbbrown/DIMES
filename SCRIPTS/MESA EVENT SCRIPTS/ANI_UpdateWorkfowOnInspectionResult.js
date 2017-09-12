@@ -25,7 +25,8 @@ try
 		// update WF task
 		//setTask("Animal Control Officer", "Y", "N");
 		updateTask("Animal Control Officer", status, "Updated by script.", "Updated by script.");
-		closeWorkflow();
+		var capID = getCapId();
+		closeWorkflow(capID);
 	}
 }
 catch (err)
