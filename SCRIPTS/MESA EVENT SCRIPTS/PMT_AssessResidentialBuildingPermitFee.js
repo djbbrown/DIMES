@@ -25,7 +25,7 @@ var residential = ["Single Family (Detached)", "Single Family (Attached)", "Two-
                    "Remodeling With Addition", "Renovations/Remodels", "Additions", "Garage/Carport", "Non-Structural",
                    "Fire Sprinklers", "Fire Alarms", "Mechanical", "Plumbing", "Electrical", "Storage Shed/Barn"];
 // Mobile Home Type of Work Check
-var mobileHome = ["Mobile Home Other Addition"];
+var mobileHome = ["Mobile Home Other Addition", "Park Model Other Addition"];
 // Online Type of Work Check.
 var Online = ["Residential Electrical 200a or smaller", "Residential Electrical Repair (Like for Like)", "Residential Gas Pressure","Residential Gas Line Repair/Replace"];
 if(appTypeArray[1]=='Online' && wfTask == "Application Submittal" && wfStatus == "Ready To Issue" && exists(typeOfWork,Online))
