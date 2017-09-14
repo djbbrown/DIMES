@@ -216,7 +216,7 @@ function mainProcess() {
 		appTypeString = appTypeResult.toString();	
 		appTypeArray = appTypeString.split("/");
 
-		if (appTypeString != "Permits/Commercial/Annual Facilities/NA" && (appTypeArray[0] == "Permits" || appTypeArray[0] == "Engineering" || appTypeString == "Transportation/Temporary Traffic Control/NA/NA")) {
+		if (appTypeString != "Permits/Commercial/Annual Facilities/NA" && (appTypeArray[0] == "Permits" || appTypeArray[0] == "Engineering")) {
 			var tasks = aa.workflow.getTasks(capId).getOutput();
 			for (t in tasks) {
 				//aa.print(tasks[t]);
