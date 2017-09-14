@@ -10,8 +10,8 @@
 ===========================================================================================================*/
 /*
 //
-//  DATE        ENGINEER          Description
-//  09/14/2017  Steve Allred      Modified the date range to be at least one week out
+//  DATE        ENGINEER          DESCRIPTION
+//  09/14/2017  Steve Allred      #331 - Modified the date range to be at least one week out
 //
 ===========================================================================================================
 */
