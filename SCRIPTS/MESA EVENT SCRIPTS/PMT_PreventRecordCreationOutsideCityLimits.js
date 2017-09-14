@@ -38,7 +38,7 @@ try {
 
 	if(GisFlag == 1)
     {
-        //if (publicUser) { showDebug=false; }
+        if (publicUser) { showDebug=false; }
 		showMessage = true;
         comment("A permit cannot be created for a property that is not within Mesa city limits!"); 
         cancel = true;
