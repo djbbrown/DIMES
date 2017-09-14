@@ -16,5 +16,5 @@
 if (inspResult == "Roll Over") {
 	// get the last inspector's ID
 	var inspectorId = getLastInspector(inspType);
-	scheduleInspectionDateWithInspector(inspType, nextWorkDay(), inspectorID);
+	scheduleInspectionDateWithInspector(inspType, nextWorkDay(), inspectorId);
 }
