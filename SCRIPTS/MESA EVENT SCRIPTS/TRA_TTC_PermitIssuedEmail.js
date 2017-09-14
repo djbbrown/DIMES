@@ -35,21 +35,13 @@ try {
 	  var PermitIssued = 0;
 	  
 	  
-	     //Check Record status
-      if(capStatus == "Issued")
+	     //Check WF
+     if (wfTask == "Permit Issuance" && wfStatus == "Issued")
       {
        PermitIssued = 1;
       }
       
-	 //Get WF Task
-       var tasks = aa.workflow.getTasks(capId).getOutput();
-       for (t in tasks) 
-        {
-            //Check task name and status
-            if (tasks[t].getDisposition() == tStatus && tasks[t].getTaskDescription() == tName)
-            { 
-	         
-       
+	     
 			//Get the address
 			var capAddResult = aa.address.getAddressByCapId(capId);
 			if (capAddResult.getSuccess())
@@ -117,7 +109,8 @@ try {
 		
 			//Get other contact Info
 			OtherContact = AInfo["Department/Company Contact Email Address"]
-
+			
+			
 			//Get the contact info
 			var tInfo = getContactArray();
 			var rowCount = tInfo.length;
@@ -183,8 +176,8 @@ try {
 				
 				
 
-			}
-		}		
+			
+				
 	}
 		
         
