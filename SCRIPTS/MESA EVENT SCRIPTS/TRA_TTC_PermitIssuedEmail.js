@@ -33,23 +33,22 @@ try {
 	  var ChiefEngInsp;
 	  var OtherContact;
 	  var PermitIssued = 0;
-      
-	   //Iterate through workflows
-      var tasks = aa.workflow.getTasks(capId).getOutput();
-      for (t in tasks) 
-            {
-            //Look for Permit Issuance
-            if (tasks[t].getTaskDescription() == "Permit Issuance")
-                { 
-                    //Set flag if permit issued
-                    if(tasks[t].getDisposition() == "Issued")
-                    {
-                    PermitIssued = 1; 
-                    }
-                }
-            }
 	  
-       
+	  
+	     //Check Record status
+      if(capStatus == "Issued")
+      {
+       PermitIssued = 1;
+      }
+      
+	 //Get WF Task
+       var tasks = aa.workflow.getTasks(capId).getOutput();
+       for (t in tasks) 
+        {
+            //Check task name and status
+            if (tasks[t].getDisposition() == tStatus && tasks[t].getTaskDescription() == tName)
+            { 
+	         
        
 			//Get the address
 			var capAddResult = aa.address.getAddressByCapId(capId);
@@ -184,7 +183,8 @@ try {
 				
 				
 
-						
+			}
+		}		
 	}
 		
         
