@@ -22,11 +22,20 @@ try {
       var Address;
       var PermitIssued = 0;
 
-      //Find the workflow
-       if (wfTask == "Permit Issuance" && wfStatus == "Issued")
-      {
-       PermitIssued = 1;
-      }
+      //Iterate through workflows
+      var tasks = aa.workflow.getTasks(capId).getOutput();
+      for (t in tasks) 
+            {
+            //Look for Permit Issuance
+            if (tasks[t].getTaskDescription() == "Permit Issuance")
+                { 
+                    //Set flag if permit issued
+                    if(tasks[t].getDisposition() == "Issued")
+                    {
+                    PermitIssued = 1; 
+                    }
+                }
+            }
            
        SigIntersection = AInfo["Signalized Intersection"];
        if(SigIntersection =="Yes")

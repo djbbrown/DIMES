@@ -7,14 +7,7 @@
 // Script Run Event: ASA
 // Script Parents:
 //            ASA;Planning!Pre-Application!NA!NA
-===========================================================================================================*/
-/*
-//
-//  DATE        ENGINEER          DESCRIPTION
-//  09/14/2017  Steve Allred      #331 - Modified the date range to be at least one week out
-//
-===========================================================================================================
-*/
+===================================================================*/
 try {
 	var vMeetingBody = lookup('SetDueDates:Planning/Pre-Application/NA/NA', 'Meeting Body');
 	var vToday = new Date();
@@ -29,7 +22,7 @@ try {
 	//vDateFrom = new Date(dateAdd(vToday, parseInt(vTotalTimeTillHearing)));
 	//vDateTo = new Date(dateAdd(vToday, parseInt(vTotalTimeTillHearing + 31)));
 
-	vDateFrom = new Date(dateAdd(vToday, 7));
+	vDateFrom = new Date(dateAdd(vToday, 0));
 	vDateTo = new Date(dateAdd(vToday, 30));
 	logDebug("FromDate: " + vDateFrom);
 	logDebug("ToDate: " + vDateTo);

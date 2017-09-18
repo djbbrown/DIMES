@@ -33,15 +33,24 @@ try {
 	  var ChiefEngInsp;
 	  var OtherContact;
 	  var PermitIssued = 0;
-	  
-	  
-	     //Check WF
-     if (wfTask == "Permit Issuance" && wfStatus == "Issued")
-      {
-       PermitIssued = 1;
-      }
       
-	     
+	   //Iterate through workflows
+      var tasks = aa.workflow.getTasks(capId).getOutput();
+      for (t in tasks) 
+            {
+            //Look for Permit Issuance
+            if (tasks[t].getTaskDescription() == "Permit Issuance")
+                { 
+                    //Set flag if permit issued
+                    if(tasks[t].getDisposition() == "Issued")
+                    {
+                    PermitIssued = 1; 
+                    }
+                }
+            }
+	  
+       
+       
 			//Get the address
 			var capAddResult = aa.address.getAddressByCapId(capId);
 			if (capAddResult.getSuccess())
@@ -109,8 +118,7 @@ try {
 		
 			//Get other contact Info
 			OtherContact = AInfo["Department/Company Contact Email Address"]
-			
-			
+
 			//Get the contact info
 			var tInfo = getContactArray();
 			var rowCount = tInfo.length;
@@ -176,8 +184,7 @@ try {
 				
 				
 
-			
-				
+						
 	}
 		
         
