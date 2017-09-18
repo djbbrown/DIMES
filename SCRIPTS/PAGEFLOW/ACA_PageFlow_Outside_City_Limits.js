@@ -11,7 +11,7 @@
 /*==================================================================*/
 
 try {
-	showDebug=true;
+	showDebug = true;
     var tInfo = getGISInfoArray("Accela/Accela_Base", "NonMesaJurisdictionShaded", "NAME");
     var rowCount = tInfo.length;
     var x = 0;
