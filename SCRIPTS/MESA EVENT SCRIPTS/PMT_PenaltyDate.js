@@ -44,14 +44,13 @@ try
 
   if ((
       (wfTask == "Application Submittal") && 
-      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted"))
-     )||
-     (
-     (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
-     )||
-     (
-     (wfTask == "Plans Coordination") && (wfStatus == "Revisions Required")
-     ))
+      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted")))
+     ||
+     ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
+     ||
+     ((wfTask == "Plans Distribution") && (wfStatus == "Routed for Review"))
+     || 
+     ((wfTask == "Plans Coordination") && (wfStatus == "Revisions Required")))
   {
 
     // the minus 1 is due to customer wanting today to be "day 1"
