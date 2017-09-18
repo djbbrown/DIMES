@@ -14,5 +14,7 @@
 //            IRSA;Permits!Commercial!NA!NA
 /*==================================================================*/
 if (inspResult == "Roll Over") {
-	scheduleInspectDate(inspType, nextWorkDay());
+	// get the last inspector's ID
+	var inspectorId = getLastInspector(inspType);
+	scheduleInspectionDateWithInspector(inspType, nextWorkDay(), inspectorId);
 }
