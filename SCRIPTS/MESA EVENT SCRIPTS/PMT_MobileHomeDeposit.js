@@ -20,10 +20,8 @@ try {
 	//type of work ASI different naming between Online and Residential records 
 	var typeOfWork = (AInfo["Type of Work"] != undefined) ? AInfo["Type of Work"] : AInfo["Type of work"]
 
-	// Residential Type of Work Check
 	// Mobile Home Type of Work Check
-	var mobileHome = ["Mobile Home Other Addition"];
-	// Online Type of Work Check.
+	var mobileHome = ["Mobile Home Other Addition", "Park Model Other Addition"];
 
 	//feeAmount = parseFloat(AInfo["Total Valuation"]||0);  //this is not updated during App submittal
 	feeAmount = estValue;

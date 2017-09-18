@@ -1,8 +1,8 @@
 /*===================================================================
-// Script Number: 56
-// Script Name: ENG,PMT - Expire permits
-// Script Developer: Kevin Ford
-// Script Agency: Accela
+// 
+// Script Name: TTC - Expire permits
+// Script Developer: Mong Ward
+// Script Agency: Mesa
 // Script Description:
 // A batch job to retrieve all record with an ASI field "Permit Expiration Date"
 // in a date range and update the currently active task to a status of "Expired",
@@ -10,11 +10,10 @@
 // Script Run Event: BATCH
 // Script Parents: N/A
 // Effected record types:
-//		Engineering/ * / * / *
-//		Permits/ * / * / * .. excluding Permits/Commercial/Annual Facilities/NA
+//		Transportation/Temporary Traffic Control/NA/NA
 /*==================================================================*/
 /*------------------------------------------------------------------------------------------------------/
-| Program: PLN_SubstantiveReviewDaysLeft Trigger: Batch    
+| Program: TRA_TTC_ExpirePermits Trigger: Batch    
 | Version 1.0 - Base Version. 
 | 
 | 
@@ -180,8 +179,8 @@ function mainProcess() {
 	// in a date range and update the currently active task to a status of "Expired",
 	// deactivate the workflow and set the record status to "Expired".
 	// Effected record types:
-	//		Engineering/ * / * / *
-	//		Permits/ * / * / * .. excluding Permits/Commercial/Annual Facilities/NA
+	//		Transportation/Temporary Traffic Control/NA/NA
+	//		
 	//======================================================
 	var capResult = aa.cap.getCapIDsByAppSpecificInfoDateRange("PERMIT DATES","Permit Expiration Date",dFromDate,dToDate);
 
@@ -216,7 +215,7 @@ function mainProcess() {
 		appTypeString = appTypeResult.toString();	
 		appTypeArray = appTypeString.split("/");
 
-		if (appTypeString != "Permits/Commercial/Annual Facilities/NA" && (appTypeArray[0] == "Permits" || appTypeArray[0] == "Engineering")) {
+		if (appTypeString == "Transportation/Temporary Traffic Control/NA/NA" ) {
 			var tasks = aa.workflow.getTasks(capId).getOutput();
 			for (t in tasks) {
 				//aa.print(tasks[t]);
