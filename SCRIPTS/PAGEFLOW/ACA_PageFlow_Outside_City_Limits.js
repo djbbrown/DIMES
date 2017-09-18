@@ -4,17 +4,11 @@
 // Script Developer: Steve Allred
 // Script Agency: Mesa
 // Script Description: Prevent the user from creating a permit for a property that is not within city limits.
-// Script Run Event: ASB
+// Script Run Event: ACA pageflow
 // Script Parents:
-//		ASB;Permits!~!~!~
+//		Permits!~!~!~
 //            
 /*==================================================================*/
-
-/* intellisense references */
-/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS-80100.js" />
-/// <reference path="../../INCLUDES_ACCELA_FUNCTIONS_ASB-80100.js" />
-/// <reference path="../../INCLUDES_ACCELA_GLOBALS-80100.js" />
-/// <reference path="../../INCLUDES_CUSTOM.js" />
 
 try {
     var tInfo = getGISInfoArray("Accela/Accela_Base", "NonMesaJurisdictionShaded", "NAME");
@@ -39,12 +33,12 @@ try {
     {
         if (publicUser) { showDebug=false; }
 		showMessage = true;
-        comment("A permit cannot be created for a property that is not within Mesa city limits!"); 
+        comment("A permit cannot be created for a property that is not within Mesa city limits!");
         cancel = true;
     }
 }
 
-catch 
+catch
 {
 	logDebug("A JavaScript error occurred: " + err.message);
 }
