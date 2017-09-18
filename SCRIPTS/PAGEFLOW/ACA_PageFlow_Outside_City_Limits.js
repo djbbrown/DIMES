@@ -38,7 +38,7 @@ try {
     }
 }
 
-catch
+catch (err)
 {
 	logDebug("A JavaScript error occurred: " + err.message);
 }
