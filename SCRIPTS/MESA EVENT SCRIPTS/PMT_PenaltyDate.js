@@ -3,6 +3,7 @@
  // 9/?/2016	 Brian O'Dell			initial
  // 9/28/2016	 John Cheney			added include("PMT_CopyPenaltyDateToDueDate") 
 // 10/17/2016	 John Cheney			removed include("PMT_CopyPenaltyDateToDueDate")
+// 9/18/2017   Suzanna Majchrzak Added Routed for Review as requested 
 
  //---------------------------------------------------------------------
 // Script Number: 66, 169
