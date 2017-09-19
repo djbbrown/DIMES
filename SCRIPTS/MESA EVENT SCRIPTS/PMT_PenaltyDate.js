@@ -3,6 +3,7 @@
  // 9/?/2016	 Brian O'Dell			initial
  // 9/28/2016	 John Cheney			added include("PMT_CopyPenaltyDateToDueDate") 
 // 10/17/2016	 John Cheney			removed include("PMT_CopyPenaltyDateToDueDate")
+// 9/18/2017   Suzanna Majchrzak Added Routed for Review as requested 
 
  //---------------------------------------------------------------------
 // Script Number: 66, 169
@@ -44,14 +45,13 @@ try
 
   if ((
       (wfTask == "Application Submittal") && 
-      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted"))
-     )||
-     (
-     (wfTask == "Plans Distribution") && (wfStatus == "Revisions Received")
-     )||
-     (
-     (wfTask == "Plans Coordination") && (wfStatus == "Revisions Required")
-     ))
+      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted")))
+     ||
+     ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
+     ||
+     ((wfTask == "Plans Distribution") && (wfStatus == "Routed for Review"))
+     || 
+     ((wfTask == "Plans Coordination") && (wfStatus == "Revisions Required")))
   {
 
     // the minus 1 is due to customer wanting today to be "day 1"
