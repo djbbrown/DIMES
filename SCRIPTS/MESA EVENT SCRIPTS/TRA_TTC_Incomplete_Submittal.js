@@ -43,6 +43,7 @@ try {
                 //Add Params
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                 addParameter(vEParams,"$$URLTTCPERMIT$$",Url);
+				addParameter(vEParams,"$$WORKFLOWCOMMENT$$",wfComment);
  
                 //Send email
                 sendNotification(FromEmail, ToEmail, "", "TRA_TTC_INCOMPLETE_SUBMITTAL", vEParams, null, capId); 

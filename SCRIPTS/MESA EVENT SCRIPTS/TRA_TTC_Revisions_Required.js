@@ -68,6 +68,7 @@ try {
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                 addParameter(vEParams,"$$URLOFRECORDID$$",Url);
                 addParameter(vEParams," $$RECEIVEDDATE$$",RecievedDate);
+				addParameter(vEParams,"$$WORKFLOWCOMMENT$$",wfComment);
                 
                 //Send email
                 if(RecordStatusFlag == 1)
