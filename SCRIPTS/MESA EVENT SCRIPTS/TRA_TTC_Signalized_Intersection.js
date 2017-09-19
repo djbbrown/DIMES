@@ -21,11 +21,18 @@ try {
 	  var Intersection = AInfo["Intersection"];
       var Address;
       var PermitIssued = 0;
+	  var PermitExtended = 0;
+	 
 
       //Find the workflow
        if (wfTask == "Permit Issuance" && wfStatus == "Issued")
       {
        PermitIssued = 1;
+      }
+	  
+	  if (wfTask == "Inspections" && wfStatus == "Extend Permit")
+      {
+       PermitExtended = 1;
       }
            
        SigIntersection = AInfo["Signalized Intersection"];
@@ -81,10 +88,10 @@ try {
             addParameter(vEParams,"$$ADDRESS$$",Address);
 			addParameter(vEParams,"$$INTERSECTION$$",IntersectionFld);
             addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);
-			
+						
             
             //Send email
-            if(PermitIssued == 1)
+            if(PermitIssued == 1 || PermitExtended == 1)
             {
             sendNotification(FromEmail, ToEmail, "", "TRA_TTC_SIGNALIZED_INTERSECTION", vEParams, null, capId);
             }
