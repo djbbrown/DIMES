@@ -11,7 +11,7 @@
 /*==================================================================*/
 
 try {
-	showDebug = true;
+/*	showDebug = true;
     var tInfo = getGISInfoArray("Accela/Accela_Base", "NonMesaJurisdictionShaded", "NAME");
     var rowCount = tInfo.length;
     var x = 0;
@@ -36,7 +36,8 @@ try {
 		showMessage = true;
         comment("A permit cannot be created for a property that is not within Mesa city limits!");
         cancel = true;
-    }
+    } */
+    comment("A permit cannot be created for a property that is not within Mesa city limits!");
 }
 
 catch (err)
