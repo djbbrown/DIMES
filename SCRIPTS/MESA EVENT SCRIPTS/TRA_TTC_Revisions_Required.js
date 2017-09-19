@@ -19,6 +19,7 @@ try {
       var tName = "Traffic Review";
       var RecievedDate;
       var BCompany;
+	  var OtherContact;
       var RecordStatusFlag = 0;
       
       //Get date
@@ -55,8 +56,13 @@ try {
                     }
 
                 }
-                //Add Barricade Company contact
-                 ToEmail =  ToEmail + "," + BCompany;
+				
+				//Get other contact Info
+				OtherContact = AInfo["Department/Company Contact Email Address"]
+			
+			
+                //Add Barricade Company contact & other contact
+                 ToEmail =  ToEmail + "," + BCompany + "," + OtherContact;
 
                 //Add Params
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
