@@ -38,7 +38,7 @@ try {
         cancel = true;
     } */
     
-    comment("A permit cannot be created for a property that is not within Mesa city limits!");
+    logMessage("A permit cannot be created for a property that is not within Mesa city limits!");
 }
 
 catch (err)
