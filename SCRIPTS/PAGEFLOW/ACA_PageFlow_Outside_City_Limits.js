@@ -37,6 +37,7 @@ try {
         comment("A permit cannot be created for a property that is not within Mesa city limits!");
         cancel = true;
     } */
+    
     comment("A permit cannot be created for a property that is not within Mesa city limits!");
 }
 
