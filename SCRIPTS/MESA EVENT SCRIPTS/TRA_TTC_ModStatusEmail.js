@@ -112,7 +112,7 @@ try {
 				
 			}     
 			//Get the License Professional Email
-			var conInfo = getLicenseProfessional(itemcapId);
+			var conInfo = getLicenseProfessional(capId);
 			var z = 0;
 
 			//Get Email of Contacts
