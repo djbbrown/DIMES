@@ -105,7 +105,7 @@ try {
 					{
 					var BCompany = tInfo[x]["email"];
 					}
-					if( TypeContact == "Barricade Company Contact" )
+					if(ConType == "Barricade Company Contact" )
                     {
                     var contactBCompany = tInfo[x]["email"];
                     }
