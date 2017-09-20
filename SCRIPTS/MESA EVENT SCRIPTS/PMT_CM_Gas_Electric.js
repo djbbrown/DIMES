@@ -115,7 +115,7 @@ try {
       //Send Email For Gas
       if(GasFlag == 1)
       {
-      ToEmail = lookup("EMAIL_RECIPIENTS","BSD_Development_Planning");
+      ToEmail = lookup("EMAIL_RECIPIENTS","DS_City_Gas_Zone");
       sendNotification(FromEmail, ToEmail, "", "PMT_CM_GAS", vEParams, null, capId);
       }
     }
