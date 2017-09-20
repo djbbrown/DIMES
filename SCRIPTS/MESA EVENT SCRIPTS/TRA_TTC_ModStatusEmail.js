@@ -26,8 +26,7 @@ try {
 	  var contactBCompany;
 	  var contractorEmail;
 	  var StatusType = 0;
-	  var licProfEmail = "";
-	  
+
 	  
 	     //Check WF
      //Set status type
@@ -117,7 +116,7 @@ try {
 			
 			
 			//Add Contacts
-                 ToGenEmail =  AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + ChiefEngInsp;
+                 ToGenEmail =  AppToEmail + "," + BCompany + "," + contactBCompany + "," + EngInsp + "," + ChiefEngInsp;
 
 				 //toUTL =  toUTL + "," + AppToEmail + "," + BCompany + "," + BCoordinator;
 				 
