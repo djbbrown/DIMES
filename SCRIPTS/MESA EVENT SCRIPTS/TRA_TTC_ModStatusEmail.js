@@ -111,22 +111,9 @@ try {
                     }
 				
 			}     
-			//Get the License Professional Email
-			var conInfo = getLicenseProfessional(capId);
-			var z = 0;
+			
 
-			//Get Email of Contacts
-			for (z=0;z<=(rowCount-1);z++)
-			{
-					LicType = conInfo[z]["licenseType"];
-					//Applicant
-					if(LicType == "Contractor" )
-					{
-					var contractorEmail = conInfo[z]["email"];
-					}
-	
-				
-			}     
+			
 			
 			
 			//Add Contacts
