@@ -116,7 +116,7 @@ try {
 			
 			
 			//Add Contacts
-                 ToGenEmail =  AppToEmail + "," + BCompany + "," + contactBCompany + "," + EngInsp + "," + ChiefEngInsp;
+                 ToGenEmail =  AppToEmail + "," + BCompany + "," + contactBCompany;
 
 				 //toUTL =  toUTL + "," + AppToEmail + "," + BCompany + "," + BCoordinator;
 				 
