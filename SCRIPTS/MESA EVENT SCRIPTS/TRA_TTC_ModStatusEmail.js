@@ -3,10 +3,10 @@
 // Script Name: TRA_TTC_ModStatusEmail.js
 // Script Developer: Mong Ward 
 // Script Agency: Mesa 
-// Script Description: When Permit Issuance WF task is statused as Issued, Send Permit is Issued email notification to: 
-//                     Applicant, Barricade Contact, Contractor, Barricade Coordinator, Engineering Inspector, Other Contact, Traffic Engineer
+// Script Description: When application status is updated approved or not approved, Send Modification status email notification to: 
+//                     Applicant, Barricade Contact, Contractor, Barricade Company contact.
 // Script Run Event: WTUA
-// Script Parents:WTUA;Transportation!Temporary Traffic Control!NA!NA.js
+// Script Parents:WTUA;Transportation!~!~!~.js
 // Record Testing:  
 /*==================================================================*/
 
