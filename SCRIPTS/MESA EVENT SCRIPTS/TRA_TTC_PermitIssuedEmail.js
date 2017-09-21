@@ -13,9 +13,11 @@
 try {
       var FromEmail = "noreply@mesaaz.gov";
 	  var ToGenEmail;
-	  var ToROWEmail = lookup("EMAIL_RECIPIENTS","ENG_ChiefInspectors");
+	  var ToROWEmail;
+	  var chiefEmail = lookup("EMAIL_RECIPIENTS","ENG_ChiefInspectors");
       var ToTrafficEngEmail = lookup("EMAIL_RECIPIENTS","Traffic_Engineer");
-	  var toUTL = lookup("EMAIL_RECIPIENTS","ENG_UTL_Email");
+	  var emailUTL = lookup("EMAIL_RECIPIENTS","ENG_UTL_Email");
+	  var ToUTL;
 	  var AppToEmail = "";
       var vEParams = aa.util.newHashtable();
       var Url = lookup("Agency_URL","ACA");
@@ -39,6 +41,16 @@ try {
      if (wfTask == "Permit Issuance" && wfStatus == "Issued")
       {
        PermitIssued = 1;
+      }
+	  
+	 if (wfTask == "Permit Issuance" && wfStatus == "Issued" && associatedPermitType == "UTL - Utility")
+      {
+       PermitIssued = 2;
+      }
+	  
+	 if (wfTask == "Permit Issuance" && wfStatus == "Issued" && associatedPermitType == "ROW - Right-of-Way")
+      {
+       PermitIssued = 3;
       }
       
 	     
@@ -151,9 +163,9 @@ try {
 			//Add Contacts
                  ToGenEmail =  AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
 
-				 toUTL =  toUTL + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
+				 toUTL =  emailUTL + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
 				 
-				 ToROWEmail = ToROWEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
+				 ToROWEmail = chiefEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
 			
 			//Send email
                 if(PermitIssued == 1)
@@ -162,13 +174,13 @@ try {
 												
 				}
 				
-				else if(PermitIssued == 1 && associatedPermitType == "UTL - Utility")
+				else if(PermitIssued == 2)
                 {
 					sendNotification(FromEmail, toUTL, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
 											
 				}
 				
-				else if(PermitIssued == 1 && associatedPermitType == "ROW - Right-of-Way")
+				else if(PermitIssued == 3)
                 {
 					sendNotification(FromEmail, ToROWEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
 												
