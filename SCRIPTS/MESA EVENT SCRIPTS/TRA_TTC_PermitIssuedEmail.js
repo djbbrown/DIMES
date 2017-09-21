@@ -138,10 +138,11 @@ try {
 					var AppToEmail = tInfo[x]["email"];
 					}
 					//Barricade Company
-					if(ConType == "Barricade Company" )
+					if(ConType == "Barricade Company Contact" )
 					{
 					var BCompany = tInfo[x]["email"];
 					}
+					
 					//Barricade Coordinator
 					if(ConType == "Barricade Coordinator" )
 					{
