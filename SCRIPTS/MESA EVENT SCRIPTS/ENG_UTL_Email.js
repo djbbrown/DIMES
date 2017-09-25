@@ -111,54 +111,6 @@ try {
                 }        
             }
         }
-        else if ((wfTask == "Plans Coordination" || wfStatus == "Ready to Issue"))
-        {
-                
-                  
-                var vEParams = aa.util.newHashtable();
-                        
-                var emailAddress = lookup("EMAIL_RECIPIENTS", "ENG_UTL_NCU_EMAIL");
-                  
-                //retrieve template information
-                var tmpl = aa.communication.getNotificationTemplate("ENG_UTL_WORKFLOW_READY_TO_ISSUE").getOutput();
-                var ebody = tmpl.getEmailTemplateModel().getContentText();
-                var esub = tmpl.getEmailTemplateModel().getTitle();
-                var efrom = tmpl.getEmailTemplateModel().getFrom();
-                
-                //Get the contact info
-                var tInfo = getContactArray();
-                var rowCount = tInfo.length;
-                var x = 0;
-                //Get Email of Applicant
-                for (var x=0;x<=(rowCount-1);x++)
-                {
-                    var TypeContact = tInfo[x]["contactType"];
-                    if( TypeContact == "Applicant" || TypeContact == "Contact")  {
-                                
-                        ToEmail = tInfo[x]["email"];
-                            
-                        //Add Params
-                        addParameter(vEParams,"$$RECORDID$$",capIDString);
-                        addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);
-                        addParameter(vEParams, "$$URL$$", url);                          
-                        
-                        if (wfComment != null){
-                                var comments = 'Comments: '+ wfComment;
-                                addParameter(vEParams,"$$WORKFLOWCOMMENT$$",comments);
-                        }
-                        
-                        addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
-                        
-                        logDebug('parameters: '+ vEParams);
-                                
-                        //Send email
-                        if(ToEmail){
-                            logDebug("Sending an email to the following contact: (ENG_UTL_WORKFLOW_READY_TO_ISSUE): " + ToEmail + "  Type of Contact: "+TypeContact);                                    
-                                    //sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_READY_TO_ISSUE", vEParams, null, capId);
-                        }
-                    }        
-                }
-        }
         else if ((wfTask == "Plans Distributions" || wfStatus == "Revisions Received"))
         {
                 
