@@ -60,7 +60,7 @@ try {
                     //Send email
                     if(ToEmail){
                         logDebug("Sending an email to the following contact: (ENG_UTL_WORKFLOW_REVISIONREQUIRED): " + ToEmail + "  Type of Contact: "+TypeContact);
-                        //sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_REVISIONREQUIRED", vEParams, null, capId);
+                        sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_REVISIONREQUIRED", vEParams, null, capId);
                     }
                     }        
             }
@@ -106,7 +106,7 @@ try {
                     //Send email
                     if(ToEmail){
                         logDebug("Sending an email to the following contact: (ENG_UTL_WORKFLOW_PERMIT_ISSUED): " + ToEmail + "  Type of Contact: "+TypeContact);
-                                //sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_PERMIT_ISSUED", vEParams, null, capId);
+                        sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_PERMIT_ISSUED", vEParams, null, capId);
                     }
                 }        
             }
@@ -158,7 +158,7 @@ try {
                         //Send email
                         if(ToEmail){
                             logDebug("Sending an email to the following contact: (ENG_UTL_WORKFLOW_REVISION_RECEIVED): " + ToEmail + "  Type of Contact: "+TypeContact);                                                                        
-                                   // sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_REVISION_RECEIVED", vEParams, null, capId);
+                             sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_REVISION_RECEIVED", vEParams, null, capId);
                         }
                         }        
                     }
