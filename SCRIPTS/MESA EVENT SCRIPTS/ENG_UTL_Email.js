@@ -49,9 +49,7 @@ try {
                         addParameter(vEParams,"$$WORKFLOWCOMMENT$$",comments);
                     }
             
-                    addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
-                    addParameter(vEParams, "$$URL$$", url);                          
-                    
+                    addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);                    
             
                     logDebug('parameters: '+ vEParams);
                     
