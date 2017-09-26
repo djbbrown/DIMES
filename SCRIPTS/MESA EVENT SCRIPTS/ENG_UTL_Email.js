@@ -16,7 +16,7 @@ try {
     var url = lookup("Agency_URL","ACA");
 
     //Workflow Required and for ALL task types
-    if ((wfTask != "Plans Distribution" && wfStatus == "Revisions Required" ))
+    if ((wfTask != "Plans Coordination" && wfStatus == "Revisions Required" ))
     { 
             var vEParams = aa.util.newHashtable();         
             var emailAddress = lookup("EMAIL_RECIPIENTS", "ENG_UTL_NCU_EMAIL");
