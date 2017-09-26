@@ -43,14 +43,14 @@ try
     var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
     //comment("seCapTypeStr: " + seCapTypeStr);
     
-    //var seCapTypeArray = seCapTypeStr.split("/");
+    var seCapTypeArray = seCapTypeStr.split("/");
     
-    //if (
-    //    ((seCapTypeArray[2] == "SpecialEvent") && (seCapTypeArray[4] == "Application")
-    //    ||
-    //    ((seCapTypeArray[2] == "Liquor") && (seCapTypeArray[3] == "SpecialEvent"))
-    //   )
-    //{
+    if (
+        ((seCapTypeArray[2] == "SpecialEvent") && (seCapTypeArray[4] == "Application")
+        ||
+        ((seCapTypeArray[2] == "Liquor") && (seCapTypeArray[3] == "SpecialEvent"))
+       )
+    {
 
     if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
         || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
@@ -66,7 +66,7 @@ try
     else
     {
       if (publicUser) { showDebug=false; }
-      //commentBlah = "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
+      commentBlah = "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
       commentBlah = "Please enter a valid Special Event Application No.";
       showMessage = true;
       comment(commentBlah);

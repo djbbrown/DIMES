@@ -50,11 +50,11 @@ try
     if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
         || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
     //comment this section out until data conversion of Licensing occurs
-	//{
-    //  goodParent = true;
-    //}   
+	{
+      goodParent = true;
+    }   
 
-    //if (goodParent)
+    if (goodParent)
     {
       addParent("" + specialEvent);
     }
