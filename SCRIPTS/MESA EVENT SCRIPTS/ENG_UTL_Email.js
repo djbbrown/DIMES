@@ -4,10 +4,8 @@
 // Author: Suzanna Majchrzak
 // Initial Date: 9/21/2017
 //
-// Task Status: Revision Required, Task: ALL
 // Task Status: Issued, Task : Permit Issuance
-// Task Status: Ready to Issue, Task: Plans Coordination
-// Task Status: Revisions Received Plans Distributions
+// Task Status: Revisions Required except Plans Distributions
 // Task Status: Revisions Received, Task: Plans Distributions
 // Script Run Event: WTUA
 // Script Parents:WTUA;UTIL!NA!NA.js
@@ -18,7 +16,7 @@ try {
     var url = lookup("Agency_URL","ACA");
 
     //Workflow Required and for ALL task types
-    if ((wfStatus == "Revisions Required"))
+    if ((wfTask != "Plans Distribution" && wfStatus == "Revisions Required" ))
     { 
             var vEParams = aa.util.newHashtable();         
             var emailAddress = lookup("EMAIL_RECIPIENTS", "ENG_UTL_NCU_EMAIL");
@@ -65,7 +63,7 @@ try {
                     }        
             }
     }
-    else if ((wfTask == "Permit Issuance" || wfStatus == "Issued"))
+    else if ((wfTask == "Permit Issuance" && wfStatus == "Issued"))
     {
            
             var vEParams = aa.util.newHashtable();
@@ -111,7 +109,7 @@ try {
                 }        
             }
         }
-        else if ((wfTask == "Plans Distributions" || wfStatus == "Revisions Received"))
+        else if ((wfTask == "Plans Distributions" && wfStatus == "Revisions Received"))
         {
                 
                 var vEParams = aa.util.newHashtable();                   
