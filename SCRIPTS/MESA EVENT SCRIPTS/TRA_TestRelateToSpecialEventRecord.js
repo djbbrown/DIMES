@@ -65,7 +65,7 @@ try
     }
     else
     {
-      if (publicUser) { showDebug=false; }
+      //if (publicUser) { showDebug=false; }
       //commentBlah = "The Special Event Application No ("+specialEvent+") is not a Special Event. ";
       commentBlah = "Please enter a valid Special Event Application No.";
       showMessage = true;
