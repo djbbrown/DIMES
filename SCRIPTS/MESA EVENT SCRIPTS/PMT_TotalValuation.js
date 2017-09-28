@@ -94,7 +94,7 @@ try {
 				var initialContext = aa.proxyInvoker.newInstance("javax.naming.InitialContext", null).getOutput();
 				var ds = initialContext.lookup("java:/AA");
 				var conn = ds.getConnection();
-				var selectString = "select G3_UNIT_VALUE from GVALUATN where SERV_PROV_CODE = ? and G3_USE_TYP = ? and G3_CON_TYP = ?"; 
+				var selectString = "select G3_UNIT_VALUE from GVALUATN where SERV_PROV_CODE = ? and G3_USE_TYP = ? and G3_CON_TYP = ? and REC_STATUS = 'A'"; 
 				var sStmt = conn.prepareStatement(selectString);
 				sStmt.setString(1, servProvCode);
 				sStmt.setString(2, occupancyClassification);
