@@ -46,7 +46,7 @@ try
     var seCapTypeArray = seCapTypeStr.split("/");
     
     if (
-        ((seCapTypeArray[2] == "SpecialEvent") && (seCapTypeArray[4] == "Application")
+        ((seCapTypeArray[2] == "SpecialEvent") && (seCapTypeArray[4] == "Application"))
         ||
         ((seCapTypeArray[2] == "Liquor") && (seCapTypeArray[3] == "SpecialEvent"))
        )
