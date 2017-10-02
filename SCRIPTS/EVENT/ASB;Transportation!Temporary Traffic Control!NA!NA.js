@@ -4,4 +4,4 @@
 ==================================================================*/
 
 // Brian ODell (Mesa)
-//include("TRA_TestRelateToSpecialEventRecord"); //Comment out until conversion occurs.
+include("TRA_TestRelateToSpecialEventRecord"); //Comment out until conversion occurs. Test in SUPP first
