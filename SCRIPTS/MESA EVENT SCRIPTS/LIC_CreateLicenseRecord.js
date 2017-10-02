@@ -18,7 +18,9 @@
 // | BY         |    DATE      |  NOTES
 // -----------------------------------------------------------------------------
 // | M VanWie   |  06/19/2017  | - Added BingoHall to types of records NOT to set an expiration date to
-//
+// | M VanWie	|  10/02/2017  | - Changed BingoHall exp to 12/31/2099 as this recordtype doesn't expire. This follows
+//									the date convention used for converted records. Turning off Expiration Dates for this
+//									record type causes other script errors.
 /*==================================================================*/
 
 // When WFTask "Issue License" is set to "Issued"
@@ -65,7 +67,7 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 	lic.setStatus("Active");
 	// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
-	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent", "BingoHall")){
+	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent")){
 		lic.setExpiration(dateAdd(null,365));
 	}
 	if(appTypeArray[2] == "Fireworks"){
@@ -75,6 +77,9 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	if(appTypeArray[2] == "LiquorSpecialEvent"){
 		var eventSELExpDt = getAppSpecific("Event End Date",capId);
 		lic.setExpiration(dateAdd(eventSELExpDt,1));
+	}
+	if(appTypeArray[2] == "BingoHall"){
+		lic.setExpiration('12/31/2099');
 	}
 	
 	
