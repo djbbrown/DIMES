@@ -1,5 +1,6 @@
 //Start Script Permits DUA
 
+//Plans Distribution
 var wfTaskStatusCheck = false;
 if (!matches(appTypeArray[1],"Fire","Police Department") && capStatus == "Revisions Required" && isTaskActive("Plans Distribution")) {
 	var wfTaskStatusCheck = true;
@@ -17,6 +18,7 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	{
 	}
 }
 
+//Application Submittal
 var wfTaskStatusCheckAppSubmit = false;
 if (!matches(appTypeArray[1],"Fire","Police Department") && (matches(capStatus, "Incomplete", "Incomplete Submittal")) && isTaskActive("Application Submittal")) {
 	var wfTaskStatusCheckAppSubmit = true;
