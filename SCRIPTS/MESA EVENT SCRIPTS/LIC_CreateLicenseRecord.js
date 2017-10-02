@@ -21,6 +21,7 @@
 // | M VanWie   |  10/02/2017  | - Issue# 389 (old 193) Changed BingoHall exp to 12/31/2099 as this recordtype doesn't expire. 
 //									This follows the date convention used for converted records. Turning off Expiration Dates 
 //									for this record type causes other script errors.
+// | M VanWie   |  10/02/2017  | - Issue# 41 - Added 'Special Event' expiration date calculation
 /*==================================================================*/
 
 // When WFTask "Issue License" is set to "Issued"
@@ -67,7 +68,7 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 	lic.setStatus("Active");
 	// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
-	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent")){
+	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent", "BingoHall", "SpecialEvent")){
 		lic.setExpiration(dateAdd(null,365));
 	}
 	if(appTypeArray[2] == "Fireworks"){
@@ -81,7 +82,10 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	if(appTypeArray[2] == "BingoHall"){
 		lic.setExpiration('12/31/2099');
 	}
-	
+	if(appTypeArray[2] == "SpecialEvent"){
+		var eventSEExpDt = getAppSpecific("Last Event Day",capId);
+		lic.setExpiration(dateAdd(eventSEExpDt,1));
+	}
 	
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
 	// EMSE:ASI Copy Exceptions - contains the record type (in the "Standard Choices Value" field)
