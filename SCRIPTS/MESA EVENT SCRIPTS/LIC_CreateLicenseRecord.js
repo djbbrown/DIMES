@@ -18,9 +18,9 @@
 // | BY         |    DATE      |  NOTES
 // -----------------------------------------------------------------------------
 // | M VanWie   |  06/19/2017  | - Added BingoHall to types of records NOT to set an expiration date to
-// | M VanWie	|  10/02/2017  | - Changed BingoHall exp to 12/31/2099 as this recordtype doesn't expire. This follows
-//									the date convention used for converted records. Turning off Expiration Dates for this
-//									record type causes other script errors.
+// | M VanWie   |  10/02/2017  | - Issue# 389 (old 193) Changed BingoHall exp to 12/31/2099 as this recordtype doesn't expire. 
+//									This follows the date convention used for converted records. Turning off Expiration Dates 
+//									for this record type causes other script errors.
 /*==================================================================*/
 
 // When WFTask "Issue License" is set to "Issued"
