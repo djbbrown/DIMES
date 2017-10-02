@@ -45,7 +45,7 @@ try
       if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
           || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application")
           || (seCapTypeStr == "Licenses/General/SpecialEvent/License"
-          || (seCapTypeStr ==  "Licenses/General/LiquorSpecialEvent/License")))
+          || (seCapTypeStr ==  "Licenses/Liquor/LiquorSpecialEvent/License")))
       {
         logDebug("Entered a Valid Special Event Application No.")
         // do nothing, addParent on ASA event (need capID established before it can create relationship)

@@ -49,7 +49,7 @@ try
       if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
         || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application")
         || (seCapTypeStr == "Licenses/General/SpecialEvent/License"
-        || (seCapTypeStr ==  "Licenses/General/LiquorSpecialEvent/License")))
+        || (seCapTypeStr ==  "Licenses/Liquor/LiquorSpecialEvent/License")))
       //comment this section out until data conversion of Licensing occurs
 	    {
         addParent("" + specialEvent);
