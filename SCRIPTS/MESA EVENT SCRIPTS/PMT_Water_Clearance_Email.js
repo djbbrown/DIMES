@@ -36,7 +36,7 @@ try {
     var tName = "Permit Issuance";  
 	var AddrUnit;
 	var Subdivision;
-
+    var lotNumbers;
     
    //Get WF Task
    var tasks = aa.workflow.getTasks(capId).getOutput();
@@ -123,10 +123,27 @@ try {
 				
 				//Get Subdivision
 				Subdivision = aa.parcel.getParcelDailyByCapID(capId,null).output[0].parcelModel.subdivision; 
-				//logDebug("Subdivision = " + Subdivision);
-            
+                //logDebug("Subdivision = " + Subdivision);
+           
                 Address = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix;
-				//logDebug("Address = " + Address);
+                //logDebug("Address = " + Address);
+                
+                //Get Lot Numbers
+                var fcapParcelObj = null;
+                var capParcelResult = aa.parcel.getParcelandAttribute(capId, null);
+                if (capParcelResult.getSuccess())
+                    var fcapParcelObj = capParcelResult.getOutput().toArray();
+                else
+                      logDebug("**ERROR: Failed to get Parcel object: " + capParcelResult.getErrorType() + ":" + capParcelResult.getErrorMessage())
+                
+                for (i in fcapParcelObj){
+                        if (fcapParcelObj.length > 1){
+                            lotNumbers = lotNumbers +" "+fcapParcelObj[i].getLot();
+                        }
+                        else {
+                            lotNumbers = fcapParcelObj[i].getLot();
+                        }
+                    }
                 }
 
 				//Get Invoice Number
@@ -159,6 +176,12 @@ try {
 
                     addParameter(vEParams,"$$RECORDID$$",capIDString);
                     addParameter(vEParams,"$$ADDRESS$$",Address);
+
+                    //Adding only if there is a lot number associated.
+                    if (lotNumbers){
+                        addParameter(vEParams,"$$LOTNUMBER$$","Lot Number (s) : "+lotNumbers);
+                    }
+                    
                     addParameter(vEParams,"$$ServiceType$$",ServiceType);
                     addParameter(vEParams,"$$ServiceSize$$",ServiceSize);
                     addParameter(vEParams,"$$MeterSize$$",MeterSize);
