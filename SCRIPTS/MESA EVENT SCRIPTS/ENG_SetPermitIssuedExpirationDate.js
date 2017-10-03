@@ -28,11 +28,11 @@ try {
 				editAppSpecific("Permit Expiration Date", exp_date);
 				licEditExpInfo(null, exp_date); 
 		    }
-			if (appMatch("Engineering/Utilities/Non-City/Standard")){
+			if (appMatch("Engineering/Utilities/Non-City/Standard"))	{
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
 				licEditExpInfo(null, dateAdd(wfDateMMDDYYYY,120)); 
 			}
-			if (appMatch("Engineering/Right Of Way/*/*")){
+			if (appMatch("Engineering/Right Of Way/*/*"))	{
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
 				licEditExpInfo(null, dateAdd(wfDateMMDDYYYY,120)); 
 			}
