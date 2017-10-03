@@ -25,8 +25,9 @@
 //             ASA:Transporation/Temporary Traffic Control/NA/NA
 //			   ASIUA:Transporation/Temporary Traffic Control/NA/NA
 // 
+// Revision:
+// 10-02-2017 Suzanna Majchrzak: Add License and code cleanup
 //==================================================================*/
-
 
 try
 {
@@ -34,42 +35,32 @@ try
   var isSpecialEvent = AInfo["Is this a Special Event"];
   var specialEvent = AInfo["Special Event Application No."];
   var getCapResult = aa.cap.getCapID(specialEvent);
-  var goodParent = false;
-  var commentBlah = "";
 
   if (isSpecialEvent == "Yes")
   {
   
-  if (getCapResult.getSuccess())
-  {
-    var seCapId = aa.cap.getCapID(specialEvent).getOutput();
-    
-    var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
-    //comment("seCapTypeStr: " + seCapTypeStr);
-    
-    if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
-        || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application"))
-    //comment this section out until data conversion of Licensing occurs
-	{
-      goodParent = true;
-    }   
-
-    if (goodParent)
+    if (getCapResult.getSuccess())
     {
-      addParent("" + specialEvent);
-    }
-
+      var seCapId = aa.cap.getCapID(specialEvent).getOutput();
+    
+      var seCapTypeStr = aa.cap.getCap(seCapId).getOutput().getCapType().toString();
+      //comment("seCapTypeStr: " + seCapTypeStr);
+    
+      if ((seCapTypeStr == "Licenses/General/SpecialEvent/Application")
+        || (seCapTypeStr == "Licenses/Liquor/LiquorSpecialEvent/Application")
+        || (seCapTypeStr == "Licenses/General/SpecialEvent/License"
+        || (seCapTypeStr ==  "Licenses/Liquor/LiquorSpecialEvent/License")))
+      //comment this section out until data conversion of Licensing occurs
+	    {
+        addParent("" + specialEvent);
+      }     
+     }
   }
-
-  }
-
 }
 catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
-
-
 
 
 
