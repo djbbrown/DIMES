@@ -26,15 +26,15 @@ try {
 				var exp_year = d.getFullYear();
 				var exp_date = dateFormatted("12","31", String(exp_year));
 				editAppSpecific("Permit Expiration Date", exp_date);
-				licEditExpInfo(null, exp_date); 
+				licEditExpInfo("Active", exp_date); 
 		    }
 			if (appMatch("Engineering/Utilities/Non-City/Standard"))	{
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
-				licEditExpInfo(null, dateAdd(wfDateMMDDYYYY,120)); 
+				licEditExpInfo("Active", dateAdd(wfDateMMDDYYYY,120)); 
 			}
 			if (appMatch("Engineering/Right Of Way/*/*"))	{
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
-				licEditExpInfo(null, dateAdd(wfDateMMDDYYYY,120)); 
+				licEditExpInfo("Active", dateAdd(wfDateMMDDYYYY,120)); 
 			}
 		}                
     }
