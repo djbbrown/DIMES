@@ -37,6 +37,7 @@ try {
 	var AddrUnit;
 	var Subdivision;
     var lotNumbers;
+    var SewerAvailable = "";
     
    //Get WF Task
    var tasks = aa.workflow.getTasks(capId).getOutput();
@@ -165,7 +166,14 @@ try {
 					} 
 				}
 				foundInvoices = foundInvoices.substring(0, foundInvoices.length - 2); 
-				//logDebug("Invoices = " + foundInvoices);
+                //logDebug("Invoices = " + foundInvoices);
+                
+                //Need to loop through record as special character in Sewer Available not visible to javascript
+                  for (loopGlob in AInfo){
+                    if ( loopGlob.match("Sewer(.*)Available?") ) {
+                        SewerAvailable = AInfo[loopGlob];      
+                    }
+                }
 				
                 //Get balance due
                 var BalanceDue = balanceDue;
@@ -194,6 +202,8 @@ try {
                     addParameter(vEParams,"$$Unit$$",AddrUnit);
                     addParameter(vEParams,"$$Subdivision$$",Subdivision);
                     addParameter(vEParams,"$$InvoiceNbr$$",foundInvoices);
+                    addParameter(vEParams,"$$SEWERAVAILABLE$$",SewerAvailable);
+                    
 					
                 //Send Email if conditions are correct
                 if(ServiceTypeFlag == 1 && BalanceDueFlag != 1)
