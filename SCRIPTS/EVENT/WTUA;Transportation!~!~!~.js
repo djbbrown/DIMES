@@ -1,5 +1,5 @@
 //include("TRA_TTC_Approved");  
-inlcude ("TRA_TTC_TechFee");
+inlcude("TRA_TTC_TechFee");
 include("TRA_TTC_SubmittalCycle");
 include("TRA_TTC_Incomplete_Submittal");
 include("TRA_TTC_Revisions_Required");
