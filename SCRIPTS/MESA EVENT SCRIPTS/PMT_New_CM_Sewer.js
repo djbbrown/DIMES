@@ -78,6 +78,8 @@ try {
                         var city = addrArray[0].getCity();
                         var state = addrArray[0].getState();
                         var zip = addrArray[0].getZip();
+                        var unit = addrArray[0].getUnitStart();
+                        
                         var theAddress = hseNum + " " + streetDir + " " + streetName + " " + streetSuffix + " " + city + ", " + state + " " + zip;
                         }
                     }
@@ -88,6 +90,9 @@ try {
                 //Add parameters
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                 addParameter(vEParams,"$$ADDRESS$$",theAddress);
+                if (unit){
+                    addParameter(vEParams,"$$UNIT$$","Unit: "+unit);
+                }
                 addParameter(vEParams,"$$USE$$",ProposedUse);
                 addParameter(vEParams,"$$TYPEOFWORK$$",TofWork);
                 addParameter(vEParams,"$$NAME$$",InsName);
