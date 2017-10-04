@@ -15,7 +15,7 @@ try {
 if (wfTask == "Application Submittal" && wfStatus == "Submitted") 
 	{ 
 	//This is to assess the Technology Fee
-	updateFee("TTC040","TTC_GEN", "FINAL", 1, "N");
+	addFee("TTC040","TTC_GEN", "FINAL", 1, "N");
 	
 	}
 }
