@@ -20,6 +20,7 @@ try {
     var TofWork;
     var InsName;
     var InsDate;
+    var SewerAvailable = "";
 
     //Get GIS Data
     var tInfo = getGISInfoArray("Accela/AccelaTAGS", "Accela_TAGS", "Accela_TAGS.TAG");
@@ -86,13 +87,21 @@ try {
                 //Get remaining values
                 ProposedUse = AInfo["Proposed Use"];
                 TofWork = AInfo["Type of work"];
-            
+
+                //Need to loop through record as special character in Sewer Available not visible to javascript
+                for (loopGlob in AInfo){
+                    if ( loopGlob.match("Sewer(.*)Available?") ) {
+                        SewerAvailable = AInfo[loopGlob];      
+                    }
+                }
+
                 //Add parameters
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                 addParameter(vEParams,"$$ADDRESS$$",theAddress);
                 if (unit){
                     addParameter(vEParams,"$$UNIT$$","Unit: "+unit);
                 }
+                addParameter(vEParams, "$$SEWERAVAILABLE$$",SewerAvailable);
                 addParameter(vEParams,"$$USE$$",ProposedUse);
                 addParameter(vEParams,"$$TYPEOFWORK$$",TofWork);
                 addParameter(vEParams,"$$NAME$$",InsName);
