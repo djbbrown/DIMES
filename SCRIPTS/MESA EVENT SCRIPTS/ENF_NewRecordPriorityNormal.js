@@ -46,6 +46,7 @@ try
 		if (inspector != false) 
 		{
 			// schedule initial inspection for next working day 
+			com.accela.aa.util.WebThreadLocal.setServiceProviderCode("MESA");
 			scheduleInspectionDateWithInspector("Initial Inspection", nextWorkingDay, inspector);
 			logDebug("Scheduled inspection for Inspector " + inspector + ".");
 		}
