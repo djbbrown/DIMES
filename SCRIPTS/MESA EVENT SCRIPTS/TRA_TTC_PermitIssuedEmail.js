@@ -13,6 +13,7 @@
 try {
       var FromEmail = "noreply@mesaaz.gov";
 	  var ToGenEmail;
+	  var ToAllEmail;
 	  var ToROWEmail;
 	  var chiefEmail = lookup("EMAIL_RECIPIENTS","ENG_ChiefInspectors");
       var ToTrafficEngEmail = lookup("EMAIL_RECIPIENTS","Traffic_Engineer");
@@ -22,6 +23,8 @@ try {
       var vEParams = aa.util.newHashtable();
       var Url = lookup("Agency_URL","ACA");
 	  var associatedPermitType = AInfo["Associated Work Permit Type"];
+	  var rowPermitNum = AInfo["ROW Permit No."];
+	  var utlPermitNum = AInfo["UTL Permit No."];
 	  var tStatus = "Issued";
       var tName = "Permit Issuance";
 	  var TrafficRestriction = "";
@@ -30,6 +33,7 @@ try {
       var DetailedDesc;
       var Address;
 	  var BCompany;
+	  var BCompanyCon;
 	  var BCoordinator;
 	  var EngInsp;
 	  var ChiefEngInsp;
@@ -105,7 +109,9 @@ try {
 			var REnd = String(RestrictionEnd);
 			var DDesc = String(DetailedDesc);
 			var TRestriction = String(TrafficRestriction);
-			var TrafficEng = String(ToTrafficEngEmail)
+			var TrafficEng = String(ToTrafficEngEmail);
+			var utlPermit = String(utlPermitNum);
+			var rowPermit = String(rowPermitNum);
 						
 		
 
@@ -118,6 +124,9 @@ try {
 				addParameter(vEParams,"$$TRAFFICRESTRICTIONASIT$$",TRestriction);
 				addParameter(vEParams,"$$URLOFRECORDID$$",Url);
 				addParameter(vEParams,"$$TRAFFICENGINEER$$",TrafficEng);
+				addParameter(vEParams,"$$UTLPERMIT$$",utlPermit);
+				addParameter(vEParams,"$$ROWPERMIT$$",rowPermit);
+
 		
 			//Get other contact Info
 			OtherContact = AInfo["Department/Company Contact Email Address"]
@@ -138,9 +147,14 @@ try {
 					var AppToEmail = tInfo[x]["email"];
 					}
 					//Barricade Company
-					if(ConType == "Barricade Company Contact" )
+					if(ConType == "Barricade Company" )
 					{
 					var BCompany = tInfo[x]["email"];
+					}
+					//Barricade Company
+					if(ConType == "Barricade Company Contact" )
+					{
+					var BCompanyCon = tInfo[x]["email"];
 					}
 					
 					//Barricade Coordinator
@@ -162,28 +176,32 @@ try {
 			}     
 			
 			//Add Contacts
-                 ToGenEmail =  AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
-
-				 toUTL =  emailUTL + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
+                 ToAllEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
 				 
-				 ToROWEmail = chiefEmail + "," + AppToEmail + "," + BCompany + "," + BCoordinator + "," + EngInsp + "," + OtherContact;
+				 ToGenEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + OtherContact;
+
+				 toUTL =  emailUTL;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + OtherContact;
+				 
+				 ToROWEmail = chiefEmail + "," + EngInsp;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + OtherContact;
 			
 			//Send email
                 if(PermitIssued == 1)
                 {
-					sendNotification(FromEmail, ToGenEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+					sendNotification(FromEmail, ToAllEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
 												
 				}
 				
 				else if(PermitIssued == 2)
                 {
-					sendNotification(FromEmail, toUTL, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+					sendNotification(FromEmail, ToGenEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+					sendNotification(FromEmail, toUTL, "", "TRA_TTC_ISSUED_ENG_NOTIFICATION", vEParams, null, capId);
 											
 				}
 				
 				else if(PermitIssued == 3)
                 {
-					sendNotification(FromEmail, ToROWEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+					sendNotification(FromEmail, ToGenEmail, "", "TRA_TTC_ISSUED_PERMIT", vEParams, null, capId);
+					sendNotification(FromEmail, ToROWEmail, "", "TRA_TTC_ISSUED_ENG_NOTIFICATION", vEParams, null, capId);
 												
 				}
 				
