@@ -107,7 +107,7 @@ try {
                 }        
             }
         }
-        else if ((wfTask == "Plans Distributions" && wfStatus == "Revisions Received"))
+        else if ((wfTask == "Plans Distribution" && wfStatus == "Revisions Received"))
         {
                 
                 var vEParams = aa.util.newHashtable();                   
