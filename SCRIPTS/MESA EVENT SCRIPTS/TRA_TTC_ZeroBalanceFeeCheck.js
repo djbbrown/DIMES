@@ -23,7 +23,13 @@ try
     if(wfTask == 'Permit Issuance' && wfStatus == 'Issued' && (feeTotalByStatus('NEW') > 0 || balanceDue > 0))         
     {
         showMessage = true;
-        comment("All balances and fees must be paid before this permit can be issued.");
+        comment("All balances of fees must be paid before this permit can be issued.");
+        cancel = true;
+    }
+	else if(wfTask == 'Inspections' && wfStatus == 'Final Inspection Complete' && (feeTotalByStatus('NEW') > 0 || balanceDue > 0))         
+    {
+        showMessage = true;
+        comment("All balances of fees must be paid before this permit can be closed.");
         cancel = true;
     }
 }
