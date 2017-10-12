@@ -22,7 +22,6 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	{
 		var efrom = tmpl.getEmailTemplateModel().getFrom();
 		//Add Params
 		addParameter(vEParams,"$$RECORDID$$",capIDString);
-		addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);		
 		addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
 										
 		//Send email
