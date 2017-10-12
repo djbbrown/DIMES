@@ -52,7 +52,7 @@ try
 			{
 				today.setDate(today.getDate(mesaWorkingDays) + 2);
 			} 
-
+		}
     theDate = today;
   }
 
