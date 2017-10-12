@@ -14,6 +14,7 @@
 try {  
 
     var url = lookup("Agency_URL","ACA");
+    
 
     //Workflow Required and for ALL task types
     if ((wfTask != "Plans Coordination" && wfStatus == "Revisions Required" ))
@@ -52,7 +53,7 @@ try {
 
                     if (UtilityNo != null){
                         var utlNo = 'Utility Provider Project No: '+UtilityNo;
-                        addParameter(vEParams,"$$UTLITYPROVIDERNO$$",utlNo);
+                        addParameter(vEParams,"$$UTILITYPROVIDERNO$$",utlNo);
                     }
             
                     addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);                    
@@ -106,7 +107,7 @@ try {
 
                      if (UtilityNo != null){
                         var utlNo = 'Utility Provider Project No: '+UtilityNo;
-                        addParameter(vEParams,"$$UTLITYPROVIDERNO$$",utlNo);
+                        addParameter(vEParams,"$$UTILITYPROVIDERNO$$",utlNo);
                     }
                     
                     addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
