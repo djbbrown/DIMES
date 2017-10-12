@@ -25,7 +25,7 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	{
 		addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
 										
 		//Send email
-		if(ToEmail){
+		if(emailAddress){
 			logDebug("Sending an email to the following contact: (ENG_UTL_WORKFLOW_REVISION_RECEIVED): " + emailAddress + "  Type of Contact: "+TypeContact);                                                                        
 			sendNotification(efrom, emailAddress, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_REVISION_RECEIVED", vEParams, null, capId);
 		}
