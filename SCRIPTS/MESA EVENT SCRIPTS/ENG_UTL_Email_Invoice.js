@@ -28,6 +28,8 @@ try {
         //Get the contact info
         var tInfo = getContactArray();
         var rowCount = tInfo.length;
+
+        var UtilityNo = AInfo["Utility Provider Project No."];                
             
         //Get Email of Applicant
         for (var x=0;x<=(rowCount-1);x++)
@@ -40,8 +42,9 @@ try {
                 //Add Params
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                 addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
-                addParameter(vEParams, "$$URL$$", url);                          
-                    
+                addParameter(vEParams, "$$URL$$", url);                  
+                addParameter(vEParams, "$$UTILITYPROVIDERNO$$", url);                  
+                
                 logDebug('parameters: '+ vEParams);
                     
                 //Send email
