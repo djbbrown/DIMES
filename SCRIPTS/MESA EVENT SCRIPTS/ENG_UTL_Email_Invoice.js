@@ -42,9 +42,12 @@ try {
                 //Add Params
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                 addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
-                addParameter(vEParams, "$$URL$$", url);                  
-                addParameter(vEParams, "$$UTILITYPROVIDERNO$$", url);                  
-                
+                addParameter(vEParams, "$$URL$$", url); 
+                                 
+                if (UtilityNo != null){
+                    var utlNo = 'Utility Provider Project No: '+UtilityNo;
+                    addParameter(vEParams,"$$UTLITYPROVIDERNO$$",utlNo);
+                }                
                 logDebug('parameters: '+ vEParams);
                     
                 //Send email
