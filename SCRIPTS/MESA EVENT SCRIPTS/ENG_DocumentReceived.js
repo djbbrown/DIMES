@@ -10,9 +10,26 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	{
 		// Update workflow task for document to be reviewed
 
 		updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
-		//potentially send email	
-  		
-	
+
+		//Send Email to Engineering Team.
+		var vEParams = aa.util.newHashtable();                   
+		var emailAddress = lookup("EMAIL_RECIPIENTS", "ENG_UTL_NCU_EMAIL");
+
+		//retrieve template information
+		var tmpl = aa.communication.getNotificationTemplate("ENG_UTL_WORKFLOW_REVISION_RECEIVED").getOutput();
+		var ebody = tmpl.getEmailTemplateModel().getContentText();
+		var esub = tmpl.getEmailTemplateModel().getTitle();
+		var efrom = tmpl.getEmailTemplateModel().getFrom();
+		//Add Params
+		addParameter(vEParams,"$$RECORDID$$",capIDString);
+		addParameter(vEParams,"$$WORKFLOWSTATUS$$",wfStatus);		
+		addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);
+										
+		//Send email
+		if(ToEmail){
+			logDebug("Sending an email to the following contact: (ENG_UTL_WORKFLOW_REVISION_RECEIVED): " + ToEmail + "  Type of Contact: "+TypeContact);                                                                        
+			sendNotification(efrom, emailAddress, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_REVISION_RECEIVED", vEParams, null, capId);
+		}
 }
 //End Script Permits DUA
 
