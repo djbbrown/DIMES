@@ -31,6 +31,8 @@ try {
             var tInfo = getContactArray();
             var rowCount = tInfo.length;
             
+            var UtilityNo = AInfo["Utility Provider Project No."];        
+
             //Get Email of Applicant
             for (var x=0;x<=(rowCount-1);x++)
             {
@@ -47,6 +49,11 @@ try {
                     if (wfComment != null){
                         var comments = 'Comments: '+ wfComment;
                         addParameter(vEParams,"$$WORKFLOWCOMMENT$$",comments);
+                    }
+
+                    if (UtilityNo != null){
+                        var utlNo = 'Utility Provider Project No: '+UtilityNo;
+                        addParameter(vEParams,"$$UTLITYPROVIDERNO$$",utlNo);
                     }
             
                     addParameter(vEParams, "$$EMAILCONTACT$$", emailAddress);                    
