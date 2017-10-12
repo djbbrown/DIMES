@@ -46,7 +46,7 @@ try {
                                  
                 if (UtilityNo != null){
                     var utlNo = 'Utility Provider Project No: '+UtilityNo;
-                    addParameter(vEParams,"$$UTLITYPROVIDERNO$$",utlNo);
+                    addParameter(vEParams,"$$UTILITYPROVIDERNO$$",utlNo);
                 }                
                 logDebug('parameters: '+ vEParams);
                     
