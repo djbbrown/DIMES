@@ -1916,6 +1916,10 @@ function scheduleInspectionDateWithInspector(iType, dateToSched, inspectorID )
 		logDebug("Inspector with ID = " + inspectorID + " not found!");
 	}
 
+	//Workaround Fix recommended by Accela for Error received for sync issue
+	//Can't get the Service Provider Code from the I18NModel 
+	com.accela.aa.util.WebThreadLocal.setServiceProviderCode("MESA");
+
 	var schedRes = aa.inspection.scheduleInspection(capId, inspectorObj, aa.date.parseDate(dateToSched), inspTime, iType, "Scheduled via Script");
 
 	if (schedRes.getSuccess())
@@ -1931,6 +1935,11 @@ function scheduleInspectionDateWithInspector(iType, dateToSched, inspectorID )
 function scheduleInspectionDateWithInspectorObject(iType, dateToSched, inspectorObj )
 {
 	var inspTime = null;
+
+	//Workaround Fix recommended by Accela for Error received for sync issue
+	//Can't get the Service Provider Code from the I18NModel 
+	com.accela.aa.util.WebThreadLocal.setServiceProviderCode("MESA");
+	
 	var schedRes = aa.inspection.scheduleInspection(capId, inspectorObj, aa.date.parseDate(dateToSched), inspTime, iType, "Scheduled via Script");
 
 	if (schedRes.getSuccess())
