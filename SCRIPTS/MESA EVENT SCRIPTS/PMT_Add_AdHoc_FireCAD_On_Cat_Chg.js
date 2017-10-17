@@ -9,7 +9,7 @@
 //  1.0      |10/18/17  |Steve Allred     |Initial Release 
 /*===================================================================*/
 //Start Script
-
+/*
 var docCount = 0;  //Document count
 var ahtCount = 0;  //Ad Hoc Task count
 
@@ -68,4 +68,4 @@ if (docCount > ahtCount)
 		wf.createAdHocTaskItem(taskObj);
 	}
 }
-//End Script 
+//End Script */
