@@ -103,7 +103,9 @@ function AddStapleyParcelAdHocWorkflow() {
                 logDebug("End calling sendNotification()");
 
                 logDebug("Begin calling addHocTask()");
-                addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Stapley Corridor GIS layer");
+
+                userAssign = lookup("ASSIGN_USER_GROUP_LOOKUP","ENGINEERING_USER");                
+                addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Stapley Corridor GIS layer",userAssign);
                 logDebug("End calling addHocTask()");
             }
         }

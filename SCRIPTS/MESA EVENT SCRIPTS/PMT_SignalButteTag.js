@@ -29,7 +29,9 @@ if (tagFieldArray && tagFieldArray.length > 0) {
 				emailAddress = lookup("EMAIL_RECIPIENTS","Signal_Butte");
 				fromAddress = "noreply@mesaaz.com";
 				sendNotification(fromAddress, emailAddress, "", "SIGNAL BUTTE", vEParams, null);
-				addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer");
+
+				userAssign = lookup("ASSIGN_USER_GROUP_LOOKUP","ENGINEERING_USER");				
+				addAdHocTask("WFADHOC_PROCESS", "Engineering Review", "Note: Parcel exists in Signal Butte GIS layer",userAssign );
 		}
 	}
 }
