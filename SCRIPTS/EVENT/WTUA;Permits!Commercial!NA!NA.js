@@ -28,3 +28,7 @@ if(wfTask == "Permit Issuance" && wfStatus == "Issued")
 	cloneToEnvironmental(capId,wfDateMMDDYYYY);
 
 include("PMT_OneTenthAcre_Conditions");
+
+//Moved from ASA and condition added
+if(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") 
+	include("PMT_Fire_CD_Condition");
