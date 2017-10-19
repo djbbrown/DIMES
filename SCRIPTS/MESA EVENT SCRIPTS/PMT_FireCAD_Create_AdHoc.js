@@ -24,7 +24,7 @@ try{
 				var tasks = aa.workflow.getTasks(thisCap).getOutput()[0];
 
 				if (tasks){
-					taskObj = task.getTaskItm();
+					taskObj = tasks.getTaskItem();
 
 					var userObj = aa.person.getUser(thisUser);
 			
