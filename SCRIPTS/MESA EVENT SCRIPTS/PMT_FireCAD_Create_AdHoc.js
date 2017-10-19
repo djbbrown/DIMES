@@ -21,13 +21,14 @@ try{
 				var thisUser = lookup("PMT_FIRE_CAD_DOC_REVIEWER","Reviewer");
 				var adt = dateFormatted(sysDate.getMonth(),sysDate.getDayOfMonth(),sysDate.getYear(),"MM/DD/YYYY");  //Assigned Date: today 
 				var ddt = mesaWorkingDays(aa.util.now(), 4);  //Due Date: today + 3 days based on 4-day work-week
-				var tasks = aa.workflow.getTasks(thisCap).getOutput()[0];
+				//var tasks = aa.workflow.getTasks(thisCap).getOutput()[0];
 
 				//if (tasks)
 				{
-					taskObj = tasks.getTaskItem();
+					//taskObj = tasks.getTaskItem();
 
 					var userObj = aa.person.getUser(thisUser);
+				    var taskObj = aa.workflow.getTasks(thisCap).getOutput()[0].getTaskItem();
 			
 /*			logDebug("thisCap:" + thisCap);
 			logDebug("thisUser:" + thisUser);
