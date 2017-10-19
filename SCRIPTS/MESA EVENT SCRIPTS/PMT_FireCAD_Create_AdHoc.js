@@ -23,7 +23,7 @@ try{
 				var ddt = mesaWorkingDays(aa.util.now(), 4);  //Due Date: today + 3 days based on 4-day work-week
 				var tasks = aa.workflow.getTasks(thisCap).getOutput()[0];
 
-				if (tasks){
+				//if (tasks){
 					taskObj = tasks.getTaskItem();
 
 					var userObj = aa.person.getUser(thisUser);
