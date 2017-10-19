@@ -45,9 +45,9 @@ try{
 					wf = aa.proxyInvoker.newInstance("com.accela.aa.workflow.workflow.WorkflowBusiness").getOutput();
 					wf.createAdHocTaskItem(taskObj);
 			}
-			else{
-				logDebug("Could not capture tasks for the given capid. Issue could be TMP record")
-			}
+			//else{
+			//	logDebug("Could not capture tasks for the given capid. Issue could be TMP record")
+			//}
 		}	
   		
 		}
