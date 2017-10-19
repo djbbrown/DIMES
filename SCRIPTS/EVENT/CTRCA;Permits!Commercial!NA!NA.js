@@ -12,5 +12,4 @@ if (publicUser) {
 	include("PMT_CodeEnforcementNumber");
 	include("PMT_Email_Hazardmat_Received");
 	include("PMT_MasterPlan_DetailDesc");
-	include("PMT_FireCAD_Create_AdHoc");
 }
