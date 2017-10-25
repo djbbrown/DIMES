@@ -1,4 +1,4 @@
-	
+copyParcelGisObjects();
 //include("ENF_EnforcementCaseDuplicate");  remarked out since it has been determined that duplicates are wanted
 // add by Brian O'Dell (Mesa)
 //include("ENF_EnforcementNotificationEmail");  Looks to have been replaced with ENF_Record_Opened
