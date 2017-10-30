@@ -13,8 +13,11 @@ if(publicUser){
 	removeAllFees(capId);
 }
 if (AInfo["Burglary Function"] == "Yes"){
-	addFee("PD_ALARM_01","PMT_PD_ALARM_010","FINAL",1,"N");
+	addFee("PD_ALARM_01","PMT_PD_ALARM_010","FINAL",1,"Y");
+	addFee("PD_ALARM_07","PMT_PD_ALARM_010","FINAL",1,"Y");
 }
 if (AInfo["Panic/Robbery/Hold-Up Function"] == "Yes"){
-	addFee("PD_ALARM_02","PMT_PD_ALARM_010","FINAL",1,"N");
+	addFee("PD_ALARM_02","PMT_PD_ALARM_010","FINAL",1,"Y");
+	addFee("PD_ALARM_07","PMT_PD_ALARM_010","FINAL",1,"Y");
 }
+
