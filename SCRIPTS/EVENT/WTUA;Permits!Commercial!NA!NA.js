@@ -32,3 +32,9 @@ include("PMT_OneTenthAcre_Conditions");
 //Moved from ASA and condition added
 if(wfTask == "Plans Coordination" && wfStatus == "Ready to Issue") 
 	include("PMT_Fire_CD_Condition");
+
+
+//Calculate total valuation on ready to issue WF change
+if (wfTask.toUpperCase == "PLANS COORDINATION" && wfStatus.toUpperCase() == "READY TO ISSUE"){
+	include(PMT_TotalValuation);
+}
