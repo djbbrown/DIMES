@@ -36,5 +36,5 @@ include("PMT_OneTenthAcre_Conditions");
 //Calculate total valuation when status gets to a Ready to Issue state at permit issuance.
 if ((wfTask.toUpperCase() == "PLANS COORDINATION" && wfStatus.toUpperCase() == "READY TO ISSUE")
    || (wfTask.toUpperCase() == "APPLICATION SUBMITTAL" && wfStatus.toUpperCase() == "ACCEPTED - PLAN REVIEW NOT REQ")){
-	include(PMT_TotalValuation);
+	include("PMT_TotalValuation");
 }
