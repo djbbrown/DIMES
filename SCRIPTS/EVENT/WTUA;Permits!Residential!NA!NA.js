@@ -34,6 +34,6 @@ include("PMT_OneTenthAcre_Conditions");
 
 
 //Calculate total valuation on ready to issue WF change
-if (wfTask.toUpperCase == "PLANS COORDINATION" && wfStatus.toUpperCase() == "READY TO ISSUE"){
+if (wfTask.toUpperCase() == "PLANS COORDINATION" && wfStatus.toUpperCase() == "READY TO ISSUE"){
 	include(PMT_TotalValuation);
 }
