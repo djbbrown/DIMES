@@ -13,7 +13,7 @@ if(publicUser){
 	removeAllFees(capId);
 }
 
-if (AInfo["Exempt?"] == "UNCHECKED") {
+if (AInfo["Exempt"] == "UNCHECKED") {
 	if (AInfo["Burglary Function"] == "Yes"){
 		addFee("PD_ALARM_01","PMT_PD_ALARM_010","FINAL",1,"Y");
 	}
