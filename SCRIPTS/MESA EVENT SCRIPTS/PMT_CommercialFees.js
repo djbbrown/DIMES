@@ -193,10 +193,95 @@ catch (err) {
 	aa.print("A JavaScript Error occurred: " + err.message);
 }
 
-// COM040
+// COM040 Tenant Improvement
+var valuation = 0;
+if (
+	appTypeArray[1] == 'Commercial' && AInfo["Property Type"] == "Tenant Improvement"
+	&& (
+		(wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
+		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req"))
+	)
+){
+	feeAmt = 0;
+	// Get the value for the total number of inspections (ASI)
+	// this could be one of two ASI values so we need to be careful about this.
+	// tNumInsp += parseFloat(AInfo["Estimated Number of Inspections"]||0);
+	// tNumInsp += parseFloat(AInfo["Required No. of Inspections"]||0);
+	valuation = estValue; // Tenant Improvement uses the Job Value from the addtl info section
+	// Get the Valuation as well (ASI)
+	/*
+	if(valuation <25000){
+		feeAmt = 90; // Base Fee
+		feeAmt = feeAmt + (90 * tNumInsp);
+	}
+	//*/
+	if (valuation >= 25000 && valuation <=500000){
+		feeAmt = 500;  // Base Fee
+		tNumInsp = Math.ceil((valuation - 25000)/1000);
+		feeAmt = feeAmt + (10*tNumInsp);
+	}
+	else if (valuation > 500000 && valuation <=1000000){
+		feeAmt = 5250;  // Base Fee
+		tNumInsp = Math.ceil((valuation - 500000)/1000);
+		feeAmt = feeAmt + (5*tNumInsp);
+	}
+	else if (valuation > 1000000 && valuation <=5000000){
+		feeAmt = 7750;  // Base Fee
+		tNumInsp = Math.ceil((valuation - 1000000)/1000);
+		feeAmt = feeAmt + (4*tNumInsp);
+	}
+	else if (valuation > 5000000 && valuation <=10000000){
+		feeAmt = 23750;  // Base Fee
+		tNumInsp = Math.ceil((valuation - 5000000)/1000);
+		feeAmt = feeAmt + (2*tNumInsp);
+	}
+	else if (valuation > 10000000){
+		feeAmt = 33750;  // Base Fee
+		tNumInsp = Math.ceil((valuation - 10000000)/1000);
+		feeAmt = feeAmt + (1*tNumInsp);
+	}
+	//==========================
+	// Process Fees
+	// Residential/NA/NA First
+	// Before the amount for Residential/NA/NA can be fully calculated we must
+	// get the amount that had been put on deposit and paid.
+	if(
+		feeAmt > 0
+		&& appTypeArray[2]=='NA'
+		//&& exists(typeOfWork,residential)
+	){
+		//addFee(fcode, fsched, fperiod, fqty, finvoice)
+		var prePay = 0;
+		// Get all feeitems on the record
+		var feeResult=aa.fee.getFeeItems(capId);
+		if (feeResult.getSuccess())
+			{ var feeObjArr = feeResult.getOutput(); }
+		else
+			{ logDebug( "**ERROR: getting fee items: " + capContResult.getErrorMessage());}
+		// Parse each fee item.
+		for (i in feeObjArr){
+			feeItem = feeObjArr[i];
+			varFCod = feeItem.getFeeCod();
+			varFSched = feeItem.getF4FeeItemModel().getFeeSchudle();
+			varFAmnt = feeItem.getFee();
+			varFStatus = feeItem.getFeeitemStatus();
+			if(varFSched == "PMT_COM" && varFCod =="COM010" && varFStatus == "INVOICED"){
+				prePay = prePay + varFAmnt;
+			}
+		}
+		// Calculate the difference
+		logDebug("Fee prior to reducing based on deposit: "+feeAmt);
+		logDebug("Deposit: "+prePay);
+		feeAmt = feeAmt - prePay;
+		aa.print("Adding fee: "+feeAmt);
+		updateFee("COM040","PMT_COM", "FINAL",feeAmt, "N");
+	}
+}
+
+// COM040 Commercial
 var valuationASI = 0;
 if (
-	appTypeArray[1] == 'Commercial' 
+	appTypeArray[1] == 'Commercial' && AInfo["Property Type"] == "Commercial"
 	&& (
 		(wfTask == "Plans Coordination" && matches(wfStatus, "Ready to Issue","Self Certified")) 
 		|| (wfTask == "Application Submittal" && matches(wfStatus, "Accepted - Plan Review Not Req"))
