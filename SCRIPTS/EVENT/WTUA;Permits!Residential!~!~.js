@@ -4,3 +4,6 @@ include("PMT_ResidentialFees");
 include("PMT_ResubmittalFee");
 //      added by Steve Allred (Mesa)   
 include("PMT_BlueCard");
+
+// This must run last
+include("PMT_ResidentialDeposit");
