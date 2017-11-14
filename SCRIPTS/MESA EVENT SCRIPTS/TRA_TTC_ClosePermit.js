@@ -3,7 +3,7 @@
 // Script Name: TRA_TTC_ClosePermit.js
 // Script Description: 	Update WF Task Inspections with WF Status "Final Inspection Compelte" when the Final Inspection is status as "OK".  This will close the record. 
 // Script Parents:IRSA;Transportation!~!~!~.js
-// Test Record: 
+// Test Record:       
 // Version   |Date      |Engineer         |Details
 //  1.0      |11/14/17  |Mong Ward	      |Initial Release
 //  
