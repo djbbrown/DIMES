@@ -10,12 +10,34 @@
 /*==================================================================*/
 
 try {
-        var inspResultComment = "";
+        if  (inspType == "Final Inspection" )
+		{
+		//Get the Inspection results
+          var getInspectionsResult = aa.inspection.getInspections(capId);
+
+                //Test if script can get an inspection
+            if (getInspectionsResult.getSuccess()) 
+            {
+                var inspectionScriptModels = getInspectionsResult.getOutput();
+                var inspectionScriptModel = null;
+                
+            //Iterate through the inspections & look for OK
+                for (inspectionScriptModelIndex in inspectionScriptModels)
+                {
+                    inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
+                        if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "OK")
+                        {
+                        //Get the Inspection Notes
+                        InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
+						}
+				}
+			}
+		}
 		
 		if  (inspType == "Final Inspection" && inspResult == "OK" && isTaskActive('Inspections'))
         {
 
-            updateTask("Inspections", "Final Inspection Complete", inspResultComment, "Updated by WTUA event");
+            updateTask("Inspections", "Final Inspection Complete", InspectionNotes, "Updated by WTUA event");
 			//potentially send email
             showMessage = true;
             comment("The TTC Permit has been closed.");
