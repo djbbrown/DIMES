@@ -46,11 +46,16 @@ function getMasterScriptText(vScriptName){
       var emseScript = emseBiz.getMasterScript(aa.getServiceProviderCode(),vScriptName);
       return emseScript.getScriptText() + "";
 }
+function daydiff(first, second) {
+  return Math.round((second-first)/(1000*60*60*24));
+}
 
+function parseDate(str) {
+  var mdy = str.split('/');
+  return new Date(mdy[2], mdy[0]-1, mdy[1]);
+}
 /*------------------------------------------------------------------------------------------------------/
-|
 | END: USER CONFIGURABLE PARAMETERS
-|
 /------------------------------------------------------------------------------------------------------*/
 // showDebug = aa.env.getValue("showDebug").substring(0,1).toUpperCase().equals("Y");
 showDebug = true;
@@ -72,16 +77,14 @@ else
 	
 
 /*----------------------------------------------------------------------------------------------------/
-|
 | Start: BATCH PARAMETERS
-|
 /------------------------------------------------------------------------------------------------------*/
 
 if ( batchJobName == "" )
 {
   //TESTING PARAMS
-  aa.env.setValue("lookAheadDays", "0");
-  aa.env.setValue("daySpan", "0");
+  aa.env.setValue("lookAheadDays", "-90");
+  aa.env.setValue("daySpan", "90");
   aa.env.setValue("appGroup", "Licenses");
   aa.env.setValue("appTypeType", "*");
   aa.env.setValue("appSubtype", "*");
@@ -90,18 +93,8 @@ if ( batchJobName == "" )
   aa.env.setValue("newExpirationStatus", "About to Expire");
   aa.env.setValue("newApplicationStatus", "About to Expire");
   aa.env.setValue("gracePeriodDays", "0");
-  //aa.env.setValue("setPrefix", "");
-  //aa.env.setValue("inspSched", "");
-  //aa.env.setValue("skipAppStatus", "");
+  aa.env.setValue("skipAppStatus", "");
   aa.env.setValue("emailAddress", "DIMES-Alert-Supp@MesaAZ.gov");
-  //aa.env.setValue("sendEmailToContactTypes", "");
-  //aa.env.setValue("emailTemplate", "");
-  aa.env.setValue("deactivateLicense", "N");
-  aa.env.setValue("lockParentLicense", "N");
-  aa.env.setValue("createTempRenewalRecord", "N");
-  //aa.env.setValue("feeSched", "");
-  //aa.env.setValue("feeList", "");
-  //aa.env.setValue("feePeriod", "");
 }
 
 var fromDate = getParam("fromDate");                                // 01 Hardcoded dates.   Use for testing only
@@ -115,19 +108,11 @@ var appCategory = getParam("appCategory");                          // 60 app ca
 var expStatus = getParam("expirationStatus");                       // 70 test for this expiration status
 var newExpStatus = getParam("newExpirationStatus");		              // 80 update to this expiration status
 var newAppStatus = getParam("newApplicationStatus");	              // 90 update the CAP to this status
-var gracePeriodDays = getParam("gracePeriodDays");		              // 100 bump up expiration date by this many days
-var setPrefix = getParam("setPrefix");					                    // 110 Prefix for set ID
-var inspSched = getParam("inspSched");					                    // 120 Schedule Inspection
 var skipAppStatusArray = getParam("skipAppStatus").split(",");      // 130 Skip records with one of these application statuses
 var emailAddress = getParam("emailAddress");			                  // 140 email to send report
 var sendEmailToContactTypes = getParam("sendEmailToContactTypes");  // 150 send out emails?
 var emailTemplate = getParam("emailTemplate");			                // 160 email Template
-var deactivateLicense = getParam("deactivateLicense");	            // 170 deactivate the LP
-var lockParentLicense = getParam("lockParentLicense");	            // 180 add this lock on the parent license
-var createRenewalRecord = getParam("createTempRenewalRecord");      // 190 create a temporary record
-var feeSched = getParam("feeSched");					                      // 200
-var feeList = getParam("feeList");						                      // 210 comma delimted list of fees to add
-var feePeriod = getParam("feePeriod");					                    // 220 fee period to use {LICENSE}
+
 
 var dFromDate = aa.date.parseDate(fromDate);                        // --
 var dToDate = aa.date.parseDate(toDate);                            // --
@@ -190,7 +175,6 @@ function mainProcess()
   var capFilterInactive = 0;
   var capFilterError = 0;
   var capFilterStatus = 0;
-  var capDeactivated = 0;
   var capCount = 0;
   var inspDate;
   var setName;
@@ -201,6 +185,7 @@ function mainProcess()
   var at30 = ['FortuneTeller', 'Livestock', 'ParkandSwap', 'Peddler'];
   var at60 = ['ExtensionOfPremise-Permanent', 'Liquor'];
   var at90 = ['AntiqueDealer', 'Auction House', 'Auctioneer', 'MassageEstablishment', 'OffTrackBetting', 'PawnBroker', 'ScrapMetal', 'SecondHand'];
+  var dateToday = parseDate(getTodayAsString());
 
   if (expResult.getSuccess())
   {
@@ -225,152 +210,79 @@ function mainProcess()
       break;
     }
 
-    b1Exp = myExp[thisExp];
-
     //=========================================================
     // Set global 'cap', 'capId', 'altId' & appTypeArray variable to current record
     //=========================================================
-      var capResult = aa.cap.getCap(b1Exp.capID);
+    b1Exp = myExp[thisExp];
+    var capResult = aa.cap.getCap(b1Exp.capID);
 
-      if (!capResult.getSuccess()) 
-        continue;
-      else {
-        cap = capResult.getOutput();
-        capId = cap.capModel.capID;
-        altId = cap.capModel.altID;
-        capStatus = cap.capModel.capStatus;
-        appTypeArray = cap.capType.value.split("/");
-      }
+    if (!capResult.getSuccess()) 
+      continue;
+    else {
+      cap = capResult.getOutput();
+      capId = cap.capModel.capID;
+      altId = cap.capModel.altID;
+      capStatus = cap.capModel.capStatus;
+      appTypeArray = cap.capType.value.split("/");
+    }
 
     //=========================================================
     // Filter by Cap Type & Cap Status
     //=========================================================
-      
-
-      if (appType.length && !appMatch(appType))
-      {
-        capFilterType++;
-        //logDebug(cap.capModel.altID + ": Application Type does not match")
-        continue;
-      }
-
-      if (exists(capStatus,skipAppStatusArray))
-      {
-        capFilterStatus++;
-        //logDebug(altId + ": skipping due to application status of " + capStatus)
-        continue;
-      }
-
-    
-    var expDate = b1Exp.getExpDate();
-    if (expDate) var b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
-    var b1Status = b1Exp.getExpStatus();
-    var renewalCapId = null;
-
-    //logDebug(altId + ": Renewal Status : " + b1Status + ", Expires on " + b1ExpDate);
-    capCount++;
-    
-    //=========================================================
-    // Get capId from b1Exp Object
-    // No need for capId object as it is in the cap Object - MVanWie 10/31/2017
-    //=========================================================
-          // capId = aa.cap.getCapID(b1Exp.getCapID().getID1(),b1Exp.getCapID().getID2(),b1Exp.getCapID().getID3()).getOutput();
-          // if (!capId)
-          // {
-          //   logDebug("Could not get a Cap ID for " + b1Exp.getCapID().getID1() + "-" + b1Exp.getCapID().getID2() + "-" + b1Exp.getCapID().getID3());
-          //   continue;
-          // }
-
-
-
-    //=========================================================
-    // Create Set
-    // Not used by Licensing - MVanWie 10/31/2017
-    //=========================================================
-          // if (setPrefix != "" && capCount == 1)
-          // {
-          //   var yy = startDate.getFullYear().toString().substr(2,2);
-            
-          //   var mm = (startDate.getMonth()+1).toString();
-          //   if (mm.length<2)  mm = "0"+mm;
-
-          //   var dd = startDate.getDate().toString();
-          //   if (dd.length<2)  dd = "0"+dd;
-            
-          //   var hh = startDate.getHours().toString();
-          //   if (hh.length<2) hh = "0"+hh;
-
-          //   var mi = startDate.getMinutes().toString();
-          //   if (mi.length<2) mi = "0"+mi;
-
-          //   var setName = setPrefix.substr(0,5) + yy + mm + dd + hh + mi;
-
-          //   setDescription = setPrefix + " : " + startDate.toLocaleString()
-          //   var setCreateResult= aa.set.createSet(setName,setDescription)
-
-          //   if (setCreateResult.getSuccess())
-          //     logDebug("Set ID "+setName+" created for CAPs processed by this batch job.");
-          //   else
-          //     logDebug("ERROR: Unable to create new Set ID "+setName+" created for CAPs processed by this batch job.");
-          // }
-
-    // Actions start here:
-
-    //=========================================================
-    // Deactivate License
-    // Not used by Licensing - MVanWie 10/31/2017
-    //=========================================================
-          // var refLic = getRefLicenseProf(altId) // Load the reference License Professional
-          // if (refLic && deactivateLicense.substring(0,1).toUpperCase().equals("Y"))
-          // {
-          //   refLic.setAuditStatus("I");
-          //   aa.licenseScript.editRefLicenseProf(refLic);
-          //   logDebug(altId + ": deactivated linked License");
-          // }
-
-    //=========================================================
-    // update expiration status
-    //=========================================================
-    if (newExpStatus.length > 0)
+    if (appType.length && !appMatch(appType))
     {
-      if(IsStrInArry(capTypeArray[2], at30))
+      capFilterType++;
+      //logDebug(cap.capModel.altID + ": Application Type does not match")
+      continue;
+    }
+
+    if (exists(capStatus,skipAppStatusArray))
+    {
+      capFilterStatus++;
+      //logDebug(altId + ": skipping due to application status of " + capStatus)
+      continue;
+    }
+
+
+    //=========================================================
+    // update expiration status / Cap Status
+    //=========================================================
+    var expDate = b1Exp.getExpDate();
+
+    if (expDate) 
+    {
+      capCount++;
+      var b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
+      var b1Status = b1Exp.getExpStatus();
+      var updateCap = false;
+      //logDebug(altId + ": Renewal Status : " + b1Status + ", Expires on " + b1ExpDate);
+
+      //=========================================================
+      // Check if ExpStatus, AppStatus has been provided and current record meets requirements to be updated
+      //=========================================================
+      if (newExpStatus.length > 0 && newAppStatus.length > 0)
       {
-        b1Exp.setExpStatus(newExpStatus);
-        aa.expiration.editB1Expiration(b1Exp.getB1Expiration());
-        logDebug(altId + ": Update expiration status: " + newExpStatus);
+        if(IsStrInArry(appTypeArray[2], at30)) updateCap = true;
+        if(IsStrInArry(appTypeArray[2], at60)) updateCap = true;
+        if(IsStrInArry(appTypeArray[2], at90)) updateCap = true;
       }
-      if(IsStrInArry(capTypeArray[2], at60))
+
+      //=========================================================
+      // Update ExpStatus & AppStatus if flagged for updating
+      //=========================================================
+      if (updateCap) 
       {
         b1Exp.setExpStatus(newExpStatus);
         aa.expiration.editB1Expiration(b1Exp.getB1Expiration());
         logDebug(altId + ": Update expiration status: " + newExpStatus);
-      }
-      if(IsStrInArry(capTypeArray[2], at90))
-      {
-        b1Exp.setExpStatus(newExpStatus);
-        aa.expiration.editB1Expiration(b1Exp.getB1Expiration());
-        logDebug(altId + ": Update expiration status: " + newExpStatus);
+
+        updateAppStatus(newAppStatus,"");
+        //logDebug(altId + ": Updated Application Status to " + newAppStatus);
       }
     }
 
-    //=========================================================
-    // update expiration date based on interval
-    // Not used by Licensing - MVanWie 10/31/2017
-    //=========================================================
-          // if (parseInt(gracePeriodDays) != 0)
-          // {
-          //   newExpDate = dateAdd(b1ExpDate,parseInt(gracePeriodDays));
-          //   b1Exp.setExpDate(aa.date.parseDate(newExpDate));
-          //   aa.expiration.editB1Expiration(b1Exp.getB1Expiration());
-
-          //   logDebug(altId + ": updated CAP expiration to " + newExpDate);
-          //   if (refLic)
-          //   {
-          //     refLic.setLicenseExpirationDate(aa.date.parseDate(newExpDate));
-          //     aa.licenseScript.editRefLicenseProf(refLic);
-          //     logDebug(altId + ": updated License expiration to " + newExpDate);
-          //   }
-          // }
+    //Reset updateCapFlag
+    updateCap = false;
     //=========================================================
     // Send Email to Contact of Type <type> using an Email Template
     // Not used by Licensing - MVanWie 10/31/2017
@@ -407,93 +319,10 @@ function mainProcess()
           //       }
           //     }
           //   }
-
-
-    //=========================================================
-    // update CAP status
-    //=========================================================
-    if (newAppStatus.length > 0)
-    {
-      updateAppStatus(newAppStatus,"");
-      //logDebug(altId + ": Updated Application Status to " + newAppStatus);
-    }
-    
-
-    //=========================================================
-    // schedule Inspection
-    // Not used by Licensing - MVanWie 10/31/2017
-    //=========================================================
-          // if (inspSched.length > 0)
-          // {
-          //   scheduleInspection(inspSched,"1");
-          //   inspId = getScheduledInspId(inspSched);
-          //   if (inspId) autoAssignInspection(inspId);
-          //   logDebug(altId + ": Scheduled " + inspSched + ", Inspection ID: " + inspId);
-          // }
-
-
-    //=========================================================
-    // Add to Set
-    // Not used by Licensing - MVanWie 10/31/2017
-    //=========================================================
-          //if (setPrefix != "") aa.set.add(setName,capId)
-
-
-    //=========================================================
-    // lock Parent License
-    // Not used by Licensing - MVanWie 10/31/2017
-    //=========================================================
-          // if (lockParentLicense != "")
-          // {
-          //   licCap = getLicenseCapId("*/*/*/*");
-
-          //   if (licCap)
-          //   {
-          //     logDebug(licCap + ": adding Lock : " + lockParentLicense);
-          //     addStdCondition("Suspension",lockParentLicense,licCap);
-          //   }
-          //   else
-          //     logDebug(altId + ": Can't add Lock, no parent license found");
-          // }
-    
-    //=========================================================
-    // create renewal record and add fees
-    // Not used by Licensing - MVanWie 10/31/2017
-    //=========================================================
-          // if (createRenewalRecord && createRenewalRecord.substring(0,1).toUpperCase().equals("Y"))
-          // {
-          //   createResult = aa.cap.createRenewalRecord(capId)
-
-          //   if (!createResult.getSuccess) 
-          //     logDebug("Could not create renewal record : " + createResult.getErrorMessage());
-          //   else 
-          //   {
-          //     renewalCapId = createResult.getOutput();
-
-          //     renewalCap = aa.cap.getCap(renewalCapId).getOutput();
-          //     if (renewalCap.isCompleteCap()) 
-          //     {
-          //       logDebug(altId + ": Renewal Record already exists : " + renewalCapId.getCustomID());
-          //     }
-          //     else 
-          //     {          
-          //       logDebug(altId + ": created Renewal Record " + renewalCapId.getCustomID());
-
-          //       // add fees 
-
-          //       if (feeList.length > 0) 
-          //       {
-          //         for (var fe in feeList.split(","))
-          //           var feObj = addFee(feeList.split(",")[fe],feeSched,feePeriod,1,"Y",renewalCapId);
-          //       }
-          //     }
-          //   }
-          // }
   }
 
   logDebug("Total CAPS qualified date range: " + myExp.length);
   logDebug("Ignored due to application type: " + capFilterType);
   logDebug("Ignored due to CAP Status: " + capFilterStatus);
-  logDebug("Ignored due to Deactivated CAP: " + capDeactivated);
   logDebug("Total CAPS processed: " + capCount);
 }
