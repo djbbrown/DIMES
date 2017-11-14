@@ -11,8 +11,8 @@
 
 try {
         
-		var InspectionNotes;
-		if (inspType == "Final Inspection" && inspResult == "OK")
+		
+		if (inspType == "Final Inspection" && inspResult == "OK") 
 		{
 			var getInspectionsResult = aa.inspection.getInspections(capId);
 
@@ -29,13 +29,20 @@ try {
                         if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "OK")
                         {
                         //Get the Inspection Notes
-                        InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
+                        var InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
 						}
 				}
 			
 			
-			}	
-		}	
+			}
+			updateTask("Inspections", "Final Inspection Complete", InspectionNotes, "Updated by IRSA event");
+			showMessage = true;
+            comment("The Permit is Closed.");
+			//potentially send email
+			
+		}
+
+		
 }
     
 catch (err)
