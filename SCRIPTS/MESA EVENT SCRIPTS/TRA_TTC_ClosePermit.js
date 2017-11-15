@@ -12,9 +12,10 @@
 try {
         
 		
-		if (inspType == "Final Inspection" && inspResult == "OK") 
+		if (inspType == "Final Inspection") 
 		{
-			var getInspectionsResult = aa.inspection.getInspections(capId);
+			//Get the Inspection results
+                var getInspectionsResult = aa.inspection.getInspections(capId);
 
                 //Test if script can get an inspection
             if (getInspectionsResult.getSuccess()) 
@@ -22,18 +23,17 @@ try {
                 var inspectionScriptModels = getInspectionsResult.getOutput();
                 var inspectionScriptModel = null;
                 
-            //Iterate through the inspections & look for OK
+            //Iterate through the inspections & look for No Violation
                 for (inspectionScriptModelIndex in inspectionScriptModels)
                 {
                     inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                        if (inspectionScriptModel.getInspectionStatus().toUpperCase() == "OK")
+                        if ((inspectionScriptModel.getInspectionStatus().toUpperCase() == "OK") && inspType == "Final Inspection")
                         {
-                        //Get the Inspection Notes
+                       //Get the Inspection Notes
                         var InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
 						}
+			
 				}
-			
-			
 			}
 			updateTask("Inspections", "Final Inspection Complete", InspectionNotes, "Updated by IRSA event");
 			showMessage = true;
@@ -41,9 +41,10 @@ try {
 			//potentially send email
 			
 		}
+}
 
 		
-}
+
     
 catch (err)
     {
