@@ -1,5 +1,5 @@
 /*===================================================================
-// Script Name: PMT_WorkFlowTaskInspections.js
+// Script Name: PMT_WorkFlowTask_Inspections.js
 // Script Developer: Suzanna Majchrzak
 // Script Agency: Mesa
 // Script Description: 
@@ -23,12 +23,12 @@ try
 			    var inspList = inspResultObj.getOutput();
 			    for (xx in inspList){
 			  
+				logDebug("Inspection Status: "+inspList[xx].getInspectionStatus());
 		    	if (inspList[xx].getInspectionStatus().matches("Scheduled") || 
 		    	    inspList[xx].getInspectionStatus().matches("Pending")) {
 				    showMessage = true;
 				    comment("All Inspections must be resulted before the Inspections workflow task can be completed.");
 			    	cancel = true;
-					break;
 		    	}
 			
 		    }
