@@ -19,16 +19,13 @@ try
 	
 			var inspResultObj = aa.inspection.getInspections(capId);
 			
-			logDebug("Inspection Status: "+capId);
-			
 		    if (inspResultObj.getSuccess()){
 
-				logDebug("Inspection Status: "+capId);
-				
 			    var inspList = inspResultObj.getOutput();
 			    for (i in inspList){
 			  
 				logDebug("Inspection Status: "+inspList[i].getInspectionStatus());
+				
 		    	if (inspList[i].getInspectionStatus().matches("Scheduled") || 
 		    	    inspList[i].getInspectionStatus().matches("Pending")) {
 				    showMessage = true;
