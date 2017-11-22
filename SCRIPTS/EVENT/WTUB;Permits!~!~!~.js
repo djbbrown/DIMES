@@ -4,3 +4,7 @@
 ==================================================================*/
 include("PMT_preventIssuanceWithBalanceDue");
 //include("PMT_AssessResidentialBuildingPermitFee");
+
+//Prevent the inspection task to complete if there are
+//inspection still Scheduled.
+include("PMT_WorkFlowTaskInspections");
