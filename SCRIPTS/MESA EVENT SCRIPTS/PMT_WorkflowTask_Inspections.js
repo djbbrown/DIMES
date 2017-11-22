@@ -15,18 +15,22 @@
 /*==================================================================*/
 try
 {
-	logDebug("Executing Script : PMT_WorkFlowTask_Inspections");
 	if(wfTask == "Inspections") {
 	
-		    var inspResultObj = aa.inspection.getInspections(capId);
+			var inspResultObj = aa.inspection.getInspections(capId);
+			
+			logDebug("Inspection Status: "+capId);
+			
 		    if (inspResultObj.getSuccess()){
-	
+
+				logDebug("Inspection Status: "+capId);
+				
 			    var inspList = inspResultObj.getOutput();
-			    for (xx in inspList){
+			    for (i in inspList){
 			  
 				logDebug("Inspection Status: "+inspList[xx].getInspectionStatus());
-		    	if (inspList[xx].getInspectionStatus().matches("Scheduled") || 
-		    	    inspList[xx].getInspectionStatus().matches("Pending")) {
+		    	if (inspList[i].getInspectionStatus().matches("Scheduled") || 
+		    	    inspList[i].getInspectionStatus().matches("Pending")) {
 				    showMessage = true;
 				    comment("All Inspections must be resulted before the Inspections workflow task can be completed.");
 			    	cancel = true;
