@@ -17,7 +17,7 @@ try
 {
 	logDebug("Verifying Inspection CapID: "+capId+ " wfTask: "+wfTask);
 	
-	if(wfTask == "Inspection") {
+	if(wfTask == "Inspection" || wfTask == "Inspections") {
 	
 			var inspResultObj = aa.inspection.getInspections(capId);
 
