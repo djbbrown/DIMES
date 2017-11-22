@@ -18,6 +18,8 @@ try
 	if(wfTask == "Inspections") {
 	
 			var inspResultObj = aa.inspection.getInspections(capId);
+
+			logDebug("Inspection CapID: "+capId);
 			
 		    if (inspResultObj.getSuccess()){
 
@@ -25,7 +27,7 @@ try
 			    for (i in inspList){
 			  
 				logDebug("Inspection Status: "+inspList[i].getInspectionStatus());
-				
+
 		    	if (inspList[i].getInspectionStatus().matches("Scheduled") || 
 		    	    inspList[i].getInspectionStatus().matches("Pending")) {
 				    showMessage = true;
