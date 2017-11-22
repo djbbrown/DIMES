@@ -7,4 +7,4 @@ include("PMT_preventIssuanceWithBalanceDue");
 
 //Prevent the inspection task to complete if there are
 //inspection still Scheduled.
-include("PMT_WorkFlowTask_Inspections");
+include("PMT_WorkflowTask_Inspections");
