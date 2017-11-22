@@ -15,11 +15,11 @@
 /*==================================================================*/
 try
 {
+	logDebug("Verifying Inspection CapID: "+capId);
+	
 	if(wfTask == "Inspections") {
 	
 			var inspResultObj = aa.inspection.getInspections(capId);
-
-			logDebug("Inspection CapID: "+capId);
 			
 		    if (inspResultObj.getSuccess()){
 
