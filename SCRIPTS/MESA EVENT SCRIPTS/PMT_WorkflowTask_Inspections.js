@@ -15,7 +15,8 @@
 /*==================================================================*/
 try
 {
-	    if(wfTask == "Inspections") {
+	logDebug("Executing Script : PMT_WorkFlowTask_Inspections");
+	if(wfTask == "Inspections") {
 	
 		    var inspResultObj = aa.inspection.getInspections(capId);
 		    if (inspResultObj.getSuccess()){
