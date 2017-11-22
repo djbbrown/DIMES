@@ -28,7 +28,7 @@ try
 			    var inspList = inspResultObj.getOutput();
 			    for (i in inspList){
 			  
-				logDebug("Inspection Status: "+inspList[xx].getInspectionStatus());
+				logDebug("Inspection Status: "+inspList[i].getInspectionStatus());
 		    	if (inspList[i].getInspectionStatus().matches("Scheduled") || 
 		    	    inspList[i].getInspectionStatus().matches("Pending")) {
 				    showMessage = true;
