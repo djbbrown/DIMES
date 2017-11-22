@@ -28,7 +28,7 @@ try
 				    showMessage = true;
 				    comment("All Inspections must be resulted before the Inspections workflow task can be completed.");
 			    	cancel = true;
-				    return true;
+				    return;
 		    	}
 			
 		    }
