@@ -10,37 +10,27 @@
 /*==================================================================*/
 
 try {
-        
-		
-		if (inspType == "Final Inspection") 
+        if  (inspType == "Final Inspection" && inspResult.toUpperCase() == "OK")
 		{
-			//Get the Inspection results
-                var getInspectionsResult = aa.inspection.getInspections(capId);
+		//Get the Inspection results
+          var getResultComment = aa.inspection.getInspections(capId);
 
                 //Test if script can get an inspection
-            if (getInspectionsResult.getSuccess()) 
-            {
-                var inspectionScriptModels = getInspectionsResult.getOutput();
-                var inspectionScriptModel = null;
-                
-            //Iterate through the inspections & look for No Violation
-                for (inspectionScriptModelIndex in inspectionScriptModels)
-                {
-                    inspectionScriptModel = inspectionScriptModels[inspectionScriptModelIndex];
-                        if ((inspectionScriptModel.getInspectionStatus().toUpperCase() == "OK") && inspType == "Final Inspection")
-                        {
-                       //Get the Inspection Notes
-                        var InspectionNotes = inspectionScriptModel.getInspection().getResultComment();
-						}
-			
-				}
+            if (getResultComment.getSuccess() && (capStatus == "Issued" || capStatus == "Expired")) 
+			{
+				var InspectionNotes = getResultComment.getOutput();
+                updateTask("Inspections", "Final Inspection Complete", InspectionNotes, "Updated by IRSA event");
+				
+				updateAppStatus("Closed","Set via script")
+				showMessage = true;
+				comment("The Permit is Closed.");
+				
+				
+            
 			}
-			updateTask("Inspections", "Final Inspection Complete", InspectionNotes, "Updated by IRSA event");
-			showMessage = true;
-            comment("The Permit is Closed.");
-			//potentially send email
-			
+
 		}
+		
 }
 
 		
