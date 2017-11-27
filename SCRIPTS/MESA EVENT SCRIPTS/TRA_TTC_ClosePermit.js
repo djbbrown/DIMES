@@ -13,8 +13,8 @@ try {
         if  (capStatus == "Expired" && inspType == "Final Inspection" && inspResult.toUpperCase() == "OK" && isTaskActive("Inspections"))
 		{
 		
-                updateTask("Inspections", "Final Inspection Complete", "OK to close.", "Updated by IRSA event");
-				
+                closeTask("Inspections", "Final Inspection Complete", "OK to close.", "Updated by IRSA event");
+								
 				updateAppStatus("Closed","Set via script")
 				showMessage = true;
 				comment("The Permit is Closed.");
