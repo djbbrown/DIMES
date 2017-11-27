@@ -10,24 +10,17 @@
 /*==================================================================*/
 
 try {
-        if  (inspType == "Final Inspection" && inspResult.toUpperCase() == "OK")
+        if  (capStatus == "Revisions Required" && inspType == "Final Inspection" && inspResult.toUpperCase() == "OK" && isTaskActive("Inspections"))
 		{
-		//Get the Inspection results
-          var getResultComment = aa.inspection.getInspections(capId);
-
-                //Test if script can get an inspection
-            if (getResultComment.getSuccess() && (capStatus == "Issued" || capStatus == "Expired")) 
-			{
-				var InspectionNotes = getResultComment.getOutput();
-                updateTask("Inspections", "Final Inspection Complete", InspectionNotes, "Updated by IRSA event");
+		
+                updateTask("Inspections", "Final Inspection Complete", "OK to close.", "Updated by IRSA event");
 				
 				updateAppStatus("Closed","Set via script")
 				showMessage = true;
 				comment("The Permit is Closed.");
-				
-				
+							
             
-			}
+			
 
 		}
 		
