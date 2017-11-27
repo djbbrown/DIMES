@@ -10,7 +10,7 @@
 /*==================================================================*/
 
 try {
-        if  (capStatus == "Revisions Required" && inspType == "Final Inspection" && inspResult.toUpperCase() == "OK" && isTaskActive("Inspections"))
+        if  (capStatus == "Expired" && inspType == "Final Inspection" && inspResult.toUpperCase() == "OK" && isTaskActive("Inspections"))
 		{
 		
                 updateTask("Inspections", "Final Inspection Complete", "OK to close.", "Updated by IRSA event");
