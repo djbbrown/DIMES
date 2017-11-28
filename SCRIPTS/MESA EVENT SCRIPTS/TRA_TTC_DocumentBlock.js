@@ -22,7 +22,7 @@ if (capStatus != "Revisions Required" || capStatus != "Received" || capStatus !=
 	}
 	comment("wfTaskStatusCheck = " + wfTaskStatusCheck);
 
-if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	
+if ((documentModelArray.size() > 0) && (wfTaskStatusCheck = true) && (publicUser)) 	
 	{
 	for(var index = 0; index < documentModelArray.size(); index++)
 		{
