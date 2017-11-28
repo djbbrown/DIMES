@@ -16,7 +16,7 @@
 try 
  {
 var wfTaskStatusCheck = false;
-if (!matches(capStatus, "Incomplete", "Revisions Required", "Received", "In Review", "Revisions Received"))
+if (!matches(capStatus, " ", "Incomplete", "Revisions Required", "Received", "In Review", "Revisions Received"))
 	{
 		var wfTaskStatusCheck = true;
 	}
