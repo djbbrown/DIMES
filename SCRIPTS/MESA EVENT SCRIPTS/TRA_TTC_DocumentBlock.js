@@ -16,18 +16,18 @@
 try 
  {
 var wfTaskStatusCheck = false;
-if (capStatus != "Revisions Required" || capStatus != "Received" || capStatus != "In Review" || capStatus != "Revisions Received" || capStatus != "Incomplete") 
+if (!matches(capStatus, "Incomplete", "Revisions Required", "Received", "In Review", "Revisions Received"))
 	{
 		var wfTaskStatusCheck = true;
 	}
 	comment("wfTaskStatusCheck = " + wfTaskStatusCheck);
 
-if ((documentModelArray.size() > 0) && (wfTaskStatusCheck = true) && (publicUser)) 	
+if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	
 	{
 	for(var index = 0; index < documentModelArray.size(); index++)
 		{
 		
-		// Update workflow task for document to be reviewed
+		// Block Submit
 
 		if (documentModelArray.get(index).getDocCategory()=="Traffic Control Plans") 
 			{
