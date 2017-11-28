@@ -16,7 +16,7 @@
 try 
  {
 var wfTaskStatusCheck = false;
-if (!matches(capStatus, " ", "Incomplete", "Revisions Required", "Received", "In Review", "Revisions Received"))
+if (matches(capStatus, "Approved", "Closed", "Expired", "Fees Due", "Fees Paid", "Issued", "Not Approved", "Steel Plate in ROW", "Suspended", "Void", "Withdrawn"))
 	{
 		var wfTaskStatusCheck = true;
 	}
