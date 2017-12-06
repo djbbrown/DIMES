@@ -21,7 +21,7 @@
 
 try
 {
-    var agendaDate = '' + getAppSpecific("Council Agenda Date");
+    var agendaDate = getAppSpecific("Council Agenda Date");
     var taskActive = isTaskActive("Licensing Supervisor");
     
     if(taskActive && (agendaDate == '' || agendaDate == null))
