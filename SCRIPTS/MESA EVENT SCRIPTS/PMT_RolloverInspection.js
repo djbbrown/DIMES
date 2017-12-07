@@ -13,8 +13,8 @@
 //            IRSA;Permits!Residential!NA!NA
 //            IRSA;Permits!Commercial!NA!NA
 /*==================================================================*/
-if (inspResult == "Roll Over") {
+/*if (inspResult == "Roll Over") {
 	// get the last inspector's ID
 	var inspectorId = getLastInspector(inspType);
 	scheduleInspectionDateWithInspector(inspType, nextWorkDay(), inspectorId);
-}
+}*/
