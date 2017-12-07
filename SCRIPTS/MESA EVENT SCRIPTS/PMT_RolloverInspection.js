@@ -13,8 +13,19 @@
 //            IRSA;Permits!Residential!NA!NA
 //            IRSA;Permits!Commercial!NA!NA
 /*==================================================================*/
-/*if (inspResult == "Roll Over") {
-	// get the last inspector's ID
-	var inspectorId = getLastInspector(inspType);
-	scheduleInspectionDateWithInspector(inspType, nextWorkDay(), inspectorId);
-}*/
+copyParcelGisObjects();
+
+if (inspResult == "Roll Over") {
+	var InspectionArea;
+	var inspectorId;
+	
+	// get the inspector's ID for specific area
+	InspectionArea = getGISInfo("MESA","Building_Inspection_Areas","BSDIA");
+	InspectionArea = "Building_Inspection_Areas-" + InspectionArea;
+	inspectorId = lookup("USER_DISTRICTS", InspectionArea);
+	
+	logDebug("The Inspection Area is: " + InspectionArea + ".");
+	logDebug("The Inspector is: " + inspectorId + ".");
+	
+	scheduleInspectionDateWithInspector(inspType, nextWorkDay(), inspectorId);	
+}
