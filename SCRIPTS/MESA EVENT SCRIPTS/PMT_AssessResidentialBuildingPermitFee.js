@@ -49,6 +49,11 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		feeAmt = feeAmt + (90 * tNumInsp);
 	}
 	//*/
+	
+	if (AInfo["Type of work"] == "Remodeling With Addition"){
+		valuationASI = valuationASI + estValue;
+	}
+		
 	if (valuationASI >= 25000 && valuationASI <=200000){
 		feeAmt = 500;  // Base Fee
 		tNumInsp = Math.ceil((valuationASI - 25000)/1000);
