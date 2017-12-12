@@ -13,6 +13,13 @@ include("PMT_SubmittalCycle");
 if (wfTask == "Application Submittal" && wfStatus == "Accepted - Plan Review Not Req"){
 	include("PMT_ResidentialBranchNoReview");
 }
+
+//Calculate total valuation when status gets to a Ready to Issue state at permit issuance.
+if ((wfTask.toUpperCase() == "PLANS COORDINATION" && wfStatus.toUpperCase() == "READY TO ISSUE")
+	|| (wfTask.toUpperCase() == "APPLICATION SUBMITTAL" && wfStatus.toUpperCase() == "ACCEPTED - PLAN REVIEW NOT REQ")){
+	 include("PMT_TotalValuation");
+}
+
 // ---------------------------
 // This section of code must run after the above that taks care of moving the workflow forward.
 if (
@@ -33,8 +40,3 @@ if(wfTask == "Permit Issuance" && wfStatus == "Issued")
 include("PMT_OneTenthAcre_Conditions");
 
 
-//Calculate total valuation when status gets to a Ready to Issue state at permit issuance.
-if ((wfTask.toUpperCase() == "PLANS COORDINATION" && wfStatus.toUpperCase() == "READY TO ISSUE")
-   || (wfTask.toUpperCase() == "APPLICATION SUBMITTAL" && wfStatus.toUpperCase() == "ACCEPTED - PLAN REVIEW NOT REQ")){
-	include("PMT_TotalValuation");
-}
