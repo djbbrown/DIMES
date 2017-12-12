@@ -17,7 +17,7 @@ if (publicUser) {
 //         	ASA;Permits!Addenda or Deferred!NA!NA
 ===================================================================*/
 
-if (matches(AInfo["Type of Work"],"Commercial - Addenda","Residential - Addenda","Sign - Commercial Addenda","Master Plan - Residential - Addenda","Master Plan - Commercial - Addenda")){
+if (matches(AInfo["Type of work"],"Commercial - Addenda","Residential - Addenda","Sign - Commercial Addenda","Master Plan - Residential - Addenda","Master Plan - Commercial - Addenda")){
 	updateFee("PMT050", "PMT_ADD", "FINAL", 1, "Y");
 }
 
@@ -62,7 +62,7 @@ if (AInfo["Expedite"] == "Super Expedite"){
 //         	ASA;Permits!Addenda or Deferred!NA!NA
 ===================================================================*/
 
-if (AInfo["Type of Work"] == "Code Modification"){
+if (AInfo["Type of work"] == "Code Modification"){
 	updateFee("PMT110", "PMT_ADD", "FINAL", 1, "Y");
 }
 
