@@ -1,6 +1,6 @@
 /*===================================================================
-// Script Number: TBD
-// Issue Number: 42
+// Script Number: 
+// Issue Number: 42, 141
 // Script Name: TRA_TTC_TechFee.js
 // Script Developer: Mong Ward
 // Script Agency: Mesa
@@ -12,7 +12,7 @@
 ===================================================================*/
 try {
 
-if (wfTask == "Application Submittal" && wfStatus == "Submitted") 
+if (isTaskActive("Application Submittal") && wfStatus == "Submitted") 
 	{ 
 	//This is to assess the Technology Fee - add fee unless one exists with status INVOICED or NEW
 	if (!feeExists("TTC040", "NEW", "INVOICED")) addFee("TTC040","TTC_GEN", "FINAL", 1, "N");
