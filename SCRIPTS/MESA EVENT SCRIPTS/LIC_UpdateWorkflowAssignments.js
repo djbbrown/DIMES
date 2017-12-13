@@ -23,11 +23,29 @@ try
     var firstTask;
     var assignedTo;
     
-    if(wfTask == 'Supervisor Review' && wfStatus == 'Approved w/Conditions')
+    if((wfTask == 'Supervisor Review' || wfTask == 'License Administrator Review' ) && wfStatus == 'Approved w/Conditions')
     {
-        firstTask = aa.workflow.getTask(capId, 'License Application')
-        
-        if(firstTask.getSuccess())
+        var capResult = aa.cap.getCap(capId);
+
+        if(capResult.getSuccess())
+        {
+            cap = capResult.getOutput();
+
+            if(cap.capType.category == 'Application')
+            {
+                firstTask = aa.workflow.getTask(capId, 'License Application')
+            }
+            else if (cap.capType.category == 'Renewal')
+            {
+                firstTask = aa.workflow.getTask(capId, 'License Renewal')
+            }
+            else
+            {
+                firstTask = null;
+            }
+        }
+
+        if(firstTask != null && firstTask.getSuccess())
         {
             assignedTo = firstTask.getOutput().getAssignedStaff();
             
