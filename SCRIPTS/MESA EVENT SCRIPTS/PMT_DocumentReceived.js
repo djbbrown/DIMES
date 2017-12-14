@@ -12,7 +12,13 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	{
 		//Exclude Fire CAD Ordinance documents
 		if (documentModelArray.get(index).getDocCategory() != "Fire CAD Ordinance")		{ 
 			// Update workflow task for document to be reviewed
-			updateTask("Plans Distribution", "Revisions Received", "Updated by DUA event", "Updated by DUA event");
+			var todayDateStr = getTodayAsString();
+			var comment = "Updated by DUA event";
+			if (todayDateStr != null){
+				 comment = comment + " On: "+todayDateStr;
+			}
+
+			updateTask("Plans Distribution", "Revisions Received", comment, comment);
 			//potentially send email	
 		}
 	}
