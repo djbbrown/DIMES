@@ -1,4 +1,4 @@
- //---------------------------------------------------------------------
+//---------------------------------------------------------------------
 // Script Number: 66, 169
 // Script Name: PMT_PenaltyDate_ForAsiua.js 
 // Script Developer: Brian O'Dell
@@ -40,35 +40,65 @@ try
 
     var penaltyDate = AInfo["Penalty Date"];
     var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
+	var recalcPenaltyDateFrom = AInfo["Recalc Penalty Date From"];
+	var recalcPenaltyDateFromJS = new Date(AInfo["Recalc Penalty Date From"]);
+	var penaltyDateFrom = AInfo["Penalty Date From"];
+	var penaltyDateFromJS = new Date(AInfo["Penalty Date From"]);
     var todayDate = new Date();
 	var recFileDateJS = new Date(fileDate);
+	var updatePenaltyDateRecalc = false;
+	var updatePenaltyDate = false;
 
     // set the futureDate
-    var futureDate = new Date(mesaWorkingDays(recFileDateJS, turnAroundTime));
-    var setDate = false;
+	if (recalcPenaltyDateFrom != null){
+		var futureDateRecalc = new Date(mesaWorkingDays(recalcPenaltyDateFromJS, turnAroundTime));
+		var setDate = false;
+		updatePenaltyDateRecalc = true;
+		}
+	var recalcPenaltyDate = new Date(mesaWorkingDays(penaltyDateFromJS, turnAroundTime));
+	
+	//logDebug("recalcPenaltyDate = " + recalcPenaltyDate);
+	//logDebug("penaltyDate = " + penaltyDate);
+	//logDebug("recalcPenaltyDateASI = " + jsDateToASIDate(recalcPenaltyDate));
+	
+	if ((recalcPenaltyDateFrom == null) && (penaltyDate != jsDateToASIDate(recalcPenaltyDate))){
+		var futureDate = new Date(mesaWorkingDays(penaltyDateFromJS, turnAroundTime));
+		var setDate = false;
+		updatePenaltyDate = true;
+	}
 
     // assign to Penalty Date ASI field if exists
-    if (typeof penaltyDate == "undefined")
-    {
-      comment("The ASI field 'Penalty Date' does not exist, skipping date assignment");
+	//logDebug("updatePenaltyDateRecalc = " + updatePenaltyDateRecalc);
+	//logDebug("updatePenaltyDate = " + updatePenaltyDate);
+    if (typeof penaltyDate != "undefined" && updatePenaltyDateRecalc)
+    {     
+      //logDebug("futureDate: " + futureDate);
+      editAppSpecific("Penalty Date", jsDateToASIDate(futureDateRecalc));
+	  setDate = true;
+	  if(recalcPenaltyDate != null){
+			editAppSpecific("Recalc Penalty Date From","");
+			}
     }
-    else
-    {
-      comment("The ASI field 'Penalty Date' exists, setting date");     
-      comment("futureDate: " + futureDate );
+	if (typeof penaltyDate != "undefined" && updatePenaltyDate)
+    {     
+      //logDebug("futureDate: " + futureDate);
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
-      setDate = true;
+	  setDate = true;
     }
-
+	
     // assign to Plan Review Penalty Date ASI field if exists
-    if (typeof planReviewPenaltyDate == "undefined")
+    if (typeof planReviewPenaltyDate != "undefined" && updatePenaltyDateRecalc)
     {
-      comment("The ASI field 'Plan Review Penalty Date' does not exist, skipping date assignment");
+      //logDebug("futureDate: " + futureDate);
+      editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDateRecalc));
+      setDate = true;
+	  if(recalcPenaltyDate != null){
+			editAppSpecific("Recalc Penalty Date From","");
+			}
     }
-    else
+	if (typeof planReviewPenaltyDate != "undefined" && updatePenaltyDate)
     {
-      comment("The ASI field 'Plan Review Penalty Date' exists, setting date");      
-      comment("futureDate: " + futureDate );
+      //logDebug("futureDate: " + futureDate);
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
       setDate = true;
     }
