@@ -1,9 +1,10 @@
 //*===================================================================
 // Versions:
- // 9/?/2016	 Brian O'Dell			initial
- // 9/28/2016	 John Cheney			added include("PMT_CopyPenaltyDateToDueDate") 
+// 9/?/2016	 Brian O'Dell			initial
+// 9/28/2016	 John Cheney			added include("PMT_CopyPenaltyDateToDueDate") 
 // 10/17/2016	 John Cheney			removed include("PMT_CopyPenaltyDateToDueDate")
 // 9/18/2017   Suzanna Majchrzak Added Routed for Review as requested 
+// 12/15/2017 Kevin Gurney			Modified process based on feedback.  Spec attached to issue.
 
  //---------------------------------------------------------------------
 // Script Number: 66, 169
@@ -42,16 +43,17 @@ try
   comment("wfTask: " + wfTask); 
   comment("wfStatus: " + wfStatus); 
 
+  var doActions = false;
+  var submittalCycle = AInfo["Submittal Cycle"];
 
-  if ((
-      (wfTask == "Application Submittal") && 
-      ((wfStatus == "Accepted - Plan Review Req") || (wfStatus == "Accepted")))
-     ||
-     ((wfTask == "Plans Distribution") && (wfStatus == "Revisions Received"))
-     ||
-     ((wfTask == "Plans Distribution") && (wfStatus == "Routed for Review"))
-     || 
-     ((wfTask == "Plans Coordination") && (wfStatus == "Revisions Required")))
+  if((wfTask == "Application Submittal" && matches(wfStatus,"Accepted - Plan Review Req","Accepted"))
+	||
+	(wfTask == "Plans Distribution" && wfStatus == "Routed for Review" && parseInt(subbmitalCycle) > 1))
+  {
+		doActions = true;
+  }
+     
+  if (doActions)
   {
 
     // the minus 1 is due to customer wanting today to be "day 1"
@@ -75,6 +77,7 @@ try
       comment("The ASI field 'Penalty Date' exists, setting date");     
       comment("futureDate: " + futureDate );
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
+	  editAppSpecific("Penalty Date From", jsDateToASIDate(todayDate));
       setDate = true;
     }
 
@@ -88,6 +91,7 @@ try
       comment("The ASI field 'Plan Review Penalty Date' exists, setting date");      
       comment("futureDate: " + futureDate );
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
+	  editAppSpecific("Penalty Date From", jsDateToASIDate(todayDate));
       setDate = true;
     }
   }
@@ -101,6 +105,3 @@ catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
 }
-
-
-
