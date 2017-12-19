@@ -44,13 +44,26 @@ try
   comment("wfStatus: " + wfStatus); 
 
   var doActions = false;
+  var doActions2 = false;
+  var doActions3 = false;
+  var penaltyDate = AInfo["Penalty Date"];
+  var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
   var submittalCycle = AInfo["Submittal Cycle"];
 
-  if((wfTask == "Application Submittal" && matches(wfStatus,"Accepted - Plan Review Req","Accepted"))
-	||
-	(wfTask == "Plans Distribution" && wfStatus == "Routed for Review" && parseInt(subbmitalCycle) > 1))
+  if((wfTask == "Application Submittal" && matches(wfStatus,"Accepted - Plan Review Req","Accepted")) ||
+	(wfTask == "Plans Distribution" && wfStatus == "Routed for Review" && parseInt(submittalCycle) > 1))
   {
 		doActions = true;
+  }
+  
+  if(wfTask == "Plans Distribution" && wfStatus == "Routed for Review" && parseInt(submittalCycle) > 1)
+  {
+		doActions2 = true;
+  }
+  
+  if(wfTask == "Plans Distribution" && wfStatus == "Routed for Review" && parseInt(submittalCycle) == 1)
+  {
+		doActions3 = true;
   }
      
   if (doActions)
@@ -59,8 +72,6 @@ try
     // the minus 1 is due to customer wanting today to be "day 1"
     var turnAroundTime = (parseInt(AInfo["Turn Around Time"]));
 
-    var penaltyDate = AInfo["Penalty Date"];
-    var planReviewPenaltyDate = AInfo["Plan Review Penalty Date"];
     var todayDate = new Date();
 
     // set the futureDate
@@ -79,7 +90,16 @@ try
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
 	  editAppSpecific("Penalty Date From", jsDateToASIDate(todayDate));
       setDate = true;
-    }
+	  if(doActions2){
+		// update the review tasks
+		wfTasksArray = loadTasks(capId);
+		for (x in wfTasksArray){
+			if(matches(x,"Building Review","Fire Review","Planning Review","Public Works Review","Utilities Review","Arborist Review","Civil Review","Civil Engineering Review","DIS Review","Plans Coordination","Engineering Review") && wfTasksArray[x].active == "Y"){
+				editTaskDueDate(x,jsDateToASIDate(futureDate));
+				}
+			}
+		}
+	}
 
     // assign to Plan Review Penalty Date ASI field if exists
     if (typeof planReviewPenaltyDate == "undefined")
@@ -93,13 +113,31 @@ try
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
 	  editAppSpecific("Penalty Date From", jsDateToASIDate(todayDate));
       setDate = true;
+	  if(doActions2){
+		// update the review tasks
+		wfTasksArray = loadTasks(capId);
+		for (x in wfTasksArray){
+			if(matches(x,"Building Review","Fire Review","Planning Review","Public Works Review","Utilities Review","Arborist Review","Civil Review","Civil Engineering Review","DIS Review","Plans Coordination","Engineering Review") && wfTasksArray[x].active == "Y"){
+				editTaskDueDate(x,jsDateToASIDate(futureDate));
+				}
+			}
+		}
     }
   }
   else
   {
     comment("if stmt was false, no code evaluated"); 
   }
-
+	if (doActions3)
+  {
+    // update the review tasks during submittal cycle 1
+    wfTasksArray = loadTasks(capId);
+	for (x in wfTasksArray){
+		if(matches(x,"Building Review","Fire Review","Planning Review","Public Works Review","Utilities Review","Arborist Review","Civil Review","Civil Engineering Review","DIS Review","Plans Coordination","Engineering Review") && wfTasksArray[x].active == "Y"){
+			editTaskDueDate(x,penaltyDate);
+			}
+		}
+	}
 }
 catch (err)
 {
