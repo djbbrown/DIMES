@@ -75,6 +75,13 @@ try
       //logDebug("futureDate: " + futureDate);
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDateRecalc));
 	  setDate = true;
+	  // update the review tasks
+		wfTasksArray = loadTasks(capId);
+		for (x in wfTasksArray){
+			if(matches(x,"Building Review","Fire Review","Planning Review","Public Works Review","Utilities Review","Arborist Review","Civil Review","Civil Engineering Review","DIS Review","Plans Coordination","Engineering Review") && wfTasksArray[x].active == "Y"){
+				editTaskDueDate(x,jsDateToASIDate(futureDateRecalc));
+				}
+			}
 	  if(recalcPenaltyDate != null){
 			editAppSpecific("Recalc Penalty Date From","");
 			}
@@ -84,6 +91,13 @@ try
       //logDebug("futureDate: " + futureDate);
       editAppSpecific("Penalty Date", jsDateToASIDate(futureDate));
 	  setDate = true;
+	  // update the review tasks
+		wfTasksArray = loadTasks(capId);
+		for (x in wfTasksArray){
+			if(matches(x,"Building Review","Fire Review","Planning Review","Public Works Review","Utilities Review","Arborist Review","Civil Review","Civil Engineering Review","DIS Review","Plans Coordination","Engineering Review") && wfTasksArray[x].active == "Y"){
+				editTaskDueDate(x,jsDateToASIDate(futureDate));
+				}
+			}
     }
 	
     // assign to Plan Review Penalty Date ASI field if exists
@@ -92,6 +106,13 @@ try
       //logDebug("futureDate: " + futureDate);
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDateRecalc));
       setDate = true;
+	  // update the review tasks
+		wfTasksArray = loadTasks(capId);
+		for (x in wfTasksArray){
+			if(matches(x,"Building Review","Fire Review","Planning Review","Public Works Review","Utilities Review","Arborist Review","Civil Review","Civil Engineering Review","DIS Review","Plans Coordination","Engineering Review") && wfTasksArray[x].active == "Y"){
+				editTaskDueDate(x,jsDateToASIDate(futureDateRecalc));
+				}
+			}
 	  if(recalcPenaltyDate != null){
 			editAppSpecific("Recalc Penalty Date From","");
 			}
@@ -101,6 +122,13 @@ try
       //logDebug("futureDate: " + futureDate);
       editAppSpecific("Plan Review Penalty Date", jsDateToASIDate(futureDate));
       setDate = true;
+	  // update the review tasks
+		wfTasksArray = loadTasks(capId);
+		for (x in wfTasksArray){
+			if(matches(x,"Building Review","Fire Review","Planning Review","Public Works Review","Utilities Review","Arborist Review","Civil Review","Civil Engineering Review","DIS Review","Plans Coordination","Engineering Review") && wfTasksArray[x].active == "Y"){
+				editTaskDueDate(x,jsDateToASIDate(futureDate));
+				}
+			}
     }
   }
 
