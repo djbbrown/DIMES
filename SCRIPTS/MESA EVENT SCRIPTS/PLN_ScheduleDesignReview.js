@@ -6,7 +6,7 @@
 // Script Description: Script to assign workflow tasks due date by meetings scheduled on calendar.
 // Script Run Event: WUTA
 // Script Parents:
-//            WTUA;Planning!Planning and Zoning!NA!NA
+//            WTUA;Planning!Design Review!NA!NA
 ===================================================================*/
 if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 	var vMeetingBody = lookup('SetDueDates:Planning/Design Review/NA/NA', 'Meeting Body');
@@ -22,7 +22,7 @@ if (wfTask == 'Distribution' && wfStatus == 'Distributed') {
 	//vDateFrom = new Date(dateAdd(vToday, parseInt(vTotalTimeTillHearing)));
 	//vDateTo = new Date(dateAdd(vToday, parseInt(vTotalTimeTillHearing + 31)));
 
-	vDateFrom = new Date(dateAdd(vToday, 59));
+	vDateFrom = new Date(dateAdd(vToday, 43));
 	vDateTo = new Date(dateAdd(vToday, 90));
 	logDebug("FromDate: " + vDateFrom);
 	logDebug("ToDate: " + vDateTo);
