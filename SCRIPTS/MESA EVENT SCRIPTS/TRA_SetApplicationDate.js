@@ -23,35 +23,14 @@ try
 
   if (currentTime >= 11)
   {
-    //Sunday thru Wednesday - Next day
-	if ((today.getDay(mesaWorkingDays) == 0) || (today.getDay(mesaWorkingDays) == 1) || (today.getDay(mesaWorkingDays) == 2) || (today.getDay(mesaWorkingDays) == 3)) 
-	{
-	today.setDate(today.getDate(mesaWorkingDays) + 1);
-	}
-	
-	//Thursday add 4 days to get to Monday
-	else if (today.getDay(mesaWorkingDays) == 4) 
-	{
-		today.setDate(today.getDate(mesaWorkingDays) + 4);
-	}
-	
-	//Friday add 3 days to get to Monday
-	else if (today.getDay(mesaWorkingDays) == 5) 
-	{
-		today.setDate(today.getDate(mesaWorkingDays) + 3);
-	}
-	// Saturday add 2 days to get to Monday
-	if (today.getDay(mesaWorkingDays) == 6) 
-	{
-		today.setDate(today.getDate(mesaWorkingDays) + 2);
-	} 
-	
-
+    mesaDate = mesaWorkingDays(aa.util.now(), 2);  //today + 1 days based on 4-day work-week
+	today = new Date(mesaDate);
   }
 
   editAppSpecific("Application Date",jsDateToASIDate(today),capId)
   comment("Application Date set to: " + jsDateToASIDate(today));
 }
+
 catch (err)
 {
   logDebug("A JavaScript Error occured: " + err.message);
