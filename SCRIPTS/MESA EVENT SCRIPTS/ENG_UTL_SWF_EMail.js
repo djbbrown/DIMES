@@ -1,5 +1,5 @@
 /*===================================================================
-// Script Name: ENG_UTL_SWF_EMail.js
+// Script Name: ENG_UTL_SWF_Email.js
 // Script Description: 	Email to be sent any of the following status update
 // for Small Wireless Facility (SWF)
 // Author: Suzanna Majchrzak
@@ -12,7 +12,7 @@
 try {  
         var capStatus = cap.getCapStatus();
     
-        //Workflow Required and for ALL task types
+        //Send only on application received
         if ((capStatus == "Received" ))
         { 
                 var vEParams = aa.util.newHashtable();         
