@@ -21,7 +21,7 @@ try
 
   var bldPermitNo = AInfo["Building Permit No."]; //"PMT16-00511";
 
-  if (bldPermitNo != "" && bdlPermitNo != null)
+  if (bldPermitNo != "" && bldPermitNo != null)
   {
 
     var matchCapId = aa.cap.getCapID(bldPermitNo).getOutput();
