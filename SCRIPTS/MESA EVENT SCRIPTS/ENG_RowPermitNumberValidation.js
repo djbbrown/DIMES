@@ -21,7 +21,7 @@ try
 
   var rowPermitNo = AInfo["ROW Permit No."]; //"UTL16-00008";
 
-  if (rowPermitNo != "")
+  if (rowPermitNo != "" && rowPermitNo != null)
   {
 
     var matchCapId = aa.cap.getCapID(rowPermitNo).getOutput();
