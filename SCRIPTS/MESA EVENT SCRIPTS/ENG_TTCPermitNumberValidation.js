@@ -22,7 +22,7 @@ try
 
   var ttcPermitNo = AInfo["Temporary Traffic Control Permit No."];
 
-  if (ttcPermitNo != "")
+  if (ttcPermitNo != "" && ttcPermitNo != null)
   {
 
     var matchCapId = aa.cap.getCapID(ttcPermitNo).getOutput();
