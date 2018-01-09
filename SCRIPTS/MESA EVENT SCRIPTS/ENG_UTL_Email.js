@@ -125,8 +125,17 @@ try {
         else if ((wfTask == "Plans Distribution" && wfStatus == "Revisions Received"))
         {
                 
-                var vEParams = aa.util.newHashtable();                   
-                var emailAddress = lookup("EMAIL_RECIPIENTS", "ENG_UTL_NCU_EMAIL");
+                var vEParams = aa.util.newHashtable();       
+                
+                var recordType = "Engineering/Utilities/Non-City/Small Wireless Facility";
+                
+                    //check the record type to verify it is a Small Wireless Facility record type for Email DL
+                if(appMatch(recordType)) {
+                    var emailAddress = lookup("EMAIL_RECIPIENTS", "ENG_UTL_SWF_EMAIL");
+                }
+                else {   
+                    var emailAddress = lookup("EMAIL_RECIPIENTS", "ENG_UTL_NCU_EMAIL");
+                }
     
                 //retrieve template information
                 var tmpl = aa.communication.getNotificationTemplate("ENG_UTL_WORKFLOW_REVISION_RECEIVED").getOutput();
