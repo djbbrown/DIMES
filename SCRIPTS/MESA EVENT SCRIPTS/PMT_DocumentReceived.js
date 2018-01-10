@@ -26,7 +26,8 @@ if ((documentModelArray.size() > 0) && (wfTaskStatusCheck) && (publicUser)) 	{
 
 //Application Submittal
 var wfTaskStatusCheckAppSubmit = false;
-if (!matches(appTypeArray[1],"Fire","Police Department") && (matches(capStatus, "Incomplete", "Incomplete Submittal")) && isTaskActive("Application Submittal")) {
+if (!matches(appTypeArray[1],"Fire","Police Department") && (matches(capStatus, "Incomplete", "Incomplete Submittal")) && 
+	(isTaskActive("Application Submittal") || isTaskActive("Plans Distribution"))) {
 	var wfTaskStatusCheckAppSubmit = true;
 }
 //logDebug("wfTaskStatusCheckAppSubmit = " + wfTaskStatusCheckAppSubmit);
