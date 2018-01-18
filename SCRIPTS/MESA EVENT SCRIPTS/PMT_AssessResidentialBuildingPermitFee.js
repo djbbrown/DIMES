@@ -50,9 +50,10 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 	}
 	//*/
 	
-	if (AInfo["Type of work"] == "Remodeling With Addition"){
+	//The below code is already being calculated within the PMT_TotalValuation code.
+	/*if (AInfo["Type of work"] == "Remodeling With Addition"){
 		valuationASI = valuationASI + estValue;
-	}
+	}*/
 		
 	if (valuationASI >= 25000 && valuationASI <=200000){
 		feeAmt = 500;  // Base Fee
