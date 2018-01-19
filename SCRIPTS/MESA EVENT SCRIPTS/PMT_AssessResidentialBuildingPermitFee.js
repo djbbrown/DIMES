@@ -121,7 +121,7 @@ else if (appTypeArray[1] == 'Residential' && ((wfTask == "Plans Coordination" &&
 		prePay = feeAmount("RES180","NEW","INVOICED");
 		//fTotal = getSubGrpFeeAmt("EXP","","RES190") - prePay;
 		fTotal = getSubGrpFeeAmt("EXP","","RES190");
-		fTotalUnder = = feeAmount("RES070");
+		fTotalUnder = feeAmount("RES070");
 		//removeFee("RES190", "FINAL");
 		// Add the extra fee for expedite
 		
