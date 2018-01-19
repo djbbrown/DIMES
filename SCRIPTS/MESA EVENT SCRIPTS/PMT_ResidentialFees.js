@@ -195,6 +195,12 @@ try {
 				resDep = feeAmount("RES010","NEW","INVOICED");
 				tNumInsp = 90+(tNumInsp*90) - resDep;
 				addFee("RES070", "PMT_RES","FINAL", tNumInsp, "N");
+				
+				if(AInfo["Expedite"]=="Expedite" && appTypeArray[2]=='NA'){
+					fTotal = feeAmount("RES070","NEW","INVOICED");
+					updateFee("RES190", "PMT_RES", "FINAL", fTotal, "N");
+				}
+				
 			}
 			if(!tNumInsp > 0 && feeExists("RES070", "NEW", "INVOICED")){
 				voidRemoveFee("RES070");
