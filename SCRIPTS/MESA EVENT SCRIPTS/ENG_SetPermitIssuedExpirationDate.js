@@ -7,6 +7,7 @@
 //						   Engineering!Utilities!Non-City!Annual - 365days from wfDate
 //						   Engineering!Utilities!Non-City!Standard - 120 days from wfDate
 //						   Engineering!Right Of Way!*!* - 120 days from wfDate
+//						   Engineering!Utilities!Non-City!Small Wireless Facility - 180days from wfDate
 //
 // Script Run Event: WTUA
 // Script Parents:   WTUA;Engineering!*!*!*
@@ -34,6 +35,10 @@ try {
 			}
 			if (appMatch("Engineering/Right Of Way/*/*"))	{
 				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,120));
+				licEditExpInfo("Active", dateAdd(wfDateMMDDYYYY,120)); 
+			}
+			if (appMatch("Engineering/Utilities/Non-City/Small Wireless Facility"))	{
+				editAppSpecific("Permit Expiration Date", dateAdd(wfDateMMDDYYYY,180));
 				licEditExpInfo("Active", dateAdd(wfDateMMDDYYYY,120)); 
 			}
 		}                
