@@ -20,35 +20,36 @@ try
 {
 
   var parentPermit = AInfo["Parent TTC Permit #"];
+  var getCapResult = aa.cap.getCapID(parentPermit);
+  var commentTxt = "";
 
-  if (parentPermit != "")
-  {
-
-    var matchCapId = aa.cap.getCapID(ttcPermitNo).getOutput();
-
-
-    if ((matchCapId) && (capStatus(matchCapId) != "Issued"))
+ if (getCapResult.getSuccess())
     {
-				
-      var matchCap = aa.cap.getCap(matchCapId).getOutput();
-      var ttcRecordType = matchCap.getCapType().toString();
-
-      if (ttcRecordType != "Transportation/Temporary Traffic Control/NA/NA")
+      var ppCapId = aa.cap.getCapID(parentPermit).getOutput();
+      var ppCapTypeStr = aa.cap.getCap(ppCapId).getOutput().getCapType().toString();
+      logDebug("Type: " + ppCapTypeStr);
+   
+      if (ppCapTypeStr == "Transportation/Temporary Traffic Control/NA/NA")
+          
+      {
+        logDebug("Entered a valid Temporary Traffic Control Permit Application No.")
+      }
+      else
       {
         showMessage = true;
-        comment("The TTC Permit No is not a valid TTC Permit Number");
-        cancel = true;
+        comment("Please enter a valid Temporary Traffic Control Permit Application No.");
+        cancel = true;  
       }
-		
-    }
-    else
-    {
-      showMessage = true;
-      comment("The TTC Permit No is not valid");
-      cancel = true;
-    }
 
   }
+  else
+  { 
+    if (publicUser) { showDebug=false; }
+    showMessage = true;    
+    comment("Please enter a valid Temporary Traffic Control Permit Application No.");
+    cancel = true;  
+  }
+  
 
 }
 catch (err)
