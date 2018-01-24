@@ -27,7 +27,7 @@ try {
                 //Get the contact info
                 var tInfo = getContactArray();
                 var rowCount = tInfo.length;
-                var AntennaSiteNumber = AInfo["Antenna Site Number:"];  
+                var AntennaSiteNumber = AInfo["Antenna Site Number"];  
                 addParameter(vEParams,"$$RECORDID$$",capIDString);
                 addParameter(vEParams, "$$APPLICATIONPROJECTNUMBER$$", AntennaSiteNumber);                    
     
