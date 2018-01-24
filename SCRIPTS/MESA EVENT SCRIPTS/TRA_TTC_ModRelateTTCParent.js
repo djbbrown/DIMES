@@ -33,6 +33,11 @@ try
     if ((seCapTypeStr == "Transportation/Temporary Traffic Control/NA/NA"))
     {
       goodParent = true;
+	  pArr = getParents("Transportation/Temporary Traffic Control/*/*");
+		if (pArr && pArr.length > 0) {
+		for (pIndex in pArr) 
+			removeParent(pArr[pIndex].getCustomID());
+	}
     }   
 
     if (goodParent)
