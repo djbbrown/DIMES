@@ -37,7 +37,7 @@ try
       else
       {
         showMessage = true;
-        comment("Please enter a valid Temporary Traffic Control Permit Application No.");
+        comment("**Please enter a valid Temporary Traffic Control Permit Application No.**");
         cancel = true;  
       }
 
@@ -46,7 +46,7 @@ try
   { 
     if (publicUser) { showDebug=false; }
     showMessage = true;    
-    comment("Please enter a valid Temporary Traffic Control Permit Application No.");
+    comment("**ERROR**Please enter a valid Temporary Traffic Control Permit Application No.**");
     cancel = true;  
   }
   
