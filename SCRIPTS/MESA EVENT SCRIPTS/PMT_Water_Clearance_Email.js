@@ -68,8 +68,8 @@ try {
                     ClearanceDate = String(Cdate);
                         if(ClearanceDate == CurrentDate)
                         {
-                        ServiceType = (tInfo[x]["Service Type"]);
-                        if(ServiceType == "Water Meter: Domestic" || ServiceType == "Water Meter: Landscaping" || ServiceType == "Water Service")
+                        ServiceTypeValue = (tInfo[x]["Service Type"]);
+                        if(ServiceTypeValue == "Water Meter: Domestic" || ServiceTypeValue == "Water Meter: Landscaping" || ServiceTypeValue == "Water Service")
                             {
 							//logDebug("Service Type = " + ServiceType);
                             ServiceTypeFlag = 1;
