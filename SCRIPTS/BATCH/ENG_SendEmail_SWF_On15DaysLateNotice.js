@@ -38,7 +38,7 @@ try {
             AND B1_ALT_ID not like '%TMP%' \
             AND B1_PER_SUB_TYPE = 'Non-City' and B1_PER_CATEGORY = 'Small Wireless Facility' \
             AND SERV_PROV_CODE = 'MESA'\
-            AND B1_APPL_STATUS not like 'Void' and TO_DATE(B1_FILE_DD,'DD-MON-YYYY') <= TO_DATE(SYSDATE-15, 'DD-MON-YYYY') \
+            AND TO_DATE(B1_FILE_DD,'DD-MON-YYYY') <= TO_DATE(SYSDATE-15, 'DD-MON-YYYY') \
             AND (B1_APPL_STATUS = 'Received' \
             OR B1_APPL_STATUS = 'Incomplete Submittal' \
             OR B1_APPL_STATUS = 'Note')";
