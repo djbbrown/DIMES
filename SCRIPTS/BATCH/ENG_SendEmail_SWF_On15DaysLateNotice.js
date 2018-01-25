@@ -34,15 +34,15 @@ try {
     var initialContext = aa.proxyInvoker.newInstance("javax.naming.InitialContext", null).getOutput();
     var ds = initialContext.lookup("java:/AA");
     var conn = ds.getConnection();
-    var selectString = "SELECT B1_ALT_ID, B1_APPL_STATUS,B1_FILE_DD from b1permit where b1_per_group like 'Engineering' and b1_per_type = 'Utilities' \
-            and B1_ALT_ID not like '%TMP%' \
-            and B1_PER_SUB_TYPE = 'Non-City' and B1_PER_CATEGORY = 'Small Wireless Facility' \
-            and SERV_PROV_CODE = 'MESA'\
-            and B1_APPL_STATUS not like 'Issued' \
-            and B1_APPL_STATUS not like 'Incomplete Submittal'\
-            and B1_APPL_STATUS not like 'Closed'\
-            and B1_APPL_STATUS not like 'Void' and TO_DATE(B1_FILE_DD,'DD-MON-YYYY') <= TO_DATE(SYSDATE-15, 'DD-MON-YYYY')";
-
+    var selectString = "SELECT B1_ALT_ID, B1_APPL_STATUS,B1_FILE_DD FROM b1permit WHERE b1_per_group like 'Engineering' AND b1_per_type = 'Utilities' \
+            AND B1_ALT_ID not like '%TMP%' \
+            AND B1_PER_SUB_TYPE = 'Non-City' and B1_PER_CATEGORY = 'Small Wireless Facility' \
+            AND SERV_PROV_CODE = 'MESA'\
+            AND B1_APPL_STATUS not like 'Void' and TO_DATE(B1_FILE_DD,'DD-MON-YYYY') <= TO_DATE(SYSDATE-15, 'DD-MON-YYYY') \
+            AND (B1_APPL_STATUS = 'Received' \
+            OR B1_APPL_STATUS = 'Incomplete Submittal' \
+            OR B1_APPL_STATUS = 'Note')";
+        
     var SQLStatement = conn.prepareStatement(selectString);
     var rSet = SQLStatement.executeQuery();
     var emailString  = "";
