@@ -66,7 +66,7 @@ try {
     //If no records found send email low importance.
     else {
         logDebug("Emailing: To: "+emailTo+" No record found" +emailString);
-        sendNotification(emailTo,emailTo,"","ENG_UTL_SWF_15DAYS_OKAY",params,null);
+        sendNotification("NoReply@MesaAz.gov",emailTo,"","ENG_UTL_SWF_15DAYS_OKAY",params,null);
     }
     
     logDebug("Completed the Batch Process : ENG_SendEmail_SWF_On15DaysLateNoticeTo");
