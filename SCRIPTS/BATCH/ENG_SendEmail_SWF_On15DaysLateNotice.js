@@ -40,7 +40,7 @@ try {
             AND SERV_PROV_CODE = 'MESA'\
             AND TO_DATE(B1_FILE_DD,'DD-MON-YYYY') <= TO_DATE(SYSDATE-15, 'DD-MON-YYYY') \
             AND B1_APPL_STATUS not like 'Issued'  \
-            AND B1_APPL_STATUS not like 'Closed')";
+            AND B1_APPL_STATUS not like 'Closed'";
         
     var SQLStatement = conn.prepareStatement(selectString);
     var rSet = SQLStatement.executeQuery();
