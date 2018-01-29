@@ -39,9 +39,8 @@ try {
             AND B1_PER_SUB_TYPE = 'Non-City' and B1_PER_CATEGORY = 'Small Wireless Facility' \
             AND SERV_PROV_CODE = 'MESA'\
             AND TO_DATE(B1_FILE_DD,'DD-MON-YYYY') <= TO_DATE(SYSDATE-15, 'DD-MON-YYYY') \
-            AND (B1_APPL_STATUS = 'Received' \
-            OR B1_APPL_STATUS = 'Incomplete Submittal' \
-            OR B1_APPL_STATUS = 'Note')";
+            AND B1_APPL_STATUS not like 'Issued'  \
+            AND B1_APPL_STATUS not like 'Closed')";
         
     var SQLStatement = conn.prepareStatement(selectString);
     var rSet = SQLStatement.executeQuery();
