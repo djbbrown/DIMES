@@ -62,7 +62,7 @@ try {
     if (emailString != null && emailString != ""){
         params.put("$$LISTPMTS$$", emailString );
         logDebug("Emailing: To: "+emailTo+" Following Records" +emailString);
-        sendNotification(emailTo,emailTo,"","ENG_UTL_SWF_15DAYS_NOTICE",params,null);
+        sendNotification("NoReply@MesaAz.gov",emailTo,"","ENG_UTL_SWF_15DAYS_NOTICE",params,null);
     }
     //If no records found send email low importance.
     else {
