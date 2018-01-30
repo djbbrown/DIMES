@@ -75,6 +75,7 @@ try {
                             ServiceTypeValue = (tInfo[x]["Service Type"]);
                             if(ServiceTypeValue == "Water Meter: Domestic" || ServiceTypeValue == "Water Meter: Landscaping" || ServiceTypeValue == "Water Service")
                             {                          
+                                ServiceTypeFlag = 1;
                                 recordEmail += "Service Type: " + (tInfo[x]["Service Type"]) + "<br>";        
                                 recordEmail += "Service Size: "  + (tInfo[x]["Service Size"])+"<br>";       
                                 recordEmail += "Meter Size: "  + (tInfo[x]["Meter Size"])+"<br>";      
@@ -87,7 +88,7 @@ try {
                             }
                     
                         }
-                }//End Clearancedate
+                }
            
 
             //Get the address
