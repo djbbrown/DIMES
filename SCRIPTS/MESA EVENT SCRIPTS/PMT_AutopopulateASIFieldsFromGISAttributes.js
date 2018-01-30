@@ -82,8 +82,10 @@ try
         for (x in tagFieldArray)
         {
             //comment("gis tag: " + tagFieldArray[x]);
-
-            if (IsStrInArry("AWCP", tagFieldArray)) 
+            var thisTag = tagFieldArray[x];
+            
+        
+            if(matches(thisTag, "AWCP")) {
             {
                 comment("Getting 'AZ Water'");
                 azWater = tagFieldArray[x];
@@ -95,7 +97,6 @@ try
             }
 
             // storm water Exempt - jcheney 10/18/2016
-            var thisTag = tagFieldArray[x];
             if(matches(thisTag, "STOR")) {
                 comment("Found GIS tag STOR - setting stormWaterExempt = false");
                 stormWaterExempt = false;
