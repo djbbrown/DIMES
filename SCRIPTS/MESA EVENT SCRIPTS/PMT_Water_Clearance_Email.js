@@ -12,6 +12,8 @@
 //  2.0      |09/29/16  |Steve Veloudos   |Fixed Inconsistant UTILITY SERVICE INFO ASIT
 //  3.0      |09/29/16  |Steve Veloudos   |Fixed to look for Permit Issuance that Issued workflow
 //  4.0      |08/28/17  |Steve Allred     |Added Subdivision, Unit and Invoice number
+//  5.0      |01/30/18  |Suzanna M        |Fix notification sending out incorrectly. Moved away from template
+//                                        |email to add dynamic tables for multiple entries.
 //==================================================================*/
 
 try {
@@ -38,6 +40,8 @@ try {
 	var Subdivision;
     var lotNumbers;
     var SewerAvailable = "";
+    var bodyEmail = "";    
+    var recordEmail = "";
     
    //Get WF Task
    var tasks = aa.workflow.getTasks(capId).getOutput();
@@ -68,45 +72,28 @@ try {
                     ClearanceDate = String(Cdate);
                         if(ClearanceDate == CurrentDate)
                         {
-                        ServiceTypeValue = (tInfo[x]["Service Type"]);
-                        if(ServiceTypeValue == "Water Meter: Domestic" || ServiceTypeValue == "Water Meter: Landscaping" || ServiceTypeValue == "Water Service")
-                            {
-							//logDebug("Service Type = " + ServiceType);
-                            ServiceTypeFlag = 1;
-                            i = i + 1;
-                                if(i == 1)
-                                {
-                                ServiceType = "Service Type: " + (tInfo[x]["Service Type"]);
-                                ServiceSize = "Service Size: "  + (tInfo[x]["Service Size"]); 
-                                MeterSize = "Meter Size: "  + (tInfo[x]["Meter Size"]);
-                                BTULoadNumber = "BTU Load Number: "  + (tInfo[x]["BTU Load"]); 
-                                ClearanceTo =  "Clearance To: "  + (tInfo[x]["Clearance To"]);
-                                ClearanceDate2 = "Clearance Date: " + ClearanceDate;
-                                QtyofMeters = "Qty of Meters: "  + (tInfo[x]["Qty of Meters"]);
-                                WarrantyStatus = "Warranty Status: "  + (tInfo[x]["Warranty Status"]);
-                                Comments =  "Comments: "  + (tInfo[x]["Comments"]);
-                                }
-                                else
-                                {
-                                ServiceType = ServiceType + ", " + (tInfo[x]["Service Type"]);
-                                ServiceSize = ServiceSize + ", " + (tInfo[x]["Service Size"]);
-                                MeterSize = MeterSize + ", " + (tInfo[x]["Meter Size"]);
-                                BTULoadNumber = BTULoadNumber + ", " + (tInfo[x]["BTU Load"]);
-                                ClearanceTo = ClearanceTo + ", " + (tInfo[x]["Clearance To"]);
-                                ClearanceDate2 = ClearanceDate2 + ", " + ClearanceDate;
-                                QtyofMeters = QtyofMeters + ", " + (tInfo[x]["Qty of Meters"]);
-                                WarrantyStatus = WarrantyStatus + ", " + (tInfo[x]["Warranty Status"]);
-                                Comments = Comments + ", " + (tInfo[x]["Comments"]);
-                                }
+                            ServiceTypeValue = (tInfo[x]["Service Type"]);
+                            if(ServiceTypeValue == "Water Meter: Domestic" || ServiceTypeValue == "Water Meter: Landscaping" || ServiceTypeValue == "Water Service")
+                            {                          
+                                recordEmail += "Service Type: " + (tInfo[x]["Service Type"]) + "<br>";        
+                                recordEmail += "Service Size: "  + (tInfo[x]["Service Size"])+"<br>";       
+                                recordEmail += "Meter Size: "  + (tInfo[x]["Meter Size"])+"<br>";      
+                                recordEmail += "BTU Load Number: "  + (tInfo[x]["BTU Load"])+"<br>";
+                                recordEmail +=  "Clearance To: "  + (tInfo[x]["Clearance To"])+"<br>";
+                                recordEmail += "Clearance Date: " + ClearanceDate+"<br>";
+                                recordEmail += "Qty of Meters: "  + (tInfo[x]["Qty of Meters"])+"<br>";
+                                recordEmail += "Warranty Status: "  + (tInfo[x]["Warranty Status"])+"<br>";
+                                recordEmail +=  "Comments: "  + (tInfo[x]["Comments"])+"<br>"+"<br>";
+                            }
                     
-                            }//End ServiceType
-                        }//End Clearancedate
-                }//End for loop
+                        }
+                }//End Clearancedate
+           
 
-                //Get the address
-                var capAddResult = aa.address.getAddressByCapId(capId);
-                if (capAddResult.getSuccess())
-                {
+            //Get the address
+            var capAddResult = aa.address.getAddressByCapId(capId);
+            if (capAddResult.getSuccess())
+            {
                 var addrArray = new Array();
                 var addrArray = capAddResult.getOutput();
                     if (addrArray.length==0 || addrArray==undefined)
@@ -179,45 +166,41 @@ try {
                 var BalanceDue = balanceDue;
                     if (BalanceDue > 0) 
                     {
-                    BalanceDueFlag = 1;
+                        BalanceDueFlag = 1;
                     }
 
-                    addParameter(vEParams,"$$RECORDID$$",capIDString);
-                    addParameter(vEParams,"$$ADDRESS$$",Address);
+                    //Creating email notification Body Email
+                    bodyEmail += "Permit # "+capIDString+" at address : "+Address+" has been issued and requires the following water meter clearances: "+"<br>"+"<br>";
 
-                    //Adding only if there is a lot number associated.
-                    if (lotNumbers){
-                        addParameter(vEParams,"$$LOTNUMBER$$","Lot Number (s) : "+lotNumbers);
-                    }
+                    if (lotNumbers) bodyEmail+= "Lot Number (s) : "+ lotNumbers+"<br>";
+                    else bodyEmail+= "Lot Number (s) : "+"<br>";
+                     
+                    if (AddrUnit) bodyEmail+="Unit: "+AddrUnit+"<br>";
+                        else bodyEmail+="Unit:"+"<br>";
+
+                    if (Subdivision) bodyEmail+="Subdivision: "+Subdivision+"<br>";
+                        else bodyEmail+="Subdivision:"+"<br>";
                     
-                    addParameter(vEParams,"$$ServiceType$$",ServiceType);
-                    addParameter(vEParams,"$$ServiceSize$$",ServiceSize);
-                    addParameter(vEParams,"$$MeterSize$$",MeterSize);
-                    addParameter(vEParams,"$$BTULoadNumber$$",BTULoadNumber);
-                    addParameter(vEParams,"$$ClearanceTo$$",ClearanceTo);
-                    addParameter(vEParams,"$$ClearanceDate2$$",ClearanceDate2);
-                    addParameter(vEParams,"$$QtyofMeters$$",QtyofMeters);
-                    addParameter(vEParams,"$$WarrantyStatus$$",WarrantyStatus);
-                    addParameter(vEParams,"$$Comments$$",Comments);
-                    addParameter(vEParams,"$$Unit$$",AddrUnit);
-                    addParameter(vEParams,"$$Subdivision$$",Subdivision);
-                    addParameter(vEParams,"$$InvoiceNbr$$",foundInvoices);
-                    addParameter(vEParams,"$$SEWERAVAILABLE$$",SewerAvailable);
+                    if (foundInvoices) bodyEmail+="Invoice Nbr(s): "+foundInvoices+"<br>";
+                        else bodyEmail+="Invoice Nbr(s): "+"<br>"
+
+                    if (SewerAvailable) bodyEmail+="SewerAvailable ? (Y/N) : "+SewerAvailable+"<br>";
+                        else bodyEmail+="SewerAvailable ? (Yes/No) : "+"<br>";
                     
 					
                 //Send Email if conditions are correct
                 if(ServiceTypeFlag == 1 && BalanceDueFlag != 1)
                 {
-                ToEmail = lookup("EMAIL_RECIPIENTS","City_of_Mesa_Utility");
-				//logDebug("ToEmail = " + ToEmail);
-                sendNotification(FromEmail, ToEmail, "", "PMT_WATER_CLEARANCE2", vEParams, null, capId);
+                    ToEmail = lookup("EMAIL_RECIPIENTS","City_of_Mesa_Utility");
+                    var emailText = bodyEmail +"<br>"+ recordEmail;
+                    aa.sendMail("NoReply@MesaAz.gov", ToEmail, "", "Water Clearance", emailText);
+                
                 }  
 
             break;
-            } //End If
-        } //End For Loop Tasks    
-
-    }
+        } //End If
+    }   
+}
 catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
