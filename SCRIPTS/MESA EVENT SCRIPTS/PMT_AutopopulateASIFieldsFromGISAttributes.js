@@ -83,16 +83,10 @@ try
         {
             //comment("gis tag: " + tagFieldArray[x]);
             var thisTag = tagFieldArray[x];
-            
-        
+                  
             if(matches(thisTag, "AWCP")) {
-            {
                 comment("Getting 'AZ Water'");
-                azWater = tagFieldArray[x];
-                if ( azWater == undefined ) { 
-                    comment("AZ Water was undefined, setting to false");
-                    azWater = false; 
-                }
+                azWater = true;
                 comment("azWater: " + azWater);
             }
 
