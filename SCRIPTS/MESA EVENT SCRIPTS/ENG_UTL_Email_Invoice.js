@@ -24,11 +24,7 @@ try {
             
             for(i in invoices) {
                 if (invoices[i].invNbr != null){
-                    var recParams = aa.util.newHashtable();
-    
-                    addParameter(recParams ,"capId",capId.getCustomID());
-                    addParameter(recParams ,"invoicenbr",invoices[i].invNbr.toString());
-    
+                  
                     feesByInvoice = aa.invoice.getFeeItemInvoiceByInvoiceNbr(invoices[i].invNbr);
               
                     if(feesByInvoice.getSuccess()) {
@@ -39,7 +35,10 @@ try {
                                 logDebug("Attaching Invoice PDF File for : ");
                                 logDebug("Invoice Number: "+invoices[i].invNbr);
                                 logDebug("Invoice Number: "+capId.getCustomID());
-
+                                var recParams = aa.util.newHashtable();
+                                
+                                addParameter(recParams ,"capID",capId.getCustomID());
+                                addParameter(recParams ,"invoicenbr",invoices[i].invNbr.toString());
                                 var rpt = generateReport(capId, reportName, "Engineering", recParams);
                                 reportArray.push(rpt);     
                                 
