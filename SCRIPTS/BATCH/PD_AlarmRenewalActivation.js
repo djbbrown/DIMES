@@ -369,7 +369,8 @@ function mainProcess() {
 					addParameter(params, "$$altid$$", altId);
 					addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
 					addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
-					sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD00,params,null);
+					logDebug("Processing Expired Record: ToEmail: "+conArr[c]["email"]+" For Record: "+newRecStatus0);					
+				//	sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD00,params,null);
 					}
 				}
 			}
