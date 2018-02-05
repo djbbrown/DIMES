@@ -32,11 +32,22 @@ try {
                     logDebug("Attaching Invoice PDF File for : ");
                     logDebug("Invoice Number: "+invoices[i].invNbr);
                     logDebug("Invoice Number: "+capId.getCustomID());
-    
-                   var rpt = generateReport(capId, reportName, "Engineering", recParams);
-                   reportArray.push(rpt);     
+
+                    feesByInvoice = aa.invoice.getFeeItemInvoiceByInvoiceNbr(invoices[i].invNbr);
+              
+                    if(feesByInvoice.getSuccess()) {
+						var fees = feesByInvoice.output;
+						for(f in fees) {
+							if(fees[f].feeitemStatus == 'INVOICED')
+							{
+                                var rpt = generateReport(capId, reportName, "Engineering", recParams);
+                                reportArray.push(rpt);     
+                                
+        					} 
+						} 
                 }
             }
+         }
      
             var url = lookup("Agency_URL","ACA");
     
