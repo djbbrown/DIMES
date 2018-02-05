@@ -29,10 +29,6 @@ try {
                     addParameter(recParams ,"capId",capId.getCustomID());
                     addParameter(recParams ,"invoicenbr",invoices[i].invNbr.toString());
     
-                    logDebug("Attaching Invoice PDF File for : ");
-                    logDebug("Invoice Number: "+invoices[i].invNbr);
-                    logDebug("Invoice Number: "+capId.getCustomID());
-
                     feesByInvoice = aa.invoice.getFeeItemInvoiceByInvoiceNbr(invoices[i].invNbr);
               
                     if(feesByInvoice.getSuccess()) {
@@ -40,14 +36,18 @@ try {
 						for(f in fees) {
 							if(fees[f].feeitemStatus == 'INVOICED')
 							{
+                                logDebug("Attaching Invoice PDF File for : ");
+                                logDebug("Invoice Number: "+invoices[i].invNbr);
+                                logDebug("Invoice Number: "+capId.getCustomID());
+
                                 var rpt = generateReport(capId, reportName, "Engineering", recParams);
                                 reportArray.push(rpt);     
                                 
         					} 
 						} 
+                    }
                 }
             }
-         }
      
             var url = lookup("Agency_URL","ACA");
     
