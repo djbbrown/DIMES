@@ -38,6 +38,7 @@ try {
 	  var EngInsp;
 	  var ChiefEngInsp;
 	  var OtherContact;
+	  var lpEmail;
 	  var PermitIssued = 0;
 	  
 	  
@@ -184,7 +185,7 @@ try {
 				}
 			else 
 				{
-					vEmail = null;
+					lpEmail = null;
 				}
 			}
 			
