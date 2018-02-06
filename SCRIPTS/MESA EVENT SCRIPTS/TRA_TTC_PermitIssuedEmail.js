@@ -175,14 +175,28 @@ try {
 				
 			}     
 			
+			//Get License Professional
+			var lp = getLicenseProfessional(capId); 
+			{
+			if(lp[0]["email"] != null) 
+				{
+					lpEmail = lp[0]["email"]; 
+				}
+			else 
+				{
+					vEmail = null;
+				}
+			}
+			
+			
 			//Add Contacts
-                 ToAllEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
+                 ToAllEmail =  AppToEmail + "," + lpEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
 				 
-				 ToGenEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
+				 ToGenEmail =  AppToEmail + "," + lpEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
 
-				 toUTL =  emailUTL;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
+				 toUTL =  emailUTL;// + "," + AppToEmail + "," + lpEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
 				 
-				 ToROWEmail = chiefEmail + "," + EngInsp;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
+				 ToROWEmail = chiefEmail + "," + EngInsp;// + "," + AppToEmail + "," + lpEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
 			
 			//Send email
                 if(PermitIssued == 1)
