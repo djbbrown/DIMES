@@ -34,7 +34,7 @@ try {
       var Address;
 	  var BCompany;
 	  var BCompanyCon;
-	  var BCoordinator;
+	  var tcCoordinator;
 	  var EngInsp;
 	  var ChiefEngInsp;
 	  var OtherContact;
@@ -158,9 +158,9 @@ try {
 					}
 					
 					//Barricade Coordinator
-					if(ConType == "Barricade Coordinator" )
+					if(ConType == "Traffic Control Coordinator" )
 					{
-					var BCoordinator = tInfo[x]["email"];
+					var tcCoordinator = tInfo[x]["email"];
 					}
 					//Engineering Inspector
 					if(ConType == "Engineering Inspector" )
@@ -176,13 +176,13 @@ try {
 			}     
 			
 			//Add Contacts
-                 ToAllEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
+                 ToAllEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + EngInsp + "," + OtherContact + "," + ChiefEngInsp;
 				 
-				 ToGenEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + OtherContact;
+				 ToGenEmail =  AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
 
-				 toUTL =  emailUTL;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + OtherContact;
+				 toUTL =  emailUTL;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
 				 
-				 ToROWEmail = chiefEmail + "," + EngInsp;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + BCoordinator + "," + OtherContact;
+				 ToROWEmail = chiefEmail + "," + EngInsp;// + "," + AppToEmail + "," + BCompany + "," + BCompanyCon + "," + tcCoordinator + "," + OtherContact;
 			
 			//Send email
                 if(PermitIssued == 1)
