@@ -1,4 +1,4 @@
-/*===================================================================
+ /*===================================================================
 // Script Name: ENG_UTL_Email_Invoice.js
 // Script Description: 	Email to be sent after invoice has been issued
 // for engineering utility
@@ -13,8 +13,7 @@
 try {  
     
         if (feesInvoicedTotal > 0 && balanceDue  > 0){
-     
-     
+    
             var url = lookup("Agency_URL","ACA");
     
              //Workflow Required and for ALL task types
@@ -31,43 +30,8 @@ try {
             var tInfo = getContactArray();
             var rowCount = tInfo.length;
     
-            var UtilityNo = AInfo["Utility Provider Project No."];       
+            var UtilityNo = AInfo["Utility Provider Project No."];      
             
-             //Send Invoice as PDF
-             var reportName = "AA_Invoice";  
-             var recParams = aa.util.newHashtable();
-             reportArray = [];
- 
-             //Retrieving all current invoices for the PMT.
-             var invoices = aa.finance.getInvoiceByCapID(capId, null).getOutput();
-             
-             for(i in invoices) {
-                 if (invoices[i].invNbr != null){
-                   
-                     feesByInvoice = aa.invoice.getFeeItemInvoiceByInvoiceNbr(invoices[i].invNbr);
-               
-                     if(feesByInvoice.getSuccess()) {
-                         var fees = feesByInvoice.output;
-                         for(f in fees) {
-                             if(fees[f].feeitemStatus == 'INVOICED')
-                             {
-                                 logDebug("Attaching Invoice PDF File for : ");
-                                 logDebug("Invoice Number: "+invoices[i].invNbr);
-                                 logDebug("Invoice Number: "+capId.getCustomID());
-                                 var recParams = aa.util.newHashtable();
-                                 
-                                 addParameter(recParams ,"capID",capId.getCustomID());
-                                 addParameter(recParams ,"B1_ALT_ID","UTL18-AAA");
-                                 addParameter(recParams ,"invoicenbr",invoices[i].invNbr.toString());
-                                 var rpt = generateReport(capId, reportName, "Engineering", recParams);
-                                 reportArray.push(rpt);     
-                                 
-                             } 
-                         } 
-                     }
-                 }
-             }
-                
             //Get Email of Applicant
             for (var x=0;x<=(rowCount-1);x++)
             {
@@ -90,14 +54,16 @@ try {
                     //Send email
                     if(ToEmail){
                         logDebug("Sending an email to the following contact: (ENG_UTL_WORKFLOW_INVOICE_AFTER): " + ToEmail + "  Type of Contact: "+TypeContact);
-                        sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_INVOICE_AFTER", vEParams, reportArray,capId);
+                        sendNotification(efrom, ToEmail, "City of Mesa: Revisions Required", "ENG_UTL_WORKFLOW_INVOICE_AFTER", vEParams, null,capId);
                         
                     }
                 }        
             }
-            }
         }
-        catch (err)
-        {
+    }
+    catch (err)
+    {
         logDebug("A JavaScript Error occured: " + err.message);
-        }
+    }
+    
+    
