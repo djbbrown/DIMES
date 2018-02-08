@@ -1,2 +1,2 @@
-//remarking out from ASA event.
-//include("LIC_LiquorLicenseFee"); 
+//Script converted back to ASA and added 02/08/2018 MV
+include("LIC_LiquorLicenseFee"); 
