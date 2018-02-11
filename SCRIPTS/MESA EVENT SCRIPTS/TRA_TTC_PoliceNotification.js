@@ -97,7 +97,7 @@ try {
 					{
 					var tccFirst = tInfo[x]["firstName"];
 					var tccLast = tInfo[x]["lastName"];
-					var tccMobile = tInfo[x]["mobilePhone"];
+					var tccMobile = tInfo[x]["phone2"];
 					}
 			}
 			
@@ -128,9 +128,9 @@ try {
 			addParameter(vEParams,"$$OFFICERINSTRUCTIONS$$",offInst);
 			addParameter(vEParams,"$$EVENTNAME$$",eventName);
 			addParameter(vEParams,"$$URLOFRECORDID$$",Url);
-			addParameter(vEParams,"$$TTCFIRSTNAME$$",tccFirstName);
-			addParameter(vEParams,"$$TTCLASTNAME$$",tccLastName);
-			addParameter(vEParams,"$$TTCMOBILEPHONE$$",tccMobilePhone);
+			addParameter(vEParams,"$$TCCFIRSTNAME$$",tccFirstName);
+			addParameter(vEParams,"$$TCCLASTNAME$$",tccLastName);
+			addParameter(vEParams,"$$TCCMOBILEPHONE$$",tccMobilePhone);
 						
 			
 			//Send email
