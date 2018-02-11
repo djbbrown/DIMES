@@ -97,7 +97,7 @@ try {
 					{
 					var tccFirst = tInfo[x]["firstName"];
 					var tccLast = tInfo[x]["lastName"];
-					var tccMobile = tInfo[x]["Phone2"];
+					var tccMobile = tInfo[x]["mobilePhone"];
 					}
 			}
 			
