@@ -89,12 +89,15 @@ try {
 			for (x=0;x<=(rowCount-1);x++)
 			{
 					ConType = tInfo[x]["contactType"];
-					//Applicant
+					var tccFirst = "";
+                    var tccLast = "";
+					var tccMobile = "";
+					//Traffic Control Coordinator
 					if(ConType == "Traffic Control Coordinator" )
 					{
-					var tccFirst = tInfo[x]["First Name"];
-					var tccLast = tInfo[x]["Last Name"];
-					var tccMobile = tInfo[x]["Phone 2"];
+					var tccFirst = tInfo[x]["firstName"];
+					var tccLast = tInfo[x]["lastName"];
+					var tccMobile = tInfo[x]["Phone2"];
 					}
 			}
 			
