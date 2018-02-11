@@ -24,7 +24,7 @@ try {
 	  var spEvent = AInfo["Is this a Special Event"];
 	  var offDuty = AInfo["Off-Duty Officer Required"];
 	  var offInstructions = AInfo["Officer Instructions"];
-	  var prjName = getApplicationName(capID);
+	  var prjName = getAppName();
 	  var DetailedDesc = AInfo["Description of Work"];
 	  var Address;
 	  var tccFirst;
@@ -125,9 +125,9 @@ try {
 			addParameter(vEParams,"$$OFFICERINSTRUCTIONS$$",offInst);
 			addParameter(vEParams,"$$EVENTNAME$$",eventName);
 			addParameter(vEParams,"$$URLOFRECORDID$$",Url);
-			addParameter(vEParams,"$$TTCFIRSTNAME$$",ttcFirstName);
-			addParameter(vEParams,"$$TTCLASTNAME$$",ttcLastName);
-			addParameter(vEParams,"$$TTCMOBILEPHONE$$",ttcMobilePhone);
+			addParameter(vEParams,"$$TTCFIRSTNAME$$",tccFirstName);
+			addParameter(vEParams,"$$TTCLASTNAME$$",tccLastName);
+			addParameter(vEParams,"$$TTCMOBILEPHONE$$",tccMobilePhone);
 						
 			
 			//Send email
