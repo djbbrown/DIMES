@@ -15,6 +15,23 @@
 //  5.0      |01/30/18  |Suzanna M        |Fix notification sending out incorrectly. Moved away from template
 //                                        |email to add dynamic tables for multiple entries.
 //==================================================================*/
+ /*===================================================================*/
+/* Script Number: 135
+// Script Name: PMT_Water_Clearance_Email.js
+// Script Description: Send email if ASIT field Utility Service Info comtains values Permit Issuance is Issued & Fees have been paid  
+// Script Run Event: WTUA
+// Script Parents:	WTUA;Permits/Commercial/NA/NA
+// 					WTUA;Permits/Residential/NA/NA
+// 					WTUA;Permits/Residential/Mobile Home/NA
+// 
+// Version   |Date      |Engineer         |Details
+//  1.0      |09/01/16  |Steve Veloudos   |Initial Release
+//  2.0      |09/29/16  |Steve Veloudos   |Fixed Inconsistant UTILITY SERVICE INFO ASIT
+//  3.0      |09/29/16  |Steve Veloudos   |Fixed to look for Permit Issuance that Issued workflow
+//  4.0      |08/28/17  |Steve Allred     |Added Subdivision, Unit and Invoice number
+//  5.0      |01/30/18  |Suzanna M        |Fix notification sending out incorrectly. Moved away from template
+//                                        |email to add dynamic tables for multiple entries.
+//==================================================================*/
 
 try {
     var FromEmail = "noreply@mesaaz.gov";
@@ -42,6 +59,7 @@ try {
     var SewerAvailable = "";
     var bodyEmail = "";    
     var recordEmail = "";
+    var vEParams = aa.util.newHashtable();
     
    //Get WF Task
    var tasks = aa.workflow.getTasks(capId).getOutput();
@@ -63,6 +81,7 @@ try {
                 var rowCount = tInfo.length;
                 var x = 0;
                 var i = 0;
+                var paramsIndex = 1;
 
                 //Iterate through table
                 for (x=0;x<=(rowCount-1);x++)
@@ -76,20 +95,18 @@ try {
                             if(ServiceTypeValue == "Water Meter: Domestic" || ServiceTypeValue == "Water Meter: Landscaping" || ServiceTypeValue == "Water Service")
                             {                          
                                 ServiceTypeFlag = 1;
-                                recordEmail += "Service Type: " + (tInfo[x]["Service Type"]) + "<br>";        
-                                recordEmail += "Service Size: "  + (tInfo[x]["Service Size"])+"<br>";       
-                                recordEmail += "Meter Size: "  + (tInfo[x]["Meter Size"])+"<br>";      
-                                recordEmail += "BTU Load Number: "  + (tInfo[x]["BTU Load"])+"<br>";
-                                recordEmail +=  "Clearance To: "  + (tInfo[x]["Clearance To"])+"<br>";
-                                recordEmail += "Clearance Date: " + ClearanceDate+"<br>";
-                                recordEmail += "Qty of Meters: "  + (tInfo[x]["Qty of Meters"])+"<br>";
-                                recordEmail += "Warranty Status: "  + (tInfo[x]["Warranty Status"])+"<br>";
-                                recordEmail +=  "Comments: "  + (tInfo[x]["Comments"])+"<br>"+"<br>";
-                            }
-                    
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Service Type: "+(tInfo[x]["Service Type"])); paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Service Size: "+(tInfo[x]["Service Size"])); paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Meter Size: "+(tInfo[x]["Meter Size"]));paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","BTU Load: "+(tInfo[x]["BTU Load"]));paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Clearance To: "+(tInfo[x]["Clearance To"]));paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Clearance Date: "+ClearanceDate);paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Qty of Meters: "+(tInfo[x]["Qty of Meters"]));paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Warranty Status: "+ (tInfo[x]["Warranty Status"]));paramsIndex++;
+                                addParameter(vEParams,"$$"+paramsIndex+"$$","Comments: "+(tInfo[x]["Comments"]));paramsIndex++;
+                            }                    
                         }
-                }
-           
+                }      
 
             //Get the address
             var capAddResult = aa.address.getAddressByCapId(capId);
@@ -170,32 +187,26 @@ try {
                         BalanceDueFlag = 1;
                     }
 
-                    //Creating email notification Body Email
-                    bodyEmail += "Permit # "+capIDString+" at address : "+Address+" has been issued and requires the following water meter clearances: "+"<br>"+"<br>";
-
-                    if (lotNumbers) bodyEmail+= "Lot Number (s) : "+ lotNumbers+"<br>";
-                    else bodyEmail+= "Lot Number (s) : "+"<br>";
-                     
-                    if (AddrUnit) bodyEmail+="Unit: "+AddrUnit+"<br>";
-                        else bodyEmail+="Unit:"+"<br>";
-
-                    if (Subdivision) bodyEmail+="Subdivision: "+Subdivision+"<br>";
-                        else bodyEmail+="Subdivision:"+"<br>";
+                //Creating email notification Body Email
+                addParameter(vEParams,"$$RECORDID$$",capIDString);
+                addParameter(vEParams,"$$ADDRESS$$",Address);
                     
-                    if (foundInvoices) bodyEmail+="Invoice Nbr(s): "+foundInvoices+"<br>";
-                        else bodyEmail+="Invoice Nbr(s): "+"<br>"
-
-                    if (SewerAvailable) bodyEmail+="SewerAvailable ? (Y/N) : "+SewerAvailable+"<br>";
-                        else bodyEmail+="SewerAvailable ? (Yes/No) : "+"<br>";
+                if (lotNumbers) addParameter(vEParams,"$$LOTNUMBER$$",lotNumbers);
+                                       
+                if (AddrUnit) addParameter(vEParams,"$$Unit$$",AddrUnit);
                     
+                if (Subdivision) addParameter(vEParams,"$$Subdivision$$",Subdivision);
+                    
+                if (foundInvoices) addParameter(vEParams,"$$InvoiceNbr$$",foundInvoices);
+  
+                if (SewerAvailable) addParameter(vEParams,"$$SEWERAVAILABLE$$",SewerAvailable);
 					
                 //Send Email if conditions are correct
                 if(ServiceTypeFlag == 1 && BalanceDueFlag != 1)
                 {
                     ToEmail = lookup("EMAIL_RECIPIENTS","City_of_Mesa_Utility");
-                    var emailText = bodyEmail +"<br>"+ recordEmail;
-                    aa.sendMail("NoReply@MesaAz.gov", ToEmail, "", "Water Clearance", emailText);
-                
+                    sendNotification("NoReply@MesaAz.gov", ToEmail, "", "PMT_WATER_CLEARANCE2", vEParams, null, capId);
+                    
                 }  
 
             break;
