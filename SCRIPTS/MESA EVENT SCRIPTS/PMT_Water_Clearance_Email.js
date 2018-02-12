@@ -15,23 +15,6 @@
 //  5.0      |01/30/18  |Suzanna M        |Fix notification sending out incorrectly. Moved away from template
 //                                        |email to add dynamic tables for multiple entries.
 //==================================================================*/
- /*===================================================================*/
-/* Script Number: 135
-// Script Name: PMT_Water_Clearance_Email.js
-// Script Description: Send email if ASIT field Utility Service Info comtains values Permit Issuance is Issued & Fees have been paid  
-// Script Run Event: WTUA
-// Script Parents:	WTUA;Permits/Commercial/NA/NA
-// 					WTUA;Permits/Residential/NA/NA
-// 					WTUA;Permits/Residential/Mobile Home/NA
-// 
-// Version   |Date      |Engineer         |Details
-//  1.0      |09/01/16  |Steve Veloudos   |Initial Release
-//  2.0      |09/29/16  |Steve Veloudos   |Fixed Inconsistant UTILITY SERVICE INFO ASIT
-//  3.0      |09/29/16  |Steve Veloudos   |Fixed to look for Permit Issuance that Issued workflow
-//  4.0      |08/28/17  |Steve Allred     |Added Subdivision, Unit and Invoice number
-//  5.0      |01/30/18  |Suzanna M        |Fix notification sending out incorrectly. Moved away from template
-//                                        |email to add dynamic tables for multiple entries.
-//==================================================================*/
 
 try {
     var FromEmail = "noreply@mesaaz.gov";
