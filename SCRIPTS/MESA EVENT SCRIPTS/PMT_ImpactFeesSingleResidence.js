@@ -58,7 +58,7 @@ try {
 			var numberUnits = AInfo["Number of Units"];
 			var publicSafetyQty = AInfo["Public Safety"];
 			var stormWaterQty = AInfo["Stormwater"];
-			var wasteWaterQty = AInfo["Waste Water Qty"]; 
+			var wasteWaterQty = AInfo["Waste Water Qty 1"]; 
 			if (classification == "Single Family-Detached (per dwelling unit)"){
 				// remove fees if GIS Tags change
 				if (feeExists("RDIF260", "NEW", "INVOICED") && !swGisTag) voidRemoveFee("RDIF260");
