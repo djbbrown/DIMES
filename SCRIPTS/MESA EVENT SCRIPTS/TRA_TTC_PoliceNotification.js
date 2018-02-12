@@ -76,9 +76,9 @@ try {
                 for (x in tInfo) 
                     {
                     //Put one line for each row of data
-                    TrafficRestriction = TrafficRestriction + "		" + (tInfo[x]["Street Name"] + "	\xa0\xa0\xa0\xa0\xa0	" + tInfo[x]["Direction of Travel"] + "		\xa0\xa0\xa0\xa0\xa0		" + tInfo[x]["No. of Lanes Closed in this Direction"] + " 	\xa0\xa0\xa0\xa0\xa0		" + tInfo[x]["Lane Type"] + "		\xa0\xa0\xa0\xa0\xa0		" + tInfo[x]["Notes"]);
+                    TrafficRestriction = TrafficRestriction + " " + (tInfo[x]["Street Name"] + "\xa0\xa0\xa0\xa0\xa0 " + tInfo[x]["Direction of Travel"] + "\xa0\xa0\xa0\xa0\xa0 " + tInfo[x]["No. of Lanes Closed in this Direction"] + "\xa0\xa0\xa0\xa0\xa0 " + tInfo[x]["Lane Type"] + "\xa0\xa0\xa0\xa0\xa0 " + tInfo[x]["Notes"] + "\n");
                     }
-					logDebug("Traffic Restriction: " + TrafficRestriction);
+					//logDebug("Traffic Restriction: " + TrafficRestriction);
             }
             
 			//Get the contact info
