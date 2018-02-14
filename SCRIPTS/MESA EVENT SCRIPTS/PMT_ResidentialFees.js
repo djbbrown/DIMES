@@ -79,6 +79,7 @@ try {
 			"Type of Civil Engineering Sheets", // Look in this column for items to include.
 			// List of items to include.
 			"Civil Cover Sheet",
+			"Cover Sheets",			
 			"Onsite Landscaping Plans and Details",
 			"Single Public Utility Plan/Profiles",
 			"Grading/Site Plans and Details",
