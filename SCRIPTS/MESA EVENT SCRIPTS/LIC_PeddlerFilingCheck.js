@@ -6,7 +6,7 @@
 // Script Agency: Mesa
 // Script Description: 
 //          Prevent worktask 'Issue License' from being resulted to 'Issued'
-//          if a filing type hasn't been selected.
+//          if a Renewal Frequency hasn't been selected.
 // Script Run Event: WTUB
 // Script Parents:
 //            WTUB;Licenses!~!Peddler!Application
@@ -16,11 +16,11 @@ try
 {
     if(wfTask == 'Issue License' && wfStatus == 'Issued')
     {
-        var filing = AInfo["Filing Type"];
+        var filing = AInfo["Renewal Frequency"];
         
         if(filing != 'Annually' && filing != 'Quarterly')
         {
-            comment("Filing Type is required before issuing license. Current Value: " + filing);
+            comment("Renewal Frequency is required before issuing license. Current Value: " + filing);
             cancel = true;
         }
     }
