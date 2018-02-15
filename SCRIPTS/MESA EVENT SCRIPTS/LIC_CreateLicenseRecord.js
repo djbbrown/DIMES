@@ -22,6 +22,7 @@
 //									This follows the date convention used for converted records. Turning off Expiration Dates 
 //									for this record type causes other script errors.
 // | M VanWie   |  10/02/2017  | - Issue# 41 - Added 'Special Event' expiration date calculation
+// | M VanWie   |  02/15/2018  | - added Peddler expiration date calculation based off ASI field.
 /*==================================================================*/
 
 // When WFTask "Issue License" is set to "Issued"
@@ -68,7 +69,7 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	// all the expiration_interval_unit are set to either one year or 12 months so using 365 days
 	lic.setStatus("Active");
 	// if record type is Licenses/Liquor/Liquor/License do not update expiration date let configured expiration date do the work.
-	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent", "BingoHall", "SpecialEvent")){
+	if(!matches(appTypeArray[2],"Liquor","Fireworks","LiquorSpecialEvent", "BingoHall", "SpecialEvent", "Peddler")){
 		lic.setExpiration(dateAdd(null,365));
 	}
 	if(appTypeArray[2] == "Fireworks"){
@@ -85,6 +86,18 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus.equals("Issue
 	if(appTypeArray[2] == "SpecialEvent"){
 		var eventSEExpDt = getAppSpecific("Last Event Day",capId);
 		lic.setExpiration(dateAdd(eventSEExpDt,1));
+	}
+	if(appTypeArray[2] == "Peddler"){
+		var RFreq = AInfo["Renewal Frequency"];
+		if(RFreq == 'Quarterly')
+		{
+			lic.setExpiration(dateAdd(null,90));
+		}
+		else
+		{
+			lic.setExpiration(dateAdd(null,365));
+		}
+
 	}
 	
 	// Copy info from application to "License" according to standard choice EMSE:ASI Copy Exceptions.
