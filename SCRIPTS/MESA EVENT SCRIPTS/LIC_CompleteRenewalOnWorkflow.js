@@ -100,7 +100,7 @@ function isWorkflowApproveForReview(capID, wfTask, stepNum, processID, taskStatu
     	if(result.getSuccess()) {
 		taskItemScriptModel = result.getOutput();
 		if (taskItemScriptModel == null) {
-			logDebug("ERROR: Failed to get workflow task with CAPID(" + capID + ") for review");
+			logDebug("ERROR: Failed to get workflow task with CAPID(" + capID + ") for review - (taskItemScriptModel is null)");
 			return false;
 		}
 		//2. Check to see if the agency user approve renewal application .
