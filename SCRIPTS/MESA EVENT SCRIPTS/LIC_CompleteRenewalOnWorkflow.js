@@ -5,10 +5,13 @@
 // Script Agency: Mesa
 // Script Description: Completes a renewal on workflow
 // Script Run Event: PRA
+//
+//  Updates:
+//  | M VanWie|  02/16/2018  |  renamed getParentCapIDForReviewCustom to remove naming conflict with global version
 /*==================================================================*/
 if (wfTask == "Renewal Submittal" || wfTask == "Renew License"){
 	var capID = getCapId();
-	var parentLicenseCAPID = getParentCapIDForReview(capID)
+	var parentLicenseCAPID = getParentCapIDForReviewCustom(capID)
 	if (parentLicenseCAPID != null) {
 		if (isWorkflowApproveForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"), aa.env.getValue("WorkflowStatus"))) {
 			var partialCapID = getPartialCapID(capID);
@@ -49,7 +52,7 @@ function updateExpirationStatus(licCapId) {
 	}
 }
  
-function getParentCapIDForReview(capid) {
+function getParentCapIDForReviewCustom(capid) {
 	if (capid == null || aa.util.instanceOfString(capid)) {
 		return null;
 	}
