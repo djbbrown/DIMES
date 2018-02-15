@@ -13,6 +13,13 @@ if (wfTask == "Renewal Submittal" || wfTask == "Renew License"){
 	var capID = getCapId();
 	var parentLicenseCAPID = getParentCapIDForReviewCustom(capID)
 	if (parentLicenseCAPID != null) {
+		
+		logDebug("Cap: " + capID + "  WFT: " + 
+				 aa.env.getValue("WorkflowTask") + "  STP: " + 
+				 aa.env.getValue("SD_STP_NUM") + "  PID: " + 
+				 aa.env.getValue("ProcessID") + "  WFS:" + 
+				 aa.env.getValue("WorkflowStatus"));
+		
 		if (isWorkflowApproveForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"), aa.env.getValue("WorkflowStatus"))) {
 			var partialCapID = getPartialCapID(capID);
 			if (isReadyRenew(parentLicenseCAPID)) {
