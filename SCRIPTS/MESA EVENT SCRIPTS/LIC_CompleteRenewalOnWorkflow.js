@@ -12,6 +12,7 @@
 if (wfTask == "Renewal Submittal" || wfTask == "Renew License"){
 	var capID = getCapId();
 	var parentLicenseCAPID = getParentCapIDForReviewCustom(capID)
+	logDebug("Found : " + parentLicenseCAPID);
 	if (parentLicenseCAPID != null) {
 	
 		if (isWorkflowApproveForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"), aa.env.getValue("WorkflowStatus"))) {
@@ -97,7 +98,8 @@ function isWorkflowApproveForReview(capID, wfTask, stepNum, processID, taskStatu
 	//if (wfTask.length()  == 0) { return false; } //MV removed for testing 02/16/2018
 	//1. Get workflow task item
 	var result = aa.workflow.getTask(capID, stepNum, processID);
-    	if(result.getSuccess()) {
+	if(result.getSuccess()) 
+	{
 		taskItemScriptModel = result.getOutput();
 		if (taskItemScriptModel == null) {
 			logDebug("ERROR: Failed to get workflow task with CAPID(" + capID + ") for review - (taskItemScriptModel is null)");
@@ -118,10 +120,12 @@ function isWorkflowApproveForReview(capID, wfTask, stepNum, processID, taskStatu
 		}	
 		if (taskItemScriptModel.getTaskDescription().equals(wfTask) && "Issuance".equals(wfTask) && ( "Complete".equals(taskStatus)) ) {
 			return true;
-		}	
-
+		}
 	}  
-    	else { logDebug("ERROR: Failed to get workflow task(" + capID + ") for review: " + result.getErrorMessage()); }
+	else 
+	{ 
+		logDebug("ERROR: Failed to get workflow task(" + capID + ") for review: " + result.getErrorMessage()); 
+	}
 	return false;
 }
 
