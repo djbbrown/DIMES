@@ -13,13 +13,7 @@ if (wfTask == "Renewal Submittal" || wfTask == "Renew License"){
 	var capID = getCapId();
 	var parentLicenseCAPID = getParentCapIDForReviewCustom(capID)
 	if (parentLicenseCAPID != null) {
-		
-		logDebug("Cap: " + capID + "  WFT: " + 
-				 aa.env.getValue("WorkflowTask") + "  STP: " + 
-				 aa.env.getValue("SD_STP_NUM") + "  PID: " + 
-				 aa.env.getValue("ProcessID") + "  WFS:" + 
-				 aa.env.getValue("WorkflowStatus"));
-		
+	
 		if (isWorkflowApproveForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"), aa.env.getValue("WorkflowStatus"))) {
 			var partialCapID = getPartialCapID(capID);
 			if (isReadyRenew(parentLicenseCAPID)) {
@@ -100,7 +94,7 @@ function isWorkflowApproveForReview(capID, wfTask, stepNum, processID, taskStatu
 	if (capID == null || aa.util.instanceOfString(capID) || stepNum == null || processID == null || wfTask == null || taskStatus == null) {
 		return false;
 	}
-	if (wfTask.length()  == 0) { return false; }
+	//if (wfTask.length()  == 0) { return false; } //MV removed for testing 02/16/2018
 	//1. Get workflow task item
 	var result = aa.workflow.getTask(capID, stepNum, processID);
     	if(result.getSuccess()) {
