@@ -307,7 +307,7 @@ function mainProcess() {
 		// Update Alarm Permit records status and expiration status
 		
 		if (leDaysDiff == "60" && newExpStatus60.length > 0) {
-			//licEditExpInfo(newExpStatus60,null);  //Modifying to not allow renewal link or renewal button to be activated
+			licEditExpInfo(newExpStatus60,null);  
 			//update the record status
 			updateAppStatus(newRecStatus60);
 			//add renewal fee
@@ -370,7 +370,7 @@ function mainProcess() {
 					addParameter(params, "$$acaUrl$$", acaSite + getACAUrl());
 					addParameter(params, "$$daysLicExpires$$", leDaysDifftxt);
 					logDebug("Processing Expired Record: ToEmail: "+conArr[c]["email"]+" For Record: "+newRecStatus0);					
-				//	sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD00,params,null);
+					sendNotification(efromPD0,conArr[c]["email"],"",emailTemplatePD0, params,null);
 					}
 				}
 			}
