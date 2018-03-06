@@ -107,6 +107,7 @@ try {
             var rStart = String(RestrictionStart);
             var rEnd = String(RestrictionEnd);
             var tRestriction = String(TrafficRestriction);
+			var sigIntfld = String(SigIntersection)
 			var intersectionFld = String(Intersection);
 			var odOfficer = String(offDuty);
             var offInst = String(offInstructions);
@@ -123,6 +124,7 @@ try {
             addParameter(vEParams,"$$RESTRICTIONEND$$",rEnd);
             addParameter(vEParams,"$$ADDRESS$$",Address);
 			addParameter(vEParams,"$$INTERSECTION$$",intersectionFld);
+			addParameter(vEParams,"$$SIGINTERSECTION$$",sigIntfld);
             addParameter(vEParams,"$$ROADWAYRESTRICTIONASIT$$",tRestriction);
 			addParameter(vEParams,"$$DETAILEDDESCRIPTION$$",DDesc);
 			addParameter(vEParams,"$$OFFDUTYOFFICER$$",odOfficer);
