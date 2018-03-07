@@ -7,15 +7,24 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |09/19/16  |Steve Veloudos   |Initial Release
 //  2.0      |11/22/16  |Steve Veloudos   |Adj to fix multipule conditions added
+//	3.0		 |11/22/16  |Mong Ward	      |Adj to fix multiple conditions added - Check if condition exists
 /*==================================================================*/
 
 try {
-      if (inspResult.toUpperCase() == "STEEL PLATE IN ROW")
+      if (inspType == "Final Inspection" && inspResult == "Steel Plate in ROW")
         {
-        addAppCondition("Transportation","Applied(Applied)","Steel Plate in ROW","","Required");
-        }                    
+			var steelPlate = doesCapConditionExist("Steel Plate in ROW");
+			//logDebug("afterHrsCond = " + afterHrsCond);
+			if (!steelPlate)
+			{
+				addStdCondition("Transportation","Steel Plate in ROW");
+				showMessage = true;
+				comment("Steel Plate condition Hold - See Holds and Notices");
+			}
+		}
+                            
     }
 catch (err)
     {
-      logDebug("A JavaScript Error occured: " + err.message);
+      logDebug("A JavaScript Error occurred: " + err.message);
     }
