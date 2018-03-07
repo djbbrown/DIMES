@@ -18,7 +18,7 @@ include("PMT_BlueCard");
 
 include("PMT_CommercialImpactFees"); // Script 337
 include("PMT_ComDeferredSubmittal");
-include("PMT_CommercialFees");
+//include("PMT_CommercialFees");  //Added after the PMT_TotalValuation is called so that the fee will generate.
 include("PMT_AssessTechFee"); // must be run last
 
 //Script: PMT363
@@ -39,3 +39,5 @@ if ((wfTask.toUpperCase() == "PLANS COORDINATION" && wfStatus.toUpperCase() == "
 	|| (wfTask.toUpperCase() == "APPLICATION SUBMITTAL" && wfStatus.toUpperCase() == "ACCEPTED - PLAN REVIEW NOT REQ")){
 		include("PMT_TotalValuation");
 }
+
+include("PMT_CommercialFees");
