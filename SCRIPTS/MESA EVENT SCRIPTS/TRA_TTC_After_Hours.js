@@ -2,7 +2,7 @@
 // Script Number: 289
 // Script Name: TRA_TTC_After_Hours.js
 // Script Description: When Saturday Restriction or Sunday Restriction is selected as Y,  Cancel transaction
-// Script Run Event: WTUB
+// Script Run Event: WTUA
 // Script Parents: Transportation!~!~!~.js
 // Removed ASA & ASIUA
 // Version   |Date      |Engineer         |Details
@@ -16,7 +16,7 @@
 try {
     var ConditionFlag = false;
 
-    if ((wfTask == "Permit Issuance" && wfStatus == "Issued") || (wfTask == "Final Decision" && wfStatus == "Approved"))
+    if ((wfTask == "Traffic Review" && ((wfStatus == "Approved - No Fees") || wfStatus == "Approved - Fees Due"))
 	{
         //Load Data
         tblDurInfo = loadASITable("DURATION INFORMATION");
@@ -33,8 +33,7 @@ try {
 			var afterHrsCond = doesCapConditionExist("After Hours or Saturday/Sunday Restriction");
 			//logDebug("afterHrsCond = " + afterHrsCond);
 			if (!afterHrsCond){
-				addAppCondition("Transportation","Applied(Applied)","After Hours or Saturday/Sunday Restriction","","Hold");
-				cancel = true;
+				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
 				showMessage = true;
 				comment("Workflow task update canceled because of After Hours restriction");
 				}
