@@ -16,8 +16,7 @@
 try {
     var ConditionFlag = false;
 
-    if ((wfTask == "Traffic Review" && ((wfStatus == "Approved - No Fees") || wfStatus == "Approved - Fees Due"))
-	{
+    if (wfTask == "Traffic Review" && matches(wfStatus,"Approved - Fees Due","Approved - No Fees")){
         //Load Data
         tblDurInfo = loadASITable("DURATION INFORMATION");
 		if (tblDurInfo != "undefined"){
@@ -35,7 +34,7 @@ try {
 			if (!afterHrsCond){
 				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
 				showMessage = true;
-				comment("Workflow task update canceled because of After Hours restriction");
+				comment("After Hours Permit required - See Holds & Notices");
 				}
 		}
 	}
