@@ -3,4 +3,5 @@
 ==================================================================*/
 
 // added by Brian O'Dell (MESA) - 382
-include("PMT_OwnerBuilderDocReq_ASBOnly");
+//Remove the declaration of intent required doc. no longer needed as per business.
+//include("PMT_OwnerBuilderDocReq_ASBOnly");
