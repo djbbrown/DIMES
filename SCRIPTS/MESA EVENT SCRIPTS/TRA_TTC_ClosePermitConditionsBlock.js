@@ -14,7 +14,7 @@ try
       if(wfTask == 'Inspections' && wfStatus == 'Final Inspection Complete')         
     {
         var condResult = appHasCondition("Transportation","APPLIED",null,null);
-			//logDebug("afterHrsCond = " + afterHrsCond);
+			//logDebug("condResult = " + condResult);
 			if (condResult)
 			{
 				showMessage = true;
