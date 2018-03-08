@@ -20,37 +20,29 @@ try {
 	{
         //Load Data
         tblDurInfo = loadASITable("DURATION INFORMATION");
-		if (tblDurInfo != "undefined")
-		{
+		if (tblDurInfo != "undefined"){
 			for (x in tblDurInfo)
-			if (tblDurInfo[x]["Saturday Restriction"] == "Yes" || tblDurInfo[x]["Sunday Restriction"] == "Yes")
-			{
+			if (tblDurInfo[x]["Saturday Restriction"] == "Yes" || tblDurInfo[x]["Sunday Restriction"] == "Yes"){
 				ConditionFlag = true;
 				break;
 			}
 		}
 		//logDebug("ConditionFlag = " + ConditionFlag);
 		
-	   	
-		
-			
-		if (ConditionFlag)
-		{
+		if (ConditionFlag){
 			var afterHrsCond = doesCapConditionExist("After Hours or Saturday/Sunday Restriction");
 			//logDebug("afterHrsCond = " + afterHrsCond);
-			if (!afterHrsCond)
-			{
-				addStdCondition("Transportation","After Hours or Saturday/Sunday Restriction");
+			if (!afterHrsCond){
+				addAppCondition("Transportation","Applied(Applied)","After Hours or Saturday/Sunday Restriction","","Hold");
 				cancel = true;
 				showMessage = true;
-				comment("Workflow task update canceled because of After Hours restriction - See Holds and Notices");
-			}
+				comment("Workflow task update canceled because of After Hours restriction");
+				}
 		}
 	}
 	
     }
-	
 catch (err)
     {
-      logDebug("A JavaScript Error occurred: " + err.message);
+      logDebug("A JavaScript Error occured: " + err.message);
     }
