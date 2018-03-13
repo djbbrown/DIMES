@@ -12,19 +12,25 @@
 // Under this line create the function that will need to run at script runtime.
 // the function will be called in the event ("WorkflowTaskUpdateBefore") major event.
 
-if(
-		(
-					(wfTask == "Issue License" && wfStatus == "Issued")
-					|| (wfTask == "License Issuance" && wfStatus == "Issued")
-					|| (wfTask == "City Clerk" && wfStatus == "Applicant Notified")
-					|| (wfTask == "License Application" && wfStatus == "Received")
-					|| (wfTask == "Application Intake" && wfStatus == "Received")
-		)
-		&& appTypeArray[3] == 'Application'
-		&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
-){
-	showMessage = true;
-	message = "";
-	comment("All invoiced fees must be paid before selecting this status.");
-	cancel = true;
+try{
+	if(
+			(
+						(wfTask == "Issue License" && wfStatus == "Issued")
+						|| (wfTask == "License Issuance" && wfStatus == "Issued")
+						|| (wfTask == "City Clerk" && wfStatus == "Applicant Notified")
+						|| (wfTask == "License Application" && wfStatus == "Received")
+						|| (wfTask == "Application Intake" && wfStatus == "Received")
+						|| (wfTask == "Renewal Submittal" && wfStatus == "Renewed")
+			)
+			&& appTypeArray[3] == 'Application'
+			&& (balanceDue > 0 || feeTotalByStatus("NEW") > 0)
+	){
+		showMessage = true;
+		message = "";
+		comment("All invoiced fees must be paid before selecting this status.");
+		cancel = true;
+	}
+}
+catch(err) {
+	logDebug('Error in LIC_IssueLicenseFeeBalanceCheck: ' + err.message + "   ***StackTrace: " + err.stack);
 }

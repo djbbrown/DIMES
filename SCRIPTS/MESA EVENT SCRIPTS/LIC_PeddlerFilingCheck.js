@@ -27,5 +27,6 @@ try
 }
 catch(err)
 {
-    logDebug("Error: " + err.message);
+    
+    logDebug('Error in LIC_PeddlerFilingCheck: ' + err.message + "   ***StackTrace: " + err.stack);
 }

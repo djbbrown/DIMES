@@ -8,50 +8,60 @@
 //
 //  Updates:
 //  | M VanWie|  02/16/2018  |  renamed getParentCapIDForReviewCustom to remove naming conflict with global version
+//  | M VanWie|  03/13/2018  |  Added Peddler expiration calculation based on ASI data
 /*==================================================================*/
-if (wfTask == "Renewal Submittal" || wfTask == "Renew License"){
-	var capID = getCapId();
-	var parentLicenseCAPID = getParentCapIDForReviewCustom(capID)
 
-	if (parentLicenseCAPID != null) {
-	
-		if (isWorkflowApproveForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"), aa.env.getValue("WorkflowStatus"))) {
-			var partialCapID = getPartialCapID(capID);
-			if (isReadyRenew(parentLicenseCAPID)) {
-				renewalCapProject = getRenewalCapByParentCapIDForReview(parentLicenseCAPID);
-				if (renewalCapProject != null) {
-					aa.cap.updateAccessByACA(capID, "N");			
-					if (activeLicense(parentLicenseCAPID)) {
-						renewalCapProject.setStatus("Complete");
-						logDebug("license(" + parentLicenseCAPID + ") is activated.");
-						updateExpirationStatus(parentLicenseCAPID);
-						aa.cap.updateProject(renewalCapProject);
-						copyKeyInfo(capID, parentLicenseCAPID);
-						aa.cap.transferRenewCapDocument(partialCapID, parentLicenseCAPID, false);
-						logDebug("Transfer document for renew cap. Source Cap: " + partialCapID + ", target Cap: " + parentLicenseCAPID);
-					//	if (sendLicEmails) aa.expiration.sendApprovedNoticEmailToCitizenUser(parentLicenseCAPID);
+try {
+	if (wfTask == "Renewal Submittal" || wfTask == "Renew License"){
+		var capID = getCapId();
+		var parentLicenseCAPID = getParentCapIDForReviewCustom(capID)
+
+		if (parentLicenseCAPID != null) {
+		
+			if (isWorkflowApproveForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"), aa.env.getValue("WorkflowStatus"))) {
+				var partialCapID = getPartialCapID(capID);
+				if (isReadyRenew(parentLicenseCAPID)) {
+					renewalCapProject = getRenewalCapByParentCapIDForReview(parentLicenseCAPID);
+					if (renewalCapProject != null) {
+						aa.cap.updateAccessByACA(capID, "N");			
+						if (activeLicense(parentLicenseCAPID)) {
+							renewalCapProject.setStatus("Complete");
+							logDebug("license(" + parentLicenseCAPID + ") is activated.");
+							updateExpirationStatus(parentLicenseCAPID);
+							aa.cap.updateProject(renewalCapProject);
+							copyKeyInfo(capID, parentLicenseCAPID);
+							aa.cap.transferRenewCapDocument(partialCapID, parentLicenseCAPID, false);
+							logDebug("Transfer document for renew cap. Source Cap: " + partialCapID + ", target Cap: " + parentLicenseCAPID);
+						//	if (sendLicEmails) aa.expiration.sendApprovedNoticEmailToCitizenUser(parentLicenseCAPID);
+						}
 					}
 				}
 			}
-		}
-		if (isWorkflowDenyForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"),  aa.env.getValue("WorkflowStatus"))) {
-			if (isReadyRenew(parentLicenseCAPID)) {
-				renewalCapProject = getRenewalCapByParentCapIDForReview(parentLicenseCAPID);
-				//if (renewalCapProject != null) {
-				//	if (sendLicEmails) aa.expiration.sendDeniedNoticeEmailToCitizenUser(parentLicenseCAPID)
-				//}
+			if (isWorkflowDenyForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"),  aa.env.getValue("WorkflowStatus"))) {
+				if (isReadyRenew(parentLicenseCAPID)) {
+					renewalCapProject = getRenewalCapByParentCapIDForReview(parentLicenseCAPID);
+					//if (renewalCapProject != null) {
+					//	if (sendLicEmails) aa.expiration.sendDeniedNoticeEmailToCitizenUser(parentLicenseCAPID)
+					//}
+				}
 			}
 		}
 	}
 }
+catch (err){
+	logDebug('Error in LIC_CompleteRenewalOnWorkflow: ' + err.message + "   ***StackTrace: " + err.stack);
+}
+
 function updateExpirationStatus(licCapId) {
 	licObject = new licenseObject(null, licCapId);
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
 
 
-		//Only update Expiration for Peddler via script
-		//MV - 03/13/2018
+		// Added calculation for Q/A Peddlers
+		// Set EXP config to add 0 days so we will set it for all other
+		// licenses via this script.
+		// MV - 03/13/2018
 		if(appTypeArray[2] == "Peddler"){
 			var RFreq = AInfo["Renewal Frequency"];
 			if(RFreq == 'Quarterly')
@@ -66,6 +76,11 @@ function updateExpirationStatus(licCapId) {
 				licObject.setExpiration(newExpDate);
 				licObject.setStatus("Active");
 			}
+		}
+		else{
+			newExpDate = dateAdd(currExpDate, 365);
+			licObject.setExpiration(newExpDate);
+			licObject.setStatus("Active");
 		}
 		}
 	}
