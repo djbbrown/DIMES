@@ -12,7 +12,7 @@
 if (wfTask == "Renewal Submittal" || wfTask == "Renew License"){
 	var capID = getCapId();
 	var parentLicenseCAPID = getParentCapIDForReviewCustom(capID)
-	logDebug("Found : " + parentLicenseCAPID);
+
 	if (parentLicenseCAPID != null) {
 	
 		if (isWorkflowApproveForReview(capID, aa.env.getValue("WorkflowTask"), aa.env.getValue("SD_STP_NUM"), aa.env.getValue("ProcessID"), aa.env.getValue("WorkflowStatus"))) {
@@ -48,9 +48,10 @@ function updateExpirationStatus(licCapId) {
 	licObject = new licenseObject(null, licCapId);
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
-		newExpDate = dateAddMonths(currExpDate, 12);
+		newExpDate = dateAddMonths(currExpDate, 11); //Testing MV org: 12
 		//licObject.setExpiration(newExpDate);
 		//licObject.setStatus("Active");
+		}
 	}
 }
  
