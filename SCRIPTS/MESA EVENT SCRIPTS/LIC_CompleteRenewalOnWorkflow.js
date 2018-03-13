@@ -53,7 +53,7 @@ function updateExpirationStatus(licCapId) {
 		//licObject.setStatus("Active");
 		}
 	}
-}
+
  
 function getParentCapIDForReviewCustom(capid) {
 	if (capid == null || aa.util.instanceOfString(capid)) {
