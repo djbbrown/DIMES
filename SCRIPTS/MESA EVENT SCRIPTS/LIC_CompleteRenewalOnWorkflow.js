@@ -48,9 +48,9 @@ function updateExpirationStatus(licCapId) {
 	licObject = new licenseObject(null, licCapId);
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
-		newExpDate = dateAddMonths(currExpDate, 11); //Testing MV org: 12
-		//licObject.setExpiration(newExpDate);
-		//licObject.setStatus("Active");
+		newExpDate = dateAddMonths(currExpDate, 8); //Testing MV org: 12
+		licObject.setExpiration(newExpDate);
+		licObject.setStatus("Active");
 		}
 	}
 
