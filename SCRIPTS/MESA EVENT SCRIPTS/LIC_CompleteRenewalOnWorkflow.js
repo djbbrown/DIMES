@@ -48,9 +48,25 @@ function updateExpirationStatus(licCapId) {
 	licObject = new licenseObject(null, licCapId);
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
-		newExpDate = dateAddMonths(currExpDate, 8); //Testing MV org: 12
-		//licObject.setExpiration(newExpDate);
-		//licObject.setStatus("Active");
+
+
+		//Only update Expiration for Peddler via script
+		//MV - 03/13/2018
+		if(appTypeArray[2] == "Peddler"){
+			var RFreq = AInfo["Renewal Frequency"];
+			if(RFreq == 'Quarterly')
+			{
+				newExpDate = dateAdd(currExpDate, 90); 
+				licObject.setExpiration(newExpDate);
+				licObject.setStatus("Active");
+			}
+			else
+			{
+				newExpDate = dateAdd(currExpDate, 365);
+				licObject.setExpiration(newExpDate);
+				licObject.setStatus("Active");
+			}
+		}
 		}
 	}
 
