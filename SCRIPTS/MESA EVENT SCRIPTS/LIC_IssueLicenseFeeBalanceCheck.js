@@ -25,9 +25,9 @@ try {
 	var rnwTasks = ["Renewal Submittal"];
 	var rnwStatus = ["Renewed"];
 	
-	if( (IsStrInArry(wfTask, appTasks) && IsStrInArry(wfStatus, appStatus) && appTypeArray[3] == "Application")
-		||
-		(IsStrInArry(wfTask, rnwTasks) && IsStrInArry(wfStatus, rnwStatus) && appTypeArray[3] == "Renewal")
+	if( ((IsStrInArry(wfTask, appTasks) && IsStrInArry(wfStatus, appStatus) && appTypeArray[3] == "Application")
+			||
+		(IsStrInArry(wfTask, rnwTasks) && IsStrInArry(wfStatus, rnwStatus) && appTypeArray[3] == "Renewal"))
 		&&
 		(balanceDue > 0 || feeTotalByStatus("NEW") > 0)
 	  ){
