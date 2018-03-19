@@ -3,13 +3,13 @@
 // Script Name: LIC_AssessRenewalFees.js
 // Script Developer: Michael VanWie
 // Script Agency: Mesa
-// Script Description: Assess remewal fees when ready to renew
+// Script Description: Assess remewal fees when creating renewal record
 // Script Run Event: WTUA
 // Script Parents:
-//            WTUA;Licensing!General!~!Renewal
+//            CTRCA;Licensing!~!~!Renewal
 //==================================================================*/
 
-if (matches(wfTask,"Issue License","License Issuance") && wfStatus == "Ready to Issue"){
+try {
 	if(appTypeArray[2] == "Peddler"){
 		var RFreq = AInfo["Renewal Frequency"];
 
@@ -24,4 +24,8 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus == "Ready to 
 			if (!feeExists("LIC_04")) addFee("LIC_04","LIC_PEDDLER_APP","FINAL",1,"Y");
 		}
 	}
+}
+catch (err)
+{
+    logDebug('Error in LIC_AssessRenewalFees: ' + err.message + "   ***StackTrace: " + err.stack);
 }
