@@ -18,6 +18,7 @@
 //  1.0      | --/--/--  | Raminder Gill    | Initial Release
 //  1.1      | 12/05/17  | Michael VanWie   | Added proration of Annual fee based on quarter
 //  2.0      | 02/08/18  | Michael VanWie   | Modified script to work with ASA for Liquor Application & Renewal
+//  2.1		 | 03/19/18  | Michael VanWie   | Updated getQuarter()
 /*==================================================================*/
 
 try {
@@ -44,9 +45,8 @@ try {
 				if ((valSeries== "1" ||  valSeries== "2" || valSeries== "3" || valSeries== "4" || valSeries== "8" || valSeries== "11" || valSeries== "12" || valSeries== "13") 
 				&& (!feeExists("L030") && !feeExists("L031") && !feeExists("L032") && !feeExists("L033"))) 
 				{
-					if(agendaQuarter == 1){
+					if(agendaQuarter == 1)
 						addFee("L030","LIC_LIQUOR", "FINAL",  1, "N");
-					}
 					if(agendaQuarter == 2)
 						addFee("L031","LIC_LIQUOR", "FINAL",  1, "N");
 					if(agendaQuarter == 3)
@@ -100,9 +100,30 @@ function parseDate(str) {
 }
 
 function getQuarter(d) {
-  d = d || new Date(); // If no date supplied, use today
-  var q = [1,2,3,4];
-  return q[Math.floor(d.getMonth() / 3)];
+    try{
+        var q = [1,2,3,4];
+        var Qrt = 0;
+        var dt = new Date();
+		
+		//If date provided - use it
+        if(d != null) { dt = new Date(d); }
+		
+		//If we cant parse the provided date warn use and return 0 for checking
+		if(dt == "Invalid Date"){
+			logDebug('Error in LIC_LiquorLicenseFee -> f() getQuarter(date): Invalid Date provided - ' + d)
+			Qrt = 0;
+		}
+		else {
+			Qrt = q[Math.floor(dt.getMonth() / 3)];  
+		}
+    }
+    catch (err){
+        logDebug("Error in: LIC_LiquorLicenseFee -> f() getQuarter(date) | " + err.message + " | Stack: " + err.stack);
+        Qrt = 0;
+	}
+	finally {
+		return Qrt;
+	}
 }
 
 
