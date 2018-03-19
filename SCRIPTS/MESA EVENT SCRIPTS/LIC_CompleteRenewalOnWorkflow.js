@@ -57,7 +57,6 @@ function updateExpirationStatus(licCapId) {
 	if (licObject != null) {
 		currExpDate=licObject.b1ExpDate;
 
-
 		// Added calculation for Q/A Peddlers
 		// Set EXP config to add 0 days so we will set it for all other
 		// licenses via this script.
@@ -78,12 +77,15 @@ function updateExpirationStatus(licCapId) {
 			}
 		}
 		else{
-			newExpDate = dateAdd(currExpDate, 365);
-			licObject.setExpiration(newExpDate);
-			licObject.setStatus("Active");
-		}
+			//This is currently controlled by Application -> Renewal Info configuration
+			//For all License types except Peddler
+			
+			//newExpDate = dateAdd(currExpDate, 365);
+			//licObject.setExpiration(newExpDate);
+			//licObject.setStatus("Active");
 		}
 	}
+}
 
  
 function getParentCapIDForReviewCustom(capid) {
