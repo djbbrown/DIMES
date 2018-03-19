@@ -22,7 +22,18 @@ if (matches(wfTask,"Issue License","License Issuance") && wfStatus == "Ready to 
 	if (matches(appTypeArray[2], "AntiqueDealer", "Auction House", "Auctioneer", "MassageEstablishment", "PawnBroker", "ScrapMetal", "SecondHand")){
 		if (!feeExists("L030")) addFee("L030","LIC_PASS","FINAL",1,"Y");
 	}
-	if (appTypeArray[2] == "Peddler"){
-		if (!feeExists("LIC_04")) addFee("LIC_04","LIC_PEDDLER_APP","FINAL",1,"Y");
+	if(appTypeArray[2] == "Peddler"){
+		var RFreq = AInfo["Renewal Frequency"];
+
+		if(RFreq == 'Quarterly')
+		{
+			//Quarterly Fee
+			if (!feeExists("LIC_03")) addFee("LIC_03","LIC_PEDDLER_APP","FINAL",1,"Y");
+		}
+		else
+		{
+			//Annual Fee
+			if (!feeExists("LIC_04")) addFee("LIC_04","LIC_PEDDLER_APP","FINAL",1,"Y");
+		}
 	}
 }
