@@ -13,6 +13,7 @@
 // -----------------------------------------------------------------------------
 // | M VanWie   |  03/13/2018  | - Expanded to check Peddler Renewal and made it easier to include more WTUB checks
 // |            |              | - Added Try / Catch
+// | M VanWie   |  03/19/2018  | - Added fee check for [Renewal License / Issued]
 /*==================================================================*/
 
 // Under this line create the function that will need to run at script runtime.
@@ -22,8 +23,8 @@ try {
 	var appTasks = ["Issue License", "License Issuance", "City Clerk", "License Application", "Application Intake"];
 	var appStatus = ["Issued", "Applicant Notified", "Received"]
 	
-	var rnwTasks = ["Renewal Submittal"];
-	var rnwStatus = ["Renewed"];
+	var rnwTasks = ["Renewal Submittal", "Renew License"];
+	var rnwStatus = ["Renewed", "Issued"];
 	
 	if( ((IsStrInArry(wfTask, appTasks) && IsStrInArry(wfStatus, appStatus) && appTypeArray[3] == "Application")
 			||
