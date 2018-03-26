@@ -17,14 +17,15 @@
 // Version   |Date      |Engineer         |Details
 //  1.0      |10/12/16  |Steve Veloudos   |Initial Release
 //  1.1      |10/24/16  |Kevin Gurney     |Updated to utilize environment variables.
+//  1.2      |03/22/18  |Julie Darling    |Updated to include Issued Self-Certified status
 /*==================================================================*/
 
 try {
-       if (wfTask == "Permit Issuance" && wfStatus == "Issued"){       
-            //upate the custom field Permit Issued Date
-            editAppSpecific("Permit Issued Date", wfDateMMDDYYYY);
-		        }                
-    }
+    if (wfTask == "Permit Issuance" && (wfStatus == "Issued" || wfStatus == "Issued - Self Certified")) {       
+         //upate the custom field Permit Issued Date
+         editAppSpecific("Permit Issued Date", wfDateMMDDYYYY);
+             }                
+ }
 catch (err)
     {
       logDebug("A JavaScript Error occured: " + err.message);
